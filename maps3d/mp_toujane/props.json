@@ -1,0 +1,12876 @@
+{
+ "format": "cod2-demo3d-props/1",
+ "map": "mp_toujane",
+ "file": "props.bin",
+ "byteLength": 2372688,
+ "models": [
+  {
+   "name": "xmodel/awning_2x4_2",
+   "lod": "awning_2x4_20",
+   "flags": 0,
+   "mins": [
+    -46.14768981933594,
+    -46.14768981933594,
+    -46.14768981933594
+   ],
+   "maxs": [
+    46.14768981933594,
+    46.14768981933594,
+    46.14768981933594
+   ],
+   "vertices": 288,
+   "triangles": 234,
+   "geometry": {
+    "position": {
+     "offset": 0,
+     "length": 3456
+    },
+    "normal": {
+     "offset": 3456,
+     "length": 1152
+    },
+    "uv": {
+     "offset": 4608,
+     "length": 2304
+    },
+    "index": {
+     "offset": 6912,
+     "length": 2808
+    },
+    "tangent": {
+     "offset": 9720,
+     "length": 1152
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_market_stands",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 702,
+     "texture": "_textures/market_stands.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_market_stands_nrml-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_2x4_3",
+   "lod": "awning_2x4_30",
+   "flags": 0,
+   "mins": [
+    -46.138389587402344,
+    -46.138389587402344,
+    -46.138389587402344
+   ],
+   "maxs": [
+    46.138389587402344,
+    46.138389587402344,
+    46.138389587402344
+   ],
+   "vertices": 468,
+   "triangles": 376,
+   "geometry": {
+    "position": {
+     "offset": 10872,
+     "length": 5616
+    },
+    "normal": {
+     "offset": 16488,
+     "length": 1872
+    },
+    "uv": {
+     "offset": 18360,
+     "length": 3744
+    },
+    "index": {
+     "offset": 22104,
+     "length": 4512
+    },
+    "tangent": {
+     "offset": 26616,
+     "length": 1872
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_market_stands",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 1128,
+     "texture": "_textures/market_stands.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_market_stands_nrml-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_2x5_2",
+   "lod": "awning_2x5_20",
+   "flags": 0,
+   "mins": [
+    -49.77443313598633,
+    -49.77443313598633,
+    -49.77443313598633
+   ],
+   "maxs": [
+    49.77443313598633,
+    49.77443313598633,
+    49.77443313598633
+   ],
+   "vertices": 292,
+   "triangles": 234,
+   "geometry": {
+    "position": {
+     "offset": 28488,
+     "length": 3504
+    },
+    "normal": {
+     "offset": 31992,
+     "length": 1168
+    },
+    "uv": {
+     "offset": 33160,
+     "length": 2336
+    },
+    "index": {
+     "offset": 35496,
+     "length": 2808
+    },
+    "tangent": {
+     "offset": 38304,
+     "length": 1168
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_canopies1cloth",
+     "technique": "phong_alphatest",
+     "start": 0,
+     "count": 288,
+     "texture": "_textures/desert_canopies1.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_desert_canopies1bump-gggr.webp"
+    },
+    {
+     "material": "mtl_canopies1wood",
+     "technique": "phong_replace",
+     "start": 288,
+     "count": 414,
+     "texture": "_textures/desert_canopies1.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_desert_canopies1bump-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_desert_market_large",
+   "lod": "market_canopy_large0",
+   "flags": 0,
+   "mins": [
+    -191.33157348632812,
+    -191.33157348632812,
+    -191.33157348632812
+   ],
+   "maxs": [
+    191.33157348632812,
+    191.33157348632812,
+    191.33157348632812
+   ],
+   "vertices": 660,
+   "triangles": 570,
+   "geometry": {
+    "position": {
+     "offset": 39472,
+     "length": 7920
+    },
+    "normal": {
+     "offset": 47392,
+     "length": 2640
+    },
+    "uv": {
+     "offset": 50032,
+     "length": 5280
+    },
+    "index": {
+     "offset": 55312,
+     "length": 6840
+    },
+    "tangent": {
+     "offset": 62152,
+     "length": 2640
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_market_stands",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 1710,
+     "texture": "_textures/market_stands.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_market_stands_nrml-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_desert_market_large2",
+   "lod": "market_canopy_large20",
+   "flags": 0,
+   "mins": [
+    -191.33181762695312,
+    -191.33181762695312,
+    -191.33181762695312
+   ],
+   "maxs": [
+    191.33181762695312,
+    191.33181762695312,
+    191.33181762695312
+   ],
+   "vertices": 660,
+   "triangles": 570,
+   "geometry": {
+    "position": {
+     "offset": 64792,
+     "length": 7920
+    },
+    "normal": {
+     "offset": 72712,
+     "length": 2640
+    },
+    "uv": {
+     "offset": 75352,
+     "length": 5280
+    },
+    "index": {
+     "offset": 80632,
+     "length": 6840
+    },
+    "tangent": {
+     "offset": 87472,
+     "length": 2640
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_market_stands",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 1710,
+     "texture": "_textures/market_stands.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_market_stands_nrml-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_desert_market_medium1",
+   "lod": "market_canopy_medium10",
+   "flags": 0,
+   "mins": [
+    -125.78706359863281,
+    -125.78706359863281,
+    -125.78706359863281
+   ],
+   "maxs": [
+    125.78706359863281,
+    125.78706359863281,
+    125.78706359863281
+   ],
+   "vertices": 660,
+   "triangles": 570,
+   "geometry": {
+    "position": {
+     "offset": 90112,
+     "length": 7920
+    },
+    "normal": {
+     "offset": 98032,
+     "length": 2640
+    },
+    "uv": {
+     "offset": 100672,
+     "length": 5280
+    },
+    "index": {
+     "offset": 105952,
+     "length": 6840
+    },
+    "tangent": {
+     "offset": 112792,
+     "length": 2640
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_market_stands",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 1710,
+     "texture": "_textures/market_stands.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_market_stands_nrml-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_desert_market_medium2",
+   "lod": "market_canopy_medium20",
+   "flags": 0,
+   "mins": [
+    -125.8179702758789,
+    -125.8179702758789,
+    -125.8179702758789
+   ],
+   "maxs": [
+    125.8179702758789,
+    125.8179702758789,
+    125.8179702758789
+   ],
+   "vertices": 672,
+   "triangles": 570,
+   "geometry": {
+    "position": {
+     "offset": 115432,
+     "length": 8064
+    },
+    "normal": {
+     "offset": 123496,
+     "length": 2688
+    },
+    "uv": {
+     "offset": 126184,
+     "length": 5376
+    },
+    "index": {
+     "offset": 131560,
+     "length": 6840
+    },
+    "tangent": {
+     "offset": 138400,
+     "length": 2688
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_market_stands",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 1710,
+     "texture": "_textures/market_stands.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_market_stands_nrml-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_desert_market_small",
+   "lod": "market_canopy_small0",
+   "flags": 0,
+   "mins": [
+    -98.41193389892578,
+    -98.41193389892578,
+    -98.41193389892578
+   ],
+   "maxs": [
+    98.41193389892578,
+    98.41193389892578,
+    98.41193389892578
+   ],
+   "vertices": 360,
+   "triangles": 304,
+   "geometry": {
+    "position": {
+     "offset": 141088,
+     "length": 4320
+    },
+    "normal": {
+     "offset": 145408,
+     "length": 1440
+    },
+    "uv": {
+     "offset": 146848,
+     "length": 2880
+    },
+    "index": {
+     "offset": 149728,
+     "length": 3648
+    },
+    "tangent": {
+     "offset": 153376,
+     "length": 1440
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_market_stands",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 912,
+     "texture": "_textures/market_stands.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_market_stands_nrml-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_desert_wood2",
+   "lod": "wooden_canopy20",
+   "flags": 0,
+   "mins": [
+    -50.32512664794922,
+    -50.32512664794922,
+    -50.32512664794922
+   ],
+   "maxs": [
+    50.32512664794922,
+    50.32512664794922,
+    50.32512664794922
+   ],
+   "vertices": 368,
+   "triangles": 212,
+   "geometry": {
+    "position": {
+     "offset": 154816,
+     "length": 4416
+    },
+    "normal": {
+     "offset": 159232,
+     "length": 1472
+    },
+    "uv": {
+     "offset": 160704,
+     "length": 2944
+    },
+    "index": {
+     "offset": 163648,
+     "length": 2544
+    },
+    "tangent": {
+     "offset": 166192,
+     "length": 1472
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_canopies1wood",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 636,
+     "texture": "_textures/desert_canopies1.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_desert_canopies1bump-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_desert_wood3",
+   "lod": "wooden_canopy30",
+   "flags": 0,
+   "mins": [
+    -50.27629852294922,
+    -50.27629852294922,
+    -50.27629852294922
+   ],
+   "maxs": [
+    50.27629852294922,
+    50.27629852294922,
+    50.27629852294922
+   ],
+   "vertices": 340,
+   "triangles": 200,
+   "geometry": {
+    "position": {
+     "offset": 167664,
+     "length": 4080
+    },
+    "normal": {
+     "offset": 171744,
+     "length": 1360
+    },
+    "uv": {
+     "offset": 173104,
+     "length": 2720
+    },
+    "index": {
+     "offset": 175824,
+     "length": 2400
+    },
+    "tangent": {
+     "offset": 178224,
+     "length": 1360
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_canopies1wood",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 600,
+     "texture": "_textures/desert_canopies1.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_desert_canopies1bump-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_desert_wood4",
+   "lod": "wooden_canopy40",
+   "flags": 0,
+   "mins": [
+    -50.47124481201172,
+    -50.47124481201172,
+    -50.47124481201172
+   ],
+   "maxs": [
+    50.47124481201172,
+    50.47124481201172,
+    50.47124481201172
+   ],
+   "vertices": 412,
+   "triangles": 236,
+   "geometry": {
+    "position": {
+     "offset": 179584,
+     "length": 4944
+    },
+    "normal": {
+     "offset": 184528,
+     "length": 1648
+    },
+    "uv": {
+     "offset": 186176,
+     "length": 3296
+    },
+    "index": {
+     "offset": 189472,
+     "length": 2832
+    },
+    "tangent": {
+     "offset": 192304,
+     "length": 1648
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_canopies1wood",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 708,
+     "texture": "_textures/desert_canopies1.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_desert_canopies1bump-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_desert_wood_large1",
+   "lod": "wooden_canopy_large10",
+   "flags": 0,
+   "mins": [
+    -54.36992263793945,
+    -54.36992263793945,
+    -54.36992263793945
+   ],
+   "maxs": [
+    54.36992263793945,
+    54.36992263793945,
+    54.36992263793945
+   ],
+   "vertices": 460,
+   "triangles": 260,
+   "geometry": {
+    "position": {
+     "offset": 193952,
+     "length": 5520
+    },
+    "normal": {
+     "offset": 199472,
+     "length": 1840
+    },
+    "uv": {
+     "offset": 201312,
+     "length": 3680
+    },
+    "index": {
+     "offset": 204992,
+     "length": 3120
+    },
+    "tangent": {
+     "offset": 208112,
+     "length": 1840
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_canopies1wood",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 780,
+     "texture": "_textures/desert_canopies1.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_desert_canopies1bump-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_desert_wood_large2",
+   "lod": "wooden_canopy_large20",
+   "flags": 0,
+   "mins": [
+    -54.006019592285156,
+    -54.006019592285156,
+    -54.006019592285156
+   ],
+   "maxs": [
+    54.006019592285156,
+    54.006019592285156,
+    54.006019592285156
+   ],
+   "vertices": 412,
+   "triangles": 236,
+   "geometry": {
+    "position": {
+     "offset": 209952,
+     "length": 4944
+    },
+    "normal": {
+     "offset": 214896,
+     "length": 1648
+    },
+    "uv": {
+     "offset": 216544,
+     "length": 3296
+    },
+    "index": {
+     "offset": 219840,
+     "length": 2832
+    },
+    "tangent": {
+     "offset": 222672,
+     "length": 1648
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_canopies1wood",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 708,
+     "texture": "_textures/desert_canopies1.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_desert_canopies1bump-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_desert_wood_large3",
+   "lod": "wooden_canopy_large30",
+   "flags": 0,
+   "mins": [
+    -54.452877044677734,
+    -54.452877044677734,
+    -54.452877044677734
+   ],
+   "maxs": [
+    54.452877044677734,
+    54.452877044677734,
+    54.452877044677734
+   ],
+   "vertices": 416,
+   "triangles": 236,
+   "geometry": {
+    "position": {
+     "offset": 224320,
+     "length": 4992
+    },
+    "normal": {
+     "offset": 229312,
+     "length": 1664
+    },
+    "uv": {
+     "offset": 230976,
+     "length": 3328
+    },
+    "index": {
+     "offset": 234304,
+     "length": 2832
+    },
+    "tangent": {
+     "offset": 237136,
+     "length": 1664
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_canopies1wood",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 708,
+     "texture": "_textures/desert_canopies1.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_desert_canopies1bump-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_desert_wood_large4",
+   "lod": "wooden_canopy_large40",
+   "flags": 0,
+   "mins": [
+    -53.41779327392578,
+    -53.41779327392578,
+    -53.41779327392578
+   ],
+   "maxs": [
+    53.41779327392578,
+    53.41779327392578,
+    53.41779327392578
+   ],
+   "vertices": 388,
+   "triangles": 224,
+   "geometry": {
+    "position": {
+     "offset": 238800,
+     "length": 4656
+    },
+    "normal": {
+     "offset": 243456,
+     "length": 1552
+    },
+    "uv": {
+     "offset": 245008,
+     "length": 3104
+    },
+    "index": {
+     "offset": 248112,
+     "length": 2688
+    },
+    "tangent": {
+     "offset": 250800,
+     "length": 1552
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_canopies1wood",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 672,
+     "texture": "_textures/desert_canopies1.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_desert_canopies1bump-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/awning_desert_wood_long",
+   "lod": "wooden_canopy_long0",
+   "flags": 0,
+   "mins": [
+    -88.77876281738281,
+    -88.77876281738281,
+    -88.77876281738281
+   ],
+   "maxs": [
+    88.77876281738281,
+    88.77876281738281,
+    88.77876281738281
+   ],
+   "vertices": 662,
+   "triangles": 360,
+   "geometry": {
+    "position": {
+     "offset": 252352,
+     "length": 7944
+    },
+    "normal": {
+     "offset": 260296,
+     "length": 2648
+    },
+    "uv": {
+     "offset": 262944,
+     "length": 5296
+    },
+    "index": {
+     "offset": 268240,
+     "length": 4320
+    },
+    "tangent": {
+     "offset": 272560,
+     "length": 2648
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_canopies1wood",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 1080,
+     "texture": "_textures/desert_canopies1.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_desert_canopies1bump-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/brush_desertgreenfanshrub",
+   "lod": "brush_greenfanshrub_med0",
+   "flags": 1,
+   "mins": [
+    -29.70880889892578,
+    -29.70880889892578,
+    -29.70880889892578
+   ],
+   "maxs": [
+    29.70880889892578,
+    29.70880889892578,
+    29.70880889892578
+   ],
+   "vertices": 32,
+   "triangles": 20,
+   "geometry": {
+    "position": {
+     "offset": 275208,
+     "length": 384
+    },
+    "normal": {
+     "offset": 275592,
+     "length": 128
+    },
+    "uv": {
+     "offset": 275720,
+     "length": 256
+    },
+    "index": {
+     "offset": 275976,
+     "length": 240
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_desertshrubs",
+     "technique": "ambient_alphatest",
+     "start": 0,
+     "count": 60,
+     "texture": "_textures/desertshrubs_0.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "lod": "brush_desertshrubmidbrown_med0",
+   "flags": 1,
+   "mins": [
+    -31.386459350585938,
+    -31.386459350585938,
+    -31.386459350585938
+   ],
+   "maxs": [
+    31.386459350585938,
+    31.386459350585938,
+    31.386459350585938
+   ],
+   "vertices": 24,
+   "triangles": 12,
+   "geometry": {
+    "position": {
+     "offset": 276216,
+     "length": 288
+    },
+    "normal": {
+     "offset": 276504,
+     "length": 96
+    },
+    "uv": {
+     "offset": 276600,
+     "length": 192
+    },
+    "index": {
+     "offset": 276792,
+     "length": 144
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_desertshrubs",
+     "technique": "ambient_alphatest",
+     "start": 0,
+     "count": 36,
+     "texture": "_textures/desertshrubs_0.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/brush_desertshrubbrowntall",
+   "lod": "brush_desertshrubtallbrown_med0",
+   "flags": 1,
+   "mins": [
+    -38.28908157348633,
+    -38.28908157348633,
+    -38.28908157348633
+   ],
+   "maxs": [
+    38.28908157348633,
+    38.28908157348633,
+    38.28908157348633
+   ],
+   "vertices": 32,
+   "triangles": 16,
+   "geometry": {
+    "position": {
+     "offset": 276936,
+     "length": 384
+    },
+    "normal": {
+     "offset": 277320,
+     "length": 128
+    },
+    "uv": {
+     "offset": 277448,
+     "length": 256
+    },
+    "index": {
+     "offset": 277704,
+     "length": 192
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_desertshrubs",
+     "technique": "ambient_alphatest",
+     "start": 0,
+     "count": 48,
+     "texture": "_textures/desertshrubs_0.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/brush_desertshrubgraymid",
+   "lod": "brush_desertshrubmidgray_med0",
+   "flags": 1,
+   "mins": [
+    -32.1907958984375,
+    -32.1907958984375,
+    -32.1907958984375
+   ],
+   "maxs": [
+    32.1907958984375,
+    32.1907958984375,
+    32.1907958984375
+   ],
+   "vertices": 24,
+   "triangles": 12,
+   "geometry": {
+    "position": {
+     "offset": 277896,
+     "length": 288
+    },
+    "normal": {
+     "offset": 278184,
+     "length": 96
+    },
+    "uv": {
+     "offset": 278280,
+     "length": 192
+    },
+    "index": {
+     "offset": 278472,
+     "length": 144
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_desertshrubs",
+     "technique": "ambient_alphatest",
+     "start": 0,
+     "count": 36,
+     "texture": "_textures/desertshrubs_0.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/brush_desertshrubgroup01",
+   "lod": "brush_desertshrubgroup01_med0",
+   "flags": 1,
+   "mins": [
+    -47.216495513916016,
+    -47.216495513916016,
+    -47.216495513916016
+   ],
+   "maxs": [
+    47.216495513916016,
+    47.216495513916016,
+    47.216495513916016
+   ],
+   "vertices": 204,
+   "triangles": 102,
+   "geometry": {
+    "position": {
+     "offset": 278616,
+     "length": 2448
+    },
+    "normal": {
+     "offset": 281064,
+     "length": 816
+    },
+    "uv": {
+     "offset": 281880,
+     "length": 1632
+    },
+    "index": {
+     "offset": 283512,
+     "length": 1224
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_desertshrubs",
+     "technique": "ambient_alphatest",
+     "start": 0,
+     "count": 306,
+     "texture": "_textures/desertshrubs_0.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/brush_desertspikeyshrub",
+   "lod": "brush_desertspikeyshrub_high0",
+   "flags": 1,
+   "mins": [
+    -17.690462112426758,
+    -17.690462112426758,
+    -17.690462112426758
+   ],
+   "maxs": [
+    17.690462112426758,
+    17.690462112426758,
+    17.690462112426758
+   ],
+   "vertices": 24,
+   "triangles": 12,
+   "geometry": {
+    "position": {
+     "offset": 284736,
+     "length": 288
+    },
+    "normal": {
+     "offset": 285024,
+     "length": 96
+    },
+    "uv": {
+     "offset": 285120,
+     "length": 192
+    },
+    "index": {
+     "offset": 285312,
+     "length": 144
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_desertshrubs",
+     "technique": "ambient_alphatest",
+     "start": 0,
+     "count": 36,
+     "texture": "_textures/desertshrubs_0.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/brush_egypt_desert_1",
+   "lod": "brush_egyptdesert01_lod10",
+   "flags": 0,
+   "mins": [
+    -112.06861877441406,
+    -112.06861877441406,
+    -112.06861877441406
+   ],
+   "maxs": [
+    112.06861877441406,
+    112.06861877441406,
+    112.06861877441406
+   ],
+   "vertices": 112,
+   "triangles": 72,
+   "geometry": {
+    "position": {
+     "offset": 285456,
+     "length": 1344
+    },
+    "normal": {
+     "offset": 286800,
+     "length": 448
+    },
+    "uv": {
+     "offset": 287248,
+     "length": 896
+    },
+    "index": {
+     "offset": 288144,
+     "length": 864
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_brush_egypt_desert",
+     "technique": "phong_alphatest",
+     "start": 0,
+     "count": 216,
+     "texture": "_textures/brush_egypt_desert.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/brush_egypt_desert_2",
+   "lod": "brush_egyptdesert02_lod10",
+   "flags": 0,
+   "mins": [
+    -81.63722229003906,
+    -81.63722229003906,
+    -81.63722229003906
+   ],
+   "maxs": [
+    81.63722229003906,
+    81.63722229003906,
+    81.63722229003906
+   ],
+   "vertices": 120,
+   "triangles": 60,
+   "geometry": {
+    "position": {
+     "offset": 289008,
+     "length": 1440
+    },
+    "normal": {
+     "offset": 290448,
+     "length": 480
+    },
+    "uv": {
+     "offset": 290928,
+     "length": 960
+    },
+    "index": {
+     "offset": 291888,
+     "length": 720
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_brush_egypt_desert",
+     "technique": "phong_alphatest",
+     "start": 0,
+     "count": 180,
+     "texture": "_textures/brush_egypt_desert.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/brush_toujanebigbushy",
+   "lod": "brush_toujanebigbushy_high0",
+   "flags": 0,
+   "mins": [
+    -75.70515441894531,
+    -75.70515441894531,
+    -75.70515441894531
+   ],
+   "maxs": [
+    75.70515441894531,
+    75.70515441894531,
+    75.70515441894531
+   ],
+   "vertices": 528,
+   "triangles": 286,
+   "geometry": {
+    "position": {
+     "offset": 292608,
+     "length": 6336
+    },
+    "normal": {
+     "offset": 298944,
+     "length": 2112
+    },
+    "uv": {
+     "offset": 301056,
+     "length": 4224
+    },
+    "index": {
+     "offset": 305280,
+     "length": 3432
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_brush_toujanebigbushy",
+     "technique": "phong_alphatest",
+     "start": 0,
+     "count": 858,
+     "texture": "_textures/tree_desertbushy_col_0.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/crate01",
+   "lod": "crate010",
+   "flags": 0,
+   "mins": [
+    -37.40422821044922,
+    -37.40422821044922,
+    -37.40422821044922
+   ],
+   "maxs": [
+    37.40422821044922,
+    37.40422821044922,
+    37.40422821044922
+   ],
+   "vertices": 272,
+   "triangles": 136,
+   "geometry": {
+    "position": {
+     "offset": 308712,
+     "length": 3264
+    },
+    "normal": {
+     "offset": 311976,
+     "length": 1088
+    },
+    "uv": {
+     "offset": 313064,
+     "length": 2176
+    },
+    "index": {
+     "offset": 315240,
+     "length": 1632
+    },
+    "tangent": {
+     "offset": 316872,
+     "length": 1088
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_crate",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 408,
+     "texture": "_textures/crate.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_crate_n-gggr__crate_s-r-87g-87b-87_crate_cp-l-11.webp",
+     "specularMap": "_textures/_crate_s-r-87g-87b-87_crate_cp-l-11.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/dome_05",
+   "lod": "toujane_dome_05_high0",
+   "flags": 0,
+   "mins": [
+    -400.78643798828125,
+    -400.78643798828125,
+    -400.78643798828125
+   ],
+   "maxs": [
+    400.78643798828125,
+    400.78643798828125,
+    400.78643798828125
+   ],
+   "vertices": 584,
+   "triangles": 714,
+   "geometry": {
+    "position": {
+     "offset": 317960,
+     "length": 7008
+    },
+    "normal": {
+     "offset": 324968,
+     "length": 2336
+    },
+    "uv": {
+     "offset": 327304,
+     "length": 4672
+    },
+    "index": {
+     "offset": 331976,
+     "length": 8568
+    },
+    "tangent": {
+     "offset": 340544,
+     "length": 2336
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_dome_02",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 2142,
+     "texture": "_textures/toujane_dome_02.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_toujane_dome_02_n-gggr__toujane_dome_02_s-r-17g-17b-17_toujane_dom_f78fb26d.webp",
+     "specularMap": "_textures/_toujane_dome_02_s-r-17g-17b-17_toujane_dom_f78fb26d.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/egypt_prop_vase1",
+   "lod": "egypt_prop_vase1_high0",
+   "flags": 0,
+   "mins": [
+    -46.929771423339844,
+    -46.929771423339844,
+    -46.929771423339844
+   ],
+   "maxs": [
+    46.929771423339844,
+    46.929771423339844,
+    46.929771423339844
+   ],
+   "vertices": 456,
+   "triangles": 610,
+   "geometry": {
+    "position": {
+     "offset": 342880,
+     "length": 5472
+    },
+    "normal": {
+     "offset": 348352,
+     "length": 1824
+    },
+    "uv": {
+     "offset": 350176,
+     "length": 3648
+    },
+    "index": {
+     "offset": 353824,
+     "length": 7320
+    },
+    "tangent": {
+     "offset": 361144,
+     "length": 1824
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_egypt_vase1",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 1830,
+     "texture": "_textures/mtl_egypt_vase1.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_mtl_egypt_vase1_n-gggr__mtl_egypt_vase1_s-rgb_mtl_egypt_vase1_cp-l99.webp",
+     "specularMap": "_textures/_mtl_egypt_vase1_s-rgb_mtl_egypt_vase1_cp-l99.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/german_artillery_flak88_destroy",
+   "lod": "flak88_destroy_hi1",
+   "flags": 0,
+   "mins": [
+    -215.6640625,
+    -215.6640625,
+    -215.6640625
+   ],
+   "maxs": [
+    215.6640625,
+    215.6640625,
+    215.6640625
+   ],
+   "vertices": 4593,
+   "triangles": 3087,
+   "geometry": {
+    "position": {
+     "offset": 362968,
+     "length": 55116
+    },
+    "normal": {
+     "offset": 418084,
+     "length": 18372
+    },
+    "uv": {
+     "offset": 436456,
+     "length": 36744
+    },
+    "index": {
+     "offset": 473200,
+     "length": 37044
+    },
+    "tangent": {
+     "offset": 510244,
+     "length": 18372
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_german_artillery_flak88_destroy",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 558,
+     "texture": "_textures/flak88_destroy_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
+    },
+    {
+     "material": "mtl_german_artillery_flak88_destroy",
+     "technique": "phong_replace_spec",
+     "start": 558,
+     "count": 3921,
+     "texture": "_textures/flak88_destroy_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
+    },
+    {
+     "material": "mtl_german_artillery_flak88_destroy",
+     "technique": "phong_replace_spec",
+     "start": 4479,
+     "count": 2292,
+     "texture": "_textures/flak88_destroy_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
+    },
+    {
+     "material": "mtl_german_artillery_flak88_destroy",
+     "technique": "phong_replace_spec",
+     "start": 6771,
+     "count": 582,
+     "texture": "_textures/flak88_destroy_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
+    },
+    {
+     "material": "mtl_german_artillery_flak88_destroy",
+     "technique": "phong_replace_spec",
+     "start": 7353,
+     "count": 1908,
+     "texture": "_textures/flak88_destroy_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
+    }
+   ],
+   "skinned": true
+  },
+  {
+   "name": "xmodel/haycart",
+   "lod": "haycart0",
+   "flags": 0,
+   "mins": [
+    -140.23074340820312,
+    -140.23074340820312,
+    -140.23074340820312
+   ],
+   "maxs": [
+    140.23074340820312,
+    140.23074340820312,
+    140.23074340820312
+   ],
+   "vertices": 3530,
+   "triangles": 3044,
+   "geometry": {
+    "position": {
+     "offset": 528616,
+     "length": 42360
+    },
+    "normal": {
+     "offset": 570976,
+     "length": 14120
+    },
+    "uv": {
+     "offset": 585096,
+     "length": 28240
+    },
+    "index": {
+     "offset": 613336,
+     "length": 36528
+    },
+    "tangent": {
+     "offset": 649864,
+     "length": 14120
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_haycart",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 9132,
+     "texture": "_textures/haycart.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_haycart_nm-gggr__haycart_specular-r-49g-49b-49__white-l-11.webp",
+     "specularMap": "_textures/_haycart_specular-r-49g-49b-49__white-l-11.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_sandbag_curvedsection",
+   "lod": "sandbag_curvedsection0",
+   "flags": 0,
+   "mins": [
+    -80.3102798461914,
+    -80.3102798461914,
+    -80.3102798461914
+   ],
+   "maxs": [
+    80.3102798461914,
+    80.3102798461914,
+    80.3102798461914
+   ],
+   "vertices": 1374,
+   "triangles": 1702,
+   "geometry": {
+    "position": {
+     "offset": 663984,
+     "length": 16488
+    },
+    "normal": {
+     "offset": 680472,
+     "length": 5496
+    },
+    "uv": {
+     "offset": 685968,
+     "length": 10992
+    },
+    "index": {
+     "offset": 696960,
+     "length": 20424
+    },
+    "tangent": {
+     "offset": 717384,
+     "length": 5496
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_sandbags",
+     "technique": "phong_replace_detail",
+     "start": 0,
+     "count": 5106,
+     "texture": "_textures/sandbags_coler.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "detailMap": "_textures/burlap_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_sandbag_desert_cornersection",
+   "lod": "sandbag_cornersection0",
+   "flags": 0,
+   "mins": [
+    -37.34853744506836,
+    -37.34853744506836,
+    -37.34853744506836
+   ],
+   "maxs": [
+    37.34853744506836,
+    37.34853744506836,
+    37.34853744506836
+   ],
+   "vertices": 800,
+   "triangles": 1074,
+   "geometry": {
+    "position": {
+     "offset": 722880,
+     "length": 9600
+    },
+    "normal": {
+     "offset": 732480,
+     "length": 3200
+    },
+    "uv": {
+     "offset": 735680,
+     "length": 6400
+    },
+    "index": {
+     "offset": 742080,
+     "length": 12888
+    },
+    "tangent": {
+     "offset": 754968,
+     "length": 3200
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_sandbags_desert",
+     "technique": "phong_replace_detail",
+     "start": 0,
+     "count": 3222,
+     "texture": "_textures/sandbags_coler_tan.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "detailMap": "_textures/burlap_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_sandbag_desert_endsection_left",
+   "lod": "sandbag_endsection_left0",
+   "flags": 0,
+   "mins": [
+    -42.30678176879883,
+    -42.30678176879883,
+    -42.30678176879883
+   ],
+   "maxs": [
+    42.30678176879883,
+    42.30678176879883,
+    42.30678176879883
+   ],
+   "vertices": 478,
+   "triangles": 594,
+   "geometry": {
+    "position": {
+     "offset": 758168,
+     "length": 5736
+    },
+    "normal": {
+     "offset": 763904,
+     "length": 1912
+    },
+    "uv": {
+     "offset": 765816,
+     "length": 3824
+    },
+    "index": {
+     "offset": 769640,
+     "length": 7128
+    },
+    "tangent": {
+     "offset": 776768,
+     "length": 1912
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_sandbags_desert",
+     "technique": "phong_replace_detail",
+     "start": 0,
+     "count": 1782,
+     "texture": "_textures/sandbags_coler_tan.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "detailMap": "_textures/burlap_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_sandbag_desert_endsection_right",
+   "lod": "sandbag_endsection_right0",
+   "flags": 0,
+   "mins": [
+    -35.2585563659668,
+    -35.2585563659668,
+    -35.2585563659668
+   ],
+   "maxs": [
+    35.2585563659668,
+    35.2585563659668,
+    35.2585563659668
+   ],
+   "vertices": 517,
+   "triangles": 580,
+   "geometry": {
+    "position": {
+     "offset": 778680,
+     "length": 6204
+    },
+    "normal": {
+     "offset": 784884,
+     "length": 2068
+    },
+    "uv": {
+     "offset": 786952,
+     "length": 4136
+    },
+    "index": {
+     "offset": 791088,
+     "length": 6960
+    },
+    "tangent": {
+     "offset": 798048,
+     "length": 2068
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_sandbags_desert",
+     "technique": "phong_replace_detail",
+     "start": 0,
+     "count": 1740,
+     "texture": "_textures/sandbags_coler_tan.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "detailMap": "_textures/burlap_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_sandbag_desert_shortsection",
+   "lod": "sandbag_shortsection0",
+   "flags": 0,
+   "mins": [
+    -54.97314453125,
+    -54.97314453125,
+    -54.97314453125
+   ],
+   "maxs": [
+    54.97314453125,
+    54.97314453125,
+    54.97314453125
+   ],
+   "vertices": 373,
+   "triangles": 528,
+   "geometry": {
+    "position": {
+     "offset": 800116,
+     "length": 4476
+    },
+    "normal": {
+     "offset": 804592,
+     "length": 1492
+    },
+    "uv": {
+     "offset": 806084,
+     "length": 2984
+    },
+    "index": {
+     "offset": 809068,
+     "length": 6336
+    },
+    "tangent": {
+     "offset": 815404,
+     "length": 1492
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_sandbags_desert",
+     "technique": "phong_replace_detail",
+     "start": 0,
+     "count": 1584,
+     "texture": "_textures/sandbags_coler_tan.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "detailMap": "_textures/burlap_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_sandbag_single_flat",
+   "lod": "sandbag_single_flat0",
+   "flags": 0,
+   "mins": [
+    -15.381199836730957,
+    -15.381199836730957,
+    -15.381199836730957
+   ],
+   "maxs": [
+    15.381199836730957,
+    15.381199836730957,
+    15.381199836730957
+   ],
+   "vertices": 157,
+   "triangles": 236,
+   "geometry": {
+    "position": {
+     "offset": 816896,
+     "length": 1884
+    },
+    "normal": {
+     "offset": 818780,
+     "length": 628
+    },
+    "uv": {
+     "offset": 819408,
+     "length": 1256
+    },
+    "index": {
+     "offset": 820664,
+     "length": 2832
+    },
+    "tangent": {
+     "offset": 823496,
+     "length": 628
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_sandbags",
+     "technique": "phong_replace_detail",
+     "start": 0,
+     "count": 708,
+     "texture": "_textures/sandbags_coler.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "detailMap": "_textures/burlap_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_barrel_silver",
+   "lod": "barrel_high0",
+   "flags": 0,
+   "mins": [
+    -46.428466796875,
+    -46.428466796875,
+    -46.428466796875
+   ],
+   "maxs": [
+    46.428466796875,
+    46.428466796875,
+    46.428466796875
+   ],
+   "vertices": 394,
+   "triangles": 372,
+   "geometry": {
+    "position": {
+     "offset": 824124,
+     "length": 4728
+    },
+    "normal": {
+     "offset": 828852,
+     "length": 1576
+    },
+    "uv": {
+     "offset": 830428,
+     "length": 3152
+    },
+    "index": {
+     "offset": 833580,
+     "length": 4464
+    },
+    "tangent": {
+     "offset": 838044,
+     "length": 1576
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_barrel_silver",
+     "technique": "phong_replace_spec_detail",
+     "start": 0,
+     "count": 1116,
+     "texture": "_textures/silverbarrel_local.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_silverbarrel_bump_local-gggr__silverbarrel_spec_local-rgb__white-l-11.webp",
+     "specularMap": "_textures/_silverbarrel_spec_local-rgb__white-l-11.webp",
+     "detailMap": "_textures/metal_01.webp",
+     "detailScale": [
+      16.0,
+      16.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_crate_dak1",
+   "lod": "dak_crate10",
+   "flags": 0,
+   "mins": [
+    -47.29005432128906,
+    -47.29005432128906,
+    -47.29005432128906
+   ],
+   "maxs": [
+    47.29005432128906,
+    47.29005432128906,
+    47.29005432128906
+   ],
+   "vertices": 716,
+   "triangles": 358,
+   "geometry": {
+    "position": {
+     "offset": 839620,
+     "length": 8592
+    },
+    "normal": {
+     "offset": 848212,
+     "length": 2864
+    },
+    "uv": {
+     "offset": 851076,
+     "length": 5728
+    },
+    "index": {
+     "offset": 856804,
+     "length": 4296
+    },
+    "tangent": {
+     "offset": 861100,
+     "length": 2864
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_dak_crate_decals",
+     "technique": "effect_multiply",
+     "start": 0,
+     "count": 30,
+     "texture": "_textures/dak_crates_local.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "multiply",
+     "doubleSided": false,
+     "normalMap": null
+    },
+    {
+     "material": "mtl_dak_crate",
+     "technique": "phong_replace_spec",
+     "start": 30,
+     "count": 1044,
+     "texture": "_textures/dak_crates_local.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+     "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_crate_dak7",
+   "lod": "dak_crate70",
+   "flags": 0,
+   "mins": [
+    -32.40206527709961,
+    -32.40206527709961,
+    -32.40206527709961
+   ],
+   "maxs": [
+    32.40206527709961,
+    32.40206527709961,
+    32.40206527709961
+   ],
+   "vertices": 668,
+   "triangles": 334,
+   "geometry": {
+    "position": {
+     "offset": 863964,
+     "length": 8016
+    },
+    "normal": {
+     "offset": 871980,
+     "length": 2672
+    },
+    "uv": {
+     "offset": 874652,
+     "length": 5344
+    },
+    "index": {
+     "offset": 879996,
+     "length": 4008
+    },
+    "tangent": {
+     "offset": 884004,
+     "length": 2672
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_dak_crate_decals",
+     "technique": "effect_multiply",
+     "start": 0,
+     "count": 30,
+     "texture": "_textures/dak_crates_local.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "multiply",
+     "doubleSided": false,
+     "normalMap": null
+    },
+    {
+     "material": "mtl_dak_crate",
+     "technique": "phong_replace_spec",
+     "start": 30,
+     "count": 972,
+     "texture": "_textures/dak_crates_local.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+     "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_crate_dak8",
+   "lod": "dak_crate80",
+   "flags": 0,
+   "mins": [
+    -30.37933921813965,
+    -30.37933921813965,
+    -30.37933921813965
+   ],
+   "maxs": [
+    30.37933921813965,
+    30.37933921813965,
+    30.37933921813965
+   ],
+   "vertices": 656,
+   "triangles": 328,
+   "geometry": {
+    "position": {
+     "offset": 886676,
+     "length": 7872
+    },
+    "normal": {
+     "offset": 894548,
+     "length": 2624
+    },
+    "uv": {
+     "offset": 897172,
+     "length": 5248
+    },
+    "index": {
+     "offset": 902420,
+     "length": 3936
+    },
+    "tangent": {
+     "offset": 906356,
+     "length": 2624
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_dak_crate_decals",
+     "technique": "effect_multiply",
+     "start": 0,
+     "count": 12,
+     "texture": "_textures/dak_crates_local.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "multiply",
+     "doubleSided": false,
+     "normalMap": null
+    },
+    {
+     "material": "mtl_dak_crate",
+     "technique": "phong_replace_spec",
+     "start": 12,
+     "count": 972,
+     "texture": "_textures/dak_crates_local.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+     "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_doorknob1",
+   "lod": "doorknob10",
+   "flags": 0,
+   "mins": [
+    -1.6193143129348755,
+    -1.6193143129348755,
+    -1.6193143129348755
+   ],
+   "maxs": [
+    1.6193143129348755,
+    1.6193143129348755,
+    1.6193143129348755
+   ],
+   "vertices": 36,
+   "triangles": 32,
+   "geometry": {
+    "position": {
+     "offset": 908980,
+     "length": 432
+    },
+    "normal": {
+     "offset": 909412,
+     "length": 144
+    },
+    "uv": {
+     "offset": 909556,
+     "length": 288
+    },
+    "index": {
+     "offset": 909844,
+     "length": 384
+    },
+    "tangent": {
+     "offset": 910228,
+     "length": 144
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_doorknob1",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 96,
+     "texture": "_textures/doorknob1.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_doorknob1_normal-gggr__doorknob1_specular-rgb__white-l-11.webp",
+     "specularMap": "_textures/_doorknob1_specular-rgb__white-l-11.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_metal_pail1",
+   "lod": "metal_pail1high0",
+   "flags": 0,
+   "mins": [
+    -18.422544479370117,
+    -18.422544479370117,
+    -18.422544479370117
+   ],
+   "maxs": [
+    18.422544479370117,
+    18.422544479370117,
+    18.422544479370117
+   ],
+   "vertices": 418,
+   "triangles": 344,
+   "geometry": {
+    "position": {
+     "offset": 910372,
+     "length": 5016
+    },
+    "normal": {
+     "offset": 915388,
+     "length": 1672
+    },
+    "uv": {
+     "offset": 917060,
+     "length": 3344
+    },
+    "index": {
+     "offset": 920404,
+     "length": 4128
+    },
+    "tangent": {
+     "offset": 924532,
+     "length": 1672
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_metal_pail",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 1032,
+     "texture": "_textures/pail.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_pail_bump-gggr__pail_spec-rgb__white-l-11.webp",
+     "specularMap": "_textures/_pail_spec-rgb__white-l-11.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_wickerbasket6",
+   "lod": "basket_wicker60",
+   "flags": 0,
+   "mins": [
+    -50.08876419067383,
+    -50.08876419067383,
+    -50.08876419067383
+   ],
+   "maxs": [
+    50.08876419067383,
+    50.08876419067383,
+    50.08876419067383
+   ],
+   "vertices": 382,
+   "triangles": 492,
+   "geometry": {
+    "position": {
+     "offset": 926204,
+     "length": 4584
+    },
+    "normal": {
+     "offset": 930788,
+     "length": 1528
+    },
+    "uv": {
+     "offset": 932316,
+     "length": 3056
+    },
+    "index": {
+     "offset": 935372,
+     "length": 5904
+    },
+    "tangent": {
+     "offset": 941276,
+     "length": 1528
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_wickerbasket1",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 1476,
+     "texture": "_textures/basket2.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_basket2bump-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_wickerbasket7",
+   "lod": "basket_wicker70",
+   "flags": 0,
+   "mins": [
+    -37.12322235107422,
+    -37.12322235107422,
+    -37.12322235107422
+   ],
+   "maxs": [
+    37.12322235107422,
+    37.12322235107422,
+    37.12322235107422
+   ],
+   "vertices": 365,
+   "triangles": 460,
+   "geometry": {
+    "position": {
+     "offset": 942804,
+     "length": 4380
+    },
+    "normal": {
+     "offset": 947184,
+     "length": 1460
+    },
+    "uv": {
+     "offset": 948644,
+     "length": 2920
+    },
+    "index": {
+     "offset": 951564,
+     "length": 5520
+    },
+    "tangent": {
+     "offset": 957084,
+     "length": 1460
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_wickerbasket1",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 1380,
+     "texture": "_textures/basket2.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_basket2bump-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_wickerbasket8",
+   "lod": "basket_wicker80",
+   "flags": 0,
+   "mins": [
+    -41.4874382019043,
+    -41.4874382019043,
+    -41.4874382019043
+   ],
+   "maxs": [
+    41.4874382019043,
+    41.4874382019043,
+    41.4874382019043
+   ],
+   "vertices": 399,
+   "triangles": 492,
+   "geometry": {
+    "position": {
+     "offset": 958544,
+     "length": 4788
+    },
+    "normal": {
+     "offset": 963332,
+     "length": 1596
+    },
+    "uv": {
+     "offset": 964928,
+     "length": 3192
+    },
+    "index": {
+     "offset": 968120,
+     "length": 5904
+    },
+    "tangent": {
+     "offset": 974024,
+     "length": 1596
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_wickerbasket1",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 1476,
+     "texture": "_textures/basket2.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_basket2bump-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_wooden_barrel1",
+   "lod": "wooden_barrel10",
+   "flags": 0,
+   "mins": [
+    -49.646087646484375,
+    -49.646087646484375,
+    -49.646087646484375
+   ],
+   "maxs": [
+    49.646087646484375,
+    49.646087646484375,
+    49.646087646484375
+   ],
+   "vertices": 217,
+   "triangles": 252,
+   "geometry": {
+    "position": {
+     "offset": 975620,
+     "length": 2604
+    },
+    "normal": {
+     "offset": 978224,
+     "length": 868
+    },
+    "uv": {
+     "offset": 979092,
+     "length": 1736
+    },
+    "index": {
+     "offset": 980828,
+     "length": 3024
+    },
+    "tangent": {
+     "offset": 983852,
+     "length": 868
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_wooden_barrel1",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 756,
+     "texture": "_textures/woodbarrel1.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_woodbarrel1bump-gggr__woodbarrel1specular-rgb_woodbarrel1cosine-l-11.webp",
+     "specularMap": "_textures/_woodbarrel1specular-rgb_woodbarrel1cosine-l-11.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/tree_desertbushy",
+   "lod": "tree_desertbushy_high0",
+   "flags": 0,
+   "mins": [
+    -392.538330078125,
+    -392.538330078125,
+    -392.538330078125
+   ],
+   "maxs": [
+    392.538330078125,
+    392.538330078125,
+    392.538330078125
+   ],
+   "vertices": 816,
+   "triangles": 535,
+   "geometry": {
+    "position": {
+     "offset": 984720,
+     "length": 9792
+    },
+    "normal": {
+     "offset": 994512,
+     "length": 3264
+    },
+    "uv": {
+     "offset": 997776,
+     "length": 6528
+    },
+    "index": {
+     "offset": 1004304,
+     "length": 6420
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_tree_desertbushy",
+     "technique": "phong_alphatest",
+     "start": 0,
+     "count": 819,
+     "texture": "_textures/tree_desertbushy_col.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": null
+    },
+    {
+     "material": "mtl_tree_desertbushycanopy",
+     "technique": "ambient_alphatest",
+     "start": 819,
+     "count": 786,
+     "texture": "_textures/tree_desertbushy_col.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/tree_desertpalm02",
+   "lod": "tree_desertpalm02_high0",
+   "flags": 0,
+   "mins": [
+    -400.6767883300781,
+    -400.6767883300781,
+    -400.6767883300781
+   ],
+   "maxs": [
+    400.6767883300781,
+    400.6767883300781,
+    400.6767883300781
+   ],
+   "vertices": 747,
+   "triangles": 614,
+   "geometry": {
+    "position": {
+     "offset": 1010724,
+     "length": 8964
+    },
+    "normal": {
+     "offset": 1019688,
+     "length": 2988
+    },
+    "uv": {
+     "offset": 1022676,
+     "length": 5976
+    },
+    "index": {
+     "offset": 1028652,
+     "length": 7368
+    },
+    "tangent": {
+     "offset": 1036020,
+     "length": 2988
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_desertpalm",
+     "technique": "phong_alphatest",
+     "start": 0,
+     "count": 852,
+     "texture": "_textures/tree_desertpalm_col.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp"
+    },
+    {
+     "material": "mtl_desertpalmfronds",
+     "technique": "phong_alphatest",
+     "start": 852,
+     "count": 990,
+     "texture": "_textures/tree_desertpalm_col.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/tree_desertpalm03",
+   "lod": "tree_desertpalm03_high0",
+   "flags": 0,
+   "mins": [
+    -327.3612060546875,
+    -327.3612060546875,
+    -327.3612060546875
+   ],
+   "maxs": [
+    327.3612060546875,
+    327.3612060546875,
+    327.3612060546875
+   ],
+   "vertices": 717,
+   "triangles": 598,
+   "geometry": {
+    "position": {
+     "offset": 1039008,
+     "length": 8604
+    },
+    "normal": {
+     "offset": 1047612,
+     "length": 2868
+    },
+    "uv": {
+     "offset": 1050480,
+     "length": 5736
+    },
+    "index": {
+     "offset": 1056216,
+     "length": 7176
+    },
+    "tangent": {
+     "offset": 1063392,
+     "length": 2868
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_desertpalm",
+     "technique": "phong_alphatest",
+     "start": 0,
+     "count": 804,
+     "texture": "_textures/tree_desertpalm_col.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp"
+    },
+    {
+     "material": "mtl_desertpalmfronds",
+     "technique": "phong_alphatest",
+     "start": 804,
+     "count": 990,
+     "texture": "_textures/tree_desertpalm_col.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/vehicle_africa_jeep_static",
+   "lod": "american_jeep0",
+   "flags": 0,
+   "mins": [
+    -95.75151062011719,
+    -95.75151062011719,
+    -95.75151062011719
+   ],
+   "maxs": [
+    95.75151062011719,
+    95.75151062011719,
+    95.75151062011719
+   ],
+   "vertices": 5283,
+   "triangles": 4935,
+   "geometry": {
+    "position": {
+     "offset": 1066260,
+     "length": 63396
+    },
+    "normal": {
+     "offset": 1129656,
+     "length": 21132
+    },
+    "uv": {
+     "offset": 1150788,
+     "length": 42264
+    },
+    "index": {
+     "offset": 1193052,
+     "length": 59220
+    },
+    "tangent": {
+     "offset": 1252272,
+     "length": 21132
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_africa_jeep",
+     "technique": "phong_replace_spec_detail",
+     "start": 0,
+     "count": 14793,
+     "texture": "_textures/africajeepcolor_0.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_africajeepnormal_0-gggr__africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+     "specularMap": "_textures/_africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+     "detailMap": "_textures/africajeepdetail_0.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    },
+    {
+     "material": "mtl_jeep_glass",
+     "technique": "phong_blend_spec",
+     "start": 14793,
+     "count": 12,
+     "texture": "_textures/americanjeepglasscolor_0.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "blend",
+     "doubleSided": true,
+     "normalMap": "_textures/flat__americanjeepglassspecular_0-rgb_americanje_f087d27f.webp",
+     "specularMap": "_textures/_americanjeepglassspecular_0-rgb_americanje_f087d27f.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/vehicle_german_armored_car_static",
+   "lod": "vehicle_german_armored_car0",
+   "flags": 0,
+   "mins": [
+    -108.6507339477539,
+    -108.6507339477539,
+    -108.6507339477539
+   ],
+   "maxs": [
+    108.6507339477539,
+    108.6507339477539,
+    108.6507339477539
+   ],
+   "vertices": 6832,
+   "triangles": 5397,
+   "geometry": {
+    "position": {
+     "offset": 1273404,
+     "length": 81984
+    },
+    "normal": {
+     "offset": 1355388,
+     "length": 27328
+    },
+    "uv": {
+     "offset": 1382716,
+     "length": 54656
+    },
+    "index": {
+     "offset": 1437372,
+     "length": 64764
+    },
+    "tangent": {
+     "offset": 1502136,
+     "length": 27328
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_german_armored_car_mesh",
+     "technique": "phong_alphatest_spec",
+     "start": 0,
+     "count": 132,
+     "texture": "_textures/screen_color.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_screen_normals-gggr__screen_spec-rgbl30.webp",
+     "specularMap": "_textures/_screen_spec-rgbl30.webp"
+    },
+    {
+     "material": "mtl_german_armored_car",
+     "technique": "phong_replace_spec",
+     "start": 132,
+     "count": 13227,
+     "texture": "_textures/german_armored_car_color.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_german_armored_car_normals-gggr__german_armored_car_spec-rgbl30.webp",
+     "specularMap": "_textures/_german_armored_car_spec-rgbl30.webp"
+    },
+    {
+     "material": "mtl_german_armored_car",
+     "technique": "phong_replace_spec",
+     "start": 13359,
+     "count": 2832,
+     "texture": "_textures/german_armored_car_color.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_german_armored_car_normals-gggr__german_armored_car_spec-rgbl30.webp",
+     "specularMap": "_textures/_german_armored_car_spec-rgbl30.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/vehicle_german_kubel_static",
+   "lod": "vehicle_kubelwagen0",
+   "flags": 0,
+   "mins": [
+    -84.71870422363281,
+    -84.71870422363281,
+    -84.71870422363281
+   ],
+   "maxs": [
+    84.71870422363281,
+    84.71870422363281,
+    84.71870422363281
+   ],
+   "vertices": 5451,
+   "triangles": 5225,
+   "geometry": {
+    "position": {
+     "offset": 1529464,
+     "length": 65412
+    },
+    "normal": {
+     "offset": 1594876,
+     "length": 21804
+    },
+    "uv": {
+     "offset": 1616680,
+     "length": 43608
+    },
+    "index": {
+     "offset": 1660288,
+     "length": 62700
+    },
+    "tangent": {
+     "offset": 1722988,
+     "length": 21804
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_kubel_africa",
+     "technique": "phong_replace_spec_detail",
+     "start": 0,
+     "count": 15663,
+     "texture": "_textures/_german_germankubelpristinecolor_0.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_germankubelpristinenormal_0-gggr__germankubelpristinespecular_0-rgb_germanku_ea9d9e64.webp",
+     "specularMap": "_textures/_germankubelpristinespecular_0-rgb_germanku_ea9d9e64.webp",
+     "detailMap": "_textures/africajeepdetail_0.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    },
+    {
+     "material": "mtl_kubel_glass_africa",
+     "technique": "phong_blend_spec",
+     "start": 15663,
+     "count": 12,
+     "texture": "_textures/germankubelglasspristinecolor_0.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "blend",
+     "doubleSided": true,
+     "normalMap": "_textures/_germankubelglasspristinenormal_0-gggr__germankubelglasspristinespecular_0-rgb_ger_8bf39cad.webp",
+     "specularMap": "_textures/_germankubelglasspristinespecular_0-rgb_ger_8bf39cad.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/vehicle_opel_blitz_desert_static",
+   "lod": "opel_blitz_no_bars0",
+   "flags": 0,
+   "mins": [
+    -162.6680908203125,
+    -162.6680908203125,
+    -162.6680908203125
+   ],
+   "maxs": [
+    162.6680908203125,
+    162.6680908203125,
+    162.6680908203125
+   ],
+   "vertices": 6903,
+   "triangles": 5338,
+   "geometry": {
+    "position": {
+     "offset": 1744792,
+     "length": 82836
+    },
+    "normal": {
+     "offset": 1827628,
+     "length": 27612
+    },
+    "uv": {
+     "offset": 1855240,
+     "length": 55224
+    },
+    "index": {
+     "offset": 1910464,
+     "length": 64056
+    },
+    "tangent": {
+     "offset": 1974520,
+     "length": 27612
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_opel_blitz",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 10554,
+     "texture": "_textures/opel_blitz_desert__0.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_opel_blitz_nrml__0-gggr__opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp",
+     "specularMap": "_textures/_opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp"
+    },
+    {
+     "material": "mtl_opel_blitz",
+     "technique": "phong_replace_spec",
+     "start": 10554,
+     "count": 5100,
+     "texture": "_textures/opel_blitz_desert__0.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_opel_blitz_nrml__0-gggr__opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp",
+     "specularMap": "_textures/_opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp"
+    },
+    {
+     "material": "mtl_opel_blitz_glass",
+     "technique": "phong_blend",
+     "start": 15654,
+     "count": 126,
+     "texture": "_textures/opel_blitz_glass__0.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "blend",
+     "doubleSided": true,
+     "normalMap": null
+    },
+    {
+     "material": "mtl_opel_blitz_glass_inner",
+     "technique": "phong_blend",
+     "start": 15780,
+     "count": 24,
+     "texture": "_textures/opel_blitz_glass__0.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "blend",
+     "doubleSided": true,
+     "normalMap": null
+    },
+    {
+     "material": "mtl_opel_vm",
+     "technique": "phong_blend_spec",
+     "start": 15804,
+     "count": 210,
+     "texture": "_textures/opel_vm_desert__0.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": "blend",
+     "doubleSided": true,
+     "normalMap": "_textures/flat__opel_vm_desert_spec__0-rgbl08.webp",
+     "specularMap": "_textures/_opel_vm_desert_spec__0-rgbl08.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/vehicle_panzer_ii_static",
+   "lod": "vehicle_german_panzer_20",
+   "flags": 0,
+   "mins": [
+    -138.65443420410156,
+    -138.65443420410156,
+    -138.65443420410156
+   ],
+   "maxs": [
+    138.65443420410156,
+    138.65443420410156,
+    138.65443420410156
+   ],
+   "vertices": 8506,
+   "triangles": 5869,
+   "geometry": {
+    "position": {
+     "offset": 2002132,
+     "length": 102072
+    },
+    "normal": {
+     "offset": 2104204,
+     "length": 34024
+    },
+    "uv": {
+     "offset": 2138228,
+     "length": 68048
+    },
+    "index": {
+     "offset": 2206276,
+     "length": 70428
+    },
+    "tangent": {
+     "offset": 2276704,
+     "length": 34024
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_panzer2",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 9843,
+     "texture": "_textures/panzer2_color.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec-rgbl99.webp",
+     "specularMap": "_textures/_panzer2_spec-rgbl99.webp"
+    },
+    {
+     "material": "mtl_panzer2",
+     "technique": "phong_replace_spec",
+     "start": 9843,
+     "count": 6396,
+     "texture": "_textures/panzer2_color.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec-rgbl99.webp",
+     "specularMap": "_textures/_panzer2_spec-rgbl99.webp"
+    },
+    {
+     "material": "mtl_panzer2_treads_static",
+     "technique": "phong_alphatest_spec",
+     "start": 16239,
+     "count": 1368,
+     "texture": "_textures/panzer2_tread_color.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_panzer2_tread_normals-gggr__panzer2_tread_spec-rgbl-13.webp",
+     "specularMap": "_textures/_panzer2_tread_spec-rgbl-13.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/weapon_mg42",
+   "lod": "MG42_with_bipod_test1",
+   "flags": 0,
+   "mins": [
+    -52.64448928833008,
+    -52.64448928833008,
+    -52.64448928833008
+   ],
+   "maxs": [
+    52.64448928833008,
+    52.64448928833008,
+    52.64448928833008
+   ],
+   "vertices": 1657,
+   "triangles": 1297,
+   "geometry": {
+    "position": {
+     "offset": 2310728,
+     "length": 19884
+    },
+    "normal": {
+     "offset": 2330612,
+     "length": 6628
+    },
+    "uv": {
+     "offset": 2337240,
+     "length": 13256
+    },
+    "index": {
+     "offset": 2350496,
+     "length": 15564
+    },
+    "tangent": {
+     "offset": 2366060,
+     "length": 6628
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_weapon_mg42",
+     "technique": "phong_alphatest_spec_detail",
+     "start": 0,
+     "count": 222,
+     "texture": "_textures/weapon_mg42_c.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_weapon_mg42_n-gggr__weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
+     "specularMap": "_textures/_weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
+     "detailMap": "_textures/metal_01.webp",
+     "detailScale": [
+      32.0,
+      16.0
+     ]
+    },
+    {
+     "material": "mtl_weapon_mg42",
+     "technique": "phong_alphatest_spec_detail",
+     "start": 222,
+     "count": 3669,
+     "texture": "_textures/weapon_mg42_c.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_weapon_mg42_n-gggr__weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
+     "specularMap": "_textures/_weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
+     "detailMap": "_textures/metal_01.webp",
+     "detailScale": [
+      32.0,
+      16.0
+     ],
+     "part": "aim"
+    }
+   ],
+   "aimPivot": [
+    -2.986,
+    0.061,
+    12.915
+   ]
+  }
+ ],
+ "instances": [
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.86603,
+    0.5,
+    0.0,
+    1434.17,
+    -0.5,
+    0.86603,
+    -0.0,
+    2281.47,
+    -0.0,
+    0.0,
+    1.0,
+    139.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.86603,
+    0.5,
+    0.0,
+    1444.67,
+    -0.5,
+    0.86603,
+    -0.0,
+    2299.66,
+    -0.0,
+    0.0,
+    1.0,
+    139.0
+   ]
+  },
+  {
+   "model": 7,
+   "name": "xmodel/awning_desert_market_small",
+   "matrix": [
+    0.13917,
+    0.99027,
+    0.0,
+    2011.99,
+    -0.99027,
+    0.13917,
+    -0.0,
+    1596.53,
+    -0.0,
+    0.0,
+    1.0,
+    266.0
+   ]
+  },
+  {
+   "model": 1,
+   "name": "xmodel/awning_2x4_3",
+   "matrix": [
+    0.13744,
+    0.99051,
+    0.0,
+    1976.41,
+    -0.99051,
+    0.13744,
+    -0.0,
+    1592.15,
+    -0.0,
+    0.0,
+    1.0,
+    177.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.86603,
+    0.5,
+    -0.0,
+    1985.1,
+    -0.5,
+    -0.86603,
+    0.0,
+    2007.09,
+    -0.0,
+    0.0,
+    1.0,
+    127.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.86603,
+    0.5,
+    -0.0,
+    1995.6,
+    -0.5,
+    -0.86603,
+    0.0,
+    1988.9,
+    -0.0,
+    0.0,
+    1.0,
+    127.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/awning_desert_market_large2",
+   "matrix": [
+    -0.86603,
+    0.5,
+    -0.0,
+    1816.58,
+    -0.5,
+    -0.86603,
+    0.0,
+    1746.98,
+    -0.0,
+    0.0,
+    1.0,
+    176.0
+   ],
+   "light": [
+    0.612,
+    0.608,
+    0.569
+   ],
+   "groundLight": [
+    0.612,
+    0.608,
+    0.569,
+    0.482
+   ]
+  },
+  {
+   "model": 27,
+   "name": "xmodel/egypt_prop_vase1",
+   "matrix": [
+    0.85122,
+    0.5248,
+    0.0,
+    1884.54,
+    -0.5248,
+    0.85122,
+    -0.0,
+    1973.28,
+    -0.0,
+    0.0,
+    1.0,
+    64.0
+   ],
+   "light": [
+    0.243,
+    0.235,
+    0.216
+   ],
+   "groundLight": [
+    0.243,
+    0.235,
+    0.216,
+    0.0
+   ]
+  },
+  {
+   "model": 43,
+   "name": "xmodel/prop_wickerbasket7",
+   "matrix": [
+    0.78429,
+    -0.6204,
+    0.0,
+    1844.43,
+    0.6204,
+    0.78429,
+    0.0,
+    1954.74,
+    -0.0,
+    0.0,
+    1.0,
+    64.0
+   ],
+   "light": [
+    0.275,
+    0.267,
+    0.243
+   ],
+   "groundLight": [
+    0.275,
+    0.267,
+    0.243,
+    0.0
+   ]
+  },
+  {
+   "model": 43,
+   "name": "xmodel/prop_wickerbasket7",
+   "matrix": [
+    -0.14513,
+    -0.98941,
+    0.0,
+    1753.23,
+    0.98941,
+    -0.14513,
+    0.0,
+    1906.71,
+    -0.0,
+    0.0,
+    1.0,
+    64.0
+   ],
+   "light": [
+    0.247,
+    0.239,
+    0.22
+   ],
+   "groundLight": [
+    0.247,
+    0.239,
+    0.22,
+    0.0
+   ]
+  },
+  {
+   "model": 43,
+   "name": "xmodel/prop_wickerbasket7",
+   "matrix": [
+    -0.14513,
+    -0.98941,
+    0.0,
+    1901.23,
+    0.98941,
+    -0.14513,
+    0.0,
+    1650.36,
+    -0.0,
+    0.0,
+    1.0,
+    64.0
+   ],
+   "light": [
+    0.251,
+    0.247,
+    0.227
+   ],
+   "groundLight": [
+    0.251,
+    0.247,
+    0.227,
+    0.0
+   ]
+  },
+  {
+   "model": 42,
+   "name": "xmodel/prop_wickerbasket6",
+   "matrix": [
+    -0.8801,
+    0.47478,
+    -0.0,
+    1911.48,
+    -0.47478,
+    -0.8801,
+    0.0,
+    1688.61,
+    -0.0,
+    0.0,
+    1.0,
+    64.0
+   ],
+   "light": [
+    0.235,
+    0.231,
+    0.212
+   ],
+   "groundLight": [
+    0.235,
+    0.231,
+    0.212,
+    0.0
+   ]
+  },
+  {
+   "model": 12,
+   "name": "xmodel/awning_desert_wood_large2",
+   "matrix": [
+    -0.30902,
+    -0.95106,
+    0.0,
+    1599.14,
+    0.95106,
+    -0.30902,
+    0.0,
+    1190.07,
+    -0.0,
+    0.0,
+    1.0,
+    144.0
+   ]
+  },
+  {
+   "model": 5,
+   "name": "xmodel/awning_desert_market_medium1",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    1248.0,
+    -1.0,
+    -0.0,
+    0.0,
+    384.0,
+    -0.0,
+    0.0,
+    1.0,
+    117.0
+   ],
+   "light": [
+    0.647,
+    0.639,
+    0.592
+   ],
+   "groundLight": [
+    0.647,
+    0.639,
+    0.592,
+    0.0
+   ]
+  },
+  {
+   "model": 11,
+   "name": "xmodel/awning_desert_wood_large1",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    1408.0,
+    0.0,
+    1.0,
+    0.0,
+    864.0,
+    -0.0,
+    0.0,
+    1.0,
+    90.0
+   ]
+  },
+  {
+   "model": 15,
+   "name": "xmodel/awning_desert_wood_long",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    1183.0,
+    -1.0,
+    -0.0,
+    0.0,
+    678.0,
+    -0.0,
+    0.0,
+    1.0,
+    101.0
+   ]
+  },
+  {
+   "model": 6,
+   "name": "xmodel/awning_desert_market_medium2",
+   "matrix": [
+    0.0,
+    -1.0,
+    -0.0,
+    1248.0,
+    1.0,
+    -0.0,
+    0.0,
+    1216.0,
+    -0.0,
+    -0.0,
+    1.0,
+    117.0
+   ],
+   "light": [
+    0.729,
+    0.718,
+    0.663
+   ],
+   "groundLight": [
+    0.729,
+    0.718,
+    0.663,
+    0.792
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/awning_desert_wood_large3",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    1088.0,
+    0.0,
+    -1.0,
+    0.0,
+    927.0,
+    -0.0,
+    0.0,
+    1.0,
+    86.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    -7.99999,
+    0.0,
+    1.0,
+    0.0,
+    1769.0,
+    -0.0,
+    0.0,
+    1.0,
+    203.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    -8.0,
+    0.0,
+    1.0,
+    0.0,
+    1790.0,
+    -0.0,
+    0.0,
+    1.0,
+    203.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    -75.0,
+    -1.0,
+    -0.0,
+    0.0,
+    1964.0,
+    -0.0,
+    0.0,
+    1.0,
+    235.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    -54.0,
+    -1.0,
+    -0.0,
+    0.0,
+    1964.0,
+    -0.0,
+    0.0,
+    1.0,
+    235.0
+   ]
+  },
+  {
+   "model": 6,
+   "name": "xmodel/awning_desert_market_medium2",
+   "matrix": [
+    -0.0,
+    1.0,
+    0.0,
+    -129.0,
+    -1.0,
+    0.0,
+    -0.0,
+    1540.0,
+    -0.0,
+    -0.0,
+    1.0,
+    134.0
+   ],
+   "light": [
+    0.576,
+    0.576,
+    0.545
+   ],
+   "groundLight": [
+    0.576,
+    0.576,
+    0.545,
+    0.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    -109.0,
+    -1.0,
+    -0.0,
+    0.0,
+    1544.0,
+    -0.0,
+    0.0,
+    1.0,
+    81.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    -88.0,
+    -1.0,
+    -0.0,
+    0.0,
+    1544.0,
+    -0.0,
+    0.0,
+    1.0,
+    81.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    2019.0,
+    1.0,
+    0.0,
+    0.0,
+    1263.0,
+    -0.0,
+    0.0,
+    1.0,
+    139.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    1998.0,
+    1.0,
+    0.0,
+    0.0,
+    1263.0,
+    -0.0,
+    0.0,
+    1.0,
+    139.0
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/awning_desert_wood_large3",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    2009.0,
+    1.0,
+    0.0,
+    0.0,
+    1271.0,
+    -0.0,
+    0.0,
+    1.0,
+    156.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.4602,
+    0.88782,
+    0.0,
+    735.404,
+    -0.88782,
+    0.4602,
+    -0.0,
+    3191.57,
+    -0.0,
+    0.0,
+    1.0,
+    121.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.4602,
+    0.88782,
+    0.0,
+    754.048,
+    -0.88782,
+    0.4602,
+    -0.0,
+    3201.23,
+    -0.0,
+    0.0,
+    1.0,
+    121.0
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/awning_desert_wood_large3",
+   "matrix": [
+    0.4602,
+    0.88782,
+    0.0,
+    747.964,
+    -0.88782,
+    0.4602,
+    -0.0,
+    3189.07,
+    -0.0,
+    0.0,
+    1.0,
+    138.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    -356.0,
+    0.0,
+    1.0,
+    0.0,
+    1113.0,
+    -0.0,
+    0.0,
+    1.0,
+    87.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    -356.0,
+    0.0,
+    1.0,
+    0.0,
+    1134.0,
+    -0.0,
+    0.0,
+    1.0,
+    87.0
+   ]
+  },
+  {
+   "model": 11,
+   "name": "xmodel/awning_desert_wood_large1",
+   "matrix": [
+    0.13917,
+    0.99027,
+    0.0,
+    1926.49,
+    -0.99027,
+    0.13917,
+    -0.0,
+    529.173,
+    -0.0,
+    0.0,
+    1.0,
+    77.0
+   ]
+  },
+  {
+   "model": 12,
+   "name": "xmodel/awning_desert_wood_large2",
+   "matrix": [
+    -0.99027,
+    0.13917,
+    -0.0,
+    1530.9,
+    -0.13917,
+    -0.99027,
+    0.0,
+    699.778,
+    -0.0,
+    0.0,
+    1.0,
+    77.0
+   ]
+  },
+  {
+   "model": 14,
+   "name": "xmodel/awning_desert_wood_large4",
+   "matrix": [
+    0.99027,
+    -0.13917,
+    0.0,
+    1996.8,
+    0.13917,
+    0.99027,
+    0.0,
+    603.684,
+    -0.0,
+    0.0,
+    1.0,
+    159.0
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/awning_desert_wood_large3",
+   "matrix": [
+    0.99027,
+    -0.13917,
+    0.0,
+    1970.08,
+    0.13917,
+    0.99027,
+    0.0,
+    793.816,
+    -0.0,
+    0.0,
+    1.0,
+    159.0
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/awning_desert_market_large",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    2534.0,
+    0.0,
+    -1.0,
+    0.0,
+    625.0,
+    -0.0,
+    0.0,
+    1.0,
+    192.0
+   ],
+   "light": [
+    0.643,
+    0.631,
+    0.58
+   ],
+   "groundLight": [
+    0.643,
+    0.631,
+    0.58,
+    0.616
+   ]
+  },
+  {
+   "model": 10,
+   "name": "xmodel/awning_desert_wood4",
+   "matrix": [
+    0.5,
+    0.86603,
+    0.0,
+    3292.15,
+    -0.86603,
+    0.5,
+    -0.0,
+    2361.79,
+    -0.0,
+    0.0,
+    1.0,
+    232.0
+   ]
+  },
+  {
+   "model": 9,
+   "name": "xmodel/awning_desert_wood3",
+   "matrix": [
+    0.5,
+    0.86603,
+    0.0,
+    3506.43,
+    -0.86603,
+    0.5,
+    -0.0,
+    2374.65,
+    -0.0,
+    0.0,
+    1.0,
+    108.0
+   ]
+  },
+  {
+   "model": 8,
+   "name": "xmodel/awning_desert_wood2",
+   "matrix": [
+    0.5,
+    0.86603,
+    0.0,
+    3516.82,
+    -0.86603,
+    0.5,
+    -0.0,
+    2380.65,
+    -0.0,
+    0.0,
+    1.0,
+    231.0
+   ]
+  },
+  {
+   "model": 11,
+   "name": "xmodel/awning_desert_wood_large1",
+   "matrix": [
+    0.5,
+    0.86603,
+    0.0,
+    3292.15,
+    -0.86603,
+    0.5,
+    -0.0,
+    2361.79,
+    -0.0,
+    0.0,
+    1.0,
+    86.0
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/awning_desert_market_large",
+   "matrix": [
+    0.5,
+    0.86603,
+    0.0,
+    3092.23,
+    -0.86603,
+    0.5,
+    -0.0,
+    2698.86,
+    -0.0,
+    0.0,
+    1.0,
+    98.0
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/awning_desert_market_large",
+   "matrix": [
+    -0.24531,
+    -0.96945,
+    0.0,
+    1921.72,
+    0.96945,
+    -0.24531,
+    0.0,
+    171.612,
+    -0.0,
+    0.0,
+    1.0,
+    127.0
+   ],
+   "light": [
+    0.647,
+    0.627,
+    0.576
+   ],
+   "groundLight": [
+    0.647,
+    0.627,
+    0.576,
+    0.733
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    618.0,
+    0.0,
+    -1.0,
+    0.0,
+    404.0,
+    -0.0,
+    0.0,
+    1.0,
+    58.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    618.0,
+    0.0,
+    -1.0,
+    0.0,
+    383.0,
+    -0.0,
+    0.0,
+    1.0,
+    58.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    498.0,
+    0.0,
+    -1.0,
+    0.0,
+    1004.0,
+    -0.0,
+    0.0,
+    1.0,
+    178.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    498.0,
+    0.0,
+    -1.0,
+    0.0,
+    983.0,
+    -0.0,
+    0.0,
+    1.0,
+    178.0
+   ]
+  },
+  {
+   "model": 10,
+   "name": "xmodel/awning_desert_wood4",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    394.0,
+    -1.0,
+    -0.0,
+    0.0,
+    609.0,
+    -0.0,
+    0.0,
+    1.0,
+    69.0
+   ]
+  },
+  {
+   "model": 46,
+   "name": "xmodel/tree_desertbushy",
+   "matrix": [
+    -1.26705,
+    -0.8008,
+    -0.05749,
+    467.0,
+    0.80276,
+    -1.26189,
+    -0.11496,
+    474.0,
+    0.01301,
+    -0.12787,
+    1.49448,
+    -18.0
+   ],
+   "light": [
+    0.624,
+    0.616,
+    0.576
+   ],
+   "groundLight": [
+    0.624,
+    0.616,
+    0.576,
+    0.525
+   ]
+  },
+  {
+   "model": 21,
+   "name": "xmodel/brush_desertspikeyshrub",
+   "matrix": [
+    -0.09211,
+    -0.9744,
+    -0.20508,
+    247.0,
+    0.97751,
+    -0.04925,
+    -0.20508,
+    1540.0,
+    0.18973,
+    -0.21935,
+    0.95702,
+    -2.0
+   ],
+   "light": [
+    0.686,
+    0.675,
+    0.627
+   ],
+   "groundLight": [
+    0.686,
+    0.675,
+    0.627,
+    0.478
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/brush_desertgreenfanshrub",
+   "matrix": [
+    -0.0915,
+    -0.99538,
+    0.02909,
+    268.0,
+    0.97314,
+    -0.09557,
+    -0.20944,
+    1531.0,
+    0.21126,
+    0.00914,
+    0.97739,
+    -9.0
+   ],
+   "light": [
+    0.667,
+    0.663,
+    0.624
+   ],
+   "groundLight": [
+    0.667,
+    0.663,
+    0.624,
+    0.373
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/brush_desertgreenfanshrub",
+   "matrix": [
+    0.98785,
+    -0.01881,
+    -0.15426,
+    252.0,
+    -0.00419,
+    0.98907,
+    -0.1474,
+    1851.0,
+    0.15535,
+    0.14626,
+    0.97697,
+    33.0
+   ],
+   "light": [
+    0.482,
+    0.478,
+    0.451
+   ],
+   "groundLight": [
+    0.482,
+    0.478,
+    0.451,
+    0.0
+   ]
+  },
+  {
+   "model": 21,
+   "name": "xmodel/brush_desertspikeyshrub",
+   "matrix": [
+    0.99949,
+    0.03182,
+    0.00159,
+    260.0,
+    -0.03185,
+    0.99612,
+    0.08201,
+    2103.0,
+    0.00103,
+    -0.08202,
+    0.99663,
+    34.0
+   ],
+   "light": [
+    0.49,
+    0.49,
+    0.459
+   ],
+   "groundLight": [
+    0.49,
+    0.49,
+    0.459,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.2114,
+    -0.93801,
+    0.27468,
+    811.0,
+    0.97659,
+    -0.1913,
+    0.09833,
+    935.0,
+    -0.03969,
+    0.28904,
+    0.95649,
+    2.0
+   ],
+   "light": [
+    0.714,
+    0.702,
+    0.651
+   ],
+   "groundLight": [
+    0.714,
+    0.702,
+    0.651,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.47779,
+    -0.87673,
+    -0.05535,
+    1075.0,
+    0.87433,
+    -0.4807,
+    0.06688,
+    815.0,
+    -0.08524,
+    -0.01644,
+    0.99623,
+    0.0
+   ],
+   "light": [
+    0.698,
+    0.682,
+    0.627
+   ],
+   "groundLight": [
+    0.698,
+    0.682,
+    0.627,
+    0.71
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.95328,
+    -0.16699,
+    -0.25172,
+    1169.0,
+    0.23219,
+    -0.9381,
+    -0.257,
+    756.0,
+    -0.19323,
+    -0.30344,
+    0.93305,
+    7.0
+   ],
+   "light": [
+    0.502,
+    0.49,
+    0.455
+   ],
+   "groundLight": [
+    0.502,
+    0.49,
+    0.455,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.95202,
+    -0.22883,
+    -0.20321,
+    1076.0,
+    0.23215,
+    -0.97265,
+    0.00769,
+    552.0,
+    -0.19941,
+    -0.03985,
+    0.97911,
+    3.0
+   ],
+   "light": [
+    0.639,
+    0.624,
+    0.576
+   ],
+   "groundLight": [
+    0.639,
+    0.624,
+    0.576,
+    0.694
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/brush_desertshrubgraymid",
+   "matrix": [
+    0.98849,
+    0.0,
+    -0.15128,
+    1094.0,
+    0.01122,
+    0.99724,
+    0.07333,
+    379.0,
+    0.15086,
+    -0.07419,
+    0.98577,
+    2.0
+   ],
+   "light": [
+    0.671,
+    0.663,
+    0.616
+   ],
+   "groundLight": [
+    0.671,
+    0.663,
+    0.616,
+    0.176
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/brush_desertshrubgraymid",
+   "matrix": [
+    0.99841,
+    0.01018,
+    -0.05548,
+    1082.0,
+    -0.01019,
+    0.99995,
+    0.0,
+    900.0,
+    0.05547,
+    0.00057,
+    0.99846,
+    -2.0
+   ],
+   "light": [
+    0.722,
+    0.706,
+    0.651
+   ],
+   "groundLight": [
+    0.722,
+    0.706,
+    0.651,
+    0.718
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    -0.82534,
+    0.56458,
+    0.00807,
+    1922.0,
+    -0.56335,
+    -0.82434,
+    0.05565,
+    182.0,
+    0.03807,
+    0.04138,
+    0.99842,
+    -17.0
+   ],
+   "light": [
+    0.608,
+    0.588,
+    0.537
+   ],
+   "groundLight": [
+    0.608,
+    0.588,
+    0.537,
+    0.471
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    -0.61456,
+    0.4754,
+    -0.16125,
+    1076.0,
+    -0.48652,
+    -0.62686,
+    0.0061,
+    523.0,
+    -0.12372,
+    0.10359,
+    0.77695,
+    -4.0
+   ],
+   "light": [
+    0.588,
+    0.576,
+    0.533
+   ],
+   "groundLight": [
+    0.588,
+    0.576,
+    0.533,
+    0.192
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    -0.61211,
+    0.50195,
+    0.05529,
+    1390.0,
+    -0.50096,
+    -0.59264,
+    -0.16586,
+    377.0,
+    -0.06363,
+    -0.16285,
+    0.77403,
+    -7.0
+   ],
+   "light": [
+    0.612,
+    0.6,
+    0.553
+   ],
+   "groundLight": [
+    0.612,
+    0.6,
+    0.553,
+    0.0
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    -0.62409,
+    0.48783,
+    0.04717,
+    2048.0,
+    -0.46241,
+    -0.56078,
+    -0.31843,
+    756.0,
+    -0.16242,
+    -0.27792,
+    0.72531,
+    44.0
+   ],
+   "light": [
+    0.573,
+    0.565,
+    0.522
+   ],
+   "groundLight": [
+    0.573,
+    0.565,
+    0.522,
+    0.0
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.22136,
+    -0.65014,
+    0.13536,
+    1416.0,
+    0.66034,
+    0.2306,
+    0.02772,
+    930.0,
+    -0.07034,
+    0.11893,
+    0.68623,
+    46.0
+   ],
+   "light": [
+    0.42,
+    0.416,
+    0.392
+   ],
+   "groundLight": [
+    0.42,
+    0.416,
+    0.392,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.65127,
+    -1.11864,
+    -0.12035,
+    1541.0,
+    1.12482,
+    -0.65046,
+    -0.041,
+    939.0,
+    -0.02494,
+    -0.12467,
+    1.29377,
+    63.0
+   ],
+   "light": [
+    0.549,
+    0.545,
+    0.506
+   ],
+   "groundLight": [
+    0.549,
+    0.545,
+    0.506,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.11624,
+    -0.99002,
+    -0.0797,
+    1529.0,
+    0.98856,
+    -0.10756,
+    -0.10577,
+    1001.0,
+    0.09614,
+    -0.09109,
+    0.99119,
+    61.0
+   ],
+   "light": [
+    0.549,
+    0.549,
+    0.514
+   ],
+   "groundLight": [
+    0.549,
+    0.549,
+    0.514,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.96302,
+    0.2607,
+    -0.06798,
+    1492.0,
+    -0.26325,
+    0.96421,
+    -0.03171,
+    935.0,
+    0.05729,
+    0.04843,
+    0.99718,
+    59.0
+   ],
+   "light": [
+    0.549,
+    0.549,
+    0.514
+   ],
+   "groundLight": [
+    0.549,
+    0.549,
+    0.514,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.65122,
+    -0.7373,
+    -0.17972,
+    1438.0,
+    0.73705,
+    -0.67089,
+    0.08162,
+    951.0,
+    -0.18075,
+    -0.07931,
+    0.98033,
+    54.0
+   ],
+   "light": [
+    0.463,
+    0.459,
+    0.431
+   ],
+   "groundLight": [
+    0.463,
+    0.459,
+    0.431,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.75261,
+    -0.65184,
+    -0.09321,
+    1430.0,
+    0.6584,
+    0.74294,
+    0.12061,
+    1217.0,
+    -0.00937,
+    -0.15215,
+    0.98831,
+    18.0
+   ],
+   "light": [
+    0.694,
+    0.682,
+    0.635
+   ],
+   "groundLight": [
+    0.694,
+    0.682,
+    0.635,
+    0.773
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.7525,
+    0.63474,
+    -0.1756,
+    1455.0,
+    -0.65858,
+    0.72412,
+    -0.20476,
+    1505.0,
+    -0.00281,
+    0.26973,
+    0.96293,
+    34.0
+   ],
+   "light": [
+    0.706,
+    0.694,
+    0.647
+   ],
+   "groundLight": [
+    0.706,
+    0.694,
+    0.647,
+    0.549
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.28793,
+    0.91635,
+    -0.27821,
+    1426.0,
+    -0.95765,
+    0.27595,
+    -0.0822,
+    1559.0,
+    0.00145,
+    0.29009,
+    0.957,
+    40.0
+   ],
+   "light": [
+    0.694,
+    0.682,
+    0.631
+   ],
+   "groundLight": [
+    0.694,
+    0.682,
+    0.631,
+    0.62
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.95613,
+    -0.28565,
+    -0.06495,
+    1843.0,
+    0.28678,
+    0.95796,
+    0.00866,
+    1345.0,
+    0.05974,
+    -0.02691,
+    0.99785,
+    57.0
+   ],
+   "light": [
+    0.737,
+    0.729,
+    0.678
+   ],
+   "groundLight": [
+    0.737,
+    0.729,
+    0.678,
+    0.722
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.26967,
+    1.2713,
+    -0.03282,
+    1932.0,
+    -1.25724,
+    0.27156,
+    0.18868,
+    1189.0,
+    0.19137,
+    -0.0074,
+    1.28582,
+    84.0
+   ],
+   "light": [
+    0.455,
+    0.447,
+    0.416
+   ],
+   "groundLight": [
+    0.455,
+    0.447,
+    0.416,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.0083,
+    -0.99698,
+    -0.07718,
+    2065.0,
+    0.99991,
+    -0.00749,
+    -0.0108,
+    1286.0,
+    0.01019,
+    -0.07726,
+    0.99696,
+    77.0
+   ],
+   "light": [
+    0.741,
+    0.718,
+    0.655
+   ],
+   "groundLight": [
+    0.741,
+    0.718,
+    0.655,
+    0.706
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    1.0,
+    0.00275,
+    1e-05,
+    2297.0,
+    -0.00265,
+    0.96476,
+    0.26312,
+    1375.0,
+    0.00072,
+    -0.26312,
+    0.96476,
+    70.0
+   ],
+   "light": [
+    0.694,
+    0.682,
+    0.627
+   ],
+   "groundLight": [
+    0.694,
+    0.682,
+    0.627,
+    0.4
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.044,
+    -0.97681,
+    0.20953,
+    2338.0,
+    0.99899,
+    -0.045,
+    0.0,
+    1343.0,
+    0.00942,
+    0.20932,
+    0.9778,
+    70.0
+   ],
+   "light": [
+    0.702,
+    0.698,
+    0.651
+   ],
+   "groundLight": [
+    0.702,
+    0.698,
+    0.651,
+    0.486
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.03094,
+    -0.99937,
+    -0.01719,
+    2573.0,
+    0.99809,
+    -0.03181,
+    0.05287,
+    1040.0,
+    -0.05339,
+    -0.01553,
+    0.99845,
+    60.0
+   ],
+   "light": [
+    0.706,
+    0.694,
+    0.643
+   ],
+   "groundLight": [
+    0.706,
+    0.694,
+    0.643,
+    0.643
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.02878,
+    -0.99564,
+    -0.0887,
+    2312.0,
+    0.98556,
+    -0.04307,
+    0.16375,
+    995.0,
+    -0.16686,
+    -0.08271,
+    0.98251,
+    66.0
+   ],
+   "light": [
+    0.667,
+    0.659,
+    0.616
+   ],
+   "groundLight": [
+    0.667,
+    0.659,
+    0.616,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.04887,
+    -0.98492,
+    0.16595,
+    2013.0,
+    0.9685,
+    0.00612,
+    -0.24892,
+    572.0,
+    0.24416,
+    0.17289,
+    0.9542,
+    7.0
+   ],
+   "light": [
+    0.533,
+    0.529,
+    0.494
+   ],
+   "groundLight": [
+    0.533,
+    0.529,
+    0.494,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.59817,
+    -0.79834,
+    0.06967,
+    1400.0,
+    0.79127,
+    0.57463,
+    -0.20903,
+    377.0,
+    0.12684,
+    0.18016,
+    0.97543,
+    -1.0
+   ],
+   "light": [
+    0.612,
+    0.6,
+    0.553
+   ],
+   "groundLight": [
+    0.612,
+    0.6,
+    0.553,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.95234,
+    -0.21032,
+    -0.22095,
+    243.0,
+    0.257,
+    -0.94338,
+    -0.20972,
+    1550.0,
+    -0.16434,
+    -0.25651,
+    0.95247,
+    -1.0
+   ],
+   "light": [
+    0.686,
+    0.675,
+    0.627
+   ],
+   "groundLight": [
+    0.686,
+    0.675,
+    0.627,
+    0.545
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.93673,
+    0.34748,
+    -0.0423,
+    281.0,
+    -0.34952,
+    -0.93509,
+    0.05867,
+    1868.0,
+    -0.01916,
+    0.06974,
+    0.99738,
+    42.0
+   ],
+   "light": [
+    0.427,
+    0.427,
+    0.4
+   ],
+   "groundLight": [
+    0.427,
+    0.427,
+    0.4,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.029,
+    -0.9876,
+    -0.15426,
+    242.0,
+    0.98771,
+    0.05203,
+    -0.14741,
+    1824.0,
+    0.15361,
+    -0.14809,
+    0.97697,
+    34.0
+   ],
+   "light": [
+    0.482,
+    0.478,
+    0.451
+   ],
+   "groundLight": [
+    0.482,
+    0.478,
+    0.451,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.99573,
+    0.08038,
+    0.04543,
+    530.0,
+    -0.06919,
+    -0.9754,
+    0.20931,
+    1870.0,
+    0.06114,
+    0.20527,
+    0.97679,
+    53.0
+   ],
+   "light": [
+    0.631,
+    0.624,
+    0.576
+   ],
+   "groundLight": [
+    0.631,
+    0.624,
+    0.576,
+    0.647
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.99928,
+    0.00233,
+    0.038,
+    2117.0,
+    0.00894,
+    0.95588,
+    -0.29363,
+    1609.0,
+    -0.03701,
+    0.29376,
+    0.95516,
+    63.0
+   ],
+   "light": [
+    0.596,
+    0.588,
+    0.545
+   ],
+   "groundLight": [
+    0.596,
+    0.588,
+    0.545,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.2682,
+    0.95054,
+    0.15665,
+    2232.0,
+    -0.96287,
+    0.26972,
+    0.01192,
+    1829.0,
+    -0.03092,
+    -0.15403,
+    0.98758,
+    66.0
+   ],
+   "light": [
+    0.596,
+    0.588,
+    0.545
+   ],
+   "groundLight": [
+    0.596,
+    0.588,
+    0.545,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.56879,
+    -0.81085,
+    0.13788,
+    2151.0,
+    0.81935,
+    -0.54398,
+    0.18097,
+    1961.0,
+    -0.07173,
+    0.2159,
+    0.97378,
+    69.0
+   ],
+   "light": [
+    0.62,
+    0.612,
+    0.569
+   ],
+   "groundLight": [
+    0.62,
+    0.612,
+    0.569,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.92846,
+    0.33047,
+    -0.16957,
+    1887.0,
+    -0.35921,
+    -0.91504,
+    0.1835,
+    2027.0,
+    -0.09452,
+    0.23128,
+    0.96828,
+    76.0
+   ],
+   "light": [
+    0.718,
+    0.702,
+    0.647
+   ],
+   "groundLight": [
+    0.718,
+    0.702,
+    0.647,
+    0.816
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.53278,
+    -0.82315,
+    -0.19639,
+    1526.0,
+    0.84625,
+    0.5176,
+    0.12627,
+    1780.0,
+    -0.00229,
+    -0.23347,
+    0.97236,
+    58.0
+   ],
+   "light": [
+    0.718,
+    0.706,
+    0.655
+   ],
+   "groundLight": [
+    0.718,
+    0.706,
+    0.655,
+    0.753
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.88198,
+    0.46968,
+    -0.03889,
+    1272.0,
+    -0.47125,
+    0.87786,
+    -0.0853,
+    1894.0,
+    -0.00593,
+    0.09356,
+    0.9956,
+    78.0
+   ],
+   "light": [
+    0.584,
+    0.58,
+    0.541
+   ],
+   "groundLight": [
+    0.584,
+    0.58,
+    0.541,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.84498,
+    0.53192,
+    -0.05534,
+    1113.0,
+    -0.52805,
+    0.84623,
+    0.07114,
+    1861.0,
+    0.08467,
+    -0.03089,
+    0.99593,
+    67.0
+   ],
+   "light": [
+    0.718,
+    0.694,
+    0.639
+   ],
+   "groundLight": [
+    0.718,
+    0.694,
+    0.639,
+    0.439
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.68199,
+    -0.72996,
+    0.04528,
+    1118.0,
+    0.72097,
+    0.6606,
+    -0.20931,
+    1536.0,
+    0.12287,
+    0.1754,
+    0.9768,
+    -1.0
+   ],
+   "light": [
+    0.616,
+    0.612,
+    0.569
+   ],
+   "groundLight": [
+    0.616,
+    0.612,
+    0.569,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.49702,
+    -0.8494,
+    0.17747,
+    1340.0,
+    0.86723,
+    0.49325,
+    -0.06797,
+    1886.0,
+    -0.02981,
+    0.18769,
+    0.98178,
+    61.0
+   ],
+   "light": [
+    0.631,
+    0.624,
+    0.584
+   ],
+   "groundLight": [
+    0.631,
+    0.624,
+    0.584,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.4446,
+    0.88955,
+    0.10505,
+    1504.0,
+    -0.8951,
+    -0.43682,
+    -0.08938,
+    2160.0,
+    -0.03361,
+    -0.13377,
+    0.99044,
+    62.0
+   ],
+   "light": [
+    0.639,
+    0.635,
+    0.592
+   ],
+   "groundLight": [
+    0.639,
+    0.635,
+    0.592,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.55884,
+    -0.77768,
+    0.28794,
+    1570.0,
+    0.82894,
+    0.53373,
+    -0.16731,
+    2300.0,
+    -0.02356,
+    0.33218,
+    0.94292,
+    62.0
+   ],
+   "light": [
+    0.671,
+    0.667,
+    0.624
+   ],
+   "groundLight": [
+    0.671,
+    0.667,
+    0.624,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.89443,
+    -0.4472,
+    -0.00072,
+    3172.0,
+    0.43556,
+    0.87079,
+    0.22805,
+    1396.0,
+    -0.10136,
+    -0.20429,
+    0.97365,
+    69.0
+   ],
+   "light": [
+    0.631,
+    0.608,
+    0.549
+   ],
+   "groundLight": [
+    0.631,
+    0.608,
+    0.549,
+    0.725
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.92353,
+    0.3623,
+    0.12579,
+    2488.0,
+    -0.37992,
+    -0.90909,
+    -0.17093,
+    1878.0,
+    0.05242,
+    -0.20565,
+    0.97722,
+    63.0
+   ],
+   "light": [
+    0.647,
+    0.643,
+    0.6
+   ],
+   "groundLight": [
+    0.647,
+    0.643,
+    0.6,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.20952,
+    0.97743,
+    -0.02694,
+    2346.0,
+    -0.97757,
+    -0.20999,
+    -0.01592,
+    2073.0,
+    -0.02122,
+    0.023,
+    0.99951,
+    66.0
+   ],
+   "light": [
+    0.573,
+    0.557,
+    0.51
+   ],
+   "groundLight": [
+    0.573,
+    0.557,
+    0.51,
+    0.471
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.98806,
+    -0.14716,
+    -0.04566,
+    1848.0,
+    0.13004,
+    0.95537,
+    -0.26523,
+    2903.0,
+    0.08265,
+    0.25613,
+    0.9631,
+    90.0
+   ],
+   "light": [
+    0.518,
+    0.51,
+    0.475
+   ],
+   "groundLight": [
+    0.518,
+    0.51,
+    0.475,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.87072,
+    -0.46812,
+    0.15071,
+    1680.0,
+    0.48855,
+    -0.85846,
+    0.15613,
+    2646.0,
+    0.05629,
+    0.20957,
+    0.97617,
+    66.0
+   ],
+   "light": [
+    0.647,
+    0.635,
+    0.588
+   ],
+   "groundLight": [
+    0.647,
+    0.635,
+    0.588,
+    0.514
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    -0.73869,
+    -0.61367,
+    -0.27882,
+    1730.0,
+    0.66261,
+    -0.73699,
+    -0.1334,
+    2900.0,
+    -0.12362,
+    -0.28329,
+    0.95103,
+    82.0
+   ],
+   "light": [
+    0.69,
+    0.682,
+    0.635
+   ],
+   "groundLight": [
+    0.69,
+    0.682,
+    0.635,
+    0.545
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.24853,
+    -0.65373,
+    0.0296,
+    2083.0,
+    0.62867,
+    0.22972,
+    -0.20493,
+    1601.0,
+    0.18167,
+    0.09934,
+    0.66868,
+    55.0
+   ],
+   "light": [
+    0.635,
+    0.627,
+    0.588
+   ],
+   "groundLight": [
+    0.635,
+    0.627,
+    0.588,
+    0.0
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.26859,
+    -0.6357,
+    -0.11722,
+    2453.0,
+    0.64125,
+    0.27805,
+    -0.03859,
+    1875.0,
+    0.08161,
+    -0.09257,
+    0.68904,
+    58.0
+   ],
+   "light": [
+    0.647,
+    0.639,
+    0.592
+   ],
+   "groundLight": [
+    0.647,
+    0.639,
+    0.592,
+    0.51
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.26492,
+    -0.64052,
+    0.09776,
+    1131.0,
+    0.64565,
+    0.2521,
+    -0.09789,
+    1552.0,
+    0.05436,
+    0.12721,
+    0.68619,
+    -7.0
+   ],
+   "light": [
+    0.608,
+    0.6,
+    0.561
+   ],
+   "groundLight": [
+    0.608,
+    0.6,
+    0.561,
+    0.0
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.39658,
+    -0.91134,
+    0.11038,
+    1128.0,
+    0.89453,
+    0.35662,
+    -0.26953,
+    1639.0,
+    0.20627,
+    0.20563,
+    0.95664,
+    6.0
+   ],
+   "light": [
+    0.596,
+    0.592,
+    0.553
+   ],
+   "groundLight": [
+    0.596,
+    0.592,
+    0.553,
+    0.0
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.24846,
+    -0.64753,
+    0.09471,
+    1635.0,
+    0.6395,
+    0.26175,
+    0.11193,
+    2673.0,
+    -0.13895,
+    0.04679,
+    0.68447,
+    62.0
+   ],
+   "light": [
+    0.627,
+    0.612,
+    0.569
+   ],
+   "groundLight": [
+    0.627,
+    0.612,
+    0.569,
+    0.439
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.42364,
+    -0.81716,
+    -0.39087,
+    2529.0,
+    0.85543,
+    0.50284,
+    -0.12408,
+    644.0,
+    0.29794,
+    -0.2818,
+    0.91204,
+    52.0
+   ],
+   "light": [
+    0.592,
+    0.576,
+    0.529
+   ],
+   "groundLight": [
+    0.592,
+    0.576,
+    0.529,
+    0.235
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.69999,
+    -0.0,
+    -0.00417,
+    949.0,
+    0.00015,
+    0.69952,
+    0.02583,
+    3003.0,
+    0.00417,
+    -0.02583,
+    0.69951,
+    46.0
+   ],
+   "light": [
+    0.6,
+    0.596,
+    0.561
+   ],
+   "groundLight": [
+    0.6,
+    0.596,
+    0.561,
+    0.435
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.13262,
+    -0.67531,
+    -0.12794,
+    1168.0,
+    0.68555,
+    0.12063,
+    0.07392,
+    2272.0,
+    -0.04926,
+    -0.1393,
+    0.68423,
+    65.0
+   ],
+   "light": [
+    0.608,
+    0.584,
+    0.533
+   ],
+   "groundLight": [
+    0.608,
+    0.584,
+    0.533,
+    0.494
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.08156,
+    -0.68167,
+    0.13664,
+    659.0,
+    0.67605,
+    0.04568,
+    -0.17568,
+    2044.0,
+    0.16216,
+    0.15244,
+    0.66368,
+    41.0
+   ],
+   "light": [
+    0.604,
+    0.6,
+    0.561
+   ],
+   "groundLight": [
+    0.604,
+    0.6,
+    0.561,
+    0.0
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/brush_desertgreenfanshrub",
+   "matrix": [
+    0.98075,
+    -0.00448,
+    0.1952,
+    688.0,
+    0.05437,
+    0.96647,
+    -0.25097,
+    2048.0,
+    -0.18753,
+    0.25675,
+    0.94811,
+    36.0
+   ],
+   "light": [
+    0.616,
+    0.612,
+    0.573
+   ],
+   "groundLight": [
+    0.616,
+    0.612,
+    0.573,
+    0.0
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/brush_desertgreenfanshrub",
+   "matrix": [
+    0.9996,
+    -0.0268,
+    0.00877,
+    718.0,
+    0.0268,
+    0.99964,
+    0.0,
+    2639.0,
+    -0.00877,
+    0.00024,
+    0.99996,
+    47.0
+   ],
+   "light": [
+    0.514,
+    0.51,
+    0.475
+   ],
+   "groundLight": [
+    0.514,
+    0.51,
+    0.475,
+    0.0
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/brush_desertgreenfanshrub",
+   "matrix": [
+    0.9801,
+    -0.02884,
+    -0.19638,
+    1547.0,
+    0.05445,
+    0.9905,
+    0.12627,
+    1799.0,
+    0.19088,
+    -0.13445,
+    0.97236,
+    53.0
+   ],
+   "light": [
+    0.69,
+    0.686,
+    0.639
+   ],
+   "groundLight": [
+    0.69,
+    0.686,
+    0.639,
+    0.745
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/brush_desertgreenfanshrub",
+   "matrix": [
+    0.98892,
+    -0.02829,
+    -0.14573,
+    1409.0,
+    0.04773,
+    0.99014,
+    0.13169,
+    1220.0,
+    0.14057,
+    -0.13718,
+    0.98052,
+    9.0
+   ],
+   "light": [
+    0.694,
+    0.682,
+    0.635
+   ],
+   "groundLight": [
+    0.694,
+    0.682,
+    0.635,
+    0.796
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/brush_desertgreenfanshrub",
+   "matrix": [
+    0.99694,
+    -0.07795,
+    0.0062,
+    1098.0,
+    0.07742,
+    0.97282,
+    -0.21822,
+    763.0,
+    0.01098,
+    0.21803,
+    0.97588,
+    -2.0
+   ],
+   "light": [
+    0.596,
+    0.584,
+    0.541
+   ],
+   "groundLight": [
+    0.596,
+    0.584,
+    0.541,
+    0.345
+   ]
+  },
+  {
+   "model": 21,
+   "name": "xmodel/brush_desertspikeyshrub",
+   "matrix": [
+    0.85367,
+    -0.07683,
+    -0.51511,
+    1085.0,
+    0.08991,
+    0.99595,
+    0.00047,
+    392.0,
+    0.51299,
+    -0.04672,
+    0.85712,
+    3.0
+   ],
+   "light": [
+    0.663,
+    0.655,
+    0.608
+   ],
+   "groundLight": [
+    0.663,
+    0.655,
+    0.608,
+    0.0
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/brush_desertgreenfanshrub",
+   "matrix": [
+    0.9837,
+    -0.03675,
+    -0.17602,
+    1515.0,
+    0.06036,
+    0.98957,
+    0.13076,
+    791.0,
+    0.16938,
+    -0.13925,
+    0.97566,
+    -6.0
+   ],
+   "light": [
+    0.494,
+    0.49,
+    0.459
+   ],
+   "groundLight": [
+    0.494,
+    0.49,
+    0.459,
+    0.0
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/brush_desertgreenfanshrub",
+   "matrix": [
+    0.99032,
+    -0.12541,
+    0.05945,
+    2049.0,
+    0.13874,
+    0.90539,
+    -0.40128,
+    763.0,
+    -0.0035,
+    0.40564,
+    0.91402,
+    47.0
+   ],
+   "light": [
+    0.58,
+    0.573,
+    0.529
+   ],
+   "groundLight": [
+    0.58,
+    0.573,
+    0.529,
+    0.0
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/brush_desertgreenfanshrub",
+   "matrix": [
+    0.97395,
+    -0.13635,
+    0.18121,
+    2007.0,
+    0.16212,
+    0.97737,
+    -0.13591,
+    548.0,
+    -0.15858,
+    0.16174,
+    0.97401,
+    -5.0
+   ],
+   "light": [
+    0.533,
+    0.529,
+    0.494
+   ],
+   "groundLight": [
+    0.533,
+    0.529,
+    0.494,
+    0.0
+   ]
+  },
+  {
+   "model": 21,
+   "name": "xmodel/brush_desertspikeyshrub",
+   "matrix": [
+    0.96221,
+    -0.17402,
+    -0.20946,
+    2531.0,
+    0.18355,
+    0.98265,
+    0.02679,
+    655.0,
+    0.20116,
+    -0.06422,
+    0.97745,
+    63.0
+   ],
+   "light": [
+    0.663,
+    0.643,
+    0.588
+   ],
+   "groundLight": [
+    0.663,
+    0.643,
+    0.588,
+    0.294
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/brush_desertshrubbrowntall",
+   "matrix": [
+    0.97803,
+    0.00138,
+    0.20848,
+    1514.0,
+    0.01991,
+    0.99479,
+    -0.1,
+    804.0,
+    -0.20753,
+    0.10196,
+    0.9729,
+    -1.0
+   ],
+   "light": [
+    0.537,
+    0.537,
+    0.506
+   ],
+   "groundLight": [
+    0.537,
+    0.537,
+    0.506,
+    0.0
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/brush_desertshrubbrowntall",
+   "matrix": [
+    0.99315,
+    -0.01925,
+    -0.11527,
+    1533.0,
+    0.01853,
+    0.9998,
+    -0.00736,
+    642.0,
+    0.11539,
+    0.00517,
+    0.99331,
+    1.0
+   ],
+   "light": [
+    0.537,
+    0.529,
+    0.494
+   ],
+   "groundLight": [
+    0.537,
+    0.529,
+    0.494,
+    0.0
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/brush_desertshrubbrowntall",
+   "matrix": [
+    0.997,
+    -0.04266,
+    0.06451,
+    1568.0,
+    0.05521,
+    0.97671,
+    -0.20736,
+    475.0,
+    -0.05416,
+    0.2103,
+    0.97613,
+    2.0
+   ],
+   "light": [
+    0.682,
+    0.675,
+    0.627
+   ],
+   "groundLight": [
+    0.682,
+    0.675,
+    0.627,
+    0.059
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/brush_desertshrubbrowntall",
+   "matrix": [
+    0.99674,
+    -0.05181,
+    0.06184,
+    1445.0,
+    0.05547,
+    0.99672,
+    -0.05901,
+    1582.0,
+    -0.05858,
+    0.06224,
+    0.99634,
+    60.0
+   ],
+   "light": [
+    0.667,
+    0.663,
+    0.616
+   ],
+   "groundLight": [
+    0.667,
+    0.663,
+    0.616,
+    0.443
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/brush_desertshrubgraymid",
+   "matrix": [
+    0.99686,
+    -0.05041,
+    0.06114,
+    1449.0,
+    0.05532,
+    0.99514,
+    -0.08143,
+    1595.0,
+    -0.05673,
+    0.08455,
+    0.9948,
+    61.0
+   ],
+   "light": [
+    0.667,
+    0.663,
+    0.616
+   ],
+   "groundLight": [
+    0.667,
+    0.663,
+    0.616,
+    0.431
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/brush_desertshrubbrowntall",
+   "matrix": [
+    0.99641,
+    -0.04802,
+    -0.06976,
+    1185.0,
+    0.03903,
+    0.9914,
+    -0.1249,
+    1628.0,
+    0.07515,
+    0.12173,
+    0.98971,
+    7.0
+   ],
+   "light": [
+    0.706,
+    0.702,
+    0.659
+   ],
+   "groundLight": [
+    0.706,
+    0.702,
+    0.659,
+    0.106
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/brush_desertshrubbrowntall",
+   "matrix": [
+    0.99745,
+    -0.06454,
+    -0.03031,
+    1907.0,
+    0.06397,
+    0.99776,
+    -0.0194,
+    1583.0,
+    0.0315,
+    0.01742,
+    0.99935,
+    65.0
+   ],
+   "light": [
+    0.667,
+    0.659,
+    0.616
+   ],
+   "groundLight": [
+    0.667,
+    0.659,
+    0.616,
+    0.447
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/brush_desertshrubbrowntall",
+   "matrix": [
+    -0.8602,
+    -0.40333,
+    -0.07745,
+    1915.0,
+    0.40528,
+    -0.86273,
+    -0.00847,
+    1578.0,
+    -0.06652,
+    -0.04058,
+    0.95003,
+    65.0
+   ],
+   "light": [
+    0.667,
+    0.659,
+    0.616
+   ],
+   "groundLight": [
+    0.667,
+    0.659,
+    0.616,
+    0.463
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/brush_desertshrubbrowntall",
+   "matrix": [
+    -0.84674,
+    -0.48335,
+    0.30595,
+    2323.0,
+    0.47362,
+    -0.89886,
+    -0.10927,
+    1644.0,
+    0.32081,
+    0.05126,
+    0.96884,
+    62.0
+   ],
+   "light": [
+    0.643,
+    0.635,
+    0.596
+   ],
+   "groundLight": [
+    0.643,
+    0.635,
+    0.596,
+    0.0
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/brush_desertshrubbrowntall",
+   "matrix": [
+    -0.42167,
+    0.58041,
+    0.08101,
+    3229.0,
+    -0.58526,
+    -0.42222,
+    -0.02126,
+    2317.0,
+    0.03028,
+    -0.07809,
+    0.7171,
+    65.0
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.23671,
+    -0.65808,
+    -0.02989,
+    1404.0,
+    0.65841,
+    0.23738,
+    -0.01218,
+    3333.0,
+    0.02158,
+    -0.02399,
+    0.69926,
+    76.0
+   ],
+   "light": [
+    0.561,
+    0.557,
+    0.522
+   ],
+   "groundLight": [
+    0.561,
+    0.557,
+    0.522,
+    0.0
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.37269,
+    -0.90623,
+    -0.1996,
+    1307.0,
+    0.92795,
+    0.36478,
+    0.07649,
+    2531.0,
+    0.00349,
+    -0.21373,
+    0.97689,
+    66.0
+   ],
+   "light": [
+    0.588,
+    0.573,
+    0.529
+   ],
+   "groundLight": [
+    0.588,
+    0.573,
+    0.529,
+    0.655
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.2596,
+    -0.63706,
+    -0.12949,
+    1286.0,
+    0.65002,
+    0.25637,
+    0.04184,
+    2483.0,
+    0.00935,
+    -0.13576,
+    0.68665,
+    65.0
+   ],
+   "light": [
+    0.569,
+    0.557,
+    0.51
+   ],
+   "groundLight": [
+    0.569,
+    0.557,
+    0.51,
+    0.443
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.95233,
+    -0.02593,
+    0.30398,
+    527.0,
+    -0.0007,
+    0.99619,
+    0.08717,
+    1258.0,
+    -0.30508,
+    -0.08322,
+    0.94868,
+    -2.0
+   ],
+   "light": [
+    0.71,
+    0.694,
+    0.639
+   ],
+   "groundLight": [
+    0.71,
+    0.694,
+    0.639,
+    0.773
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    -0.39192,
+    -0.68646,
+    -0.06976,
+    580.0,
+    0.64282,
+    -0.39241,
+    0.24996,
+    1248.0,
+    -0.25073,
+    0.06694,
+    0.74989,
+    -5.0
+   ],
+   "light": [
+    0.588,
+    0.573,
+    0.525
+   ],
+   "groundLight": [
+    0.588,
+    0.573,
+    0.525,
+    0.573
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.99152,
+    -0.12995,
+    0.0,
+    495.0,
+    0.12328,
+    0.94064,
+    -0.31623,
+    1534.0,
+    0.04109,
+    0.31355,
+    0.94868,
+    -2.0
+   ],
+   "light": [
+    0.639,
+    0.631,
+    0.592
+   ],
+   "groundLight": [
+    0.639,
+    0.631,
+    0.592,
+    0.0
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/brush_desertshrubgroup01",
+   "matrix": [
+    0.99232,
+    -0.11011,
+    -0.05638,
+    1098.0,
+    0.12032,
+    0.96498,
+    0.23311,
+    1218.0,
+    0.02874,
+    -0.2381,
+    0.97082,
+    2.0
+   ],
+   "light": [
+    0.698,
+    0.69,
+    0.639
+   ],
+   "groundLight": [
+    0.698,
+    0.69,
+    0.639,
+    0.8
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/brush_desertgreenfanshrub",
+   "matrix": [
+    0.99776,
+    -0.03768,
+    -0.05533,
+    1086.0,
+    0.04158,
+    0.9966,
+    0.07114,
+    1867.0,
+    0.05246,
+    -0.07328,
+    0.99593,
+    57.0
+   ],
+   "light": [
+    0.698,
+    0.682,
+    0.627
+   ],
+   "groundLight": [
+    0.698,
+    0.682,
+    0.627,
+    0.839
+   ]
+  },
+  {
+   "model": 21,
+   "name": "xmodel/brush_desertspikeyshrub",
+   "matrix": [
+    0.99587,
+    -0.02278,
+    -0.08791,
+    570.0,
+    0.04949,
+    0.9478,
+    0.315,
+    1252.0,
+    0.07614,
+    -0.31805,
+    0.94501,
+    0.0
+   ],
+   "light": [
+    0.69,
+    0.675,
+    0.62
+   ],
+   "groundLight": [
+    0.69,
+    0.675,
+    0.62,
+    0.835
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    0.99909,
+    -0.04225,
+    0.0062,
+    1097.0,
+    0.04258,
+    0.97497,
+    -0.21822,
+    761.0,
+    0.00318,
+    0.21828,
+    0.97588,
+    4.0
+   ],
+   "light": [
+    0.596,
+    0.584,
+    0.541
+   ],
+   "groundLight": [
+    0.596,
+    0.584,
+    0.541,
+    0.345
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    0.98844,
+    -0.04173,
+    -0.14573,
+    1403.0,
+    0.06118,
+    0.9894,
+    0.13169,
+    1224.0,
+    0.13869,
+    -0.13908,
+    0.98052,
+    14.0
+   ],
+   "light": [
+    0.718,
+    0.706,
+    0.655
+   ],
+   "groundLight": [
+    0.718,
+    0.706,
+    0.655,
+    0.82
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    0.99468,
+    -0.0438,
+    -0.09321,
+    1415.0,
+    0.05495,
+    0.99118,
+    0.12061,
+    1202.0,
+    0.0871,
+    -0.12509,
+    0.98831,
+    19.0
+   ],
+   "light": [
+    0.553,
+    0.537,
+    0.494
+   ],
+   "groundLight": [
+    0.553,
+    0.537,
+    0.494,
+    0.376
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    0.78637,
+    0.80728,
+    -0.1055,
+    1422.0,
+    -0.79593,
+    0.79315,
+    0.13652,
+    1197.0,
+    0.17129,
+    -0.02065,
+    1.11868,
+    20.0
+   ],
+   "light": [
+    0.553,
+    0.537,
+    0.494
+   ],
+   "groundLight": [
+    0.553,
+    0.537,
+    0.494,
+    0.376
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    0.64067,
+    -0.76264,
+    -0.34824,
+    1409.0,
+    0.81742,
+    0.6656,
+    0.04619,
+    1172.0,
+    0.18629,
+    -0.29783,
+    0.99496,
+    36.0
+   ],
+   "light": [
+    0.557,
+    0.537,
+    0.494
+   ],
+   "groundLight": [
+    0.557,
+    0.537,
+    0.494,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    -0.43915,
+    -0.86966,
+    -0.34062,
+    1412.0,
+    0.91317,
+    -0.47881,
+    0.04518,
+    1169.0,
+    -0.1961,
+    -0.28215,
+    0.9732,
+    42.0
+   ],
+   "light": [
+    0.494,
+    0.486,
+    0.455
+   ],
+   "groundLight": [
+    0.494,
+    0.486,
+    0.455,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    0.06855,
+    -0.67011,
+    -0.23551,
+    1422.0,
+    0.71023,
+    0.06168,
+    0.03124,
+    1175.0,
+    -0.00898,
+    -0.2374,
+    0.67288,
+    43.0
+   ],
+   "light": [
+    0.545,
+    0.541,
+    0.506
+   ],
+   "groundLight": [
+    0.545,
+    0.541,
+    0.506,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    -0.12023,
+    -0.85003,
+    -0.18345,
+    2068.0,
+    0.86486,
+    -0.13619,
+    0.06421,
+    1365.0,
+    -0.09063,
+    -0.17193,
+    0.85608,
+    71.0
+   ],
+   "light": [
+    0.753,
+    0.737,
+    0.682
+   ],
+   "groundLight": [
+    0.753,
+    0.737,
+    0.682,
+    0.831
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    0.75675,
+    0.54549,
+    0.03768,
+    2076.0,
+    -0.54022,
+    0.73594,
+    0.19546,
+    1370.0,
+    0.0845,
+    -0.18023,
+    0.91216,
+    71.0
+   ],
+   "light": [
+    0.753,
+    0.737,
+    0.682
+   ],
+   "groundLight": [
+    0.753,
+    0.737,
+    0.682,
+    0.776
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    0.58613,
+    0.94785,
+    0.01566,
+    2296.0,
+    -0.94744,
+    0.58634,
+    -0.028,
+    2906.0,
+    -0.03205,
+    0.00141,
+    1.11409,
+    71.0
+   ],
+   "light": [
+    0.325,
+    0.322,
+    0.302
+   ],
+   "groundLight": [
+    0.325,
+    0.322,
+    0.302,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    0.87944,
+    -0.74561,
+    0.04711,
+    2179.0,
+    0.7452,
+    0.88065,
+    0.0267,
+    2853.0,
+    -0.0532,
+    0.01008,
+    1.15267,
+    68.0
+   ],
+   "light": [
+    0.38,
+    0.38,
+    0.357
+   ],
+   "groundLight": [
+    0.38,
+    0.38,
+    0.357,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    0.65785,
+    0.55434,
+    -0.00341,
+    1973.0,
+    -0.55431,
+    0.65785,
+    0.00562,
+    2731.0,
+    0.00623,
+    -0.0021,
+    0.86025,
+    67.0
+   ],
+   "light": [
+    0.525,
+    0.522,
+    0.49
+   ],
+   "groundLight": [
+    0.525,
+    0.522,
+    0.49,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    -0.82548,
+    0.06254,
+    -0.04269,
+    1962.0,
+    -0.06182,
+    -0.82649,
+    -0.01531,
+    2730.0,
+    -0.04372,
+    -0.01207,
+    0.8277,
+    67.0
+   ],
+   "light": [
+    0.525,
+    0.522,
+    0.49
+   ],
+   "groundLight": [
+    0.525,
+    0.522,
+    0.49,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    -0.57409,
+    0.806,
+    -0.00393,
+    1975.0,
+    -0.80601,
+    -0.57406,
+    0.00647,
+    2727.0,
+    0.00299,
+    0.00695,
+    0.98953,
+    67.0
+   ],
+   "light": [
+    0.525,
+    0.522,
+    0.49
+   ],
+   "groundLight": [
+    0.525,
+    0.522,
+    0.49,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    0.78828,
+    -0.26729,
+    -0.00324,
+    2656.0,
+    0.26686,
+    0.78633,
+    0.05746,
+    2256.0,
+    -0.01539,
+    -0.05546,
+    0.83037,
+    72.0
+   ],
+   "light": [
+    0.357,
+    0.349,
+    0.325
+   ],
+   "groundLight": [
+    0.357,
+    0.349,
+    0.325,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/brush_desertshrubbrownmid",
+   "matrix": [
+    1.01397,
+    0.32926,
+    0.24303,
+    1737.0,
+    -0.32881,
+    1.04206,
+    -0.03995,
+    2599.0,
+    -0.24364,
+    -0.03604,
+    1.06534,
+    64.0
+   ],
+   "light": [
+    0.71,
+    0.702,
+    0.655
+   ],
+   "groundLight": [
+    0.71,
+    0.702,
+    0.655,
+    0.522
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    -0.3462,
+    -0.48703,
+    -0.05435,
+    306.0,
+    0.47158,
+    -0.34919,
+    0.1252,
+    1868.0,
+    -0.13326,
+    0.02952,
+    0.58427,
+    38.0
+   ],
+   "light": [
+    0.455,
+    0.451,
+    0.424
+   ],
+   "groundLight": [
+    0.455,
+    0.451,
+    0.424,
+    0.0
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.33095,
+    -0.48019,
+    0.14101,
+    818.0,
+    0.49873,
+    -0.33052,
+    0.04498,
+    1234.0,
+    0.04168,
+    0.14202,
+    0.58146,
+    -1.0
+   ],
+   "light": [
+    0.541,
+    0.525,
+    0.482
+   ],
+   "groundLight": [
+    0.541,
+    0.525,
+    0.482,
+    0.031
+   ]
+  },
+  {
+   "model": 23,
+   "name": "xmodel/brush_egypt_desert_2",
+   "matrix": [
+    -0.35139,
+    -0.47922,
+    -0.08293,
+    612.0,
+    0.47588,
+    -0.3599,
+    0.06334,
+    1264.0,
+    -0.10034,
+    -0.02868,
+    0.59086,
+    3.0
+   ],
+   "light": [
+    0.557,
+    0.541,
+    0.498
+   ],
+   "groundLight": [
+    0.557,
+    0.541,
+    0.498,
+    0.267
+   ]
+  },
+  {
+   "model": 48,
+   "name": "xmodel/tree_desertpalm03",
+   "matrix": [
+    0.64531,
+    -1.12853,
+    0.0,
+    -247.0,
+    1.12853,
+    0.64531,
+    0.0,
+    699.0,
+    -0.0,
+    0.0,
+    1.3,
+    6.0
+   ],
+   "light": [
+    0.682,
+    0.686,
+    0.647
+   ],
+   "groundLight": [
+    0.682,
+    0.686,
+    0.647,
+    0.255
+   ]
+  },
+  {
+   "model": 48,
+   "name": "xmodel/tree_desertpalm03",
+   "matrix": [
+    0.13704,
+    -1.09143,
+    -0.00199,
+    1851.0,
+    1.09072,
+    0.13703,
+    -0.03954,
+    2878.0,
+    0.03948,
+    0.00295,
+    1.09929,
+    75.0
+   ],
+   "light": [
+    0.655,
+    0.651,
+    0.608
+   ],
+   "groundLight": [
+    0.655,
+    0.651,
+    0.608,
+    0.0
+   ]
+  },
+  {
+   "model": 47,
+   "name": "xmodel/tree_desertpalm02",
+   "matrix": [
+    -0.28778,
+    1.26758,
+    0.02032,
+    3093.0,
+    -1.26708,
+    -0.28692,
+    -0.04671,
+    1522.0,
+    -0.04106,
+    -0.03014,
+    1.299,
+    53.0
+   ],
+   "light": [
+    0.686,
+    0.671,
+    0.62
+   ],
+   "groundLight": [
+    0.686,
+    0.671,
+    0.62,
+    0.706
+   ]
+  },
+  {
+   "model": 35,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    -0.62162,
+    0.78251,
+    0.03556,
+    1051.0,
+    -0.78305,
+    -0.62196,
+    -0.00177,
+    328.0,
+    0.02073,
+    -0.02894,
+    0.99937,
+    -14.0
+   ],
+   "light": [
+    0.663,
+    0.655,
+    0.612
+   ],
+   "groundLight": [
+    0.663,
+    0.655,
+    0.612,
+    0.0
+   ]
+  },
+  {
+   "model": 35,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    -0.69137,
+    -0.71129,
+    0.12678,
+    979.0,
+    0.71952,
+    -0.69376,
+    0.03141,
+    382.0,
+    0.06561,
+    0.11294,
+    0.99143,
+    -11.0
+   ],
+   "light": [
+    0.631,
+    0.624,
+    0.58
+   ],
+   "groundLight": [
+    0.631,
+    0.624,
+    0.58,
+    0.0
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.02618,
+    0.99966,
+    -0.0,
+    608.0,
+    -0.99966,
+    -0.02618,
+    0.0,
+    1521.0,
+    -0.0,
+    0.0,
+    1.0,
+    3.0
+   ],
+   "light": [
+    0.51,
+    0.494,
+    0.451
+   ],
+   "groundLight": [
+    0.51,
+    0.494,
+    0.451,
+    0.0
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.02444,
+    -0.9997,
+    0.0,
+    608.0,
+    0.90895,
+    0.02222,
+    -0.41631,
+    1499.0,
+    0.41619,
+    0.01017,
+    0.90922,
+    -7.0
+   ],
+   "light": [
+    0.596,
+    0.588,
+    0.545
+   ],
+   "groundLight": [
+    0.596,
+    0.588,
+    0.545,
+    0.0
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.0,
+    0.0,
+    1.0,
+    595.0,
+    -0.99075,
+    -0.13572,
+    -0.0,
+    1525.0,
+    0.13572,
+    -0.99075,
+    0.0,
+    52.0
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.00197,
+    0.00149,
+    -1.0,
+    659.0,
+    0.99508,
+    -0.09906,
+    -0.00211,
+    1524.0,
+    -0.09906,
+    -0.99508,
+    -0.00129,
+    28.0
+   ]
+  },
+  {
+   "model": 51,
+   "name": "xmodel/vehicle_german_kubel_static",
+   "matrix": [
+    0.81974,
+    -0.56777,
+    -0.07527,
+    1138.0,
+    0.56382,
+    0.82308,
+    -0.06817,
+    1427.0,
+    0.10066,
+    0.01344,
+    0.99483,
+    -25.0
+   ],
+   "light": [
+    0.502,
+    0.49,
+    0.447
+   ],
+   "groundLight": [
+    0.502,
+    0.49,
+    0.447,
+    0.0
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    0.58016,
+    0.80936,
+    -0.09136,
+    2181.0,
+    -0.81449,
+    0.57702,
+    -0.06041,
+    2409.0,
+    0.00382,
+    0.10946,
+    0.99398,
+    60.0
+   ],
+   "light": [
+    0.663,
+    0.663,
+    0.624
+   ],
+   "groundLight": [
+    0.663,
+    0.663,
+    0.624,
+    0.718
+   ]
+  },
+  {
+   "model": 36,
+   "name": "xmodel/prop_barrel_silver",
+   "matrix": [
+    0.98992,
+    0.0,
+    -0.14162,
+    2333.0,
+    -0.0235,
+    0.98613,
+    -0.16427,
+    2058.0,
+    0.13966,
+    0.16595,
+    0.9762,
+    62.0
+   ],
+   "light": [
+    0.525,
+    0.51,
+    0.467
+   ],
+   "groundLight": [
+    0.525,
+    0.51,
+    0.467,
+    0.133
+   ]
+  },
+  {
+   "model": 36,
+   "name": "xmodel/prop_barrel_silver",
+   "matrix": [
+    -0.35858,
+    -0.92534,
+    -0.12317,
+    2352.0,
+    0.93293,
+    -0.35061,
+    -0.08199,
+    2033.0,
+    0.03268,
+    -0.14431,
+    0.98899,
+    57.0
+   ],
+   "light": [
+    0.537,
+    0.522,
+    0.475
+   ],
+   "groundLight": [
+    0.537,
+    0.522,
+    0.475,
+    0.0
+   ]
+  },
+  {
+   "model": 36,
+   "name": "xmodel/prop_barrel_silver",
+   "matrix": [
+    0.45233,
+    0.89152,
+    -0.02442,
+    2342.0,
+    -0.89174,
+    0.45168,
+    -0.02793,
+    2002.0,
+    -0.01387,
+    0.03441,
+    0.99931,
+    46.0
+   ],
+   "light": [
+    0.537,
+    0.522,
+    0.475
+   ],
+   "groundLight": [
+    0.537,
+    0.522,
+    0.475,
+    0.0
+   ]
+  },
+  {
+   "model": 36,
+   "name": "xmodel/prop_barrel_silver",
+   "matrix": [
+    0.74639,
+    0.64543,
+    -0.16224,
+    2238.0,
+    -0.66386,
+    0.73921,
+    -0.11334,
+    1895.0,
+    0.04678,
+    0.1923,
+    0.98022,
+    53.0
+   ],
+   "light": [
+    0.518,
+    0.506,
+    0.463
+   ],
+   "groundLight": [
+    0.518,
+    0.506,
+    0.463,
+    0.0
+   ]
+  },
+  {
+   "model": 36,
+   "name": "xmodel/prop_barrel_silver",
+   "matrix": [
+    0.50459,
+    0.2463,
+    -0.82748,
+    2245.0,
+    -0.84361,
+    0.34449,
+    -0.41189,
+    1932.0,
+    0.18361,
+    0.9059,
+    0.38161,
+    61.0
+   ],
+   "light": [
+    0.647,
+    0.635,
+    0.588
+   ],
+   "groundLight": [
+    0.647,
+    0.635,
+    0.588,
+    0.0
+   ]
+  },
+  {
+   "model": 29,
+   "name": "xmodel/haycart",
+   "matrix": [
+    0.70777,
+    -0.70644,
+    0.0,
+    -16.0,
+    0.70644,
+    0.70777,
+    0.0,
+    365.0,
+    -0.0,
+    -0.0,
+    1.0,
+    -14.0
+   ],
+   "light": [
+    0.522,
+    0.518,
+    0.478
+   ],
+   "groundLight": [
+    0.522,
+    0.518,
+    0.478,
+    0.0
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/brush_desertgreenfanshrub",
+   "matrix": [
+    0.99666,
+    -0.08168,
+    0.0,
+    480.0,
+    0.07749,
+    0.94551,
+    -0.31623,
+    1536.0,
+    0.02583,
+    0.31517,
+    0.94868,
+    -8.0
+   ],
+   "light": [
+    0.639,
+    0.631,
+    0.592
+   ],
+   "groundLight": [
+    0.639,
+    0.631,
+    0.592,
+    0.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.46175,
+    0.88701,
+    0.0,
+    959.933,
+    -0.88701,
+    0.46175,
+    -0.0,
+    3384.79,
+    -0.0,
+    0.0,
+    1.0,
+    108.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.46175,
+    0.88701,
+    0.0,
+    978.56,
+    -0.88701,
+    0.46175,
+    -0.0,
+    3394.49,
+    -0.0,
+    0.0,
+    1.0,
+    108.0
+   ]
+  },
+  {
+   "model": 42,
+   "name": "xmodel/prop_wickerbasket6",
+   "matrix": [
+    0.56144,
+    -0.82752,
+    0.0,
+    1097.01,
+    0.82752,
+    0.56144,
+    0.0,
+    3426.84,
+    -0.0,
+    0.0,
+    1.0,
+    49.0
+   ],
+   "light": [
+    0.192,
+    0.188,
+    0.173
+   ],
+   "groundLight": [
+    0.192,
+    0.188,
+    0.173,
+    0.0
+   ]
+  },
+  {
+   "model": 44,
+   "name": "xmodel/prop_wickerbasket8",
+   "matrix": [
+    -0.50837,
+    0.86114,
+    -0.0,
+    1160.34,
+    -0.86114,
+    -0.50837,
+    0.0,
+    3300.84,
+    -0.0,
+    0.0,
+    1.0,
+    49.0
+   ],
+   "light": [
+    0.176,
+    0.173,
+    0.161
+   ],
+   "groundLight": [
+    0.176,
+    0.173,
+    0.161,
+    0.0
+   ]
+  },
+  {
+   "model": 43,
+   "name": "xmodel/prop_wickerbasket7",
+   "matrix": [
+    0.06723,
+    -0.99774,
+    0.0,
+    806.918,
+    0.99774,
+    0.06723,
+    0.0,
+    3278.08,
+    -0.0,
+    0.0,
+    1.0,
+    49.0
+   ],
+   "light": [
+    0.212,
+    0.208,
+    0.192
+   ],
+   "groundLight": [
+    0.212,
+    0.208,
+    0.192,
+    0.0
+   ]
+  },
+  {
+   "model": 43,
+   "name": "xmodel/prop_wickerbasket7",
+   "matrix": [
+    0.99596,
+    0.08985,
+    0.0,
+    1063.3,
+    -0.08985,
+    0.99596,
+    -0.0,
+    3409.29,
+    -0.0,
+    0.0,
+    1.0,
+    49.0
+   ],
+   "light": [
+    0.208,
+    0.204,
+    0.188
+   ],
+   "groundLight": [
+    0.208,
+    0.204,
+    0.188,
+    0.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.00698,
+    -0.99998,
+    0.0,
+    800.635,
+    0.99998,
+    -0.00698,
+    0.0,
+    -43.4218,
+    -0.0,
+    0.0,
+    1.0,
+    185.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.00698,
+    -0.99998,
+    0.0,
+    779.635,
+    0.99998,
+    -0.00698,
+    0.0,
+    -43.5684,
+    -0.0,
+    0.0,
+    1.0,
+    185.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.99998,
+    -0.00698,
+    0.0,
+    606.107,
+    0.00698,
+    0.99998,
+    0.0,
+    -111.782,
+    -0.0,
+    0.0,
+    1.0,
+    217.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.99998,
+    -0.00698,
+    0.0,
+    605.961,
+    0.00698,
+    0.99998,
+    0.0,
+    -90.782,
+    -0.0,
+    0.0,
+    1.0,
+    217.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    696.0,
+    0.0,
+    1.0,
+    0.0,
+    2281.0,
+    -0.0,
+    0.0,
+    1.0,
+    216.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    696.0,
+    0.0,
+    1.0,
+    0.0,
+    2302.0,
+    -0.0,
+    0.0,
+    1.0,
+    216.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    629.0,
+    -1.0,
+    -0.0,
+    0.0,
+    2476.0,
+    -0.0,
+    0.0,
+    1.0,
+    248.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    650.0,
+    -1.0,
+    -0.0,
+    0.0,
+    2476.0,
+    -0.0,
+    0.0,
+    1.0,
+    248.0
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.17365,
+    0.98481,
+    0.0,
+    1807.0,
+    -0.98481,
+    0.17365,
+    -0.0,
+    606.0,
+    -0.0,
+    0.0,
+    1.0,
+    151.0
+   ],
+   "light": [
+    0.6,
+    0.592,
+    0.553
+   ],
+   "groundLight": [
+    0.6,
+    0.592,
+    0.553,
+    0.376
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.0,
+    0.00524,
+    0.99999,
+    1789.0,
+    1.0,
+    0.0,
+    -0.0,
+    717.0,
+    -0.0,
+    0.99999,
+    -0.00524,
+    176.0
+   ],
+   "light": [
+    0.616,
+    0.6,
+    0.553
+   ],
+   "groundLight": [
+    0.616,
+    0.6,
+    0.553,
+    0.302
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.17365,
+    0.98481,
+    0.0,
+    1803.0,
+    -0.98481,
+    0.17365,
+    -0.0,
+    634.0,
+    -0.0,
+    0.0,
+    1.0,
+    151.0
+   ],
+   "light": [
+    0.455,
+    0.443,
+    0.408
+   ],
+   "groundLight": [
+    0.455,
+    0.443,
+    0.408,
+    0.137
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.98481,
+    0.17365,
+    -0.0,
+    1809.0,
+    -0.17365,
+    -0.98481,
+    0.0,
+    676.0,
+    -0.0,
+    0.0,
+    1.0,
+    151.0
+   ],
+   "light": [
+    0.408,
+    0.396,
+    0.361
+   ],
+   "groundLight": [
+    0.408,
+    0.396,
+    0.361,
+    0.0
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.98481,
+    0.17365,
+    -0.0,
+    1782.0,
+    -0.17365,
+    -0.98481,
+    0.0,
+    670.0,
+    -0.0,
+    0.0,
+    1.0,
+    151.0
+   ],
+   "light": [
+    0.42,
+    0.404,
+    0.373
+   ],
+   "groundLight": [
+    0.42,
+    0.404,
+    0.373,
+    0.0
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.99863,
+    0.05234,
+    -0.0,
+    1803.0,
+    -0.05234,
+    -0.99863,
+    0.0,
+    674.0,
+    -0.0,
+    0.0,
+    1.0,
+    177.0
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.98481,
+    0.17365,
+    -0.0,
+    1759.0,
+    -0.17365,
+    -0.98481,
+    0.0,
+    652.0,
+    -0.0,
+    0.0,
+    1.0,
+    151.0
+   ],
+   "light": [
+    0.459,
+    0.451,
+    0.416
+   ],
+   "groundLight": [
+    0.459,
+    0.451,
+    0.416,
+    0.314
+   ]
+  },
+  {
+   "model": 11,
+   "name": "xmodel/awning_desert_wood_large1",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    711.0,
+    0.0,
+    1.0,
+    0.0,
+    2991.0,
+    -0.0,
+    0.0,
+    1.0,
+    120.0
+   ]
+  },
+  {
+   "model": 12,
+   "name": "xmodel/awning_desert_wood_large2",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    487.0,
+    -1.0,
+    -0.0,
+    0.0,
+    2623.0,
+    -0.0,
+    0.0,
+    1.0,
+    120.0
+   ]
+  },
+  {
+   "model": 14,
+   "name": "xmodel/awning_desert_wood_large4",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    647.0,
+    1.0,
+    0.0,
+    0.0,
+    3071.0,
+    -0.0,
+    0.0,
+    1.0,
+    202.0
+   ],
+   "light": [
+    0.667,
+    0.659,
+    0.612
+   ],
+   "groundLight": [
+    0.667,
+    0.659,
+    0.612,
+    0.553
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/awning_desert_wood_large3",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    455.0,
+    1.0,
+    0.0,
+    0.0,
+    3071.0,
+    -0.0,
+    0.0,
+    1.0,
+    202.0
+   ],
+   "light": [
+    0.694,
+    0.69,
+    0.643
+   ],
+   "groundLight": [
+    0.694,
+    0.69,
+    0.643,
+    0.376
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    0.46697,
+    -0.87915,
+    0.09502,
+    -99.0,
+    0.88427,
+    0.4638,
+    -0.05447,
+    1372.0,
+    0.00382,
+    0.10946,
+    0.99398,
+    4.0
+   ],
+   "light": [
+    0.569,
+    0.569,
+    0.533
+   ],
+   "groundLight": [
+    0.569,
+    0.569,
+    0.533,
+    0.278
+   ]
+  },
+  {
+   "model": 47,
+   "name": "xmodel/tree_desertpalm02",
+   "matrix": [
+    0.86869,
+    -1.2172,
+    -0.11749,
+    3054.0,
+    1.20466,
+    0.87658,
+    -0.17438,
+    1509.0,
+    0.21016,
+    0.00663,
+    1.48519,
+    49.0
+   ],
+   "light": [
+    0.706,
+    0.694,
+    0.639
+   ],
+   "groundLight": [
+    0.706,
+    0.694,
+    0.639,
+    0.761
+   ]
+  },
+  {
+   "model": 47,
+   "name": "xmodel/tree_desertpalm02",
+   "matrix": [
+    0.96464,
+    1.13992,
+    -0.14159,
+    1399.0,
+    -1.12929,
+    0.97496,
+    0.15544,
+    3207.0,
+    0.21016,
+    0.00663,
+    1.48519,
+    49.0
+   ],
+   "light": [
+    0.6,
+    0.592,
+    0.557
+   ],
+   "groundLight": [
+    0.6,
+    0.592,
+    0.557,
+    0.349
+   ]
+  },
+  {
+   "model": 54,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    0.1236,
+    -0.99233,
+    0.0,
+    662.0,
+    0.99233,
+    0.1236,
+    0.0,
+    24.0,
+    -0.0,
+    0.0,
+    1.0,
+    197.0
+   ],
+   "gameobject": "tdm",
+   "turret": true
+  },
+  {
+   "model": 54,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    0.1236,
+    -0.99233,
+    0.0,
+    662.0,
+    0.99233,
+    0.1236,
+    0.0,
+    24.0,
+    -0.0,
+    0.0,
+    1.0,
+    197.0
+   ],
+   "gameobject": "dm",
+   "turret": true
+  },
+  {
+   "model": 54,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    0.1236,
+    -0.99233,
+    0.0,
+    662.0,
+    0.99233,
+    0.1236,
+    0.0,
+    24.0,
+    -0.0,
+    0.0,
+    1.0,
+    197.0
+   ],
+   "gameobject": "hq",
+   "turret": true
+  },
+  {
+   "model": 54,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    0.87207,
+    0.48938,
+    0.0,
+    -80.0,
+    -0.48938,
+    0.87207,
+    -0.0,
+    1362.0,
+    -0.0,
+    0.0,
+    1.0,
+    33.0
+   ],
+   "gameobject": "tdm",
+   "turret": true
+  },
+  {
+   "model": 54,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    0.87207,
+    0.48938,
+    0.0,
+    -80.0,
+    -0.48938,
+    0.87207,
+    -0.0,
+    1362.0,
+    -0.0,
+    0.0,
+    1.0,
+    33.0
+   ],
+   "gameobject": "dm",
+   "turret": true
+  },
+  {
+   "model": 54,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    0.87207,
+    0.48938,
+    0.0,
+    -80.0,
+    -0.48938,
+    0.87207,
+    -0.0,
+    1362.0,
+    -0.0,
+    0.0,
+    1.0,
+    33.0
+   ],
+   "gameobject": "hq",
+   "turret": true
+  },
+  {
+   "model": 3,
+   "name": "xmodel/awning_desert_market_large",
+   "matrix": [
+    0.96593,
+    0.25882,
+    0.0,
+    -177.059,
+    -0.25882,
+    0.96593,
+    -0.0,
+    4009.98,
+    -0.0,
+    0.0,
+    1.0,
+    181.0
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/awning_2x5_2",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    608.0,
+    -1.0,
+    -0.0,
+    0.0,
+    4986.0,
+    -0.0,
+    0.0,
+    1.0,
+    287.0
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/awning_2x5_2",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    799.0,
+    -1.0,
+    -0.0,
+    0.0,
+    4986.0,
+    -0.0,
+    0.0,
+    1.0,
+    287.0
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/awning_2x5_2",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    991.0,
+    -1.0,
+    -0.0,
+    0.0,
+    4986.0,
+    -0.0,
+    0.0,
+    1.0,
+    287.0
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/awning_2x5_2",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    1119.0,
+    0.0,
+    1.0,
+    0.0,
+    5114.0,
+    -0.0,
+    0.0,
+    1.0,
+    287.0
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/awning_2x5_2",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    1119.0,
+    0.0,
+    1.0,
+    0.0,
+    5242.0,
+    -0.0,
+    0.0,
+    1.0,
+    287.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/awning_2x4_2",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    215.0,
+    0.0,
+    -1.0,
+    0.0,
+    4706.0,
+    -0.0,
+    0.0,
+    1.0,
+    582.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/awning_2x4_2",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    423.0,
+    0.0,
+    1.0,
+    0.0,
+    4706.0,
+    -0.0,
+    0.0,
+    1.0,
+    582.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/awning_2x4_2",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    319.0,
+    -1.0,
+    -0.0,
+    0.0,
+    4602.0,
+    -0.0,
+    0.0,
+    1.0,
+    748.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/awning_2x4_2",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    319.0,
+    -1.0,
+    -0.0,
+    0.0,
+    4602.0,
+    -0.0,
+    0.0,
+    1.0,
+    392.0
+   ]
+  },
+  {
+   "model": 26,
+   "name": "xmodel/dome_05",
+   "matrix": [
+    -0.0,
+    1.2,
+    -0.0,
+    650.0,
+    -1.2,
+    -0.0,
+    0.0,
+    5339.0,
+    -0.0,
+    0.0,
+    1.2,
+    436.0
+   ]
+  },
+  {
+   "model": 7,
+   "name": "xmodel/awning_desert_market_small",
+   "matrix": [
+    -0.79696,
+    -0.06972,
+    0.0,
+    1328.25,
+    0.06972,
+    -0.79696,
+    0.0,
+    3686.07,
+    -0.0,
+    0.0,
+    0.8,
+    247.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.99619,
+    -0.08716,
+    0.0,
+    1452.07,
+    0.08716,
+    -0.99619,
+    0.0,
+    3908.13,
+    -0.0,
+    0.0,
+    1.0,
+    322.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.99619,
+    -0.08716,
+    0.0,
+    1450.24,
+    0.08716,
+    -0.99619,
+    0.0,
+    3887.21,
+    -0.0,
+    0.0,
+    1.0,
+    322.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.99619,
+    -0.08716,
+    0.0,
+    1428.37,
+    0.08716,
+    -0.99619,
+    0.0,
+    3637.16,
+    -0.0,
+    0.0,
+    1.0,
+    322.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    -0.99619,
+    -0.08716,
+    0.0,
+    1426.54,
+    0.08716,
+    -0.99619,
+    0.0,
+    3616.24,
+    -0.0,
+    0.0,
+    1.0,
+    322.0
+   ]
+  },
+  {
+   "model": 26,
+   "name": "xmodel/dome_05",
+   "matrix": [
+    -0.06972,
+    0.79696,
+    -0.0,
+    1590.5,
+    -0.79696,
+    -0.06972,
+    0.0,
+    3643.05,
+    -0.0,
+    0.0,
+    0.8,
+    402.0
+   ],
+   "light": [
+    0.192,
+    0.192,
+    0.18
+   ],
+   "groundLight": [
+    0.192,
+    0.192,
+    0.18,
+    0.0
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/awning_desert_market_large",
+   "matrix": [
+    0.08716,
+    0.99619,
+    0.0,
+    2322.81,
+    -0.99619,
+    0.08716,
+    -0.0,
+    4413.91,
+    -0.0,
+    0.0,
+    1.0,
+    260.0
+   ]
+  },
+  {
+   "model": 7,
+   "name": "xmodel/awning_desert_market_small",
+   "matrix": [
+    0.0,
+    -0.8,
+    0.0,
+    -516.0,
+    0.8,
+    0.0,
+    0.0,
+    -81.0,
+    -0.0,
+    0.0,
+    0.8,
+    81.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    -284.0,
+    1.0,
+    0.0,
+    0.0,
+    -185.0,
+    -0.0,
+    0.0,
+    1.0,
+    156.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    -305.0,
+    1.0,
+    0.0,
+    0.0,
+    -185.0,
+    -0.0,
+    0.0,
+    1.0,
+    156.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    -556.0,
+    1.0,
+    0.0,
+    0.0,
+    -185.0,
+    -0.0,
+    0.0,
+    1.0,
+    156.0
+   ]
+  },
+  {
+   "model": 40,
+   "name": "xmodel/prop_doorknob1",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    -577.0,
+    1.0,
+    0.0,
+    0.0,
+    -185.0,
+    -0.0,
+    0.0,
+    1.0,
+    156.0
+   ]
+  },
+  {
+   "model": 26,
+   "name": "xmodel/dome_05",
+   "matrix": [
+    -0.8,
+    -0.0,
+    0.0,
+    -536.0,
+    0.0,
+    -0.8,
+    0.0,
+    -346.0,
+    -0.0,
+    0.0,
+    0.8,
+    236.0
+   ],
+   "light": [
+    0.196,
+    0.196,
+    0.188
+   ],
+   "groundLight": [
+    0.196,
+    0.196,
+    0.188,
+    0.0
+   ]
+  },
+  {
+   "model": 47,
+   "name": "xmodel/tree_desertpalm02",
+   "matrix": [
+    -1.29839,
+    0.05093,
+    -0.03986,
+    2562.0,
+    -0.04997,
+    -1.29865,
+    -0.03171,
+    244.0,
+    -0.04106,
+    -0.03014,
+    1.299,
+    3.0
+   ]
+  },
+  {
+   "model": 35,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    0.98599,
+    -0.16386,
+    0.03134,
+    -144.0,
+    0.16533,
+    0.98485,
+    -0.05235,
+    1292.0,
+    -0.02228,
+    0.0568,
+    0.99814,
+    1.0
+   ],
+   "light": [
+    0.584,
+    0.584,
+    0.549
+   ],
+   "groundLight": [
+    0.584,
+    0.584,
+    0.549,
+    0.0
+   ]
+  },
+  {
+   "model": 35,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    -0.92622,
+    0.23786,
+    0.29247,
+    -217.0,
+    -0.26141,
+    -0.96424,
+    -0.04368,
+    1436.0,
+    0.27163,
+    -0.11691,
+    0.95528,
+    17.0
+   ],
+   "light": [
+    0.553,
+    0.553,
+    0.522
+   ],
+   "groundLight": [
+    0.553,
+    0.553,
+    0.522,
+    0.0
+   ]
+  },
+  {
+   "model": 35,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    -0.86249,
+    -0.43813,
+    0.25327,
+    -214.0,
+    0.43556,
+    -0.89749,
+    -0.06926,
+    1410.0,
+    0.25766,
+    0.05058,
+    0.96491,
+    14.0
+   ],
+   "light": [
+    0.553,
+    0.553,
+    0.522
+   ],
+   "groundLight": [
+    0.553,
+    0.553,
+    0.522,
+    0.0
+   ]
+  },
+  {
+   "model": 35,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    -0.03737,
+    0.99913,
+    0.01865,
+    -143.0,
+    -0.99635,
+    -0.03582,
+    -0.07743,
+    1443.0,
+    -0.07669,
+    -0.02147,
+    0.99682,
+    8.0
+   ],
+   "light": [
+    0.592,
+    0.592,
+    0.557
+   ],
+   "groundLight": [
+    0.592,
+    0.592,
+    0.557,
+    0.0
+   ]
+  },
+  {
+   "model": 45,
+   "name": "xmodel/prop_wooden_barrel1",
+   "matrix": [
+    0.3878,
+    -1.07305,
+    0.18017,
+    836.0,
+    1.08744,
+    0.3887,
+    -0.02567,
+    702.0,
+    -0.03678,
+    0.17823,
+    1.14068,
+    -1.0
+   ],
+   "light": [
+    0.51,
+    0.502,
+    0.463
+   ],
+   "groundLight": [
+    0.51,
+    0.502,
+    0.463,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    218.0,
+    -1.0,
+    -0.0,
+    0.0,
+    1959.0,
+    -0.0,
+    0.0,
+    1.0,
+    167.0
+   ],
+   "light": [
+    0.322,
+    0.322,
+    0.302
+   ],
+   "groundLight": [
+    0.322,
+    0.322,
+    0.302,
+    0.0
+   ]
+  },
+  {
+   "model": 41,
+   "name": "xmodel/prop_metal_pail1",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    224.0,
+    0.0,
+    1.0,
+    0.0,
+    1989.0,
+    -0.0,
+    0.0,
+    1.0,
+    202.0
+   ]
+  },
+  {
+   "model": 39,
+   "name": "xmodel/prop_crate_dak8",
+   "matrix": [
+    0.10276,
+    0.99466,
+    0.00953,
+    3049.0,
+    -0.98778,
+    0.10317,
+    -0.11679,
+    2069.0,
+    -0.11715,
+    0.00259,
+    0.99311,
+    80.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.9701,
+    0.24067,
+    0.03123,
+    3047.0,
+    -0.24259,
+    -0.96531,
+    -0.09653,
+    2070.0,
+    0.00691,
+    -0.10122,
+    0.99484,
+    45.0
+   ],
+   "light": [
+    0.467,
+    0.459,
+    0.424
+   ],
+   "groundLight": [
+    0.467,
+    0.459,
+    0.424,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.09496,
+    0.99499,
+    0.03123,
+    3062.0,
+    -0.99054,
+    0.09756,
+    -0.09652,
+    2027.0,
+    -0.09909,
+    -0.02177,
+    0.99484,
+    40.0
+   ],
+   "light": [
+    0.463,
+    0.451,
+    0.416
+   ],
+   "groundLight": [
+    0.463,
+    0.451,
+    0.416,
+    0.0
+   ]
+  },
+  {
+   "model": 38,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    -0.01515,
+    0.53748,
+    -0.84314,
+    3083.0,
+    -0.01944,
+    0.84292,
+    0.53769,
+    1977.0,
+    0.9997,
+    0.02453,
+    -0.00232,
+    54.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.29213,
+    0.95554,
+    -0.04011,
+    2991.0,
+    -0.95631,
+    0.29237,
+    -7e-05,
+    1909.0,
+    0.01166,
+    0.03838,
+    0.9992,
+    81.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.29213,
+    0.95554,
+    -0.04011,
+    2981.0,
+    -0.95631,
+    0.29237,
+    -7e-05,
+    1947.0,
+    0.01166,
+    0.03838,
+    0.9992,
+    81.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.29217,
+    0.95566,
+    -0.03662,
+    2981.0,
+    -0.95631,
+    0.29236,
+    -8e-05,
+    1947.0,
+    0.01063,
+    0.03505,
+    0.99933,
+    117.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.29217,
+    0.95566,
+    -0.03662,
+    2991.0,
+    -0.95631,
+    0.29236,
+    -8e-05,
+    1911.0,
+    0.01063,
+    0.03505,
+    0.99933,
+    117.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.29237,
+    0.9563,
+    0.0,
+    3038.0,
+    -0.9563,
+    0.29237,
+    -0.0,
+    1924.0,
+    -0.0,
+    0.0,
+    1.0,
+    83.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.01571,
+    0.99988,
+    -0.0,
+    1552.0,
+    -0.99988,
+    -0.01571,
+    0.0,
+    1611.0,
+    -0.0,
+    0.0,
+    1.0,
+    61.0
+   ],
+   "light": [
+    0.447,
+    0.435,
+    0.4
+   ],
+   "groundLight": [
+    0.447,
+    0.435,
+    0.4,
+    0.302
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.01571,
+    0.99988,
+    -0.0,
+    1553.0,
+    -0.99988,
+    -0.01571,
+    0.0,
+    1572.0,
+    -0.0,
+    0.0,
+    1.0,
+    61.0
+   ],
+   "light": [
+    0.424,
+    0.412,
+    0.376
+   ],
+   "groundLight": [
+    0.424,
+    0.412,
+    0.376,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.91706,
+    -0.39875,
+    0.0,
+    1552.0,
+    0.39875,
+    0.91706,
+    0.0,
+    1604.0,
+    -0.0,
+    0.0,
+    1.0,
+    97.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    216.0,
+    0.0,
+    -1.0,
+    0.0,
+    2001.0,
+    -0.0,
+    0.0,
+    1.0,
+    167.0
+   ],
+   "light": [
+    0.337,
+    0.337,
+    0.314
+   ],
+   "groundLight": [
+    0.337,
+    0.337,
+    0.314,
+    0.0
+   ]
+  },
+  {
+   "model": 39,
+   "name": "xmodel/prop_crate_dak8",
+   "matrix": [
+    0.10347,
+    0.99463,
+    0.0,
+    217.0,
+    -0.99463,
+    0.10347,
+    -0.0,
+    2008.0,
+    -0.0,
+    -0.0,
+    1.0,
+    202.0
+   ]
+  },
+  {
+   "model": 52,
+   "name": "xmodel/vehicle_opel_blitz_desert_static",
+   "matrix": [
+    0.66037,
+    -0.74758,
+    -0.0709,
+    2290.0,
+    0.74411,
+    0.66415,
+    -0.0721,
+    552.0,
+    0.10099,
+    -0.00515,
+    0.99487,
+    38.0
+   ],
+   "light": [
+    0.525,
+    0.51,
+    0.467
+   ],
+   "groundLight": [
+    0.525,
+    0.51,
+    0.467,
+    0.494
+   ]
+  },
+  {
+   "model": 53,
+   "name": "xmodel/vehicle_panzer_ii_static",
+   "matrix": [
+    0.583,
+    -0.81119,
+    -0.04569,
+    77.0,
+    0.80943,
+    0.58476,
+    -0.05373,
+    1060.0,
+    0.0703,
+    -0.00566,
+    0.99751,
+    -6.0
+   ],
+   "light": [
+    0.439,
+    0.424,
+    0.388
+   ],
+   "groundLight": [
+    0.439,
+    0.424,
+    0.388,
+    0.0
+   ]
+  },
+  {
+   "model": 49,
+   "name": "xmodel/vehicle_africa_jeep_static",
+   "matrix": [
+    -0.97547,
+    -0.22011,
+    -0.00023,
+    1786.0,
+    0.2201,
+    -0.9754,
+    -0.01196,
+    258.0,
+    0.00241,
+    -0.01171,
+    0.99993,
+    -18.0
+   ],
+   "light": [
+    0.569,
+    0.549,
+    0.498
+   ],
+   "groundLight": [
+    0.569,
+    0.549,
+    0.498,
+    0.0
+   ]
+  },
+  {
+   "model": 39,
+   "name": "xmodel/prop_crate_dak8",
+   "matrix": [
+    -0.95354,
+    0.28366,
+    -0.10144,
+    2113.0,
+    -0.27569,
+    -0.95742,
+    -0.08572,
+    264.0,
+    -0.12144,
+    -0.05377,
+    0.99114,
+    31.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.69539,
+    0.71196,
+    -0.0977,
+    2209.0,
+    -0.70524,
+    -0.70222,
+    -0.09759,
+    417.0,
+    -0.13808,
+    0.00104,
+    0.99042,
+    20.0
+   ],
+   "light": [
+    0.537,
+    0.518,
+    0.475
+   ],
+   "groundLight": [
+    0.537,
+    0.518,
+    0.475,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.69094,
+    0.71628,
+    -0.0977,
+    2267.0,
+    -0.7229,
+    0.68402,
+    -0.09759,
+    425.0,
+    -0.00307,
+    0.13805,
+    0.99042,
+    27.0
+   ],
+   "light": [
+    0.518,
+    0.498,
+    0.451
+   ],
+   "groundLight": [
+    0.518,
+    0.498,
+    0.451,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.95995,
+    -0.27929,
+    -0.02243,
+    2166.0,
+    0.27938,
+    -0.94804,
+    -0.15219,
+    453.0,
+    0.02124,
+    -0.15236,
+    0.9881,
+    25.0
+   ],
+   "light": [
+    0.545,
+    0.529,
+    0.486
+   ],
+   "groundLight": [
+    0.545,
+    0.529,
+    0.486,
+    0.365
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.28894,
+    0.95241,
+    -0.09706,
+    2139.0,
+    -0.95721,
+    0.28573,
+    -0.04587,
+    231.0,
+    -0.01595,
+    0.10616,
+    0.99422,
+    -1.0
+   ],
+   "light": [
+    0.537,
+    0.518,
+    0.471
+   ],
+   "groundLight": [
+    0.537,
+    0.518,
+    0.471,
+    0.09
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.96075,
+    0.26048,
+    -0.09543,
+    2113.0,
+    -0.25067,
+    -0.96252,
+    -0.10359,
+    270.0,
+    -0.11884,
+    -0.0756,
+    0.99003,
+    -4.0
+   ],
+   "light": [
+    0.604,
+    0.584,
+    0.533
+   ],
+   "groundLight": [
+    0.604,
+    0.584,
+    0.533,
+    0.224
+   ]
+  },
+  {
+   "model": 28,
+   "name": "xmodel/german_artillery_flak88_destroy",
+   "matrix": [
+    -1.0,
+    -0.00012,
+    0.00178,
+    2843.0,
+    0.00014,
+    -0.99995,
+    0.00969,
+    1634.0,
+    0.00178,
+    0.00969,
+    0.99995,
+    45.0
+   ],
+   "gameobject": "dm"
+  },
+  {
+   "model": 38,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    0.96008,
+    -0.27935,
+    -0.01452,
+    3114.0,
+    0.27971,
+    0.95938,
+    0.03693,
+    1980.0,
+    0.00361,
+    -0.03951,
+    0.99921,
+    41.0
+   ],
+   "light": [
+    0.549,
+    0.537,
+    0.494
+   ],
+   "groundLight": [
+    0.549,
+    0.537,
+    0.494,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.01571,
+    0.99988,
+    -0.0,
+    795.0,
+    -0.99988,
+    -0.01571,
+    0.0,
+    2395.0,
+    -0.0,
+    0.0,
+    1.0,
+    31.0
+   ],
+   "light": [
+    0.396,
+    0.388,
+    0.357
+   ],
+   "groundLight": [
+    0.396,
+    0.388,
+    0.357,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.01571,
+    0.99988,
+    -0.0,
+    796.0,
+    -0.99988,
+    -0.01571,
+    0.0,
+    2356.0,
+    -0.0,
+    0.0,
+    1.0,
+    31.0
+   ],
+   "light": [
+    0.4,
+    0.392,
+    0.361
+   ],
+   "groundLight": [
+    0.4,
+    0.392,
+    0.361,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.91706,
+    -0.39875,
+    0.0,
+    795.0,
+    0.39875,
+    0.91706,
+    0.0,
+    2388.0,
+    -0.0,
+    0.0,
+    1.0,
+    67.0
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/brush_toujanebigbushy",
+   "matrix": [
+    0.24853,
+    -0.65373,
+    0.0296,
+    1416.0,
+    0.62867,
+    0.22972,
+    -0.20493,
+    1211.0,
+    0.18167,
+    0.09934,
+    0.66868,
+    20.0
+   ],
+   "light": [
+    0.631,
+    0.624,
+    0.58
+   ],
+   "groundLight": [
+    0.631,
+    0.624,
+    0.58,
+    0.0
+   ]
+  },
+  {
+   "model": 53,
+   "name": "xmodel/vehicle_panzer_ii_static",
+   "matrix": [
+    -0.0,
+    1.0,
+    0.00131,
+    1047.0,
+    -0.99993,
+    2e-05,
+    -0.01163,
+    2751.0,
+    -0.01163,
+    -0.00131,
+    0.99993,
+    44.0
+   ],
+   "gameobject": "bombzone"
+  },
+  {
+   "model": 50,
+   "name": "xmodel/vehicle_german_armored_car_static",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    2834.0,
+    0.0,
+    -1.0,
+    0.0,
+    1634.0,
+    -0.0,
+    0.0,
+    1.0,
+    44.0
+   ],
+   "gameobject": "bombzone"
+  },
+  {
+   "model": 28,
+   "name": "xmodel/german_artillery_flak88_destroy",
+   "matrix": [
+    -1.0,
+    -0.00012,
+    0.00178,
+    2843.0,
+    0.00014,
+    -0.99995,
+    0.00969,
+    1634.0,
+    0.00178,
+    0.00969,
+    0.99995,
+    45.0
+   ],
+   "gameobject": "tdm"
+  },
+  {
+   "model": 28,
+   "name": "xmodel/german_artillery_flak88_destroy",
+   "matrix": [
+    -1.0,
+    -0.00012,
+    0.00178,
+    2843.0,
+    0.00014,
+    -0.99995,
+    0.00969,
+    1634.0,
+    0.00178,
+    0.00969,
+    0.99995,
+    45.0
+   ],
+   "gameobject": "hq"
+  },
+  {
+   "model": 28,
+   "name": "xmodel/german_artillery_flak88_destroy",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.00051,
+    1068.0,
+    -0.99993,
+    -1e-05,
+    -0.01197,
+    2776.0,
+    -0.01197,
+    0.00051,
+    0.99993,
+    46.0
+   ],
+   "gameobject": "dm"
+  },
+  {
+   "model": 28,
+   "name": "xmodel/german_artillery_flak88_destroy",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.00051,
+    1068.0,
+    -0.99993,
+    -1e-05,
+    -0.01197,
+    2776.0,
+    -0.01197,
+    0.00051,
+    0.99993,
+    46.0
+   ],
+   "gameobject": "tdm"
+  },
+  {
+   "model": 28,
+   "name": "xmodel/german_artillery_flak88_destroy",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.00051,
+    1068.0,
+    -0.99993,
+    -1e-05,
+    -0.01197,
+    2776.0,
+    -0.01197,
+    0.00051,
+    0.99993,
+    46.0
+   ],
+   "gameobject": "hq"
+  },
+  {
+   "model": 52,
+   "name": "xmodel/vehicle_opel_blitz_desert_static",
+   "matrix": [
+    -0.955,
+    0.29515,
+    -0.02932,
+    2974.0,
+    -0.29575,
+    -0.95508,
+    0.01881,
+    1925.0,
+    -0.02245,
+    0.02663,
+    0.99939,
+    38.0
+   ],
+   "light": [
+    0.486,
+    0.471,
+    0.435
+   ],
+   "groundLight": [
+    0.486,
+    0.471,
+    0.435,
+    0.0
+   ]
+  },
+  {
+   "model": 53,
+   "name": "xmodel/vehicle_panzer_ii_static",
+   "matrix": [
+    -0.93121,
+    0.36323,
+    0.03031,
+    2413.0,
+    -0.36235,
+    -0.93153,
+    0.03079,
+    1543.0,
+    0.03942,
+    0.01769,
+    0.99907,
+    44.0
+   ],
+   "light": [
+    0.471,
+    0.455,
+    0.416
+   ],
+   "groundLight": [
+    0.471,
+    0.455,
+    0.416,
+    0.0
+   ]
+  },
+  {
+   "model": 54,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    -0.82413,
+    0.56641,
+    -0.0,
+    2165.0,
+    -0.56641,
+    -0.82413,
+    0.0,
+    2397.0,
+    -0.0,
+    0.0,
+    1.0,
+    89.0
+   ],
+   "gameobject": "tdm",
+   "turret": true
+  },
+  {
+   "model": 54,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    -0.82413,
+    0.56641,
+    -0.0,
+    2165.0,
+    -0.56641,
+    -0.82413,
+    0.0,
+    2397.0,
+    -0.0,
+    0.0,
+    1.0,
+    89.0
+   ],
+   "gameobject": "dm",
+   "turret": true
+  },
+  {
+   "model": 54,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    -0.82413,
+    0.56641,
+    -0.0,
+    2165.0,
+    -0.56641,
+    -0.82413,
+    0.0,
+    2397.0,
+    -0.0,
+    0.0,
+    1.0,
+    89.0
+   ],
+   "gameobject": "hq",
+   "turret": true
+  },
+  {
+   "model": 54,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    -0.82413,
+    0.56641,
+    -0.0,
+    2165.0,
+    -0.56641,
+    -0.82413,
+    0.0,
+    2397.0,
+    -0.0,
+    0.0,
+    1.0,
+    89.0
+   ],
+   "gameobject": "sd",
+   "turret": true
+  },
+  {
+   "model": 48,
+   "name": "xmodel/tree_desertpalm03",
+   "matrix": [
+    -0.9154,
+    0.92307,
+    -0.0,
+    -90.0,
+    -0.92307,
+    -0.9154,
+    0.0,
+    -132.0,
+    -0.0,
+    0.0,
+    1.3,
+    -48.0
+   ],
+   "light": [
+    0.718,
+    0.714,
+    0.671
+   ],
+   "groundLight": [
+    0.718,
+    0.714,
+    0.671,
+    0.576
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/brush_desertshrubbrowntall",
+   "matrix": [
+    -0.43753,
+    0.56819,
+    -0.08353,
+    1715.0,
+    -0.5696,
+    -0.41595,
+    0.15421,
+    1910.0,
+    0.07324,
+    0.15935,
+    0.70035,
+    65.0
+   ],
+   "light": [
+    0.694,
+    0.686,
+    0.639
+   ],
+   "groundLight": [
+    0.694,
+    0.686,
+    0.639,
+    0.816
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/brush_desertshrubbrowntall",
+   "matrix": [
+    0.7205,
+    -0.49565,
+    -0.13679,
+    1719.0,
+    0.51132,
+    0.71547,
+    0.10079,
+    1923.0,
+    0.05413,
+    -0.16106,
+    0.8687,
+    64.0
+   ],
+   "light": [
+    0.757,
+    0.749,
+    0.698
+   ],
+   "groundLight": [
+    0.757,
+    0.749,
+    0.698,
+    0.816
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.83162,
+    -0.49844,
+    -0.24489,
+    1070.0,
+    0.48265,
+    -0.86681,
+    0.12525,
+    2249.0,
+    -0.2747,
+    -0.01404,
+    0.96143,
+    59.0
+   ],
+   "light": [
+    0.392,
+    0.38,
+    0.349
+   ],
+   "groundLight": [
+    0.392,
+    0.38,
+    0.349,
+    0.169
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.86666,
+    0.48053,
+    -0.13412,
+    1044.0,
+    -0.48361,
+    0.87522,
+    0.01074,
+    2265.0,
+    0.12254,
+    0.05555,
+    0.99091,
+    52.0
+   ],
+   "light": [
+    0.4,
+    0.388,
+    0.357
+   ],
+   "groundLight": [
+    0.4,
+    0.388,
+    0.357,
+    0.0
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.78691,
+    -0.38311,
+    -0.48373,
+    1070.0,
+    0.40875,
+    0.26365,
+    -0.87373,
+    2263.0,
+    0.46227,
+    -0.88528,
+    -0.05087,
+    110.0
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.83988,
+    -0.28112,
+    0.4643,
+    1042.0,
+    -0.47058,
+    0.04914,
+    0.88099,
+    2208.0,
+    -0.27048,
+    -0.95841,
+    -0.09102,
+    83.0
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.87468,
+    0.48456,
+    -0.01115,
+    1018.0,
+    -0.48469,
+    0.87456,
+    -0.01519,
+    2280.0,
+    0.00239,
+    0.01869,
+    0.99982,
+    50.0
+   ],
+   "light": [
+    0.557,
+    0.549,
+    0.51
+   ],
+   "groundLight": [
+    0.557,
+    0.549,
+    0.51,
+    0.522
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.8731,
+    0.48323,
+    -0.06466,
+    1033.0,
+    -0.48361,
+    0.87522,
+    0.01074,
+    2266.0,
+    0.06178,
+    0.0219,
+    0.99785,
+    76.0
+   ],
+   "light": [
+    0.4,
+    0.388,
+    0.357
+   ],
+   "groundLight": [
+    0.4,
+    0.388,
+    0.357,
+    0.0
+   ]
+  },
+  {
+   "model": 36,
+   "name": "xmodel/prop_barrel_silver",
+   "matrix": [
+    -0.99993,
+    0.01077,
+    0.00466,
+    1535.0,
+    -0.00934,
+    -0.97078,
+    0.23979,
+    2732.0,
+    0.0071,
+    0.23973,
+    0.97081,
+    61.0
+   ],
+   "light": [
+    0.565,
+    0.549,
+    0.502
+   ],
+   "groundLight": [
+    0.565,
+    0.549,
+    0.502,
+    0.498
+   ]
+  },
+  {
+   "model": 36,
+   "name": "xmodel/prop_barrel_silver",
+   "matrix": [
+    0.35857,
+    0.92534,
+    0.12318,
+    1516.0,
+    -0.91634,
+    0.32371,
+    0.23567,
+    2755.0,
+    0.1782,
+    -0.19738,
+    0.96399,
+    53.0
+   ],
+   "light": [
+    0.573,
+    0.557,
+    0.514
+   ],
+   "groundLight": [
+    0.573,
+    0.557,
+    0.514,
+    0.427
+   ]
+  },
+  {
+   "model": 36,
+   "name": "xmodel/prop_barrel_silver",
+   "matrix": [
+    -0.45232,
+    -0.89134,
+    0.03028,
+    1528.0,
+    0.89176,
+    -0.4515,
+    0.03028,
+    2790.0,
+    -0.01332,
+    0.04069,
+    0.99908,
+    46.0
+   ],
+   "light": [
+    0.592,
+    0.58,
+    0.537
+   ],
+   "groundLight": [
+    0.592,
+    0.58,
+    0.537,
+    0.576
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.9969,
+    -0.03655,
+    -0.06974,
+    1360.0,
+    0.03295,
+    0.99809,
+    -0.05221,
+    3163.0,
+    0.07151,
+    0.04975,
+    0.9962,
+    54.0
+   ],
+   "light": [
+    0.431,
+    0.42,
+    0.388
+   ],
+   "groundLight": [
+    0.431,
+    0.42,
+    0.388,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.9969,
+    -0.03655,
+    -0.06974,
+    1399.0,
+    0.03295,
+    0.99809,
+    -0.05221,
+    3166.0,
+    0.07151,
+    0.04975,
+    0.9962,
+    57.0
+   ],
+   "light": [
+    0.471,
+    0.463,
+    0.427
+   ],
+   "groundLight": [
+    0.471,
+    0.463,
+    0.427,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.44516,
+    -0.89273,
+    -0.06976,
+    1365.0,
+    0.89531,
+    -0.44237,
+    -0.0522,
+    3162.0,
+    0.01574,
+    -0.0857,
+    0.9962,
+    90.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.99945,
+    -0.03301,
+    -0.00055,
+    1242.0,
+    0.03301,
+    0.99945,
+    0.00027,
+    2865.0,
+    0.00054,
+    -0.00029,
+    1.0,
+    46.0
+   ],
+   "light": [
+    0.51,
+    0.498,
+    0.459
+   ],
+   "groundLight": [
+    0.51,
+    0.498,
+    0.459,
+    0.396
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.99944,
+    -0.03254,
+    -0.008,
+    1281.0,
+    0.0326,
+    0.99945,
+    0.00654,
+    2868.0,
+    0.00778,
+    -0.0068,
+    0.99995,
+    46.0
+   ],
+   "light": [
+    0.522,
+    0.51,
+    0.471
+   ],
+   "groundLight": [
+    0.522,
+    0.51,
+    0.471,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.44521,
+    -0.89542,
+    -0.00055,
+    1254.0,
+    0.89542,
+    -0.44521,
+    0.00027,
+    2888.0,
+    -0.00049,
+    -0.00037,
+    1.0,
+    81.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.03302,
+    0.99945,
+    0.0,
+    1288.0,
+    -0.99945,
+    0.03302,
+    -0.0,
+    2951.0,
+    -0.0,
+    0.0,
+    1.0,
+    46.0
+   ],
+   "light": [
+    0.459,
+    0.447,
+    0.412
+   ],
+   "groundLight": [
+    0.459,
+    0.447,
+    0.412,
+    0.314
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.0326,
+    0.99947,
+    -0.0009,
+    1291.0,
+    -0.99947,
+    0.0326,
+    -0.00062,
+    2912.0,
+    -0.00059,
+    0.00092,
+    1.0,
+    46.0
+   ],
+   "light": [
+    0.475,
+    0.463,
+    0.424
+   ],
+   "groundLight": [
+    0.475,
+    0.463,
+    0.424,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.03302,
+    0.99945,
+    -0.0009,
+    1237.0,
+    -0.99945,
+    0.03302,
+    -0.00062,
+    2948.0,
+    -0.00059,
+    0.00092,
+    1.0,
+    46.0
+   ],
+   "light": [
+    0.471,
+    0.463,
+    0.427
+   ],
+   "groundLight": [
+    0.471,
+    0.463,
+    0.427,
+    0.427
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.0326,
+    0.99947,
+    -0.00055,
+    1240.0,
+    -0.99947,
+    0.0326,
+    0.00028,
+    2909.0,
+    0.0003,
+    0.00054,
+    1.0,
+    46.0
+   ],
+   "light": [
+    0.451,
+    0.435,
+    0.4
+   ],
+   "groundLight": [
+    0.451,
+    0.435,
+    0.4,
+    0.137
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.99967,
+    0.02562,
+    0.00028,
+    1237.0,
+    -0.02562,
+    -0.99967,
+    0.00055,
+    2943.0,
+    0.0003,
+    0.00054,
+    1.0,
+    81.0
+   ]
+  },
+  {
+   "model": 39,
+   "name": "xmodel/prop_crate_dak8",
+   "matrix": [
+    0.10347,
+    0.99463,
+    -0.0009,
+    1288.0,
+    -0.99463,
+    0.10347,
+    -0.00062,
+    2914.0,
+    -0.00052,
+    0.00096,
+    1.0,
+    81.0
+   ]
+  },
+  {
+   "model": 34,
+   "name": "xmodel/military_sandbag_desert_shortsection",
+   "matrix": [
+    0.48481,
+    -0.87462,
+    0.0,
+    1271.0,
+    0.87462,
+    0.48481,
+    0.0,
+    2412.0,
+    -0.0,
+    0.0,
+    1.0,
+    223.0
+   ],
+   "light": [
+    0.49,
+    0.49,
+    0.463
+   ],
+   "groundLight": [
+    0.49,
+    0.49,
+    0.463,
+    0.318
+   ]
+  },
+  {
+   "model": 32,
+   "name": "xmodel/military_sandbag_desert_endsection_left",
+   "matrix": [
+    0.54464,
+    -0.83867,
+    0.0,
+    1242.0,
+    0.83867,
+    0.54464,
+    0.0,
+    2361.0,
+    -0.0,
+    0.0,
+    1.0,
+    223.0
+   ],
+   "light": [
+    0.498,
+    0.498,
+    0.471
+   ],
+   "groundLight": [
+    0.498,
+    0.498,
+    0.471,
+    0.314
+   ]
+  },
+  {
+   "model": 33,
+   "name": "xmodel/military_sandbag_desert_endsection_right",
+   "matrix": [
+    0.47869,
+    -0.87798,
+    0.0,
+    1297.0,
+    0.87798,
+    0.47869,
+    0.0,
+    2463.0,
+    -0.0,
+    0.0,
+    1.0,
+    223.0
+   ],
+   "light": [
+    0.506,
+    0.51,
+    0.482
+   ],
+   "groundLight": [
+    0.506,
+    0.51,
+    0.482,
+    0.31
+   ]
+  },
+  {
+   "model": 34,
+   "name": "xmodel/military_sandbag_desert_shortsection",
+   "matrix": [
+    0.48481,
+    -0.87462,
+    0.0,
+    1514.0,
+    0.87462,
+    0.48481,
+    0.0,
+    2244.0,
+    -0.0,
+    0.0,
+    1.0,
+    223.0
+   ],
+   "light": [
+    0.49,
+    0.49,
+    0.463
+   ],
+   "groundLight": [
+    0.49,
+    0.49,
+    0.463,
+    0.427
+   ]
+  },
+  {
+   "model": 32,
+   "name": "xmodel/military_sandbag_desert_endsection_left",
+   "matrix": [
+    0.54464,
+    -0.83867,
+    0.0,
+    1485.0,
+    0.83867,
+    0.54464,
+    0.0,
+    2193.0,
+    -0.0,
+    0.0,
+    1.0,
+    223.0
+   ],
+   "light": [
+    0.486,
+    0.486,
+    0.459
+   ],
+   "groundLight": [
+    0.486,
+    0.486,
+    0.459,
+    0.427
+   ]
+  },
+  {
+   "model": 33,
+   "name": "xmodel/military_sandbag_desert_endsection_right",
+   "matrix": [
+    0.47869,
+    -0.87798,
+    0.0,
+    1540.0,
+    0.87798,
+    0.47869,
+    0.0,
+    2295.0,
+    -0.0,
+    0.0,
+    1.0,
+    223.0
+   ],
+   "light": [
+    0.514,
+    0.518,
+    0.486
+   ],
+   "groundLight": [
+    0.514,
+    0.518,
+    0.486,
+    0.427
+   ]
+  },
+  {
+   "model": 34,
+   "name": "xmodel/military_sandbag_desert_shortsection",
+   "matrix": [
+    0.94888,
+    -0.31565,
+    0.0,
+    1623.0,
+    0.31565,
+    0.94888,
+    0.0,
+    1176.0,
+    -0.0,
+    0.0,
+    1.0,
+    215.0
+   ],
+   "light": [
+    0.388,
+    0.388,
+    0.365
+   ],
+   "groundLight": [
+    0.388,
+    0.388,
+    0.365,
+    0.0
+   ]
+  },
+  {
+   "model": 32,
+   "name": "xmodel/military_sandbag_desert_endsection_left",
+   "matrix": [
+    0.95832,
+    -0.28569,
+    0.0,
+    1567.0,
+    0.28569,
+    0.95832,
+    0.0,
+    1157.0,
+    -0.0,
+    0.0,
+    1.0,
+    215.0
+   ],
+   "light": [
+    0.408,
+    0.408,
+    0.38
+   ],
+   "groundLight": [
+    0.408,
+    0.408,
+    0.38,
+    0.0
+   ]
+  },
+  {
+   "model": 33,
+   "name": "xmodel/military_sandbag_desert_endsection_right",
+   "matrix": [
+    0.93295,
+    -0.36,
+    0.0,
+    1817.0,
+    0.36,
+    0.93295,
+    0.0,
+    1246.0,
+    -0.0,
+    0.0,
+    1.0,
+    215.0
+   ],
+   "light": [
+    0.525,
+    0.522,
+    0.49
+   ],
+   "groundLight": [
+    0.525,
+    0.522,
+    0.49,
+    0.137
+   ]
+  },
+  {
+   "model": 34,
+   "name": "xmodel/military_sandbag_desert_shortsection",
+   "matrix": [
+    0.94495,
+    -0.32722,
+    0.0,
+    1763.0,
+    0.32722,
+    0.94495,
+    0.0,
+    1225.0,
+    -0.0,
+    0.0,
+    1.0,
+    215.0
+   ],
+   "light": [
+    0.424,
+    0.424,
+    0.4
+   ],
+   "groundLight": [
+    0.424,
+    0.424,
+    0.4,
+    0.0
+   ]
+  },
+  {
+   "model": 34,
+   "name": "xmodel/military_sandbag_desert_shortsection",
+   "matrix": [
+    0.94888,
+    -0.31565,
+    0.0,
+    1692.0,
+    0.31565,
+    0.94888,
+    0.0,
+    1199.0,
+    -0.0,
+    0.0,
+    1.0,
+    215.0
+   ],
+   "light": [
+    0.38,
+    0.38,
+    0.361
+   ],
+   "groundLight": [
+    0.38,
+    0.38,
+    0.361,
+    0.0
+   ]
+  },
+  {
+   "model": 34,
+   "name": "xmodel/military_sandbag_desert_shortsection",
+   "matrix": [
+    -0.00698,
+    -0.99998,
+    0.0,
+    1098.0,
+    0.99998,
+    -0.00698,
+    0.0,
+    1152.0,
+    -0.0,
+    0.0,
+    1.0,
+    198.0
+   ],
+   "light": [
+    0.518,
+    0.518,
+    0.482
+   ],
+   "groundLight": [
+    0.518,
+    0.518,
+    0.482,
+    0.427
+   ]
+  },
+  {
+   "model": 32,
+   "name": "xmodel/military_sandbag_desert_endsection_left",
+   "matrix": [
+    0.06279,
+    -0.99803,
+    0.0,
+    1097.0,
+    0.99803,
+    0.06279,
+    0.0,
+    1097.0,
+    -0.0,
+    0.0,
+    1.0,
+    197.0
+   ],
+   "light": [
+    0.537,
+    0.533,
+    0.502
+   ],
+   "groundLight": [
+    0.537,
+    0.533,
+    0.502,
+    0.404
+   ]
+  },
+  {
+   "model": 33,
+   "name": "xmodel/military_sandbag_desert_endsection_right",
+   "matrix": [
+    0.99999,
+    -0.00524,
+    0.0,
+    1135.0,
+    0.00524,
+    0.99999,
+    0.0,
+    1207.0,
+    -0.0,
+    0.0,
+    1.0,
+    197.0
+   ],
+   "light": [
+    0.478,
+    0.475,
+    0.443
+   ],
+   "groundLight": [
+    0.478,
+    0.475,
+    0.443,
+    0.0
+   ]
+  },
+  {
+   "model": 31,
+   "name": "xmodel/military_sandbag_desert_cornersection",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    1106.0,
+    1.0,
+    0.0,
+    0.0,
+    1194.0,
+    -0.0,
+    0.0,
+    1.0,
+    197.0
+   ],
+   "light": [
+    0.49,
+    0.486,
+    0.455
+   ],
+   "groundLight": [
+    0.49,
+    0.486,
+    0.455,
+    0.439
+   ]
+  },
+  {
+   "model": 32,
+   "name": "xmodel/military_sandbag_desert_endsection_left",
+   "matrix": [
+    -0.02618,
+    -0.99966,
+    0.0,
+    2209.0,
+    0.99966,
+    -0.02618,
+    0.0,
+    1246.0,
+    -0.0,
+    0.0,
+    1.0,
+    255.0
+   ],
+   "light": [
+    0.557,
+    0.557,
+    0.525
+   ],
+   "groundLight": [
+    0.557,
+    0.557,
+    0.525,
+    0.475
+   ]
+  },
+  {
+   "model": 33,
+   "name": "xmodel/military_sandbag_desert_endsection_right",
+   "matrix": [
+    0.99999,
+    -0.00524,
+    0.0,
+    2245.0,
+    0.00524,
+    0.99999,
+    0.0,
+    1288.0,
+    -0.0,
+    0.0,
+    1.0,
+    255.0
+   ],
+   "light": [
+    0.557,
+    0.553,
+    0.522
+   ],
+   "groundLight": [
+    0.557,
+    0.553,
+    0.522,
+    0.518
+   ]
+  },
+  {
+   "model": 31,
+   "name": "xmodel/military_sandbag_desert_cornersection",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    2217.0,
+    1.0,
+    0.0,
+    0.0,
+    1275.0,
+    -0.0,
+    0.0,
+    1.0,
+    255.0
+   ],
+   "light": [
+    0.824,
+    0.82,
+    0.769
+   ],
+   "groundLight": [
+    0.824,
+    0.82,
+    0.769,
+    0.518
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.0,
+    1.0,
+    -0.0,
+    1083.0,
+    -1.0,
+    -0.0,
+    0.0,
+    1572.0,
+    -0.0,
+    0.0,
+    1.0,
+    156.0
+   ],
+   "light": [
+    0.478,
+    0.475,
+    0.439
+   ],
+   "groundLight": [
+    0.478,
+    0.475,
+    0.439,
+    0.188
+   ]
+  },
+  {
+   "model": 39,
+   "name": "xmodel/prop_crate_dak8",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    1074.0,
+    0.0,
+    1.0,
+    0.0,
+    1575.0,
+    -0.0,
+    0.0,
+    1.0,
+    191.0
+   ]
+  },
+  {
+   "model": 34,
+   "name": "xmodel/military_sandbag_desert_shortsection",
+   "matrix": [
+    -0.94888,
+    0.31565,
+    -0.0,
+    1632.0,
+    -0.31565,
+    -0.94888,
+    0.0,
+    949.0,
+    -0.0,
+    0.0,
+    1.0,
+    216.0
+   ],
+   "light": [
+    0.424,
+    0.424,
+    0.4
+   ],
+   "groundLight": [
+    0.424,
+    0.424,
+    0.4,
+    0.412
+   ]
+  },
+  {
+   "model": 32,
+   "name": "xmodel/military_sandbag_desert_endsection_left",
+   "matrix": [
+    -0.96858,
+    0.24869,
+    -0.0,
+    1684.0,
+    -0.24869,
+    -0.96858,
+    0.0,
+    965.0,
+    -0.0,
+    0.0,
+    1.0,
+    215.0
+   ],
+   "light": [
+    0.482,
+    0.478,
+    0.451
+   ],
+   "groundLight": [
+    0.482,
+    0.478,
+    0.451,
+    0.427
+   ]
+  },
+  {
+   "model": 33,
+   "name": "xmodel/military_sandbag_desert_endsection_right",
+   "matrix": [
+    -0.31399,
+    -0.94943,
+    0.0,
+    1570.0,
+    0.94943,
+    -0.31399,
+    0.0,
+    966.0,
+    -0.0,
+    0.0,
+    1.0,
+    215.0
+   ],
+   "light": [
+    0.255,
+    0.247,
+    0.227
+   ],
+   "groundLight": [
+    0.255,
+    0.247,
+    0.227,
+    0.0
+   ]
+  },
+  {
+   "model": 31,
+   "name": "xmodel/military_sandbag_desert_cornersection",
+   "matrix": [
+    -0.95106,
+    0.30902,
+    -0.0,
+    1589.0,
+    -0.30902,
+    -0.95106,
+    0.0,
+    944.0,
+    -0.0,
+    0.0,
+    1.0,
+    215.0
+   ],
+   "light": [
+    0.357,
+    0.353,
+    0.333
+   ],
+   "groundLight": [
+    0.357,
+    0.353,
+    0.333,
+    0.29
+   ]
+  },
+  {
+   "model": 32,
+   "name": "xmodel/military_sandbag_desert_endsection_left",
+   "matrix": [
+    -0.02618,
+    -0.99966,
+    0.0,
+    1962.0,
+    0.99966,
+    -0.02618,
+    0.0,
+    1216.0,
+    -0.0,
+    0.0,
+    1.0,
+    256.0
+   ],
+   "light": [
+    0.42,
+    0.404,
+    0.369
+   ],
+   "groundLight": [
+    0.42,
+    0.404,
+    0.369,
+    0.0
+   ]
+  },
+  {
+   "model": 33,
+   "name": "xmodel/military_sandbag_desert_endsection_right",
+   "matrix": [
+    0.99999,
+    -0.00524,
+    0.0,
+    1998.0,
+    0.00524,
+    0.99999,
+    0.0,
+    1258.0,
+    -0.0,
+    0.0,
+    1.0,
+    256.0
+   ],
+   "light": [
+    0.349,
+    0.345,
+    0.325
+   ],
+   "groundLight": [
+    0.349,
+    0.345,
+    0.325,
+    0.0
+   ]
+  },
+  {
+   "model": 31,
+   "name": "xmodel/military_sandbag_desert_cornersection",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    1970.0,
+    1.0,
+    0.0,
+    0.0,
+    1245.0,
+    -0.0,
+    0.0,
+    1.0,
+    256.0
+   ],
+   "light": [
+    0.565,
+    0.569,
+    0.537
+   ],
+   "groundLight": [
+    0.565,
+    0.569,
+    0.537,
+    0.286
+   ]
+  },
+  {
+   "model": 32,
+   "name": "xmodel/military_sandbag_desert_endsection_left",
+   "matrix": [
+    -0.19766,
+    -0.98027,
+    0.0,
+    1829.0,
+    0.98027,
+    -0.19766,
+    0.0,
+    781.0,
+    -0.0,
+    0.0,
+    1.0,
+    215.0
+   ],
+   "light": [
+    0.475,
+    0.475,
+    0.443
+   ],
+   "groundLight": [
+    0.475,
+    0.475,
+    0.443,
+    0.0
+   ]
+  },
+  {
+   "model": 33,
+   "name": "xmodel/military_sandbag_desert_endsection_right",
+   "matrix": [
+    0.9842,
+    -0.17708,
+    0.0,
+    1857.0,
+    0.17708,
+    0.9842,
+    0.0,
+    828.0,
+    -0.0,
+    0.0,
+    1.0,
+    215.0
+   ],
+   "light": [
+    0.463,
+    0.459,
+    0.431
+   ],
+   "groundLight": [
+    0.463,
+    0.459,
+    0.431,
+    0.0
+   ]
+  },
+  {
+   "model": 31,
+   "name": "xmodel/military_sandbag_desert_cornersection",
+   "matrix": [
+    -0.17193,
+    -0.98511,
+    0.0,
+    1832.0,
+    0.98511,
+    -0.17193,
+    0.0,
+    811.0,
+    -0.0,
+    0.0,
+    1.0,
+    215.0
+   ],
+   "light": [
+    0.349,
+    0.345,
+    0.322
+   ],
+   "groundLight": [
+    0.349,
+    0.345,
+    0.322,
+    0.0
+   ]
+  },
+  {
+   "model": 34,
+   "name": "xmodel/military_sandbag_desert_shortsection",
+   "matrix": [
+    -0.00349,
+    -0.99999,
+    0.0,
+    1394.0,
+    0.99999,
+    -0.00349,
+    0.0,
+    779.0,
+    -0.0,
+    0.0,
+    1.0,
+    197.0
+   ],
+   "light": [
+    0.533,
+    0.533,
+    0.506
+   ],
+   "groundLight": [
+    0.533,
+    0.533,
+    0.506,
+    0.565
+   ]
+  },
+  {
+   "model": 32,
+   "name": "xmodel/military_sandbag_desert_endsection_left",
+   "matrix": [
+    0.06627,
+    -0.9978,
+    0.0,
+    1394.0,
+    0.9978,
+    0.06627,
+    0.0,
+    721.0,
+    -0.0,
+    0.0,
+    1.0,
+    197.0
+   ],
+   "light": [
+    0.533,
+    0.533,
+    0.502
+   ],
+   "groundLight": [
+    0.533,
+    0.533,
+    0.502,
+    0.529
+   ]
+  },
+  {
+   "model": 33,
+   "name": "xmodel/military_sandbag_desert_endsection_right",
+   "matrix": [
+    -0.01047,
+    -0.99995,
+    0.0,
+    1392.0,
+    0.99995,
+    -0.01047,
+    0.0,
+    837.0,
+    -0.0,
+    0.0,
+    1.0,
+    197.0
+   ],
+   "light": [
+    0.529,
+    0.529,
+    0.498
+   ],
+   "groundLight": [
+    0.529,
+    0.529,
+    0.498,
+    0.518
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.49418,
+    0.86897,
+    0.02613,
+    2321.0,
+    -0.86935,
+    0.49388,
+    0.01756,
+    2557.0,
+    0.00236,
+    -0.03139,
+    0.9995,
+    69.0
+   ],
+   "light": [
+    0.443,
+    0.435,
+    0.404
+   ],
+   "groundLight": [
+    0.443,
+    0.435,
+    0.404,
+    0.137
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.49456,
+    0.86897,
+    0.01751,
+    2302.0,
+    -0.86892,
+    0.49389,
+    0.03236,
+    2589.0,
+    0.01948,
+    -0.03122,
+    0.99932,
+    68.0
+   ],
+   "light": [
+    0.447,
+    0.439,
+    0.408
+   ],
+   "groundLight": [
+    0.447,
+    0.439,
+    0.408,
+    0.38
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.49399,
+    0.86947,
+    0.0,
+    2283.0,
+    -0.86947,
+    0.49399,
+    -0.0,
+    2622.0,
+    -0.0,
+    0.0,
+    1.0,
+    68.0
+   ],
+   "light": [
+    0.369,
+    0.361,
+    0.333
+   ],
+   "groundLight": [
+    0.369,
+    0.361,
+    0.333,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.99821,
+    -0.05982,
+    0.00292,
+    2280.0,
+    0.05979,
+    -0.99818,
+    -0.00781,
+    2616.0,
+    0.00339,
+    -0.00762,
+    0.99997,
+    103.0
+   ]
+  },
+  {
+   "model": 39,
+   "name": "xmodel/prop_crate_dak8",
+   "matrix": [
+    0.29598,
+    0.95506,
+    0.01573,
+    2317.0,
+    -0.95492,
+    0.29625,
+    -0.01931,
+    2555.0,
+    -0.0231,
+    -0.00931,
+    0.99969,
+    104.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.58559,
+    0.80999,
+    0.03156,
+    2466.0,
+    -0.80995,
+    0.58624,
+    -0.01756,
+    2312.0,
+    -0.03272,
+    -0.01528,
+    0.99935,
+    67.0
+   ],
+   "light": [
+    0.42,
+    0.404,
+    0.365
+   ],
+   "groundLight": [
+    0.42,
+    0.404,
+    0.365,
+    0.0
+   ]
+  },
+  {
+   "model": 39,
+   "name": "xmodel/prop_crate_dak8",
+   "matrix": [
+    0.39838,
+    0.91654,
+    0.03541,
+    2464.0,
+    -0.9166,
+    0.39923,
+    -0.02129,
+    2309.0,
+    -0.03365,
+    -0.02397,
+    0.99915,
+    101.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.45206,
+    0.89195,
+    -0.00817,
+    1059.0,
+    -0.89156,
+    0.45211,
+    0.02681,
+    3086.0,
+    0.02761,
+    -0.00483,
+    0.99961,
+    58.0
+   ],
+   "light": [
+    0.365,
+    0.357,
+    0.329
+   ],
+   "groundLight": [
+    0.365,
+    0.357,
+    0.329,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.99945,
+    -0.03301,
+    -0.00055,
+    235.0,
+    0.03301,
+    0.99945,
+    0.00027,
+    383.0,
+    0.00054,
+    -0.00029,
+    1.0,
+    -23.0
+   ],
+   "light": [
+    0.478,
+    0.471,
+    0.431
+   ],
+   "groundLight": [
+    0.478,
+    0.471,
+    0.431,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.99944,
+    -0.03254,
+    -0.008,
+    274.0,
+    0.0326,
+    0.99945,
+    0.00654,
+    386.0,
+    0.00778,
+    -0.0068,
+    0.99995,
+    -23.0
+   ],
+   "light": [
+    0.427,
+    0.416,
+    0.38
+   ],
+   "groundLight": [
+    0.427,
+    0.416,
+    0.38,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.44521,
+    -0.89542,
+    -0.00055,
+    247.0,
+    0.89542,
+    -0.44521,
+    0.00027,
+    406.0,
+    -0.00049,
+    -0.00037,
+    1.0,
+    12.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.03302,
+    0.99945,
+    0.0,
+    281.0,
+    -0.99945,
+    0.03302,
+    -0.0,
+    469.0,
+    -0.0,
+    0.0,
+    1.0,
+    -23.0
+   ],
+   "light": [
+    0.431,
+    0.42,
+    0.384
+   ],
+   "groundLight": [
+    0.431,
+    0.42,
+    0.384,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.0326,
+    0.99947,
+    -0.0009,
+    284.0,
+    -0.99947,
+    0.0326,
+    -0.00062,
+    430.0,
+    -0.00059,
+    0.00092,
+    1.0,
+    -23.0
+   ],
+   "light": [
+    0.427,
+    0.416,
+    0.38
+   ],
+   "groundLight": [
+    0.427,
+    0.416,
+    0.38,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.03302,
+    0.99945,
+    -0.0009,
+    230.0,
+    -0.99945,
+    0.03302,
+    -0.00062,
+    466.0,
+    -0.00059,
+    0.00092,
+    1.0,
+    -23.0
+   ],
+   "light": [
+    0.427,
+    0.416,
+    0.38
+   ],
+   "groundLight": [
+    0.427,
+    0.416,
+    0.38,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.0326,
+    0.99947,
+    -0.00055,
+    233.0,
+    -0.99947,
+    0.0326,
+    0.00028,
+    427.0,
+    0.0003,
+    0.00054,
+    1.0,
+    -23.0
+   ],
+   "light": [
+    0.42,
+    0.408,
+    0.373
+   ],
+   "groundLight": [
+    0.42,
+    0.408,
+    0.373,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.99967,
+    0.02562,
+    0.00028,
+    230.0,
+    -0.02562,
+    -0.99967,
+    0.00055,
+    461.0,
+    0.0003,
+    0.00054,
+    1.0,
+    12.0
+   ]
+  },
+  {
+   "model": 39,
+   "name": "xmodel/prop_crate_dak8",
+   "matrix": [
+    0.10347,
+    0.99463,
+    -0.0009,
+    281.0,
+    -0.99463,
+    0.10347,
+    -0.00062,
+    432.0,
+    -0.00052,
+    0.00096,
+    1.0,
+    12.0
+   ]
+  },
+  {
+   "model": 36,
+   "name": "xmodel/prop_barrel_silver",
+   "matrix": [
+    0.45237,
+    0.89183,
+    0.0,
+    2670.0,
+    -0.89183,
+    0.45237,
+    -0.0,
+    1180.0,
+    -0.0,
+    0.0,
+    1.0,
+    182.0
+   ],
+   "light": [
+    0.553,
+    0.537,
+    0.494
+   ],
+   "groundLight": [
+    0.553,
+    0.537,
+    0.494,
+    0.0
+   ]
+  },
+  {
+   "model": 35,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    -0.66671,
+    -0.72333,
+    -0.17972,
+    1481.0,
+    0.72266,
+    -0.68637,
+    0.08162,
+    983.0,
+    -0.1824,
+    -0.07546,
+    0.98033,
+    59.0
+   ],
+   "light": [
+    0.533,
+    0.533,
+    0.498
+   ],
+   "groundLight": [
+    0.533,
+    0.533,
+    0.498,
+    0.0
+   ]
+  },
+  {
+   "model": 35,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    0.71929,
+    -0.68983,
+    -0.08224,
+    1920.0,
+    0.69264,
+    0.70297,
+    0.16152,
+    1257.0,
+    -0.05361,
+    -0.17314,
+    0.98344,
+    72.0
+   ],
+   "light": [
+    0.667,
+    0.651,
+    0.6
+   ],
+   "groundLight": [
+    0.667,
+    0.651,
+    0.6,
+    0.753
+   ]
+  },
+  {
+   "model": 35,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    0.69195,
+    0.71725,
+    -0.08224,
+    1932.0,
+    -0.70092,
+    0.69471,
+    0.16151,
+    1241.0,
+    0.17298,
+    -0.05412,
+    0.98344,
+    76.0
+   ],
+   "light": [
+    0.541,
+    0.525,
+    0.482
+   ],
+   "groundLight": [
+    0.541,
+    0.525,
+    0.482,
+    0.275
+   ]
+  },
+  {
+   "model": 35,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    0.70254,
+    0.71165,
+    0.0,
+    1414.0,
+    -0.71165,
+    0.70254,
+    -0.0,
+    2464.0,
+    -0.0,
+    -0.0,
+    1.0,
+    224.0
+   ],
+   "light": [
+    0.6,
+    0.604,
+    0.569
+   ],
+   "groundLight": [
+    0.6,
+    0.604,
+    0.569,
+    0.259
+   ]
+  },
+  {
+   "model": 35,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    0.61956,
+    0.78178,
+    -0.07047,
+    1257.0,
+    -0.78393,
+    0.62083,
+    -0.00483,
+    2517.0,
+    0.03997,
+    0.05824,
+    0.9975,
+    67.0
+   ],
+   "light": [
+    0.639,
+    0.627,
+    0.58
+   ],
+   "groundLight": [
+    0.639,
+    0.627,
+    0.58,
+    0.604
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.99924,
+    0.00727,
+    -0.03834,
+    2752.0,
+    -0.00806,
+    -0.99976,
+    0.0203,
+    1399.0,
+    -0.03818,
+    0.0206,
+    0.99906,
+    60.0
+   ],
+   "light": [
+    0.525,
+    0.51,
+    0.467
+   ],
+   "groundLight": [
+    0.525,
+    0.51,
+    0.467,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.00808,
+    0.99951,
+    -0.03016,
+    2799.0,
+    -0.99723,
+    0.00582,
+    -0.07417,
+    1226.0,
+    -0.07396,
+    0.03068,
+    0.99679,
+    66.0
+   ],
+   "light": [
+    0.541,
+    0.522,
+    0.471
+   ],
+   "groundLight": [
+    0.541,
+    0.522,
+    0.471,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.00738,
+    0.99991,
+    -0.01112,
+    2802.0,
+    -0.99991,
+    0.00726,
+    -0.01108,
+    1264.0,
+    -0.01099,
+    0.0112,
+    0.99988,
+    67.0
+   ],
+   "light": [
+    0.561,
+    0.541,
+    0.49
+   ],
+   "groundLight": [
+    0.561,
+    0.541,
+    0.49,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.16492,
+    -0.98573,
+    -0.03372,
+    2796.0,
+    0.98254,
+    -0.16718,
+    0.0816,
+    1417.0,
+    -0.08607,
+    -0.01968,
+    0.99609,
+    60.0
+   ],
+   "light": [
+    0.518,
+    0.502,
+    0.459
+   ],
+   "groundLight": [
+    0.518,
+    0.502,
+    0.459,
+    0.149
+   ]
+  },
+  {
+   "model": 39,
+   "name": "xmodel/prop_crate_dak8",
+   "matrix": [
+    0.10142,
+    0.99427,
+    -0.03372,
+    2796.0,
+    -0.99124,
+    0.10388,
+    0.0816,
+    1422.0,
+    0.08463,
+    0.02515,
+    0.99609,
+    94.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.99924,
+    0.00727,
+    -0.03834,
+    2752.0,
+    -0.00806,
+    -0.99976,
+    0.0203,
+    1399.0,
+    -0.03818,
+    0.0206,
+    0.99906,
+    95.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.00808,
+    0.99951,
+    -0.03016,
+    2799.0,
+    -0.99723,
+    0.00582,
+    -0.07417,
+    1223.0,
+    -0.07396,
+    0.03068,
+    0.99679,
+    101.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.85161,
+    -0.52407,
+    -0.01093,
+    2125.0,
+    0.52418,
+    0.85142,
+    0.018,
+    2646.0,
+    -0.00013,
+    -0.02105,
+    0.99978,
+    69.0
+   ],
+   "light": [
+    0.365,
+    0.361,
+    0.333
+   ],
+   "groundLight": [
+    0.365,
+    0.361,
+    0.333,
+    0.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.85151,
+    -0.52422,
+    -0.01093,
+    2093.0,
+    0.52433,
+    0.85132,
+    0.018,
+    2626.0,
+    -0.00013,
+    -0.02105,
+    0.99978,
+    69.0
+   ],
+   "light": [
+    0.365,
+    0.357,
+    0.329
+   ],
+   "groundLight": [
+    0.365,
+    0.357,
+    0.329,
+    0.0
+   ]
+  },
+  {
+   "model": 39,
+   "name": "xmodel/prop_crate_dak8",
+   "matrix": [
+    0.38112,
+    0.92444,
+    -0.01251,
+    2124.0,
+    -0.9243,
+    0.38129,
+    0.01693,
+    2649.0,
+    0.02042,
+    0.00511,
+    0.99978,
+    103.0
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.12631,
+    -0.99187,
+    0.01562,
+    2748.0,
+    0.99126,
+    -0.1256,
+    0.04047,
+    1455.0,
+    -0.03818,
+    0.0206,
+    0.99906,
+    55.0
+   ],
+   "light": [
+    0.514,
+    0.502,
+    0.459
+   ],
+   "groundLight": [
+    0.514,
+    0.502,
+    0.459,
+    0.329
+   ]
+  },
+  {
+   "model": 37,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.12631,
+    -0.99187,
+    0.01562,
+    2748.0,
+    0.99126,
+    -0.1256,
+    0.04047,
+    1455.0,
+    -0.03818,
+    0.0206,
+    0.99906,
+    90.0
+   ]
+  },
+  {
+   "model": 39,
+   "name": "xmodel/prop_crate_dak8",
+   "matrix": [
+    0.991,
+    -0.13374,
+    -0.00554,
+    2757.0,
+    0.13386,
+    0.99,
+    0.04463,
+    1459.0,
+    -0.00049,
+    -0.04497,
+    0.99899,
+    124.0
+   ]
+  },
+  {
+   "model": 36,
+   "name": "xmodel/prop_barrel_silver",
+   "matrix": [
+    0.98688,
+    0.03738,
+    0.15709,
+    2065.0,
+    -0.0449,
+    0.99799,
+    0.04463,
+    2112.0,
+    -0.15511,
+    -0.0511,
+    0.98658,
+    63.0
+   ],
+   "light": [
+    0.549,
+    0.537,
+    0.498
+   ],
+   "groundLight": [
+    0.549,
+    0.537,
+    0.498,
+    0.0
+   ]
+  }
+ ],
+ "fallback": []
+}

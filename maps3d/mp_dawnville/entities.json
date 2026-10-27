@@ -1,0 +1,11011 @@
+{
+ "format": "cod2-demo3d-entities/1",
+ "map": "mp_dawnville",
+ "worldspawn": {
+  "ambient": ".0",
+  "sundiffusecolor": ".85 .9 1",
+  "diffusefraction": ".6",
+  "sundirection": "-57 169 0",
+  "suncolor": ".9 .92 .85",
+  "sunlight": "1.2",
+  "classname": "worldspawn",
+  "_color": "0 0 0",
+  "northyaw": "90"
+ },
+ "spawns": [
+  {
+   "classname": "mp_global_intermission",
+   "origin": [
+    -829.0,
+    -16166.0,
+    369.0
+   ],
+   "angles": [
+    10.5882,
+    16.1,
+    -0.659181
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -652.0,
+    -17194.0,
+    56.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    46.0,
+    -16987.0,
+    56.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1180.0,
+    -16474.0,
+    48.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    205.0,
+    -15548.0,
+    80.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -721.0,
+    -15066.0,
+    62.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1308.0,
+    -15224.0,
+    -1.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    2884.0,
+    -15610.0,
+    -16.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1032.0,
+    -15300.0,
+    141.0
+   ],
+   "angles": [
+    0.0,
+    270.3,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1974.0,
+    -16278.0,
+    40.0
+   ],
+   "angles": [
+    0.0,
+    45.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -1088.0,
+    -16228.0,
+    4.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -26.0,
+    -16929.0,
+    205.0
+   ],
+   "angles": [
+    0.0,
+    158.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    606.0,
+    -15321.0,
+    28.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -1342.0,
+    -18230.0,
+    88.0
+   ],
+   "angles": [
+    0.0,
+    55.3,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -898.0,
+    -16357.0,
+    13.0
+   ],
+   "angles": [
+    0.0,
+    270.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -1622.0,
+    -17378.0,
+    120.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -22.0,
+    -16906.0,
+    192.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    171.0,
+    -15544.0,
+    64.0
+   ],
+   "angles": [
+    0.0,
+    268.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -1072.0,
+    -16228.0,
+    0.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -650.0,
+    -17089.0,
+    80.0
+   ],
+   "angles": [
+    0.0,
+    225.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    56.0,
+    -17011.0,
+    56.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1120.0,
+    -16480.0,
+    48.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    2048.0,
+    -16344.0,
+    32.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    2824.0,
+    -15592.0,
+    -32.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    2564.0,
+    -15884.0,
+    -40.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1015.0,
+    -15300.0,
+    134.0
+   ],
+   "angles": [
+    0.0,
+    270.3,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1384.0,
+    -15222.0,
+    -11.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    558.0,
+    -15343.0,
+    36.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -733.0,
+    -15112.0,
+    62.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    152.0,
+    -15288.0,
+    48.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -1324.0,
+    -18246.0,
+    76.0
+   ],
+   "angles": [
+    0.0,
+    51.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -1632.0,
+    -17420.0,
+    112.0
+   ],
+   "angles": [
+    0.0,
+    348.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    156.0,
+    -15290.0,
+    48.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    2598.0,
+    -15860.0,
+    -40.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -905.0,
+    -16357.0,
+    -3.0
+   ],
+   "angles": [
+    0.0,
+    270.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -338.0,
+    -18196.0,
+    202.0
+   ],
+   "angles": [
+    0.0,
+    91.9,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -361.0,
+    -18197.0,
+    180.0
+   ],
+   "angles": [
+    0.0,
+    87.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    2873.0,
+    -15608.0,
+    -16.0
+   ],
+   "angles": [
+    0.0,
+    105.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -1326.0,
+    -18235.0,
+    102.0
+   ],
+   "angles": [
+    0.0,
+    53.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    683.0,
+    -18077.0,
+    69.0
+   ],
+   "angles": [
+    0.0,
+    182.9,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    685.0,
+    -18100.0,
+    62.0
+   ],
+   "angles": [
+    0.0,
+    178.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    5.0,
+    -18124.0,
+    75.0
+   ],
+   "angles": [
+    0.0,
+    111.5,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -17.0,
+    -18134.0,
+    68.0
+   ],
+   "angles": [
+    0.0,
+    107.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -450.0,
+    -17075.0,
+    143.0
+   ],
+   "angles": [
+    0.0,
+    300.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -436.0,
+    -17069.0,
+    136.0
+   ],
+   "angles": [
+    0.0,
+    297.9,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -701.0,
+    -17862.0,
+    109.0
+   ],
+   "angles": [
+    0.0,
+    1.1,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -700.0,
+    -17847.0,
+    102.0
+   ],
+   "angles": [
+    0.0,
+    359.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1234.0,
+    -17742.0,
+    125.0
+   ],
+   "angles": [
+    0.0,
+    143.8,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1224.0,
+    -17753.0,
+    118.0
+   ],
+   "angles": [
+    0.0,
+    141.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -632.0,
+    -17728.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -736.0,
+    -17760.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -488.0,
+    -17728.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -568.0,
+    -17728.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -584.0,
+    -17800.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -664.0,
+    -17800.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -504.0,
+    -17800.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -1008.0,
+    -17728.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1248.0,
+    -14672.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1312.0,
+    -14672.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1376.0,
+    -14672.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1440.0,
+    -14672.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1344.0,
+    -14744.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1222.0,
+    -14744.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1286.0,
+    -14744.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1410.0,
+    -14746.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -880.0,
+    -17760.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -912.0,
+    -17680.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -944.0,
+    -17760.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -800.0,
+    -17760.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -608.0,
+    -17864.0,
+    120.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -664.0,
+    -17864.0,
+    120.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -504.0,
+    -17864.0,
+    120.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -560.0,
+    -17864.0,
+    120.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1360.0,
+    -14808.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1238.0,
+    -14808.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1302.0,
+    -14808.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1426.0,
+    -14810.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1336.0,
+    -14872.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1214.0,
+    -14872.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1278.0,
+    -14872.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    1402.0,
+    -14874.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    2599.0,
+    -15877.0,
+    -28.0
+   ],
+   "angles": [
+    0.0,
+    150.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    584.0,
+    -15334.0,
+    49.0
+   ],
+   "angles": [
+    0.0,
+    120.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    2007.0,
+    -16329.0,
+    43.0
+   ],
+   "angles": [
+    0.0,
+    45.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    1173.0,
+    -16472.0,
+    47.0
+   ],
+   "angles": [
+    0.0,
+    150.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    -718.0,
+    -15076.0,
+    63.0
+   ],
+   "angles": [
+    0.0,
+    1.00179e-05,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    146.0,
+    -15277.0,
+    46.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    1353.0,
+    -15212.0,
+    -12.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    1024.0,
+    -15304.0,
+    142.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    185.0,
+    -15547.0,
+    78.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    908.0,
+    -15601.0,
+    12.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    1242.0,
+    -16582.0,
+    78.0
+   ],
+   "angles": [
+    0.0,
+    1.00179e-05,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    174.0,
+    -16460.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    1.00179e-05,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    1193.0,
+    -16682.0,
+    105.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    1486.0,
+    -14630.0,
+    14.0
+   ],
+   "angles": [
+    0.0,
+    240.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -1660.0,
+    -17386.0,
+    107.0
+   ],
+   "angles": [
+    0.0,
+    353.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -705.0,
+    -17850.0,
+    123.0
+   ],
+   "angles": [
+    0.0,
+    358.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -919.0,
+    -16356.0,
+    7.0
+   ],
+   "angles": [
+    0.0,
+    268.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -1086.0,
+    -16233.0,
+    7.0
+   ],
+   "angles": [
+    0.0,
+    93.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -38.0,
+    -16929.0,
+    191.0
+   ],
+   "angles": [
+    0.0,
+    158.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    56.0,
+    -17002.0,
+    63.0
+   ],
+   "angles": [
+    0.0,
+    358.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -448.0,
+    -17069.0,
+    147.0
+   ],
+   "angles": [
+    0.0,
+    298.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -347.0,
+    -18187.0,
+    191.0
+   ],
+   "angles": [
+    0.0,
+    88.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    1215.0,
+    -17755.0,
+    118.0
+   ],
+   "angles": [
+    0.0,
+    138.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    682.0,
+    -18092.0,
+    63.0
+   ],
+   "angles": [
+    0.0,
+    178.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    1151.0,
+    -16589.0,
+    88.0
+   ],
+   "angles": [
+    0.0,
+    193.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -5.0,
+    -18124.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    123.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -652.0,
+    -17134.0,
+    74.0
+   ],
+   "angles": [
+    0.0,
+    185.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -727.0,
+    -15208.0,
+    26.0
+   ],
+   "angles": [
+    0.0,
+    270.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -30.0,
+    -17078.0,
+    137.0
+   ],
+   "angles": [
+    0.0,
+    210.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    -940.0,
+    -16257.0,
+    -2.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1141.0,
+    -16568.0,
+    89.0
+   ],
+   "angles": [
+    0.0,
+    198.8,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1144.0,
+    -16582.0,
+    82.0
+   ],
+   "angles": [
+    0.0,
+    196.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    171.0,
+    -16468.0,
+    80.0
+   ],
+   "angles": [
+    0.0,
+    3.79995,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    172.0,
+    -16454.0,
+    73.0
+   ],
+   "angles": [
+    0.0,
+    1.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1188.0,
+    -16682.0,
+    118.0
+   ],
+   "angles": [
+    0.0,
+    273.8,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1202.0,
+    -16683.0,
+    111.0
+   ],
+   "angles": [
+    0.0,
+    271.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1227.0,
+    -16599.0,
+    74.0
+   ],
+   "angles": [
+    0.0,
+    3.79997,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1228.0,
+    -16585.0,
+    67.0
+   ],
+   "angles": [
+    0.0,
+    1.70002,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    915.0,
+    -15605.0,
+    26.0
+   ],
+   "angles": [
+    0.0,
+    93.8,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    901.0,
+    -15604.0,
+    19.0
+   ],
+   "angles": [
+    0.0,
+    91.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -911.0,
+    -16253.0,
+    11.0
+   ],
+   "angles": [
+    0.0,
+    93.8,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -925.0,
+    -16252.0,
+    4.0
+   ],
+   "angles": [
+    0.0,
+    91.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -729.0,
+    -15210.0,
+    32.0
+   ],
+   "angles": [
+    0.0,
+    273.8,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -715.0,
+    -15211.0,
+    25.0
+   ],
+   "angles": [
+    0.0,
+    271.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1488.0,
+    -14650.0,
+    4.0
+   ],
+   "angles": [
+    0.0,
+    250.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1452.0,
+    -14629.0,
+    4.0
+   ],
+   "angles": [
+    0.0,
+    250.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    111.0,
+    -14786.0,
+    30.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    126.0,
+    -14788.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    267.9,
+    0.0
+   ]
+  }
+ ],
+ "objectives": [
+  {
+   "classname": "trigger_use_touch",
+   "targetname": "bombzone",
+   "label": "A",
+   "origin": [
+    616.0,
+    -15026.0,
+    -20.0
+   ],
+   "mins": [
+    504.0,
+    -15160.0,
+    -68.0
+   ],
+   "maxs": [
+    728.0,
+    -14892.0,
+    28.0
+   ]
+  },
+  {
+   "classname": "trigger_use_touch",
+   "targetname": "bombzone",
+   "label": "B",
+   "origin": [
+    2494.0,
+    -15766.0,
+    -16.0
+   ],
+   "mins": [
+    2360.0,
+    -15878.0,
+    -64.0
+   ],
+   "maxs": [
+    2628.0,
+    -15654.0,
+    32.0
+   ]
+  },
+  {
+   "classname": "trigger_use_touch",
+   "targetname": "bombtrigger",
+   "label": null,
+   "origin": [
+    -1120.0,
+    -14048.0,
+    556.0
+   ],
+   "mins": [
+    -1160.0,
+    -14088.0,
+    528.0
+   ],
+   "maxs": [
+    -1080.0,
+    -14008.0,
+    584.0
+   ]
+  }
+ ],
+ "props": [
+  {
+   "model": "xmodel/vehicle_tiger_woodland_d_static",
+   "origin": [
+    -518.0,
+    -17485.0,
+    32.0
+   ],
+   "angles": [
+    359.147,
+    211.455,
+    -0.521809
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -1993.0,
+    -18520.0,
+    4.0
+   ],
+   "angles": [
+    349.975,
+    224.912,
+    4.97681
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -3140.0,
+    -17779.0,
+    -32.0
+   ],
+   "angles": [
+    349.964,
+    239.865,
+    -5.01002
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_med_a",
+   "origin": [
+    -526.0,
+    -16498.0,
+    -8.0
+   ],
+   "angles": [
+    4.87771,
+    126.893,
+    2.48203
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    2356.0,
+    -13704.0,
+    -74.0
+   ],
+   "angles": [
+    0.0,
+    179.941,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_civilian_car_d",
+   "origin": [
+    632.0,
+    -16347.0,
+    -12.0
+   ],
+   "angles": [
+    0.674553,
+    167.018,
+    2.93335
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -2755.0,
+    -18086.0,
+    16.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -3077.0,
+    -17949.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -3112.0,
+    -17288.0,
+    24.0
+   ],
+   "angles": [
+    349.964,
+    134.885,
+    -5.01002
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_med_a",
+   "origin": [
+    -3315.0,
+    -17229.0,
+    48.0
+   ],
+   "angles": [
+    11.9971,
+    224.967,
+    4.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_med_a",
+   "origin": [
+    -3557.0,
+    -17394.0,
+    8.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    2014.0,
+    -16859.0,
+    112.0
+   ],
+   "angles": [
+    0.0,
+    29.9762,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    1080.0,
+    -14142.0,
+    24.0
+   ],
+   "angles": [
+    0.0,
+    344.954,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_med_a",
+   "origin": [
+    321.0,
+    -14554.0,
+    -20.0
+   ],
+   "angles": [
+    0.0,
+    45.0,
+    0.0
+   ],
+   "scale": 1.3,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    3141.0,
+    -15289.0,
+    16.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -967.0,
+    -15357.0,
+    24.0
+   ],
+   "angles": [
+    349.964,
+    179.885,
+    -5.00977
+   ],
+   "scale": 0.8,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -1055.0,
+    -14901.0,
+    18.0
+   ],
+   "angles": [
+    0.0,
+    179.941,
+    0.0
+   ],
+   "scale": 1.4,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -1714.0,
+    -15345.0,
+    94.0
+   ],
+   "angles": [
+    0.0,
+    299.976,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -1373.0,
+    -15680.0,
+    0.0
+   ],
+   "angles": [
+    0.0,
+    344.954,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -1910.0,
+    -15783.0,
+    56.0
+   ],
+   "angles": [
+    0.0,
+    269.951,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -2535.0,
+    -17241.0,
+    8.0
+   ],
+   "angles": [
+    0.0,
+    299.976,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -2736.0,
+    -16930.0,
+    24.0
+   ],
+   "angles": [
+    0.0,
+    344.954,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -2679.0,
+    -16690.0,
+    80.0
+   ],
+   "angles": [
+    0.0,
+    269.951,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -2881.0,
+    -18802.0,
+    8.0
+   ],
+   "angles": [
+    0.0,
+    315.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_halftrack_mg_woodland_d_static",
+   "origin": [
+    769.0,
+    -17113.0,
+    26.0
+   ],
+   "angles": [
+    359.511,
+    227.558,
+    -0.415748
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_tombstone7",
+   "origin": [
+    -613.0,
+    -15856.0,
+    -60.0
+   ],
+   "angles": [
+    5.43342,
+    5.26712,
+    2.81861
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_tombstone6",
+   "origin": [
+    -641.0,
+    -16247.0,
+    -43.0
+   ],
+   "angles": [
+    11.3375,
+    356.042,
+    -19.3469
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_tombstone5",
+   "origin": [
+    -637.0,
+    -16145.0,
+    -57.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_tombstone4",
+   "origin": [
+    -630.0,
+    -16024.0,
+    -74.0
+   ],
+   "angles": [
+    344.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_tombstone3",
+   "origin": [
+    -442.0,
+    -16144.0,
+    -65.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_tombstone2",
+   "origin": [
+    -467.0,
+    -15882.0,
+    -13.0
+   ],
+   "angles": [
+    9.96236e-06,
+    270.0,
+    4.30008
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_tombstone1",
+   "origin": [
+    -426.0,
+    -16333.0,
+    -35.0
+   ],
+   "angles": [
+    0.0,
+    349.2,
+    -7.98706
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crypt2",
+   "origin": [
+    -640.0,
+    -16354.0,
+    -30.0
+   ],
+   "angles": [
+    355.544,
+    270.223,
+    -2.87109
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crypt1",
+   "origin": [
+    -465.0,
+    -15937.0,
+    -68.0
+   ],
+   "angles": [
+    357.414,
+    359.749,
+    3.24985
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crypt1",
+   "origin": [
+    -822.0,
+    -15881.0,
+    -48.0
+   ],
+   "angles": [
+    355.424,
+    89.475,
+    2.5001
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_dresser",
+   "origin": [
+    -175.0,
+    -15258.0,
+    13.0
+   ],
+   "angles": [
+    67.942,
+    46.2399,
+    125.112
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_plainchair",
+   "origin": [
+    -41.0,
+    -15262.0,
+    9.0
+   ],
+   "angles": [
+    281.169,
+    272.52,
+    -16.9904
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_victoriancouch_d",
+   "origin": [
+    -291.0,
+    -17130.0,
+    81.0
+   ],
+   "angles": [
+    18.4925,
+    298.988,
+    3.44421
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_xl_a",
+   "origin": [
+    -1642.0,
+    -18495.0,
+    16.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_chickencoop",
+   "origin": [
+    -2102.0,
+    -16734.0,
+    13.0
+   ],
+   "angles": [
+    358.419,
+    269.967,
+    1.19744
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_chickencoop",
+   "origin": [
+    -1819.0,
+    -16752.0,
+    7.0
+   ],
+   "angles": [
+    2.70051,
+    180.099,
+    2.09179
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doghouse1",
+   "origin": [
+    -1758.0,
+    -16808.0,
+    15.0
+   ],
+   "angles": [
+    359.071,
+    9.00733,
+    -2.98109
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    -2133.0,
+    -16644.0,
+    -17.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_med_a",
+   "origin": [
+    -1516.0,
+    -16236.0,
+    -30.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_med_a",
+   "origin": [
+    -2247.0,
+    -16302.0,
+    5.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_med_a",
+   "origin": [
+    -2379.0,
+    -16568.0,
+    24.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_bookshelves1",
+   "origin": [
+    1083.0,
+    -15490.0,
+    125.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_bookshelves1_d",
+   "origin": [
+    994.0,
+    -15630.0,
+    -27.0
+   ],
+   "angles": [
+    0.0,
+    2.00001,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_rolltopdesk",
+   "origin": [
+    1111.0,
+    -15418.0,
+    125.0
+   ],
+   "angles": [
+    0.0,
+    5.00896e-06,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_tableclock1",
+   "origin": [
+    997.0,
+    -15530.0,
+    9.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_victoriancouch",
+   "origin": [
+    1111.0,
+    -15438.0,
+    -27.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/light_lampplainmetalbase_off",
+   "origin": [
+    1123.0,
+    -15502.0,
+    -3.0
+   ],
+   "angles": [
+    0.0,
+    2.50448e-06,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_walltable1",
+   "origin": [
+    993.0,
+    -15530.0,
+    -27.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_smallcoffeetable",
+   "origin": [
+    1113.0,
+    -15502.0,
+    -27.0
+   ],
+   "angles": [
+    0.0,
+    2.50448e-06,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_dresser_d",
+   "origin": [
+    1220.0,
+    -15308.0,
+    125.0
+   ],
+   "angles": [
+    0.0,
+    202.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_bookshelves1_d",
+   "origin": [
+    1237.0,
+    -15354.0,
+    128.0
+   ],
+   "angles": [
+    334.0,
+    180.0,
+    -4.96824e-05
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_dresser_d",
+   "origin": [
+    1090.0,
+    -15520.0,
+    125.0
+   ],
+   "angles": [
+    0.0,
+    272.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/light_lampplainmetalbase_off",
+   "origin": [
+    1090.0,
+    -15514.0,
+    170.0
+   ],
+   "angles": [
+    0.0,
+    2.50448e-06,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/light_walllight_on",
+   "origin": [
+    1281.0,
+    -15450.0,
+    217.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 0.9,
+   "script": false
+  },
+  {
+   "model": "xmodel/light_walllight_on",
+   "origin": [
+    985.0,
+    -15526.0,
+    57.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 0.9,
+   "script": false
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    83.0,
+    -16231.0,
+    74.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "turret": true
+  },
+  {
+   "model": "xmodel/military_sandbag_single_bent",
+   "origin": [
+    87.0,
+    -16280.0,
+    63.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    -180.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    84.0,
+    -16248.0,
+    66.0
+   ],
+   "angles": [
+    0.0,
+    89.6,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_bent",
+   "origin": [
+    85.0,
+    -16270.0,
+    73.0
+   ],
+   "angles": [
+    0.0,
+    265.0,
+    180.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_bent",
+   "origin": [
+    85.0,
+    -16212.0,
+    95.0
+   ],
+   "angles": [
+    0.0,
+    354.8,
+    -180.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_piano_d",
+   "origin": [
+    272.0,
+    -16291.0,
+    27.0
+   ],
+   "angles": [
+    0.0,
+    232.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_6",
+   "origin": [
+    2184.0,
+    -14757.0,
+    -29.0
+   ],
+   "angles": [
+    1.5127,
+    180.275,
+    2.21786
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_6",
+   "origin": [
+    2077.0,
+    -14760.0,
+    -31.0
+   ],
+   "angles": [
+    357.713,
+    180.277,
+    2.27887
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_6",
+   "origin": [
+    1974.0,
+    -14761.0,
+    -26.0
+   ],
+   "angles": [
+    357.713,
+    180.277,
+    2.27887
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_6",
+   "origin": [
+    1870.0,
+    -14762.0,
+    -21.0
+   ],
+   "angles": [
+    357.713,
+    180.277,
+    2.27887
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    1641.0,
+    -15557.0,
+    -100.0
+   ],
+   "angles": [
+    0.0,
+    49.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    2219.0,
+    -14690.0,
+    35.0
+   ],
+   "angles": [
+    0.0,
+    49.0,
+    0.0
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    3713.0,
+    -15601.0,
+    -72.0
+   ],
+   "angles": [
+    0.0,
+    299.976,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    3698.0,
+    -15404.0,
+    -128.0
+   ],
+   "angles": [
+    0.0,
+    315.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    2693.0,
+    -14936.0,
+    42.0
+   ],
+   "angles": [
+    0.0,
+    269.951,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    2191.0,
+    -14511.0,
+    8.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    3234.0,
+    -16580.0,
+    56.0
+   ],
+   "angles": [
+    0.0,
+    284.941,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    3696.0,
+    -16042.0,
+    -64.0
+   ],
+   "angles": [
+    0.0,
+    45.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    3417.0,
+    -15738.0,
+    120.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    2968.0,
+    -15049.0,
+    54.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    3408.0,
+    -15458.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    344.954,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    3408.0,
+    -16328.0,
+    88.0
+   ],
+   "angles": [
+    0.0,
+    315.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    3064.0,
+    -16800.0,
+    96.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    3481.0,
+    -15940.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    315.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    1505.0,
+    -14417.0,
+    8.0
+   ],
+   "angles": [
+    0.0,
+    299.976,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    863.0,
+    -14462.0,
+    -4.0
+   ],
+   "angles": [
+    0.0,
+    269.951,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    1250.02,
+    -16412.5,
+    23.0
+   ],
+   "angles": [
+    90.0,
+    99.0,
+    135.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    1250.02,
+    -16412.5,
+    25.0
+   ],
+   "angles": [
+    270.0,
+    308.74,
+    -164.74
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_6",
+   "origin": [
+    -1547.0,
+    -18138.0,
+    37.0
+   ],
+   "angles": [
+    357.713,
+    215.677,
+    2.27887
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_6",
+   "origin": [
+    -1630.0,
+    -18199.0,
+    37.0
+   ],
+   "angles": [
+    357.713,
+    179.877,
+    2.27887
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_6",
+   "origin": [
+    -1732.0,
+    -18199.0,
+    37.0
+   ],
+   "angles": [
+    357.713,
+    167.077,
+    2.27887
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_6",
+   "origin": [
+    -1833.0,
+    -18176.0,
+    37.0
+   ],
+   "angles": [
+    357.713,
+    182.977,
+    2.27887
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_6",
+   "origin": [
+    -1937.0,
+    -18182.0,
+    37.0
+   ],
+   "angles": [
+    357.713,
+    182.977,
+    2.27887
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1036.0,
+    -17766.0,
+    38.0
+   ],
+   "angles": [
+    357.988,
+    246.586,
+    3.26763
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    -985.0,
+    -17832.0,
+    71.0
+   ],
+   "angles": [
+    0.0,
+    306.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    -981.0,
+    -17815.0,
+    71.0
+   ],
+   "angles": [
+    0.0,
+    306.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    -995.0,
+    -17798.0,
+    71.0
+   ],
+   "angles": [
+    0.0,
+    306.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    -1003.0,
+    -17795.0,
+    71.0
+   ],
+   "angles": [
+    0.0,
+    306.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    -993.0,
+    -17815.0,
+    72.0
+   ],
+   "angles": [
+    0.0,
+    306.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    -993.0,
+    -17815.0,
+    79.0
+   ],
+   "angles": [
+    0.0,
+    306.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    -987.0,
+    -17828.0,
+    77.0
+   ],
+   "angles": [
+    0.0,
+    116.3,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_bent",
+   "origin": [
+    -998.0,
+    -17831.0,
+    81.0
+   ],
+   "angles": [
+    276.658,
+    330.836,
+    -119.287
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_bent",
+   "origin": [
+    -1017.0,
+    -17776.0,
+    62.0
+   ],
+   "angles": [
+    0.0,
+    323.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    -1033.0,
+    -17771.0,
+    62.0
+   ],
+   "angles": [
+    0.0,
+    334.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    -974.0,
+    -17844.0,
+    72.0
+   ],
+   "angles": [
+    0.0,
+    148.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_chickencoop",
+   "origin": [
+    -1983.0,
+    -16732.0,
+    12.0
+   ],
+   "angles": [
+    2.59593,
+    269.98,
+    0.183365
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    -1778.0,
+    -16591.0,
+    -17.0
+   ],
+   "angles": [
+    3.97324,
+    359.605,
+    -7.40517
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    -1812.0,
+    -16374.0,
+    -50.0
+   ],
+   "angles": [
+    10.808,
+    61.1784,
+    -6.06826
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    -2113.0,
+    -17201.0,
+    -2.0
+   ],
+   "angles": [
+    3.97324,
+    359.605,
+    -7.40517
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_tractor",
+   "origin": [
+    -1367.0,
+    -16274.0,
+    -30.0
+   ],
+   "angles": [
+    3.58983,
+    180.895,
+    -0.837496
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1257.0,
+    -15970.0,
+    -24.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1218.0,
+    -15958.0,
+    -24.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1237.0,
+    -15958.0,
+    1.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -996.0,
+    -17802.0,
+    48.0
+   ],
+   "angles": [
+    0.0,
+    209.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -969.0,
+    -17843.0,
+    48.0
+   ],
+   "angles": [
+    0.0,
+    209.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_lg_a",
+   "origin": [
+    2438.0,
+    -14706.0,
+    30.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_lg_a",
+   "origin": [
+    2581.0,
+    -14079.0,
+    30.0
+   ],
+   "angles": null,
+   "scale": 1.3,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_lg_a",
+   "origin": [
+    2768.0,
+    -14514.0,
+    30.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    1754.0,
+    -14100.0,
+    -74.0
+   ],
+   "angles": [
+    0.0,
+    179.941,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    2012.0,
+    -13858.0,
+    -74.0
+   ],
+   "angles": [
+    0.0,
+    179.941,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    1105.0,
+    -14478.0,
+    51.0
+   ],
+   "angles": [
+    0.0,
+    49.0,
+    0.0
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    1305.0,
+    -14490.0,
+    51.0
+   ],
+   "angles": [
+    0.0,
+    49.0,
+    0.0
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    -2430.0,
+    -15958.0,
+    59.0
+   ],
+   "angles": null,
+   "scale": 2.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    -2707.0,
+    -16265.0,
+    79.0
+   ],
+   "angles": null,
+   "scale": 2.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_river_birch_lg_a",
+   "origin": [
+    -2629.0,
+    -16019.0,
+    98.0
+   ],
+   "angles": [
+    0.0,
+    269.951,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    -1842.0,
+    -18471.0,
+    79.0
+   ],
+   "angles": null,
+   "scale": 2.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_xl_a",
+   "origin": [
+    -952.0,
+    -16448.0,
+    -10.0
+   ],
+   "angles": [
+    356.424,
+    0.0,
+    0.0
+   ],
+   "scale": 1.3,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    -837.0,
+    -15645.0,
+    -42.0
+   ],
+   "angles": [
+    355.04,
+    139.311,
+    14.652
+   ],
+   "scale": 0.8,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -2208.0,
+    -18070.0,
+    24.0
+   ],
+   "angles": [
+    0.311516,
+    246.615,
+    0.720356
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -2274.0,
+    -18082.0,
+    51.0
+   ],
+   "angles": [
+    23.3846,
+    270.34,
+    90.8558
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1956.0,
+    -17688.0,
+    39.0
+   ],
+   "angles": [
+    9.3461,
+    246.262,
+    -2.24711
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -2001.0,
+    -17697.0,
+    36.0
+   ],
+   "angles": [
+    1.68522,
+    179.852,
+    -9.46256
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1957.0,
+    -17761.0,
+    32.0
+   ],
+   "angles": [
+    1.68414,
+    179.852,
+    -0.214905
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_opel_blitz_woodland_d_static",
+   "origin": [
+    -2804.0,
+    -17725.0,
+    15.0
+   ],
+   "angles": [
+    0.0,
+    25.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_victoriancouch_d",
+   "origin": [
+    342.0,
+    -18146.0,
+    48.0
+   ],
+   "angles": [
+    0.0,
+    94.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_cabinet",
+   "origin": [
+    732.0,
+    -18099.0,
+    48.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_pictureframe01",
+   "origin": [
+    555.0,
+    -18036.0,
+    104.0
+   ],
+   "angles": [
+    352.4,
+    0.0,
+    0.0
+   ],
+   "scale": 2.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_pictureframe02",
+   "origin": [
+    433.0,
+    -18170.0,
+    112.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 2.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    -830.0,
+    -15688.0,
+    -42.0
+   ],
+   "angles": [
+    355.04,
+    321.311,
+    14.652
+   ],
+   "scale": 0.8,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    -599.0,
+    -15685.0,
+    -63.0
+   ],
+   "angles": [
+    355.04,
+    321.311,
+    14.652
+   ],
+   "scale": 0.8,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_spikeybush_01",
+   "origin": [
+    -602.0,
+    -15652.0,
+    -63.0
+   ],
+   "angles": [
+    355.04,
+    132.111,
+    14.652
+   ],
+   "scale": 0.8,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_tiger_woodland_d_static",
+   "origin": [
+    339.0,
+    -17448.0,
+    18.0
+   ],
+   "angles": [
+    359.901,
+    23.7814,
+    -3.12456
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1235.0,
+    -17956.0,
+    47.0
+   ],
+   "angles": [
+    0.0,
+    114.31,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_opel_blitz_woodland_static",
+   "origin": [
+    -1245.0,
+    -17441.0,
+    49.0
+   ],
+   "angles": [
+    4.85553,
+    339.265,
+    4.41393
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_hedge_wall_1",
+   "origin": [
+    1430.0,
+    -17254.0,
+    108.0
+   ],
+   "angles": [
+    0.0,
+    182.0,
+    0.0
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_hedge_wall_1",
+   "origin": [
+    1359.0,
+    -17589.0,
+    111.0
+   ],
+   "angles": [
+    0.0,
+    173.2,
+    0.0
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_hedge_wall_1",
+   "origin": [
+    1272.0,
+    -17868.0,
+    111.0
+   ],
+   "angles": [
+    0.0,
+    153.3,
+    0.0
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_hedge_wall_1",
+   "origin": [
+    1015.0,
+    -18033.0,
+    115.0
+   ],
+   "angles": [
+    0.0,
+    108.7,
+    0.0
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_xl_a",
+   "origin": [
+    1405.0,
+    -17745.0,
+    154.0
+   ],
+   "angles": [
+    359.346,
+    246.465,
+    -5.65829
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_med_a",
+   "origin": [
+    -263.0,
+    -16293.0,
+    -27.0
+   ],
+   "angles": [
+    355.656,
+    121.297,
+    -1.06734
+   ],
+   "scale": 1.1,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_med_a",
+   "origin": [
+    2161.0,
+    -16685.0,
+    39.0
+   ],
+   "angles": [
+    355.656,
+    121.297,
+    -1.06734
+   ],
+   "scale": 1.1,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_med_a",
+   "origin": [
+    1687.0,
+    -14604.0,
+    -53.0
+   ],
+   "angles": [
+    355.656,
+    121.297,
+    -1.06734
+   ],
+   "scale": 1.3,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1189.0,
+    -17935.0,
+    47.0
+   ],
+   "angles": [
+    0.0,
+    114.31,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1224.0,
+    -17980.0,
+    47.0
+   ],
+   "angles": [
+    0.0,
+    114.31,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1178.0,
+    -17959.0,
+    47.0
+   ],
+   "angles": [
+    0.0,
+    114.31,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1246.0,
+    -17932.0,
+    47.0
+   ],
+   "angles": [
+    0.0,
+    114.31,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1200.0,
+    -17909.0,
+    47.0
+   ],
+   "angles": [
+    0.0,
+    107.71,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1235.0,
+    -17956.0,
+    73.0
+   ],
+   "angles": [
+    0.0,
+    114.31,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1189.0,
+    -17935.0,
+    73.0
+   ],
+   "angles": [
+    0.0,
+    114.31,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1224.0,
+    -17980.0,
+    73.0
+   ],
+   "angles": [
+    0.0,
+    114.31,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1178.0,
+    -17959.0,
+    73.0
+   ],
+   "angles": [
+    0.0,
+    114.31,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1237.0,
+    -17955.0,
+    98.0
+   ],
+   "angles": [
+    0.0,
+    114.31,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1224.0,
+    -17981.0,
+    98.0
+   ],
+   "angles": [
+    0.0,
+    114.31,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1182.0,
+    -17948.0,
+    98.0
+   ],
+   "angles": [
+    0.0,
+    29.21,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -943.0,
+    -18072.0,
+    66.0
+   ],
+   "angles": [
+    359.358,
+    337.377,
+    -3.73062
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -940.0,
+    -18104.0,
+    94.0
+   ],
+   "angles": [
+    23.3846,
+    1.03996,
+    90.8558
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/moscow_boards_1a",
+   "origin": [
+    -421.0,
+    -18106.0,
+    124.0
+   ],
+   "angles": [
+    69.3744,
+    328.479,
+    -32.5685
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -362.0,
+    -17771.0,
+    49.0
+   ],
+   "angles": [
+    0.593818,
+    84.194,
+    1.4801
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -418.0,
+    -17769.0,
+    54.0
+   ],
+   "angles": [
+    1.54119,
+    92.278,
+    2.34954
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    759.0,
+    -18206.0,
+    47.0
+   ],
+   "angles": [
+    0.0,
+    179.278,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    760.0,
+    -18206.0,
+    72.0
+   ],
+   "angles": [
+    0.0,
+    179.278,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    746.0,
+    -18254.0,
+    73.0
+   ],
+   "angles": [
+    0.0,
+    67.578,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    746.0,
+    -18254.0,
+    47.0
+   ],
+   "angles": [
+    0.0,
+    67.578,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    732.0,
+    -18218.0,
+    83.0
+   ],
+   "angles": [
+    0.260703,
+    180.187,
+    128.5
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    48.0,
+    -17109.0,
+    39.0
+   ],
+   "angles": [
+    0.0,
+    135.398,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    23.0,
+    -17077.0,
+    39.0
+   ],
+   "angles": [
+    0.0,
+    3.50199,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    45.0,
+    -17110.0,
+    65.0
+   ],
+   "angles": [
+    0.0,
+    130.198,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    27.0,
+    -17074.0,
+    65.0
+   ],
+   "angles": [
+    0.0,
+    8.90201,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    91.0,
+    -15541.0,
+    38.0
+   ],
+   "angles": [
+    0.0,
+    347.198,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    93.0,
+    -15539.0,
+    63.0
+   ],
+   "angles": [
+    0.0,
+    341.998,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    867.0,
+    -16478.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    46.998,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    866.0,
+    -16475.0,
+    49.0
+   ],
+   "angles": [
+    0.0,
+    41.798,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/weapon_30cal",
+   "origin": [
+    -995.0,
+    -17813.0,
+    84.0
+   ],
+   "angles": [
+    0.0,
+    34.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "dm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_30cal",
+   "origin": [
+    -995.0,
+    -17813.0,
+    84.0
+   ],
+   "angles": [
+    0.0,
+    34.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "tdm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_30cal",
+   "origin": [
+    -995.0,
+    -17813.0,
+    84.0
+   ],
+   "angles": [
+    0.0,
+    34.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "hq",
+   "turret": true
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    633.0,
+    -15664.0,
+    -25.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_left",
+   "origin": [
+    576.0,
+    -15668.0,
+    -25.0
+   ],
+   "angles": [
+    0.0,
+    5.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_right",
+   "origin": [
+    691.0,
+    -15662.0,
+    -24.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -87.0,
+    -17980.0,
+    172.0
+   ],
+   "angles": [
+    0.0,
+    67.578,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -46.0,
+    -17992.0,
+    197.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    -90.0001
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/german_artillery_flakveirling_d",
+   "origin": [
+    616.0,
+    -15024.0,
+    -68.0
+   ],
+   "angles": [
+    0.0,
+    3.18772e-06,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "A",
+    "show": true
+   }
+  },
+  {
+   "model": "xmodel/german_artillery_flakveirling",
+   "origin": [
+    616.0,
+    -15024.0,
+    -68.0
+   ],
+   "angles": [
+    0.0,
+    3.18772e-06,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "A",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/german_artillery_flakveirling_d",
+   "origin": [
+    2492.0,
+    -15766.0,
+    -64.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": true
+   }
+  },
+  {
+   "model": "xmodel/german_artillery_flakveirling",
+   "origin": [
+    2492.0,
+    -15766.0,
+    -64.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1228.0,
+    -16696.0,
+    19.0
+   ],
+   "angles": [
+    6.84129,
+    4.14089,
+    -2.11562
+   ],
+   "scale": 1.249902,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1236.0,
+    -16607.0,
+    6.0
+   ],
+   "angles": [
+    8.0029,
+    106.025,
+    4.33261
+   ],
+   "scale": 0.98255,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1228.0,
+    -16554.0,
+    -2.0
+   ],
+   "angles": [
+    4.09352,
+    171.621,
+    11.1325
+   ],
+   "scale": 1.186658,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1233.0,
+    -16499.0,
+    -12.0
+   ],
+   "angles": [
+    6.98273,
+    60.9041,
+    -6.94135
+   ],
+   "scale": 1.032629,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1253.0,
+    -16372.0,
+    -25.0
+   ],
+   "angles": [
+    357.722,
+    19.1612,
+    1.1026
+   ],
+   "scale": 1.13385,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1184.0,
+    -16495.0,
+    -12.0
+   ],
+   "angles": [
+    4.55913,
+    28.5836,
+    -8.30033
+   ],
+   "scale": 1.029297,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1173.0,
+    -16444.0,
+    -20.0
+   ],
+   "angles": [
+    3.0115,
+    122.675,
+    1.92988
+   ],
+   "scale": 0.773517,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1134.0,
+    -16428.0,
+    -22.0
+   ],
+   "angles": [
+    4.15999,
+    50.8797,
+    -3.3763
+   ],
+   "scale": 1.146594,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1109.0,
+    -16487.0,
+    -14.0
+   ],
+   "angles": [
+    356.702,
+    200.228,
+    8.87385
+   ],
+   "scale": 1.051544,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1147.0,
+    -16511.0,
+    -9.0
+   ],
+   "angles": [
+    3.28059,
+    159.884,
+    8.88029
+   ],
+   "scale": 0.989545,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1170.0,
+    -16557.0,
+    -1.0
+   ],
+   "angles": [
+    359.368,
+    356.964,
+    -11.7515
+   ],
+   "scale": 0.765552,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1181.0,
+    -16609.0,
+    9.0
+   ],
+   "angles": [
+    351.36,
+    267.008,
+    4.8697
+   ],
+   "scale": 0.946167,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1169.0,
+    -16661.0,
+    18.0
+   ],
+   "angles": [
+    351.448,
+    312.473,
+    -2.42693
+   ],
+   "scale": 1.026422,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1151.0,
+    -16707.0,
+    27.0
+   ],
+   "angles": [
+    350.551,
+    281.299,
+    0.924456
+   ],
+   "scale": 1.254279,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1107.0,
+    -16724.0,
+    31.0
+   ],
+   "angles": [
+    6.75868,
+    141.922,
+    4.42777
+   ],
+   "scale": 0.706171,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1095.0,
+    -16683.0,
+    26.0
+   ],
+   "angles": [
+    355.351,
+    220.032,
+    8.8485
+   ],
+   "scale": 0.707434,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1132.0,
+    -16669.0,
+    22.0
+   ],
+   "angles": [
+    7.21522,
+    147.709,
+    6.18682
+   ],
+   "scale": 0.791553,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1130.0,
+    -16628.0,
+    15.0
+   ],
+   "angles": [
+    3.51185,
+    29.2409,
+    -11.5311
+   ],
+   "scale": 1.091626,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1132.0,
+    -16586.0,
+    6.0
+   ],
+   "angles": [
+    359.977,
+    12.4214,
+    -12.047
+   ],
+   "scale": 0.758246,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1118.0,
+    -16543.0,
+    -4.0
+   ],
+   "angles": [
+    351.903,
+    238.602,
+    4.91333
+   ],
+   "scale": 0.89704,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1084.0,
+    -16589.0,
+    7.0
+   ],
+   "angles": [
+    346.444,
+    254.679,
+    3.67432
+   ],
+   "scale": 1.020105,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1085.0,
+    -16641.0,
+    19.0
+   ],
+   "angles": [
+    352.492,
+    240.985,
+    6.60434
+   ],
+   "scale": 1.104736,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1098.0,
+    -16392.0,
+    -25.0
+   ],
+   "angles": [
+    357.218,
+    211.22,
+    4.5784
+   ],
+   "scale": 1.253363,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1035.0,
+    -16371.0,
+    -24.0
+   ],
+   "angles": [
+    0.0,
+    306.475,
+    0.0
+   ],
+   "scale": 0.848425,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -991.0,
+    -16338.0,
+    -26.0
+   ],
+   "angles": [
+    358.682,
+    111.594,
+    3.32504
+   ],
+   "scale": 1.19585,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -943.0,
+    -16340.0,
+    -26.0
+   ],
+   "angles": [
+    5.83409,
+    125.173,
+    4.09724
+   ],
+   "scale": 0.951093,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -897.0,
+    -16335.0,
+    -26.0
+   ],
+   "angles": [
+    6.22358,
+    60.7399,
+    -3.47569
+   ],
+   "scale": 0.921173,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -850.0,
+    -16338.0,
+    -24.0
+   ],
+   "angles": [
+    358.528,
+    13.6869,
+    -4.03615
+   ],
+   "scale": 0.93681,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -852.0,
+    -16391.0,
+    -19.0
+   ],
+   "angles": [
+    356.314,
+    225.125,
+    3.66247
+   ],
+   "scale": 1.188031,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -860.0,
+    -16465.0,
+    -14.0
+   ],
+   "angles": [
+    2.88774,
+    92.3448,
+    2.16256
+   ],
+   "scale": 0.917419,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -858.0,
+    -16508.0,
+    -7.0
+   ],
+   "angles": [
+    10.4957,
+    77.8308,
+    -0.192417
+   ],
+   "scale": 0.864356,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -854.0,
+    -16545.0,
+    -1.0
+   ],
+   "angles": [
+    354.401,
+    316.257,
+    -7.75695
+   ],
+   "scale": 1.154248,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -892.0,
+    -16427.0,
+    -16.0
+   ],
+   "angles": [
+    355.441,
+    298.701,
+    -2.49194
+   ],
+   "scale": 1.026514,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -899.0,
+    -16389.0,
+    -20.0
+   ],
+   "angles": [
+    354.87,
+    279.062,
+    -0.817041
+   ],
+   "scale": 1.094812,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -971.0,
+    -16403.0,
+    -18.0
+   ],
+   "angles": [
+    4.10586,
+    128.666,
+    2.98479
+   ],
+   "scale": 0.733618,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1011.0,
+    -16429.0,
+    -16.0
+   ],
+   "angles": [
+    355.523,
+    244.463,
+    2.39083
+   ],
+   "scale": 0.88457,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -946.0,
+    -16430.0,
+    -16.0
+   ],
+   "angles": [
+    355.04,
+    260.381,
+    1.07293
+   ],
+   "scale": 1.276654,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -985.0,
+    -16485.0,
+    -9.0
+   ],
+   "angles": [
+    5.76199,
+    135.205,
+    1.74762
+   ],
+   "scale": 1.153607,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -923.0,
+    -16487.0,
+    -9.0
+   ],
+   "angles": [
+    8.85686,
+    104.118,
+    3.60399
+   ],
+   "scale": 0.902734,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -905.0,
+    -16534.0,
+    -2.0
+   ],
+   "angles": [
+    8.57591,
+    108.266,
+    4.23283
+   ],
+   "scale": 1.078406,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -950.0,
+    -16543.0,
+    -2.0
+   ],
+   "angles": [
+    358.484,
+    222.837,
+    5.82692
+   ],
+   "scale": 1.014355,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1059.0,
+    -16447.0,
+    -18.0
+   ],
+   "angles": [
+    4.57973,
+    182.181,
+    4.92489
+   ],
+   "scale": 0.718475,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1048.0,
+    -16502.0,
+    -11.0
+   ],
+   "angles": [
+    352.376,
+    233.43,
+    5.62113
+   ],
+   "scale": 1.043542,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1053.0,
+    -16548.0,
+    -3.0
+   ],
+   "angles": [
+    0.0861299,
+    0.34452,
+    -14.036
+   ],
+   "scale": 1.028162,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -995.0,
+    -16567.0,
+    2.0
+   ],
+   "angles": [
+    13.4662,
+    73.2996,
+    -3.99658
+   ],
+   "scale": 1.201123,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1011.0,
+    -16626.0,
+    17.0
+   ],
+   "angles": [
+    3.55916,
+    166.761,
+    14.7821
+   ],
+   "scale": 0.943347,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1017.0,
+    -16674.0,
+    30.0
+   ],
+   "angles": [
+    351.628,
+    327.191,
+    -12.7265
+   ],
+   "scale": 1.100909,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1040.0,
+    -16719.0,
+    35.0
+   ],
+   "angles": [
+    7.00334,
+    118.274,
+    -1.85691
+   ],
+   "scale": 1.143097,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -980.0,
+    -16722.0,
+    40.0
+   ],
+   "angles": [
+    357.782,
+    154.808,
+    10.6843
+   ],
+   "scale": 0.858954,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -945.0,
+    -16713.0,
+    35.0
+   ],
+   "angles": [
+    6.2756,
+    96.4629,
+    5.56314
+   ],
+   "scale": 1.286469,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -890.0,
+    -16686.0,
+    23.0
+   ],
+   "angles": [
+    15.5795,
+    70.2227,
+    -5.5161
+   ],
+   "scale": 1.067731,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -848.0,
+    -16656.0,
+    15.0
+   ],
+   "angles": [
+    0.0734808,
+    0.551115,
+    -7.59429
+   ],
+   "scale": 0.924194,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -854.0,
+    -16613.0,
+    9.0
+   ],
+   "angles": [
+    8.48584,
+    93.0148,
+    1.66519
+   ],
+   "scale": 0.759985,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -895.0,
+    -16648.0,
+    14.0
+   ],
+   "angles": [
+    352.443,
+    275.756,
+    -0.759423
+   ],
+   "scale": 1.13927,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -953.0,
+    -16661.0,
+    22.0
+   ],
+   "angles": [
+    15.1834,
+    35.8082,
+    -9.14337
+   ],
+   "scale": 1.028583,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -968.0,
+    -16624.0,
+    14.0
+   ],
+   "angles": [
+    4.64301,
+    139.931,
+    14.4412
+   ],
+   "scale": 1.131927,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -918.0,
+    -16599.0,
+    7.0
+   ],
+   "angles": [
+    7.08785,
+    87.4754,
+    -3.15418
+   ],
+   "scale": 0.791663,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -882.0,
+    -16589.0,
+    6.0
+   ],
+   "angles": [
+    7.42544,
+    102.186,
+    1.5987
+   ],
+   "scale": 1.197974,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -792.0,
+    -16716.0,
+    22.0
+   ],
+   "angles": [
+    352.804,
+    215.879,
+    12.1615
+   ],
+   "scale": 1.062164,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -795.0,
+    -16652.0,
+    13.0
+   ],
+   "angles": [
+    8.33866,
+    86.3079,
+    3.88965
+   ],
+   "scale": 1.04726,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -795.0,
+    -16587.0,
+    3.0
+   ],
+   "angles": [
+    350.976,
+    230.018,
+    1.77412
+   ],
+   "scale": 1.149835,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -803.0,
+    -16541.0,
+    -3.0
+   ],
+   "angles": [
+    353.138,
+    209.389,
+    7.96306
+   ],
+   "scale": 0.960339,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -747.0,
+    -16542.0,
+    -3.0
+   ],
+   "angles": [
+    350.759,
+    278.91,
+    0.601871
+   ],
+   "scale": 0.856793,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -688.0,
+    -16547.0,
+    -2.0
+   ],
+   "angles": [
+    4.35126,
+    42.8569,
+    -6.56515
+   ],
+   "scale": 0.969586,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -673.0,
+    -16590.0,
+    3.0
+   ],
+   "angles": [
+    359.484,
+    12.9982,
+    -5.45364
+   ],
+   "scale": 1.14361,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -661.0,
+    -16658.0,
+    12.0
+   ],
+   "angles": [
+    8.23473,
+    144.266,
+    9.01524
+   ],
+   "scale": 1.072858,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -680.0,
+    -16720.0,
+    25.0
+   ],
+   "angles": [
+    347.399,
+    275.121,
+    0.265993
+   ],
+   "scale": 0.765277,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -725.0,
+    -16731.0,
+    26.0
+   ],
+   "angles": [
+    6.25975,
+    156.961,
+    10.9609
+   ],
+   "scale": 0.709064,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -718.0,
+    -16676.0,
+    14.0
+   ],
+   "angles": [
+    352.495,
+    343.865,
+    -12.4204
+   ],
+   "scale": 0.931702,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -739.0,
+    -16626.0,
+    5.0
+   ],
+   "angles": [
+    4.75389,
+    93.675,
+    0.304982
+   ],
+   "scale": 0.7245,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -725.0,
+    -16582.0,
+    2.0
+   ],
+   "angles": [
+    0.0894245,
+    15.6178,
+    -4.71666
+   ],
+   "scale": 1.123962,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -596.0,
+    -16559.0,
+    2.0
+   ],
+   "angles": [
+    6.16416,
+    115.968,
+    1.82243
+   ],
+   "scale": 1.067639,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -525.0,
+    -16554.0,
+    2.0
+   ],
+   "angles": [
+    356.21,
+    334.553,
+    -6.08876
+   ],
+   "scale": 1.244427,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -455.0,
+    -16557.0,
+    4.0
+   ],
+   "angles": [
+    4.31658,
+    39.3776,
+    -6.80209
+   ],
+   "scale": 1.045081,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -379.0,
+    -16549.0,
+    7.0
+   ],
+   "angles": [
+    9.75267,
+    154.466,
+    5.20748
+   ],
+   "scale": 0.857764,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -315.0,
+    -16548.0,
+    15.0
+   ],
+   "angles": [
+    0.294855,
+    59.4935,
+    -9.99489
+   ],
+   "scale": 1.102154,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -258.0,
+    -16550.0,
+    15.0
+   ],
+   "angles": [
+    357.302,
+    6.52414,
+    -7.38395
+   ],
+   "scale": 1.096057,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -306.0,
+    -16601.0,
+    20.0
+   ],
+   "angles": [
+    13.5293,
+    62.4494,
+    -18.7303
+   ],
+   "scale": 1.148132,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -378.0,
+    -16632.0,
+    20.0
+   ],
+   "angles": [
+    344.2,
+    242.363,
+    18.0823
+   ],
+   "scale": 0.770587,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -436.0,
+    -16651.0,
+    24.0
+   ],
+   "angles": [
+    5.39016,
+    17.8637,
+    -12.2693
+   ],
+   "scale": 1.205481,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -493.0,
+    -16668.0,
+    27.0
+   ],
+   "angles": [
+    10.3144,
+    45.7668,
+    -15.2814
+   ],
+   "scale": 0.958527,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -563.0,
+    -16685.0,
+    25.0
+   ],
+   "angles": [
+    17.5563,
+    86.1724,
+    -7.78563
+   ],
+   "scale": 0.93399,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -627.0,
+    -16699.0,
+    23.0
+   ],
+   "angles": [
+    10.9353,
+    134.04,
+    5.60178
+   ],
+   "scale": 1.264624,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -601.0,
+    -16645.0,
+    13.0
+   ],
+   "angles": [
+    355.213,
+    219.346,
+    11.3119
+   ],
+   "scale": 1.030102,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -615.0,
+    -16611.0,
+    7.0
+   ],
+   "angles": [
+    356.228,
+    241.822,
+    3.97479
+   ],
+   "scale": 0.958014,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -560.0,
+    -16606.0,
+    8.0
+   ],
+   "angles": [
+    0.991666,
+    183.782,
+    6.4177
+   ],
+   "scale": 1.101019,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -497.0,
+    -16611.0,
+    12.0
+   ],
+   "angles": [
+    352.072,
+    338.55,
+    -11.5661
+   ],
+   "scale": 0.783862,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -431.0,
+    -16600.0,
+    12.0
+   ],
+   "angles": [
+    10.9892,
+    127.894,
+    3.84052
+   ],
+   "scale": 1.21405,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -382.0,
+    -16591.0,
+    13.0
+   ],
+   "angles": [
+    9.35587,
+    135.693,
+    3.41281
+   ],
+   "scale": 1.250067,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -255.0,
+    -16312.0,
+    -22.0
+   ],
+   "angles": [
+    6.83678,
+    182.1,
+    10.7861
+   ],
+   "scale": 1.120667,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -286.0,
+    -16289.0,
+    -29.0
+   ],
+   "angles": [
+    359.547,
+    225.677,
+    9.69316
+   ],
+   "scale": 0.989069,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -254.0,
+    -16270.0,
+    -27.0
+   ],
+   "angles": [
+    6.65496,
+    196.829,
+    5.50783
+   ],
+   "scale": 0.755902,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -227.0,
+    -16498.0,
+    11.0
+   ],
+   "angles": [
+    4.25968,
+    75.0062,
+    -6.98224
+   ],
+   "scale": 1.194476,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -289.0,
+    -16496.0,
+    4.0
+   ],
+   "angles": [
+    346.299,
+    346.997,
+    -23.0316
+   ],
+   "scale": 0.812408,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -353.0,
+    -16495.0,
+    -2.0
+   ],
+   "angles": [
+    11.5886,
+    129.308,
+    4.78197
+   ],
+   "scale": 1.132843,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -409.0,
+    -16494.0,
+    -8.0
+   ],
+   "angles": [
+    4.66687,
+    27.8213,
+    -22.7131
+   ],
+   "scale": 0.989783,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -459.0,
+    -16501.0,
+    -8.0
+   ],
+   "angles": [
+    15.4349,
+    86.7543,
+    -1.67182
+   ],
+   "scale": 0.930365,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -519.0,
+    -16495.0,
+    -9.0
+   ],
+   "angles": [
+    348.736,
+    227.932,
+    6.63074
+   ],
+   "scale": 0.718732,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -564.0,
+    -16492.0,
+    -9.0
+   ],
+   "angles": [
+    355.465,
+    203.058,
+    8.12999
+   ],
+   "scale": 0.834564,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -616.0,
+    -16497.0,
+    -8.0
+   ],
+   "angles": [
+    6.67404,
+    135.406,
+    6.72291
+   ],
+   "scale": 1.160346,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -685.0,
+    -16492.0,
+    -9.0
+   ],
+   "angles": [
+    0.571356,
+    185.326,
+    7.85031
+   ],
+   "scale": 1.151117,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -768.0,
+    -16495.0,
+    -11.0
+   ],
+   "angles": [
+    9.19574,
+    109.497,
+    1.09893
+   ],
+   "scale": 1.280261,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -805.0,
+    -16456.0,
+    -17.0
+   ],
+   "angles": [
+    3.47601,
+    39.9728,
+    -0.964518
+   ],
+   "scale": 1.055408,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -794.0,
+    -16392.0,
+    -20.0
+   ],
+   "angles": [
+    2.46787,
+    71.4744,
+    -0.826652
+   ],
+   "scale": 1.197845,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -783.0,
+    -16315.0,
+    -25.0
+   ],
+   "angles": [
+    354.911,
+    331.641,
+    -9.33297
+   ],
+   "scale": 1.079431,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -726.0,
+    -16327.0,
+    -24.0
+   ],
+   "angles": [
+    356.419,
+    180.059,
+    4.45484
+   ],
+   "scale": 0.810559,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -729.0,
+    -16392.0,
+    -19.0
+   ],
+   "angles": [
+    6.97381,
+    49.4734,
+    -2.20495
+   ],
+   "scale": 0.873346,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -710.0,
+    -16442.0,
+    -15.0
+   ],
+   "angles": [
+    359.315,
+    215.173,
+    4.51438
+   ],
+   "scale": 0.89303,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -655.0,
+    -16407.0,
+    -21.0
+   ],
+   "angles": [
+    3.22395,
+    24.3979,
+    -7.06801
+   ],
+   "scale": 1.242304,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -578.0,
+    -16403.0,
+    -25.0
+   ],
+   "angles": [
+    358.842,
+    170.78,
+    10.6165
+   ],
+   "scale": 1.271344,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -612.0,
+    -16456.0,
+    -14.0
+   ],
+   "angles": [
+    357.711,
+    342.956,
+    -7.42217
+   ],
+   "scale": 0.85813,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -514.0,
+    -16434.0,
+    -21.0
+   ],
+   "angles": [
+    352.245,
+    267.056,
+    0.397543
+   ],
+   "scale": 0.872211,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -470.0,
+    -16452.0,
+    -19.0
+   ],
+   "angles": [
+    7.03594,
+    64.8354,
+    -3.29362
+   ],
+   "scale": 0.846027,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -406.0,
+    -16445.0,
+    -20.0
+   ],
+   "angles": [
+    1.87833,
+    13.9158,
+    -7.53591
+   ],
+   "scale": 0.84729,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -345.0,
+    -16427.0,
+    -16.0
+   ],
+   "angles": [
+    350.493,
+    323.969,
+    -8.57963
+   ],
+   "scale": 1.046344,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -276.0,
+    -16441.0,
+    -5.0
+   ],
+   "angles": [
+    347.115,
+    342.654,
+    -8.93932
+   ],
+   "scale": 1.151208,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -222.0,
+    -16444.0,
+    3.0
+   ],
+   "angles": [
+    8.8889,
+    163.635,
+    5.52247
+   ],
+   "scale": 0.921155,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -185.0,
+    -16426.0,
+    6.0
+   ],
+   "angles": [
+    4.7851,
+    81.0719,
+    -13.0855
+   ],
+   "scale": 0.716351,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -170.0,
+    -16379.0,
+    2.0
+   ],
+   "angles": [
+    344.717,
+    306.553,
+    4.50323
+   ],
+   "scale": 1.015546,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -139.0,
+    -16330.0,
+    1.0
+   ],
+   "angles": [
+    16.7466,
+    145.372,
+    2.67485
+   ],
+   "scale": 1.047717,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -128.0,
+    -16266.0,
+    -8.0
+   ],
+   "angles": [
+    8.63163,
+    103.424,
+    -6.41376
+   ],
+   "scale": 1.048761,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -168.0,
+    -16278.0,
+    -13.0
+   ],
+   "angles": [
+    348.958,
+    354.971,
+    -1.11252
+   ],
+   "scale": 1.163293,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -195.0,
+    -16333.0,
+    -11.0
+   ],
+   "angles": [
+    352.654,
+    248.837,
+    10.448
+   ],
+   "scale": 0.985059,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -223.0,
+    -16404.0,
+    -4.0
+   ],
+   "angles": [
+    346.133,
+    315.409,
+    0.799722
+   ],
+   "scale": 1.274164,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -291.0,
+    -16379.0,
+    -21.0
+   ],
+   "angles": [
+    355.343,
+    276.897,
+    8.66765
+   ],
+   "scale": 0.999286,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -240.0,
+    -16351.0,
+    -15.0
+   ],
+   "angles": [
+    7.79584,
+    196.666,
+    6.00799
+   ],
+   "scale": 1.170764,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -350.0,
+    -16373.0,
+    -27.0
+   ],
+   "angles": [
+    6.5701,
+    139.994,
+    3.78116
+   ],
+   "scale": 1.203613,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -411.0,
+    -16354.0,
+    -32.0
+   ],
+   "angles": [
+    5.51966,
+    50.6315,
+    -4.51246
+   ],
+   "scale": 0.902679,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -452.0,
+    -16315.0,
+    -37.0
+   ],
+   "angles": [
+    1.65885,
+    13.3962,
+    -6.93019
+   ],
+   "scale": 1.287292,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -429.0,
+    -16394.0,
+    -27.0
+   ],
+   "angles": [
+    356.823,
+    335.982,
+    -7.0892
+   ],
+   "scale": 0.89856,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -485.0,
+    -16401.0,
+    -26.0
+   ],
+   "angles": [
+    7.72706,
+    95.713,
+    0.770647
+   ],
+   "scale": 1.182721,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -544.0,
+    -16358.0,
+    -28.0
+   ],
+   "angles": [
+    0.0,
+    157.083,
+    0.0
+   ],
+   "scale": 1.244391,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -513.0,
+    -16292.0,
+    -38.0
+   ],
+   "angles": [
+    354.734,
+    296.152,
+    -5.45467
+   ],
+   "scale": 0.963635,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -350.0,
+    -16301.0,
+    -34.0
+   ],
+   "angles": [
+    3.48174,
+    59.2089,
+    -8.07191
+   ],
+   "scale": 1.170197,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -418.0,
+    -16266.0,
+    -43.0
+   ],
+   "angles": [
+    357.539,
+    200.109,
+    6.68864
+   ],
+   "scale": 1.269238,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -489.0,
+    -16246.0,
+    -45.0
+   ],
+   "angles": [
+    352.427,
+    251.81,
+    -0.236414
+   ],
+   "scale": 1.011682,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -586.0,
+    -16303.0,
+    -31.0
+   ],
+   "angles": [
+    349.019,
+    255.741,
+    -0.128003
+   ],
+   "scale": 0.803473,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -655.0,
+    -16301.0,
+    -31.0
+   ],
+   "angles": [
+    4.80293,
+    56.2714,
+    -4.05422
+   ],
+   "scale": 1.247046,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -726.0,
+    -16276.0,
+    -33.0
+   ],
+   "angles": [
+    353.288,
+    198.112,
+    8.96123
+   ],
+   "scale": 1.109204,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -751.0,
+    -16352.0,
+    -22.0
+   ],
+   "angles": [
+    0.759995,
+    12.2538,
+    -3.49475
+   ],
+   "scale": 1.008661,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -821.0,
+    -16264.0,
+    -35.0
+   ],
+   "angles": [
+    4.90236,
+    152.777,
+    9.43194
+   ],
+   "scale": 1.217493,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -902.0,
+    -16276.0,
+    -34.0
+   ],
+   "angles": [
+    3.41893,
+    151.449,
+    6.25486
+   ],
+   "scale": 0.869794,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -973.0,
+    -16278.0,
+    -30.0
+   ],
+   "angles": [
+    5.04678,
+    42.6106,
+    -0.210318
+   ],
+   "scale": 0.771722,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -926.0,
+    -16226.0,
+    -36.0
+   ],
+   "angles": [
+    355.135,
+    209.341,
+    1.36172
+   ],
+   "scale": 0.906305,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -936.0,
+    -16171.0,
+    -36.0
+   ],
+   "angles": [
+    353.895,
+    246.63,
+    -5.11109
+   ],
+   "scale": 0.826929,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -933.0,
+    -16094.0,
+    -35.0
+   ],
+   "angles": [
+    6.04789,
+    337.736,
+    -2.46986
+   ],
+   "scale": 1.233386,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -934.0,
+    -16025.0,
+    -33.0
+   ],
+   "angles": [
+    356.957,
+    199.827,
+    -2.27161
+   ],
+   "scale": 1.123926,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -856.0,
+    -16017.0,
+    -43.0
+   ],
+   "angles": [
+    348.851,
+    142.114,
+    -1.86137
+   ],
+   "scale": 0.817316,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -817.0,
+    -16020.0,
+    -48.0
+   ],
+   "angles": [
+    1.60658,
+    34.5054,
+    11.1877
+   ],
+   "scale": 1.038562,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -759.0,
+    -16036.0,
+    -55.0
+   ],
+   "angles": [
+    5.26463,
+    19.3367,
+    5.86515
+   ],
+   "scale": 1.162085,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -723.0,
+    -16083.0,
+    -59.0
+   ],
+   "angles": [
+    0.279069,
+    175.042,
+    3.21366
+   ],
+   "scale": 1.205975,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -705.0,
+    -16135.0,
+    -55.0
+   ],
+   "angles": [
+    6.62313,
+    111.735,
+    2.63265
+   ],
+   "scale": 1.071228,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -712.0,
+    -16199.0,
+    -44.0
+   ],
+   "angles": [
+    3.81567,
+    5.17067,
+    -10.3053
+   ],
+   "scale": 1.019721,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -773.0,
+    -16206.0,
+    -44.0
+   ],
+   "angles": [
+    7.65586,
+    114.988,
+    0.424997
+   ],
+   "scale": 1.084466,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -837.0,
+    -16212.0,
+    -42.0
+   ],
+   "angles": [
+    348.795,
+    263.149,
+    -4.31498
+   ],
+   "scale": 1.006097,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -879.0,
+    -16217.0,
+    -38.0
+   ],
+   "angles": [
+    356.868,
+    298.888,
+    -1.72685
+   ],
+   "scale": 0.78941,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -901.0,
+    -16134.0,
+    -43.0
+   ],
+   "angles": [
+    354.603,
+    159.099,
+    5.85379
+   ],
+   "scale": 1.073279,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -816.0,
+    -15945.0,
+    -41.0
+   ],
+   "angles": [
+    351.542,
+    144.659,
+    -0.0190362
+   ],
+   "scale": 1.00835,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -759.0,
+    -15937.0,
+    -46.0
+   ],
+   "angles": [
+    356.967,
+    59.5252,
+    7.89117
+   ],
+   "scale": 1.235584,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -735.0,
+    -15873.0,
+    -45.0
+   ],
+   "angles": [
+    6.60911,
+    358.155,
+    0.827436
+   ],
+   "scale": 1.259955,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -755.0,
+    -15817.0,
+    -45.0
+   ],
+   "angles": [
+    0.369062,
+    313.12,
+    -7.58861
+   ],
+   "scale": 1.212677,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -851.0,
+    -15831.0,
+    -40.0
+   ],
+   "angles": [
+    3.75349,
+    336.103,
+    -4.61489
+   ],
+   "scale": 0.895923,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -893.0,
+    -15833.0,
+    -38.0
+   ],
+   "angles": [
+    0.345638,
+    227.077,
+    -6.69699
+   ],
+   "scale": 0.703754,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -902.0,
+    -15894.0,
+    -37.0
+   ],
+   "angles": [
+    6.24577,
+    91.6764,
+    3.38812
+   ],
+   "scale": 0.912805,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -904.0,
+    -15955.0,
+    -33.0
+   ],
+   "angles": [
+    2.50517,
+    62.3675,
+    7.38295
+   ],
+   "scale": 0.936847,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -894.0,
+    -15995.0,
+    -35.0
+   ],
+   "angles": [
+    353.002,
+    144.741,
+    3.44084
+   ],
+   "scale": 1.038617,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -963.0,
+    -15951.0,
+    -30.0
+   ],
+   "angles": [
+    0.683055,
+    274.784,
+    -5.99565
+   ],
+   "scale": 0.892957,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -992.0,
+    -15897.0,
+    -27.0
+   ],
+   "angles": [
+    352.505,
+    123.195,
+    7.18736
+   ],
+   "scale": 1.094684,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1022.0,
+    -15863.0,
+    -23.0
+   ],
+   "angles": [
+    347.751,
+    174.334,
+    7.19644
+   ],
+   "scale": 0.805322,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1014.0,
+    -15818.0,
+    -27.0
+   ],
+   "angles": [
+    4.15231,
+    6.00532,
+    5.27026
+   ],
+   "scale": 1.232196,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -972.0,
+    -15782.0,
+    -31.0
+   ],
+   "angles": [
+    3.4443,
+    326.589,
+    -3.40598
+   ],
+   "scale": 0.933624,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -928.0,
+    -15748.0,
+    -35.0
+   ],
+   "angles": [
+    3.15624,
+    60.7111,
+    3.67446
+   ],
+   "scale": 1.044092,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -875.0,
+    -15718.0,
+    -39.0
+   ],
+   "angles": [
+    1.01552,
+    28.9704,
+    7.62382
+   ],
+   "scale": 1.013165,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -854.0,
+    -15750.0,
+    -40.0
+   ],
+   "angles": [
+    352.539,
+    209.411,
+    1.43783
+   ],
+   "scale": 1.151685,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -874.0,
+    -15798.0,
+    -38.0
+   ],
+   "angles": [
+    2.45874,
+    349.134,
+    -0.0519581
+   ],
+   "scale": 0.979199,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -930.0,
+    -15800.0,
+    -34.0
+   ],
+   "angles": [
+    356.659,
+    237.762,
+    -3.5073
+   ],
+   "scale": 1.266364,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -956.0,
+    -15862.0,
+    -35.0
+   ],
+   "angles": [
+    356.192,
+    78.6174,
+    5.52365
+   ],
+   "scale": 1.165985,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -822.0,
+    -15770.0,
+    -42.0
+   ],
+   "angles": [
+    358.859,
+    138.937,
+    7.5119
+   ],
+   "scale": 0.726422,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -757.0,
+    -15715.0,
+    -50.0
+   ],
+   "angles": [
+    358.826,
+    108.681,
+    10.0704
+   ],
+   "scale": 0.781189,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -695.0,
+    -15703.0,
+    -56.0
+   ],
+   "angles": [
+    2.20781,
+    241.042,
+    -2.20506
+   ],
+   "scale": 0.908612,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -658.0,
+    -15746.0,
+    -58.0
+   ],
+   "angles": [
+    4.56497,
+    19.8012,
+    -1.20468
+   ],
+   "scale": 1.254956,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -732.0,
+    -15777.0,
+    -50.0
+   ],
+   "angles": [
+    7.90748,
+    21.3965,
+    -2.17443
+   ],
+   "scale": 1.115045,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -790.0,
+    -15781.0,
+    -44.0
+   ],
+   "angles": [
+    352.611,
+    206.807,
+    1.77439
+   ],
+   "scale": 1.264166,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -677.0,
+    -15808.0,
+    -54.0
+   ],
+   "angles": [
+    359.654,
+    300.409,
+    -4.70826
+   ],
+   "scale": 1.134747,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -664.0,
+    -15870.0,
+    -54.0
+   ],
+   "angles": [
+    352.798,
+    179.229,
+    -1.54692
+   ],
+   "scale": 0.831744,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -659.0,
+    -15920.0,
+    -56.0
+   ],
+   "angles": [
+    352.057,
+    167.194,
+    -2.5759
+   ],
+   "scale": 0.880505,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -700.0,
+    -15984.0,
+    -56.0
+   ],
+   "angles": [
+    2.49221,
+    233.867,
+    -7.8056
+   ],
+   "scale": 0.700732,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -708.0,
+    -15941.0,
+    -51.0
+   ],
+   "angles": [
+    351.885,
+    162.835,
+    -1.96685
+   ],
+   "scale": 0.700476,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -738.0,
+    -15989.0,
+    -54.0
+   ],
+   "angles": [
+    1.34006,
+    29.5709,
+    8.34443
+   ],
+   "scale": 1.183618,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -677.0,
+    -16055.0,
+    -61.0
+   ],
+   "angles": [
+    359.574,
+    198.839,
+    -4.1835
+   ],
+   "scale": 1.164996,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -659.0,
+    -16130.0,
+    -56.0
+   ],
+   "angles": [
+    1.66723,
+    166.535,
+    6.92819
+   ],
+   "scale": 1.086517,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -627.0,
+    -16211.0,
+    -46.0
+   ],
+   "angles": [
+    5.56172,
+    128.83,
+    4.46046
+   ],
+   "scale": 1.128284,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -667.0,
+    -16230.0,
+    -40.0
+   ],
+   "angles": [
+    353.439,
+    308.722,
+    -8.82616
+   ],
+   "scale": 0.908392,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -581.0,
+    -16244.0,
+    -41.0
+   ],
+   "angles": [
+    7.11299,
+    93.3463,
+    0.414818
+   ],
+   "scale": 1.2651,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -525.0,
+    -16221.0,
+    -47.0
+   ],
+   "angles": [
+    357.152,
+    318.052,
+    -7.02353
+   ],
+   "scale": 0.715234,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -520.0,
+    -16162.0,
+    -54.0
+   ],
+   "angles": [
+    353.974,
+    287.493,
+    -4.60118
+   ],
+   "scale": 1.082489,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -528.0,
+    -16073.0,
+    -64.0
+   ],
+   "angles": [
+    7.25762,
+    86.5468,
+    3.40365
+   ],
+   "scale": 1.089374,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -542.0,
+    -15982.0,
+    -66.0
+   ],
+   "angles": [
+    358.626,
+    131.599,
+    2.34198
+   ],
+   "scale": 0.806586,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -543.0,
+    -15925.0,
+    -66.0
+   ],
+   "angles": [
+    359.125,
+    218.058,
+    -1.49031
+   ],
+   "scale": 1.153607,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -584.0,
+    -15963.0,
+    -64.0
+   ],
+   "angles": [
+    358.231,
+    110.873,
+    6.09674
+   ],
+   "scale": 0.944189,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -589.0,
+    -16031.0,
+    -63.0
+   ],
+   "angles": [
+    0.279415,
+    329.887,
+    -2.53204
+   ],
+   "scale": 0.870471,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -578.0,
+    -16100.0,
+    -59.0
+   ],
+   "angles": [
+    3.71806,
+    136.52,
+    3.81256
+   ],
+   "scale": 0.719611,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -629.0,
+    -16095.0,
+    -59.0
+   ],
+   "angles": [
+    0.648051,
+    6.86172,
+    -5.36949
+   ],
+   "scale": 1.016443,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -576.0,
+    -16172.0,
+    -51.0
+   ],
+   "angles": [
+    353.266,
+    250.836,
+    2.33359
+   ],
+   "scale": 0.83114,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -649.0,
+    -15979.0,
+    -61.0
+   ],
+   "angles": [
+    356.32,
+    145.566,
+    -2.69172
+   ],
+   "scale": 1.213556,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -592.0,
+    -15896.0,
+    -62.0
+   ],
+   "angles": [
+    3.9065,
+    28.2283,
+    4.71344
+   ],
+   "scale": 1.141559,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -591.0,
+    -15831.0,
+    -61.0
+   ],
+   "angles": [
+    358.283,
+    131.137,
+    6.02559
+   ],
+   "scale": 0.748431,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -604.0,
+    -15791.0,
+    -61.0
+   ],
+   "angles": [
+    358.05,
+    144.134,
+    1.26441
+   ],
+   "scale": 0.961328,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -566.0,
+    -15739.0,
+    -61.0
+   ],
+   "angles": [
+    1.18209,
+    7.81727,
+    4.83781
+   ],
+   "scale": 0.952191,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -501.0,
+    -15697.0,
+    -57.0
+   ],
+   "angles": [
+    9.33858,
+    260.298,
+    0.260199
+   ],
+   "scale": 1.036584,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -429.0,
+    -15702.0,
+    -49.0
+   ],
+   "angles": [
+    354.811,
+    58.3642,
+    -3.12127
+   ],
+   "scale": 1.028473,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -367.0,
+    -15732.0,
+    -41.0
+   ],
+   "angles": [
+    351.257,
+    14.6813,
+    0.426903
+   ],
+   "scale": 0.895245,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -342.0,
+    -15776.0,
+    -41.0
+   ],
+   "angles": [
+    0.319734,
+    286.392,
+    13.3825
+   ],
+   "scale": 1.175726,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -303.0,
+    -15848.0,
+    -38.0
+   ],
+   "angles": [
+    346.829,
+    44.5674,
+    -6.59939
+   ],
+   "scale": 0.993005,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -256.0,
+    -15916.0,
+    -32.0
+   ],
+   "angles": [
+    342.465,
+    349.497,
+    10.5906
+   ],
+   "scale": 1.139746,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -230.0,
+    -15994.0,
+    -30.0
+   ],
+   "angles": [
+    18.4751,
+    207.959,
+    5.62874
+   ],
+   "scale": 1.089722,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -199.0,
+    -16056.0,
+    -26.0
+   ],
+   "angles": [
+    343.278,
+    348.423,
+    10.0376
+   ],
+   "scale": 0.829236,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -163.0,
+    -16100.0,
+    -21.0
+   ],
+   "angles": [
+    6.86036,
+    243.745,
+    8.45526
+   ],
+   "scale": 0.702179,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -144.0,
+    -16158.0,
+    -18.0
+   ],
+   "angles": [
+    358.133,
+    262.129,
+    12.7032
+   ],
+   "scale": 1.162598,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -149.0,
+    -16216.0,
+    -17.0
+   ],
+   "angles": [
+    352.326,
+    270.05,
+    7.94976
+   ],
+   "scale": 1.02829,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -213.0,
+    -16225.0,
+    -24.0
+   ],
+   "angles": [
+    9.49662,
+    167.236,
+    5.64019
+   ],
+   "scale": 0.929541,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -278.0,
+    -16228.0,
+    -34.0
+   ],
+   "angles": [
+    350.348,
+    353.13,
+    -5.93294
+   ],
+   "scale": 0.946313,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -355.0,
+    -16216.0,
+    -45.0
+   ],
+   "angles": [
+    4.90556,
+    182.296,
+    7.2982
+   ],
+   "scale": 0.889038,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -423.0,
+    -16196.0,
+    -51.0
+   ],
+   "angles": [
+    6.74616,
+    108.859,
+    2.29774
+   ],
+   "scale": 0.975354,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -396.0,
+    -16141.0,
+    -58.0
+   ],
+   "angles": [
+    355.1,
+    2.33971,
+    -7.30192
+   ],
+   "scale": 0.793091,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -344.0,
+    -16088.0,
+    -55.0
+   ],
+   "angles": [
+    354.733,
+    283.295,
+    6.72052
+   ],
+   "scale": 1.195941,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -289.0,
+    -16050.0,
+    -48.0
+   ],
+   "angles": [
+    7.49898,
+    203.904,
+    -1.12883
+   ],
+   "scale": 1.123065,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -222.0,
+    -16088.0,
+    -37.0
+   ],
+   "angles": [
+    357.086,
+    295.674,
+    17.8407
+   ],
+   "scale": 0.982111,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -219.0,
+    -16156.0,
+    -34.0
+   ],
+   "angles": [
+    348.308,
+    353.448,
+    -5.62461
+   ],
+   "scale": 0.970813,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -298.0,
+    -16154.0,
+    -44.0
+   ],
+   "angles": [
+    352.137,
+    353.584,
+    -2.68624
+   ],
+   "scale": 1.031146,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -328.0,
+    -16205.0,
+    -44.0
+   ],
+   "angles": [
+    8.69081,
+    134.545,
+    1.29638
+   ],
+   "scale": 1.029553,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -327.0,
+    -16257.0,
+    -37.0
+   ],
+   "angles": [
+    3.98213,
+    189.259,
+    7.83834
+   ],
+   "scale": 1.25708,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -448.0,
+    -16092.0,
+    -64.0
+   ],
+   "angles": [
+    3.71844,
+    93.3561,
+    -2.32204
+   ],
+   "scale": 1.243256,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -460.0,
+    -16153.0,
+    -57.0
+   ],
+   "angles": [
+    355.195,
+    222.257,
+    5.26731
+   ],
+   "scale": 1.177319,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -461.0,
+    -16043.0,
+    -67.0
+   ],
+   "angles": [
+    357.554,
+    333.166,
+    0.792394
+   ],
+   "scale": 0.930713,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -384.0,
+    -16040.0,
+    -63.0
+   ],
+   "angles": [
+    351.47,
+    334.828,
+    0.0831328
+   ],
+   "scale": 0.974365,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -405.0,
+    -15977.0,
+    -67.0
+   ],
+   "angles": [
+    356.247,
+    76.6466,
+    -1.77761
+   ],
+   "scale": 0.784814,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -401.0,
+    -15904.0,
+    -63.0
+   ],
+   "angles": [
+    2.56921,
+    208.518,
+    -0.198234
+   ],
+   "scale": 0.83255,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -434.0,
+    -15860.0,
+    -63.0
+   ],
+   "angles": [
+    2.2714,
+    241.127,
+    1.21721
+   ],
+   "scale": 0.746765,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -482.0,
+    -15850.0,
+    -65.0
+   ],
+   "angles": [
+    2.44145,
+    175.413,
+    -2.08241
+   ],
+   "scale": 0.949792,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -541.0,
+    -15843.0,
+    -63.0
+   ],
+   "angles": [
+    0.828057,
+    29.3051,
+    2.62224
+   ],
+   "scale": 0.955359,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -505.0,
+    -15785.0,
+    -64.0
+   ],
+   "angles": [
+    358.555,
+    132.677,
+    1.15694
+   ],
+   "scale": 0.971069,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -439.0,
+    -15756.0,
+    -59.0
+   ],
+   "angles": [
+    4.58907,
+    152.427,
+    -8.90093
+   ],
+   "scale": 1.01604,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -381.0,
+    -15789.0,
+    -52.0
+   ],
+   "angles": [
+    355.063,
+    311.633,
+    14.0336
+   ],
+   "scale": 0.875378,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -441.0,
+    -15812.0,
+    -63.0
+   ],
+   "angles": [
+    1.90504,
+    216.475,
+    1.06212
+   ],
+   "scale": 0.784064,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -365.0,
+    -15839.0,
+    -53.0
+   ],
+   "angles": [
+    346.757,
+    351.377,
+    6.45168
+   ],
+   "scale": 1.24494,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -347.0,
+    -15897.0,
+    -53.0
+   ],
+   "angles": [
+    7.9456,
+    229.844,
+    7.19599
+   ],
+   "scale": 0.997565,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -322.0,
+    -15964.0,
+    -51.0
+   ],
+   "angles": [
+    353.196,
+    74.21,
+    -9.53579
+   ],
+   "scale": 0.800836,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -337.0,
+    -16022.0,
+    -56.0
+   ],
+   "angles": [
+    10.2921,
+    190.711,
+    1.74702
+   ],
+   "scale": 0.732776,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -359.0,
+    -15946.0,
+    -57.0
+   ],
+   "angles": [
+    11.6831,
+    196.665,
+    -0.554994
+   ],
+   "scale": 1.08562,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -748.0,
+    -15648.0,
+    -51.0
+   ],
+   "angles": [
+    355.799,
+    80.7789,
+    1.55219
+   ],
+   "scale": 1.298316,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -802.0,
+    -15590.0,
+    -37.0
+   ],
+   "angles": [
+    7.17022,
+    290.39,
+    -7.57561
+   ],
+   "scale": 1.206305,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -838.0,
+    -15535.0,
+    -27.0
+   ],
+   "angles": [
+    7.87564,
+    355.21,
+    6.97414
+   ],
+   "scale": 0.89704,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -708.0,
+    -15605.0,
+    -50.0
+   ],
+   "angles": [
+    3.24711,
+    0.569975,
+    1.4214
+   ],
+   "scale": 1.013238,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -636.0,
+    -15615.0,
+    -53.0
+   ],
+   "angles": [
+    358.149,
+    162.77,
+    -0.113465
+   ],
+   "scale": 1.219873,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -512.0,
+    -15632.0,
+    -53.0
+   ],
+   "angles": [
+    2.90298,
+    145.845,
+    -5.31381
+   ],
+   "scale": 1.128595,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1314.0,
+    -16480.0,
+    -20.0
+   ],
+   "angles": [
+    6.59305,
+    164.357,
+    9.6314
+   ],
+   "scale": 1.244849,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -580.0,
+    -15595.0,
+    -54.0
+   ],
+   "angles": [
+    0.564095,
+    200.444,
+    0.57359
+   ],
+   "scale": 1.088715,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1352.0,
+    -16389.0,
+    -31.0
+   ],
+   "angles": [
+    2.40437,
+    77.2602,
+    2.04411
+   ],
+   "scale": 1.078406,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1340.0,
+    -16329.0,
+    -28.0
+   ],
+   "angles": [
+    3.52451,
+    270.553,
+    5.37971
+   ],
+   "scale": 1.021405,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1411.0,
+    -16334.0,
+    -31.0
+   ],
+   "angles": [
+    358.519,
+    346.16,
+    -3.07508
+   ],
+   "scale": 1.164832,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1484.0,
+    -16304.0,
+    -34.0
+   ],
+   "angles": [
+    359.982,
+    359.627,
+    -2.79374
+   ],
+   "scale": 1.2185,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1572.0,
+    -16340.0,
+    -29.0
+   ],
+   "angles": [
+    355.211,
+    212.583,
+    3.51854
+   ],
+   "scale": 1.16604,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1473.0,
+    -16397.0,
+    -29.0
+   ],
+   "angles": [
+    357.932,
+    230.003,
+    2.68929
+   ],
+   "scale": 1.208301,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1454.0,
+    -16477.0,
+    -24.0
+   ],
+   "angles": [
+    355.105,
+    285.801,
+    2.84783
+   ],
+   "scale": 1.08941,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1429.0,
+    -16556.0,
+    -12.0
+   ],
+   "angles": [
+    12.4969,
+    92.0959,
+    -3.41859
+   ],
+   "scale": 0.998828,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1433.0,
+    -16621.0,
+    1.0
+   ],
+   "angles": [
+    1.54692,
+    179.712,
+    13.4139
+   ],
+   "scale": 1.143408,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1437.0,
+    -16684.0,
+    16.0
+   ],
+   "angles": [
+    7.55889,
+    39.7211,
+    -11.2195
+   ],
+   "scale": 0.983136,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1352.0,
+    -16708.0,
+    24.0
+   ],
+   "angles": [
+    356.867,
+    208.247,
+    13.4997
+   ],
+   "scale": 1.224231,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1304.0,
+    -16695.0,
+    22.0
+   ],
+   "angles": [
+    3.43759,
+    14.725,
+    -7.27395
+   ],
+   "scale": 1.163513,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1308.0,
+    -16597.0,
+    2.0
+   ],
+   "angles": [
+    353.2,
+    346.584,
+    -10.5254
+   ],
+   "scale": 1.077564,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1373.0,
+    -16642.0,
+    8.0
+   ],
+   "angles": [
+    346.964,
+    260.814,
+    3.54455
+   ],
+   "scale": 1.05072,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1366.0,
+    -16546.0,
+    -10.0
+   ],
+   "angles": [
+    2.11956,
+    22.7623,
+    -10.7366
+   ],
+   "scale": 1.135333,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1356.0,
+    -16458.0,
+    -27.0
+   ],
+   "angles": [
+    10.9363,
+    128.914,
+    4.05203
+   ],
+   "scale": 0.838263,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1444.0,
+    -16527.0,
+    -18.0
+   ],
+   "angles": [
+    353.817,
+    239.211,
+    4.21067
+   ],
+   "scale": 1.027338,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1817.0,
+    -16493.0,
+    -3.0
+   ],
+   "angles": [
+    354.909,
+    235.109,
+    -1.42979
+   ],
+   "scale": 0.851465,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1714.0,
+    -16434.0,
+    -15.0
+   ],
+   "angles": [
+    8.33626,
+    34.6179,
+    -4.3334
+   ],
+   "scale": 1.168072,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1664.0,
+    -16389.0,
+    -22.0
+   ],
+   "angles": [
+    5.7378,
+    97.6265,
+    0.746826
+   ],
+   "scale": 1.071851,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1567.0,
+    -16402.0,
+    -24.0
+   ],
+   "angles": [
+    2.24881,
+    303.719,
+    -2.74741
+   ],
+   "scale": 0.818359,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1666.0,
+    -16315.0,
+    -29.0
+   ],
+   "angles": [
+    357.332,
+    207.578,
+    5.12256
+   ],
+   "scale": 0.736273,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1758.0,
+    -16303.0,
+    -30.0
+   ],
+   "angles": [
+    359.883,
+    181.157,
+    5.77302
+   ],
+   "scale": 1.022101,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1741.0,
+    -16247.0,
+    -36.0
+   ],
+   "angles": [
+    354.543,
+    289.143,
+    -1.89065
+   ],
+   "scale": 1.011115,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1644.0,
+    -16251.0,
+    -36.0
+   ],
+   "angles": [
+    3.46596,
+    46.6184,
+    -3.26993
+   ],
+   "scale": 1.018036,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1565.0,
+    -16233.0,
+    -37.0
+   ],
+   "angles": [
+    359.041,
+    204.092,
+    3.48913
+   ],
+   "scale": 1.141595,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1632.0,
+    -16148.0,
+    -40.0
+   ],
+   "angles": [
+    0.0,
+    342.477,
+    0.0
+   ],
+   "scale": 0.726386,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1515.0,
+    -16158.0,
+    -40.0
+   ],
+   "angles": [
+    0.0,
+    282.788,
+    0.0
+   ],
+   "scale": 1.275922,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1442.0,
+    -16234.0,
+    -35.0
+   ],
+   "angles": [
+    4.47791,
+    162.623,
+    2.33958
+   ],
+   "scale": 0.910626,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1384.0,
+    -16186.0,
+    -34.0
+   ],
+   "angles": [
+    356.656,
+    339.207,
+    1.26887
+   ],
+   "scale": 1.164484,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1309.0,
+    -16208.0,
+    -24.0
+   ],
+   "angles": [
+    351.375,
+    301.693,
+    7.1403
+   ],
+   "scale": 1.014154,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1311.0,
+    -16121.0,
+    -28.0
+   ],
+   "angles": [
+    0.16141,
+    268.709,
+    7.1232
+   ],
+   "scale": 0.734168,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1373.0,
+    -16047.0,
+    -34.0
+   ],
+   "angles": [
+    357.193,
+    321.673,
+    2.21695
+   ],
+   "scale": 1.272113,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -2043.0,
+    -16482.0,
+    4.0
+   ],
+   "angles": [
+    3.88801,
+    56.012,
+    0.360495
+   ],
+   "scale": 0.737482,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -2065.0,
+    -16413.0,
+    -2.0
+   ],
+   "angles": [
+    9.85887,
+    60.182,
+    1.6362
+   ],
+   "scale": 1.297968,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -2046.0,
+    -16338.0,
+    -18.0
+   ],
+   "angles": [
+    351.121,
+    283.516,
+    -11.496
+   ],
+   "scale": 1.076831,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -2027.0,
+    -16295.0,
+    -28.0
+   ],
+   "angles": [
+    350.978,
+    209.064,
+    4.95394
+   ],
+   "scale": 1.145313,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1966.0,
+    -16521.0,
+    2.0
+   ],
+   "angles": [
+    353.791,
+    239.38,
+    -1.79316
+   ],
+   "scale": 1.003699,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1915.0,
+    -16576.0,
+    6.0
+   ],
+   "angles": [
+    0.882746,
+    144.26,
+    4.10883
+   ],
+   "scale": 1.244629,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1310.0,
+    -16964.0,
+    60.0
+   ],
+   "angles": [
+    16.3101,
+    153.043,
+    -4.27792
+   ],
+   "scale": 1.192902,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1367.0,
+    -16969.0,
+    46.0
+   ],
+   "angles": [
+    353.663,
+    199.329,
+    1.24474
+   ],
+   "scale": 1.214874,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1419.0,
+    -16902.0,
+    47.0
+   ],
+   "angles": [
+    358.911,
+    290.8,
+    -6.36568
+   ],
+   "scale": 1.091773,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1477.0,
+    -16955.0,
+    44.0
+   ],
+   "angles": [
+    1.51784,
+    131.106,
+    -3.62832
+   ],
+   "scale": 1.150311,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1536.0,
+    -16929.0,
+    41.0
+   ],
+   "angles": [
+    3.23785,
+    196.648,
+    -1.74574
+   ],
+   "scale": 1.144433,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    -1587.0,
+    -16875.0,
+    38.0
+   ],
+   "angles": [
+    356.626,
+    226.882,
+    9.78365
+   ],
+   "scale": 1.182172,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    -1420.0,
+    -17020.0,
+    46.0
+   ],
+   "angles": [
+    2.02372,
+    244.966,
+    1.39033
+   ],
+   "scale": 0.890942,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1359.0,
+    -17108.0,
+    55.0
+   ],
+   "angles": [
+    0.77254,
+    36.6282,
+    -4.90505
+   ],
+   "scale": 1.11543,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1490.0,
+    -17182.0,
+    53.0
+   ],
+   "angles": [
+    4.51292,
+    66.6995,
+    -1.94087
+   ],
+   "scale": 0.741565,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    -1569.0,
+    -17063.0,
+    43.0
+   ],
+   "angles": [
+    3.34486,
+    108.706,
+    -1.45792
+   ],
+   "scale": 0.74043,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    -1649.0,
+    -17141.0,
+    46.0
+   ],
+   "angles": [
+    358.724,
+    2.96855,
+    -12.8807
+   ],
+   "scale": 0.82594,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    2384.0,
+    -14831.0,
+    -24.0
+   ],
+   "angles": [
+    6.16464,
+    273.167,
+    -2.66033
+   ],
+   "scale": 0.819714,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    2295.0,
+    -14834.0,
+    -19.0
+   ],
+   "angles": [
+    355.757,
+    167.486,
+    -5.20576
+   ],
+   "scale": 1.117389,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    2224.0,
+    -14829.0,
+    -18.0
+   ],
+   "angles": [
+    359.218,
+    7.92473,
+    5.62243
+   ],
+   "scale": 1.032062,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    2221.0,
+    -14892.0,
+    -24.0
+   ],
+   "angles": [
+    358.458,
+    164.32,
+    -5.46366
+   ],
+   "scale": 1.097211,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    2217.0,
+    -14958.0,
+    -29.0
+   ],
+   "angles": [
+    352.391,
+    160.808,
+    -0.866431
+   ],
+   "scale": 0.903137,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    2217.0,
+    -15036.0,
+    -40.0
+   ],
+   "angles": [
+    7.85584,
+    332.942,
+    5.027
+   ],
+   "scale": 0.811639,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    2206.0,
+    -15113.0,
+    -51.0
+   ],
+   "angles": [
+    355.507,
+    120.502,
+    -1.6679
+   ],
+   "scale": 1.130151,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    2206.0,
+    -15227.0,
+    -60.0
+   ],
+   "angles": [
+    356.478,
+    57.3796,
+    3.25487
+   ],
+   "scale": 0.711224,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    2191.0,
+    -15296.0,
+    -64.0
+   ],
+   "angles": [
+    1.68631,
+    4.21291,
+    1.1255
+   ],
+   "scale": 0.803052,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    2174.0,
+    -15393.0,
+    -66.0
+   ],
+   "angles": [
+    1.05732,
+    292.798,
+    0.673181
+   ],
+   "scale": 1.201581,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    2150.0,
+    -15467.0,
+    -67.0
+   ],
+   "angles": [
+    354.677,
+    204.165,
+    -3.35791
+   ],
+   "scale": 0.929376,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    2129.0,
+    -15534.0,
+    -66.0
+   ],
+   "angles": [
+    0.27926,
+    264.387,
+    -6.28491
+   ],
+   "scale": 0.969403,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    2080.0,
+    -15617.0,
+    -60.0
+   ],
+   "angles": [
+    1.45878,
+    286.272,
+    -6.08246
+   ],
+   "scale": 1.060059,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    2034.0,
+    -15670.0,
+    -61.0
+   ],
+   "angles": [
+    5.82012,
+    164.93,
+    0.515113
+   ],
+   "scale": 0.963324,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    2002.0,
+    -15744.0,
+    -62.0
+   ],
+   "angles": [
+    353.381,
+    348.407,
+    0.993812
+   ],
+   "scale": 1.098584,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    2055.0,
+    -15729.0,
+    -57.0
+   ],
+   "angles": [
+    357.745,
+    272.49,
+    5.39169
+   ],
+   "scale": 0.777545,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    1967.0,
+    -15780.0,
+    -66.0
+   ],
+   "angles": [
+    355.977,
+    50.1477,
+    -5.35353
+   ],
+   "scale": 0.734094,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    1906.0,
+    -15840.0,
+    -69.0
+   ],
+   "angles": [
+    357.919,
+    98.3377,
+    0.136089
+   ],
+   "scale": 0.742847,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    1833.0,
+    -15893.0,
+    -67.0
+   ],
+   "angles": [
+    4.71044,
+    48.1735,
+    2.35188
+   ],
+   "scale": 0.820081,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    1774.0,
+    -15941.0,
+    -63.0
+   ],
+   "angles": [
+    355.042,
+    238.582,
+    10.437
+   ],
+   "scale": 1.000842,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    2306.0,
+    -14901.0,
+    -27.0
+   ],
+   "angles": [
+    6.09253,
+    321.477,
+    2.82205
+   ],
+   "scale": 0.986066,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    2280.0,
+    -14965.0,
+    -33.0
+   ],
+   "angles": [
+    356.074,
+    51.5422,
+    4.995
+   ],
+   "scale": 1.25318,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    2263.0,
+    -15050.0,
+    -42.0
+   ],
+   "angles": [
+    354.413,
+    131.903,
+    -3.00832
+   ],
+   "scale": 1.185742,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    2240.0,
+    -15164.0,
+    -55.0
+   ],
+   "angles": [
+    4.94301,
+    243.893,
+    -1.17226
+   ],
+   "scale": 1.15174,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    932.0,
+    -15768.0,
+    -20.0
+   ],
+   "angles": [
+    7.84041,
+    256.132,
+    -7.67135
+   ],
+   "scale": 0.967902,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    871.0,
+    -15790.0,
+    -14.0
+   ],
+   "angles": [
+    356.175,
+    162.1,
+    -3.37804
+   ],
+   "scale": 0.846228,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    824.0,
+    -15806.0,
+    -11.0
+   ],
+   "angles": [
+    6.94248,
+    343.128,
+    0.312596
+   ],
+   "scale": 1.226703,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    756.0,
+    -15828.0,
+    -7.0
+   ],
+   "angles": [
+    357.541,
+    91.2274,
+    0.136882
+   ],
+   "scale": 1.296137,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    698.0,
+    -15866.0,
+    -8.0
+   ],
+   "angles": [
+    358.228,
+    138.399,
+    -1.70978
+   ],
+   "scale": 0.799792,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclump",
+   "origin": [
+    651.0,
+    -15890.0,
+    -8.0
+   ],
+   "angles": [
+    357.811,
+    214.762,
+    -12.6711
+   ],
+   "scale": 1.141266,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    614.0,
+    -15918.0,
+    -6.0
+   ],
+   "angles": [
+    354.048,
+    196.03,
+    -11.347
+   ],
+   "scale": 0.957556,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    564.0,
+    -15950.0,
+    -4.0
+   ],
+   "angles": [
+    347.458,
+    144.947,
+    -2.55047
+   ],
+   "scale": 0.953473,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    513.0,
+    -15984.0,
+    -3.0
+   ],
+   "angles": [
+    351.535,
+    143.297,
+    1.803
+   ],
+   "scale": 0.844983,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    477.0,
+    -16024.0,
+    0.0
+   ],
+   "angles": [
+    356.555,
+    222.065,
+    -7.94241
+   ],
+   "scale": 0.815887,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    428.0,
+    -16086.0,
+    3.0
+   ],
+   "angles": [
+    2.94341,
+    264.661,
+    -8.38949
+   ],
+   "scale": 1.157379,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_triangularclumpshort",
+   "origin": [
+    389.0,
+    -16148.0,
+    7.0
+   ],
+   "angles": [
+    2.85254,
+    275.56,
+    -9.42936
+   ],
+   "scale": 1.20495,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    353.0,
+    -16218.0,
+    9.0
+   ],
+   "angles": [
+    357.928,
+    105.824,
+    3.20247
+   ],
+   "scale": 1.126489,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclumpshort",
+   "origin": [
+    327.0,
+    -16289.0,
+    9.0
+   ],
+   "angles": [
+    0.847083,
+    36.3957,
+    3.71365
+   ],
+   "scale": 1.255231,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    314.0,
+    -16384.0,
+    18.0
+   ],
+   "angles": [
+    9.70334,
+    91.8299,
+    -0.947043
+   ],
+   "scale": 1.161371,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_newgrass_squareclump",
+   "origin": [
+    305.0,
+    -16463.0,
+    35.0
+   ],
+   "angles": [
+    351.728,
+    326.333,
+    -12.7639
+   ],
+   "scale": 1.022449,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_grassflowerplants_squareclump",
+   "origin": [
+    -1194.0,
+    -16608.0,
+    8.0
+   ],
+   "angles": [
+    353.272,
+    344.085,
+    -7.29147
+   ],
+   "scale": 1.288226,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_grassflowerplants_squareclump",
+   "origin": [
+    -874.0,
+    -16659.0,
+    15.0
+   ],
+   "angles": [
+    3.51817,
+    152.541,
+    6.73485
+   ],
+   "scale": 0.911377,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_grassflowerplants_squareclump",
+   "origin": [
+    -1378.0,
+    -16597.0,
+    -1.0
+   ],
+   "angles": [
+    355.224,
+    217.331,
+    9.85549
+   ],
+   "scale": 1.189954,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_grassflowerplants_squareclump",
+   "origin": [
+    -1453.0,
+    -16320.0,
+    -33.0
+   ],
+   "angles": [
+    2.8518,
+    111.882,
+    0.503924
+   ],
+   "scale": 0.958325,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_grassflowerplants_squareclump",
+   "origin": [
+    -1771.0,
+    -16462.0,
+    -8.0
+   ],
+   "angles": [
+    1.08665,
+    118.582,
+    5.66864
+   ],
+   "scale": 1.193414,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_grassflowerplants_squareclump",
+   "origin": [
+    -1470.0,
+    -16860.0,
+    43.0
+   ],
+   "angles": [
+    358.474,
+    213.892,
+    8.81092
+   ],
+   "scale": 1.160107,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_grassflowerplants_squareclump",
+   "origin": [
+    -508.0,
+    -16638.0,
+    18.0
+   ],
+   "angles": [
+    347.493,
+    309.629,
+    -6.32364
+   ],
+   "scale": 0.895502,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_grassflowerplants_squareclump",
+   "origin": [
+    -265.0,
+    -16129.0,
+    -44.0
+   ],
+   "angles": [
+    0.250339,
+    208.275,
+    9.66318
+   ],
+   "scale": 1.125372,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_grassflowerplants_squareclump",
+   "origin": [
+    -707.0,
+    -15866.0,
+    -48.0
+   ],
+   "angles": [
+    355.95,
+    118.323,
+    5.29242
+   ],
+   "scale": 1.00705,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    -311.0,
+    -15989.0,
+    -51.0
+   ],
+   "angles": [
+    0.775094,
+    113.151,
+    -11.6707
+   ],
+   "scale": 0.991962,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    -564.0,
+    -15758.0,
+    -62.0
+   ],
+   "angles": [
+    358.901,
+    119.805,
+    1.68213
+   ],
+   "scale": 1.002069,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    -830.0,
+    -16010.0,
+    -45.0
+   ],
+   "angles": [
+    10.9041,
+    297.153,
+    -2.98685
+   ],
+   "scale": 1.213593,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    -483.0,
+    -16398.0,
+    -26.0
+   ],
+   "angles": [
+    7.56101,
+    103.246,
+    1.77405
+   ],
+   "scale": 1.04195,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    -664.0,
+    -16631.0,
+    7.0
+   ],
+   "angles": [
+    354.518,
+    248.508,
+    2.15444
+   ],
+   "scale": 1.221613,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    -1021.0,
+    -16642.0,
+    21.0
+   ],
+   "angles": [
+    15.0536,
+    81.9853,
+    -2.09435
+   ],
+   "scale": 0.974658,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    -1421.0,
+    -16438.0,
+    -27.0
+   ],
+   "angles": [
+    2.57903,
+    3.07252,
+    -1.69871
+   ],
+   "scale": 1.1617,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    -1601.0,
+    -16359.0,
+    -26.0
+   ],
+   "angles": [
+    1.07382,
+    349.33,
+    -5.843
+   ],
+   "scale": 1.209015,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    -1716.0,
+    -16397.0,
+    -20.0
+   ],
+   "angles": [
+    351.518,
+    267.79,
+    -4.03843
+   ],
+   "scale": 0.705566,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    -1483.0,
+    -16947.0,
+    44.0
+   ],
+   "angles": [
+    3.58451,
+    222.758,
+    1.61871
+   ],
+   "scale": 1.263819,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    -244.0,
+    -16404.0,
+    -8.0
+   ],
+   "angles": [
+    13.7015,
+    156.888,
+    7.61236
+   ],
+   "scale": 0.937726,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    2234.0,
+    -15082.0,
+    -46.0
+   ],
+   "angles": [
+    1.32295,
+    171.56,
+    -7.42387
+   ],
+   "scale": 0.792157,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    2118.0,
+    -15535.0,
+    -64.0
+   ],
+   "angles": [
+    358.049,
+    99.8539,
+    5.98199
+   ],
+   "scale": 0.917108,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    798.0,
+    -15825.0,
+    -9.0
+   ],
+   "angles": [
+    354.864,
+    118.048,
+    4.6883
+   ],
+   "scale": 1.280591,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_weeds_01",
+   "origin": [
+    411.0,
+    -16126.0,
+    4.0
+   ],
+   "angles": [
+    354.32,
+    223.922,
+    -8.05775
+   ],
+   "scale": 0.91394,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_opel_blitz_woodland_static",
+   "origin": [
+    513.0,
+    -16795.0,
+    26.0
+   ],
+   "angles": [
+    359.997,
+    63.9399,
+    1.19946
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    -1699.0,
+    -18148.0,
+    33.0
+   ],
+   "angles": [
+    353.299,
+    260.091,
+    3.50543
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    -1583.0,
+    -18140.0,
+    35.0
+   ],
+   "angles": [
+    346.362,
+    291.991,
+    2.16302
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    -1507.0,
+    -18040.0,
+    40.0
+   ],
+   "angles": [
+    359.467,
+    292.468,
+    3.59027
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    -1519.0,
+    -17976.0,
+    31.0
+   ],
+   "angles": [
+    356.297,
+    292.283,
+    3.37152
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    -1591.0,
+    -17944.0,
+    29.0
+   ],
+   "angles": [
+    3.53829,
+    207.55,
+    0.791545
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    -1519.0,
+    -17888.0,
+    31.0
+   ],
+   "angles": [
+    0.0,
+    177.501,
+    0.0
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    -1615.0,
+    -17860.0,
+    31.0
+   ],
+   "angles": [
+    0.0,
+    207.501,
+    0.0
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    -1667.0,
+    -17816.0,
+    31.0
+   ],
+   "angles": [
+    0.0,
+    227.501,
+    0.0
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    -1551.0,
+    -17804.0,
+    31.0
+   ],
+   "angles": [
+    0.0,
+    202.501,
+    0.0
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    -1615.0,
+    -17736.0,
+    39.0
+   ],
+   "angles": [
+    0.0,
+    202.501,
+    0.0
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    1895.0,
+    -14796.0,
+    -24.0
+   ],
+   "angles": [
+    356.905,
+    200.678,
+    -2.0005
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    1943.0,
+    -14798.0,
+    -27.0
+   ],
+   "angles": [
+    359.555,
+    71.1954,
+    3.62558
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    1990.0,
+    -14793.0,
+    -28.0
+   ],
+   "angles": [
+    358.891,
+    97.9685,
+    -3.5532
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    2042.0,
+    -14796.0,
+    -25.0
+   ],
+   "angles": [
+    0.73708,
+    141.446,
+    -3.68994
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    2074.0,
+    -14721.0,
+    -21.0
+   ],
+   "angles": [
+    358.211,
+    90.0105,
+    -3.57492
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    2018.0,
+    -14726.0,
+    -24.0
+   ],
+   "angles": [
+    356.96,
+    65.0803,
+    -2.52987
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    1958.0,
+    -14725.0,
+    -26.0
+   ],
+   "angles": [
+    357.857,
+    100.083,
+    2.9591
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_dragonstooth",
+   "origin": [
+    1882.0,
+    -14722.0,
+    -21.0
+   ],
+   "angles": [
+    359.609,
+    70.2024,
+    3.71749
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    928.0,
+    -15829.0,
+    -20.0
+   ],
+   "angles": [
+    356.002,
+    359.86,
+    2.00487
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    398.0,
+    -16330.0,
+    14.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    400.0,
+    -16742.0,
+    38.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    791.0,
+    -16215.0,
+    -17.0
+   ],
+   "angles": [
+    350.006,
+    334.352,
+    -2.03082
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    576.0,
+    -16021.0,
+    -8.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    1.99999
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    379.0,
+    -17170.0,
+    20.0
+   ],
+   "angles": [
+    2.00001,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    661.0,
+    -16564.0,
+    0.0
+   ],
+   "angles": [
+    356.002,
+    269.86,
+    2.00487
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    702.0,
+    -16937.0,
+    30.0
+   ],
+   "angles": [
+    356.002,
+    359.86,
+    2.00487
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    629.0,
+    -17205.0,
+    26.0
+   ],
+   "angles": [
+    2.39521,
+    168.305,
+    -3.61109
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    123.0,
+    -17723.0,
+    38.0
+   ],
+   "angles": [
+    2.39521,
+    348.305,
+    -3.61109
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    -184.0,
+    -17714.0,
+    35.0
+   ],
+   "angles": [
+    1.98799,
+    347.232,
+    31.2309
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    -851.0,
+    -17685.0,
+    46.0
+   ],
+   "angles": [
+    2.39521,
+    348.305,
+    -3.61109
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    -1551.0,
+    -17747.0,
+    38.0
+   ],
+   "angles": [
+    2.39521,
+    348.305,
+    -3.61109
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    -2029.0,
+    -18059.0,
+    24.0
+   ],
+   "angles": [
+    2.39521,
+    258.305,
+    -3.61109
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    1908.0,
+    -15735.0,
+    -68.0
+   ],
+   "angles": [
+    356.002,
+    359.86,
+    2.00487
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    2137.0,
+    -15275.0,
+    -68.0
+   ],
+   "angles": [
+    348.298,
+    357.331,
+    14.2834
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_streetlamp_off",
+   "origin": [
+    2129.0,
+    -14836.0,
+    -18.0
+   ],
+   "angles": [
+    356.002,
+    89.86,
+    2.00487
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/light_lantern_on",
+   "origin": [
+    742.0,
+    -18252.0,
+    97.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    638.0,
+    -15664.0,
+    6.0
+   ],
+   "angles": [
+    0.0,
+    269.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "dm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    638.0,
+    -15664.0,
+    6.0
+   ],
+   "angles": [
+    0.0,
+    269.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "tdm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    638.0,
+    -15664.0,
+    6.0
+   ],
+   "angles": [
+    0.0,
+    269.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "hq",
+   "turret": true
+  },
+  {
+   "model": "xmodel/light_lantern_on",
+   "origin": [
+    -1246.0,
+    -15956.0,
+    26.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/light_lantern_on",
+   "origin": [
+    -1056.0,
+    -16287.0,
+    26.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    -1065.0,
+    -16292.0,
+    1.0
+   ],
+   "angles": [
+    1.01227e-06,
+    270.0,
+    -90.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_hedge_wall_1",
+   "origin": [
+    2124.0,
+    -16752.0,
+    52.0
+   ],
+   "angles": [
+    0.0,
+    121.1,
+    0.0
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_hedge_wall_1",
+   "origin": [
+    -1028.0,
+    -15695.0,
+    14.0
+   ],
+   "angles": [
+    0.0,
+    311.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_hedge_wall_1",
+   "origin": [
+    -930.0,
+    -15424.0,
+    14.0
+   ],
+   "angles": [
+    0.0,
+    355.3,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_hedge_wall_1",
+   "origin": [
+    -879.0,
+    -15149.0,
+    22.0
+   ],
+   "angles": [
+    0.0,
+    337.8,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_hedge_wall_1",
+   "origin": [
+    -1264.0,
+    -15826.0,
+    22.0
+   ],
+   "angles": [
+    0.0,
+    287.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_hedge_wall_1",
+   "origin": [
+    -1582.0,
+    -15891.0,
+    22.0
+   ],
+   "angles": [
+    0.0,
+    287.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_xl_a",
+   "origin": [
+    2804.0,
+    -16152.0,
+    -47.0
+   ],
+   "angles": [
+    1.00179e-05,
+    270.0,
+    -8.89769e-21
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_xl_a",
+   "origin": [
+    2338.0,
+    -14503.0,
+    -47.0
+   ],
+   "angles": [
+    1.00179e-05,
+    78.5,
+    -5.62285e-11
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_med_a",
+   "origin": [
+    2750.0,
+    -16434.0,
+    -37.0
+   ],
+   "angles": [
+    355.656,
+    121.297,
+    -1.06734
+   ],
+   "scale": 1.1,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_hedge_wall_1",
+   "origin": [
+    2757.0,
+    -16351.0,
+    -77.0
+   ],
+   "angles": [
+    0.0,
+    166.4,
+    0.0
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_grey_oak_xl_a",
+   "origin": [
+    -197.0,
+    -14203.0,
+    -47.0
+   ],
+   "angles": [
+    1.00179e-05,
+    20.2,
+    -6.59319e-11
+   ],
+   "scale": 1.5,
+   "script": false
+  }
+ ]
+}

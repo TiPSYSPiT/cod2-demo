@@ -1,0 +1,7470 @@
+{
+ "format": "cod2-demo3d-entities/1",
+ "map": "mp_toujane",
+ "worldspawn": {
+  "diffusefraction": ".4",
+  "sundiffusecolor": "0.863 0.922 0.922",
+  "sundirection": "-45 135 0",
+  "suncolor": "0.98 0.882 0.745",
+  "sunlight": "1.3",
+  "classname": "worldspawn",
+  "ambient": ".02",
+  "_color": "0.813 0.804 0.706"
+ },
+ "spawns": [
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    2569.0,
+    2274.0,
+    121.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    2262.0,
+    2835.0,
+    106.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    2569.0,
+    2274.0,
+    105.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    2266.0,
+    2837.0,
+    88.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    2277.0,
+    2863.0,
+    86.0
+   ],
+   "angles": [
+    0.0,
+    281.5,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    1150.0,
+    1704.0,
+    60.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    1943.0,
+    1991.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    300.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    2121.0,
+    729.0,
+    71.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    2557.0,
+    855.0,
+    92.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    3057.0,
+    2174.0,
+    77.0
+   ],
+   "angles": [
+    0.0,
+    225.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    2383.0,
+    2147.0,
+    84.0
+   ],
+   "angles": [
+    0.0,
+    206.5,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    2610.0,
+    2276.0,
+    96.0
+   ],
+   "angles": [
+    0.0,
+    136.1,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    1224.0,
+    2439.0,
+    92.0
+   ],
+   "angles": [
+    0.0,
+    150.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    967.0,
+    3344.0,
+    68.0
+   ],
+   "angles": [
+    0.0,
+    300.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    1593.0,
+    3251.0,
+    113.0
+   ],
+   "angles": [
+    0.0,
+    225.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    744.0,
+    2669.0,
+    74.0
+   ],
+   "angles": [
+    0.0,
+    45.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    2332.0,
+    483.0,
+    59.0
+   ],
+   "angles": [
+    0.0,
+    49.5,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    2927.0,
+    1154.0,
+    208.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    3164.0,
+    1418.0,
+    101.0
+   ],
+   "angles": [
+    0.0,
+    166.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    312.0,
+    2081.0,
+    59.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_global_intermission",
+   "origin": [
+    -170.0,
+    1008.0,
+    456.0
+   ],
+   "angles": [
+    0.0,
+    34.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    3051.0,
+    2178.0,
+    80.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    3055.0,
+    2180.0,
+    62.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    3168.0,
+    1413.0,
+    104.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    3172.0,
+    1413.0,
+    86.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    2326.0,
+    485.0,
+    69.0
+   ],
+   "angles": [
+    0.0,
+    49.5,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    2324.0,
+    482.0,
+    51.0
+   ],
+   "angles": [
+    0.0,
+    49.5,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1214.0,
+    -40.0,
+    51.0
+   ],
+   "angles": [
+    0.0,
+    105.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1215.0,
+    -44.0,
+    33.0
+   ],
+   "angles": [
+    0.0,
+    105.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    576.0,
+    567.0,
+    60.0
+   ],
+   "angles": [
+    0.0,
+    240.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    578.0,
+    571.0,
+    42.0
+   ],
+   "angles": [
+    0.0,
+    240.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -299.0,
+    1001.0,
+    61.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -299.0,
+    997.0,
+    43.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    -97.0,
+    1903.0,
+    209.0
+   ],
+   "angles": [
+    0.0,
+    1.00179e-05,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    -101.0,
+    1903.0,
+    191.0
+   ],
+   "angles": [
+    0.0,
+    1.00179e-05,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    313.0,
+    2090.0,
+    69.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    310.0,
+    2090.0,
+    51.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    744.0,
+    2664.0,
+    80.0
+   ],
+   "angles": [
+    0.0,
+    359.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    744.0,
+    2656.0,
+    64.0
+   ],
+   "angles": [
+    0.0,
+    359.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    968.0,
+    3348.0,
+    80.0
+   ],
+   "angles": [
+    0.0,
+    299.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    961.0,
+    3344.0,
+    64.0
+   ],
+   "angles": [
+    0.0,
+    299.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1597.0,
+    3256.0,
+    121.0
+   ],
+   "angles": [
+    0.0,
+    224.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1591.0,
+    3261.0,
+    105.0
+   ],
+   "angles": [
+    0.0,
+    224.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1946.0,
+    1993.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    299.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1940.0,
+    1989.0,
+    71.0
+   ],
+   "angles": [
+    0.0,
+    299.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1363.0,
+    609.0,
+    29.0
+   ],
+   "angles": [
+    0.0,
+    134.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1368.0,
+    615.0,
+    13.0
+   ],
+   "angles": [
+    0.0,
+    134.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    536.0,
+    1585.0,
+    39.0
+   ],
+   "angles": [
+    0.0,
+    179.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    535.0,
+    1593.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    179.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    468.0,
+    992.0,
+    138.0
+   ],
+   "angles": [
+    0.0,
+    179.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    467.0,
+    1000.0,
+    122.0
+   ],
+   "angles": [
+    0.0,
+    179.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    921.0,
+    1646.0,
+    183.0
+   ],
+   "angles": [
+    0.0,
+    359.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    922.0,
+    1638.0,
+    167.0
+   ],
+   "angles": [
+    0.0,
+    359.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1234.0,
+    2433.0,
+    111.0
+   ],
+   "angles": [
+    0.0,
+    149.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1237.0,
+    2440.0,
+    95.0
+   ],
+   "angles": [
+    0.0,
+    149.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    2047.0,
+    1326.0,
+    101.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    2047.0,
+    1333.0,
+    85.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1474.0,
+    1055.0,
+    96.0
+   ],
+   "angles": [
+    0.0,
+    284.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1467.0,
+    1053.0,
+    80.0
+   ],
+   "angles": [
+    0.0,
+    284.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    858.0,
+    742.0,
+    39.0
+   ],
+   "angles": [
+    0.0,
+    44.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    863.0,
+    737.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    44.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    2563.0,
+    852.0,
+    98.0
+   ],
+   "angles": [
+    0.0,
+    179.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    2563.0,
+    859.0,
+    82.0
+   ],
+   "angles": [
+    0.0,
+    179.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1147.0,
+    1705.0,
+    72.0
+   ],
+   "angles": [
+    0.0,
+    359.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1147.0,
+    1698.0,
+    56.0
+   ],
+   "angles": [
+    0.0,
+    359.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    1468.0,
+    1055.0,
+    85.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    1812.0,
+    1921.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    300.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    1437.0,
+    456.0,
+    20.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    412.0,
+    2.0,
+    29.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    2040.0,
+    1336.0,
+    101.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    1353.0,
+    618.0,
+    21.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    536.0,
+    1590.0,
+    29.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    1222.0,
+    -42.0,
+    43.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -300.0,
+    1006.0,
+    54.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    869.0,
+    739.0,
+    36.0
+   ],
+   "angles": [
+    0.0,
+    45.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    304.0,
+    639.0,
+    26.0
+   ],
+   "angles": [
+    0.0,
+    225.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    924.0,
+    1644.0,
+    166.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    462.0,
+    994.0,
+    136.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    571.0,
+    563.0,
+    48.0
+   ],
+   "angles": [
+    0.0,
+    225.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    -96.0,
+    1906.0,
+    192.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    223.0,
+    1688.0,
+    34.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -184.0,
+    1160.0,
+    24.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -185.0,
+    1229.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -184.0,
+    1024.0,
+    16.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -185.0,
+    1093.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -112.0,
+    1160.0,
+    24.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -113.0,
+    1229.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -112.0,
+    1024.0,
+    16.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -113.0,
+    1093.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2115.0,
+    2732.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2174.0,
+    2553.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2228.0,
+    2603.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2233.0,
+    2685.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2287.0,
+    2320.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2498.0,
+    2209.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2401.0,
+    2319.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2392.0,
+    2385.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2263.0,
+    2540.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2342.0,
+    2442.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2471.0,
+    2518.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2343.0,
+    2513.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2020.0,
+    2720.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2113.0,
+    2575.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2321.0,
+    2253.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    2367.0,
+    2181.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -185.0,
+    1277.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -113.0,
+    1277.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -185.0,
+    973.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -113.0,
+    973.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -48.0,
+    1224.0,
+    24.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -49.0,
+    1293.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -48.0,
+    1088.0,
+    16.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    -49.0,
+    1157.0,
+    23.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1416.0,
+    2156.0,
+    95.0
+   ],
+   "angles": [
+    0.0,
+    62.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1422.0,
+    2152.0,
+    92.0
+   ],
+   "angles": [
+    0.0,
+    62.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1929.0,
+    1768.0,
+    84.0
+   ],
+   "angles": [
+    0.0,
+    160.1,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1932.0,
+    1774.0,
+    81.0
+   ],
+   "angles": [
+    0.0,
+    160.1,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    2932.0,
+    1148.0,
+    198.0
+   ],
+   "angles": [
+    0.0,
+    179.5,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    2933.0,
+    1155.0,
+    195.0
+   ],
+   "angles": [
+    0.0,
+    179.5,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    2136.0,
+    741.0,
+    68.0
+   ],
+   "angles": [
+    0.0,
+    268.9,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    2129.0,
+    742.0,
+    65.0
+   ],
+   "angles": [
+    0.0,
+    268.9,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    1438.0,
+    468.0,
+    12.0
+   ],
+   "angles": [
+    0.0,
+    1.09998,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    1437.0,
+    461.0,
+    9.0
+   ],
+   "angles": [
+    0.0,
+    1.09998,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    314.0,
+    638.0,
+    37.0
+   ],
+   "angles": [
+    0.0,
+    215.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    311.0,
+    645.0,
+    34.0
+   ],
+   "angles": [
+    0.0,
+    215.7,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    226.0,
+    1676.0,
+    32.0
+   ],
+   "angles": [
+    0.0,
+    178.8,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    228.0,
+    1683.0,
+    29.0
+   ],
+   "angles": [
+    0.0,
+    178.8,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    2389.0,
+    2139.0,
+    97.0
+   ],
+   "angles": [
+    0.0,
+    208.4,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    2387.0,
+    2146.0,
+    94.0
+   ],
+   "angles": [
+    0.0,
+    208.4,
+    0.0
+   ]
+  }
+ ],
+ "objectives": [
+  {
+   "classname": "trigger_use_touch",
+   "targetname": "bombzone",
+   "label": "A",
+   "origin": [
+    1046.0,
+    2753.0,
+    92.0
+   ],
+   "mins": [
+    908.9369049072266,
+    2589.429656982422,
+    40.96369552612305
+   ],
+   "maxs": [
+    1183.0657043457031,
+    2916.5526123046875,
+    143.1086654663086
+   ]
+  },
+  {
+   "classname": "trigger_use_touch",
+   "targetname": "bombzone",
+   "label": "B",
+   "origin": [
+    2832.0,
+    1634.0,
+    88.0
+   ],
+   "mins": [
+    2692.0,
+    1514.0,
+    44.0
+   ],
+   "maxs": [
+    2972.0,
+    1754.0,
+    132.0
+   ]
+  },
+  {
+   "classname": "trigger_use_touch",
+   "targetname": "bombtrigger",
+   "label": null,
+   "origin": [
+    -2144.0,
+    6176.0,
+    556.0
+   ],
+   "mins": [
+    -2184.0,
+    6136.0,
+    528.0
+   ],
+   "maxs": [
+    -2104.0,
+    6216.0,
+    584.0
+   ]
+  }
+ ],
+ "props": [
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    1434.17,
+    2281.47,
+    139.0
+   ],
+   "angles": [
+    0.0,
+    330.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    1444.67,
+    2299.66,
+    139.0
+   ],
+   "angles": [
+    0.0,
+    330.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_market_small",
+   "origin": [
+    2011.99,
+    1596.53,
+    266.0
+   ],
+   "angles": [
+    0.0,
+    278.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_2x4_3",
+   "origin": [
+    1976.41,
+    1592.15,
+    177.0
+   ],
+   "angles": [
+    0.0,
+    277.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    1985.1,
+    2007.09,
+    127.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    1995.6,
+    1988.9,
+    127.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_market_large2",
+   "origin": [
+    1816.58,
+    1746.98,
+    176.0
+   ],
+   "angles": [
+    0.0,
+    210.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/egypt_prop_vase1",
+   "origin": [
+    1884.54,
+    1973.28,
+    64.0
+   ],
+   "angles": [
+    0.0,
+    328.345,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_wickerbasket7",
+   "origin": [
+    1844.43,
+    1954.74,
+    64.0
+   ],
+   "angles": [
+    0.0,
+    38.345,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_wickerbasket7",
+   "origin": [
+    1753.23,
+    1906.71,
+    64.0
+   ],
+   "angles": [
+    0.0,
+    98.345,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_wickerbasket7",
+   "origin": [
+    1901.23,
+    1650.36,
+    64.0
+   ],
+   "angles": [
+    0.0,
+    98.345,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_wickerbasket6",
+   "origin": [
+    1911.48,
+    1688.61,
+    64.0
+   ],
+   "angles": [
+    0.0,
+    208.345,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large2",
+   "origin": [
+    1599.14,
+    1190.07,
+    144.0
+   ],
+   "angles": [
+    0.0,
+    108.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_market_medium1",
+   "origin": [
+    1248.0,
+    384.0,
+    117.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large1",
+   "origin": [
+    1408.0,
+    864.0,
+    90.0
+   ],
+   "angles": [
+    0.0,
+    3.18772e-06,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_long",
+   "origin": [
+    1183.0,
+    678.0,
+    101.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_market_medium2",
+   "origin": [
+    1248.0,
+    1216.0,
+    117.0
+   ],
+   "angles": [
+    2.24007e-06,
+    90.0,
+    -9.9273e-05
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large3",
+   "origin": [
+    1088.0,
+    927.0,
+    86.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    -7.99999,
+    1769.0,
+    203.0
+   ],
+   "angles": [
+    0.0,
+    1.00179e-05,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    -8.0,
+    1790.0,
+    203.0
+   ],
+   "angles": [
+    0.0,
+    1.00179e-05,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    -75.0,
+    1964.0,
+    235.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    -54.0,
+    1964.0,
+    235.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_market_medium2",
+   "origin": [
+    -129.0,
+    1540.0,
+    134.0
+   ],
+   "angles": [
+    2.24007e-06,
+    270.0,
+    -9.9273e-05
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    -109.0,
+    1544.0,
+    81.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    -88.0,
+    1544.0,
+    81.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    2019.0,
+    1263.0,
+    139.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    1998.0,
+    1263.0,
+    139.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large3",
+   "origin": [
+    2009.0,
+    1271.0,
+    156.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    735.404,
+    3191.57,
+    121.0
+   ],
+   "angles": [
+    0.0,
+    297.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    754.048,
+    3201.23,
+    121.0
+   ],
+   "angles": [
+    0.0,
+    297.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large3",
+   "origin": [
+    747.964,
+    3189.07,
+    138.0
+   ],
+   "angles": [
+    0.0,
+    297.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    -356.0,
+    1113.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    1.00179e-05,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    -356.0,
+    1134.0,
+    87.0
+   ],
+   "angles": [
+    0.0,
+    1.00179e-05,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large1",
+   "origin": [
+    1926.49,
+    529.173,
+    77.0
+   ],
+   "angles": [
+    0.0,
+    278.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large2",
+   "origin": [
+    1530.9,
+    699.778,
+    77.0
+   ],
+   "angles": [
+    0.0,
+    188.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large4",
+   "origin": [
+    1996.8,
+    603.684,
+    159.0
+   ],
+   "angles": [
+    0.0,
+    8.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large3",
+   "origin": [
+    1970.08,
+    793.816,
+    159.0
+   ],
+   "angles": [
+    0.0,
+    8.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_market_large",
+   "origin": [
+    2534.0,
+    625.0,
+    192.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood4",
+   "origin": [
+    3292.15,
+    2361.79,
+    232.0
+   ],
+   "angles": [
+    0.0,
+    300.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood3",
+   "origin": [
+    3506.43,
+    2374.65,
+    108.0
+   ],
+   "angles": [
+    0.0,
+    300.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood2",
+   "origin": [
+    3516.82,
+    2380.65,
+    231.0
+   ],
+   "angles": [
+    0.0,
+    300.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large1",
+   "origin": [
+    3292.15,
+    2361.79,
+    86.0
+   ],
+   "angles": [
+    0.0,
+    300.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_market_large",
+   "origin": [
+    3092.23,
+    2698.86,
+    98.0
+   ],
+   "angles": [
+    0.0,
+    300.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_market_large",
+   "origin": [
+    1921.72,
+    171.612,
+    127.0
+   ],
+   "angles": [
+    0.0,
+    104.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    618.0,
+    404.0,
+    58.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    618.0,
+    383.0,
+    58.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    498.0,
+    1004.0,
+    178.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    498.0,
+    983.0,
+    178.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood4",
+   "origin": [
+    394.0,
+    609.0,
+    69.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_desertbushy",
+   "origin": [
+    467.0,
+    474.0,
+    -18.0
+   ],
+   "angles": [
+    359.503,
+    147.643,
+    -4.89033
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertspikeyshrub",
+   "origin": [
+    247.0,
+    1540.0,
+    -2.0
+   ],
+   "angles": [
+    349.063,
+    95.3833,
+    -12.9095
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertgreenfanshrub",
+   "origin": [
+    268.0,
+    1531.0,
+    -9.0
+   ],
+   "angles": [
+    347.804,
+    95.3713,
+    0.536046
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertgreenfanshrub",
+   "origin": [
+    252.0,
+    1851.0,
+    33.0
+   ],
+   "angles": [
+    351.063,
+    359.757,
+    8.51426
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertspikeyshrub",
+   "origin": [
+    260.0,
+    2103.0,
+    34.0
+   ],
+   "angles": [
+    359.941,
+    358.175,
+    -4.7048
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    811.0,
+    935.0,
+    2.0
+   ],
+   "angles": [
+    2.27464,
+    102.214,
+    16.8142
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1075.0,
+    815.0,
+    0.0
+   ],
+   "angles": [
+    4.88967,
+    118.655,
+    -0.945285
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1169.0,
+    756.0,
+    7.0
+   ],
+   "angles": [
+    11.1411,
+    166.311,
+    -18.0154
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1076.0,
+    552.0,
+    3.0
+   ],
+   "angles": [
+    11.5023,
+    166.296,
+    -2.3308
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgraymid",
+   "origin": [
+    1094.0,
+    379.0,
+    2.0
+   ],
+   "angles": [
+    351.323,
+    0.650476,
+    -4.30377
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgraymid",
+   "origin": [
+    1082.0,
+    900.0,
+    -2.0
+   ],
+   "angles": [
+    356.82,
+    359.415,
+    0.0324363
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    1922.0,
+    182.0,
+    -17.0
+   ],
+   "angles": [
+    357.818,
+    214.316,
+    2.37346
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    1076.0,
+    523.0,
+    -4.0
+   ],
+   "angles": [
+    8.96999,
+    218.367,
+    7.59441
+   ],
+   "scale": 0.79353,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    1390.0,
+    377.0,
+    -7.0
+   ],
+   "angles": [
+    4.59898,
+    219.297,
+    -11.8811
+   ],
+   "scale": 0.79353,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    2048.0,
+    756.0,
+    44.0
+   ],
+   "angles": [
+    11.8107,
+    216.536,
+    -20.9659
+   ],
+   "scale": 0.79353,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    1416.0,
+    930.0,
+    46.0
+   ],
+   "angles": [
+    5.76709,
+    71.468,
+    9.83199
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1541.0,
+    939.0,
+    63.0
+   ],
+   "angles": [
+    1.09916,
+    120.071,
+    -5.50427
+   ],
+   "scale": 1.3,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1529.0,
+    1001.0,
+    61.0
+   ],
+   "angles": [
+    354.483,
+    96.7066,
+    -5.25048
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1492.0,
+    935.0,
+    59.0
+   ],
+   "angles": [
+    356.716,
+    344.711,
+    2.78055
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1438.0,
+    951.0,
+    54.0
+   ],
+   "angles": [
+    10.4137,
+    131.462,
+    -4.62509
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1430.0,
+    1217.0,
+    18.0
+   ],
+   "angles": [
+    0.536656,
+    41.1803,
+    -8.7517
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1455.0,
+    1505.0,
+    34.0
+   ],
+   "angles": [
+    0.161028,
+    318.808,
+    15.6483
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1426.0,
+    1559.0,
+    40.0
+   ],
+   "angles": [
+    359.917,
+    286.734,
+    16.8635
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1843.0,
+    1345.0,
+    57.0
+   ],
+   "angles": [
+    356.575,
+    16.6961,
+    -1.54458
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1932.0,
+    1189.0,
+    84.0
+   ],
+   "angles": [
+    351.535,
+    282.106,
+    -0.329833
+   ],
+   "scale": 1.3,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    2065.0,
+    1286.0,
+    77.0
+   ],
+   "angles": [
+    359.416,
+    90.4756,
+    -4.43129
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    2297.0,
+    1375.0,
+    70.0
+   ],
+   "angles": [
+    359.959,
+    359.848,
+    -15.2551
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    2338.0,
+    1343.0,
+    70.0
+   ],
+   "angles": [
+    359.46,
+    92.522,
+    12.0829
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    2573.0,
+    1040.0,
+    60.0
+   ],
+   "angles": [
+    3.06019,
+    91.7755,
+    -0.890857
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    2312.0,
+    995.0,
+    66.0
+   ],
+   "angles": [
+    9.60519,
+    91.6725,
+    -4.81171
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    2013.0,
+    572.0,
+    7.0
+   ],
+   "angles": [
+    345.868,
+    87.1113,
+    10.2697
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1400.0,
+    377.0,
+    -1.0
+   ],
+   "angles": [
+    352.713,
+    52.9122,
+    10.4645
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    243.0,
+    1550.0,
+    -1.0
+   ],
+   "angles": [
+    9.45866,
+    164.898,
+    -15.0725
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    281.0,
+    1868.0,
+    42.0
+   ],
+   "angles": [
+    1.09808,
+    200.462,
+    3.99987
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    242.0,
+    1824.0,
+    34.0
+   ],
+   "angles": [
+    351.164,
+    88.3182,
+    -8.61919
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    530.0,
+    1870.0,
+    53.0
+   ],
+   "angles": [
+    356.495,
+    183.975,
+    11.8681
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    2117.0,
+    1609.0,
+    63.0
+   ],
+   "angles": [
+    2.12074,
+    0.512648,
+    17.0951
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    2232.0,
+    1829.0,
+    66.0
+   ],
+   "angles": [
+    1.77201,
+    285.565,
+    -8.86485
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    2151.0,
+    1961.0,
+    69.0
+   ],
+   "angles": [
+    4.11352,
+    124.768,
+    12.5013
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1887.0,
+    2027.0,
+    76.0
+   ],
+   "angles": [
+    5.42388,
+    201.151,
+    13.4339
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1526.0,
+    1780.0,
+    58.0
+   ],
+   "angles": [
+    0.130992,
+    57.8067,
+    -13.5015
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1272.0,
+    1894.0,
+    78.0
+   ],
+   "angles": [
+    0.339491,
+    331.884,
+    5.36874
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1113.0,
+    1861.0,
+    67.0
+   ],
+   "angles": [
+    355.143,
+    327.998,
+    -1.77679
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1118.0,
+    1536.0,
+    -1.0
+   ],
+   "angles": [
+    352.942,
+    46.5913,
+    10.1797
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1340.0,
+    1886.0,
+    61.0
+   ],
+   "angles": [
+    1.70808,
+    60.1823,
+    10.823
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1504.0,
+    2160.0,
+    62.0
+   ],
+   "angles": [
+    1.92625,
+    243.586,
+    -7.69191
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1570.0,
+    2300.0,
+    62.0
+   ],
+   "angles": [
+    1.35013,
+    56.0136,
+    19.4069
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    3172.0,
+    1396.0,
+    69.0
+   ],
+   "angles": [
+    5.81734,
+    25.9646,
+    -11.85
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    2488.0,
+    1878.0,
+    63.0
+   ],
+   "angles": [
+    356.995,
+    202.361,
+    -11.8841
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    2346.0,
+    2073.0,
+    66.0
+   ],
+   "angles": [
+    1.21571,
+    257.903,
+    1.31821
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1848.0,
+    2903.0,
+    90.0
+   ],
+   "angles": [
+    355.259,
+    7.49751,
+    14.8927
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1680.0,
+    2646.0,
+    66.0
+   ],
+   "angles": [
+    356.773,
+    150.704,
+    12.1168
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1730.0,
+    2900.0,
+    82.0
+   ],
+   "angles": [
+    7.10135,
+    138.108,
+    -16.5876
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    2083.0,
+    1601.0,
+    55.0
+   ],
+   "angles": [
+    344.958,
+    68.4303,
+    8.45035
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    2453.0,
+    1875.0,
+    58.0
+   ],
+   "angles": [
+    353.305,
+    67.273,
+    -7.65194
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    1131.0,
+    1552.0,
+    -7.0
+   ],
+   "angles": [
+    355.546,
+    67.6913,
+    10.5028
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    1128.0,
+    1639.0,
+    6.0
+   ],
+   "angles": [
+    348.096,
+    66.0903,
+    12.1312
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    1635.0,
+    2673.0,
+    62.0
+   ],
+   "angles": [
+    11.4493,
+    68.7678,
+    3.91096
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    2529.0,
+    644.0,
+    52.0
+   ],
+   "angles": [
+    342.666,
+    63.6537,
+    -17.1698
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    949.0,
+    3003.0,
+    46.0
+   ],
+   "angles": [
+    359.659,
+    0.0126074,
+    -2.11456
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    1168.0,
+    2272.0,
+    65.0
+   ],
+   "angles": [
+    4.03572,
+    79.0512,
+    -11.5076
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    659.0,
+    2044.0,
+    41.0
+   ],
+   "angles": [
+    346.605,
+    83.1206,
+    12.9355
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertgreenfanshrub",
+   "origin": [
+    688.0,
+    2048.0,
+    36.0
+   ],
+   "angles": [
+    10.8085,
+    3.17304,
+    15.1526
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertgreenfanshrub",
+   "origin": [
+    718.0,
+    2639.0,
+    47.0
+   ],
+   "angles": [
+    0.502401,
+    1.5357,
+    0.0134689
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertgreenfanshrub",
+   "origin": [
+    1547.0,
+    1799.0,
+    53.0
+   ],
+   "angles": [
+    348.996,
+    3.17961,
+    -7.87242
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertgreenfanshrub",
+   "origin": [
+    1409.0,
+    1220.0,
+    9.0
+   ],
+   "angles": [
+    351.919,
+    2.76314,
+    -7.9644
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertgreenfanshrub",
+   "origin": [
+    1098.0,
+    763.0,
+    -2.0
+   ],
+   "angles": [
+    359.371,
+    4.44039,
+    12.5941
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertspikeyshrub",
+   "origin": [
+    1085.0,
+    392.0,
+    3.0
+   ],
+   "angles": [
+    329.137,
+    6.01256,
+    -3.11987
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertgreenfanshrub",
+   "origin": [
+    1515.0,
+    791.0,
+    -6.0
+   ],
+   "angles": [
+    350.248,
+    3.51147,
+    -8.12276
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertgreenfanshrub",
+   "origin": [
+    2049.0,
+    763.0,
+    47.0
+   ],
+   "angles": [
+    0.200613,
+    7.97495,
+    23.9316
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertgreenfanshrub",
+   "origin": [
+    2007.0,
+    548.0,
+    -5.0
+   ],
+   "angles": [
+    9.12437,
+    9.45053,
+    9.42855
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertspikeyshrub",
+   "origin": [
+    2531.0,
+    655.0,
+    63.0
+   ],
+   "angles": [
+    348.395,
+    10.8,
+    -3.75922
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrowntall",
+   "origin": [
+    1514.0,
+    804.0,
+    -1.0
+   ],
+   "angles": [
+    11.9777,
+    1.16615,
+    5.98247
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrowntall",
+   "origin": [
+    1533.0,
+    642.0,
+    1.0
+   ],
+   "angles": [
+    353.374,
+    1.06887,
+    0.298296
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrowntall",
+   "origin": [
+    1568.0,
+    475.0,
+    2.0
+   ],
+   "angles": [
+    3.10491,
+    3.16932,
+    12.1582
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrowntall",
+   "origin": [
+    1445.0,
+    1582.0,
+    60.0
+   ],
+   "angles": [
+    3.35825,
+    3.18517,
+    3.57471
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgraymid",
+   "origin": [
+    1449.0,
+    1595.0,
+    61.0
+   ],
+   "angles": [
+    3.25234,
+    3.17615,
+    4.85807
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrowntall",
+   "origin": [
+    1185.0,
+    1628.0,
+    7.0
+   ],
+   "angles": [
+    355.69,
+    2.24321,
+    7.01181
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrowntall",
+   "origin": [
+    1907.0,
+    1583.0,
+    65.0
+   ],
+   "angles": [
+    358.195,
+    3.66969,
+    0.9984
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrowntall",
+   "origin": [
+    1915.0,
+    1578.0,
+    65.0
+   ],
+   "angles": [
+    4.00147,
+    154.773,
+    -2.44562
+   ],
+   "scale": 0.953216,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrowntall",
+   "origin": [
+    2323.0,
+    1644.0,
+    62.0
+   ],
+   "angles": [
+    341.703,
+    150.78,
+    3.02879
+   ],
+   "scale": 1.021863,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrowntall",
+   "origin": [
+    3229.0,
+    2317.0,
+    65.0
+   ],
+   "angles": [
+    357.596,
+    234.228,
+    -6.21452
+   ],
+   "scale": 0.721973,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    1404.0,
+    3333.0,
+    76.0
+   ],
+   "angles": [
+    358.233,
+    70.2254,
+    -1.96519
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    1307.0,
+    2531.0,
+    66.0
+   ],
+   "angles": [
+    359.8,
+    68.1181,
+    -12.341
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    1286.0,
+    2483.0,
+    65.0
+   ],
+   "angles": [
+    359.235,
+    68.2298,
+    -11.184
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    527.0,
+    1258.0,
+    -2.0
+   ],
+   "angles": [
+    17.763,
+    359.958,
+    -5.01341
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    580.0,
+    1248.0,
+    -5.0
+   ],
+   "angles": [
+    18.4196,
+    121.37,
+    5.10122
+   ],
+   "scale": 0.79353,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    495.0,
+    1534.0,
+    -2.0
+   ],
+   "angles": [
+    357.645,
+    7.08747,
+    18.2891
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubgroup01",
+   "origin": [
+    1098.0,
+    1218.0,
+    2.0
+   ],
+   "angles": [
+    358.353,
+    6.91362,
+    -13.7802
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertgreenfanshrub",
+   "origin": [
+    1086.0,
+    1867.0,
+    57.0
+   ],
+   "angles": [
+    356.993,
+    2.38655,
+    -4.20816
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertspikeyshrub",
+   "origin": [
+    570.0,
+    1252.0,
+    0.0
+   ],
+   "angles": [
+    355.633,
+    2.84499,
+    -18.6012
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    1097.0,
+    761.0,
+    4.0
+   ],
+   "angles": [
+    359.818,
+    2.4406,
+    12.6082
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    1403.0,
+    1224.0,
+    14.0
+   ],
+   "angles": [
+    352.028,
+    3.54206,
+    -8.07316
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    1415.0,
+    1202.0,
+    19.0
+   ],
+   "angles": [
+    355.003,
+    3.16203,
+    -7.21365
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    1422.0,
+    1197.0,
+    20.0
+   ],
+   "angles": [
+    351.296,
+    314.654,
+    -1.05771
+   ],
+   "scale": 1.131909,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    1409.0,
+    1172.0,
+    36.0
+   ],
+   "angles": [
+    349.831,
+    51.9119,
+    -16.6643
+   ],
+   "scale": 1.055151,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    1412.0,
+    1169.0,
+    42.0
+   ],
+   "angles": [
+    10.953,
+    115.683,
+    -16.168
+   ],
+   "scale": 1.03208,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    1422.0,
+    1175.0,
+    43.0
+   ],
+   "angles": [
+    0.721206,
+    84.4869,
+    -19.4335
+   ],
+   "scale": 0.713586,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    2068.0,
+    1365.0,
+    71.0
+   ],
+   "angles": [
+    5.92562,
+    97.9146,
+    -11.3561
+   ],
+   "scale": 0.877869,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    2076.0,
+    1370.0,
+    71.0
+   ],
+   "angles": [
+    354.807,
+    324.478,
+    -11.1772
+   ],
+   "scale": 0.933624,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    2296.0,
+    2906.0,
+    71.0
+   ],
+   "angles": [
+    1.64791,
+    301.743,
+    0.0726287
+   ],
+   "scale": 1.114551,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    2179.0,
+    2853.0,
+    68.0
+   ],
+   "angles": [
+    2.64264,
+    40.2764,
+    0.500939
+   ],
+   "scale": 1.153937,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    1973.0,
+    2731.0,
+    67.0
+   ],
+   "angles": [
+    359.585,
+    319.882,
+    -0.139831
+   ],
+   "scale": 0.860272,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    1962.0,
+    2730.0,
+    67.0
+   ],
+   "angles": [
+    3.02321,
+    184.283,
+    -0.835158
+   ],
+   "scale": 0.828943,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    1975.0,
+    2727.0,
+    67.0
+   ],
+   "angles": [
+    359.827,
+    234.539,
+    0.402344
+   ],
+   "scale": 0.989563,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    2656.0,
+    2256.0,
+    72.0
+   ],
+   "angles": [
+    1.05971,
+    18.7031,
+    -3.82084
+   ],
+   "scale": 0.832367,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrownmid",
+   "origin": [
+    1737.0,
+    2599.0,
+    64.0
+   ],
+   "angles": [
+    12.8748,
+    342.033,
+    -1.93741
+   ],
+   "scale": 1.093439,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    306.0,
+    1868.0,
+    38.0
+   ],
+   "angles": [
+    12.8322,
+    126.283,
+    2.89258
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    818.0,
+    1234.0,
+    -1.0
+   ],
+   "angles": [
+    356.017,
+    123.568,
+    13.7255
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_2",
+   "origin": [
+    612.0,
+    1264.0,
+    3.0
+   ],
+   "angles": [
+    9.62681,
+    126.442,
+    -2.77872
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_desertpalm03",
+   "origin": [
+    -247.0,
+    699.0,
+    6.0
+   ],
+   "angles": [
+    0.0,
+    60.2386,
+    0.0
+   ],
+   "scale": 1.3,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_desertpalm03",
+   "origin": [
+    1851.0,
+    2878.0,
+    75.0
+   ],
+   "angles": [
+    357.943,
+    82.8386,
+    0.153953
+   ],
+   "scale": 1.1,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_desertpalm02",
+   "origin": [
+    3093.0,
+    1522.0,
+    53.0
+   ],
+   "angles": [
+    1.80989,
+    257.204,
+    -1.32921
+   ],
+   "scale": 1.3,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    1051.0,
+    328.0,
+    -14.0
+   ],
+   "angles": [
+    358.812,
+    231.556,
+    -1.659
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    979.0,
+    382.0,
+    -11.0
+   ],
+   "angles": [
+    356.238,
+    133.857,
+    6.49882
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    608.0,
+    1521.0,
+    3.0
+   ],
+   "angles": [
+    0.0,
+    268.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    608.0,
+    1499.0,
+    -7.0
+   ],
+   "angles": [
+    335.406,
+    88.4601,
+    0.64102
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    595.0,
+    1525.0,
+    52.0
+   ],
+   "angles": [
+    352.2,
+    270.0,
+    -90.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    659.0,
+    1524.0,
+    28.0
+   ],
+   "angles": [
+    5.68499,
+    90.1136,
+    -90.0743
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_german_kubel_static",
+   "origin": [
+    1138.0,
+    1427.0,
+    -25.0
+   ],
+   "angles": [
+    354.223,
+    34.5206,
+    0.774236
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    2181.0,
+    2409.0,
+    60.0
+   ],
+   "angles": [
+    359.781,
+    305.462,
+    6.28415
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_silver",
+   "origin": [
+    2333.0,
+    2058.0,
+    62.0
+   ],
+   "angles": [
+    351.972,
+    358.64,
+    9.64759
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_silver",
+   "origin": [
+    2352.0,
+    2033.0,
+    57.0
+   ],
+   "angles": [
+    358.127,
+    111.025,
+    -8.30169
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_silver",
+   "origin": [
+    2342.0,
+    2002.0,
+    46.0
+   ],
+   "angles": [
+    0.794868,
+    296.896,
+    1.97231
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_silver",
+   "origin": [
+    2238.0,
+    1895.0,
+    53.0
+   ],
+   "angles": [
+    357.319,
+    318.349,
+    11.0992
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_silver",
+   "origin": [
+    2245.0,
+    1932.0,
+    61.0
+   ],
+   "angles": [
+    349.42,
+    300.885,
+    67.1569
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/haycart",
+   "origin": [
+    -16.0,
+    365.0,
+    -14.0
+   ],
+   "angles": [
+    8.14222e-13,
+    44.946,
+    -1.41431e-19
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertgreenfanshrub",
+   "origin": [
+    480.0,
+    1536.0,
+    -8.0
+   ],
+   "angles": [
+    358.52,
+    4.44567,
+    18.3775
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    959.933,
+    3384.79,
+    108.0
+   ],
+   "angles": [
+    0.0,
+    297.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    978.56,
+    3394.49,
+    108.0
+   ],
+   "angles": [
+    0.0,
+    297.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_wickerbasket6",
+   "origin": [
+    1097.01,
+    3426.84,
+    49.0
+   ],
+   "angles": [
+    0.0,
+    55.8447,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_wickerbasket8",
+   "origin": [
+    1160.34,
+    3300.84,
+    49.0
+   ],
+   "angles": [
+    0.0,
+    239.445,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_wickerbasket7",
+   "origin": [
+    806.918,
+    3278.08,
+    49.0
+   ],
+   "angles": [
+    0.0,
+    86.145,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_wickerbasket7",
+   "origin": [
+    1063.3,
+    3409.29,
+    49.0
+   ],
+   "angles": [
+    0.0,
+    354.845,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    800.635,
+    -43.4218,
+    185.0
+   ],
+   "angles": [
+    0.0,
+    90.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    779.635,
+    -43.5684,
+    185.0
+   ],
+   "angles": [
+    0.0,
+    90.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    606.107,
+    -111.782,
+    217.0
+   ],
+   "angles": [
+    0.0,
+    0.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    605.961,
+    -90.782,
+    217.0
+   ],
+   "angles": [
+    0.0,
+    0.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    696.0,
+    2281.0,
+    216.0
+   ],
+   "angles": [
+    0.0,
+    1.00179e-05,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    696.0,
+    2302.0,
+    216.0
+   ],
+   "angles": [
+    0.0,
+    1.00179e-05,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    629.0,
+    2476.0,
+    248.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    650.0,
+    2476.0,
+    248.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    1807.0,
+    606.0,
+    151.0
+   ],
+   "angles": [
+    0.0,
+    280.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    1789.0,
+    717.0,
+    176.0
+   ],
+   "angles": [
+    5.53573e-06,
+    90.0,
+    90.3
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    1803.0,
+    634.0,
+    151.0
+   ],
+   "angles": [
+    0.0,
+    280.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    1809.0,
+    676.0,
+    151.0
+   ],
+   "angles": [
+    0.0,
+    190.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    1782.0,
+    670.0,
+    151.0
+   ],
+   "angles": [
+    0.0,
+    190.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    1803.0,
+    674.0,
+    177.0
+   ],
+   "angles": [
+    0.0,
+    183.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    1759.0,
+    652.0,
+    151.0
+   ],
+   "angles": [
+    0.0,
+    190.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large1",
+   "origin": [
+    711.0,
+    2991.0,
+    120.0
+   ],
+   "angles": [
+    0.0,
+    3.18772e-06,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large2",
+   "origin": [
+    487.0,
+    2623.0,
+    120.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large4",
+   "origin": [
+    647.0,
+    3071.0,
+    202.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_wood_large3",
+   "origin": [
+    455.0,
+    3071.0,
+    202.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    -99.0,
+    1372.0,
+    4.0
+   ],
+   "angles": [
+    359.781,
+    62.162,
+    6.28415
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_desertpalm02",
+   "origin": [
+    3054.0,
+    1509.0,
+    49.0
+   ],
+   "angles": [
+    351.946,
+    54.2042,
+    0.255864
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_desertpalm02",
+   "origin": [
+    1399.0,
+    3207.0,
+    49.0
+   ],
+   "angles": [
+    351.946,
+    310.504,
+    0.255916
+   ],
+   "scale": 1.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    662.0,
+    24.0,
+    197.0
+   ],
+   "angles": [
+    0.0,
+    82.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "tdm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    662.0,
+    24.0,
+    197.0
+   ],
+   "angles": [
+    0.0,
+    82.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "dm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    662.0,
+    24.0,
+    197.0
+   ],
+   "angles": [
+    0.0,
+    82.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "hq",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    -80.0,
+    1362.0,
+    33.0
+   ],
+   "angles": [
+    0.0,
+    330.7,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "tdm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    -80.0,
+    1362.0,
+    33.0
+   ],
+   "angles": [
+    0.0,
+    330.7,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "dm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    -80.0,
+    1362.0,
+    33.0
+   ],
+   "angles": [
+    0.0,
+    330.7,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "hq",
+   "turret": true
+  },
+  {
+   "model": "xmodel/awning_desert_market_large",
+   "origin": [
+    -177.059,
+    4009.98,
+    181.0
+   ],
+   "angles": [
+    0.0,
+    345.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_2x5_2",
+   "origin": [
+    608.0,
+    4986.0,
+    287.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_2x5_2",
+   "origin": [
+    799.0,
+    4986.0,
+    287.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_2x5_2",
+   "origin": [
+    991.0,
+    4986.0,
+    287.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_2x5_2",
+   "origin": [
+    1119.0,
+    5114.0,
+    287.0
+   ],
+   "angles": [
+    0.0,
+    2.50448e-06,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_2x5_2",
+   "origin": [
+    1119.0,
+    5242.0,
+    287.0
+   ],
+   "angles": [
+    0.0,
+    2.50448e-06,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_2x4_2",
+   "origin": [
+    215.0,
+    4706.0,
+    582.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_2x4_2",
+   "origin": [
+    423.0,
+    4706.0,
+    582.0
+   ],
+   "angles": [
+    0.0,
+    2.50448e-06,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_2x4_2",
+   "origin": [
+    319.0,
+    4602.0,
+    748.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_2x4_2",
+   "origin": [
+    319.0,
+    4602.0,
+    392.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/dome_05",
+   "origin": [
+    650.0,
+    5339.0,
+    436.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.2,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_market_small",
+   "origin": [
+    1328.25,
+    3686.07,
+    247.0
+   ],
+   "angles": [
+    0.0,
+    175.0,
+    0.0
+   ],
+   "scale": 0.8,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    1452.07,
+    3908.13,
+    322.0
+   ],
+   "angles": [
+    0.0,
+    175.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    1450.24,
+    3887.21,
+    322.0
+   ],
+   "angles": [
+    0.0,
+    175.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    1428.37,
+    3637.16,
+    322.0
+   ],
+   "angles": [
+    0.0,
+    175.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    1426.54,
+    3616.24,
+    322.0
+   ],
+   "angles": [
+    0.0,
+    175.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/dome_05",
+   "origin": [
+    1590.5,
+    3643.05,
+    402.0
+   ],
+   "angles": [
+    0.0,
+    265.0,
+    0.0
+   ],
+   "scale": 0.8,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_market_large",
+   "origin": [
+    2322.81,
+    4413.91,
+    260.0
+   ],
+   "angles": [
+    0.0,
+    275.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/awning_desert_market_small",
+   "origin": [
+    -516.0,
+    -81.0,
+    81.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 0.8,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    -284.0,
+    -185.0,
+    156.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    -305.0,
+    -185.0,
+    156.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    -556.0,
+    -185.0,
+    156.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_doorknob1",
+   "origin": [
+    -577.0,
+    -185.0,
+    156.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/dome_05",
+   "origin": [
+    -536.0,
+    -346.0,
+    236.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 0.8,
+   "script": false
+  },
+  {
+   "model": "xmodel/tree_desertpalm02",
+   "origin": [
+    2562.0,
+    244.0,
+    3.0
+   ],
+   "angles": [
+    1.80989,
+    182.204,
+    -1.32921
+   ],
+   "scale": 1.3,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    -144.0,
+    1292.0,
+    1.0
+   ],
+   "angles": [
+    1.27677,
+    9.51882,
+    3.25693
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    -217.0,
+    1436.0,
+    17.0
+   ],
+   "angles": [
+    344.239,
+    195.761,
+    -6.97766
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    -214.0,
+    1410.0,
+    14.0
+   ],
+   "angles": [
+    345.069,
+    153.206,
+    3.00066
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    -143.0,
+    1443.0,
+    8.0
+   ],
+   "angles": [
+    4.39842,
+    267.852,
+    -1.23405
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_wooden_barrel1",
+   "origin": [
+    836.0,
+    702.0,
+    -1.0
+   ],
+   "angles": [
+    1.82483,
+    70.3729,
+    8.88062
+   ],
+   "scale": 1.155109,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    218.0,
+    1959.0,
+    167.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_metal_pail1",
+   "origin": [
+    224.0,
+    1989.0,
+    202.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak8",
+   "origin": [
+    3049.0,
+    2069.0,
+    80.0
+   ],
+   "angles": [
+    6.72778,
+    275.939,
+    0.149202
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    3047.0,
+    2070.0,
+    45.0
+   ],
+   "angles": [
+    359.604,
+    194.04,
+    -5.80929
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    3062.0,
+    2027.0,
+    40.0
+   ],
+   "angles": [
+    5.68663,
+    275.476,
+    -1.25379
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    3083.0,
+    1977.0,
+    54.0
+   ],
+   "angles": [
+    271.412,
+    232.072,
+    95.4032
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2991.0,
+    1909.0,
+    81.0
+   ],
+   "angles": [
+    359.332,
+    286.987,
+    2.19971
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2981.0,
+    1947.0,
+    81.0
+   ],
+   "angles": [
+    359.332,
+    286.987,
+    2.19971
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2981.0,
+    1947.0,
+    117.0
+   ],
+   "angles": [
+    359.391,
+    286.989,
+    2.00849
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2991.0,
+    1911.0,
+    117.0
+   ],
+   "angles": [
+    359.391,
+    286.989,
+    2.00849
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    3038.0,
+    1924.0,
+    83.0
+   ],
+   "angles": [
+    3.84198e-06,
+    287.0,
+    2.53418e-07
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1552.0,
+    1611.0,
+    61.0
+   ],
+   "angles": [
+    0.0,
+    269.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1553.0,
+    1572.0,
+    61.0
+   ],
+   "angles": [
+    0.0,
+    269.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1552.0,
+    1604.0,
+    97.0
+   ],
+   "angles": [
+    0.0,
+    23.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    216.0,
+    2001.0,
+    167.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak8",
+   "origin": [
+    217.0,
+    2008.0,
+    202.0
+   ],
+   "angles": [
+    8.59694e-07,
+    275.939,
+    -4.09934e-13
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_opel_blitz_desert_static",
+   "origin": [
+    2290.0,
+    552.0,
+    38.0
+   ],
+   "angles": [
+    354.204,
+    48.4121,
+    -0.296389
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_panzer_ii_static",
+   "origin": [
+    77.0,
+    1060.0,
+    -6.0
+   ],
+   "angles": [
+    355.969,
+    54.2364,
+    -0.324939
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_africa_jeep_static",
+   "origin": [
+    1786.0,
+    258.0,
+    -18.0
+   ],
+   "angles": [
+    359.862,
+    167.285,
+    -0.671123
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak8",
+   "origin": [
+    2113.0,
+    264.0,
+    31.0
+   ],
+   "angles": [
+    6.97508,
+    196.126,
+    -3.10528
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2209.0,
+    417.0,
+    20.0
+   ],
+   "angles": [
+    7.93679,
+    225.403,
+    0.0601156
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2267.0,
+    425.0,
+    27.0
+   ],
+   "angles": [
+    0.176,
+    313.705,
+    7.93508
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2166.0,
+    453.0,
+    25.0
+   ],
+   "angles": [
+    358.783,
+    163.773,
+    -8.76566
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2139.0,
+    231.0,
+    -1.0
+   ],
+   "angles": [
+    0.914189,
+    286.797,
+    6.09483
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2113.0,
+    270.0,
+    -4.0
+   ],
+   "angles": [
+    6.82497,
+    194.623,
+    -4.36657
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/german_artillery_flak88_destroy",
+   "origin": [
+    2843.0,
+    1634.0,
+    45.0
+   ],
+   "angles": [
+    359.898,
+    179.992,
+    0.555071
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "dm"
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    3114.0,
+    1980.0,
+    41.0
+   ],
+   "angles": [
+    359.793,
+    16.2428,
+    -2.26459
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    795.0,
+    2395.0,
+    31.0
+   ],
+   "angles": [
+    0.0,
+    269.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    796.0,
+    2356.0,
+    31.0
+   ],
+   "angles": [
+    0.0,
+    269.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    795.0,
+    2388.0,
+    67.0
+   ],
+   "angles": [
+    0.0,
+    23.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_toujanebigbushy",
+   "origin": [
+    1416.0,
+    1211.0,
+    20.0
+   ],
+   "angles": [
+    344.958,
+    68.4303,
+    8.45035
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_panzer_ii_static",
+   "origin": [
+    1047.0,
+    2751.0,
+    44.0
+   ],
+   "angles": [
+    0.666642,
+    270.0,
+    -0.0750181
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone"
+  },
+  {
+   "model": "xmodel/vehicle_german_armored_car_static",
+   "origin": [
+    2834.0,
+    1634.0,
+    44.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone"
+  },
+  {
+   "model": "xmodel/german_artillery_flak88_destroy",
+   "origin": [
+    2843.0,
+    1634.0,
+    45.0
+   ],
+   "angles": [
+    359.898,
+    179.992,
+    0.555071
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "tdm"
+  },
+  {
+   "model": "xmodel/german_artillery_flak88_destroy",
+   "origin": [
+    2843.0,
+    1634.0,
+    45.0
+   ],
+   "angles": [
+    359.898,
+    179.992,
+    0.555071
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "hq"
+  },
+  {
+   "model": "xmodel/german_artillery_flak88_destroy",
+   "origin": [
+    1068.0,
+    2776.0,
+    46.0
+   ],
+   "angles": [
+    0.68559,
+    270.0,
+    0.0290675
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "dm"
+  },
+  {
+   "model": "xmodel/german_artillery_flak88_destroy",
+   "origin": [
+    1068.0,
+    2776.0,
+    46.0
+   ],
+   "angles": [
+    0.68559,
+    270.0,
+    0.0290675
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "tdm"
+  },
+  {
+   "model": "xmodel/german_artillery_flak88_destroy",
+   "origin": [
+    1068.0,
+    2776.0,
+    46.0
+   ],
+   "angles": [
+    0.68559,
+    270.0,
+    0.0290675
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "hq"
+  },
+  {
+   "model": "xmodel/vehicle_opel_blitz_desert_static",
+   "origin": [
+    2974.0,
+    1925.0,
+    38.0
+   ],
+   "angles": [
+    1.2863,
+    197.207,
+    1.52649
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_panzer_ii_static",
+   "origin": [
+    2413.0,
+    1543.0,
+    44.0
+   ],
+   "angles": [
+    357.741,
+    201.262,
+    1.01453
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    2165.0,
+    2397.0,
+    89.0
+   ],
+   "angles": [
+    0.0,
+    214.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "tdm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    2165.0,
+    2397.0,
+    89.0
+   ],
+   "angles": [
+    0.0,
+    214.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "dm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    2165.0,
+    2397.0,
+    89.0
+   ],
+   "angles": [
+    0.0,
+    214.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "hq",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    2165.0,
+    2397.0,
+    89.0
+   ],
+   "angles": [
+    0.0,
+    214.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "sd",
+   "turret": true
+  },
+  {
+   "model": "xmodel/tree_desertpalm03",
+   "origin": [
+    -90.0,
+    -132.0,
+    -48.0
+   ],
+   "angles": [
+    0.0,
+    225.239,
+    0.0
+   ],
+   "scale": 1.3,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrowntall",
+   "origin": [
+    1715.0,
+    1910.0,
+    65.0
+   ],
+   "angles": [
+    354.178,
+    232.471,
+    12.8183
+   ],
+   "scale": 0.721973,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_desertshrubbrowntall",
+   "origin": [
+    1719.0,
+    1923.0,
+    64.0
+   ],
+   "angles": [
+    356.494,
+    35.3623,
+    -10.5033
+   ],
+   "scale": 0.885156,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    1070.0,
+    2249.0,
+    59.0
+   ],
+   "angles": [
+    15.9443,
+    149.87,
+    -0.836541
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    1044.0,
+    2265.0,
+    52.0
+   ],
+   "angles": [
+    352.961,
+    330.838,
+    3.20875
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    1070.0,
+    2263.0,
+    110.0
+   ],
+   "angles": [
+    332.466,
+    152.551,
+    -93.2889
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    1042.0,
+    2208.0,
+    83.0
+   ],
+   "angles": [
+    15.6929,
+    330.738,
+    -95.4253
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    1018.0,
+    2280.0,
+    50.0
+   ],
+   "angles": [
+    359.863,
+    331.008,
+    1.0708
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    1033.0,
+    2266.0,
+    76.0
+   ],
+   "angles": [
+    356.458,
+    331.018,
+    1.2571
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_silver",
+   "origin": [
+    1535.0,
+    2732.0,
+    61.0
+   ],
+   "angles": [
+    359.593,
+    180.535,
+    13.8711
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_silver",
+   "origin": [
+    1516.0,
+    2755.0,
+    53.0
+   ],
+   "angles": [
+    349.735,
+    291.371,
+    -11.5715
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_silver",
+   "origin": [
+    1528.0,
+    2790.0,
+    46.0
+   ],
+   "angles": [
+    0.763008,
+    116.895,
+    2.33234
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1360.0,
+    3163.0,
+    54.0
+   ],
+   "angles": [
+    355.899,
+    1.89289,
+    2.85886
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1399.0,
+    3166.0,
+    57.0
+   ],
+   "angles": [
+    355.899,
+    1.89289,
+    2.85886
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1365.0,
+    3162.0,
+    90.0
+   ],
+   "angles": [
+    359.098,
+    116.437,
+    -4.91667
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1242.0,
+    2865.0,
+    46.0
+   ],
+   "angles": [
+    359.969,
+    1.8917,
+    -0.0166561
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1281.0,
+    2868.0,
+    46.0
+   ],
+   "angles": [
+    359.554,
+    1.86799,
+    -0.389576
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1254.0,
+    2888.0,
+    81.0
+   ],
+   "angles": [
+    0.0280512,
+    116.437,
+    -0.0213293
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1288.0,
+    2951.0,
+    46.0
+   ],
+   "angles": [
+    0.0,
+    271.892,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1291.0,
+    2912.0,
+    46.0
+   ],
+   "angles": [
+    0.0338819,
+    271.868,
+    0.0527254
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1237.0,
+    2948.0,
+    46.0
+   ],
+   "angles": [
+    0.0338602,
+    271.892,
+    0.0527394
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1240.0,
+    2909.0,
+    46.0
+   ],
+   "angles": [
+    359.983,
+    271.868,
+    0.0310614
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1237.0,
+    2943.0,
+    81.0
+   ],
+   "angles": [
+    359.983,
+    181.468,
+    0.0310614
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak8",
+   "origin": [
+    1288.0,
+    2914.0,
+    81.0
+   ],
+   "angles": [
+    0.0300538,
+    275.939,
+    0.0549975
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_shortsection",
+   "origin": [
+    1271.0,
+    2412.0,
+    223.0
+   ],
+   "angles": [
+    0.0,
+    61.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_left",
+   "origin": [
+    1242.0,
+    2361.0,
+    223.0
+   ],
+   "angles": [
+    0.0,
+    57.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_right",
+   "origin": [
+    1297.0,
+    2463.0,
+    223.0
+   ],
+   "angles": [
+    0.0,
+    61.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_shortsection",
+   "origin": [
+    1514.0,
+    2244.0,
+    223.0
+   ],
+   "angles": [
+    0.0,
+    61.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_left",
+   "origin": [
+    1485.0,
+    2193.0,
+    223.0
+   ],
+   "angles": [
+    0.0,
+    57.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_right",
+   "origin": [
+    1540.0,
+    2295.0,
+    223.0
+   ],
+   "angles": [
+    0.0,
+    61.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_shortsection",
+   "origin": [
+    1623.0,
+    1176.0,
+    215.0
+   ],
+   "angles": [
+    0.0,
+    18.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_left",
+   "origin": [
+    1567.0,
+    1157.0,
+    215.0
+   ],
+   "angles": [
+    0.0,
+    16.6,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_right",
+   "origin": [
+    1817.0,
+    1246.0,
+    215.0
+   ],
+   "angles": [
+    0.0,
+    21.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_shortsection",
+   "origin": [
+    1763.0,
+    1225.0,
+    215.0
+   ],
+   "angles": [
+    0.0,
+    19.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_shortsection",
+   "origin": [
+    1692.0,
+    1199.0,
+    215.0
+   ],
+   "angles": [
+    0.0,
+    18.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_shortsection",
+   "origin": [
+    1098.0,
+    1152.0,
+    198.0
+   ],
+   "angles": [
+    0.0,
+    90.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_left",
+   "origin": [
+    1097.0,
+    1097.0,
+    197.0
+   ],
+   "angles": [
+    0.0,
+    86.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_right",
+   "origin": [
+    1135.0,
+    1207.0,
+    197.0
+   ],
+   "angles": [
+    0.0,
+    0.300001,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_cornersection",
+   "origin": [
+    1106.0,
+    1194.0,
+    197.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_left",
+   "origin": [
+    2209.0,
+    1246.0,
+    255.0
+   ],
+   "angles": [
+    0.0,
+    91.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_right",
+   "origin": [
+    2245.0,
+    1288.0,
+    255.0
+   ],
+   "angles": [
+    0.0,
+    0.300001,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_cornersection",
+   "origin": [
+    2217.0,
+    1275.0,
+    255.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1083.0,
+    1572.0,
+    156.0
+   ],
+   "angles": [
+    0.0,
+    270.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak8",
+   "origin": [
+    1074.0,
+    1575.0,
+    191.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_shortsection",
+   "origin": [
+    1632.0,
+    949.0,
+    216.0
+   ],
+   "angles": [
+    0.0,
+    198.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_left",
+   "origin": [
+    1684.0,
+    965.0,
+    215.0
+   ],
+   "angles": [
+    0.0,
+    194.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_right",
+   "origin": [
+    1570.0,
+    966.0,
+    215.0
+   ],
+   "angles": [
+    0.0,
+    108.3,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_cornersection",
+   "origin": [
+    1589.0,
+    944.0,
+    215.0
+   ],
+   "angles": [
+    0.0,
+    198.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_left",
+   "origin": [
+    1962.0,
+    1216.0,
+    256.0
+   ],
+   "angles": [
+    0.0,
+    91.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_right",
+   "origin": [
+    1998.0,
+    1258.0,
+    256.0
+   ],
+   "angles": [
+    0.0,
+    0.300001,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_cornersection",
+   "origin": [
+    1970.0,
+    1245.0,
+    256.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_left",
+   "origin": [
+    1829.0,
+    781.0,
+    215.0
+   ],
+   "angles": [
+    0.0,
+    101.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_right",
+   "origin": [
+    1857.0,
+    828.0,
+    215.0
+   ],
+   "angles": [
+    0.0,
+    10.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_cornersection",
+   "origin": [
+    1832.0,
+    811.0,
+    215.0
+   ],
+   "angles": [
+    0.0,
+    99.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_shortsection",
+   "origin": [
+    1394.0,
+    779.0,
+    197.0
+   ],
+   "angles": [
+    0.0,
+    90.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_left",
+   "origin": [
+    1394.0,
+    721.0,
+    197.0
+   ],
+   "angles": [
+    0.0,
+    86.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_desert_endsection_right",
+   "origin": [
+    1392.0,
+    837.0,
+    197.0
+   ],
+   "angles": [
+    0.0,
+    90.6,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2321.0,
+    2557.0,
+    69.0
+   ],
+   "angles": [
+    359.865,
+    299.616,
+    -1.79899
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2302.0,
+    2589.0,
+    68.0
+   ],
+   "angles": [
+    358.884,
+    299.647,
+    -1.78939
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2283.0,
+    2622.0,
+    68.0
+   ],
+   "angles": [
+    0.0,
+    299.603,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2280.0,
+    2616.0,
+    103.0
+   ],
+   "angles": [
+    359.806,
+    176.572,
+    -0.436543
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak8",
+   "origin": [
+    2317.0,
+    2555.0,
+    104.0
+   ],
+   "angles": [
+    1.32362,
+    287.221,
+    -0.533336
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2466.0,
+    2312.0,
+    67.0
+   ],
+   "angles": [
+    1.87533,
+    305.867,
+    -0.876143
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak8",
+   "origin": [
+    2464.0,
+    2309.0,
+    101.0
+   ],
+   "angles": [
+    1.92844,
+    293.491,
+    -1.37426
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    1059.0,
+    3086.0,
+    58.0
+   ],
+   "angles": [
+    358.418,
+    296.887,
+    -0.277017
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    235.0,
+    383.0,
+    -23.0
+   ],
+   "angles": [
+    359.969,
+    1.8917,
+    -0.0166561
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    274.0,
+    386.0,
+    -23.0
+   ],
+   "angles": [
+    359.554,
+    1.86799,
+    -0.389576
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    247.0,
+    406.0,
+    12.0
+   ],
+   "angles": [
+    0.0280512,
+    116.437,
+    -0.0213293
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    281.0,
+    469.0,
+    -23.0
+   ],
+   "angles": [
+    0.0,
+    271.892,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    284.0,
+    430.0,
+    -23.0
+   ],
+   "angles": [
+    0.0338819,
+    271.868,
+    0.0527254
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    230.0,
+    466.0,
+    -23.0
+   ],
+   "angles": [
+    0.0338602,
+    271.892,
+    0.0527394
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    233.0,
+    427.0,
+    -23.0
+   ],
+   "angles": [
+    359.983,
+    271.868,
+    0.0310614
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    230.0,
+    461.0,
+    12.0
+   ],
+   "angles": [
+    359.983,
+    181.468,
+    0.0310614
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak8",
+   "origin": [
+    281.0,
+    432.0,
+    12.0
+   ],
+   "angles": [
+    0.0300538,
+    275.939,
+    0.0549975
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_silver",
+   "origin": [
+    2670.0,
+    1180.0,
+    182.0
+   ],
+   "angles": [
+    0.0,
+    296.896,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    1481.0,
+    983.0,
+    59.0
+   ],
+   "angles": [
+    10.5093,
+    132.694,
+    -4.40136
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    1920.0,
+    1257.0,
+    72.0
+   ],
+   "angles": [
+    3.07288,
+    43.9188,
+    -9.98501
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    1932.0,
+    1241.0,
+    76.0
+   ],
+   "angles": [
+    350.039,
+    314.631,
+    -3.14972
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    1414.0,
+    2464.0,
+    224.0
+   ],
+   "angles": [
+    1.00179e-05,
+    314.631,
+    -4.1798e-12
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    1257.0,
+    2517.0,
+    67.0
+   ],
+   "angles": [
+    357.709,
+    308.32,
+    3.34143
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2752.0,
+    1399.0,
+    60.0
+   ],
+   "angles": [
+    2.18807,
+    180.462,
+    1.18102
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2799.0,
+    1226.0,
+    66.0
+   ],
+   "angles": [
+    4.24144,
+    270.464,
+    1.76291
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2802.0,
+    1264.0,
+    67.0
+   ],
+   "angles": [
+    0.629907,
+    270.423,
+    0.641775
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2796.0,
+    1417.0,
+    60.0
+   ],
+   "angles": [
+    4.93749,
+    99.5282,
+    -1.13158
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak8",
+   "origin": [
+    2796.0,
+    1422.0,
+    94.0
+   ],
+   "angles": [
+    355.145,
+    275.842,
+    1.44631
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2752.0,
+    1399.0,
+    95.0
+   ],
+   "angles": [
+    2.18807,
+    180.462,
+    1.18102
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2799.0,
+    1223.0,
+    101.0
+   ],
+   "angles": [
+    4.24144,
+    270.464,
+    1.76291
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2125.0,
+    2646.0,
+    69.0
+   ],
+   "angles": [
+    0.00735515,
+    31.613,
+    -1.20637
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2093.0,
+    2626.0,
+    69.0
+   ],
+   "angles": [
+    0.00757261,
+    31.6233,
+    -1.20637
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak8",
+   "origin": [
+    2124.0,
+    2649.0,
+    103.0
+   ],
+   "angles": [
+    358.83,
+    292.408,
+    0.292965
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2748.0,
+    1455.0,
+    55.0
+   ],
+   "angles": [
+    2.18807,
+    97.262,
+    1.18102
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    2748.0,
+    1455.0,
+    90.0
+   ],
+   "angles": [
+    2.18807,
+    97.262,
+    1.18102
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak8",
+   "origin": [
+    2757.0,
+    1459.0,
+    124.0
+   ],
+   "angles": [
+    0.0279805,
+    7.69248,
+    -2.57765
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_silver",
+   "origin": [
+    2065.0,
+    2112.0,
+    63.0
+   ],
+   "angles": [
+    8.92302,
+    357.395,
+    -2.96474
+   ],
+   "scale": 1.0,
+   "script": false
+  }
+ ]
+}

@@ -1,0 +1,248 @@
+{
+ "format": "cod2-demo3d-world/1",
+ "map": "wawa_3daim",
+ "source": "maps/mp/wawa_3daim.d3dbsp",
+ "archive": "zpam_maps_v7.iwd",
+ "file": "world.bin",
+ "byteLength": 36112,
+ "vertexCount": 754,
+ "triangleCount": 496,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 9048,
+   "type": "float32",
+   "itemSize": 3
+  },
+  "normal": {
+   "offset": 9048,
+   "length": 3016,
+   "type": "int8",
+   "itemSize": 4
+  },
+  "tangent": {
+   "offset": 12064,
+   "length": 3016,
+   "type": "int8",
+   "itemSize": 4
+  },
+  "binormal": {
+   "offset": 15080,
+   "length": 3016,
+   "type": "int8",
+   "itemSize": 4
+  },
+  "color": {
+   "offset": 18096,
+   "length": 3016,
+   "type": "uint8",
+   "itemSize": 4
+  },
+  "uv": {
+   "offset": 21112,
+   "length": 6032,
+   "type": "float32",
+   "itemSize": 2
+  },
+  "uv2": {
+   "offset": 27144,
+   "length": 3016,
+   "type": "uint16",
+   "itemSize": 2
+  },
+  "index": {
+   "offset": 30160,
+   "length": 5952,
+   "type": "uint32",
+   "itemSize": 1
+  }
+ },
+ "groups": [
+  {
+   "material": "dawnville2_concrete_floor01",
+   "technique": "phong_replace_detail",
+   "start": 0,
+   "count": 237,
+   "lightmap": -1,
+   "texture": "_textures/concrete_floor01.webp",
+   "textureAlpha": false,
+   "normalMap": null,
+   "alphaTest": null,
+   "blend": null,
+   "vertexAlpha": false,
+   "decal": false,
+   "sky": false,
+   "brushModel": false,
+   "doubleSided": false,
+   "surface": 5242880,
+   "contents": 1,
+   "detailMap": "_textures/concrete_floor_01.webp",
+   "detailScale": [
+    8.0,
+    8.0
+   ]
+  },
+  {
+   "material": "mtl_caen_wall_brickred_02",
+   "technique": "phong_replace_detail",
+   "start": 237,
+   "count": 237,
+   "lightmap": -1,
+   "texture": "_textures/caen_wall_brickred_02.webp",
+   "textureAlpha": false,
+   "normalMap": "_textures/_caen_wall_brickred_02_normal-gggr.webp",
+   "alphaTest": null,
+   "blend": null,
+   "vertexAlpha": false,
+   "decal": false,
+   "sky": false,
+   "brushModel": false,
+   "doubleSided": false,
+   "surface": 2097152,
+   "contents": 1,
+   "detailMap": "_textures/brick_01.webp",
+   "detailScale": [
+    2.0,
+    2.0
+   ]
+  },
+  {
+   "material": "mtl_caen_wall_wood_01",
+   "technique": "phong_replace_detail",
+   "start": 474,
+   "count": 144,
+   "lightmap": -1,
+   "texture": "_textures/caen_wall_woodplanks_01.webp",
+   "textureAlpha": false,
+   "normalMap": null,
+   "alphaTest": null,
+   "blend": null,
+   "vertexAlpha": false,
+   "decal": false,
+   "sky": false,
+   "brushModel": false,
+   "doubleSided": false,
+   "surface": 22020096,
+   "contents": 1,
+   "detailMap": "_textures/wood_v_01.webp",
+   "detailScale": [
+    16.0,
+    16.0
+   ]
+  },
+  {
+   "material": "test_sky",
+   "technique": "sky",
+   "start": 618,
+   "count": 474,
+   "lightmap": -1,
+   "texture": null,
+   "textureAlpha": false,
+   "normalMap": null,
+   "alphaTest": null,
+   "blend": null,
+   "vertexAlpha": false,
+   "decal": false,
+   "sky": true,
+   "brushModel": false,
+   "doubleSided": false,
+   "surface": 4,
+   "contents": 2048,
+   "skyImage": "mpcarentan_ft"
+  },
+  {
+   "material": "v_wood_floor1",
+   "technique": "phong_replace_spec_detail",
+   "start": 1092,
+   "count": 30,
+   "lightmap": -1,
+   "texture": "_textures/v_wood_floor1.webp",
+   "textureAlpha": false,
+   "normalMap": "_textures/_v_wood_floor1_n-gggr__v_wood_floor1_s-r-25g-25b-25l73.webp",
+   "alphaTest": null,
+   "blend": null,
+   "vertexAlpha": false,
+   "decal": false,
+   "sky": false,
+   "brushModel": false,
+   "doubleSided": false,
+   "surface": 22020096,
+   "contents": 1,
+   "specularMap": "_textures/_v_wood_floor1_s-r-25g-25b-25l73.webp",
+   "detailMap": "_textures/wood_h_01.webp",
+   "detailScale": [
+    16.0,
+    16.0
+   ]
+  },
+  {
+   "material": "v_wood_floor2",
+   "technique": "phong_replace_spec_detail",
+   "start": 1122,
+   "count": 366,
+   "lightmap": -1,
+   "texture": "_textures/v_wood_floor2.webp",
+   "textureAlpha": false,
+   "normalMap": "_textures/_v_wood_floor2_n-gggr__v_wood_floor2s-r29g29b29l-73.webp",
+   "alphaTest": null,
+   "blend": null,
+   "vertexAlpha": false,
+   "decal": false,
+   "sky": false,
+   "brushModel": false,
+   "doubleSided": false,
+   "surface": 22020096,
+   "contents": 1,
+   "specularMap": "_textures/_v_wood_floor2s-r29g29b29l-73.webp",
+   "detailMap": "_textures/wood_h_01.webp",
+   "detailScale": [
+    16.0,
+    16.0
+   ]
+  }
+ ],
+ "lightmaps": [],
+ "lightmapFormat": 2,
+ "sunMasks": [],
+ "lightmapCoefs": [],
+ "bounds": {
+  "mins": [
+   0.0,
+   -1536.0,
+   -80.0
+  ],
+  "maxs": [
+   1536.0,
+   0.0,
+   1632.0
+  ]
+ },
+ "playRect": [
+  0,
+  -1536,
+  1536,
+  0
+ ],
+ "sky": {
+  "file": "sky.webp",
+  "image": "mpcarentan_ft",
+  "faces": 6,
+  "size": 256
+ },
+ "sun": {
+  "direction": null,
+  "color": null,
+  "light": 1.0,
+  "ambient": 0.0,
+  "diffuseFraction": 0.5
+ },
+ "lightGrid": null,
+ "collision": {
+  "file": "collision.bin",
+  "brushes": 22,
+  "planes": 8,
+  "verts": 0,
+  "tris": 0
+ },
+ "skippedMaterials": {}
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Content-Security-Policy: only the site's own files. The sha256 is the hash of the import map below - it
+       must be recomputed when the import map changes (AUDIT.md "Final full review", R3); blob: = the parser and
+       GIF workers. The CDN alternative of the import map would also need that host in script-src. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mne3CI18ZSns61UE2acmcxBJb8wPiixDKJMLGynStww='; worker-src 'self' blob:; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>CoD2 Demo Viewer</title>
+  <meta name="description" content="Call of Duty 2 demo (.dm_1) replay in 2D and 3D - parsed locally in the browser.">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <!-- (Inter and JetBrains Mono come from the site itself: assets/fonts, css/styles.css @font-face) -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- three.js r170 from the project's own copy (vendor/three, see vendor/README.md): works offline
+       and on GitHub Pages, and 'three' and its addons always come from the same place. The CDN
+       alternative (the same version, byte-identical files):
+         "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+         "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three/build/three.module.js",
+      "three/addons/": "./vendor/three/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="top-l">
+      <!-- the logo after favicon.ico: a faceted gold star (lit from the upper left) with a "2" -->
+      <svg class="brand-mark" viewBox="0 0 256 256" aria-hidden="true"><defs><linearGradient id="bm-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff4b8"/><stop offset=".55" stop-color="#ecc75a"/><stop offset="1" stop-color="#a87418"/></linearGradient></defs><path d="M118 12L146.2 85.2L224.5 89.4L163.7 138.8L183.8 214.6L118 172L52.2 214.6L72.3 138.8L11.5 89.4L89.8 85.2Z" fill="none" stroke="#3a2a0c" stroke-width="10" stroke-linejoin="round"/><path d="M118 124L118 12L89.8 85.2Z" fill="#fff1a6"/><path d="M118 124L118 12L146.2 85.2Z" fill="#dcc679"/><path d="M118 124L224.5 89.4L146.2 85.2Z" fill="#d2ba6d"/><path d="M118 124L224.5 89.4L163.7 138.8Z" fill="#926b19"/><path d="M118 124L183.8 214.6L163.7 138.8Z" fill="#977120"/><path d="M118 124L183.8 214.6L118 172Z" fill="#8c6412"/><path d="M118 124L52.2 214.6L118 172Z" fill="#af8f3f"/><path d="M118 124L52.2 214.6L72.3 138.8Z" fill="#b99b4b"/><path d="M118 124L11.5 89.4L72.3 138.8Z" fill="#f9ea9f"/><path d="M118 124L11.5 89.4L89.8 85.2Z" fill="#f4e498"/><text x="200" y="250" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="176" fill="url(#bm-gold)" stroke="#2a1d06" stroke-width="18" stroke-linejoin="round" paint-order="stroke">2</text></svg>
+      <span class="brand">CoD2 Demo Viewer</span><span id="file-name" class="crumb"></span></div>
+    <div class="seg view-toggle" id="view-toggle" hidden>
+      <button data-view="2d" class="active" title="Top-down map (V toggles)">2D</button>
+      <button data-view="3d" title="3D map (V toggles)">3D</button>
+    </div>
+    <div class="top-r">
+      <button class="ib" id="details-btn" hidden title="Match details: scoreboard, rounds, chat and events" aria-label="Match details"></button>
+      <button class="ib" id="export-btn" hidden title="Download the parsed demo data as JSON" aria-label="Export JSON"></button>
+      <a class="ib gh-link" href="https://github.com/TiPSYSPiT/cod2-demo" target="_blank" rel="noopener noreferrer" title="View source on GitHub" aria-label="View source on GitHub">
+        <svg viewBox="0 0 16 16" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <label class="tb pri" title="Open a .dm_1 demo">
+        <input type="file" id="file-input" accept=".dm_1,.DM_1" hidden><span id="open-icon"></span>Open demo
+      </label>
+    </div>
+  </header>
+
+  <main id="app">
+    <section id="dropzone" class="dropzone">
+      <div class="dropzone-inner">
+        <div class="drop-icon" id="drop-icon" aria-hidden="true"></div>
+        <h1>Drop a CoD2 demo here</h1>
+        <p>or <label class="link">choose a file<input type="file" id="file-input-2" accept=".dm_1,.DM_1" hidden></label> (<code>.dm_1</code>, CoD2 1.0 – 1.3 and CoD2x 1.4, stock or zPAM)</p>
+        <p class="muted">The file is read locally in your browser. Nothing is uploaded.</p>
+      </div>
+    </section>
+
+    <section id="progress" class="progress" hidden>
+      <div class="progress-label" id="progress-label">Parsing…</div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </section>
+
+    <section id="error" class="banner banner-error" hidden></section>
+
+    <section id="viewer" hidden>
+      <!-- the stage: the active view full-bleed, the panels float over it -->
+      <div class="stage" id="viewport">
+        <div class="score glass" id="overview"></div>
+        <nav class="rail glass" id="rail" aria-label="View options"></nav>
+        <div class="toasts" id="warnings"></div>
+        <div class="view-error banner banner-warn" id="view-error" hidden></div>
+        <aside class="drawer glass" id="drawer">
+          <div class="dhead" id="drawer-head"></div>
+          <div class="sec teams-sec" id="sec-teams">
+            <button class="sec-h" type="button" aria-expanded="true">Teams<span class="grow"></span></button>
+            <div class="sec-body" id="teams"></div>
+          </div>
+          <div class="sec feed-sec" id="sec-feed">
+            <button class="sec-h" type="button" aria-expanded="true">Kill feed &amp; bomb<span class="grow"></span></button>
+            <div class="sec-body map-events" id="feed"></div>
+          </div>
+        </aside>
+        <button class="ib glass drawer-open" id="drawer-open" type="button" title="Show the teams and kill feed panel" aria-label="Show panel" hidden></button>
+        <div class="bar glass" id="controls"></div>
+
+        <div class="details" id="details" hidden>
+          <div class="details-head">
+            <nav class="tabs seg" id="tabs" role="tablist">
+              <button role="tab" data-tab="scoreboard" class="active">Scoreboard</button>
+              <button role="tab" data-tab="rounds">Round by Round</button>
+              <button role="tab" data-tab="chat">Chat</button>
+              <button role="tab" data-tab="events">Events</button>
+            </nav>
+            <button class="ib details-close" id="details-close" title="Close (Esc)" aria-label="Close match details"></button>
+          </div>
+          <div class="details-body">
+            <section class="tab-panel active" id="tab-scoreboard"></section>
+            <section class="tab-panel" id="tab-rounds"></section>
+            <section class="tab-panel" id="tab-chat"></section>
+            <section class="tab-panel" id="tab-events"></section>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- demo parser + analysis (classic scripts, DOM-free, also run inside the worker) -->
+  <script src="js/c2/core/c2.js"></script>
+  <script src="js/c2/parser/tables.js"></script>
+  <script src="js/c2/parser/huffman.js"></script>
+  <script src="js/c2/parser/msg.js"></script>
+  <script src="js/c2/parser/delta.js"></script>
+  <script src="js/c2/parser/demo.js"></script>
+  <script src="js/c2/common/text.js"></script>
+  <script src="js/c2/common/constants.js"></script>
+  <script src="js/c2/common/servercmd.js"></script>
+  <script src="assets/maps/maps.js"></script>
+  <script src="assets/maps/backgrounds.js"></script>
+  <script src="js/c2/common/names.js"></script>
+  <script src="js/c2/common/exportName.js"></script>
+  <script src="js/c2/analysis/weapons.js"></script>
+  <script src="assets/killfeed/icons.js"></script>
+  <script src="js/c2/analysis/collect.js"></script>
+  <script src="js/c2/analysis/teams.js"></script>
+  <script src="js/c2/analysis/rounds.js"></script>
+  <script src="js/c2/analysis/events.js"></script>
+  <script src="js/c2/analysis/build.js"></script>
+  <script src="js/c2/analysis/worker.js"></script>
+  <!-- UI building blocks (tables, 2D renderer, heatmap, video export) -->
+  <script src="js/c2/ui/dom.js"></script>
+  <script src="js/c2/ui/overview.js"></script>
+  <script src="js/c2/ui/scoreboard.js"></script>
+  <script src="js/c2/ui/rounds.js"></script>
+  <script src="js/c2/ui/chat.js"></script>
+  <script src="js/c2/ui/events.js"></script>
+  <script src="js/c2/ui/map/config.js"></script>
+  <script src="js/c2/ui/map/renderer.js"></script>
+  <script src="js/c2/ui/map/heatmap.js"></script>
+  <script src="js/c2/ui/map/heatPanel.js"></script>
+  <script src="js/c2/ui/map/playback.js"></script>
+  <script src="js/c2/ui/map/statsPopup.js"></script>
+  <script src="js/c2/ui/map/mp4mux.js"></script>
+  <script src="js/c2/ui/map/gifenc.js"></script>
+  <script src="js/c2/ui/map/exportVideo.js"></script>
+  <!-- the app: ES modules (shared match model + replay state, 2D and 3D views) -->
+  <script type="module" src="js/app/main.js"></script>
+</body>
+</html>

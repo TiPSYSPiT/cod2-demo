@@ -1,0 +1,11 @@
+# local test demos (not part of the site)
+/demos/
+# Python
+__pycache__/
+*.pyc
+# export scratch output
+/tools/export/_work/
+# audit reports (rewritten by every run of tools/audit/)
+/tools/audit/out/
+# local dev config
+/.claude/

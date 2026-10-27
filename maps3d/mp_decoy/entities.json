@@ -1,0 +1,7410 @@
+{
+ "format": "cod2-demo3d-entities/1",
+ "map": "mp_decoy",
+ "worldspawn": {
+  "sundiffusecolor": "0.15 0.21 .6",
+  "diffusefraction": "0.4",
+  "sundirection": "-60 245 0",
+  "_color": "0 0 0",
+  "ambient": ".0",
+  "suncolor": ".5 .52 .55",
+  "sunlight": ".47",
+  "northyaw": "180",
+  "classname": "worldspawn"
+ },
+ "spawns": [
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    9816.0,
+    -13522.0,
+    -585.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    9820.0,
+    -13526.0,
+    -593.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_global_intermission",
+   "origin": [
+    5762.0,
+    -13836.0,
+    -259.0
+   ],
+   "angles": [
+    0.0,
+    18.4,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    8872.0,
+    -14429.0,
+    -679.0
+   ],
+   "angles": [
+    0.0,
+    1.00179e-05,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    8868.0,
+    -14425.0,
+    -687.0
+   ],
+   "angles": [
+    0.0,
+    1.00179e-05,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    9741.0,
+    -14228.0,
+    -582.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    9741.0,
+    -14234.0,
+    -590.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    9484.0,
+    -13312.0,
+    -491.0
+   ],
+   "angles": [
+    0.0,
+    272.9,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    9487.0,
+    -13307.0,
+    -494.0
+   ],
+   "angles": [
+    0.0,
+    272.9,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    9396.0,
+    -12687.0,
+    -481.0
+   ],
+   "angles": [
+    0.0,
+    259.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    9392.0,
+    -12687.0,
+    -489.0
+   ],
+   "angles": [
+    0.0,
+    263.8,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    8336.0,
+    -14456.0,
+    -652.0
+   ],
+   "angles": [
+    0.0,
+    25.5,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    8330.0,
+    -14454.0,
+    -660.0
+   ],
+   "angles": [
+    0.0,
+    25.5,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    7848.0,
+    -14145.0,
+    -593.0
+   ],
+   "angles": [
+    0.0,
+    271.3,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    7852.0,
+    -14140.0,
+    -601.0
+   ],
+   "angles": [
+    0.0,
+    271.3,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    7674.0,
+    -13707.0,
+    -583.0
+   ],
+   "angles": [
+    0.0,
+    43.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    7668.0,
+    -13708.0,
+    -591.0
+   ],
+   "angles": [
+    0.0,
+    43.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    7715.0,
+    -14053.0,
+    -519.0
+   ],
+   "angles": [
+    0.0,
+    43.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    7709.0,
+    -14054.0,
+    -527.0
+   ],
+   "angles": [
+    0.0,
+    43.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    7998.0,
+    -13215.0,
+    -576.0
+   ],
+   "angles": [
+    0.0,
+    195.1,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    8004.0,
+    -13217.0,
+    -584.0
+   ],
+   "angles": [
+    0.0,
+    195.1,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    7974.0,
+    -12118.0,
+    -469.0
+   ],
+   "angles": [
+    0.0,
+    313.1,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    7973.0,
+    -12112.0,
+    -477.0
+   ],
+   "angles": [
+    0.0,
+    313.1,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    8475.0,
+    -13153.0,
+    -500.0
+   ],
+   "angles": [
+    0.0,
+    13.1,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    8469.0,
+    -13151.0,
+    -508.0
+   ],
+   "angles": [
+    0.0,
+    13.1,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    8426.0,
+    -13004.0,
+    -653.0
+   ],
+   "angles": [
+    0.0,
+    312.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    8425.0,
+    -12997.0,
+    -661.0
+   ],
+   "angles": [
+    0.0,
+    312.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    6998.0,
+    -12489.0,
+    -471.0
+   ],
+   "angles": [
+    0.0,
+    327.1,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    6995.0,
+    -12482.0,
+    -479.0
+   ],
+   "angles": [
+    0.0,
+    327.1,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    6201.0,
+    -12858.0,
+    -465.0
+   ],
+   "angles": [
+    0.0,
+    246.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    6207.0,
+    -12853.0,
+    -473.0
+   ],
+   "angles": [
+    0.0,
+    246.6,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    6910.0,
+    -13490.0,
+    -565.0
+   ],
+   "angles": [
+    0.0,
+    5.2999,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    6903.0,
+    -13487.0,
+    -573.0
+   ],
+   "angles": [
+    0.0,
+    5.2999,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    7091.0,
+    -14381.0,
+    -533.0
+   ],
+   "angles": [
+    0.0,
+    61.9999,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    7085.0,
+    -14385.0,
+    -541.0
+   ],
+   "angles": [
+    0.0,
+    61.9999,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    5952.0,
+    -13534.0,
+    -509.0
+   ],
+   "angles": [
+    0.0,
+    182.3,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    5959.0,
+    -13538.0,
+    -517.0
+   ],
+   "angles": [
+    0.0,
+    182.3,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    5550.0,
+    -13891.0,
+    -557.0
+   ],
+   "angles": [
+    0.0,
+    45.3997,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    5542.0,
+    -13892.0,
+    -565.0
+   ],
+   "angles": [
+    0.0,
+    45.3997,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    5998.0,
+    -13961.0,
+    -533.0
+   ],
+   "angles": [
+    0.0,
+    79.2997,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    5992.0,
+    -13966.0,
+    -541.0
+   ],
+   "angles": [
+    0.0,
+    79.2997,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    6574.0,
+    -13776.0,
+    -539.0
+   ],
+   "angles": [
+    0.0,
+    248.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    6580.0,
+    -13772.0,
+    -547.0
+   ],
+   "angles": [
+    0.0,
+    248.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    9228.0,
+    -14014.0,
+    -515.0
+   ],
+   "angles": [
+    0.0,
+    279.5,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    9232.0,
+    -14008.0,
+    -523.0
+   ],
+   "angles": [
+    0.0,
+    279.5,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_dm_spawn",
+   "origin": [
+    9119.0,
+    -12398.0,
+    -481.0
+   ],
+   "angles": [
+    0.0,
+    214.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_tdm_spawn",
+   "origin": [
+    9126.0,
+    -12399.0,
+    -489.0
+   ],
+   "angles": [
+    0.0,
+    214.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    5545.0,
+    -13884.0,
+    -567.0
+   ],
+   "angles": [
+    0.0,
+    45.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    5953.0,
+    -13533.0,
+    -476.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    9821.0,
+    -13532.0,
+    -591.0
+   ],
+   "angles": [
+    0.0,
+    171.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    6102.0,
+    -13714.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    5978.0,
+    -13804.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    6036.0,
+    -13843.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    6066.0,
+    -13917.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    6125.0,
+    -13662.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    6135.0,
+    -13785.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    6106.0,
+    -13827.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    6135.0,
+    -13885.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9869.0,
+    -13943.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    145.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9800.0,
+    -14035.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    145.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9808.0,
+    -14164.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9824.0,
+    -14232.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9878.0,
+    -14014.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    145.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9876.0,
+    -14092.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    145.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9881.0,
+    -14193.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9897.0,
+    -14284.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9940.0,
+    -14160.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9956.0,
+    -14244.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    10004.0,
+    -14200.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    10020.0,
+    -14284.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9832.0,
+    -14312.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9900.0,
+    -14368.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9964.0,
+    -14324.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_defender",
+   "origin": [
+    9800.0,
+    -14108.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    6058.0,
+    -13751.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    5822.0,
+    -13811.0,
+    -501.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    5841.0,
+    -13859.0,
+    -501.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    5995.0,
+    -13897.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    6172.0,
+    -13733.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    6193.0,
+    -13815.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    6219.0,
+    -13861.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_sd_spawn_attacker",
+   "origin": [
+    6193.0,
+    -13921.0,
+    -548.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    5997.0,
+    -13965.0,
+    -551.0
+   ],
+   "angles": [
+    0.0,
+    89.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    6578.0,
+    -13777.0,
+    -528.0
+   ],
+   "angles": [
+    0.0,
+    253.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    6208.0,
+    -12857.0,
+    -459.0
+   ],
+   "angles": [
+    0.0,
+    247.8,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    6910.0,
+    -13492.0,
+    -562.0
+   ],
+   "angles": [
+    0.0,
+    13.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    7001.0,
+    -12485.0,
+    -468.0
+   ],
+   "angles": [
+    0.0,
+    328.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    7074.0,
+    -14402.0,
+    -534.0
+   ],
+   "angles": [
+    0.0,
+    45.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    7676.0,
+    -13703.0,
+    -573.0
+   ],
+   "angles": [
+    0.0,
+    45.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    7994.0,
+    -13217.0,
+    -582.0
+   ],
+   "angles": [
+    0.0,
+    190.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    7978.0,
+    -12110.0,
+    -475.0
+   ],
+   "angles": [
+    0.0,
+    315.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    7244.0,
+    -13070.0,
+    -549.0
+   ],
+   "angles": [
+    0.0,
+    25.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    6856.0,
+    -12972.0,
+    -472.0
+   ],
+   "angles": [
+    0.0,
+    200.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_allied",
+   "origin": [
+    7854.0,
+    -14142.0,
+    -585.0
+   ],
+   "angles": [
+    0.0,
+    275.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    9231.0,
+    -14013.0,
+    -510.0
+   ],
+   "angles": [
+    0.0,
+    275.0,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    8870.0,
+    -14435.0,
+    -683.0
+   ],
+   "angles": [
+    0.0,
+    356.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    8332.0,
+    -14457.0,
+    -649.0
+   ],
+   "angles": [
+    0.0,
+    31.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    7708.0,
+    -14052.0,
+    -517.0
+   ],
+   "angles": [
+    0.0,
+    46.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    8143.0,
+    -12969.0,
+    -574.0
+   ],
+   "angles": [
+    0.0,
+    171.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    8477.0,
+    -13152.0,
+    -496.0
+   ],
+   "angles": [
+    0.0,
+    16.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    8381.0,
+    -13298.0,
+    -649.0
+   ],
+   "angles": [
+    0.0,
+    41.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    9123.0,
+    -12395.0,
+    -488.0
+   ],
+   "angles": [
+    0.0,
+    216.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    9402.0,
+    -12688.0,
+    -482.0
+   ],
+   "angles": [
+    0.0,
+    265.1,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    9736.0,
+    -14222.0,
+    -588.0
+   ],
+   "angles": [
+    0.0,
+    141.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    7964.0,
+    -14037.0,
+    -578.0
+   ],
+   "angles": [
+    0.0,
+    311.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    8384.0,
+    -12357.0,
+    -510.0
+   ],
+   "angles": [
+    0.0,
+    176.2,
+    0.0
+   ]
+  },
+  {
+   "classname": "mp_ctf_spawn_axis",
+   "origin": [
+    8305.0,
+    -13434.0,
+    -471.0
+   ],
+   "angles": [
+    0.0,
+    21.2,
+    0.0
+   ]
+  }
+ ],
+ "objectives": [
+  {
+   "classname": "trigger_use_touch",
+   "targetname": "bombzone",
+   "label": "A",
+   "origin": [
+    8397.0,
+    -12777.0,
+    -439.0
+   ],
+   "mins": [
+    8285.0,
+    -12889.0,
+    -487.0
+   ],
+   "maxs": [
+    8509.0,
+    -12665.0,
+    -391.0
+   ]
+  },
+  {
+   "classname": "trigger_use_touch",
+   "targetname": "bombzone",
+   "label": "B",
+   "origin": [
+    8599.0,
+    -14354.0,
+    -664.0
+   ],
+   "mins": [
+    8478.0,
+    -14474.0,
+    -712.0
+   ],
+   "maxs": [
+    8720.0,
+    -14234.0,
+    -616.0
+   ]
+  },
+  {
+   "classname": "trigger_use_touch",
+   "targetname": "bombtrigger",
+   "label": null,
+   "origin": [
+    -12000.0,
+    3616.0,
+    556.0
+   ],
+   "mins": [
+    -12040.0,
+    3576.0,
+    528.0
+   ],
+   "maxs": [
+    -11960.0,
+    3656.0,
+    584.0
+   ]
+  }
+ ],
+ "props": [
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    6497.0,
+    -13468.0,
+    -467.0
+   ],
+   "angles": [
+    0.0,
+    120.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    6485.0,
+    -13468.0,
+    -492.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    6513.0,
+    -13468.0,
+    -492.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/egypt_bunker_window_shutter",
+   "origin": [
+    8389.64,
+    -13037.1,
+    -614.0
+   ],
+   "angles": [
+    0.0,
+    135.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/egypt_bunker_window_shutter",
+   "origin": [
+    8317.52,
+    -13213.9,
+    -613.0
+   ],
+   "angles": [
+    0.0,
+    45.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tunisia_mountains",
+   "origin": [
+    2984.0,
+    -26960.0,
+    -448.0
+   ],
+   "angles": [
+    0.0,
+    2.50448e-06,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/tunisia_mountains",
+   "origin": [
+    22432.0,
+    -11376.0,
+    -808.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    6018.0,
+    -13727.0,
+    -555.0
+   ],
+   "angles": [
+    0.0,
+    52.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    5989.0,
+    -13749.0,
+    -555.0
+   ],
+   "angles": [
+    0.0,
+    52.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    6018.0,
+    -13756.0,
+    -557.0
+   ],
+   "angles": [
+    358.711,
+    51.0899,
+    2.05865
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    9592.0,
+    -13329.0,
+    -598.0
+   ],
+   "angles": [
+    359.641,
+    190.837,
+    -2.22921
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    9592.0,
+    -13335.0,
+    -573.0
+   ],
+   "angles": [
+    359.641,
+    190.837,
+    -2.22921
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    8656.0,
+    -12135.0,
+    -493.0
+   ],
+   "angles": [
+    353.079,
+    352.117,
+    3.75565
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    9811.0,
+    -12998.0,
+    -492.0
+   ],
+   "angles": [
+    3.62703,
+    284.454,
+    -3.31184
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    10074.0,
+    -14234.0,
+    -518.0
+   ],
+   "angles": [
+    356.713,
+    296.381,
+    -5.57592
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    9919.0,
+    -13975.0,
+    -499.0
+   ],
+   "angles": [
+    356.337,
+    294.678,
+    -16.0918
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    9651.0,
+    -12517.0,
+    -495.0
+   ],
+   "angles": [
+    1.26851,
+    275.005,
+    -1.11414
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    7691.0,
+    -14139.0,
+    -606.0
+   ],
+   "angles": [
+    359.949,
+    271.473,
+    1.99167
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    7742.0,
+    -14136.0,
+    -605.0
+   ],
+   "angles": [
+    359.949,
+    271.473,
+    1.99167
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    7797.0,
+    -14134.0,
+    -603.0
+   ],
+   "angles": [
+    359.949,
+    271.473,
+    1.99167
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    7770.0,
+    -14134.0,
+    -579.0
+   ],
+   "angles": [
+    359.949,
+    271.473,
+    1.99167
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8135.0,
+    -12476.0,
+    -508.0
+   ],
+   "angles": [
+    359.593,
+    259.235,
+    -4.94137
+   ],
+   "scale": 0.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    9195.0,
+    -12426.0,
+    -502.0
+   ],
+   "angles": [
+    358.175,
+    280.901,
+    -12.0231
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9181.0,
+    -12376.0,
+    -504.0
+   ],
+   "angles": [
+    355.729,
+    281.01,
+    -11.2822
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    9220.0,
+    -12526.0,
+    -503.0
+   ],
+   "angles": [
+    3.22952,
+    280.329,
+    -4.42663
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9206.0,
+    -12475.0,
+    -500.0
+   ],
+   "angles": [
+    358.094,
+    280.507,
+    -12.0095
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    9463.0,
+    -12984.0,
+    -507.0
+   ],
+   "angles": [
+    3.62696,
+    178.166,
+    -3.58109
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9509.0,
+    -12985.0,
+    -506.0
+   ],
+   "angles": [
+    357.001,
+    11.896,
+    -3.14872
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9410.0,
+    -12979.0,
+    -509.0
+   ],
+   "angles": [
+    359.224,
+    188.739,
+    -4.02824
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9225.0,
+    -12577.0,
+    -505.0
+   ],
+   "angles": [
+    0.273229,
+    280.467,
+    -1.1594
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_hedgehog",
+   "origin": [
+    9261.0,
+    -12412.0,
+    -508.0
+   ],
+   "angles": [
+    3.05274,
+    359.39,
+    -0.0215745
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    9562.0,
+    -12985.0,
+    -505.0
+   ],
+   "angles": [
+    2.03775,
+    180.083,
+    -2.47598
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9615.0,
+    -12983.0,
+    -506.0
+   ],
+   "angles": [
+    357.001,
+    175.796,
+    -3.14872
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    9649.0,
+    -13022.0,
+    -504.0
+   ],
+   "angles": [
+    359.629,
+    135.07,
+    -3.45319
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9689.0,
+    -13060.0,
+    -503.0
+   ],
+   "angles": [
+    357.001,
+    130.796,
+    -3.14872
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    9695.0,
+    -13112.0,
+    -506.0
+   ],
+   "angles": [
+    356.802,
+    99.223,
+    -5.16319
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9705.0,
+    -13166.0,
+    -508.0
+   ],
+   "angles": [
+    357.001,
+    94.896,
+    -3.14872
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    9486.0,
+    -12557.0,
+    -506.0
+   ],
+   "angles": [
+    358.81,
+    262.466,
+    -3.19918
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9480.0,
+    -12604.0,
+    -509.0
+   ],
+   "angles": [
+    5.02377,
+    262.701,
+    -1.14449
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    9502.0,
+    -12453.0,
+    -508.0
+   ],
+   "angles": [
+    358.81,
+    262.466,
+    -3.19918
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9494.0,
+    -12503.0,
+    -507.0
+   ],
+   "angles": [
+    5.02377,
+    262.701,
+    -1.14449
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    9528.0,
+    -12354.0,
+    -508.0
+   ],
+   "angles": [
+    358.81,
+    248.766,
+    -3.19918
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9509.0,
+    -12401.0,
+    -507.0
+   ],
+   "angles": [
+    5.02377,
+    249.001,
+    -1.14449
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    9541.0,
+    -12256.0,
+    -508.0
+   ],
+   "angles": [
+    358.81,
+    275.366,
+    -3.19918
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9545.0,
+    -12306.0,
+    -507.0
+   ],
+   "angles": [
+    5.02377,
+    275.601,
+    -1.14449
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9532.0,
+    -12206.0,
+    -507.0
+   ],
+   "angles": [
+    5.02377,
+    275.601,
+    -1.14449
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_hedgehog",
+   "origin": [
+    9594.0,
+    -12177.0,
+    -502.0
+   ],
+   "angles": [
+    355.427,
+    8.32558,
+    -1.84857
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_hedgehog",
+   "origin": [
+    9812.0,
+    -12004.0,
+    -501.0
+   ],
+   "angles": [
+    0.0,
+    34.186,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_hedgehog",
+   "origin": [
+    9695.0,
+    -12097.0,
+    -505.0
+   ],
+   "angles": [
+    359.763,
+    311.186,
+    5.1467
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_hedgehog",
+   "origin": [
+    9123.0,
+    -12286.0,
+    -505.0
+   ],
+   "angles": [
+    354.432,
+    29.6166,
+    -0.704589
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_hedgehog",
+   "origin": [
+    8989.0,
+    -12207.0,
+    -508.0
+   ],
+   "angles": [
+    357.923,
+    149.399,
+    -0.407445
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    7625.0,
+    -14277.0,
+    -517.0
+   ],
+   "angles": [
+    4.60039,
+    38.898,
+    -0.358276
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    7545.0,
+    -14339.0,
+    -511.0
+   ],
+   "angles": [
+    4.60039,
+    38.898,
+    -0.358276
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    7502.0,
+    -14371.0,
+    -503.0
+   ],
+   "angles": [
+    5.99803,
+    38.6533,
+    -4.89159
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    7461.0,
+    -14405.0,
+    -501.0
+   ],
+   "angles": [
+    4.60039,
+    38.898,
+    -0.358276
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    7421.0,
+    -14437.0,
+    -495.0
+   ],
+   "angles": [
+    2.86956,
+    38.4599,
+    -7.39191
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    7380.0,
+    -14471.0,
+    -496.0
+   ],
+   "angles": [
+    1.48391,
+    38.7647,
+    -2.86963
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_box",
+   "origin": [
+    7069.0,
+    -14166.0,
+    -483.0
+   ],
+   "angles": [
+    5.47971,
+    138.709,
+    3.08063
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_box_empty",
+   "origin": [
+    7339.0,
+    -14136.0,
+    -483.0
+   ],
+   "angles": [
+    5.6604,
+    343.318,
+    4.92402
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_box_open",
+   "origin": [
+    7074.0,
+    -14170.0,
+    -483.0
+   ],
+   "angles": [
+    0.856162,
+    138.46,
+    3.04701
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_shell",
+   "origin": [
+    7308.0,
+    -14055.0,
+    -495.0
+   ],
+   "angles": [
+    88.1582,
+    84.3429,
+    -39.2801
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_emptyshell",
+   "origin": [
+    7199.0,
+    -14119.0,
+    -498.0
+   ],
+   "angles": [
+    348.212,
+    256.279,
+    -93.2072
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_emptyshell",
+   "origin": [
+    7287.0,
+    -14076.0,
+    -494.0
+   ],
+   "angles": [
+    348.212,
+    256.279,
+    -93.2072
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_emptyshell",
+   "origin": [
+    7188.0,
+    -14094.0,
+    -496.0
+   ],
+   "angles": [
+    347.368,
+    103.544,
+    -89.7311
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_emptyshell",
+   "origin": [
+    7185.0,
+    -14068.0,
+    -493.0
+   ],
+   "angles": [
+    356.278,
+    37.4244,
+    -86.8958
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_emptyshell",
+   "origin": [
+    7090.0,
+    -14333.0,
+    -550.0
+   ],
+   "angles": [
+    348.492,
+    176.902,
+    -86.3721
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_emptyshell",
+   "origin": [
+    7208.0,
+    -14102.0,
+    -496.0
+   ],
+   "angles": [
+    350.004,
+    254.936,
+    -86.1054
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_box",
+   "origin": [
+    7048.0,
+    -14147.0,
+    -486.0
+   ],
+   "angles": [
+    5.47971,
+    138.709,
+    3.08063
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_box",
+   "origin": [
+    7043.0,
+    -14143.0,
+    -487.0
+   ],
+   "angles": [
+    358.984,
+    138.432,
+    0.862596
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_box",
+   "origin": [
+    7037.0,
+    -14138.0,
+    -486.0
+   ],
+   "angles": [
+    0.160566,
+    138.452,
+    0.672095
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_box_empty",
+   "origin": [
+    7383.0,
+    -14140.0,
+    -488.0
+   ],
+   "angles": [
+    7.22545,
+    22.4171,
+    3.44972
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_box_empty",
+   "origin": [
+    7357.0,
+    -14150.0,
+    -486.0
+   ],
+   "angles": [
+    1.46331,
+    278.911,
+    -4.31969
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_box_empty",
+   "origin": [
+    7383.0,
+    -14092.0,
+    -483.0
+   ],
+   "angles": [
+    7.35112,
+    343.186,
+    -0.697678
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_box_empty",
+   "origin": [
+    7407.0,
+    -14081.0,
+    -486.0
+   ],
+   "angles": [
+    355.368,
+    50.1895,
+    6.17576
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_emptyshell",
+   "origin": [
+    7125.0,
+    -14326.0,
+    -550.0
+   ],
+   "angles": [
+    348.492,
+    295.202,
+    -86.3721
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_emptyshell",
+   "origin": [
+    7101.0,
+    -14323.0,
+    -551.0
+   ],
+   "angles": [
+    348.492,
+    199.402,
+    -86.3721
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_emptyshell",
+   "origin": [
+    7117.0,
+    -14278.0,
+    -551.0
+   ],
+   "angles": [
+    0.903173,
+    201.069,
+    -94.3726
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_emptyshell",
+   "origin": [
+    7137.0,
+    -14319.0,
+    -550.0
+   ],
+   "angles": [
+    348.492,
+    240.202,
+    -86.3721
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_emptyshell",
+   "origin": [
+    7144.0,
+    -14314.0,
+    -550.0
+   ],
+   "angles": [
+    347.327,
+    70.9089,
+    -89.7468
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_emptyshell",
+   "origin": [
+    7238.0,
+    -14111.0,
+    -495.0
+   ],
+   "angles": [
+    350.372,
+    297.259,
+    -86.8276
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_box",
+   "origin": [
+    7090.0,
+    -14190.0,
+    -483.0
+   ],
+   "angles": [
+    358.836,
+    331.492,
+    -2.6479
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_flak88_box_open",
+   "origin": [
+    7098.0,
+    -14194.0,
+    -483.0
+   ],
+   "angles": [
+    0.544496,
+    153.248,
+    3.12047
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    6816.0,
+    -14295.0,
+    -487.0
+   ],
+   "angles": [
+    6.66298,
+    303.43,
+    4.12615
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    6790.0,
+    -14256.0,
+    -486.0
+   ],
+   "angles": [
+    1.03924,
+    303.977,
+    -8.73747
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    6758.0,
+    -14207.0,
+    -484.0
+   ],
+   "angles": [
+    11.1573,
+    302.544,
+    -1.56931
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    6743.0,
+    -14165.0,
+    -486.0
+   ],
+   "angles": [
+    358.15,
+    290.506,
+    -6.25403
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    6722.0,
+    -14110.0,
+    -486.0
+   ],
+   "angles": [
+    11.509,
+    288.096,
+    -6.10318
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    6729.0,
+    -14066.0,
+    -488.0
+   ],
+   "angles": [
+    358.15,
+    266.806,
+    -6.25403
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    6732.0,
+    -14007.0,
+    -488.0
+   ],
+   "angles": [
+    11.509,
+    264.396,
+    -6.10319
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    5165.0,
+    -13706.0,
+    -163.0
+   ],
+   "angles": [
+    10.8012,
+    294.859,
+    -5.88904
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    5196.0,
+    -13954.0,
+    -159.0
+   ],
+   "angles": [
+    10.8012,
+    4.85901,
+    -5.88903
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    5524.0,
+    -13926.0,
+    -575.0
+   ],
+   "angles": [
+    348.954,
+    4.6969,
+    0.427891
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6020.0,
+    -13110.0,
+    -384.0
+   ],
+   "angles": [
+    10.5032,
+    11.9101,
+    18.6143
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    5970.0,
+    -13193.0,
+    -380.0
+   ],
+   "angles": [
+    10.5032,
+    111.91,
+    18.6143
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    5933.0,
+    -13088.0,
+    -360.0
+   ],
+   "angles": [
+    10.5032,
+    326.91,
+    18.6143
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    5593.0,
+    -13676.0,
+    -456.0
+   ],
+   "angles": [
+    0.886563,
+    325.673,
+    -6.09577
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6540.0,
+    -11454.0,
+    -463.0
+   ],
+   "angles": [
+    9.18957,
+    11.8866,
+    1.00837
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6885.0,
+    -11403.0,
+    -479.0
+   ],
+   "angles": [
+    9.18957,
+    131.887,
+    1.00837
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7189.0,
+    -11284.0,
+    -503.0
+   ],
+   "angles": [
+    9.18957,
+    205.887,
+    1.00837
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7131.0,
+    -11292.0,
+    -497.0
+   ],
+   "angles": [
+    9.18957,
+    205.887,
+    1.00837
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7244.0,
+    -11270.0,
+    -495.0
+   ],
+   "angles": [
+    9.18957,
+    205.887,
+    1.00837
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6800.0,
+    -11254.0,
+    -469.0
+   ],
+   "angles": [
+    9.18957,
+    205.887,
+    1.00837
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7499.0,
+    -11156.0,
+    -482.0
+   ],
+   "angles": [
+    352.681,
+    347.107,
+    5.47159
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7836.0,
+    -11245.0,
+    -511.0
+   ],
+   "angles": [
+    357.276,
+    108.653,
+    0.164042
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8162.0,
+    -11256.0,
+    -511.0
+   ],
+   "angles": [
+    1.41736e-06,
+    182.687,
+    6.80381e-13
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8106.0,
+    -11240.0,
+    -508.0
+   ],
+   "angles": [
+    354.621,
+    182.844,
+    -0.614658
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8218.0,
+    -11264.0,
+    -511.0
+   ],
+   "angles": [
+    1.41736e-06,
+    182.687,
+    6.80381e-13
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7816.0,
+    -11075.0,
+    -503.0
+   ],
+   "angles": [
+    357.322,
+    183.266,
+    -2.77516
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7644.0,
+    -12982.0,
+    -483.0
+   ],
+   "angles": [
+    0.162236,
+    182.403,
+    -0.90778
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7605.0,
+    -12960.0,
+    -478.0
+   ],
+   "angles": [
+    355.152,
+    183.481,
+    0.434464
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7699.0,
+    -12957.0,
+    -480.0
+   ],
+   "angles": [
+    0.702988,
+    182.659,
+    2.50714
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    6001.0,
+    -13539.0,
+    -514.0
+   ],
+   "angles": [
+    7.30136,
+    179.843,
+    -1.398
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    5780.0,
+    -13845.0,
+    -552.0
+   ],
+   "angles": [
+    348.475,
+    2.76796,
+    -2.27142
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    5772.0,
+    -13817.0,
+    -554.0
+   ],
+   "angles": [
+    348.475,
+    2.76793,
+    -2.27141
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    5752.0,
+    -13837.0,
+    -558.0
+   ],
+   "angles": [
+    348.475,
+    2.76791,
+    -2.27141
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    5839.0,
+    -13683.0,
+    -532.0
+   ],
+   "angles": [
+    9.19202,
+    179.115,
+    4.09677
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    5803.0,
+    -13686.0,
+    -532.0
+   ],
+   "angles": [
+    358.731,
+    179.006,
+    4.43523
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    5803.0,
+    -13686.0,
+    -506.0
+   ],
+   "angles": [
+    358.731,
+    179.006,
+    4.43523
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    5648.0,
+    -13921.0,
+    -573.0
+   ],
+   "angles": [
+    351.803,
+    0.838204,
+    1.40472
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    5620.0,
+    -13946.0,
+    -570.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    5589.0,
+    -13961.0,
+    -571.0
+   ],
+   "angles": [
+    2.0145,
+    1.05121,
+    -6.50178
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    5560.0,
+    -13960.0,
+    -570.0
+   ],
+   "angles": [
+    358.896,
+    1.55453,
+    -9.16794
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    5576.0,
+    -13938.0,
+    -573.0
+   ],
+   "angles": [
+    358.896,
+    1.55449,
+    -9.16794
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    5603.0,
+    -13923.0,
+    -576.0
+   ],
+   "angles": [
+    358.92,
+    1.70014,
+    -9.17071
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    5629.0,
+    -13900.0,
+    -577.0
+   ],
+   "angles": [
+    351.022,
+    3.21649,
+    -10.4503
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    6946.0,
+    -14061.0,
+    -491.0
+   ],
+   "angles": [
+    3.57095,
+    186.105,
+    0.39988
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    6952.0,
+    -14020.0,
+    -490.0
+   ],
+   "angles": [
+    0.879441,
+    95.3729,
+    -3.84652
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    6390.0,
+    -13688.0,
+    -489.0
+   ],
+   "angles": [
+    5.41668,
+    158.861,
+    3.50489
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    6614.0,
+    -13734.0,
+    -499.0
+   ],
+   "angles": [
+    0.0,
+    341.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    6684.0,
+    -13758.0,
+    -499.0
+   ],
+   "angles": [
+    0.0,
+    341.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    6546.0,
+    -13710.0,
+    -499.0
+   ],
+   "angles": [
+    0.0,
+    341.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    6283.0,
+    -13503.0,
+    -491.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    6770.0,
+    -13794.0,
+    -500.0
+   ],
+   "angles": [
+    0.0,
+    333.8,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    7095.0,
+    -13349.0,
+    -518.0
+   ],
+   "angles": [
+    0.0,
+    326.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    7169.0,
+    -13388.0,
+    -500.0
+   ],
+   "angles": [
+    0.0,
+    349.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    7028.0,
+    -13334.0,
+    -519.0
+   ],
+   "angles": [
+    0.0,
+    12.6,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    6972.0,
+    -13312.0,
+    -519.0
+   ],
+   "angles": [
+    0.0,
+    304.3,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    7794.0,
+    -13448.0,
+    -515.0
+   ],
+   "angles": [
+    0.0,
+    221.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    7850.0,
+    -13398.0,
+    -515.0
+   ],
+   "angles": [
+    0.0,
+    221.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    7910.0,
+    -13346.0,
+    -515.0
+   ],
+   "angles": [
+    0.0,
+    221.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    7968.0,
+    -13296.0,
+    -514.0
+   ],
+   "angles": [
+    0.0,
+    221.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    7771.0,
+    -13541.0,
+    -514.0
+   ],
+   "angles": [
+    0.0,
+    288.8,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    8060.0,
+    -14219.0,
+    -606.0
+   ],
+   "angles": [
+    2.72765,
+    0.201255,
+    4.30835
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    9717.0,
+    -13970.0,
+    -604.0
+   ],
+   "angles": [
+    359.641,
+    34.837,
+    -2.22921
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    9486.0,
+    -13928.0,
+    -597.0
+   ],
+   "angles": [
+    0.0419611,
+    359.999,
+    -0.69556
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    9716.0,
+    -13649.0,
+    -600.0
+   ],
+   "angles": [
+    0.0419611,
+    359.999,
+    -0.69556
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    9950.0,
+    -13612.0,
+    -499.0
+   ],
+   "angles": [
+    343.668,
+    258.699,
+    5.11615
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    5830.0,
+    -14446.0,
+    -289.0
+   ],
+   "angles": [
+    357.838,
+    138.155,
+    -1.32243
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    9696.0,
+    -12758.0,
+    -499.0
+   ],
+   "angles": [
+    0.736004,
+    308.765,
+    3.6962
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    10417.0,
+    -13204.0,
+    -531.0
+   ],
+   "angles": [
+    355.071,
+    242.873,
+    0.540894
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    10284.0,
+    -12312.0,
+    -497.0
+   ],
+   "angles": [
+    0.0,
+    242.873,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    7586.0,
+    -14305.0,
+    -513.0
+   ],
+   "angles": [
+    5.99803,
+    38.6533,
+    -4.89159
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    5941.0,
+    -14210.0,
+    -349.0
+   ],
+   "angles": [
+    5.84095,
+    133.585,
+    -5.39151
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    5493.0,
+    -14580.0,
+    -170.0
+   ],
+   "angles": [
+    347.195,
+    139.594,
+    13.7655
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    7390.0,
+    -12112.0,
+    -495.0
+   ],
+   "angles": [
+    2.88978,
+    45.2745,
+    5.23511
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    6918.0,
+    -12255.0,
+    -473.0
+   ],
+   "angles": [
+    356.927,
+    18.5015,
+    0.805478
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    6592.0,
+    -12429.0,
+    -466.0
+   ],
+   "angles": [
+    3.95249,
+    26.155,
+    6.85427
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    6143.0,
+    -12553.0,
+    -464.0
+   ],
+   "angles": [
+    10.3143,
+    59.4253,
+    -20.6811
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    6484.0,
+    -11897.0,
+    -438.0
+   ],
+   "angles": [
+    348.755,
+    58.9699,
+    0.0429327
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    7302.0,
+    -11379.0,
+    -485.0
+   ],
+   "angles": [
+    358.551,
+    58.5589,
+    -2.368
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    8568.0,
+    -11185.0,
+    -501.0
+   ],
+   "angles": [
+    3.42195,
+    58.2792,
+    -3.28989
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    9893.0,
+    -10876.0,
+    -481.0
+   ],
+   "angles": [
+    0.0,
+    304.279,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    9108.0,
+    -10055.0,
+    -478.0
+   ],
+   "angles": [
+    3.75426,
+    20.504,
+    3.43667
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    8376.0,
+    -9861.0,
+    -476.0
+   ],
+   "angles": [
+    359.281,
+    16.19,
+    4.00994
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    8257.0,
+    -11847.0,
+    -485.0
+   ],
+   "angles": [
+    352.373,
+    13.9687,
+    3.85637
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    8850.0,
+    -12171.0,
+    -504.0
+   ],
+   "angles": [
+    5.90326,
+    352.307,
+    -0.450905
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    9685.0,
+    -11819.0,
+    -501.0
+   ],
+   "angles": [
+    0.0,
+    262.392,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    5963.0,
+    -12894.0,
+    -482.0
+   ],
+   "angles": [
+    343.032,
+    51.1558,
+    -18.9976
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    5810.0,
+    -11976.0,
+    -346.0
+   ],
+   "angles": [
+    11.4808,
+    27.2132,
+    8.00664
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    6161.0,
+    -10740.0,
+    -417.0
+   ],
+   "angles": [
+    359.952,
+    59.3138,
+    1.73652
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    9959.0,
+    -13328.0,
+    -505.0
+   ],
+   "angles": [
+    3.34279,
+    308.962,
+    -1.64032
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    9552.0,
+    -13551.0,
+    -479.0
+   ],
+   "angles": [
+    0.0,
+    120.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    9540.0,
+    -13551.0,
+    -505.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    9568.0,
+    -13551.0,
+    -505.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_opel_blitz_desert_static",
+   "origin": [
+    9320.0,
+    -12708.0,
+    -509.0
+   ],
+   "angles": [
+    359.54,
+    79.7863,
+    -1.12306
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    9228.0,
+    -13661.0,
+    -487.0
+   ],
+   "angles": [
+    0.0,
+    158.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "tdm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/vehicle_panzer_ii_destroyed_static",
+   "origin": [
+    8200.0,
+    -13419.0,
+    -495.0
+   ],
+   "angles": [
+    1.50058,
+    114.305,
+    2.63971
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_africa_jeep_can_static",
+   "origin": [
+    9393.0,
+    -13282.0,
+    -500.0
+   ],
+   "angles": [
+    357.568,
+    339.972,
+    -3.27007
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    9228.0,
+    -13661.0,
+    -487.0
+   ],
+   "angles": [
+    0.0,
+    158.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "dm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    9228.0,
+    -13661.0,
+    -487.0
+   ],
+   "angles": [
+    0.0,
+    158.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "hq",
+   "turret": true
+  },
+  {
+   "model": "xmodel/vehicle_panzer_ii_destroyed_static",
+   "origin": [
+    6277.0,
+    -12898.0,
+    -498.0
+   ],
+   "angles": [
+    359.849,
+    69.452,
+    1.30284
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_opel_blitz_desert_static",
+   "origin": [
+    8319.0,
+    -14461.0,
+    -708.0
+   ],
+   "angles": [
+    357.744,
+    204.671,
+    -2.42755
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    7142.0,
+    -13475.0,
+    -574.0
+   ],
+   "angles": [
+    359.733,
+    195.482,
+    -1.00649
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    7145.0,
+    -13501.0,
+    -574.0
+   ],
+   "angles": [
+    358.483,
+    153.785,
+    2.4116
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak8",
+   "origin": [
+    8786.0,
+    -14428.0,
+    -640.0
+   ],
+   "angles": [
+    0.0,
+    263.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    8828.0,
+    -14426.0,
+    -711.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    8824.0,
+    -14373.0,
+    -711.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    8458.0,
+    -14404.0,
+    -710.0
+   ],
+   "angles": [
+    0.0,
+    249.8,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    8421.0,
+    -14387.0,
+    -709.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/weapon_30cal",
+   "origin": [
+    6388.0,
+    -13594.0,
+    -481.0
+   ],
+   "angles": [
+    0.0,
+    0.799999,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "tdm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_30cal",
+   "origin": [
+    6388.0,
+    -13594.0,
+    -481.0
+   ],
+   "angles": [
+    0.0,
+    0.799999,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "dm",
+   "turret": true
+  },
+  {
+   "model": "xmodel/weapon_30cal",
+   "origin": [
+    6388.0,
+    -13594.0,
+    -481.0
+   ],
+   "angles": [
+    0.0,
+    0.799999,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "hq",
+   "turret": true
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    8445.0,
+    -14352.0,
+    -709.0
+   ],
+   "angles": [
+    0.0,
+    45.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    8474.0,
+    -14436.0,
+    -711.0
+   ],
+   "angles": [
+    0.0,
+    297.732,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    8730.0,
+    -14432.0,
+    -676.0
+   ],
+   "angles": [
+    0.00836492,
+    278.1,
+    0.00758071
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    8779.0,
+    -14429.0,
+    -711.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    8780.0,
+    -14382.0,
+    -711.0
+   ],
+   "angles": [
+    0.0,
+    265.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    8828.0,
+    -14426.0,
+    -675.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    8824.0,
+    -14373.0,
+    -675.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    8779.0,
+    -14429.0,
+    -675.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    8779.0,
+    -14382.0,
+    -675.0
+   ],
+   "angles": [
+    0.0,
+    265.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    8784.0,
+    -14469.0,
+    -711.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    8729.0,
+    -14431.0,
+    -711.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak1",
+   "origin": [
+    8734.0,
+    -14384.0,
+    -711.0
+   ],
+   "angles": [
+    0.0,
+    0.50001,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak8",
+   "origin": [
+    8733.0,
+    -14390.0,
+    -676.0
+   ],
+   "angles": [
+    0.0,
+    353.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    10614.0,
+    -14170.0,
+    -488.0
+   ],
+   "angles": [
+    359.339,
+    251.783,
+    6.55099
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    10887.0,
+    -13458.0,
+    -438.0
+   ],
+   "angles": [
+    6.78207,
+    316.003,
+    7.06527
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_hedgehog",
+   "origin": [
+    9344.0,
+    -12409.0,
+    -514.0
+   ],
+   "angles": [
+    358.944,
+    286.186,
+    2.83633
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_hedgehog",
+   "origin": [
+    9422.0,
+    -12376.0,
+    -507.0
+   ],
+   "angles": [
+    3.04385,
+    212.09,
+    1.94732
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_hedgehog",
+   "origin": [
+    8887.0,
+    -12209.0,
+    -505.0
+   ],
+   "angles": [
+    1.36626,
+    73.3856,
+    5.76114
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    9143.0,
+    -12348.0,
+    -502.0
+   ],
+   "angles": [
+    358.175,
+    326.401,
+    -12.0231
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9098.0,
+    -12323.0,
+    -504.0
+   ],
+   "angles": [
+    355.729,
+    326.51,
+    -11.2822
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    6292.0,
+    -13528.0,
+    -491.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    6282.0,
+    -13506.0,
+    -465.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    6282.0,
+    -13366.0,
+    -496.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6656.0,
+    -12735.0,
+    -501.0
+   ],
+   "angles": [
+    1.49178,
+    182.435,
+    -0.331033
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8108.0,
+    -12443.0,
+    -500.0
+   ],
+   "angles": [
+    356.991,
+    182.913,
+    -6.07143
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    7780.0,
+    -11919.0,
+    -487.0
+   ],
+   "angles": [
+    2.67328,
+    45.0482,
+    0.736755
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    9051.0,
+    -12299.0,
+    -506.0
+   ],
+   "angles": [
+    358.81,
+    339.066,
+    -3.19918
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    8954.0,
+    -12260.0,
+    -508.0
+   ],
+   "angles": [
+    358.81,
+    339.066,
+    -3.19918
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9000.0,
+    -12279.0,
+    -507.0
+   ],
+   "angles": [
+    5.02377,
+    339.301,
+    -1.14449
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    8905.0,
+    -12241.0,
+    -507.0
+   ],
+   "angles": [
+    5.02377,
+    325.601,
+    -1.14449
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/german_artillery_flak88",
+   "origin": [
+    7223.0,
+    -13989.0,
+    -495.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "tdm"
+  },
+  {
+   "model": "xmodel/german_artillery_flak88_destroy",
+   "origin": [
+    7223.0,
+    -13989.0,
+    -495.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "sd"
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    6983.0,
+    -12448.0,
+    -473.0
+   ],
+   "angles": [
+    0.0,
+    231.8,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    7089.0,
+    -12448.0,
+    -475.0
+   ],
+   "angles": [
+    0.0,
+    130.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    7956.0,
+    -12086.0,
+    -474.0
+   ],
+   "angles": [
+    0.0,
+    231.8,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    8062.0,
+    -12086.0,
+    -476.0
+   ],
+   "angles": [
+    0.0,
+    130.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    7033.0,
+    -12721.0,
+    -551.0
+   ],
+   "angles": [
+    0.0,
+    129.685,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    7010.0,
+    -12414.0,
+    -468.0
+   ],
+   "angles": [
+    354.624,
+    10.354,
+    -3.98985
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    6976.0,
+    -12605.0,
+    -493.0
+   ],
+   "angles": [
+    0.377926,
+    181.746,
+    -7.20181
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_bent",
+   "origin": [
+    7107.0,
+    -12550.0,
+    -488.0
+   ],
+   "angles": [
+    1.1524,
+    172.341,
+    -12.6539
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    8015.0,
+    -12100.0,
+    -491.0
+   ],
+   "angles": [
+    0.0,
+    0.484996,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    8037.0,
+    -12090.0,
+    -491.0
+   ],
+   "angles": [
+    0.0,
+    289.985,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_single_flat",
+   "origin": [
+    7926.0,
+    -12189.0,
+    -478.0
+   ],
+   "angles": [
+    18.4899,
+    291.974,
+    1.01805
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_hedgehog",
+   "origin": [
+    8796.0,
+    -12143.0,
+    -497.0
+   ],
+   "angles": [
+    5.90658,
+    352.754,
+    -0.404871
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    6802.0,
+    -13273.0,
+    -501.0
+   ],
+   "angles": [
+    0.0,
+    266.7,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    6889.0,
+    -13212.0,
+    -503.0
+   ],
+   "angles": [
+    0.0,
+    164.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    9924.0,
+    -12072.0,
+    -505.0
+   ],
+   "angles": [
+    0.0,
+    347.873,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    5597.0,
+    -12647.0,
+    -181.0
+   ],
+   "angles": [
+    344.464,
+    49.3589,
+    21.707
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    5643.0,
+    -13141.0,
+    -275.0
+   ],
+   "angles": [
+    353.827,
+    51.4313,
+    12.0826
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7400.0,
+    -12341.0,
+    -490.0
+   ],
+   "angles": [
+    7.2187,
+    74.3171,
+    8.76866
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6711.0,
+    -14111.0,
+    -481.0
+   ],
+   "angles": [
+    355.497,
+    141.805,
+    7.88733
+   ],
+   "scale": 1.118396,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    5982.0,
+    -13498.0,
+    -515.0
+   ],
+   "angles": [
+    3.73733,
+    89.6299,
+    1.80356
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    5983.0,
+    -13498.0,
+    -490.0
+   ],
+   "angles": [
+    3.73733,
+    89.6299,
+    1.80356
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    5999.0,
+    -13539.0,
+    -489.0
+   ],
+   "angles": [
+    7.30136,
+    179.843,
+    -1.398
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    9576.0,
+    -12525.0,
+    -498.0
+   ],
+   "angles": [
+    5.09106,
+    184.787,
+    -2.67455
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9530.0,
+    -12529.0,
+    -506.0
+   ],
+   "angles": [
+    11.2995,
+    185.084,
+    -0.585356
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    9630.0,
+    -12521.0,
+    -493.0
+   ],
+   "angles": [
+    11.2995,
+    185.084,
+    -0.585356
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/german_artillery_flak88",
+   "origin": [
+    7223.0,
+    -13989.0,
+    -495.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "dm"
+  },
+  {
+   "model": "xmodel/german_artillery_flak88",
+   "origin": [
+    7223.0,
+    -13989.0,
+    -495.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "hq"
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    9231.0,
+    -13717.0,
+    -516.0
+   ],
+   "angles": [
+    0.0,
+    297.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    9275.0,
+    -13620.0,
+    -518.0
+   ],
+   "angles": [
+    0.0,
+    195.3,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    8579.0,
+    -12969.0,
+    -528.0
+   ],
+   "angles": [
+    0.0,
+    311.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    8607.0,
+    -12952.0,
+    -528.0
+   ],
+   "angles": [
+    0.0,
+    226.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    8634.0,
+    -12978.0,
+    -528.0
+   ],
+   "angles": [
+    0.0,
+    226.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    8608.0,
+    -12952.0,
+    -504.0
+   ],
+   "angles": [
+    0.0,
+    226.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    8560.0,
+    -13261.0,
+    -528.0
+   ],
+   "angles": [
+    0.0,
+    46.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    8532.0,
+    -13234.0,
+    -528.0
+   ],
+   "angles": [
+    0.0,
+    46.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_crate_dak7",
+   "origin": [
+    8559.0,
+    -13261.0,
+    -504.0
+   ],
+   "angles": [
+    0.0,
+    46.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_barrel_black",
+   "origin": [
+    5510.0,
+    -13829.0,
+    -579.0
+   ],
+   "angles": [
+    0.0,
+    52.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_bunkerlocker_double",
+   "origin": [
+    8313.0,
+    -13257.0,
+    -671.0
+   ],
+   "angles": [
+    0.0,
+    313.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_bunkerlocker_open",
+   "origin": [
+    8529.0,
+    -13338.0,
+    -672.0
+   ],
+   "angles": [
+    0.0,
+    226.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_bunkerlightswitch",
+   "origin": [
+    8275.0,
+    -13115.0,
+    -619.0
+   ],
+   "angles": [
+    0.0,
+    42.8,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_bunkerlocker_double",
+   "origin": [
+    8401.0,
+    -13346.0,
+    -671.0
+   ],
+   "angles": [
+    0.0,
+    315.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_bed_bunker2",
+   "origin": [
+    8462.0,
+    -13355.0,
+    -672.0
+   ],
+   "angles": [
+    0.0,
+    315.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_bed_bunker2",
+   "origin": [
+    8537.0,
+    -13281.0,
+    -672.0
+   ],
+   "angles": [
+    0.0,
+    315.3,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/furniture_bed_bunker2",
+   "origin": [
+    8613.0,
+    -13204.0,
+    -672.0
+   ],
+   "angles": [
+    0.0,
+    315.6,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/prop_bunkerlocker_open",
+   "origin": [
+    8605.0,
+    -13262.0,
+    -672.0
+   ],
+   "angles": [
+    0.0,
+    226.1,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8896.0,
+    -12552.0,
+    -497.0
+   ],
+   "angles": [
+    356.991,
+    182.913,
+    -6.07143
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/german_artillery_flak88_destroy",
+   "origin": [
+    8397.0,
+    -12777.0,
+    -487.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "A",
+    "show": true
+   }
+  },
+  {
+   "model": "xmodel/german_artillery_flak88",
+   "origin": [
+    8397.0,
+    -12777.0,
+    -487.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "A",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8598.0,
+    -14295.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    15.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8569.0,
+    -14296.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    302.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8626.0,
+    -14295.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    15.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8599.0,
+    -14324.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    15.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8570.0,
+    -14325.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    302.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8627.0,
+    -14324.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    15.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8599.0,
+    -14353.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    15.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8570.0,
+    -14354.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    302.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8627.0,
+    -14353.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    15.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8600.0,
+    -14382.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    15.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8571.0,
+    -14383.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    302.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8628.0,
+    -14382.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    15.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8600.0,
+    -14411.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    15.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8571.0,
+    -14412.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    302.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/prop_barrel_tan",
+   "origin": [
+    8628.0,
+    -14411.0,
+    -712.0
+   ],
+   "angles": [
+    0.0,
+    15.9,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    7507.0,
+    -13209.0,
+    -494.0
+   ],
+   "angles": [
+    359.155,
+    221.267,
+    -2.06929
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    7484.0,
+    -13302.0,
+    -494.0
+   ],
+   "angles": [
+    1.59043,
+    288.83,
+    -1.57108
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    6473.0,
+    -13710.0,
+    -499.0
+   ],
+   "angles": [
+    0.0,
+    19.3,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    7436.0,
+    -13664.0,
+    -488.0
+   ],
+   "angles": [
+    0.0,
+    108.8,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    7343.0,
+    -13638.0,
+    -488.0
+   ],
+   "angles": [
+    0.0,
+    219.3,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    6546.0,
+    -13277.0,
+    -489.0
+   ],
+   "angles": [
+    0.0,
+    108.8,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    8186.0,
+    -12767.0,
+    -497.0
+   ],
+   "angles": [
+    0.0,
+    271.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    8187.0,
+    -12842.0,
+    -497.0
+   ],
+   "angles": [
+    0.0,
+    271.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_left",
+   "origin": [
+    8184.0,
+    -12712.0,
+    -498.0
+   ],
+   "angles": [
+    0.0,
+    269.5,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_left",
+   "origin": [
+    8185.0,
+    -12899.0,
+    -503.0
+   ],
+   "angles": [
+    0.0,
+    88.2,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    9343.0,
+    -13380.0,
+    -499.0
+   ],
+   "angles": [
+    1.69229,
+    237.784,
+    -1.06606
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_left",
+   "origin": [
+    8011.0,
+    -13260.0,
+    -516.0
+   ],
+   "angles": [
+    355.798,
+    222.269,
+    4.5063
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_left",
+   "origin": [
+    7555.0,
+    -13172.0,
+    -491.0
+   ],
+   "angles": [
+    7.79886,
+    214.493,
+    8.21326
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_panzer_ii_destroyed_static",
+   "origin": [
+    7871.0,
+    -12634.0,
+    -497.0
+   ],
+   "angles": [
+    0.0,
+    114.305,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_left",
+   "origin": [
+    6419.0,
+    -13731.0,
+    -498.0
+   ],
+   "angles": [
+    3.54971,
+    30.8921,
+    7.98287
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6251.0,
+    -14165.0,
+    -367.0
+   ],
+   "angles": [
+    356.605,
+    154.488,
+    10.1459
+   ],
+   "scale": 0.953216,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6210.0,
+    -14217.0,
+    -355.0
+   ],
+   "angles": [
+    349.409,
+    234.196,
+    -1.48263
+   ],
+   "scale": 0.721973,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6202.0,
+    -14186.0,
+    -358.0
+   ],
+   "angles": [
+    3.3727,
+    334.366,
+    -10.1531
+   ],
+   "scale": 0.933643,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6714.0,
+    -14164.0,
+    -484.0
+   ],
+   "angles": [
+    0.580787,
+    288.499,
+    12.3553
+   ],
+   "scale": 0.79353,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    5641.0,
+    -14148.0,
+    -374.0
+   ],
+   "angles": [
+    9.59918,
+    139.528,
+    30.1321
+   ],
+   "scale": 1.125098,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    5867.0,
+    -14208.0,
+    -360.0
+   ],
+   "angles": [
+    8.28326,
+    267.676,
+    10.5903
+   ],
+   "scale": 0.944574,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    5562.0,
+    -13370.0,
+    -302.0
+   ],
+   "angles": [
+    14.3131,
+    39.8305,
+    20.9319
+   ],
+   "scale": 0.885156,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    5607.0,
+    -13392.0,
+    -308.0
+   ],
+   "angles": [
+    345.922,
+    95.0581,
+    -5.56464
+   ],
+   "scale": 0.783588,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    5912.0,
+    -13110.0,
+    -367.0
+   ],
+   "angles": [
+    346.952,
+    247.647,
+    7.33002
+   ],
+   "scale": 1.118359,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6618.0,
+    -12756.0,
+    -495.0
+   ],
+   "angles": [
+    1.46062,
+    192.961,
+    0.114583
+   ],
+   "scale": 1.281964,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7610.0,
+    -13002.0,
+    -482.0
+   ],
+   "angles": [
+    0.211616,
+    185.537,
+    -0.897555
+   ],
+   "scale": 0.705493,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8419.0,
+    -13215.0,
+    -495.0
+   ],
+   "angles": [
+    357.489,
+    249.739,
+    -0.778065
+   ],
+   "scale": 0.870526,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    9313.0,
+    -13573.0,
+    -505.0
+   ],
+   "angles": [
+    3.73447,
+    219.011,
+    -2.20894
+   ],
+   "scale": 0.711169,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    7115.0,
+    -14473.0,
+    -491.0
+   ],
+   "angles": [
+    0.0320231,
+    348.641,
+    1.20882
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_left",
+   "origin": [
+    6995.0,
+    -14420.0,
+    -493.0
+   ],
+   "angles": [
+    2.36091,
+    326.625,
+    3.09289
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    7045.0,
+    -14448.0,
+    -492.0
+   ],
+   "angles": [
+    358.43,
+    332.013,
+    4.17783
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    7188.0,
+    -14486.0,
+    -490.0
+   ],
+   "angles": [
+    359.733,
+    356.567,
+    -4.95419
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_right",
+   "origin": [
+    7246.0,
+    -14485.0,
+    -492.0
+   ],
+   "angles": [
+    2.36091,
+    359.925,
+    3.09289
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_curvedsection",
+   "origin": [
+    7362.0,
+    -12758.0,
+    -499.0
+   ],
+   "angles": [
+    359.466,
+    165.399,
+    -2.0499
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/german_artillery_flak88",
+   "origin": [
+    7223.0,
+    -13989.0,
+    -495.0
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "ctf"
+  },
+  {
+   "model": "xmodel/light_lantern_on",
+   "origin": [
+    9536.0,
+    -13534.0,
+    -479.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/light_lantern_on",
+   "origin": [
+    9714.0,
+    -13649.0,
+    -556.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/light_lantern_on",
+   "origin": [
+    9718.0,
+    -13974.0,
+    -579.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/light_lantern_on",
+   "origin": [
+    8738.0,
+    -14435.0,
+    -653.0
+   ],
+   "angles": null,
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/light_lantern_on",
+   "origin": [
+    5506.0,
+    -13825.0,
+    -536.0
+   ],
+   "angles": [
+    0.0,
+    295.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/light_lantern_on",
+   "origin": [
+    6019.0,
+    -13728.0,
+    -512.0
+   ],
+   "angles": [
+    0.0,
+    230.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/light_lantern_on",
+   "origin": [
+    6281.0,
+    -13364.0,
+    -471.0
+   ],
+   "angles": [
+    0.0,
+    174.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/weapon_mg42",
+   "origin": [
+    9228.0,
+    -13661.0,
+    -487.0
+   ],
+   "angles": [
+    0.0,
+    158.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false,
+   "gameobject": "sd",
+   "turret": true
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    7874.0,
+    -13993.0,
+    -536.0
+   ],
+   "angles": [
+    0.0,
+    359.437,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/light_lantern_on",
+   "origin": [
+    7873.0,
+    -13997.0,
+    -511.0
+   ],
+   "angles": [
+    0.0,
+    324.6,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/bunker_ceiling_light_on",
+   "origin": [
+    8472.0,
+    -13210.0,
+    -560.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    180.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/bunker_ceiling_light_on",
+   "origin": [
+    8273.0,
+    -13159.0,
+    -560.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    180.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/bunker_ceiling_light_on",
+   "origin": [
+    8420.0,
+    -13012.0,
+    -560.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    180.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_left",
+   "origin": [
+    7423.0,
+    -14030.0,
+    -494.0
+   ],
+   "angles": [
+    1.87544,
+    50.7764,
+    4.47301
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    7470.0,
+    -14014.0,
+    -499.0
+   ],
+   "angles": [
+    6.1218,
+    356.546,
+    -5.33876
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_right",
+   "origin": [
+    7528.0,
+    -14013.0,
+    -507.0
+   ],
+   "angles": [
+    8.76084,
+    359.925,
+    3.08457
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    8694.0,
+    -13183.0,
+    -489.0
+   ],
+   "angles": [
+    0.0320231,
+    44.741,
+    1.20882
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_left",
+   "origin": [
+    8443.0,
+    -13194.0,
+    -494.0
+   ],
+   "angles": [
+    2.36091,
+    317.425,
+    3.09289
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_right",
+   "origin": [
+    8733.0,
+    -13142.0,
+    -490.0
+   ],
+   "angles": [
+    2.36091,
+    48.325,
+    3.09289
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_shortsection",
+   "origin": [
+    8484.0,
+    -13233.0,
+    -493.0
+   ],
+   "angles": [
+    358.43,
+    313.813,
+    4.17783
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8203.0,
+    -13135.0,
+    -511.0
+   ],
+   "angles": [
+    2.51578,
+    93.7357,
+    -1.1864
+   ],
+   "scale": 0.75,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8165.0,
+    -13152.0,
+    -510.0
+   ],
+   "angles": [
+    359.999,
+    345.483,
+    -5.60495
+   ],
+   "scale": 0.75,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7643.0,
+    -14275.0,
+    -517.0
+   ],
+   "angles": [
+    7.31429,
+    344.632,
+    -6.65088
+   ],
+   "scale": 0.75,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8416.0,
+    -13741.0,
+    -523.0
+   ],
+   "angles": [
+    2.12676,
+    6.25813,
+    -8.22478
+   ],
+   "scale": 0.75,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8063.0,
+    -13757.0,
+    -512.0
+   ],
+   "angles": [
+    0.0,
+    357.85,
+    0.0
+   ],
+   "scale": 0.65,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8357.0,
+    -13766.0,
+    -519.0
+   ],
+   "angles": [
+    351.9,
+    3.63957,
+    -35.7352
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7566.0,
+    -13783.0,
+    -513.0
+   ],
+   "angles": [
+    1.26919,
+    115.048,
+    -0.359481
+   ],
+   "scale": 1.246661,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8379.0,
+    -13733.0,
+    -523.0
+   ],
+   "angles": [
+    2.12676,
+    6.25813,
+    -8.22478
+   ],
+   "scale": 0.75,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_left",
+   "origin": [
+    8654.0,
+    -13224.0,
+    -488.0
+   ],
+   "angles": [
+    2.36091,
+    47.425,
+    3.09289
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/military_sandbag_endsection_right",
+   "origin": [
+    8527.0,
+    -13271.0,
+    -492.0
+   ],
+   "angles": [
+    2.36091,
+    318.325,
+    3.09289
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6863.0,
+    -12871.0,
+    -500.0
+   ],
+   "angles": [
+    1.85037,
+    151.774,
+    1.4887
+   ],
+   "scale": 1.021863,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7604.0,
+    -12531.0,
+    -499.0
+   ],
+   "angles": [
+    359.458,
+    233.899,
+    0.617428
+   ],
+   "scale": 0.721973,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7235.0,
+    -12776.0,
+    -495.0
+   ],
+   "angles": [
+    3.67662,
+    334.716,
+    0.483107
+   ],
+   "scale": 0.933643,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7236.0,
+    -12742.0,
+    -494.0
+   ],
+   "angles": [
+    2.84327,
+    266.139,
+    -6.19206
+   ],
+   "scale": 0.8,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7267.0,
+    -12764.0,
+    -497.0
+   ],
+   "angles": [
+    357.591,
+    97.7004,
+    2.81994
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7384.0,
+    -14489.0,
+    -492.0
+   ],
+   "angles": [
+    2.76626,
+    93.7975,
+    -0.213705
+   ],
+   "scale": 0.783588,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7282.0,
+    -14502.0,
+    -491.0
+   ],
+   "angles": [
+    5.64656,
+    332.003,
+    10.1471
+   ],
+   "scale": 0.745465,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6967.0,
+    -14420.0,
+    -493.0
+   ],
+   "angles": [
+    0.526264,
+    331.514,
+    5.43583
+   ],
+   "scale": 0.745465,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6938.0,
+    -14414.0,
+    -494.0
+   ],
+   "angles": [
+    1.16536,
+    45.0,
+    5.33576
+   ],
+   "scale": 0.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8265.0,
+    -14179.0,
+    -673.0
+   ],
+   "angles": [
+    351.88,
+    42.3219,
+    16.1611
+   ],
+   "scale": 0.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    9177.0,
+    -13821.0,
+    -531.0
+   ],
+   "angles": [
+    344.386,
+    23.4914,
+    0.556997
+   ],
+   "scale": 0.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7953.0,
+    -13987.0,
+    -511.0
+   ],
+   "angles": [
+    355.097,
+    25.1305,
+    8.42941
+   ],
+   "scale": 0.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8786.0,
+    -13098.0,
+    -485.0
+   ],
+   "angles": [
+    2.70051,
+    25.6075,
+    3.14209
+   ],
+   "scale": 0.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8792.0,
+    -13074.0,
+    -482.0
+   ],
+   "angles": [
+    356.492,
+    45.0,
+    5.62355
+   ],
+   "scale": 0.4,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7623.0,
+    -13602.0,
+    -509.0
+   ],
+   "angles": [
+    352.466,
+    226.895,
+    -7.9747
+   ],
+   "scale": 0.5,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7591.0,
+    -13585.0,
+    -503.0
+   ],
+   "angles": [
+    352.466,
+    226.895,
+    -7.97468
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7017.0,
+    -13215.0,
+    -496.0
+   ],
+   "angles": [
+    1.36643,
+    227.415,
+    3.32722
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    7599.0,
+    -13558.0,
+    -507.0
+   ],
+   "angles": [
+    1.94714,
+    137.756,
+    11.4864
+   ],
+   "scale": 0.6,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    9381.0,
+    -13008.0,
+    -508.0
+   ],
+   "angles": [
+    356.778,
+    138.119,
+    -4.02254
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8501.0,
+    -12050.0,
+    -493.0
+   ],
+   "angles": [
+    357.406,
+    138.146,
+    2.44648
+   ],
+   "scale": 0.7,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    6630.0,
+    -14393.0,
+    -445.0
+   ],
+   "angles": [
+    339.544,
+    148.1,
+    20.8743
+   ],
+   "scale": 0.953216,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    6301.0,
+    -14442.0,
+    -330.0
+   ],
+   "angles": [
+    7.70441,
+    293.887,
+    -7.35605
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    6304.0,
+    -14398.0,
+    -335.0
+   ],
+   "angles": [
+    354.158,
+    272.792,
+    -6.03021
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    6301.0,
+    -14339.0,
+    -339.0
+   ],
+   "angles": [
+    7.52788,
+    270.461,
+    -5.70948
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    6290.0,
+    -14296.0,
+    -346.0
+   ],
+   "angles": [
+    351.228,
+    285.775,
+    -6.68135
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    6274.0,
+    -14239.0,
+    -353.0
+   ],
+   "angles": [
+    4.5737,
+    283.306,
+    -6.23502
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    6248.0,
+    -14200.0,
+    -357.0
+   ],
+   "angles": [
+    358.402,
+    306.512,
+    -1.56079
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    6212.0,
+    -14152.0,
+    -357.0
+   ],
+   "angles": [
+    11.9115,
+    305.214,
+    -1.32318
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    6207.0,
+    -14393.0,
+    -330.0
+   ],
+   "angles": [
+    6.22381,
+    106.57,
+    6.13715
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/brush_egypt_desert_1",
+   "origin": [
+    8695.0,
+    -12656.0,
+    -489.0
+   ],
+   "angles": [
+    3.56617,
+    92.3723,
+    -5.62462
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    5551.0,
+    -13667.0,
+    -431.0
+   ],
+   "angles": [
+    10.3045,
+    266.698,
+    -22.961
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_4",
+   "origin": [
+    5540.0,
+    -13623.0,
+    -432.0
+   ],
+   "angles": [
+    358.981,
+    286.035,
+    -22.1747
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/caen_barbedwire_3",
+   "origin": [
+    5524.0,
+    -13566.0,
+    -431.0
+   ],
+   "angles": [
+    11.1582,
+    280.013,
+    -22.3562
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_opel_blitz_desert_static",
+   "origin": [
+    9032.0,
+    -13289.0,
+    -519.0
+   ],
+   "angles": [
+    353.926,
+    50.0615,
+    0.0317886
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/vehicle_opel_blitz_desert_static",
+   "origin": [
+    8666.0,
+    -13721.0,
+    -590.0
+   ],
+   "angles": [
+    351.216,
+    64.046,
+    -0.711028
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/sign_minefield1",
+   "origin": [
+    9195.0,
+    -12265.0,
+    -509.0
+   ],
+   "angles": [
+    3.8458,
+    352.325,
+    -0.503864
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    6408.0,
+    -13106.0,
+    -543.0
+   ],
+   "angles": [
+    0.0,
+    321.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  },
+  {
+   "model": "xmodel/crate01",
+   "origin": [
+    6369.0,
+    -13143.0,
+    -543.0
+   ],
+   "angles": [
+    0.0,
+    125.4,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": false
+  }
+ ]
+}

@@ -1,0 +1,13087 @@
+{
+ "format": "cod2-demo3d-props/1",
+ "map": "mp_decoy",
+ "file": "props.bin",
+ "byteLength": 1694764,
+ "models": [
+  {
+   "name": "xmodel/brush_egypt_desert_1",
+   "lod": "brush_egyptdesert01_lod10",
+   "flags": 0,
+   "mins": [
+    -112.06861877441406,
+    -112.06861877441406,
+    -112.06861877441406
+   ],
+   "maxs": [
+    112.06861877441406,
+    112.06861877441406,
+    112.06861877441406
+   ],
+   "vertices": 112,
+   "triangles": 72,
+   "geometry": {
+    "position": {
+     "offset": 0,
+     "length": 1344
+    },
+    "normal": {
+     "offset": 1344,
+     "length": 448
+    },
+    "uv": {
+     "offset": 1792,
+     "length": 896
+    },
+    "index": {
+     "offset": 2688,
+     "length": 864
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_brush_egypt_desert",
+     "technique": "phong_alphatest",
+     "start": 0,
+     "count": 216,
+     "texture": "_textures/brush_egypt_desert.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/bunker_ceiling_light_on",
+   "lod": "bunker_ceiling_light_on0",
+   "flags": 0,
+   "mins": [
+    -6.471907615661621,
+    -6.471907615661621,
+    -6.471907615661621
+   ],
+   "maxs": [
+    6.471907615661621,
+    6.471907615661621,
+    6.471907615661621
+   ],
+   "vertices": 83,
+   "triangles": 112,
+   "geometry": {
+    "position": {
+     "offset": 3552,
+     "length": 996
+    },
+    "normal": {
+     "offset": 4548,
+     "length": 332
+    },
+    "uv": {
+     "offset": 4880,
+     "length": 664
+    },
+    "index": {
+     "offset": 5544,
+     "length": 1344
+    },
+    "tangent": {
+     "offset": 6888,
+     "length": 332
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_bunkerlights_on",
+     "technique": "unlit_replace",
+     "start": 0,
+     "count": 240,
+     "texture": "_textures/bunkerlights_c.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": null
+    },
+    {
+     "material": "mtl_bunkerlights_off",
+     "technique": "phong_replace_spec",
+     "start": 240,
+     "count": 96,
+     "texture": "_textures/bunkerlights_c.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_bunkerlights_n-gggr__bunkerlights_s-rgbl-11.webp",
+     "specularMap": "_textures/_bunkerlights_s-rgbl-11.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/caen_barbedwire_3",
+   "lod": "barbedwire_030",
+   "flags": 0,
+   "mins": [
+    -42.365699768066406,
+    -42.365699768066406,
+    -42.365699768066406
+   ],
+   "maxs": [
+    42.365699768066406,
+    42.365699768066406,
+    42.365699768066406
+   ],
+   "vertices": 110,
+   "triangles": 60,
+   "geometry": {
+    "position": {
+     "offset": 7220,
+     "length": 1320
+    },
+    "normal": {
+     "offset": 8540,
+     "length": 440
+    },
+    "uv": {
+     "offset": 8980,
+     "length": 880
+    },
+    "index": {
+     "offset": 9860,
+     "length": 720
+    },
+    "tangent": {
+     "offset": 10580,
+     "length": 440
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_barbed_wire_a",
+     "technique": "phong_replace_spec_detail",
+     "start": 0,
+     "count": 180,
+     "texture": "_textures/barbed_wire_a.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_barbed_wire_a_nrml-gggr__barbed_wire_a_spec-rgbl-23.webp",
+     "specularMap": "_textures/_barbed_wire_a_spec-rgbl-23.webp",
+     "detailMap": "_textures/metal_01.webp",
+     "detailScale": [
+      8.0,
+      8.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/caen_barbedwire_4",
+   "lod": "barbedwire_040",
+   "flags": 0,
+   "mins": [
+    -65.17813873291016,
+    -65.17813873291016,
+    -65.17813873291016
+   ],
+   "maxs": [
+    65.17813873291016,
+    65.17813873291016,
+    65.17813873291016
+   ],
+   "vertices": 548,
+   "triangles": 276,
+   "geometry": {
+    "position": {
+     "offset": 11020,
+     "length": 6576
+    },
+    "normal": {
+     "offset": 17596,
+     "length": 2192
+    },
+    "uv": {
+     "offset": 19788,
+     "length": 4384
+    },
+    "index": {
+     "offset": 24172,
+     "length": 3312
+    },
+    "tangent": {
+     "offset": 27484,
+     "length": 2192
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_barbed_wire_a_masked",
+     "technique": "phong_alphatest_spec_detail",
+     "start": 0,
+     "count": 828,
+     "texture": "_textures/barbed_wire_a.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_barbed_wire_a_nrml-gggr__barbed_wire_a_spec-rgbl-23.webp",
+     "specularMap": "_textures/_barbed_wire_a_spec-rgbl-23.webp",
+     "detailMap": "_textures/metal_01.webp",
+     "detailScale": [
+      8.0,
+      8.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/crate01",
+   "lod": "crate010",
+   "flags": 0,
+   "mins": [
+    -37.40422821044922,
+    -37.40422821044922,
+    -37.40422821044922
+   ],
+   "maxs": [
+    37.40422821044922,
+    37.40422821044922,
+    37.40422821044922
+   ],
+   "vertices": 272,
+   "triangles": 136,
+   "geometry": {
+    "position": {
+     "offset": 29676,
+     "length": 3264
+    },
+    "normal": {
+     "offset": 32940,
+     "length": 1088
+    },
+    "uv": {
+     "offset": 34028,
+     "length": 2176
+    },
+    "index": {
+     "offset": 36204,
+     "length": 1632
+    },
+    "tangent": {
+     "offset": 37836,
+     "length": 1088
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_crate",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 408,
+     "texture": "_textures/crate.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_crate_n-gggr__crate_s-r-87g-87b-87_crate_cp-l-11.webp",
+     "specularMap": "_textures/_crate_s-r-87g-87b-87_crate_cp-l-11.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/egypt_bunker_window_shutter",
+   "lod": "egypt_bunker_window_shutter0",
+   "flags": 0,
+   "mins": [
+    -36.394676208496094,
+    -36.394676208496094,
+    -36.394676208496094
+   ],
+   "maxs": [
+    36.394676208496094,
+    36.394676208496094,
+    36.394676208496094
+   ],
+   "vertices": 320,
+   "triangles": 278,
+   "geometry": {
+    "position": {
+     "offset": 38924,
+     "length": 3840
+    },
+    "normal": {
+     "offset": 42764,
+     "length": 1280
+    },
+    "uv": {
+     "offset": 44044,
+     "length": 2560
+    },
+    "index": {
+     "offset": 46604,
+     "length": 3336
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_egypt_bunker_window_shutter",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 834,
+     "texture": "_textures/egypt_bunker_window_shutter.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/furniture_bed_bunker2",
+   "lod": "bunker_bed20",
+   "flags": 0,
+   "mins": [
+    -94.63676452636719,
+    -94.63676452636719,
+    -94.63676452636719
+   ],
+   "maxs": [
+    94.63676452636719,
+    94.63676452636719,
+    94.63676452636719
+   ],
+   "vertices": 1054,
+   "triangles": 716,
+   "geometry": {
+    "position": {
+     "offset": 49940,
+     "length": 12648
+    },
+    "normal": {
+     "offset": 62588,
+     "length": 4216
+    },
+    "uv": {
+     "offset": 66804,
+     "length": 8432
+    },
+    "index": {
+     "offset": 75236,
+     "length": 8592
+    },
+    "tangent": {
+     "offset": 83828,
+     "length": 4216
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_bed_bunker",
+     "technique": "phong_alphatest_spec",
+     "start": 0,
+     "count": 1392,
+     "texture": "_textures/bunker_bed_c.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_bunker_bed_n-gggr__bunker_bed_s-rgbl-11.webp",
+     "specularMap": "_textures/_bunker_bed_s-rgbl-11.webp"
+    },
+    {
+     "material": "mtl_bed_bunker2",
+     "technique": "phong_replace_spec",
+     "start": 1392,
+     "count": 756,
+     "texture": "_textures/bunker_bed_c.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_bunker_bed_n-gggr__bunker_bed_s-rgbl-11.webp",
+     "specularMap": "_textures/_bunker_bed_s-rgbl-11.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/german_artillery_flak88",
+   "lod": "flak88_hi_res1",
+   "flags": 0,
+   "mins": [
+    -222.2298126220703,
+    -222.2298126220703,
+    -222.2298126220703
+   ],
+   "maxs": [
+    222.2298126220703,
+    222.2298126220703,
+    222.2298126220703
+   ],
+   "vertices": 4550,
+   "triangles": 3091,
+   "geometry": {
+    "position": {
+     "offset": 88044,
+     "length": 54600
+    },
+    "normal": {
+     "offset": 142644,
+     "length": 18200
+    },
+    "uv": {
+     "offset": 160844,
+     "length": 36400
+    },
+    "index": {
+     "offset": 197244,
+     "length": 37092
+    },
+    "tangent": {
+     "offset": 234336,
+     "length": 18200
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_german_artillery_flak88",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 558,
+     "texture": "_textures/flak88_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_normal-gggr__flak88_spec-rgb_flak88_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_spec-rgb_flak88_cosine-l-11.webp"
+    },
+    {
+     "material": "mtl_german_artillery_flak88",
+     "technique": "phong_replace_spec",
+     "start": 558,
+     "count": 3957,
+     "texture": "_textures/flak88_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_normal-gggr__flak88_spec-rgb_flak88_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_spec-rgb_flak88_cosine-l-11.webp"
+    },
+    {
+     "material": "mtl_german_artillery_flak88",
+     "technique": "phong_replace_spec",
+     "start": 4515,
+     "count": 2352,
+     "texture": "_textures/flak88_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_normal-gggr__flak88_spec-rgb_flak88_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_spec-rgb_flak88_cosine-l-11.webp"
+    },
+    {
+     "material": "mtl_german_artillery_flak88",
+     "technique": "phong_replace_spec",
+     "start": 6867,
+     "count": 534,
+     "texture": "_textures/flak88_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_normal-gggr__flak88_spec-rgb_flak88_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_spec-rgb_flak88_cosine-l-11.webp"
+    },
+    {
+     "material": "mtl_german_artillery_flak88",
+     "technique": "phong_replace_spec",
+     "start": 7401,
+     "count": 1872,
+     "texture": "_textures/flak88_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_normal-gggr__flak88_spec-rgb_flak88_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_spec-rgb_flak88_cosine-l-11.webp"
+    }
+   ],
+   "skinned": true
+  },
+  {
+   "name": "xmodel/german_artillery_flak88_destroy",
+   "lod": "flak88_destroy_hi1",
+   "flags": 0,
+   "mins": [
+    -215.6640625,
+    -215.6640625,
+    -215.6640625
+   ],
+   "maxs": [
+    215.6640625,
+    215.6640625,
+    215.6640625
+   ],
+   "vertices": 4593,
+   "triangles": 3087,
+   "geometry": {
+    "position": {
+     "offset": 252536,
+     "length": 55116
+    },
+    "normal": {
+     "offset": 307652,
+     "length": 18372
+    },
+    "uv": {
+     "offset": 326024,
+     "length": 36744
+    },
+    "index": {
+     "offset": 362768,
+     "length": 37044
+    },
+    "tangent": {
+     "offset": 399812,
+     "length": 18372
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_german_artillery_flak88_destroy",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 558,
+     "texture": "_textures/flak88_destroy_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
+    },
+    {
+     "material": "mtl_german_artillery_flak88_destroy",
+     "technique": "phong_replace_spec",
+     "start": 558,
+     "count": 3921,
+     "texture": "_textures/flak88_destroy_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
+    },
+    {
+     "material": "mtl_german_artillery_flak88_destroy",
+     "technique": "phong_replace_spec",
+     "start": 4479,
+     "count": 2292,
+     "texture": "_textures/flak88_destroy_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
+    },
+    {
+     "material": "mtl_german_artillery_flak88_destroy",
+     "technique": "phong_replace_spec",
+     "start": 6771,
+     "count": 582,
+     "texture": "_textures/flak88_destroy_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
+    },
+    {
+     "material": "mtl_german_artillery_flak88_destroy",
+     "technique": "phong_replace_spec",
+     "start": 7353,
+     "count": 1908,
+     "texture": "_textures/flak88_destroy_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
+    }
+   ],
+   "skinned": true
+  },
+  {
+   "name": "xmodel/light_lantern_on",
+   "lod": "lantern_exterior_on_lod10",
+   "flags": 0,
+   "mins": [
+    -27.98146629333496,
+    -27.98146629333496,
+    -27.98146629333496
+   ],
+   "maxs": [
+    27.98146629333496,
+    27.98146629333496,
+    27.98146629333496
+   ],
+   "vertices": 506,
+   "triangles": 580,
+   "geometry": {
+    "position": {
+     "offset": 418184,
+     "length": 6072
+    },
+    "normal": {
+     "offset": 424256,
+     "length": 2024
+    },
+    "uv": {
+     "offset": 426280,
+     "length": 4048
+    },
+    "index": {
+     "offset": 430328,
+     "length": 6960
+    },
+    "tangent": {
+     "offset": 437288,
+     "length": 2024
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_detail_lantern",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 1380,
+     "texture": "_textures/lantern_on.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_lantern_on_n-gggr.webp"
+    },
+    {
+     "material": "mtl_detail_lantern_alpha",
+     "technique": "phong_blend",
+     "start": 1380,
+     "count": 360,
+     "texture": "_textures/lantern_on.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "blend",
+     "doubleSided": true,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_flak88_box",
+   "lod": "flak88_box0",
+   "flags": 0,
+   "mins": [
+    -21.05975914001465,
+    -21.05975914001465,
+    -21.05975914001465
+   ],
+   "maxs": [
+    21.05975914001465,
+    21.05975914001465,
+    21.05975914001465
+   ],
+   "vertices": 140,
+   "triangles": 70,
+   "geometry": {
+    "position": {
+     "offset": 439312,
+     "length": 1680
+    },
+    "normal": {
+     "offset": 440992,
+     "length": 560
+    },
+    "uv": {
+     "offset": 441552,
+     "length": 1120
+    },
+    "index": {
+     "offset": 442672,
+     "length": 840
+    },
+    "tangent": {
+     "offset": 443512,
+     "length": 560
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_flak88box",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 210,
+     "texture": "_textures/flak88_shell_local.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgbl-11.webp",
+     "specularMap": "_textures/_flak88_shell_spec-rgbl-11.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_flak88_box_empty",
+   "lod": "flak88_box_empty0",
+   "flags": 0,
+   "mins": [
+    -21.09898567199707,
+    -21.09898567199707,
+    -21.09898567199707
+   ],
+   "maxs": [
+    21.09898567199707,
+    21.09898567199707,
+    21.09898567199707
+   ],
+   "vertices": 96,
+   "triangles": 48,
+   "geometry": {
+    "position": {
+     "offset": 444072,
+     "length": 1152
+    },
+    "normal": {
+     "offset": 445224,
+     "length": 384
+    },
+    "uv": {
+     "offset": 445608,
+     "length": 768
+    },
+    "index": {
+     "offset": 446376,
+     "length": 576
+    },
+    "tangent": {
+     "offset": 446952,
+     "length": 384
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_flak88box",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 144,
+     "texture": "_textures/flak88_shell_local.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgbl-11.webp",
+     "specularMap": "_textures/_flak88_shell_spec-rgbl-11.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_flak88_box_open",
+   "lod": "flak88_box_open0",
+   "flags": 0,
+   "mins": [
+    -21.1024112701416,
+    -21.1024112701416,
+    -21.1024112701416
+   ],
+   "maxs": [
+    21.1024112701416,
+    21.1024112701416,
+    21.1024112701416
+   ],
+   "vertices": 240,
+   "triangles": 221,
+   "geometry": {
+    "position": {
+     "offset": 447336,
+     "length": 2880
+    },
+    "normal": {
+     "offset": 450216,
+     "length": 960
+    },
+    "uv": {
+     "offset": 451176,
+     "length": 1920
+    },
+    "index": {
+     "offset": 453096,
+     "length": 2652
+    },
+    "tangent": {
+     "offset": 455748,
+     "length": 960
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_flak88box",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 144,
+     "texture": "_textures/flak88_shell_local.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgbl-11.webp",
+     "specularMap": "_textures/_flak88_shell_spec-rgbl-11.webp"
+    },
+    {
+     "material": "mtl_flak88shell",
+     "technique": "phong_replace_spec",
+     "start": 144,
+     "count": 519,
+     "texture": "_textures/flak88_shell_local.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgb__white-l08.webp",
+     "specularMap": "_textures/_flak88_shell_spec-rgb__white-l08.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_flak88_emptyshell",
+   "lod": "flak88empty_shell0",
+   "flags": 0,
+   "mins": [
+    -12.157201766967773,
+    -12.157201766967773,
+    -12.157201766967773
+   ],
+   "maxs": [
+    12.157201766967773,
+    12.157201766967773,
+    12.157201766967773
+   ],
+   "vertices": 172,
+   "triangles": 156,
+   "geometry": {
+    "position": {
+     "offset": 456708,
+     "length": 2064
+    },
+    "normal": {
+     "offset": 458772,
+     "length": 688
+    },
+    "uv": {
+     "offset": 459460,
+     "length": 1376
+    },
+    "index": {
+     "offset": 460836,
+     "length": 1872
+    },
+    "tangent": {
+     "offset": 462708,
+     "length": 688
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_flak88shell",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 468,
+     "texture": "_textures/flak88_shell_local.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgb__white-l08.webp",
+     "specularMap": "_textures/_flak88_shell_spec-rgb__white-l08.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_flak88_shell",
+   "lod": "flak88_shell1",
+   "flags": 0,
+   "mins": [
+    -20.192169189453125,
+    -20.192169189453125,
+    -20.192169189453125
+   ],
+   "maxs": [
+    20.192169189453125,
+    20.192169189453125,
+    20.192169189453125
+   ],
+   "vertices": 173,
+   "triangles": 220,
+   "geometry": {
+    "position": {
+     "offset": 463396,
+     "length": 2076
+    },
+    "normal": {
+     "offset": 465472,
+     "length": 692
+    },
+    "uv": {
+     "offset": 466164,
+     "length": 1384
+    },
+    "index": {
+     "offset": 467548,
+     "length": 2640
+    },
+    "tangent": {
+     "offset": 470188,
+     "length": 692
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_flak88shell",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 660,
+     "texture": "_textures/flak88_shell_local.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgb__white-l08.webp",
+     "specularMap": "_textures/_flak88_shell_spec-rgb__white-l08.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_hedgehog",
+   "lod": "hedgehog10",
+   "flags": 0,
+   "mins": [
+    -64.14800262451172,
+    -64.14800262451172,
+    -64.14800262451172
+   ],
+   "maxs": [
+    64.14800262451172,
+    64.14800262451172,
+    64.14800262451172
+   ],
+   "vertices": 1404,
+   "triangles": 748,
+   "geometry": {
+    "position": {
+     "offset": 470880,
+     "length": 16848
+    },
+    "normal": {
+     "offset": 487728,
+     "length": 5616
+    },
+    "uv": {
+     "offset": 493344,
+     "length": 11232
+    },
+    "index": {
+     "offset": 504576,
+     "length": 8976
+    },
+    "tangent": {
+     "offset": 513552,
+     "length": 5616
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_barbed_wire_a",
+     "technique": "phong_replace_spec_detail",
+     "start": 0,
+     "count": 2244,
+     "texture": "_textures/barbed_wire_a.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_barbed_wire_a_nrml-gggr__barbed_wire_a_spec-rgbl-23.webp",
+     "specularMap": "_textures/_barbed_wire_a_spec-rgbl-23.webp",
+     "detailMap": "_textures/metal_01.webp",
+     "detailScale": [
+      8.0,
+      8.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_sandbag_curvedsection",
+   "lod": "sandbag_curvedsection0",
+   "flags": 0,
+   "mins": [
+    -80.3102798461914,
+    -80.3102798461914,
+    -80.3102798461914
+   ],
+   "maxs": [
+    80.3102798461914,
+    80.3102798461914,
+    80.3102798461914
+   ],
+   "vertices": 1374,
+   "triangles": 1702,
+   "geometry": {
+    "position": {
+     "offset": 519168,
+     "length": 16488
+    },
+    "normal": {
+     "offset": 535656,
+     "length": 5496
+    },
+    "uv": {
+     "offset": 541152,
+     "length": 10992
+    },
+    "index": {
+     "offset": 552144,
+     "length": 20424
+    },
+    "tangent": {
+     "offset": 572568,
+     "length": 5496
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_sandbags",
+     "technique": "phong_replace_detail",
+     "start": 0,
+     "count": 5106,
+     "texture": "_textures/sandbags_coler.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "detailMap": "_textures/burlap_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_sandbag_endsection_left",
+   "lod": "sandbag_endsection_left0",
+   "flags": 0,
+   "mins": [
+    -42.30678176879883,
+    -42.30678176879883,
+    -42.30678176879883
+   ],
+   "maxs": [
+    42.30678176879883,
+    42.30678176879883,
+    42.30678176879883
+   ],
+   "vertices": 478,
+   "triangles": 594,
+   "geometry": {
+    "position": {
+     "offset": 578064,
+     "length": 5736
+    },
+    "normal": {
+     "offset": 583800,
+     "length": 1912
+    },
+    "uv": {
+     "offset": 585712,
+     "length": 3824
+    },
+    "index": {
+     "offset": 589536,
+     "length": 7128
+    },
+    "tangent": {
+     "offset": 596664,
+     "length": 1912
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_sandbags",
+     "technique": "phong_replace_detail",
+     "start": 0,
+     "count": 1782,
+     "texture": "_textures/sandbags_coler.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "detailMap": "_textures/burlap_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_sandbag_endsection_right",
+   "lod": "sandbag_endsection_right0",
+   "flags": 0,
+   "mins": [
+    -35.2585563659668,
+    -35.2585563659668,
+    -35.2585563659668
+   ],
+   "maxs": [
+    35.2585563659668,
+    35.2585563659668,
+    35.2585563659668
+   ],
+   "vertices": 517,
+   "triangles": 580,
+   "geometry": {
+    "position": {
+     "offset": 598576,
+     "length": 6204
+    },
+    "normal": {
+     "offset": 604780,
+     "length": 2068
+    },
+    "uv": {
+     "offset": 606848,
+     "length": 4136
+    },
+    "index": {
+     "offset": 610984,
+     "length": 6960
+    },
+    "tangent": {
+     "offset": 617944,
+     "length": 2068
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_sandbags",
+     "technique": "phong_replace_detail",
+     "start": 0,
+     "count": 1740,
+     "texture": "_textures/sandbags_coler.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "detailMap": "_textures/burlap_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_sandbag_shortsection",
+   "lod": "sandbag_shortsection0",
+   "flags": 0,
+   "mins": [
+    -54.97314453125,
+    -54.97314453125,
+    -54.97314453125
+   ],
+   "maxs": [
+    54.97314453125,
+    54.97314453125,
+    54.97314453125
+   ],
+   "vertices": 373,
+   "triangles": 528,
+   "geometry": {
+    "position": {
+     "offset": 620012,
+     "length": 4476
+    },
+    "normal": {
+     "offset": 624488,
+     "length": 1492
+    },
+    "uv": {
+     "offset": 625980,
+     "length": 2984
+    },
+    "index": {
+     "offset": 628964,
+     "length": 6336
+    },
+    "tangent": {
+     "offset": 635300,
+     "length": 1492
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_sandbags",
+     "technique": "phong_replace_detail",
+     "start": 0,
+     "count": 1584,
+     "texture": "_textures/sandbags_coler.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "detailMap": "_textures/burlap_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_sandbag_single_bent",
+   "lod": "sandbag_single_bent0",
+   "flags": 0,
+   "mins": [
+    -22.217044830322266,
+    -22.217044830322266,
+    -22.217044830322266
+   ],
+   "maxs": [
+    22.217044830322266,
+    22.217044830322266,
+    22.217044830322266
+   ],
+   "vertices": 237,
+   "triangles": 354,
+   "geometry": {
+    "position": {
+     "offset": 636792,
+     "length": 2844
+    },
+    "normal": {
+     "offset": 639636,
+     "length": 948
+    },
+    "uv": {
+     "offset": 640584,
+     "length": 1896
+    },
+    "index": {
+     "offset": 642480,
+     "length": 4248
+    },
+    "tangent": {
+     "offset": 646728,
+     "length": 948
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_sandbags",
+     "technique": "phong_replace_detail",
+     "start": 0,
+     "count": 1062,
+     "texture": "_textures/sandbags_coler.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "detailMap": "_textures/burlap_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/military_sandbag_single_flat",
+   "lod": "sandbag_single_flat0",
+   "flags": 0,
+   "mins": [
+    -15.381199836730957,
+    -15.381199836730957,
+    -15.381199836730957
+   ],
+   "maxs": [
+    15.381199836730957,
+    15.381199836730957,
+    15.381199836730957
+   ],
+   "vertices": 157,
+   "triangles": 236,
+   "geometry": {
+    "position": {
+     "offset": 647676,
+     "length": 1884
+    },
+    "normal": {
+     "offset": 649560,
+     "length": 628
+    },
+    "uv": {
+     "offset": 650188,
+     "length": 1256
+    },
+    "index": {
+     "offset": 651444,
+     "length": 2832
+    },
+    "tangent": {
+     "offset": 654276,
+     "length": 628
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_sandbags",
+     "technique": "phong_replace_detail",
+     "start": 0,
+     "count": 708,
+     "texture": "_textures/sandbags_coler.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "detailMap": "_textures/burlap_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_barrel_black",
+   "lod": "barrel_high0",
+   "flags": 0,
+   "mins": [
+    -46.428466796875,
+    -46.428466796875,
+    -46.428466796875
+   ],
+   "maxs": [
+    46.428466796875,
+    46.428466796875,
+    46.428466796875
+   ],
+   "vertices": 394,
+   "triangles": 372,
+   "geometry": {
+    "position": {
+     "offset": 654904,
+     "length": 4728
+    },
+    "normal": {
+     "offset": 659632,
+     "length": 1576
+    },
+    "uv": {
+     "offset": 661208,
+     "length": 3152
+    },
+    "index": {
+     "offset": 664360,
+     "length": 4464
+    },
+    "tangent": {
+     "offset": 668824,
+     "length": 1576
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_barrel_black",
+     "technique": "phong_replace_spec_detail",
+     "start": 0,
+     "count": 1116,
+     "texture": "_textures/blackbarrel_local.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_blackbarrel_bump_local-gggr__blackbarrel_spec_local-rgb__white-l-11.webp",
+     "specularMap": "_textures/_blackbarrel_spec_local-rgb__white-l-11.webp",
+     "detailMap": "_textures/metal_01.webp",
+     "detailScale": [
+      16.0,
+      16.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_barrel_tan",
+   "lod": "barrel_high0",
+   "flags": 0,
+   "mins": [
+    -46.428466796875,
+    -46.428466796875,
+    -46.428466796875
+   ],
+   "maxs": [
+    46.428466796875,
+    46.428466796875,
+    46.428466796875
+   ],
+   "vertices": 394,
+   "triangles": 372,
+   "geometry": {
+    "position": {
+     "offset": 670400,
+     "length": 4728
+    },
+    "normal": {
+     "offset": 675128,
+     "length": 1576
+    },
+    "uv": {
+     "offset": 676704,
+     "length": 3152
+    },
+    "index": {
+     "offset": 679856,
+     "length": 4464
+    },
+    "tangent": {
+     "offset": 684320,
+     "length": 1576
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_barrel_tan1",
+     "technique": "phong_replace_spec_detail",
+     "start": 0,
+     "count": 1116,
+     "texture": "_textures/tanbarrel_local.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_tanbarrel_bump_local-gggr__tanbarrel_spec_local-rgb__white-l-11.webp",
+     "specularMap": "_textures/_tanbarrel_spec_local-rgb__white-l-11.webp",
+     "detailMap": "_textures/metal_01.webp",
+     "detailScale": [
+      16.0,
+      16.0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_bunkerlightswitch",
+   "lod": "bunkerlightswitch_lod10",
+   "flags": 0,
+   "mins": [
+    -4.977505683898926,
+    -4.977505683898926,
+    -4.977505683898926
+   ],
+   "maxs": [
+    4.977505683898926,
+    4.977505683898926,
+    4.977505683898926
+   ],
+   "vertices": 71,
+   "triangles": 60,
+   "geometry": {
+    "position": {
+     "offset": 685896,
+     "length": 852
+    },
+    "normal": {
+     "offset": 686748,
+     "length": 284
+    },
+    "uv": {
+     "offset": 687032,
+     "length": 568
+    },
+    "index": {
+     "offset": 687600,
+     "length": 720
+    },
+    "tangent": {
+     "offset": 688320,
+     "length": 284
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_bunkerlightswitch",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 180,
+     "texture": "_textures/bunkerlightswitch_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_bunkerlightswitch_normal-gggr.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_bunkerlocker_double",
+   "lod": "bunkerlocker_double_lod10",
+   "flags": 0,
+   "mins": [
+    -81.9275131225586,
+    -81.9275131225586,
+    -81.9275131225586
+   ],
+   "maxs": [
+    81.9275131225586,
+    81.9275131225586,
+    81.9275131225586
+   ],
+   "vertices": 150,
+   "triangles": 76,
+   "geometry": {
+    "position": {
+     "offset": 688604,
+     "length": 1800
+    },
+    "normal": {
+     "offset": 690404,
+     "length": 600
+    },
+    "uv": {
+     "offset": 691004,
+     "length": 1200
+    },
+    "index": {
+     "offset": 692204,
+     "length": 912
+    },
+    "tangent": {
+     "offset": 693116,
+     "length": 600
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_bunkerlocker",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 228,
+     "texture": "_textures/bunkerlocker_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_bunkerlocker_normal-gggr__bunkerlocker_spec-rgbl-86.webp",
+     "specularMap": "_textures/_bunkerlocker_spec-rgbl-86.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_bunkerlocker_open",
+   "lod": "bunkerlocker_open_lod10",
+   "flags": 0,
+   "mins": [
+    -79.20045471191406,
+    -79.20045471191406,
+    -79.20045471191406
+   ],
+   "maxs": [
+    79.20045471191406,
+    79.20045471191406,
+    79.20045471191406
+   ],
+   "vertices": 164,
+   "triangles": 86,
+   "geometry": {
+    "position": {
+     "offset": 693716,
+     "length": 1968
+    },
+    "normal": {
+     "offset": 695684,
+     "length": 656
+    },
+    "uv": {
+     "offset": 696340,
+     "length": 1312
+    },
+    "index": {
+     "offset": 697652,
+     "length": 1032
+    },
+    "tangent": {
+     "offset": 698684,
+     "length": 656
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_bunkerlocker",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 258,
+     "texture": "_textures/bunkerlocker_col.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_bunkerlocker_normal-gggr__bunkerlocker_spec-rgbl-86.webp",
+     "specularMap": "_textures/_bunkerlocker_spec-rgbl-86.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_crate_dak1",
+   "lod": "dak_crate10",
+   "flags": 0,
+   "mins": [
+    -47.29005432128906,
+    -47.29005432128906,
+    -47.29005432128906
+   ],
+   "maxs": [
+    47.29005432128906,
+    47.29005432128906,
+    47.29005432128906
+   ],
+   "vertices": 716,
+   "triangles": 358,
+   "geometry": {
+    "position": {
+     "offset": 699340,
+     "length": 8592
+    },
+    "normal": {
+     "offset": 707932,
+     "length": 2864
+    },
+    "uv": {
+     "offset": 710796,
+     "length": 5728
+    },
+    "index": {
+     "offset": 716524,
+     "length": 4296
+    },
+    "tangent": {
+     "offset": 720820,
+     "length": 2864
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_dak_crate_decals",
+     "technique": "effect_multiply",
+     "start": 0,
+     "count": 30,
+     "texture": "_textures/dak_crates_local.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "multiply",
+     "doubleSided": false,
+     "normalMap": null
+    },
+    {
+     "material": "mtl_dak_crate",
+     "technique": "phong_replace_spec",
+     "start": 30,
+     "count": 1044,
+     "texture": "_textures/dak_crates_local.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+     "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_crate_dak7",
+   "lod": "dak_crate70",
+   "flags": 0,
+   "mins": [
+    -32.40206527709961,
+    -32.40206527709961,
+    -32.40206527709961
+   ],
+   "maxs": [
+    32.40206527709961,
+    32.40206527709961,
+    32.40206527709961
+   ],
+   "vertices": 668,
+   "triangles": 334,
+   "geometry": {
+    "position": {
+     "offset": 723684,
+     "length": 8016
+    },
+    "normal": {
+     "offset": 731700,
+     "length": 2672
+    },
+    "uv": {
+     "offset": 734372,
+     "length": 5344
+    },
+    "index": {
+     "offset": 739716,
+     "length": 4008
+    },
+    "tangent": {
+     "offset": 743724,
+     "length": 2672
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_dak_crate_decals",
+     "technique": "effect_multiply",
+     "start": 0,
+     "count": 30,
+     "texture": "_textures/dak_crates_local.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "multiply",
+     "doubleSided": false,
+     "normalMap": null
+    },
+    {
+     "material": "mtl_dak_crate",
+     "technique": "phong_replace_spec",
+     "start": 30,
+     "count": 972,
+     "texture": "_textures/dak_crates_local.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+     "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/prop_crate_dak8",
+   "lod": "dak_crate80",
+   "flags": 0,
+   "mins": [
+    -30.37933921813965,
+    -30.37933921813965,
+    -30.37933921813965
+   ],
+   "maxs": [
+    30.37933921813965,
+    30.37933921813965,
+    30.37933921813965
+   ],
+   "vertices": 656,
+   "triangles": 328,
+   "geometry": {
+    "position": {
+     "offset": 746396,
+     "length": 7872
+    },
+    "normal": {
+     "offset": 754268,
+     "length": 2624
+    },
+    "uv": {
+     "offset": 756892,
+     "length": 5248
+    },
+    "index": {
+     "offset": 762140,
+     "length": 3936
+    },
+    "tangent": {
+     "offset": 766076,
+     "length": 2624
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_dak_crate_decals",
+     "technique": "effect_multiply",
+     "start": 0,
+     "count": 12,
+     "texture": "_textures/dak_crates_local.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "multiply",
+     "doubleSided": false,
+     "normalMap": null
+    },
+    {
+     "material": "mtl_dak_crate",
+     "technique": "phong_replace_spec",
+     "start": 12,
+     "count": 972,
+     "texture": "_textures/dak_crates_local.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+     "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/sign_minefield1",
+   "lod": "minefield_sign10",
+   "flags": 0,
+   "mins": [
+    -27.944459915161133,
+    -27.944459915161133,
+    -27.944459915161133
+   ],
+   "maxs": [
+    27.944459915161133,
+    27.944459915161133,
+    27.944459915161133
+   ],
+   "vertices": 64,
+   "triangles": 32,
+   "geometry": {
+    "position": {
+     "offset": 768700,
+     "length": 768
+    },
+    "normal": {
+     "offset": 769468,
+     "length": 256
+    },
+    "uv": {
+     "offset": 769724,
+     "length": 512
+    },
+    "index": {
+     "offset": 770236,
+     "length": 384
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_minefield_post",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 60,
+     "texture": "_textures/minefieldpost.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": null
+    },
+    {
+     "material": "mtl_minefield_sign1",
+     "technique": "phong_replace",
+     "start": 60,
+     "count": 36,
+     "texture": "_textures/minefield_sign.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/tunisia_mountains",
+   "lod": "tunisia_mountains_010",
+   "flags": 0,
+   "mins": [
+    -15100.1845703125,
+    -15100.1845703125,
+    -15100.1845703125
+   ],
+   "maxs": [
+    15100.1845703125,
+    15100.1845703125,
+    15100.1845703125
+   ],
+   "vertices": 365,
+   "triangles": 357,
+   "geometry": {
+    "position": {
+     "offset": 770620,
+     "length": 4380
+    },
+    "normal": {
+     "offset": 775000,
+     "length": 1460
+    },
+    "uv": {
+     "offset": 776460,
+     "length": 2920
+    },
+    "index": {
+     "offset": 779380,
+     "length": 4284
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_tunisia_mountain",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 1071,
+     "texture": "_textures/tunisia_mountain_col_01.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": null
+    }
+   ]
+  },
+  {
+   "name": "xmodel/vehicle_africa_jeep_can_static",
+   "lod": "american_jeep_can0",
+   "flags": 0,
+   "mins": [
+    -104.10990905761719,
+    -104.10990905761719,
+    -104.10990905761719
+   ],
+   "maxs": [
+    104.10990905761719,
+    104.10990905761719,
+    104.10990905761719
+   ],
+   "vertices": 5504,
+   "triangles": 5187,
+   "geometry": {
+    "position": {
+     "offset": 783664,
+     "length": 66048
+    },
+    "normal": {
+     "offset": 849712,
+     "length": 22016
+    },
+    "uv": {
+     "offset": 871728,
+     "length": 44032
+    },
+    "index": {
+     "offset": 915760,
+     "length": 62244
+    },
+    "tangent": {
+     "offset": 978004,
+     "length": 22016
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_africa_jeep",
+     "technique": "phong_replace_spec_detail",
+     "start": 0,
+     "count": 14985,
+     "texture": "_textures/africajeepcolor_0.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_africajeepnormal_0-gggr__africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+     "specularMap": "_textures/_africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+     "detailMap": "_textures/africajeepdetail_0.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    },
+    {
+     "material": "mtl_africa_jeep",
+     "technique": "phong_replace_spec_detail",
+     "start": 14985,
+     "count": 564,
+     "texture": "_textures/africajeepcolor_0.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_africajeepnormal_0-gggr__africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+     "specularMap": "_textures/_africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+     "detailMap": "_textures/africajeepdetail_0.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    },
+    {
+     "material": "mtl_jeep_glass",
+     "technique": "phong_blend_spec",
+     "start": 15549,
+     "count": 12,
+     "texture": "_textures/americanjeepglasscolor_0.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "blend",
+     "doubleSided": true,
+     "normalMap": "_textures/flat__americanjeepglassspecular_0-rgb_americanje_f087d27f.webp",
+     "specularMap": "_textures/_americanjeepglassspecular_0-rgb_americanje_f087d27f.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/vehicle_opel_blitz_desert_static",
+   "lod": "opel_blitz_no_bars0",
+   "flags": 0,
+   "mins": [
+    -162.6680908203125,
+    -162.6680908203125,
+    -162.6680908203125
+   ],
+   "maxs": [
+    162.6680908203125,
+    162.6680908203125,
+    162.6680908203125
+   ],
+   "vertices": 6903,
+   "triangles": 5338,
+   "geometry": {
+    "position": {
+     "offset": 1000020,
+     "length": 82836
+    },
+    "normal": {
+     "offset": 1082856,
+     "length": 27612
+    },
+    "uv": {
+     "offset": 1110468,
+     "length": 55224
+    },
+    "index": {
+     "offset": 1165692,
+     "length": 64056
+    },
+    "tangent": {
+     "offset": 1229748,
+     "length": 27612
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_opel_blitz",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 10554,
+     "texture": "_textures/opel_blitz_desert__0.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_opel_blitz_nrml__0-gggr__opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp",
+     "specularMap": "_textures/_opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp"
+    },
+    {
+     "material": "mtl_opel_blitz",
+     "technique": "phong_replace_spec",
+     "start": 10554,
+     "count": 5100,
+     "texture": "_textures/opel_blitz_desert__0.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_opel_blitz_nrml__0-gggr__opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp",
+     "specularMap": "_textures/_opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp"
+    },
+    {
+     "material": "mtl_opel_blitz_glass",
+     "technique": "phong_blend",
+     "start": 15654,
+     "count": 126,
+     "texture": "_textures/opel_blitz_glass__0.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "blend",
+     "doubleSided": true,
+     "normalMap": null
+    },
+    {
+     "material": "mtl_opel_blitz_glass_inner",
+     "technique": "phong_blend",
+     "start": 15780,
+     "count": 24,
+     "texture": "_textures/opel_blitz_glass__0.webp",
+     "textureAlpha": true,
+     "alphaTest": null,
+     "blend": "blend",
+     "doubleSided": true,
+     "normalMap": null
+    },
+    {
+     "material": "mtl_opel_vm",
+     "technique": "phong_blend_spec",
+     "start": 15804,
+     "count": 210,
+     "texture": "_textures/opel_vm_desert__0.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": "blend",
+     "doubleSided": true,
+     "normalMap": "_textures/flat__opel_vm_desert_spec__0-rgbl08.webp",
+     "specularMap": "_textures/_opel_vm_desert_spec__0-rgbl08.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/vehicle_panzer_ii_destroyed_static",
+   "lod": "vehicle_german_panzer_2_d0",
+   "flags": 0,
+   "mins": [
+    -137.26646423339844,
+    -137.26646423339844,
+    -137.26646423339844
+   ],
+   "maxs": [
+    137.26646423339844,
+    137.26646423339844,
+    137.26646423339844
+   ],
+   "vertices": 8390,
+   "triangles": 5662,
+   "geometry": {
+    "position": {
+     "offset": 1257360,
+     "length": 100680
+    },
+    "normal": {
+     "offset": 1358040,
+     "length": 33560
+    },
+    "uv": {
+     "offset": 1391600,
+     "length": 67120
+    },
+    "index": {
+     "offset": 1458720,
+     "length": 67944
+    },
+    "tangent": {
+     "offset": 1526664,
+     "length": 33560
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_panzer2_d",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 9636,
+     "texture": "_textures/panzer2_color_d.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec_d-r41g41b41l-64.webp",
+     "specularMap": "_textures/_panzer2_spec_d-r41g41b41l-64.webp"
+    },
+    {
+     "material": "mtl_panzer2_d",
+     "technique": "phong_replace_spec",
+     "start": 9636,
+     "count": 6090,
+     "texture": "_textures/panzer2_color_d.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec_d-r41g41b41l-64.webp",
+     "specularMap": "_textures/_panzer2_spec_d-r41g41b41l-64.webp"
+    },
+    {
+     "material": "mtl_panzer2_treads_d_static",
+     "technique": "phong_alphatest_spec",
+     "start": 15726,
+     "count": 1260,
+     "texture": "_textures/panzer2_treads_d.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_panzer2_tread_normals-gggr__panzer2_tread_spec-rgbl-13.webp",
+     "specularMap": "_textures/_panzer2_tread_spec-rgbl-13.webp"
+    }
+   ]
+  },
+  {
+   "name": "xmodel/weapon_30cal",
+   "lod": "weapon_30cal_high1",
+   "flags": 0,
+   "mins": [
+    -38.222434997558594,
+    -38.222434997558594,
+    -38.222434997558594
+   ],
+   "maxs": [
+    38.222434997558594,
+    38.222434997558594,
+    38.222434997558594
+   ],
+   "vertices": 2011,
+   "triangles": 1356,
+   "geometry": {
+    "position": {
+     "offset": 1560224,
+     "length": 24132
+    },
+    "normal": {
+     "offset": 1584356,
+     "length": 8044
+    },
+    "uv": {
+     "offset": 1592400,
+     "length": 16088
+    },
+    "index": {
+     "offset": 1608488,
+     "length": 16272
+    },
+    "tangent": {
+     "offset": 1624760,
+     "length": 8044
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_weapon_30cal",
+     "technique": "phong_alphatest_spec_detail",
+     "start": 0,
+     "count": 936,
+     "texture": "_textures/weapon_30cal_c.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_weapon_30cal_n-gggr__weapon_30cal_s-rgb_weapon_30cal_cp-l-11.webp",
+     "specularMap": "_textures/_weapon_30cal_s-rgb_weapon_30cal_cp-l-11.webp",
+     "detailMap": "_textures/metal_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ]
+    },
+    {
+     "material": "mtl_weapon_30cal",
+     "technique": "phong_alphatest_spec_detail",
+     "start": 936,
+     "count": 3132,
+     "texture": "_textures/weapon_30cal_c.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_weapon_30cal_n-gggr__weapon_30cal_s-rgb_weapon_30cal_cp-l-11.webp",
+     "specularMap": "_textures/_weapon_30cal_s-rgb_weapon_30cal_cp-l-11.webp",
+     "detailMap": "_textures/metal_01.webp",
+     "detailScale": [
+      32.0,
+      32.0
+     ],
+     "part": "aim"
+    }
+   ],
+   "aimPivot": [
+    -2.986,
+    0.061,
+    12.915
+   ]
+  },
+  {
+   "name": "xmodel/weapon_mg42",
+   "lod": "MG42_with_bipod_test1",
+   "flags": 0,
+   "mins": [
+    -52.64448928833008,
+    -52.64448928833008,
+    -52.64448928833008
+   ],
+   "maxs": [
+    52.64448928833008,
+    52.64448928833008,
+    52.64448928833008
+   ],
+   "vertices": 1657,
+   "triangles": 1297,
+   "geometry": {
+    "position": {
+     "offset": 1632804,
+     "length": 19884
+    },
+    "normal": {
+     "offset": 1652688,
+     "length": 6628
+    },
+    "uv": {
+     "offset": 1659316,
+     "length": 13256
+    },
+    "index": {
+     "offset": 1672572,
+     "length": 15564
+    },
+    "tangent": {
+     "offset": 1688136,
+     "length": 6628
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_weapon_mg42",
+     "technique": "phong_alphatest_spec_detail",
+     "start": 0,
+     "count": 222,
+     "texture": "_textures/weapon_mg42_c.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_weapon_mg42_n-gggr__weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
+     "specularMap": "_textures/_weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
+     "detailMap": "_textures/metal_01.webp",
+     "detailScale": [
+      32.0,
+      16.0
+     ]
+    },
+    {
+     "material": "mtl_weapon_mg42",
+     "technique": "phong_alphatest_spec_detail",
+     "start": 222,
+     "count": 3669,
+     "texture": "_textures/weapon_mg42_c.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_weapon_mg42_n-gggr__weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
+     "specularMap": "_textures/_weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
+     "detailMap": "_textures/metal_01.webp",
+     "detailScale": [
+      32.0,
+      16.0
+     ],
+     "part": "aim"
+    }
+   ],
+   "aimPivot": [
+    -2.986,
+    0.061,
+    12.915
+   ]
+  }
+ ],
+ "instances": [
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.5,
+    -0.86603,
+    0.0,
+    6497.0,
+    0.86603,
+    -0.5,
+    0.0,
+    -13468.0,
+    -0.0,
+    0.0,
+    1.0,
+    -467.0
+   ],
+   "light": [
+    0.22,
+    0.216,
+    0.259
+   ],
+   "groundLight": [
+    0.22,
+    0.216,
+    0.259,
+    0.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    6485.0,
+    0.0,
+    -1.0,
+    0.0,
+    -13468.0,
+    -0.0,
+    0.0,
+    1.0,
+    -492.0
+   ],
+   "light": [
+    0.243,
+    0.235,
+    0.271
+   ],
+   "groundLight": [
+    0.243,
+    0.235,
+    0.271,
+    0.404
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    6513.0,
+    0.0,
+    -1.0,
+    0.0,
+    -13468.0,
+    -0.0,
+    0.0,
+    1.0,
+    -492.0
+   ],
+   "light": [
+    0.22,
+    0.216,
+    0.259
+   ],
+   "groundLight": [
+    0.22,
+    0.216,
+    0.259,
+    0.0
+   ]
+  },
+  {
+   "model": 5,
+   "name": "xmodel/egypt_bunker_window_shutter",
+   "matrix": [
+    -0.70711,
+    -0.70711,
+    0.0,
+    8389.64,
+    0.70711,
+    -0.70711,
+    0.0,
+    -13037.1,
+    -0.0,
+    0.0,
+    1.0,
+    -614.0
+   ]
+  },
+  {
+   "model": 5,
+   "name": "xmodel/egypt_bunker_window_shutter",
+   "matrix": [
+    0.70711,
+    -0.70711,
+    0.0,
+    8317.52,
+    0.70711,
+    0.70711,
+    0.0,
+    -13213.9,
+    -0.0,
+    0.0,
+    1.0,
+    -613.0
+   ]
+  },
+  {
+   "model": 31,
+   "name": "xmodel/tunisia_mountains",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    2984.0,
+    0.0,
+    1.0,
+    0.0,
+    -26960.0,
+    -0.0,
+    0.0,
+    1.0,
+    -448.0
+   ]
+  },
+  {
+   "model": 31,
+   "name": "xmodel/tunisia_mountains",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    22432.0,
+    1.0,
+    0.0,
+    0.0,
+    -11376.0,
+    -0.0,
+    0.0,
+    1.0,
+    -808.0
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.61429,
+    -0.78908,
+    0.0,
+    6018.0,
+    0.78908,
+    0.61429,
+    0.0,
+    -13727.0,
+    -0.0,
+    0.0,
+    1.0,
+    -555.0
+   ],
+   "light": [
+    0.31,
+    0.29,
+    0.302
+   ],
+   "groundLight": [
+    0.31,
+    0.29,
+    0.302,
+    0.467
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.61429,
+    -0.78908,
+    0.0,
+    5989.0,
+    0.78908,
+    0.61429,
+    0.0,
+    -13749.0,
+    -0.0,
+    0.0,
+    1.0,
+    -555.0
+   ],
+   "light": [
+    0.282,
+    0.263,
+    0.263
+   ],
+   "groundLight": [
+    0.282,
+    0.263,
+    0.263,
+    0.216
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.62794,
+    -0.77814,
+    0.01383,
+    6018.0,
+    0.77794,
+    0.62707,
+    -0.04006,
+    -13756.0,
+    0.0225,
+    0.03591,
+    0.9991,
+    -557.0
+   ],
+   "light": [
+    0.322,
+    0.298,
+    0.31
+   ],
+   "groundLight": [
+    0.322,
+    0.298,
+    0.31,
+    0.498
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.98215,
+    0.18763,
+    0.01346,
+    9592.0,
+    -0.18801,
+    -0.98147,
+    -0.03703,
+    -13329.0,
+    0.00627,
+    -0.0389,
+    0.99922,
+    -598.0
+   ],
+   "light": [
+    0.231,
+    0.231,
+    0.271
+   ],
+   "groundLight": [
+    0.231,
+    0.231,
+    0.271,
+    0.271
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.98215,
+    0.18763,
+    0.01346,
+    9592.0,
+    -0.18801,
+    -0.98147,
+    -0.03703,
+    -13335.0,
+    0.00627,
+    -0.0389,
+    0.99922,
+    -573.0
+   ],
+   "light": [
+    0.231,
+    0.231,
+    0.271
+   ],
+   "groundLight": [
+    0.231,
+    0.231,
+    0.271,
+    0.271
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.98333,
+    0.12904,
+    -0.12809,
+    8656.0,
+    -0.13615,
+    0.98951,
+    -0.04839,
+    -12135.0,
+    0.1205,
+    0.06502,
+    0.99058,
+    -493.0
+   ],
+   "light": [
+    0.137,
+    0.165,
+    0.294
+   ],
+   "groundLight": [
+    0.137,
+    0.165,
+    0.294,
+    0.847
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.2491,
+    0.96582,
+    0.07171,
+    9811.0,
+    -0.96641,
+    0.25272,
+    -0.04674,
+    -12998.0,
+    -0.06326,
+    -0.05765,
+    0.99633,
+    -492.0
+   ],
+   "light": [
+    0.149,
+    0.173,
+    0.298
+   ],
+   "groundLight": [
+    0.149,
+    0.173,
+    0.298,
+    0.788
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.44361,
+    0.8941,
+    0.06169,
+    10074.0,
+    -0.89439,
+    0.43724,
+    0.0943,
+    -14234.0,
+    0.05734,
+    -0.097,
+    0.99363,
+    -518.0
+   ],
+   "light": [
+    0.161,
+    0.18,
+    0.302
+   ],
+   "groundLight": [
+    0.161,
+    0.18,
+    0.302,
+    0.804
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.41667,
+    0.88046,
+    0.22623,
+    9919.0,
+    -0.90681,
+    0.38507,
+    0.1715,
+    -13975.0,
+    0.06389,
+    -0.27661,
+    0.95886,
+    -499.0
+   ],
+   "light": [
+    0.153,
+    0.173,
+    0.298
+   ],
+   "groundLight": [
+    0.153,
+    0.173,
+    0.298,
+    0.824
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.08722,
+    0.99596,
+    0.0213,
+    9651.0,
+    -0.99594,
+    0.08765,
+    -0.02035,
+    -12517.0,
+    -0.02214,
+    -0.01944,
+    0.99957,
+    -495.0
+   ],
+   "light": [
+    0.137,
+    0.161,
+    0.29
+   ],
+   "groundLight": [
+    0.137,
+    0.161,
+    0.29,
+    0.847
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.02571,
+    0.99906,
+    -0.03477,
+    7691.0,
+    -0.99967,
+    0.02572,
+    -0.0,
+    -14139.0,
+    0.00089,
+    0.03475,
+    0.9994,
+    -606.0
+   ],
+   "light": [
+    0.18,
+    0.196,
+    0.251
+   ],
+   "groundLight": [
+    0.18,
+    0.196,
+    0.251,
+    0.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.02571,
+    0.99906,
+    -0.03477,
+    7742.0,
+    -0.99967,
+    0.02572,
+    -0.0,
+    -14136.0,
+    0.00089,
+    0.03475,
+    0.9994,
+    -605.0
+   ],
+   "light": [
+    0.184,
+    0.196,
+    0.247
+   ],
+   "groundLight": [
+    0.184,
+    0.196,
+    0.247,
+    0.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.02571,
+    0.99906,
+    -0.03477,
+    7797.0,
+    -0.99967,
+    0.02572,
+    -0.0,
+    -14134.0,
+    0.00089,
+    0.03475,
+    0.9994,
+    -603.0
+   ],
+   "light": [
+    0.188,
+    0.2,
+    0.251
+   ],
+   "groundLight": [
+    0.188,
+    0.2,
+    0.251,
+    0.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.02571,
+    0.99906,
+    -0.03477,
+    7770.0,
+    -0.99967,
+    0.02572,
+    -0.0,
+    -14134.0,
+    0.00089,
+    0.03475,
+    0.9994,
+    -579.0
+   ],
+   "light": [
+    0.184,
+    0.192,
+    0.243
+   ],
+   "groundLight": [
+    0.184,
+    0.192,
+    0.243,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.09339,
+    0.48932,
+    0.04297,
+    8135.0,
+    -0.49119,
+    -0.09334,
+    -0.00457,
+    -12476.0,
+    0.00355,
+    -0.04307,
+    0.49813,
+    -508.0
+   ],
+   "light": [
+    0.098,
+    0.114,
+    0.192
+   ],
+   "groundLight": [
+    0.098,
+    0.114,
+    0.192,
+    0.51
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.18902,
+    0.96167,
+    0.19866,
+    9195.0,
+    -0.98146,
+    0.17845,
+    0.06998,
+    -12426.0,
+    0.03185,
+    -0.2082,
+    0.97757,
+    -502.0
+   ],
+   "light": [
+    0.137,
+    0.161,
+    0.294
+   ],
+   "groundLight": [
+    0.137,
+    0.161,
+    0.294,
+    0.867
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.19045,
+    0.96541,
+    0.17809,
+    9181.0,
+    -0.97887,
+    0.17299,
+    0.10905,
+    -12376.0,
+    0.07447,
+    -0.1951,
+    0.97795,
+    -504.0
+   ],
+   "light": [
+    0.137,
+    0.161,
+    0.29
+   ],
+   "groundLight": [
+    0.137,
+    0.161,
+    0.29,
+    0.859
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.17902,
+    0.98008,
+    0.086,
+    9220.0,
+    -0.98223,
+    0.18304,
+    -0.04142,
+    -12526.0,
+    -0.05634,
+    -0.07706,
+    0.99543,
+    -503.0
+   ],
+   "light": [
+    0.137,
+    0.165,
+    0.298
+   ],
+   "groundLight": [
+    0.137,
+    0.165,
+    0.298,
+    0.867
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.18225,
+    0.96297,
+    0.19865,
+    9206.0,
+    -0.98269,
+    0.17156,
+    0.06993,
+    -12475.0,
+    0.03326,
+    -0.20796,
+    0.97757,
+    -500.0
+   ],
+   "light": [
+    0.137,
+    0.161,
+    0.29
+   ],
+   "groundLight": [
+    0.137,
+    0.161,
+    0.29,
+    0.82
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    -0.99749,
+    -0.02799,
+    -0.0651,
+    9463.0,
+    0.03194,
+    -0.99766,
+    -0.06041,
+    -12984.0,
+    -0.06326,
+    -0.06234,
+    0.99605,
+    -507.0
+   ],
+   "light": [
+    0.145,
+    0.169,
+    0.298
+   ],
+   "groundLight": [
+    0.145,
+    0.169,
+    0.298,
+    0.906
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.97718,
+    -0.20301,
+    -0.06244,
+    9509.0,
+    0.20585,
+    0.97764,
+    0.04298,
+    -12985.0,
+    0.05232,
+    -0.05485,
+    0.99712,
+    -506.0
+   ],
+   "light": [
+    0.145,
+    0.165,
+    0.294
+   ],
+   "groundLight": [
+    0.145,
+    0.165,
+    0.294,
+    0.855
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    -0.9883,
+    0.15062,
+    0.02403,
+    9410.0,
+    -0.15192,
+    -0.98609,
+    -0.06738,
+    -12979.0,
+    0.01354,
+    -0.07024,
+    0.99744,
+    -509.0
+   ],
+   "light": [
+    0.137,
+    0.157,
+    0.278
+   ],
+   "groundLight": [
+    0.137,
+    0.157,
+    0.278,
+    0.776
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.18167,
+    0.98314,
+    0.02076,
+    9225.0,
+    -0.98335,
+    0.18173,
+    -0.00101,
+    -12577.0,
+    -0.00477,
+    -0.02023,
+    0.99978,
+    -505.0
+   ],
+   "light": [
+    0.137,
+    0.161,
+    0.282
+   ],
+   "groundLight": [
+    0.137,
+    0.161,
+    0.282,
+    0.867
+   ]
+  },
+  {
+   "model": 15,
+   "name": "xmodel/military_hedgehog",
+   "matrix": [
+    0.99852,
+    0.01063,
+    0.05326,
+    9261.0,
+    -0.01063,
+    0.99994,
+    -0.00019,
+    -12412.0,
+    -0.05326,
+    -0.00038,
+    0.99858,
+    -508.0
+   ],
+   "light": [
+    0.125,
+    0.145,
+    0.255
+   ],
+   "groundLight": [
+    0.125,
+    0.145,
+    0.255,
+    0.443
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    -0.99937,
+    0.00298,
+    -0.03546,
+    9562.0,
+    -0.00145,
+    -0.99906,
+    -0.04325,
+    -12985.0,
+    -0.03556,
+    -0.04317,
+    0.99843,
+    -505.0
+   ],
+   "light": [
+    0.145,
+    0.169,
+    0.302
+   ],
+   "groundLight": [
+    0.145,
+    0.169,
+    0.302,
+    0.851
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    -0.99594,
+    -0.07606,
+    0.04807,
+    9615.0,
+    0.07321,
+    -0.99559,
+    -0.05861,
+    -12983.0,
+    0.05232,
+    -0.05485,
+    0.99712,
+    -506.0
+   ],
+   "light": [
+    0.145,
+    0.169,
+    0.294
+   ],
+   "groundLight": [
+    0.145,
+    0.169,
+    0.294,
+    0.816
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    -0.70796,
+    -0.70524,
+    -0.03796,
+    9649.0,
+    0.70623,
+    -0.70641,
+    -0.04721,
+    -13022.0,
+    0.00648,
+    -0.06023,
+    0.99816,
+    -504.0
+   ],
+   "light": [
+    0.153,
+    0.176,
+    0.31
+   ],
+   "groundLight": [
+    0.153,
+    0.176,
+    0.31,
+    0.875
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    -0.65247,
+    -0.75778,
+    -0.00745,
+    9689.0,
+    0.756,
+    -0.65021,
+    -0.07544,
+    -13060.0,
+    0.05232,
+    -0.05485,
+    0.99712,
+    -503.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.294
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.294,
+    0.894
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    -0.16003,
+    -0.98387,
+    -0.07992,
+    9695.0,
+    0.98553,
+    -0.15467,
+    -0.06927,
+    -13112.0,
+    0.05579,
+    -0.08985,
+    0.99439,
+    -506.0
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    -0.08523,
+    -0.99509,
+    -0.05027,
+    9705.0,
+    0.99499,
+    -0.08236,
+    -0.05674,
+    -13166.0,
+    0.05232,
+    -0.05485,
+    0.99712,
+    -508.0
+   ],
+   "light": [
+    0.153,
+    0.173,
+    0.294
+   ],
+   "groundLight": [
+    0.153,
+    0.173,
+    0.294,
+    0.8
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    -0.13109,
+    0.98967,
+    0.05804,
+    9486.0,
+    -0.99115,
+    -0.13206,
+    0.01324,
+    -12557.0,
+    0.02077,
+    -0.0558,
+    0.99823,
+    -506.0
+   ],
+   "light": [
+    0.137,
+    0.165,
+    0.298
+   ],
+   "groundLight": [
+    0.137,
+    0.165,
+    0.298,
+    0.855
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    -0.12656,
+    0.99192,
+    0.00869,
+    9480.0,
+    -0.98809,
+    -0.12529,
+    -0.08938,
+    -12604.0,
+    -0.08757,
+    -0.0199,
+    0.99596,
+    -509.0
+   ],
+   "light": [
+    0.133,
+    0.161,
+    0.29
+   ],
+   "groundLight": [
+    0.133,
+    0.161,
+    0.29,
+    0.784
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    -0.13109,
+    0.98967,
+    0.05804,
+    9502.0,
+    -0.99115,
+    -0.13206,
+    0.01324,
+    -12453.0,
+    0.02077,
+    -0.0558,
+    0.99823,
+    -508.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.302
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.302,
+    0.855
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    -0.12656,
+    0.99192,
+    0.00869,
+    9494.0,
+    -0.98809,
+    -0.12529,
+    -0.08938,
+    -12503.0,
+    -0.08757,
+    -0.0199,
+    0.99596,
+    -507.0
+   ],
+   "light": [
+    0.137,
+    0.161,
+    0.29
+   ],
+   "groundLight": [
+    0.137,
+    0.161,
+    0.29,
+    0.8
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    -0.3621,
+    0.93024,
+    0.05953,
+    9528.0,
+    -0.93191,
+    -0.36269,
+    -0.00088,
+    -12354.0,
+    0.02077,
+    -0.0558,
+    0.99823,
+    -508.0
+   ],
+   "light": [
+    0.141,
+    0.169,
+    0.302
+   ],
+   "groundLight": [
+    0.141,
+    0.169,
+    0.302,
+    0.855
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    -0.35698,
+    0.93403,
+    -0.01273,
+    9509.0,
+    -0.93,
+    -0.35665,
+    -0.08889,
+    -12401.0,
+    -0.08757,
+    -0.0199,
+    0.99596,
+    -507.0
+   ],
+   "light": [
+    0.137,
+    0.165,
+    0.294
+   ],
+   "groundLight": [
+    0.137,
+    0.165,
+    0.294,
+    0.808
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.0935,
+    0.99417,
+    0.05362,
+    9541.0,
+    -0.9954,
+    0.09222,
+    0.02586,
+    -12256.0,
+    0.02077,
+    -0.0558,
+    0.99823,
+    -508.0
+   ],
+   "light": [
+    0.141,
+    0.169,
+    0.302
+   ],
+   "groundLight": [
+    0.141,
+    0.169,
+    0.302,
+    0.894
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.09723,
+    0.99486,
+    0.02842,
+    9545.0,
+    -0.9914,
+    0.09932,
+    -0.08518,
+    -12306.0,
+    -0.08757,
+    -0.0199,
+    0.99596,
+    -507.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.294
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.294,
+    0.835
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.09723,
+    0.99486,
+    0.02842,
+    9532.0,
+    -0.9914,
+    0.09932,
+    -0.08518,
+    -12206.0,
+    -0.08757,
+    -0.0199,
+    0.99596,
+    -507.0
+   ],
+   "light": [
+    0.137,
+    0.165,
+    0.294
+   ],
+   "groundLight": [
+    0.137,
+    0.165,
+    0.294,
+    0.851
+   ]
+  },
+  {
+   "model": 15,
+   "name": "xmodel/military_hedgehog",
+   "matrix": [
+    0.98631,
+    -0.14218,
+    -0.08352,
+    9594.0,
+    0.14434,
+    0.98932,
+    0.02038,
+    -12177.0,
+    0.07973,
+    -0.03216,
+    0.9963,
+    -502.0
+   ],
+   "light": [
+    0.122,
+    0.145,
+    0.255
+   ],
+   "groundLight": [
+    0.122,
+    0.145,
+    0.255,
+    0.651
+   ]
+  },
+  {
+   "model": 15,
+   "name": "xmodel/military_hedgehog",
+   "matrix": [
+    0.82722,
+    -0.56188,
+    0.0,
+    9812.0,
+    0.56188,
+    0.82722,
+    0.0,
+    -12004.0,
+    -0.0,
+    0.0,
+    1.0,
+    -501.0
+   ],
+   "light": [
+    0.129,
+    0.153,
+    0.267
+   ],
+   "groundLight": [
+    0.129,
+    0.153,
+    0.267,
+    0.78
+   ]
+  },
+  {
+   "model": 15,
+   "name": "xmodel/military_hedgehog",
+   "matrix": [
+    0.6585,
+    0.7493,
+    -0.07022,
+    9695.0,
+    -0.75257,
+    0.65613,
+    -0.05597,
+    -12097.0,
+    0.00414,
+    0.08971,
+    0.99596,
+    -505.0
+   ],
+   "light": [
+    0.125,
+    0.149,
+    0.263
+   ],
+   "groundLight": [
+    0.125,
+    0.149,
+    0.263,
+    0.639
+   ]
+  },
+  {
+   "model": 15,
+   "name": "xmodel/military_hedgehog",
+   "matrix": [
+    0.86525,
+    -0.49312,
+    -0.09042,
+    9123.0,
+    0.49186,
+    0.86988,
+    -0.03726,
+    -12286.0,
+    0.09703,
+    -0.01224,
+    0.99521,
+    -505.0
+   ],
+   "light": [
+    0.125,
+    0.149,
+    0.259
+   ],
+   "groundLight": [
+    0.125,
+    0.149,
+    0.259,
+    0.8
+   ]
+  },
+  {
+   "model": 15,
+   "name": "xmodel/military_hedgehog",
+   "matrix": [
+    -0.86017,
+    -0.50927,
+    0.02757,
+    8989.0,
+    0.50872,
+    -0.86058,
+    -0.02457,
+    -12207.0,
+    0.03624,
+    -0.00711,
+    0.99932,
+    -508.0
+   ],
+   "light": [
+    0.129,
+    0.153,
+    0.271
+   ],
+   "groundLight": [
+    0.129,
+    0.153,
+    0.271,
+    0.647
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.77576,
+    -0.62831,
+    0.05849,
+    7625.0,
+    0.62591,
+    0.77793,
+    0.05523,
+    -14277.0,
+    -0.08021,
+    -0.00623,
+    0.99676,
+    -517.0
+   ],
+   "light": [
+    0.129,
+    0.145,
+    0.227
+   ],
+   "groundLight": [
+    0.129,
+    0.145,
+    0.227,
+    0.573
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.77576,
+    -0.62831,
+    0.05849,
+    7545.0,
+    0.62591,
+    0.77793,
+    0.05523,
+    -14339.0,
+    -0.08021,
+    -0.00623,
+    0.99676,
+    -511.0
+   ],
+   "light": [
+    0.153,
+    0.176,
+    0.298
+   ],
+   "groundLight": [
+    0.153,
+    0.176,
+    0.298,
+    0.596
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.77666,
+    -0.62929,
+    0.02805,
+    7502.0,
+    0.62119,
+    0.77253,
+    0.13162,
+    -14371.0,
+    -0.10449,
+    -0.0848,
+    0.9909,
+    -503.0
+   ],
+   "light": [
+    0.153,
+    0.176,
+    0.302
+   ],
+   "groundLight": [
+    0.153,
+    0.176,
+    0.302,
+    0.843
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.77576,
+    -0.62831,
+    0.05849,
+    7461.0,
+    0.62591,
+    0.77793,
+    0.05523,
+    -14405.0,
+    -0.08021,
+    -0.00623,
+    0.99676,
+    -501.0
+   ],
+   "light": [
+    0.145,
+    0.169,
+    0.29
+   ],
+   "groundLight": [
+    0.145,
+    0.169,
+    0.29,
+    0.82
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.78206,
+    -0.62184,
+    -0.04114,
+    7421.0,
+    0.62119,
+    0.77253,
+    0.13162,
+    -14437.0,
+    -0.05006,
+    -0.12849,
+    0.99045,
+    -495.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.286
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.286,
+    0.427
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.77946,
+    -0.62635,
+    -0.01118,
+    7380.0,
+    0.62591,
+    0.77793,
+    0.05523,
+    -14471.0,
+    -0.0259,
+    -0.05005,
+    0.99841,
+    -496.0
+   ],
+   "light": [
+    0.114,
+    0.129,
+    0.216
+   ],
+   "groundLight": [
+    0.114,
+    0.129,
+    0.216,
+    0.38
+   ]
+  },
+  {
+   "model": 10,
+   "name": "xmodel/military_flak88_box",
+   "matrix": [
+    -0.74793,
+    -0.66279,
+    -0.03618,
+    7069.0,
+    0.65687,
+    -0.7469,
+    0.1033,
+    -14166.0,
+    -0.09549,
+    0.0535,
+    0.99399,
+    -483.0
+   ],
+   "light": [
+    0.133,
+    0.153,
+    0.263
+   ],
+   "groundLight": [
+    0.133,
+    0.153,
+    0.263,
+    0.729
+   ]
+  },
+  {
+   "model": 11,
+   "name": "xmodel/military_flak88_box_empty",
+   "matrix": [
+    0.95324,
+    0.29411,
+    0.06949,
+    7339.0,
+    -0.28566,
+    0.95195,
+    -0.11043,
+    -14136.0,
+    -0.09863,
+    0.08542,
+    0.99145,
+    -483.0
+   ],
+   "light": [
+    0.145,
+    0.169,
+    0.282
+   ],
+   "groundLight": [
+    0.145,
+    0.169,
+    0.282,
+    0.847
+   ]
+  },
+  {
+   "model": 12,
+   "name": "xmodel/military_flak88_box_open",
+   "matrix": [
+    -0.74841,
+    -0.6628,
+    0.02408,
+    7074.0,
+    0.66307,
+    -0.74691,
+    0.04968,
+    -14170.0,
+    -0.01494,
+    0.05315,
+    0.99847,
+    -483.0
+   ],
+   "light": [
+    0.141,
+    0.161,
+    0.267
+   ],
+   "groundLight": [
+    0.141,
+    0.161,
+    0.267,
+    0.706
+   ]
+  },
+  {
+   "model": 14,
+   "name": "xmodel/military_flak88_shell",
+   "matrix": [
+    0.00317,
+    -0.83267,
+    -0.55377,
+    7308.0,
+    0.03198,
+    -0.5534,
+    0.8323,
+    -14055.0,
+    -0.99948,
+    -0.02035,
+    0.02488,
+    -495.0
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/military_flak88_emptyshell",
+   "matrix": [
+    -0.23219,
+    -0.10273,
+    0.96723,
+    7199.0,
+    -0.95097,
+    -0.18488,
+    -0.24793,
+    -14119.0,
+    0.20429,
+    -0.97738,
+    -0.05477,
+    -498.0
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/military_flak88_emptyshell",
+   "matrix": [
+    -0.23219,
+    -0.10273,
+    0.96723,
+    7287.0,
+    -0.95097,
+    -0.18488,
+    -0.24793,
+    -14076.0,
+    0.20429,
+    -0.97738,
+    -0.05477,
+    -494.0
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/military_flak88_emptyshell",
+   "matrix": [
+    -0.22852,
+    -0.05578,
+    -0.97194,
+    7188.0,
+    0.94866,
+    0.21151,
+    -0.23519,
+    -14094.0,
+    0.21869,
+    -0.97578,
+    0.00458,
+    -496.0
+   ],
+   "light": [
+    0.145,
+    0.169,
+    0.298
+   ],
+   "groundLight": [
+    0.145,
+    0.169,
+    0.298,
+    0.925
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/military_flak88_emptyshell",
+   "matrix": [
+    0.79248,
+    0.01857,
+    -0.60961,
+    7185.0,
+    0.60643,
+    0.0824,
+    0.79085,
+    -14068.0,
+    0.06492,
+    -0.99643,
+    0.05404,
+    -493.0
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/military_flak88_emptyshell",
+   "matrix": [
+    -0.97846,
+    -0.20223,
+    -0.04133,
+    7090.0,
+    0.05296,
+    -0.05242,
+    -0.99722,
+    -14333.0,
+    0.1995,
+    -0.97793,
+    0.062,
+    -550.0
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/military_flak88_emptyshell",
+   "matrix": [
+    -0.25595,
+    0.02058,
+    0.96647,
+    7208.0,
+    -0.95098,
+    -0.18488,
+    -0.24791,
+    -14102.0,
+    0.17358,
+    -0.98255,
+    0.06689,
+    -496.0
+   ]
+  },
+  {
+   "model": 10,
+   "name": "xmodel/military_flak88_box",
+   "matrix": [
+    -0.74793,
+    -0.66279,
+    -0.03618,
+    7048.0,
+    0.65687,
+    -0.7469,
+    0.1033,
+    -14147.0,
+    -0.09549,
+    0.0535,
+    0.99399,
+    -486.0
+   ],
+   "light": [
+    0.133,
+    0.153,
+    0.263
+   ],
+   "groundLight": [
+    0.133,
+    0.153,
+    0.263,
+    0.729
+   ]
+  },
+  {
+   "model": 10,
+   "name": "xmodel/military_flak88_box",
+   "matrix": [
+    -0.74805,
+    -0.66323,
+    0.02325,
+    7043.0,
+    0.6634,
+    -0.74826,
+    -0.0005,
+    -14143.0,
+    0.01773,
+    0.01505,
+    0.99973,
+    -487.0
+   ],
+   "light": [
+    0.137,
+    0.157,
+    0.263
+   ],
+   "groundLight": [
+    0.137,
+    0.157,
+    0.263,
+    0.741
+   ]
+  },
+  {
+   "model": 10,
+   "name": "xmodel/military_flak88_box",
+   "matrix": [
+    -0.7484,
+    -0.66323,
+    0.00568,
+    7037.0,
+    0.66324,
+    -0.74833,
+    0.01064,
+    -14138.0,
+    -0.0028,
+    0.01173,
+    0.99993,
+    -486.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.29
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.29,
+    0.835
+   ]
+  },
+  {
+   "model": 11,
+   "name": "xmodel/military_flak88_box_empty",
+   "matrix": [
+    0.91709,
+    -0.37366,
+    0.13901,
+    7383.0,
+    0.37832,
+    0.92564,
+    -0.00775,
+    -14140.0,
+    -0.12577,
+    0.05969,
+    0.99026,
+    -488.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.278
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.278,
+    0.749
+   ]
+  },
+  {
+   "model": 11,
+   "name": "xmodel/military_flak88_box_empty",
+   "matrix": [
+    0.15485,
+    0.98483,
+    0.07836,
+    7357.0,
+    -0.98761,
+    0.15636,
+    -0.01349,
+    -14150.0,
+    -0.02554,
+    -0.0753,
+    0.99683,
+    -486.0
+   ],
+   "light": [
+    0.133,
+    0.157,
+    0.271
+   ],
+   "groundLight": [
+    0.133,
+    0.157,
+    0.271,
+    0.757
+   ]
+  },
+  {
+   "model": 11,
+   "name": "xmodel/military_flak88_box_empty",
+   "matrix": [
+    0.94938,
+    0.28775,
+    0.12599,
+    7383.0,
+    -0.28689,
+    0.95763,
+    -0.02535,
+    -14092.0,
+    -0.12795,
+    -0.01208,
+    0.99171,
+    -483.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.278
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.278,
+    0.761
+   ]
+  },
+  {
+   "model": 11,
+   "name": "xmodel/military_flak88_box_empty",
+   "matrix": [
+    0.63816,
+    -0.76927,
+    0.03123,
+    7407.0,
+    0.76566,
+    0.62986,
+    -0.13055,
+    -14081.0,
+    0.08076,
+    0.10723,
+    0.99095,
+    -486.0
+   ],
+   "light": [
+    0.137,
+    0.161,
+    0.278
+   ],
+   "groundLight": [
+    0.137,
+    0.161,
+    0.278,
+    0.776
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/military_flak88_emptyshell",
+   "matrix": [
+    0.41725,
+    0.14203,
+    0.89762,
+    7125.0,
+    -0.88662,
+    -0.15321,
+    0.43638,
+    -14326.0,
+    0.1995,
+    -0.97793,
+    0.062,
+    -550.0
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/military_flak88_emptyshell",
+   "matrix": [
+    -0.92425,
+    -0.16678,
+    0.34344,
+    7101.0,
+    -0.32552,
+    -0.12582,
+    -0.93713,
+    -14323.0,
+    0.1995,
+    -0.97793,
+    0.062,
+    -551.0
+   ],
+   "light": [
+    0.169,
+    0.192,
+    0.302
+   ],
+   "groundLight": [
+    0.169,
+    0.192,
+    0.302,
+    0.8
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/military_flak88_emptyshell",
+   "matrix": [
+    -0.93303,
+    -0.01274,
+    0.35957,
+    7117.0,
+    -0.35945,
+    0.0768,
+    -0.93,
+    -14278.0,
+    -0.01576,
+    -0.99697,
+    -0.07623,
+    -551.0
+   ],
+   "light": [
+    0.18,
+    0.204,
+    0.314
+   ],
+   "groundLight": [
+    0.18,
+    0.204,
+    0.314,
+    0.847
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/military_flak88_emptyshell",
+   "matrix": [
+    -0.48695,
+    -0.04403,
+    0.87232,
+    7137.0,
+    -0.85034,
+    -0.20422,
+    -0.48499,
+    -14319.0,
+    0.1995,
+    -0.97793,
+    0.062,
+    -550.0
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/military_flak88_emptyshell",
+   "matrix": [
+    0.3191,
+    0.06758,
+    -0.94531,
+    7144.0,
+    0.92198,
+    0.20876,
+    0.32615,
+    -14314.0,
+    0.21939,
+    -0.97563,
+    0.00431,
+    -550.0
+   ]
+  },
+  {
+   "model": 13,
+   "name": "xmodel/military_flak88_emptyshell",
+   "matrix": [
+    0.45156,
+    0.12568,
+    0.88334,
+    7238.0,
+    -0.87642,
+    -0.1231,
+    0.46554,
+    -14111.0,
+    0.16725,
+    -0.9844,
+    0.05456,
+    -495.0
+   ]
+  },
+  {
+   "model": 10,
+   "name": "xmodel/military_flak88_box",
+   "matrix": [
+    0.87857,
+    0.4776,
+    0.00422,
+    7090.0,
+    -0.47718,
+    0.87736,
+    0.05028,
+    -14190.0,
+    0.02031,
+    -0.04619,
+    0.99873,
+    -483.0
+   ],
+   "light": [
+    0.125,
+    0.141,
+    0.239
+   ],
+   "groundLight": [
+    0.125,
+    0.141,
+    0.239,
+    0.706
+   ]
+  },
+  {
+   "model": 12,
+   "name": "xmodel/military_flak88_box_open",
+   "matrix": [
+    -0.89292,
+    -0.44992,
+    0.01603,
+    7098.0,
+    0.45011,
+    -0.89141,
+    0.05288,
+    -14194.0,
+    -0.0095,
+    0.05443,
+    0.99847,
+    -483.0
+   ],
+   "light": [
+    0.125,
+    0.141,
+    0.239
+   ],
+   "groundLight": [
+    0.125,
+    0.141,
+    0.239,
+    0.706
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.5472,
+    0.837,
+    0.00371,
+    6816.0,
+    -0.82892,
+    0.54252,
+    -0.13622,
+    -14295.0,
+    -0.11603,
+    0.07147,
+    0.99067,
+    -487.0
+   ],
+   "light": [
+    0.145,
+    0.165,
+    0.29
+   ],
+   "groundLight": [
+    0.145,
+    0.165,
+    0.29,
+    0.929
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.55877,
+    0.8181,
+    0.13599,
+    6790.0,
+    -0.82913,
+    0.55466,
+    0.07003,
+    -14256.0,
+    -0.01814,
+    -0.15188,
+    0.98823,
+    -486.0
+   ],
+   "light": [
+    0.153,
+    0.18,
+    0.306
+   ],
+   "groundLight": [
+    0.153,
+    0.18,
+    0.306,
+    0.886
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.52778,
+    0.83981,
+    0.12714,
+    6758.0,
+    -0.82705,
+    0.54221,
+    -0.14833,
+    -14207.0,
+    -0.1935,
+    -0.02687,
+    0.98073,
+    -484.0
+   ],
+   "light": [
+    0.153,
+    0.176,
+    0.294
+   ],
+   "groundLight": [
+    0.153,
+    0.176,
+    0.294,
+    0.796
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.35012,
+    0.93229,
+    0.09079,
+    6743.0,
+    -0.93615,
+    0.34493,
+    0.06822,
+    -14165.0,
+    0.03228,
+    -0.10888,
+    0.99353,
+    -486.0
+   ],
+   "light": [
+    0.125,
+    0.141,
+    0.239
+   ],
+   "groundLight": [
+    0.125,
+    0.141,
+    0.239,
+    0.635
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.30436,
+    0.93856,
+    0.16268,
+    6722.0,
+    -0.93143,
+    0.32901,
+    -0.15555,
+    -14110.0,
+    -0.19952,
+    -0.10418,
+    0.97434,
+    -486.0
+   ],
+   "light": [
+    0.118,
+    0.133,
+    0.216
+   ],
+   "groundLight": [
+    0.118,
+    0.133,
+    0.216,
+    0.0
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    -0.05569,
+    0.99231,
+    0.11056,
+    6729.0,
+    -0.99793,
+    -0.0589,
+    0.02597,
+    -14066.0,
+    0.03228,
+    -0.10888,
+    0.99353,
+    -488.0
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    -0.09569,
+    0.99165,
+    0.08644,
+    6732.0,
+    -0.97521,
+    -0.07599,
+    -0.20783,
+    -14007.0,
+    -0.19952,
+    -0.10418,
+    0.97434,
+    -488.0
+   ],
+   "light": [
+    0.153,
+    0.176,
+    0.298
+   ],
+   "groundLight": [
+    0.153,
+    0.176,
+    0.298,
+    0.722
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.41294,
+    0.89447,
+    0.17146,
+    5165.0,
+    -0.89127,
+    0.43561,
+    -0.12601,
+    -13706.0,
+    -0.1874,
+    -0.10078,
+    0.9771,
+    -163.0
+   ],
+   "light": [
+    0.125,
+    0.137,
+    0.2
+   ],
+   "groundLight": [
+    0.125,
+    0.137,
+    0.2,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.97875,
+    -0.10342,
+    0.17705,
+    5196.0,
+    0.0832,
+    0.98952,
+    0.11802,
+    -13954.0,
+    -0.1874,
+    -0.10078,
+    0.9771,
+    -159.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.97818,
+    -0.08331,
+    -0.19034,
+    5524.0,
+    0.08037,
+    0.9965,
+    -0.02313,
+    -13926.0,
+    0.1916,
+    0.00733,
+    0.98145,
+    -575.0
+   ],
+   "light": [
+    0.455,
+    0.404,
+    0.345
+   ],
+   "groundLight": [
+    0.455,
+    0.404,
+    0.345,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.96208,
+    -0.13865,
+    0.23491,
+    6020.0,
+    0.20292,
+    0.9393,
+    -0.27667,
+    -13110.0,
+    -0.18229,
+    0.31385,
+    0.93181,
+    -384.0
+   ],
+   "light": [
+    0.122,
+    0.133,
+    0.208
+   ],
+   "groundLight": [
+    0.122,
+    0.133,
+    0.208,
+    0.102
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.22014,
+    -0.54057,
+    0.13901,
+    5970.0,
+    0.54734,
+    -0.17979,
+    0.16763,
+    -13193.0,
+    -0.10937,
+    0.18831,
+    0.55909,
+    -380.0
+   ],
+   "light": [
+    0.145,
+    0.157,
+    0.231
+   ],
+   "groundLight": [
+    0.145,
+    0.157,
+    0.231,
+    0.584
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.49427,
+    0.33969,
+    -0.01772,
+    5933.0,
+    -0.32208,
+    0.45733,
+    -0.21705,
+    -13088.0,
+    -0.10937,
+    0.18831,
+    0.55909,
+    -360.0
+   ],
+   "light": [
+    0.133,
+    0.153,
+    0.251
+   ],
+   "groundLight": [
+    0.133,
+    0.153,
+    0.251,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.49544,
+    0.33562,
+    0.04355,
+    5593.0,
+    -0.33831,
+    0.49325,
+    0.04741,
+    -13676.0,
+    -0.00928,
+    -0.06371,
+    0.59654,
+    -456.0
+   ],
+   "light": [
+    0.169,
+    0.18,
+    0.239
+   ],
+   "groundLight": [
+    0.169,
+    0.18,
+    0.239,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.966,
+    -0.20319,
+    0.15988,
+    6540.0,
+    0.20333,
+    0.97898,
+    0.01567,
+    -11454.0,
+    -0.1597,
+    0.01737,
+    0.98701,
+    -463.0
+   ],
+   "light": [
+    0.11,
+    0.122,
+    0.184
+   ],
+   "groundLight": [
+    0.11,
+    0.122,
+    0.184,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.65909,
+    -0.74622,
+    -0.09351,
+    6885.0,
+    0.73491,
+    -0.66547,
+    0.13062,
+    -11403.0,
+    -0.1597,
+    0.01737,
+    0.98701,
+    -479.0
+   ],
+   "light": [
+    0.106,
+    0.122,
+    0.184
+   ],
+   "groundLight": [
+    0.106,
+    0.122,
+    0.184,
+    0.388
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.88811,
+    0.434,
+    -0.15134,
+    7189.0,
+    -0.43099,
+    -0.90074,
+    -0.05388,
+    -11284.0,
+    -0.1597,
+    0.01737,
+    0.98701,
+    -503.0
+   ],
+   "light": [
+    0.102,
+    0.114,
+    0.169
+   ],
+   "groundLight": [
+    0.102,
+    0.114,
+    0.169,
+    0.192
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.53287,
+    0.2604,
+    -0.0908,
+    7131.0,
+    -0.2586,
+    -0.54045,
+    -0.03233,
+    -11292.0,
+    -0.09582,
+    0.01042,
+    0.59221,
+    -497.0
+   ],
+   "light": [
+    0.114,
+    0.129,
+    0.2
+   ],
+   "groundLight": [
+    0.114,
+    0.129,
+    0.2,
+    0.416
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.53287,
+    0.2604,
+    -0.0908,
+    7244.0,
+    -0.2586,
+    -0.54045,
+    -0.03233,
+    -11270.0,
+    -0.09582,
+    0.01042,
+    0.59221,
+    -495.0
+   ],
+   "light": [
+    0.122,
+    0.137,
+    0.224
+   ],
+   "groundLight": [
+    0.122,
+    0.137,
+    0.224,
+    0.604
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.53287,
+    0.2604,
+    -0.0908,
+    6800.0,
+    -0.2586,
+    -0.54045,
+    -0.03233,
+    -11254.0,
+    -0.09582,
+    0.01042,
+    0.59221,
+    -469.0
+   ],
+   "light": [
+    0.114,
+    0.129,
+    0.196
+   ],
+   "groundLight": [
+    0.114,
+    0.129,
+    0.196,
+    0.412
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.96685,
+    0.21027,
+    -0.14489,
+    7499.0,
+    -0.22131,
+    0.97306,
+    -0.06465,
+    -11156.0,
+    0.12739,
+    0.09458,
+    0.98733,
+    -482.0
+   ],
+   "light": [
+    0.114,
+    0.129,
+    0.196
+   ],
+   "groundLight": [
+    0.114,
+    0.129,
+    0.196,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.31947,
+    -0.94743,
+    0.01791,
+    7836.0,
+    0.9464,
+    -0.31996,
+    -0.04411,
+    -11245.0,
+    0.04752,
+    0.00286,
+    0.99887,
+    -511.0
+   ],
+   "light": [
+    0.11,
+    0.122,
+    0.184
+   ],
+   "groundLight": [
+    0.11,
+    0.122,
+    0.184,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.9989,
+    0.04688,
+    -0.0,
+    8162.0,
+    -0.04688,
+    -0.9989,
+    -0.0,
+    -11256.0,
+    -0.0,
+    0.0,
+    1.0,
+    -511.0
+   ],
+   "light": [
+    0.106,
+    0.118,
+    0.173
+   ],
+   "groundLight": [
+    0.106,
+    0.118,
+    0.173,
+    0.278
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.59662,
+    0.02917,
+    0.05649,
+    8106.0,
+    -0.02964,
+    -0.59926,
+    -0.00364,
+    -11240.0,
+    0.05625,
+    -0.00641,
+    0.59732,
+    -508.0
+   ],
+   "light": [
+    0.114,
+    0.129,
+    0.204
+   ],
+   "groundLight": [
+    0.114,
+    0.129,
+    0.204,
+    0.584
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.59934,
+    0.02813,
+    -0.0,
+    8218.0,
+    -0.02813,
+    -0.59934,
+    -0.0,
+    -11264.0,
+    -0.0,
+    0.0,
+    0.6,
+    -511.0
+   ],
+   "light": [
+    0.11,
+    0.125,
+    0.188
+   ],
+   "groundLight": [
+    0.11,
+    0.125,
+    0.188,
+    0.278
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.59837,
+    0.03279,
+    0.02961,
+    7816.0,
+    -0.03415,
+    -0.5984,
+    -0.02741,
+    -11075.0,
+    0.02803,
+    -0.02902,
+    0.59864,
+    -503.0
+   ],
+   "light": [
+    0.122,
+    0.141,
+    0.231
+   ],
+   "groundLight": [
+    0.122,
+    0.141,
+    0.231,
+    0.722
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.99912,
+    0.04197,
+    -0.00216,
+    7644.0,
+    -0.04193,
+    -0.99899,
+    -0.01595,
+    -12982.0,
+    -0.00283,
+    -0.01584,
+    0.99987,
+    -483.0
+   ],
+   "light": [
+    0.098,
+    0.11,
+    0.157
+   ],
+   "groundLight": [
+    0.098,
+    0.11,
+    0.157,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.59675,
+    0.03681,
+    0.05034,
+    7605.0,
+    -0.0363,
+    -0.59885,
+    0.00762,
+    -12960.0,
+    0.05071,
+    0.00453,
+    0.59784,
+    -478.0
+   ],
+   "light": [
+    0.125,
+    0.141,
+    0.224
+   ],
+   "groundLight": [
+    0.125,
+    0.141,
+    0.224,
+    0.416
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.59931,
+    0.02749,
+    -0.00856,
+    7699.0,
+    -0.02783,
+    -0.5988,
+    0.02588,
+    -12957.0,
+    -0.00736,
+    0.02624,
+    0.59938,
+    -480.0
+   ],
+   "light": [
+    0.11,
+    0.125,
+    0.192
+   ],
+   "groundLight": [
+    0.11,
+    0.125,
+    0.192,
+    0.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.99189,
+    0.00036,
+    -0.12712,
+    6001.0,
+    0.00272,
+    -0.99971,
+    -0.02405,
+    -13539.0,
+    -0.12709,
+    -0.0242,
+    0.9916,
+    -514.0
+   ],
+   "light": [
+    0.188,
+    0.188,
+    0.239
+   ],
+   "groundLight": [
+    0.188,
+    0.188,
+    0.239,
+    0.522
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.97869,
+    -0.04034,
+    -0.20132,
+    5780.0,
+    0.04732,
+    0.99843,
+    0.02995,
+    -13845.0,
+    0.1998,
+    -0.03883,
+    0.97907,
+    -552.0
+   ],
+   "light": [
+    0.302,
+    0.275,
+    0.263
+   ],
+   "groundLight": [
+    0.302,
+    0.275,
+    0.263,
+    0.282
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.97869,
+    -0.04034,
+    -0.20132,
+    5772.0,
+    0.04732,
+    0.99843,
+    0.02995,
+    -13817.0,
+    0.1998,
+    -0.03883,
+    0.97907,
+    -554.0
+   ],
+   "light": [
+    0.298,
+    0.275,
+    0.29
+   ],
+   "groundLight": [
+    0.298,
+    0.275,
+    0.29,
+    0.322
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.97869,
+    -0.04034,
+    -0.20132,
+    5752.0,
+    0.04732,
+    0.99843,
+    0.02995,
+    -13837.0,
+    0.1998,
+    -0.03883,
+    0.97907,
+    -558.0
+   ],
+   "light": [
+    0.325,
+    0.298,
+    0.282
+   ],
+   "groundLight": [
+    0.325,
+    0.298,
+    0.282,
+    0.235
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.98704,
+    -0.02682,
+    -0.15821,
+    5839.0,
+    0.01525,
+    -0.99715,
+    0.07389,
+    -13683.0,
+    -0.15974,
+    0.07052,
+    0.98464,
+    -532.0
+   ],
+   "light": [
+    0.216,
+    0.212,
+    0.243
+   ],
+   "groundLight": [
+    0.216,
+    0.212,
+    0.243,
+    0.376
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.9996,
+    -0.01558,
+    0.02342,
+    5803.0,
+    0.01734,
+    -0.99689,
+    0.07694,
+    -13686.0,
+    0.02215,
+    0.07731,
+    0.99676,
+    -532.0
+   ],
+   "light": [
+    0.212,
+    0.204,
+    0.231
+   ],
+   "groundLight": [
+    0.212,
+    0.204,
+    0.231,
+    0.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.9996,
+    -0.01558,
+    0.02342,
+    5803.0,
+    0.01734,
+    -0.99689,
+    0.07694,
+    -13686.0,
+    0.02215,
+    0.07731,
+    0.99676,
+    -506.0
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.98968,
+    -0.01812,
+    -0.14216,
+    5648.0,
+    0.01448,
+    0.99954,
+    -0.0266,
+    -13921.0,
+    0.14258,
+    0.02426,
+    0.98949,
+    -573.0
+   ],
+   "light": [
+    0.365,
+    0.325,
+    0.275
+   ],
+   "groundLight": [
+    0.365,
+    0.325,
+    0.275,
+    0.0
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    5620.0,
+    0.0,
+    1.0,
+    0.0,
+    -13946.0,
+    -0.0,
+    0.0,
+    1.0,
+    -570.0
+   ],
+   "light": [
+    0.388,
+    0.345,
+    0.286
+   ],
+   "groundLight": [
+    0.388,
+    0.345,
+    0.286,
+    0.0
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.99921,
+    -0.02221,
+    0.03284,
+    5589.0,
+    0.01833,
+    0.99333,
+    0.11386,
+    -13961.0,
+    -0.03515,
+    -0.11316,
+    0.99295,
+    -571.0
+   ],
+   "light": [
+    0.357,
+    0.318,
+    0.263
+   ],
+   "groundLight": [
+    0.357,
+    0.318,
+    0.263,
+    0.0
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.99945,
+    -0.02371,
+    -0.02334,
+    5560.0,
+    0.02712,
+    0.98695,
+    0.15875,
+    -13960.0,
+    0.01927,
+    -0.1593,
+    0.98704,
+    -570.0
+   ],
+   "light": [
+    0.357,
+    0.318,
+    0.263
+   ],
+   "groundLight": [
+    0.357,
+    0.318,
+    0.263,
+    0.0
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.99945,
+    -0.02371,
+    -0.02334,
+    5576.0,
+    0.02712,
+    0.98695,
+    0.15875,
+    -13938.0,
+    0.01927,
+    -0.1593,
+    0.98704,
+    -573.0
+   ],
+   "light": [
+    0.396,
+    0.353,
+    0.286
+   ],
+   "groundLight": [
+    0.396,
+    0.353,
+    0.286,
+    0.0
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.99938,
+    -0.02629,
+    -0.02333,
+    5603.0,
+    0.02966,
+    0.98687,
+    0.15875,
+    -13923.0,
+    0.01885,
+    -0.15935,
+    0.98704,
+    -576.0
+   ],
+   "light": [
+    0.388,
+    0.345,
+    0.286
+   ],
+   "groundLight": [
+    0.388,
+    0.345,
+    0.286,
+    0.0
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.98619,
+    -0.02692,
+    -0.1634,
+    5629.0,
+    0.05542,
+    0.98345,
+    0.17249,
+    -13900.0,
+    0.15606,
+    -0.17916,
+    0.97136,
+    -577.0
+   ],
+   "light": [
+    0.408,
+    0.365,
+    0.302
+   ],
+   "groundLight": [
+    0.408,
+    0.365,
+    0.302,
+    0.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.9924,
+    0.10592,
+    -0.06267,
+    6946.0,
+    -0.10614,
+    -0.99435,
+    0.00032,
+    -14061.0,
+    -0.06228,
+    0.00697,
+    0.99803,
+    -491.0
+   ],
+   "light": [
+    0.122,
+    0.137,
+    0.227
+   ],
+   "groundLight": [
+    0.122,
+    0.137,
+    0.227,
+    0.573
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.09363,
+    -0.99327,
+    -0.06822,
+    6952.0,
+    0.99549,
+    -0.09445,
+    0.00897,
+    -14020.0,
+    -0.01535,
+    -0.06708,
+    0.99763,
+    -490.0
+   ],
+   "light": [
+    0.114,
+    0.129,
+    0.196
+   ],
+   "groundLight": [
+    0.114,
+    0.129,
+    0.196,
+    0.467
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.92854,
+    -0.36534,
+    -0.06583,
+    6390.0,
+    0.35902,
+    -0.92888,
+    0.091,
+    -13688.0,
+    -0.0944,
+    0.06086,
+    0.99367,
+    -489.0
+   ],
+   "light": [
+    0.133,
+    0.141,
+    0.184
+   ],
+   "groundLight": [
+    0.133,
+    0.141,
+    0.184,
+    0.325
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.94665,
+    0.32227,
+    0.0,
+    6614.0,
+    -0.32227,
+    0.94665,
+    -0.0,
+    -13734.0,
+    -0.0,
+    0.0,
+    1.0,
+    -499.0
+   ],
+   "light": [
+    0.176,
+    0.196,
+    0.282
+   ],
+   "groundLight": [
+    0.176,
+    0.196,
+    0.282,
+    0.714
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.94665,
+    0.32227,
+    0.0,
+    6684.0,
+    -0.32227,
+    0.94665,
+    -0.0,
+    -13758.0,
+    -0.0,
+    0.0,
+    1.0,
+    -499.0
+   ],
+   "light": [
+    0.141,
+    0.153,
+    0.235
+   ],
+   "groundLight": [
+    0.141,
+    0.153,
+    0.235,
+    0.49
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.94665,
+    0.32227,
+    0.0,
+    6546.0,
+    -0.32227,
+    0.94665,
+    -0.0,
+    -13710.0,
+    -0.0,
+    0.0,
+    1.0,
+    -499.0
+   ],
+   "light": [
+    0.173,
+    0.188,
+    0.267
+   ],
+   "groundLight": [
+    0.173,
+    0.188,
+    0.267,
+    0.655
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    6283.0,
+    1.0,
+    0.0,
+    0.0,
+    -13503.0,
+    -0.0,
+    0.0,
+    1.0,
+    -491.0
+   ],
+   "light": [
+    0.29,
+    0.271,
+    0.286
+   ],
+   "groundLight": [
+    0.29,
+    0.271,
+    0.286,
+    0.0
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    0.89726,
+    0.44151,
+    0.0,
+    6770.0,
+    -0.44151,
+    0.89726,
+    -0.0,
+    -13794.0,
+    -0.0,
+    0.0,
+    1.0,
+    -500.0
+   ],
+   "light": [
+    0.133,
+    0.145,
+    0.224
+   ],
+   "groundLight": [
+    0.133,
+    0.145,
+    0.224,
+    0.471
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.83098,
+    0.5563,
+    0.0,
+    7095.0,
+    -0.5563,
+    0.83098,
+    -0.0,
+    -13349.0,
+    -0.0,
+    0.0,
+    1.0,
+    -518.0
+   ],
+   "light": [
+    0.141,
+    0.161,
+    0.247
+   ],
+   "groundLight": [
+    0.141,
+    0.161,
+    0.247,
+    0.773
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    0.98229,
+    0.18738,
+    0.0,
+    7169.0,
+    -0.18738,
+    0.98229,
+    -0.0,
+    -13388.0,
+    -0.0,
+    0.0,
+    1.0,
+    -500.0
+   ],
+   "light": [
+    0.129,
+    0.149,
+    0.251
+   ],
+   "groundLight": [
+    0.129,
+    0.149,
+    0.251,
+    0.639
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.97592,
+    -0.21814,
+    0.0,
+    7028.0,
+    0.21814,
+    0.97592,
+    0.0,
+    -13334.0,
+    -0.0,
+    0.0,
+    1.0,
+    -519.0
+   ],
+   "light": [
+    0.114,
+    0.133,
+    0.212
+   ],
+   "groundLight": [
+    0.114,
+    0.133,
+    0.212,
+    0.506
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.56353,
+    0.8261,
+    0.0,
+    6972.0,
+    -0.8261,
+    0.56353,
+    -0.0,
+    -13312.0,
+    -0.0,
+    0.0,
+    1.0,
+    -519.0
+   ],
+   "light": [
+    0.125,
+    0.141,
+    0.22
+   ],
+   "groundLight": [
+    0.125,
+    0.141,
+    0.22,
+    0.525
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    -0.75241,
+    0.65869,
+    -0.0,
+    7794.0,
+    -0.65869,
+    -0.75241,
+    0.0,
+    -13448.0,
+    -0.0,
+    0.0,
+    1.0,
+    -515.0
+   ],
+   "light": [
+    0.122,
+    0.129,
+    0.2
+   ],
+   "groundLight": [
+    0.122,
+    0.129,
+    0.2,
+    0.576
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    -0.75241,
+    0.65869,
+    -0.0,
+    7850.0,
+    -0.65869,
+    -0.75241,
+    0.0,
+    -13398.0,
+    -0.0,
+    0.0,
+    1.0,
+    -515.0
+   ],
+   "light": [
+    0.118,
+    0.129,
+    0.2
+   ],
+   "groundLight": [
+    0.118,
+    0.129,
+    0.2,
+    0.376
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    -0.75241,
+    0.65869,
+    -0.0,
+    7910.0,
+    -0.65869,
+    -0.75241,
+    0.0,
+    -13346.0,
+    -0.0,
+    0.0,
+    1.0,
+    -515.0
+   ],
+   "light": [
+    0.125,
+    0.141,
+    0.243
+   ],
+   "groundLight": [
+    0.125,
+    0.141,
+    0.243,
+    0.776
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    -0.75241,
+    0.65869,
+    -0.0,
+    7968.0,
+    -0.65869,
+    -0.75241,
+    0.0,
+    -13296.0,
+    -0.0,
+    0.0,
+    1.0,
+    -514.0
+   ],
+   "light": [
+    0.145,
+    0.165,
+    0.243
+   ],
+   "groundLight": [
+    0.145,
+    0.165,
+    0.243,
+    0.0
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    0.32227,
+    0.94665,
+    0.0,
+    7771.0,
+    -0.94665,
+    0.32227,
+    -0.0,
+    -13541.0,
+    -0.0,
+    0.0,
+    1.0,
+    -514.0
+   ],
+   "light": [
+    0.133,
+    0.137,
+    0.2
+   ],
+   "groundLight": [
+    0.133,
+    0.137,
+    0.2,
+    0.349
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.99886,
+    7e-05,
+    0.04772,
+    8060.0,
+    0.00351,
+    0.99718,
+    -0.07496,
+    -14219.0,
+    -0.04759,
+    0.07504,
+    0.99604,
+    -606.0
+   ],
+   "light": [
+    0.169,
+    0.188,
+    0.267
+   ],
+   "groundLight": [
+    0.169,
+    0.188,
+    0.267,
+    0.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.82076,
+    -0.57061,
+    -0.02736,
+    9717.0,
+    0.57123,
+    0.8203,
+    0.02835,
+    -13970.0,
+    0.00627,
+    -0.0389,
+    0.99922,
+    -604.0
+   ],
+   "light": [
+    0.294,
+    0.278,
+    0.282
+   ],
+   "groundLight": [
+    0.294,
+    0.278,
+    0.282,
+    0.18
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    1.0,
+    1e-05,
+    0.00073,
+    9486.0,
+    -2e-05,
+    0.99993,
+    0.01214,
+    -13928.0,
+    -0.00073,
+    -0.01214,
+    0.99993,
+    -597.0
+   ],
+   "light": [
+    0.282,
+    0.278,
+    0.294
+   ],
+   "groundLight": [
+    0.282,
+    0.278,
+    0.294,
+    0.192
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    1.0,
+    1e-05,
+    0.00073,
+    9716.0,
+    -2e-05,
+    0.99993,
+    0.01214,
+    -13649.0,
+    -0.00073,
+    -0.01214,
+    0.99993,
+    -600.0
+   ],
+   "light": [
+    0.361,
+    0.337,
+    0.314
+   ],
+   "groundLight": [
+    0.361,
+    0.337,
+    0.314,
+    0.416
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    -0.18806,
+    0.98162,
+    -0.03256,
+    9950.0,
+    -0.94104,
+    -0.17059,
+    0.29213,
+    -13612.0,
+    0.2812,
+    0.08558,
+    0.95583,
+    -499.0
+   ],
+   "light": [
+    0.153,
+    0.176,
+    0.306
+   ],
+   "groundLight": [
+    0.153,
+    0.176,
+    0.306,
+    0.694
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    -0.74442,
+    -0.66759,
+    0.0127,
+    5830.0,
+    0.66664,
+    -0.74417,
+    -0.04235,
+    -14446.0,
+    0.03773,
+    -0.02306,
+    0.99902,
+    -289.0
+   ],
+   "light": [
+    0.161,
+    0.18,
+    0.294
+   ],
+   "groundLight": [
+    0.161,
+    0.18,
+    0.294,
+    0.408
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.62608,
+    0.77862,
+    -0.04224,
+    9696.0,
+    -0.77966,
+    0.62418,
+    -0.05036,
+    -12758.0,
+    -0.01285,
+    0.06446,
+    0.99784,
+    -499.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.302
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.302,
+    0.875
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    -0.45428,
+    0.89033,
+    0.03077,
+    10417.0,
+    -0.88671,
+    -0.45522,
+    0.08077,
+    -13204.0,
+    0.08592,
+    0.00941,
+    0.99626,
+    -531.0
+   ],
+   "light": [
+    0.149,
+    0.173,
+    0.302
+   ],
+   "groundLight": [
+    0.149,
+    0.173,
+    0.302,
+    0.765
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    -0.45596,
+    0.89,
+    -0.0,
+    10284.0,
+    -0.89,
+    -0.45596,
+    0.0,
+    -12312.0,
+    -0.0,
+    0.0,
+    1.0,
+    -497.0
+   ],
+   "light": [
+    0.141,
+    0.169,
+    0.302
+   ],
+   "groundLight": [
+    0.141,
+    0.169,
+    0.302,
+    0.831
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.77666,
+    -0.62929,
+    0.02805,
+    7586.0,
+    0.62119,
+    0.77253,
+    0.13162,
+    -14305.0,
+    -0.10449,
+    -0.0848,
+    0.9909,
+    -513.0
+   ],
+   "light": [
+    0.149,
+    0.173,
+    0.29
+   ],
+   "groundLight": [
+    0.149,
+    0.173,
+    0.29,
+    0.827
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    -0.68585,
+    -0.71456,
+    -0.13791,
+    5941.0,
+    0.72059,
+    -0.69331,
+    0.00861,
+    -14210.0,
+    -0.10177,
+    -0.09347,
+    0.99041,
+    -349.0
+   ],
+   "light": [
+    0.161,
+    0.18,
+    0.298
+   ],
+   "groundLight": [
+    0.161,
+    0.18,
+    0.298,
+    0.588
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    -0.74253,
+    -0.58942,
+    0.31816,
+    5493.0,
+    0.63208,
+    -0.77378,
+    0.04165,
+    -14580.0,
+    0.22163,
+    0.23203,
+    0.94712,
+    -170.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.278
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.278,
+    0.627
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.70282,
+    -0.70429,
+    0.10016,
+    7390.0,
+    0.70958,
+    0.70404,
+    -0.02854,
+    -12112.0,
+    -0.05041,
+    0.09113,
+    0.99456,
+    -495.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.294
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.294,
+    0.855
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.94695,
+    -0.31801,
+    -0.04637,
+    6918.0,
+    0.31687,
+    0.94798,
+    -0.03034,
+    -12255.0,
+    0.05361,
+    0.01404,
+    0.99846,
+    -473.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.294
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.294,
+    0.847
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.89547,
+    -0.43027,
+    0.11404,
+    6592.0,
+    0.43975,
+    0.89482,
+    -0.07696,
+    -12429.0,
+    -0.06893,
+    0.11906,
+    0.99049,
+    -466.0
+   ],
+   "light": [
+    0.149,
+    0.173,
+    0.302
+   ],
+   "groundLight": [
+    0.149,
+    0.173,
+    0.302,
+    0.878
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.50044,
+    -0.83765,
+    -0.21886,
+    6143.0,
+    0.84705,
+    0.42144,
+    0.32386,
+    -12553.0,
+    -0.17905,
+    -0.34746,
+    0.92044,
+    -464.0
+   ],
+   "light": [
+    0.145,
+    0.169,
+    0.294
+   ],
+   "groundLight": [
+    0.145,
+    0.169,
+    0.294,
+    0.878
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.50559,
+    -0.85697,
+    -0.09988,
+    6484.0,
+    0.84045,
+    0.51536,
+    -0.16749,
+    -11897.0,
+    0.195,
+    0.00073,
+    0.9808,
+    -438.0
+   ],
+   "light": [
+    0.141,
+    0.169,
+    0.294
+   ],
+   "groundLight": [
+    0.141,
+    0.169,
+    0.294,
+    0.918
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.52145,
+    -0.8519,
+    -0.04843,
+    7302.0,
+    0.8529,
+    0.52207,
+    -0.0,
+    -11379.0,
+    0.02529,
+    -0.0413,
+    0.99883,
+    -485.0
+   ],
+   "light": [
+    0.145,
+    0.169,
+    0.298
+   ],
+   "groundLight": [
+    0.145,
+    0.169,
+    0.298,
+    0.843
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.52484,
+    -0.85102,
+    -0.01748,
+    8568.0,
+    0.8491,
+    0.522,
+    0.08086,
+    -11185.0,
+    -0.05969,
+    -0.05729,
+    0.99657,
+    -501.0
+   ],
+   "light": [
+    0.149,
+    0.173,
+    0.302
+   ],
+   "groundLight": [
+    0.149,
+    0.173,
+    0.302,
+    0.796
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.56322,
+    0.8263,
+    0.0,
+    9893.0,
+    -0.8263,
+    0.56322,
+    -0.0,
+    -10876.0,
+    -0.0,
+    0.0,
+    1.0,
+    -481.0
+   ],
+   "light": [
+    0.149,
+    0.176,
+    0.306
+   ],
+   "groundLight": [
+    0.149,
+    0.176,
+    0.306,
+    0.784
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.93464,
+    -0.34597,
+    0.08222,
+    9108.0,
+    0.34952,
+    0.93634,
+    -0.03325,
+    -10055.0,
+    -0.06548,
+    0.05982,
+    0.99606,
+    -478.0
+   ],
+   "light": [
+    0.153,
+    0.176,
+    0.306
+   ],
+   "groundLight": [
+    0.153,
+    0.176,
+    0.306,
+    0.859
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.96027,
+    -0.27898,
+    0.00748,
+    8376.0,
+    0.2788,
+    0.95775,
+    -0.07065,
+    -9861.0,
+    0.01255,
+    0.06992,
+    0.99747,
+    -476.0
+   ],
+   "light": [
+    0.165,
+    0.188,
+    0.314
+   ],
+   "groundLight": [
+    0.165,
+    0.188,
+    0.314,
+    0.882
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.96184,
+    -0.24951,
+    -0.11227,
+    8257.0,
+    0.23926,
+    0.96608,
+    -0.09723,
+    -11847.0,
+    0.13272,
+    0.06666,
+    0.98891,
+    -485.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.298
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.298,
+    0.843
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.98574,
+    0.13306,
+    0.10297,
+    8850.0,
+    -0.13316,
+    0.99108,
+    -0.00597,
+    -12171.0,
+    -0.10285,
+    -0.00783,
+    0.99467,
+    -504.0
+   ],
+   "light": [
+    0.133,
+    0.157,
+    0.275
+   ],
+   "groundLight": [
+    0.133,
+    0.157,
+    0.275,
+    0.737
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    -0.13239,
+    0.9912,
+    -0.0,
+    9685.0,
+    -0.9912,
+    -0.13239,
+    0.0,
+    -11819.0,
+    -0.0,
+    0.0,
+    1.0,
+    -501.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.298
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.298,
+    0.831
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.5999,
+    -0.67685,
+    -0.42661,
+    5963.0,
+    0.74495,
+    0.66703,
+    -0.01075,
+    -12894.0,
+    0.29184,
+    -0.31136,
+    0.90437,
+    -482.0
+   ],
+   "light": [
+    0.145,
+    0.165,
+    0.282
+   ],
+   "groundLight": [
+    0.145,
+    0.165,
+    0.282,
+    0.894
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.87152,
+    -0.42819,
+    0.23898,
+    5810.0,
+    0.44815,
+    0.89332,
+    -0.03374,
+    -11976.0,
+    -0.19904,
+    0.1365,
+    0.97044,
+    -346.0
+   ],
+   "light": [
+    0.145,
+    0.169,
+    0.282
+   ],
+   "groundLight": [
+    0.145,
+    0.169,
+    0.282,
+    0.773
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.51034,
+    -0.85959,
+    0.02563,
+    6161.0,
+    0.85997,
+    0.51008,
+    -0.01619,
+    -10740.0,
+    0.00084,
+    0.0303,
+    0.99954,
+    -417.0
+   ],
+   "light": [
+    0.149,
+    0.173,
+    0.294
+   ],
+   "groundLight": [
+    0.149,
+    0.173,
+    0.294,
+    0.835
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.62773,
+    0.77619,
+    0.05891,
+    9959.0,
+    -0.77624,
+    0.62985,
+    -0.02732,
+    -13328.0,
+    -0.05831,
+    -0.02858,
+    0.99789,
+    -505.0
+   ],
+   "light": [
+    0.153,
+    0.173,
+    0.298
+   ],
+   "groundLight": [
+    0.153,
+    0.173,
+    0.298,
+    0.784
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.5,
+    -0.86603,
+    0.0,
+    9552.0,
+    0.86603,
+    -0.5,
+    0.0,
+    -13551.0,
+    -0.0,
+    0.0,
+    1.0,
+    -479.0
+   ],
+   "light": [
+    0.302,
+    0.275,
+    0.259
+   ],
+   "groundLight": [
+    0.302,
+    0.275,
+    0.259,
+    0.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    9540.0,
+    0.0,
+    -1.0,
+    0.0,
+    -13551.0,
+    -0.0,
+    0.0,
+    1.0,
+    -505.0
+   ],
+   "light": [
+    0.302,
+    0.275,
+    0.259
+   ],
+   "groundLight": [
+    0.302,
+    0.275,
+    0.259,
+    0.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    9568.0,
+    0.0,
+    -1.0,
+    0.0,
+    -13551.0,
+    -0.0,
+    0.0,
+    1.0,
+    -505.0
+   ],
+   "light": [
+    0.302,
+    0.275,
+    0.259
+   ],
+   "groundLight": [
+    0.302,
+    0.275,
+    0.259,
+    0.0
+   ]
+  },
+  {
+   "model": 33,
+   "name": "xmodel/vehicle_opel_blitz_desert_static",
+   "matrix": [
+    0.17731,
+    -0.98394,
+    -0.02071,
+    9320.0,
+    0.98412,
+    0.17744,
+    -0.00442,
+    -12708.0,
+    0.00803,
+    -0.0196,
+    0.99978,
+    -509.0
+   ],
+   "light": [
+    0.102,
+    0.114,
+    0.192
+   ],
+   "groundLight": [
+    0.102,
+    0.114,
+    0.192,
+    0.0
+   ]
+  },
+  {
+   "model": 36,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    -0.92978,
+    -0.36812,
+    0.0,
+    9228.0,
+    0.36812,
+    -0.92978,
+    0.0,
+    -13661.0,
+    -0.0,
+    0.0,
+    1.0,
+    -487.0
+   ],
+   "gameobject": "tdm",
+   "turret": true
+  },
+  {
+   "model": 34,
+   "name": "xmodel/vehicle_panzer_ii_destroyed_static",
+   "matrix": [
+    -0.41145,
+    -0.9109,
+    0.03121,
+    8200.0,
+    0.91105,
+    -0.41006,
+    0.0428,
+    -13419.0,
+    -0.02619,
+    0.04604,
+    0.9986,
+    -495.0
+   ],
+   "light": [
+    0.09,
+    0.098,
+    0.145
+   ],
+   "groundLight": [
+    0.09,
+    0.098,
+    0.145,
+    0.0
+   ]
+  },
+  {
+   "model": 32,
+   "name": "xmodel/vehicle_africa_jeep_can_static",
+   "matrix": [
+    0.93868,
+    0.3442,
+    -0.02027,
+    9393.0,
+    -0.34217,
+    0.93717,
+    0.0681,
+    -13282.0,
+    0.04243,
+    -0.05699,
+    0.99747,
+    -500.0
+   ],
+   "light": [
+    0.141,
+    0.149,
+    0.216
+   ],
+   "groundLight": [
+    0.141,
+    0.149,
+    0.216,
+    0.0
+   ]
+  },
+  {
+   "model": 36,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    -0.92978,
+    -0.36812,
+    0.0,
+    9228.0,
+    0.36812,
+    -0.92978,
+    0.0,
+    -13661.0,
+    -0.0,
+    0.0,
+    1.0,
+    -487.0
+   ],
+   "gameobject": "dm",
+   "turret": true
+  },
+  {
+   "model": 36,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    -0.92978,
+    -0.36812,
+    0.0,
+    9228.0,
+    0.36812,
+    -0.92978,
+    0.0,
+    -13661.0,
+    -0.0,
+    0.0,
+    1.0,
+    -487.0
+   ],
+   "gameobject": "hq",
+   "turret": true
+  },
+  {
+   "model": 34,
+   "name": "xmodel/vehicle_panzer_ii_destroyed_static",
+   "matrix": [
+    0.35099,
+    -0.93616,
+    0.02037,
+    6277.0,
+    0.93638,
+    0.35085,
+    -0.01045,
+    -12898.0,
+    0.00264,
+    0.02274,
+    0.99974,
+    -498.0
+   ],
+   "light": [
+    0.106,
+    0.114,
+    0.161
+   ],
+   "groundLight": [
+    0.106,
+    0.114,
+    0.161,
+    0.0
+   ]
+  },
+  {
+   "model": 33,
+   "name": "xmodel/vehicle_opel_blitz_desert_static",
+   "matrix": [
+    -0.90802,
+    0.41552,
+    0.05342,
+    8319.0,
+    -0.41708,
+    -0.9086,
+    -0.02207,
+    -14461.0,
+    0.03936,
+    -0.04232,
+    0.99833,
+    -708.0
+   ],
+   "light": [
+    0.18,
+    0.176,
+    0.224
+   ],
+   "groundLight": [
+    0.18,
+    0.176,
+    0.224,
+    0.0
+   ]
+  },
+  {
+   "model": 21,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    -0.9637,
+    0.26682,
+    0.00918,
+    7142.0,
+    -0.26693,
+    -0.96359,
+    -0.01568,
+    -13475.0,
+    0.00466,
+    -0.01757,
+    0.99983,
+    -574.0
+   ],
+   "light": [
+    0.176,
+    0.204,
+    0.302
+   ],
+   "groundLight": [
+    0.176,
+    0.204,
+    0.302,
+    0.698
+   ]
+  },
+  {
+   "model": 21,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    -0.89683,
+    -0.44035,
+    0.04232,
+    7145.0,
+    0.44159,
+    -0.89684,
+    0.02607,
+    -13501.0,
+    0.02647,
+    0.04206,
+    0.99876,
+    -574.0
+   ],
+   "light": [
+    0.176,
+    0.204,
+    0.302
+   ],
+   "groundLight": [
+    0.176,
+    0.204,
+    0.302,
+    0.678
+   ]
+  },
+  {
+   "model": 29,
+   "name": "xmodel/prop_crate_dak8",
+   "matrix": [
+    -0.1184,
+    0.99297,
+    -0.0,
+    8786.0,
+    -0.99297,
+    -0.1184,
+    0.0,
+    -14428.0,
+    -0.0,
+    0.0,
+    1.0,
+    -640.0
+   ]
+  },
+  {
+   "model": 27,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    8828.0,
+    0.0,
+    1.0,
+    0.0,
+    -14426.0,
+    -0.0,
+    0.0,
+    1.0,
+    -711.0
+   ],
+   "light": [
+    0.286,
+    0.263,
+    0.255
+   ],
+   "groundLight": [
+    0.286,
+    0.263,
+    0.255,
+    0.0
+   ]
+  },
+  {
+   "model": 27,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    8824.0,
+    0.0,
+    1.0,
+    0.0,
+    -14373.0,
+    -0.0,
+    0.0,
+    1.0,
+    -711.0
+   ],
+   "light": [
+    0.278,
+    0.255,
+    0.251
+   ],
+   "groundLight": [
+    0.278,
+    0.255,
+    0.251,
+    0.0
+   ]
+  },
+  {
+   "model": 28,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    -0.3453,
+    0.93849,
+    -0.0,
+    8458.0,
+    -0.93849,
+    -0.3453,
+    0.0,
+    -14404.0,
+    -0.0,
+    0.0,
+    1.0,
+    -710.0
+   ],
+   "light": [
+    0.227,
+    0.216,
+    0.239
+   ],
+   "groundLight": [
+    0.227,
+    0.216,
+    0.239,
+    0.173
+   ]
+  },
+  {
+   "model": 28,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    8421.0,
+    0.0,
+    1.0,
+    0.0,
+    -14387.0,
+    -0.0,
+    0.0,
+    1.0,
+    -709.0
+   ],
+   "light": [
+    0.224,
+    0.212,
+    0.243
+   ],
+   "groundLight": [
+    0.224,
+    0.212,
+    0.243,
+    0.173
+   ]
+  },
+  {
+   "model": 35,
+   "name": "xmodel/weapon_30cal",
+   "matrix": [
+    0.9999,
+    -0.01396,
+    0.0,
+    6388.0,
+    0.01396,
+    0.9999,
+    0.0,
+    -13594.0,
+    -0.0,
+    0.0,
+    1.0,
+    -481.0
+   ],
+   "gameobject": "tdm",
+   "turret": true
+  },
+  {
+   "model": 35,
+   "name": "xmodel/weapon_30cal",
+   "matrix": [
+    0.9999,
+    -0.01396,
+    0.0,
+    6388.0,
+    0.01396,
+    0.9999,
+    0.0,
+    -13594.0,
+    -0.0,
+    0.0,
+    1.0,
+    -481.0
+   ],
+   "gameobject": "dm",
+   "turret": true
+  },
+  {
+   "model": 35,
+   "name": "xmodel/weapon_30cal",
+   "matrix": [
+    0.9999,
+    -0.01396,
+    0.0,
+    6388.0,
+    0.01396,
+    0.9999,
+    0.0,
+    -13594.0,
+    -0.0,
+    0.0,
+    1.0,
+    -481.0
+   ],
+   "gameobject": "hq",
+   "turret": true
+  },
+  {
+   "model": 28,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    0.70711,
+    -0.70711,
+    0.0,
+    8445.0,
+    0.70711,
+    0.70711,
+    0.0,
+    -14352.0,
+    -0.0,
+    0.0,
+    1.0,
+    -709.0
+   ],
+   "light": [
+    0.22,
+    0.212,
+    0.255
+   ],
+   "groundLight": [
+    0.22,
+    0.212,
+    0.255,
+    0.106
+   ]
+  },
+  {
+   "model": 28,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    0.46534,
+    0.88513,
+    0.0,
+    8474.0,
+    -0.88513,
+    0.46534,
+    -0.0,
+    -14436.0,
+    -0.0,
+    0.0,
+    1.0,
+    -711.0
+   ],
+   "light": [
+    0.224,
+    0.216,
+    0.251
+   ],
+   "groundLight": [
+    0.224,
+    0.216,
+    0.251,
+    0.173
+   ]
+  },
+  {
+   "model": 28,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    0.1409,
+    0.99002,
+    -0.00011,
+    8730.0,
+    -0.99002,
+    0.1409,
+    -0.00016,
+    -14432.0,
+    -0.00015,
+    0.00013,
+    1.0,
+    -676.0
+   ]
+  },
+  {
+   "model": 27,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    8779.0,
+    1.0,
+    0.0,
+    0.0,
+    -14429.0,
+    -0.0,
+    0.0,
+    1.0,
+    -711.0
+   ],
+   "light": [
+    0.294,
+    0.271,
+    0.259
+   ],
+   "groundLight": [
+    0.294,
+    0.271,
+    0.259,
+    0.0
+   ]
+  },
+  {
+   "model": 27,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.08368,
+    0.99649,
+    -0.0,
+    8780.0,
+    -0.99649,
+    -0.08368,
+    0.0,
+    -14382.0,
+    -0.0,
+    0.0,
+    1.0,
+    -711.0
+   ],
+   "light": [
+    0.282,
+    0.259,
+    0.251
+   ],
+   "groundLight": [
+    0.282,
+    0.259,
+    0.251,
+    0.0
+   ]
+  },
+  {
+   "model": 27,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    8828.0,
+    0.0,
+    1.0,
+    0.0,
+    -14426.0,
+    -0.0,
+    0.0,
+    1.0,
+    -675.0
+   ]
+  },
+  {
+   "model": 27,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    8824.0,
+    0.0,
+    1.0,
+    0.0,
+    -14373.0,
+    -0.0,
+    0.0,
+    1.0,
+    -675.0
+   ]
+  },
+  {
+   "model": 27,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    8779.0,
+    1.0,
+    0.0,
+    0.0,
+    -14429.0,
+    -0.0,
+    0.0,
+    1.0,
+    -675.0
+   ]
+  },
+  {
+   "model": 27,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    -0.08368,
+    0.99649,
+    -0.0,
+    8779.0,
+    -0.99649,
+    -0.08368,
+    0.0,
+    -14382.0,
+    -0.0,
+    0.0,
+    1.0,
+    -675.0
+   ]
+  },
+  {
+   "model": 27,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    8784.0,
+    1.0,
+    0.0,
+    0.0,
+    -14469.0,
+    -0.0,
+    0.0,
+    1.0,
+    -711.0
+   ],
+   "light": [
+    0.337,
+    0.302,
+    0.282
+   ],
+   "groundLight": [
+    0.337,
+    0.302,
+    0.282,
+    0.494
+   ]
+  },
+  {
+   "model": 27,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    8729.0,
+    1.0,
+    0.0,
+    0.0,
+    -14431.0,
+    -0.0,
+    0.0,
+    1.0,
+    -711.0
+   ],
+   "light": [
+    0.302,
+    0.275,
+    0.263
+   ],
+   "groundLight": [
+    0.302,
+    0.275,
+    0.263,
+    0.231
+   ]
+  },
+  {
+   "model": 27,
+   "name": "xmodel/prop_crate_dak1",
+   "matrix": [
+    0.99996,
+    -0.00873,
+    0.0,
+    8734.0,
+    0.00873,
+    0.99996,
+    0.0,
+    -14384.0,
+    -0.0,
+    0.0,
+    1.0,
+    -711.0
+   ],
+   "light": [
+    0.286,
+    0.263,
+    0.271
+   ],
+   "groundLight": [
+    0.286,
+    0.263,
+    0.271,
+    0.525
+   ]
+  },
+  {
+   "model": 29,
+   "name": "xmodel/prop_crate_dak8",
+   "matrix": [
+    0.99297,
+    0.1184,
+    0.0,
+    8733.0,
+    -0.1184,
+    0.99297,
+    -0.0,
+    -14390.0,
+    -0.0,
+    0.0,
+    1.0,
+    -676.0
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    -0.3126,
+    0.94409,
+    -0.10479,
+    10614.0,
+    -0.94982,
+    -0.30933,
+    0.04655,
+    -14170.0,
+    0.01154,
+    0.11408,
+    0.9934,
+    -488.0
+   ],
+   "light": [
+    0.141,
+    0.169,
+    0.298
+   ],
+   "groundLight": [
+    0.141,
+    0.169,
+    0.298,
+    0.812
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.71434,
+    0.6998,
+    -0.00113,
+    10887.0,
+    -0.68976,
+    0.70382,
+    -0.16989,
+    -13458.0,
+    -0.11809,
+    0.12214,
+    0.98546,
+    -438.0
+   ],
+   "light": [
+    0.145,
+    0.169,
+    0.302
+   ],
+   "groundLight": [
+    0.145,
+    0.169,
+    0.302,
+    0.831
+   ]
+  },
+  {
+   "model": 15,
+   "name": "xmodel/military_hedgehog",
+   "matrix": [
+    0.27871,
+    0.95893,
+    -0.05265,
+    9344.0,
+    -0.9602,
+    0.27929,
+    0.00388,
+    -12409.0,
+    0.01843,
+    0.04947,
+    0.99861,
+    -514.0
+   ],
+   "light": [
+    0.125,
+    0.145,
+    0.263
+   ],
+   "groundLight": [
+    0.125,
+    0.145,
+    0.263,
+    0.702
+   ]
+  },
+  {
+   "model": 15,
+   "name": "xmodel/military_hedgehog",
+   "matrix": [
+    -0.84602,
+    0.52942,
+    -0.06301,
+    9422.0,
+    -0.5305,
+    -0.84768,
+    0.0006,
+    -12376.0,
+    -0.0531,
+    0.03393,
+    0.99801,
+    -507.0
+   ],
+   "light": [
+    0.125,
+    0.145,
+    0.263
+   ],
+   "groundLight": [
+    0.125,
+    0.145,
+    0.263,
+    0.498
+   ]
+  },
+  {
+   "model": 15,
+   "name": "xmodel/military_hedgehog",
+   "matrix": [
+    0.28585,
+    -0.95273,
+    0.10297,
+    8887.0,
+    0.95798,
+    0.28678,
+    -0.00597,
+    -12209.0,
+    -0.02384,
+    0.10035,
+    0.99467,
+    -505.0
+   ],
+   "light": [
+    0.125,
+    0.145,
+    0.255
+   ],
+   "groundLight": [
+    0.125,
+    0.145,
+    0.255,
+    0.596
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.83251,
+    0.54676,
+    0.08933,
+    9143.0,
+    -0.5531,
+    0.81099,
+    0.19074,
+    -12348.0,
+    0.03185,
+    -0.2082,
+    0.97757,
+    -502.0
+   ],
+   "light": [
+    0.137,
+    0.161,
+    0.294
+   ],
+   "groundLight": [
+    0.137,
+    0.161,
+    0.294,
+    0.882
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.83167,
+    0.55328,
+    0.04704,
+    9098.0,
+    -0.55026,
+    0.80983,
+    0.20346,
+    -12323.0,
+    0.07447,
+    -0.1951,
+    0.97795,
+    -504.0
+   ],
+   "light": [
+    0.137,
+    0.161,
+    0.29
+   ],
+   "groundLight": [
+    0.137,
+    0.161,
+    0.29,
+    0.875
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    6292.0,
+    1.0,
+    0.0,
+    0.0,
+    -13528.0,
+    -0.0,
+    0.0,
+    1.0,
+    -491.0
+   ],
+   "light": [
+    0.231,
+    0.216,
+    0.22
+   ],
+   "groundLight": [
+    0.231,
+    0.216,
+    0.22,
+    0.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    6282.0,
+    1.0,
+    0.0,
+    0.0,
+    -13506.0,
+    -0.0,
+    0.0,
+    1.0,
+    -465.0
+   ],
+   "light": [
+    0.231,
+    0.216,
+    0.22
+   ],
+   "groundLight": [
+    0.231,
+    0.216,
+    0.22,
+    0.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    6282.0,
+    1.0,
+    0.0,
+    0.0,
+    -13366.0,
+    -0.0,
+    0.0,
+    1.0,
+    -496.0
+   ],
+   "light": [
+    0.302,
+    0.278,
+    0.278
+   ],
+   "groundLight": [
+    0.302,
+    0.278,
+    0.278,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.99876,
+    0.04264,
+    -0.02576,
+    6656.0,
+    -0.04247,
+    -0.99907,
+    -0.00688,
+    -12735.0,
+    -0.02603,
+    -0.00578,
+    0.99964,
+    -501.0
+   ],
+   "light": [
+    0.098,
+    0.11,
+    0.169
+   ],
+   "groundLight": [
+    0.098,
+    0.11,
+    0.169,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.99733,
+    0.04499,
+    0.05751,
+    8108.0,
+    -0.05075,
+    -0.99339,
+    -0.10298,
+    -12443.0,
+    0.05249,
+    -0.10562,
+    0.99302,
+    -500.0
+   ],
+   "light": [
+    0.094,
+    0.106,
+    0.169
+   ],
+   "groundLight": [
+    0.094,
+    0.106,
+    0.169,
+    0.0
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.70574,
+    -0.70722,
+    0.04205,
+    7780.0,
+    0.70693,
+    0.70688,
+    0.02392,
+    -11919.0,
+    -0.04664,
+    0.01284,
+    0.99883,
+    -487.0
+   ],
+   "light": [
+    0.141,
+    0.169,
+    0.298
+   ],
+   "groundLight": [
+    0.141,
+    0.169,
+    0.298,
+    0.859
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.93379,
+    0.35782,
+    0.00057,
+    9051.0,
+    -0.35722,
+    0.93212,
+    0.05953,
+    -12299.0,
+    0.02077,
+    -0.0558,
+    0.99823,
+    -506.0
+   ],
+   "light": [
+    0.145,
+    0.169,
+    0.302
+   ],
+   "groundLight": [
+    0.145,
+    0.169,
+    0.302,
+    0.922
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.93379,
+    0.35782,
+    0.00057,
+    8954.0,
+    -0.35722,
+    0.93212,
+    0.05953,
+    -12260.0,
+    0.02077,
+    -0.0558,
+    0.99823,
+    -508.0
+   ],
+   "light": [
+    0.141,
+    0.169,
+    0.298
+   ],
+   "groundLight": [
+    0.141,
+    0.169,
+    0.298,
+    0.886
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.93186,
+    0.35175,
+    0.08896,
+    9000.0,
+    -0.3521,
+    0.93588,
+    -0.01226,
+    -12279.0,
+    -0.08757,
+    -0.0199,
+    0.99596,
+    -507.0
+   ],
+   "light": [
+    0.137,
+    0.161,
+    0.29
+   ],
+   "groundLight": [
+    0.137,
+    0.161,
+    0.29,
+    0.851
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.82195,
+    0.5634,
+    0.08353,
+    8905.0,
+    -0.56278,
+    0.82595,
+    -0.03298,
+    -12241.0,
+    -0.08757,
+    -0.0199,
+    0.99596,
+    -507.0
+   ],
+   "light": [
+    0.137,
+    0.157,
+    0.278
+   ],
+   "groundLight": [
+    0.137,
+    0.157,
+    0.278,
+    0.792
+   ]
+  },
+  {
+   "model": 7,
+   "name": "xmodel/german_artillery_flak88",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    7223.0,
+    1.0,
+    0.0,
+    0.0,
+    -13989.0,
+    -0.0,
+    0.0,
+    1.0,
+    -495.0
+   ],
+   "gameobject": "tdm"
+  },
+  {
+   "model": 8,
+   "name": "xmodel/german_artillery_flak88_destroy",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    7223.0,
+    1.0,
+    0.0,
+    0.0,
+    -13989.0,
+    -0.0,
+    0.0,
+    1.0,
+    -495.0
+   ],
+   "gameobject": "sd"
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    -0.61841,
+    0.78586,
+    -0.0,
+    6983.0,
+    -0.78586,
+    -0.61841,
+    0.0,
+    -12448.0,
+    -0.0,
+    0.0,
+    1.0,
+    -473.0
+   ],
+   "light": [
+    0.149,
+    0.173,
+    0.302
+   ],
+   "groundLight": [
+    0.149,
+    0.173,
+    0.302,
+    0.827
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    -0.64279,
+    -0.76604,
+    0.0,
+    7089.0,
+    0.76604,
+    -0.64279,
+    0.0,
+    -12448.0,
+    -0.0,
+    0.0,
+    1.0,
+    -475.0
+   ],
+   "light": [
+    0.153,
+    0.176,
+    0.306
+   ],
+   "groundLight": [
+    0.153,
+    0.176,
+    0.306,
+    0.729
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    -0.61841,
+    0.78586,
+    -0.0,
+    7956.0,
+    -0.78586,
+    -0.61841,
+    0.0,
+    -12086.0,
+    -0.0,
+    0.0,
+    1.0,
+    -474.0
+   ],
+   "light": [
+    0.149,
+    0.176,
+    0.31
+   ],
+   "groundLight": [
+    0.149,
+    0.176,
+    0.31,
+    0.804
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    -0.64279,
+    -0.76604,
+    0.0,
+    8062.0,
+    0.76604,
+    -0.64279,
+    0.0,
+    -12086.0,
+    -0.0,
+    0.0,
+    1.0,
+    -476.0
+   ],
+   "light": [
+    0.149,
+    0.176,
+    0.31
+   ],
+   "groundLight": [
+    0.149,
+    0.176,
+    0.31,
+    0.733
+   ]
+  },
+  {
+   "model": 21,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    -0.63857,
+    -0.76957,
+    0.0,
+    7033.0,
+    0.76957,
+    -0.63857,
+    0.0,
+    -12721.0,
+    -0.0,
+    0.0,
+    1.0,
+    -551.0
+   ],
+   "light": [
+    0.157,
+    0.176,
+    0.275
+   ],
+   "groundLight": [
+    0.157,
+    0.176,
+    0.275,
+    0.733
+   ]
+  },
+  {
+   "model": 21,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    0.97939,
+    -0.17288,
+    -0.10445,
+    7010.0,
+    0.17894,
+    0.9825,
+    0.05165,
+    -12414.0,
+    0.09369,
+    -0.06927,
+    0.99319,
+    -468.0
+   ],
+   "light": [
+    0.118,
+    0.133,
+    0.224
+   ],
+   "groundLight": [
+    0.118,
+    0.133,
+    0.224,
+    0.4
+   ]
+  },
+  {
+   "model": 21,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    -0.99951,
+    0.03105,
+    -0.00272,
+    6976.0,
+    -0.03047,
+    -0.99162,
+    -0.12551,
+    -12605.0,
+    -0.0066,
+    -0.12536,
+    0.99209,
+    -493.0
+   ],
+   "light": [
+    0.153,
+    0.173,
+    0.29
+   ],
+   "groundLight": [
+    0.153,
+    0.173,
+    0.29,
+    0.867
+   ]
+  },
+  {
+   "model": 20,
+   "name": "xmodel/military_sandbag_single_bent",
+   "matrix": [
+    -0.99088,
+    -0.12567,
+    -0.04864,
+    7107.0,
+    0.13325,
+    -0.96759,
+    -0.21449,
+    -12550.0,
+    -0.02011,
+    -0.21902,
+    0.97551,
+    -488.0
+   ],
+   "light": [
+    0.137,
+    0.157,
+    0.271
+   ],
+   "groundLight": [
+    0.137,
+    0.157,
+    0.271,
+    0.82
+   ]
+  },
+  {
+   "model": 21,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    0.99996,
+    -0.00846,
+    0.0,
+    8015.0,
+    0.00846,
+    0.99996,
+    0.0,
+    -12100.0,
+    -0.0,
+    0.0,
+    1.0,
+    -491.0
+   ],
+   "light": [
+    0.149,
+    0.169,
+    0.278
+   ],
+   "groundLight": [
+    0.149,
+    0.169,
+    0.278,
+    0.831
+   ]
+  },
+  {
+   "model": 21,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    0.34177,
+    0.93978,
+    0.0,
+    8037.0,
+    -0.93978,
+    0.34177,
+    -0.0,
+    -12090.0,
+    -0.0,
+    0.0,
+    1.0,
+    -491.0
+   ],
+   "light": [
+    0.149,
+    0.165,
+    0.247
+   ],
+   "groundLight": [
+    0.149,
+    0.165,
+    0.247,
+    0.651
+   ]
+  },
+  {
+   "model": 21,
+   "name": "xmodel/military_sandbag_single_flat",
+   "matrix": [
+    0.35487,
+    0.92932,
+    0.10217,
+    7926.0,
+    -0.87948,
+    0.3689,
+    -0.3007,
+    -12189.0,
+    -0.31714,
+    0.01685,
+    0.94823,
+    -478.0
+   ],
+   "light": [
+    0.129,
+    0.145,
+    0.22
+   ],
+   "groundLight": [
+    0.129,
+    0.145,
+    0.22,
+    0.439
+   ]
+  },
+  {
+   "model": 15,
+   "name": "xmodel/military_hedgehog",
+   "matrix": [
+    0.98675,
+    0.12541,
+    0.10297,
+    8796.0,
+    -0.12546,
+    0.99208,
+    -0.00597,
+    -12143.0,
+    -0.10291,
+    -0.00703,
+    0.99467,
+    -497.0
+   ],
+   "light": [
+    0.125,
+    0.149,
+    0.263
+   ],
+   "groundLight": [
+    0.125,
+    0.149,
+    0.263,
+    0.737
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    -0.05756,
+    0.99834,
+    -0.0,
+    6802.0,
+    -0.99834,
+    -0.05756,
+    0.0,
+    -13273.0,
+    -0.0,
+    0.0,
+    1.0,
+    -501.0
+   ],
+   "light": [
+    0.165,
+    0.184,
+    0.306
+   ],
+   "groundLight": [
+    0.165,
+    0.184,
+    0.306,
+    0.863
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    -0.96547,
+    -0.2605,
+    0.0,
+    6889.0,
+    0.2605,
+    -0.96547,
+    0.0,
+    -13212.0,
+    -0.0,
+    0.0,
+    1.0,
+    -503.0
+   ],
+   "light": [
+    0.149,
+    0.173,
+    0.294
+   ],
+   "groundLight": [
+    0.149,
+    0.173,
+    0.294,
+    0.729
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.97768,
+    0.21008,
+    0.0,
+    9924.0,
+    -0.21008,
+    0.97768,
+    -0.0,
+    -12072.0,
+    -0.0,
+    0.0,
+    1.0,
+    -505.0
+   ],
+   "light": [
+    0.141,
+    0.169,
+    0.302
+   ],
+   "groundLight": [
+    0.141,
+    0.169,
+    0.302,
+    0.824
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.62752,
+    -0.76952,
+    0.11857,
+    5597.0,
+    0.73108,
+    0.52996,
+    -0.42973,
+    -12647.0,
+    0.26784,
+    0.35635,
+    0.89514,
+    -181.0
+   ],
+   "light": [
+    0.157,
+    0.18,
+    0.294
+   ],
+   "groundLight": [
+    0.157,
+    0.18,
+    0.294,
+    0.933
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.61984,
+    -0.77857,
+    0.09811,
+    5643.0,
+    0.77733,
+    0.59204,
+    -0.21271,
+    -13141.0,
+    0.10753,
+    0.20811,
+    0.97218,
+    -275.0
+   ],
+   "light": [
+    0.149,
+    0.173,
+    0.29
+   ],
+   "groundLight": [
+    0.149,
+    0.173,
+    0.29,
+    0.8
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.26817,
+    -0.94634,
+    0.18034,
+    7400.0,
+    0.95514,
+    0.2856,
+    0.07836,
+    -12341.0,
+    -0.12566,
+    0.15124,
+    0.98048,
+    -490.0
+   ],
+   "light": [
+    0.106,
+    0.122,
+    0.184
+   ],
+   "groundLight": [
+    0.106,
+    0.122,
+    0.184,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.87625,
+    -0.67554,
+    0.16325,
+    6711.0,
+    0.68941,
+    -0.8781,
+    0.06683,
+    -14111.0,
+    0.08781,
+    0.153,
+    1.1044,
+    -481.0
+   ],
+   "light": [
+    0.114,
+    0.125,
+    0.204
+   ],
+   "groundLight": [
+    0.114,
+    0.125,
+    0.204,
+    0.353
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.00645,
+    -0.99947,
+    0.03189,
+    5982.0,
+    0.99785,
+    0.00851,
+    0.06495,
+    -13498.0,
+    -0.06518,
+    0.03141,
+    0.99738,
+    -515.0
+   ],
+   "light": [
+    0.18,
+    0.184,
+    0.243
+   ],
+   "groundLight": [
+    0.18,
+    0.184,
+    0.243,
+    0.396
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.00645,
+    -0.99947,
+    0.03189,
+    5983.0,
+    0.99785,
+    0.00851,
+    0.06495,
+    -13498.0,
+    -0.06518,
+    0.03141,
+    0.99738,
+    -490.0
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.99189,
+    0.00036,
+    -0.12712,
+    5999.0,
+    0.00272,
+    -0.99971,
+    -0.02405,
+    -13539.0,
+    -0.12709,
+    -0.0242,
+    0.9916,
+    -489.0
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    -0.99258,
+    0.08749,
+    -0.08444,
+    9576.0,
+    -0.08312,
+    -0.99508,
+    -0.0539,
+    -12525.0,
+    -0.08874,
+    -0.04648,
+    0.99497,
+    -498.0
+   ],
+   "light": [
+    0.145,
+    0.173,
+    0.306
+   ],
+   "groundLight": [
+    0.145,
+    0.173,
+    0.306,
+    0.875
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    -0.97676,
+    0.09061,
+    -0.19425,
+    9530.0,
+    -0.0869,
+    -0.99584,
+    -0.02754,
+    -12529.0,
+    -0.19594,
+    -0.01002,
+    0.98057,
+    -506.0
+   ],
+   "light": [
+    0.137,
+    0.161,
+    0.286
+   ],
+   "groundLight": [
+    0.137,
+    0.161,
+    0.286,
+    0.804
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    -0.97676,
+    0.09061,
+    -0.19425,
+    9630.0,
+    -0.0869,
+    -0.99584,
+    -0.02754,
+    -12521.0,
+    -0.19594,
+    -0.01002,
+    0.98057,
+    -493.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.298
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.298,
+    0.859
+   ]
+  },
+  {
+   "model": 7,
+   "name": "xmodel/german_artillery_flak88",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    7223.0,
+    1.0,
+    0.0,
+    0.0,
+    -13989.0,
+    -0.0,
+    0.0,
+    1.0,
+    -495.0
+   ],
+   "gameobject": "dm"
+  },
+  {
+   "model": 7,
+   "name": "xmodel/german_artillery_flak88",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    7223.0,
+    1.0,
+    0.0,
+    0.0,
+    -13989.0,
+    -0.0,
+    0.0,
+    1.0,
+    -495.0
+   ],
+   "gameobject": "hq"
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    0.45554,
+    0.89021,
+    0.0,
+    9231.0,
+    -0.89021,
+    0.45554,
+    -0.0,
+    -13717.0,
+    -0.0,
+    0.0,
+    1.0,
+    -516.0
+   ],
+   "light": [
+    0.157,
+    0.176,
+    0.306
+   ],
+   "groundLight": [
+    0.157,
+    0.176,
+    0.306,
+    0.929
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    -0.96456,
+    0.26387,
+    -0.0,
+    9275.0,
+    -0.26387,
+    -0.96456,
+    0.0,
+    -13620.0,
+    -0.0,
+    0.0,
+    1.0,
+    -518.0
+   ],
+   "light": [
+    0.18,
+    0.196,
+    0.314
+   ],
+   "groundLight": [
+    0.18,
+    0.196,
+    0.314,
+    0.769
+   ]
+  },
+  {
+   "model": 28,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    0.66262,
+    0.74896,
+    0.0,
+    8579.0,
+    -0.74896,
+    0.66262,
+    -0.0,
+    -12969.0,
+    -0.0,
+    0.0,
+    1.0,
+    -528.0
+   ],
+   "light": [
+    0.129,
+    0.145,
+    0.22
+   ],
+   "groundLight": [
+    0.129,
+    0.145,
+    0.22,
+    0.353
+   ]
+  },
+  {
+   "model": 28,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    -0.69466,
+    0.71934,
+    -0.0,
+    8607.0,
+    -0.71934,
+    -0.69466,
+    0.0,
+    -12952.0,
+    -0.0,
+    0.0,
+    1.0,
+    -528.0
+   ],
+   "light": [
+    0.122,
+    0.129,
+    0.192
+   ],
+   "groundLight": [
+    0.122,
+    0.129,
+    0.192,
+    0.231
+   ]
+  },
+  {
+   "model": 28,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    -0.69466,
+    0.71934,
+    -0.0,
+    8634.0,
+    -0.71934,
+    -0.69466,
+    0.0,
+    -12978.0,
+    -0.0,
+    0.0,
+    1.0,
+    -528.0
+   ],
+   "light": [
+    0.129,
+    0.141,
+    0.208
+   ],
+   "groundLight": [
+    0.129,
+    0.141,
+    0.208,
+    0.373
+   ]
+  },
+  {
+   "model": 28,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    -0.69466,
+    0.71934,
+    -0.0,
+    8608.0,
+    -0.71934,
+    -0.69466,
+    0.0,
+    -12952.0,
+    -0.0,
+    0.0,
+    1.0,
+    -504.0
+   ],
+   "light": [
+    0.122,
+    0.129,
+    0.192
+   ],
+   "groundLight": [
+    0.122,
+    0.129,
+    0.192,
+    0.231
+   ]
+  },
+  {
+   "model": 28,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    0.69466,
+    -0.71934,
+    0.0,
+    8560.0,
+    0.71934,
+    0.69466,
+    0.0,
+    -13261.0,
+    -0.0,
+    0.0,
+    1.0,
+    -528.0
+   ],
+   "light": [
+    0.118,
+    0.125,
+    0.18
+   ],
+   "groundLight": [
+    0.118,
+    0.125,
+    0.18,
+    0.0
+   ]
+  },
+  {
+   "model": 28,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    0.69466,
+    -0.71934,
+    0.0,
+    8532.0,
+    0.71934,
+    0.69466,
+    0.0,
+    -13234.0,
+    -0.0,
+    0.0,
+    1.0,
+    -528.0
+   ],
+   "light": [
+    0.129,
+    0.141,
+    0.208
+   ],
+   "groundLight": [
+    0.129,
+    0.141,
+    0.208,
+    0.0
+   ]
+  },
+  {
+   "model": 28,
+   "name": "xmodel/prop_crate_dak7",
+   "matrix": [
+    0.69466,
+    -0.71934,
+    0.0,
+    8559.0,
+    0.71934,
+    0.69466,
+    0.0,
+    -13261.0,
+    -0.0,
+    0.0,
+    1.0,
+    -504.0
+   ],
+   "light": [
+    0.118,
+    0.125,
+    0.18
+   ],
+   "groundLight": [
+    0.118,
+    0.125,
+    0.18,
+    0.0
+   ]
+  },
+  {
+   "model": 22,
+   "name": "xmodel/prop_barrel_black",
+   "matrix": [
+    0.61429,
+    -0.78908,
+    0.0,
+    5510.0,
+    0.78908,
+    0.61429,
+    0.0,
+    -13829.0,
+    -0.0,
+    0.0,
+    1.0,
+    -579.0
+   ],
+   "light": [
+    0.443,
+    0.396,
+    0.329
+   ],
+   "groundLight": [
+    0.443,
+    0.396,
+    0.329,
+    0.0
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/prop_bunkerlocker_double",
+   "matrix": [
+    0.6934,
+    0.72055,
+    0.0,
+    8313.0,
+    -0.72055,
+    0.6934,
+    -0.0,
+    -13257.0,
+    -0.0,
+    0.0,
+    1.0,
+    -671.0
+   ],
+   "light": [
+    0.525,
+    0.408,
+    0.239
+   ],
+   "groundLight": [
+    0.525,
+    0.408,
+    0.239,
+    0.0
+   ]
+  },
+  {
+   "model": 26,
+   "name": "xmodel/prop_bunkerlocker_open",
+   "matrix": [
+    -0.6934,
+    0.72055,
+    -0.0,
+    8529.0,
+    -0.72055,
+    -0.6934,
+    0.0,
+    -13338.0,
+    -0.0,
+    0.0,
+    1.0,
+    -672.0
+   ],
+   "light": [
+    0.51,
+    0.396,
+    0.235
+   ],
+   "groundLight": [
+    0.51,
+    0.396,
+    0.235,
+    0.0
+   ]
+  },
+  {
+   "model": 24,
+   "name": "xmodel/prop_bunkerlightswitch",
+   "matrix": [
+    0.73373,
+    -0.67944,
+    0.0,
+    8275.0,
+    0.67944,
+    0.73373,
+    0.0,
+    -13115.0,
+    -0.0,
+    0.0,
+    1.0,
+    -619.0
+   ]
+  },
+  {
+   "model": 25,
+   "name": "xmodel/prop_bunkerlocker_double",
+   "matrix": [
+    0.70957,
+    0.70463,
+    0.0,
+    8401.0,
+    -0.70463,
+    0.70957,
+    -0.0,
+    -13346.0,
+    -0.0,
+    0.0,
+    1.0,
+    -671.0
+   ],
+   "light": [
+    0.533,
+    0.412,
+    0.243
+   ],
+   "groundLight": [
+    0.533,
+    0.412,
+    0.243,
+    0.0
+   ]
+  },
+  {
+   "model": 6,
+   "name": "xmodel/furniture_bed_bunker2",
+   "matrix": [
+    0.71325,
+    0.70091,
+    0.0,
+    8462.0,
+    -0.70091,
+    0.71325,
+    -0.0,
+    -13355.0,
+    -0.0,
+    0.0,
+    1.0,
+    -672.0
+   ],
+   "light": [
+    0.498,
+    0.388,
+    0.227
+   ],
+   "groundLight": [
+    0.498,
+    0.388,
+    0.227,
+    0.0
+   ]
+  },
+  {
+   "model": 6,
+   "name": "xmodel/furniture_bed_bunker2",
+   "matrix": [
+    0.7108,
+    0.70339,
+    0.0,
+    8537.0,
+    -0.70339,
+    0.7108,
+    -0.0,
+    -13281.0,
+    -0.0,
+    0.0,
+    1.0,
+    -672.0
+   ],
+   "light": [
+    0.514,
+    0.4,
+    0.235
+   ],
+   "groundLight": [
+    0.514,
+    0.4,
+    0.235,
+    0.0
+   ]
+  },
+  {
+   "model": 6,
+   "name": "xmodel/furniture_bed_bunker2",
+   "matrix": [
+    0.71447,
+    0.69966,
+    0.0,
+    8613.0,
+    -0.69966,
+    0.71447,
+    -0.0,
+    -13204.0,
+    -0.0,
+    0.0,
+    1.0,
+    -672.0
+   ],
+   "light": [
+    0.49,
+    0.38,
+    0.227
+   ],
+   "groundLight": [
+    0.49,
+    0.38,
+    0.227,
+    0.0
+   ]
+  },
+  {
+   "model": 26,
+   "name": "xmodel/prop_bunkerlocker_open",
+   "matrix": [
+    -0.6934,
+    0.72055,
+    -0.0,
+    8605.0,
+    -0.72055,
+    -0.6934,
+    0.0,
+    -13262.0,
+    -0.0,
+    0.0,
+    1.0,
+    -672.0
+   ],
+   "light": [
+    0.506,
+    0.392,
+    0.235
+   ],
+   "groundLight": [
+    0.506,
+    0.392,
+    0.235,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.99733,
+    0.04499,
+    0.05751,
+    8896.0,
+    -0.05075,
+    -0.99339,
+    -0.10298,
+    -12552.0,
+    0.05249,
+    -0.10562,
+    0.99302,
+    -497.0
+   ],
+   "light": [
+    0.11,
+    0.125,
+    0.192
+   ],
+   "groundLight": [
+    0.11,
+    0.125,
+    0.192,
+    0.129
+   ]
+  },
+  {
+   "model": 8,
+   "name": "xmodel/german_artillery_flak88_destroy",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    8397.0,
+    1.0,
+    0.0,
+    0.0,
+    -12777.0,
+    -0.0,
+    0.0,
+    1.0,
+    -487.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "A",
+    "show": true
+   }
+  },
+  {
+   "model": 7,
+   "name": "xmodel/german_artillery_flak88",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    8397.0,
+    1.0,
+    0.0,
+    0.0,
+    -12777.0,
+    -0.0,
+    0.0,
+    1.0,
+    -487.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "A",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.96174,
+    -0.27396,
+    0.0,
+    8598.0,
+    0.27396,
+    0.96174,
+    0.0,
+    -14295.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.53583,
+    0.84433,
+    0.0,
+    8569.0,
+    -0.84433,
+    0.53583,
+    -0.0,
+    -14296.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.96174,
+    -0.27396,
+    0.0,
+    8626.0,
+    0.27396,
+    0.96174,
+    0.0,
+    -14295.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.96174,
+    -0.27396,
+    0.0,
+    8599.0,
+    0.27396,
+    0.96174,
+    0.0,
+    -14324.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.53583,
+    0.84433,
+    0.0,
+    8570.0,
+    -0.84433,
+    0.53583,
+    -0.0,
+    -14325.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.96174,
+    -0.27396,
+    0.0,
+    8627.0,
+    0.27396,
+    0.96174,
+    0.0,
+    -14324.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.96174,
+    -0.27396,
+    0.0,
+    8599.0,
+    0.27396,
+    0.96174,
+    0.0,
+    -14353.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.53583,
+    0.84433,
+    0.0,
+    8570.0,
+    -0.84433,
+    0.53583,
+    -0.0,
+    -14354.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.96174,
+    -0.27396,
+    0.0,
+    8627.0,
+    0.27396,
+    0.96174,
+    0.0,
+    -14353.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.96174,
+    -0.27396,
+    0.0,
+    8600.0,
+    0.27396,
+    0.96174,
+    0.0,
+    -14382.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.53583,
+    0.84433,
+    0.0,
+    8571.0,
+    -0.84433,
+    0.53583,
+    -0.0,
+    -14383.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.96174,
+    -0.27396,
+    0.0,
+    8628.0,
+    0.27396,
+    0.96174,
+    0.0,
+    -14382.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.96174,
+    -0.27396,
+    0.0,
+    8600.0,
+    0.27396,
+    0.96174,
+    0.0,
+    -14411.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.53583,
+    0.84433,
+    0.0,
+    8571.0,
+    -0.84433,
+    0.53583,
+    -0.0,
+    -14412.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 23,
+   "name": "xmodel/prop_barrel_tan",
+   "matrix": [
+    0.96174,
+    -0.27396,
+    0.0,
+    8628.0,
+    0.27396,
+    0.96174,
+    0.0,
+    -14411.0,
+    -0.0,
+    0.0,
+    1.0,
+    -712.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false
+   }
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    -0.75156,
+    0.65874,
+    0.03489,
+    7507.0,
+    -0.6595,
+    -0.75151,
+    -0.01742,
+    -13209.0,
+    0.01475,
+    -0.0361,
+    0.99924,
+    -494.0
+   ],
+   "light": [
+    0.118,
+    0.133,
+    0.224
+   ],
+   "groundLight": [
+    0.118,
+    0.133,
+    0.224,
+    0.584
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    0.32264,
+    0.94588,
+    0.0349,
+    7484.0,
+    -0.94612,
+    0.32336,
+    -0.01741,
+    -13302.0,
+    -0.02775,
+    -0.02741,
+    0.99924,
+    -494.0
+   ],
+   "light": [
+    0.114,
+    0.129,
+    0.212
+   ],
+   "groundLight": [
+    0.114,
+    0.129,
+    0.212,
+    0.518
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.9438,
+    -0.33051,
+    0.0,
+    6473.0,
+    0.33051,
+    0.9438,
+    0.0,
+    -13710.0,
+    -0.0,
+    0.0,
+    1.0,
+    -499.0
+   ],
+   "light": [
+    0.153,
+    0.169,
+    0.239
+   ],
+   "groundLight": [
+    0.153,
+    0.169,
+    0.239,
+    0.576
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    -0.32227,
+    -0.94665,
+    0.0,
+    7436.0,
+    0.94665,
+    -0.32227,
+    0.0,
+    -13664.0,
+    -0.0,
+    0.0,
+    1.0,
+    -488.0
+   ],
+   "light": [
+    0.118,
+    0.133,
+    0.212
+   ],
+   "groundLight": [
+    0.118,
+    0.133,
+    0.212,
+    0.718
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    -0.77384,
+    0.63338,
+    -0.0,
+    7343.0,
+    -0.63338,
+    -0.77384,
+    0.0,
+    -13638.0,
+    -0.0,
+    0.0,
+    1.0,
+    -488.0
+   ],
+   "light": [
+    0.133,
+    0.153,
+    0.263
+   ],
+   "groundLight": [
+    0.133,
+    0.153,
+    0.263,
+    0.843
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    -0.32227,
+    -0.94665,
+    0.0,
+    6546.0,
+    0.94665,
+    -0.32227,
+    0.0,
+    -13277.0,
+    -0.0,
+    0.0,
+    1.0,
+    -489.0
+   ],
+   "light": [
+    0.165,
+    0.169,
+    0.239
+   ],
+   "groundLight": [
+    0.165,
+    0.169,
+    0.239,
+    0.816
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.02094,
+    0.99978,
+    0.0,
+    8186.0,
+    -0.99978,
+    0.02094,
+    -0.0,
+    -12767.0,
+    -0.0,
+    0.0,
+    1.0,
+    -497.0
+   ],
+   "light": [
+    0.145,
+    0.153,
+    0.212
+   ],
+   "groundLight": [
+    0.145,
+    0.153,
+    0.212,
+    0.369
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.02094,
+    0.99978,
+    0.0,
+    8187.0,
+    -0.99978,
+    0.02094,
+    -0.0,
+    -12842.0,
+    -0.0,
+    0.0,
+    1.0,
+    -497.0
+   ],
+   "light": [
+    0.133,
+    0.145,
+    0.2
+   ],
+   "groundLight": [
+    0.133,
+    0.145,
+    0.2,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/military_sandbag_endsection_left",
+   "matrix": [
+    -0.00873,
+    0.99996,
+    -0.0,
+    8184.0,
+    -0.99996,
+    -0.00873,
+    0.0,
+    -12712.0,
+    -0.0,
+    0.0,
+    1.0,
+    -498.0
+   ],
+   "light": [
+    0.114,
+    0.129,
+    0.2
+   ],
+   "groundLight": [
+    0.114,
+    0.129,
+    0.2,
+    0.49
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/military_sandbag_endsection_left",
+   "matrix": [
+    0.03141,
+    -0.99951,
+    0.0,
+    8185.0,
+    0.99951,
+    0.03141,
+    0.0,
+    -12899.0,
+    -0.0,
+    0.0,
+    1.0,
+    -503.0
+   ],
+   "light": [
+    0.125,
+    0.141,
+    0.204
+   ],
+   "groundLight": [
+    0.125,
+    0.141,
+    0.204,
+    0.549
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    -0.53288,
+    0.84619,
+    -0.0,
+    9343.0,
+    -0.84568,
+    -0.53256,
+    -0.0349,
+    -13380.0,
+    -0.02953,
+    -0.0186,
+    0.99939,
+    -499.0
+   ],
+   "light": [
+    0.184,
+    0.18,
+    0.227
+   ],
+   "groundLight": [
+    0.184,
+    0.18,
+    0.227,
+    0.169
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/military_sandbag_endsection_left",
+   "matrix": [
+    -0.73801,
+    0.67479,
+    0.00121,
+    8011.0,
+    -0.6708,
+    -0.73384,
+    0.10727,
+    -13260.0,
+    0.07327,
+    0.07836,
+    0.99423,
+    -516.0
+   ],
+   "light": [
+    0.114,
+    0.129,
+    0.212
+   ],
+   "groundLight": [
+    0.114,
+    0.129,
+    0.212,
+    0.549
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/military_sandbag_endsection_left",
+   "matrix": [
+    -0.81657,
+    0.54452,
+    -0.19159,
+    7555.0,
+    -0.56107,
+    -0.82672,
+    0.04169,
+    -13172.0,
+    -0.1357,
+    0.14154,
+    0.98059,
+    -491.0
+   ],
+   "light": [
+    0.129,
+    0.145,
+    0.243
+   ],
+   "groundLight": [
+    0.129,
+    0.145,
+    0.243,
+    0.647
+   ]
+  },
+  {
+   "model": 34,
+   "name": "xmodel/vehicle_panzer_ii_destroyed_static",
+   "matrix": [
+    -0.41159,
+    -0.91137,
+    0.0,
+    7871.0,
+    0.91137,
+    -0.41159,
+    0.0,
+    -12634.0,
+    -0.0,
+    0.0,
+    1.0,
+    -497.0
+   ],
+   "light": [
+    0.086,
+    0.098,
+    0.141
+   ],
+   "groundLight": [
+    0.086,
+    0.098,
+    0.141,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/military_sandbag_endsection_left",
+   "matrix": [
+    0.85649,
+    -0.50107,
+    0.12392,
+    6419.0,
+    0.51244,
+    0.85423,
+    -0.0877,
+    -13731.0,
+    -0.06191,
+    0.13861,
+    0.98841,
+    -498.0
+   ],
+   "light": [
+    0.157,
+    0.169,
+    0.251
+   ],
+   "groundLight": [
+    0.157,
+    0.169,
+    0.251,
+    0.671
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.85876,
+    -0.39516,
+    0.12247,
+    6251.0,
+    0.40983,
+    -0.8511,
+    0.12761,
+    -14165.0,
+    0.05645,
+    0.16762,
+    0.93666,
+    -367.0
+   ],
+   "light": [
+    0.106,
+    0.118,
+    0.176
+   ],
+   "groundLight": [
+    0.106,
+    0.118,
+    0.176,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.41517,
+    0.58333,
+    0.09275,
+    6210.0,
+    -0.57556,
+    -0.42501,
+    0.09666,
+    -14217.0,
+    0.1327,
+    -0.01836,
+    0.70944,
+    -355.0
+   ],
+   "light": [
+    0.125,
+    0.141,
+    0.227
+   ],
+   "groundLight": [
+    0.125,
+    0.141,
+    0.227,
+    0.647
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.84029,
+    0.38886,
+    0.11995,
+    6202.0,
+    -0.40321,
+    0.83276,
+    0.12499,
+    -14186.0,
+    -0.05493,
+    -0.1643,
+    0.91743,
+    -358.0
+   ],
+   "light": [
+    0.11,
+    0.122,
+    0.18
+   ],
+   "groundLight": [
+    0.11,
+    0.122,
+    0.18,
+    0.275
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.25176,
+    0.73564,
+    -0.15853,
+    6714.0,
+    -0.75249,
+    0.24431,
+    -0.06132,
+    -14164.0,
+    -0.00804,
+    0.16979,
+    0.77511,
+    -484.0
+   ],
+   "light": [
+    0.106,
+    0.118,
+    0.176
+   ],
+   "groundLight": [
+    0.106,
+    0.118,
+    0.176,
+    0.192
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.8439,
+    -0.70324,
+    0.24316,
+    5641.0,
+    0.72005,
+    -0.6791,
+    0.53497,
+    -14148.0,
+    -0.18762,
+    0.55689,
+    0.95944,
+    -374.0
+   ],
+   "light": [
+    0.118,
+    0.125,
+    0.176
+   ],
+   "groundLight": [
+    0.118,
+    0.125,
+    0.176,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.0379,
+    0.92671,
+    -0.17888,
+    5867.0,
+    -0.93395,
+    -0.06264,
+    -0.12661,
+    -14208.0,
+    -0.13608,
+    0.17179,
+    0.9188,
+    -360.0
+   ],
+   "light": [
+    0.141,
+    0.157,
+    0.239
+   ],
+   "groundLight": [
+    0.141,
+    0.157,
+    0.239,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.65865,
+    -0.46951,
+    0.35951,
+    5562.0,
+    0.54936,
+    0.68496,
+    -0.11193,
+    -13370.0,
+    -0.21883,
+    0.30641,
+    0.80108,
+    -302.0
+   ],
+   "light": [
+    0.118,
+    0.137,
+    0.22
+   ],
+   "groundLight": [
+    0.118,
+    0.137,
+    0.22,
+    0.102
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.06701,
+    -0.77849,
+    -0.05896,
+    5607.0,
+    0.75709,
+    -0.05035,
+    -0.19566,
+    -13392.0,
+    0.1906,
+    -0.0737,
+    0.75647,
+    -308.0
+   ],
+   "light": [
+    0.133,
+    0.149,
+    0.231
+   ],
+   "groundLight": [
+    0.133,
+    0.149,
+    0.231,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.41434,
+    1.03812,
+    -0.03672,
+    5912.0,
+    -1.00762,
+    -0.39206,
+    0.28587,
+    -13110.0,
+    0.25249,
+    0.139,
+    1.08058,
+    -367.0
+   ],
+   "light": [
+    0.118,
+    0.129,
+    0.184
+   ],
+   "groundLight": [
+    0.118,
+    0.129,
+    0.184,
+    0.212
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -1.2489,
+    0.28746,
+    -0.03242,
+    6618.0,
+    -0.28744,
+    -1.24932,
+    -0.00483,
+    -12756.0,
+    -0.03268,
+    0.00256,
+    1.28154,
+    -495.0
+   ],
+   "light": [
+    0.114,
+    0.122,
+    0.176
+   ],
+   "groundLight": [
+    0.114,
+    0.122,
+    0.176,
+    0.247
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.7022,
+    0.0681,
+    -0.00153,
+    7610.0,
+    -0.06807,
+    -0.70211,
+    -0.01125,
+    -13002.0,
+    -0.00261,
+    -0.01105,
+    0.7054,
+    -482.0
+   ],
+   "light": [
+    0.114,
+    0.133,
+    0.22
+   ],
+   "groundLight": [
+    0.114,
+    0.133,
+    0.22,
+    0.663
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.30117,
+    0.81641,
+    0.0243,
+    8419.0,
+    -0.81588,
+    -0.30192,
+    0.03168,
+    -13215.0,
+    0.03814,
+    -0.01181,
+    0.86961,
+    -495.0
+   ],
+   "light": [
+    0.137,
+    0.149,
+    0.227
+   ],
+   "groundLight": [
+    0.137,
+    0.149,
+    0.227,
+    0.314
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.55142,
+    0.44871,
+    -0.01871,
+    9313.0,
+    -0.44671,
+    -0.55106,
+    -0.05043,
+    -13573.0,
+    -0.04632,
+    -0.02735,
+    0.70913,
+    -505.0
+   ],
+   "light": [
+    0.18,
+    0.176,
+    0.22
+   ],
+   "groundLight": [
+    0.18,
+    0.176,
+    0.22,
+    0.455
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.98041,
+    0.19692,
+    -0.00361,
+    7115.0,
+    -0.19696,
+    0.98019,
+    -0.02079,
+    -14473.0,
+    -0.00056,
+    0.0211,
+    0.99978,
+    -491.0
+   ],
+   "light": [
+    0.122,
+    0.137,
+    0.22
+   ],
+   "groundLight": [
+    0.122,
+    0.137,
+    0.22,
+    0.616
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/military_sandbag_endsection_left",
+   "matrix": [
+    0.83438,
+    0.55117,
+    0.00467,
+    6995.0,
+    -0.54965,
+    0.83265,
+    -0.06769,
+    -14420.0,
+    -0.04119,
+    0.05391,
+    0.9977,
+    -493.0
+   ],
+   "light": [
+    0.122,
+    0.141,
+    0.216
+   ],
+   "groundLight": [
+    0.122,
+    0.141,
+    0.216,
+    0.176
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.88272,
+    0.46626,
+    -0.05832,
+    7045.0,
+    -0.4691,
+    0.88164,
+    -0.05151,
+    -14448.0,
+    0.0274,
+    0.07282,
+    0.99697,
+    -492.0
+   ],
+   "light": [
+    0.145,
+    0.169,
+    0.263
+   ],
+   "groundLight": [
+    0.145,
+    0.169,
+    0.263,
+    0.333
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.99819,
+    0.06006,
+    0.00054,
+    7188.0,
+    -0.05988,
+    0.99445,
+    0.08648,
+    -14486.0,
+    0.00466,
+    -0.08636,
+    0.99625,
+    -490.0
+   ],
+   "light": [
+    0.141,
+    0.165,
+    0.255
+   ],
+   "groundLight": [
+    0.141,
+    0.165,
+    0.255,
+    0.365
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/military_sandbag_endsection_right",
+   "matrix": [
+    0.99915,
+    0.00353,
+    0.04106,
+    7246.0,
+    -0.00131,
+    0.99854,
+    -0.05401,
+    -14485.0,
+    -0.04119,
+    0.05391,
+    0.9977,
+    -492.0
+   ],
+   "light": [
+    0.145,
+    0.169,
+    0.259
+   ],
+   "groundLight": [
+    0.145,
+    0.169,
+    0.259,
+    0.259
+   ]
+  },
+  {
+   "model": 16,
+   "name": "xmodel/military_sandbag_curvedsection",
+   "matrix": [
+    -0.96766,
+    -0.25225,
+    -0.0,
+    7362.0,
+    0.25208,
+    -0.967,
+    -0.03696,
+    -12758.0,
+    0.00932,
+    -0.03577,
+    0.99932,
+    -499.0
+   ],
+   "light": [
+    0.114,
+    0.129,
+    0.208
+   ],
+   "groundLight": [
+    0.114,
+    0.129,
+    0.208,
+    0.651
+   ]
+  },
+  {
+   "model": 7,
+   "name": "xmodel/german_artillery_flak88",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    7223.0,
+    1.0,
+    0.0,
+    0.0,
+    -13989.0,
+    -0.0,
+    0.0,
+    1.0,
+    -495.0
+   ],
+   "gameobject": "ctf"
+  },
+  {
+   "model": 9,
+   "name": "xmodel/light_lantern_on",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    9536.0,
+    0.0,
+    1.0,
+    0.0,
+    -13534.0,
+    -0.0,
+    0.0,
+    1.0,
+    -479.0
+   ]
+  },
+  {
+   "model": 9,
+   "name": "xmodel/light_lantern_on",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    9714.0,
+    0.0,
+    1.0,
+    0.0,
+    -13649.0,
+    -0.0,
+    0.0,
+    1.0,
+    -556.0
+   ]
+  },
+  {
+   "model": 9,
+   "name": "xmodel/light_lantern_on",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    9718.0,
+    0.0,
+    1.0,
+    0.0,
+    -13974.0,
+    -0.0,
+    0.0,
+    1.0,
+    -579.0
+   ]
+  },
+  {
+   "model": 9,
+   "name": "xmodel/light_lantern_on",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    8738.0,
+    0.0,
+    1.0,
+    0.0,
+    -14435.0,
+    -0.0,
+    0.0,
+    1.0,
+    -653.0
+   ]
+  },
+  {
+   "model": 9,
+   "name": "xmodel/light_lantern_on",
+   "matrix": [
+    0.42894,
+    0.90334,
+    0.0,
+    5506.0,
+    -0.90334,
+    0.42894,
+    -0.0,
+    -13825.0,
+    -0.0,
+    0.0,
+    1.0,
+    -536.0
+   ]
+  },
+  {
+   "model": 9,
+   "name": "xmodel/light_lantern_on",
+   "matrix": [
+    -0.63742,
+    0.77051,
+    -0.0,
+    6019.0,
+    -0.77051,
+    -0.63742,
+    0.0,
+    -13728.0,
+    -0.0,
+    0.0,
+    1.0,
+    -512.0
+   ]
+  },
+  {
+   "model": 9,
+   "name": "xmodel/light_lantern_on",
+   "matrix": [
+    -0.99452,
+    -0.10453,
+    0.0,
+    6281.0,
+    0.10453,
+    -0.99452,
+    0.0,
+    -13364.0,
+    -0.0,
+    0.0,
+    1.0,
+    -471.0
+   ]
+  },
+  {
+   "model": 36,
+   "name": "xmodel/weapon_mg42",
+   "matrix": [
+    -0.92978,
+    -0.36812,
+    0.0,
+    9228.0,
+    0.36812,
+    -0.92978,
+    0.0,
+    -13661.0,
+    -0.0,
+    0.0,
+    1.0,
+    -487.0
+   ],
+   "gameobject": "sd",
+   "turret": true
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.99995,
+    0.00983,
+    0.0,
+    7874.0,
+    -0.00983,
+    0.99995,
+    -0.0,
+    -13993.0,
+    -0.0,
+    0.0,
+    1.0,
+    -536.0
+   ],
+   "light": [
+    0.424,
+    0.384,
+    0.314
+   ],
+   "groundLight": [
+    0.424,
+    0.384,
+    0.314,
+    0.0
+   ]
+  },
+  {
+   "model": 9,
+   "name": "xmodel/light_lantern_on",
+   "matrix": [
+    0.81513,
+    0.57928,
+    0.0,
+    7873.0,
+    -0.57928,
+    0.81513,
+    -0.0,
+    -13997.0,
+    -0.0,
+    0.0,
+    1.0,
+    -511.0
+   ]
+  },
+  {
+   "model": 1,
+   "name": "xmodel/bunker_ceiling_light_on",
+   "matrix": [
+    -1.0,
+    0.0,
+    0.0,
+    8472.0,
+    0.0,
+    1.0,
+    0.0,
+    -13210.0,
+    -0.0,
+    0.0,
+    -1.0,
+    -560.0
+   ]
+  },
+  {
+   "model": 1,
+   "name": "xmodel/bunker_ceiling_light_on",
+   "matrix": [
+    -1.0,
+    0.0,
+    0.0,
+    8273.0,
+    0.0,
+    1.0,
+    0.0,
+    -13159.0,
+    -0.0,
+    0.0,
+    -1.0,
+    -560.0
+   ],
+   "light": [
+    0.412,
+    0.322,
+    0.204
+   ],
+   "groundLight": [
+    0.412,
+    0.322,
+    0.204,
+    0.0
+   ]
+  },
+  {
+   "model": 1,
+   "name": "xmodel/bunker_ceiling_light_on",
+   "matrix": [
+    -1.0,
+    0.0,
+    0.0,
+    8420.0,
+    0.0,
+    1.0,
+    0.0,
+    -13012.0,
+    -0.0,
+    0.0,
+    -1.0,
+    -560.0
+   ],
+   "light": [
+    0.396,
+    0.306,
+    0.18
+   ],
+   "groundLight": [
+    0.396,
+    0.306,
+    0.18,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/military_sandbag_endsection_left",
+   "matrix": [
+    0.63201,
+    -0.77071,
+    0.08105,
+    7423.0,
+    0.77427,
+    0.6324,
+    -0.02404,
+    -14030.0,
+    -0.03273,
+    0.07795,
+    0.99642,
+    -494.0
+   ],
+   "light": [
+    0.11,
+    0.122,
+    0.192
+   ],
+   "groundLight": [
+    0.11,
+    0.122,
+    0.192,
+    0.329
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.99249,
+    0.05008,
+    0.11159,
+    7470.0,
+    -0.0599,
+    0.99445,
+    0.08648,
+    -14014.0,
+    -0.10664,
+    -0.09251,
+    0.98998,
+    -499.0
+   ],
+   "light": [
+    0.125,
+    0.145,
+    0.239
+   ],
+   "groundLight": [
+    0.125,
+    0.145,
+    0.239,
+    0.522
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/military_sandbag_endsection_right",
+   "matrix": [
+    0.98833,
+    0.0095,
+    0.15202,
+    7528.0,
+    -0.00129,
+    0.99854,
+    -0.05401,
+    -14013.0,
+    -0.15231,
+    0.05318,
+    0.9869,
+    -507.0
+   ],
+   "light": [
+    0.137,
+    0.157,
+    0.263
+   ],
+   "groundLight": [
+    0.137,
+    0.157,
+    0.263,
+    0.659
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.7103,
+    -0.70374,
+    0.01525,
+    8694.0,
+    0.7039,
+    0.71015,
+    -0.01459,
+    -13183.0,
+    -0.00056,
+    0.0211,
+    0.99978,
+    -489.0
+   ],
+   "light": [
+    0.145,
+    0.153,
+    0.208
+   ],
+   "groundLight": [
+    0.145,
+    0.153,
+    0.208,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/military_sandbag_endsection_left",
+   "matrix": [
+    0.73577,
+    0.67721,
+    -0.00621,
+    8443.0,
+    -0.67598,
+    0.73382,
+    -0.06756,
+    -13194.0,
+    -0.04119,
+    0.05391,
+    0.9977,
+    -494.0
+   ],
+   "light": [
+    0.145,
+    0.145,
+    0.192
+   ],
+   "groundLight": [
+    0.145,
+    0.145,
+    0.192,
+    0.0
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/military_sandbag_endsection_right",
+   "matrix": [
+    0.66434,
+    -0.74436,
+    0.06765,
+    8733.0,
+    0.74629,
+    0.6656,
+    -0.00515,
+    -13142.0,
+    -0.04119,
+    0.05391,
+    0.9977,
+    -490.0
+   ],
+   "light": [
+    0.125,
+    0.133,
+    0.184
+   ],
+   "groundLight": [
+    0.125,
+    0.133,
+    0.184,
+    0.0
+   ]
+  },
+  {
+   "model": 19,
+   "name": "xmodel/military_sandbag_shortsection",
+   "matrix": [
+    0.69205,
+    0.7183,
+    -0.07149,
+    8484.0,
+    -0.72133,
+    0.69191,
+    -0.03072,
+    -13233.0,
+    0.0274,
+    0.07282,
+    0.99697,
+    -493.0
+   ],
+   "light": [
+    0.188,
+    0.176,
+    0.204
+   ],
+   "groundLight": [
+    0.188,
+    0.176,
+    0.204,
+    0.176
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.04882,
+    -0.7482,
+    -0.01764,
+    8203.0,
+    0.74769,
+    -0.04954,
+    0.03183,
+    -13135.0,
+    -0.03292,
+    -0.01551,
+    0.74912,
+    -511.0
+   ],
+   "light": [
+    0.106,
+    0.118,
+    0.176
+   ],
+   "groundLight": [
+    0.106,
+    0.118,
+    0.176,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.72605,
+    0.1871,
+    0.01835,
+    8165.0,
+    -0.188,
+    0.72258,
+    0.07092,
+    -13152.0,
+    1e-05,
+    -0.07325,
+    0.74641,
+    -510.0
+   ],
+   "light": [
+    0.114,
+    0.129,
+    0.212
+   ],
+   "groundLight": [
+    0.114,
+    0.129,
+    0.212,
+    0.58
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.7173,
+    0.18676,
+    0.11447,
+    7643.0,
+    -0.19715,
+    0.72125,
+    0.05862,
+    -14275.0,
+    -0.09548,
+    -0.08616,
+    0.73889,
+    -517.0
+   ],
+   "light": [
+    0.129,
+    0.145,
+    0.227
+   ],
+   "groundLight": [
+    0.129,
+    0.145,
+    0.227,
+    0.573
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.74502,
+    -0.08487,
+    0.01569,
+    8416.0,
+    0.0817,
+    0.73743,
+    0.10966,
+    -13741.0,
+    -0.02783,
+    -0.10722,
+    0.74177,
+    -523.0
+   ],
+   "light": [
+    0.125,
+    0.137,
+    0.227
+   ],
+   "groundLight": [
+    0.125,
+    0.137,
+    0.227,
+    0.349
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.64954,
+    0.02439,
+    0.0,
+    8063.0,
+    -0.02439,
+    0.64954,
+    -0.0,
+    -13757.0,
+    -0.0,
+    0.0,
+    0.65,
+    -512.0
+   ],
+   "light": [
+    0.165,
+    0.184,
+    0.271
+   ],
+   "groundLight": [
+    0.165,
+    0.184,
+    0.271,
+    0.733
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.98803,
+    0.0306,
+    -0.15122,
+    8357.0,
+    0.06285,
+    0.81531,
+    0.5756,
+    -13766.0,
+    0.1409,
+    -0.57821,
+    0.80363,
+    -519.0
+   ],
+   "light": [
+    0.125,
+    0.133,
+    0.196
+   ],
+   "groundLight": [
+    0.125,
+    0.133,
+    0.196,
+    0.31
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.52768,
+    -1.12932,
+    -0.01878,
+    7566.0,
+    1.12914,
+    -0.52795,
+    0.0217,
+    -13783.0,
+    -0.02761,
+    -0.00782,
+    1.24633,
+    -513.0
+   ],
+   "light": [
+    0.122,
+    0.125,
+    0.176
+   ],
+   "groundLight": [
+    0.122,
+    0.125,
+    0.176,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.74502,
+    -0.08487,
+    0.01569,
+    8379.0,
+    0.0817,
+    0.73743,
+    0.10966,
+    -13733.0,
+    -0.02783,
+    -0.10722,
+    0.74177,
+    -523.0
+   ],
+   "light": [
+    0.102,
+    0.106,
+    0.145
+   ],
+   "groundLight": [
+    0.102,
+    0.106,
+    0.145,
+    0.0
+   ]
+  },
+  {
+   "model": 17,
+   "name": "xmodel/military_sandbag_endsection_left",
+   "matrix": [
+    0.67598,
+    -0.73382,
+    0.06756,
+    8654.0,
+    0.73577,
+    0.67721,
+    -0.00621,
+    -13224.0,
+    -0.04119,
+    0.05391,
+    0.9977,
+    -488.0
+   ],
+   "light": [
+    0.141,
+    0.157,
+    0.243
+   ],
+   "groundLight": [
+    0.141,
+    0.157,
+    0.243,
+    0.62
+   ]
+  },
+  {
+   "model": 18,
+   "name": "xmodel/military_sandbag_endsection_right",
+   "matrix": [
+    0.74629,
+    0.6656,
+    -0.00515,
+    8527.0,
+    -0.66434,
+    0.74436,
+    -0.06765,
+    -13271.0,
+    -0.04119,
+    0.05391,
+    0.9977,
+    -492.0
+   ],
+   "light": [
+    0.165,
+    0.165,
+    0.216
+   ],
+   "groundLight": [
+    0.165,
+    0.165,
+    0.216,
+    0.29
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.89988,
+    -0.48388,
+    -0.01651,
+    6863.0,
+    0.48304,
+    -0.89964,
+    0.03899,
+    -12871.0,
+    -0.033,
+    0.02653,
+    1.02099,
+    -500.0
+   ],
+   "light": [
+    0.118,
+    0.129,
+    0.196
+   ],
+   "groundLight": [
+    0.118,
+    0.129,
+    0.196,
+    0.498
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.42538,
+    0.58335,
+    -0.00226,
+    7604.0,
+    -0.58331,
+    -0.42531,
+    0.0101,
+    -12531.0,
+    0.00683,
+    0.00778,
+    0.7219,
+    -499.0
+   ],
+   "light": [
+    0.106,
+    0.114,
+    0.173
+   ],
+   "groundLight": [
+    0.106,
+    0.114,
+    0.173,
+    0.227
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.84246,
+    0.39921,
+    0.05077,
+    7235.0,
+    -0.39794,
+    0.84396,
+    -0.03269,
+    -12776.0,
+    -0.05987,
+    0.00786,
+    0.93169,
+    -495.0
+   ],
+   "light": [
+    0.102,
+    0.118,
+    0.184
+   ],
+   "groundLight": [
+    0.102,
+    0.118,
+    0.184,
+    0.173
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.0538,
+    0.79382,
+    0.08344,
+    7236.0,
+    -0.7972,
+    -0.04928,
+    -0.04517,
+    -12742.0,
+    -0.03968,
+    -0.08618,
+    0.79435,
+    -494.0
+   ],
+   "light": [
+    0.098,
+    0.11,
+    0.165
+   ],
+   "groundLight": [
+    0.098,
+    0.11,
+    0.165,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.09371,
+    -0.69265,
+    0.03807,
+    7267.0,
+    0.69307,
+    -0.09512,
+    -0.02451,
+    -12764.0,
+    0.02942,
+    0.03441,
+    0.69853,
+    -497.0
+   ],
+   "light": [
+    0.11,
+    0.122,
+    0.196
+   ],
+   "groundLight": [
+    0.11,
+    0.122,
+    0.196,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.05184,
+    -0.78185,
+    -0.00542,
+    7384.0,
+    0.78096,
+    -0.05204,
+    0.03754,
+    -14489.0,
+    -0.03782,
+    -0.00292,
+    0.78267,
+    -492.0
+   ],
+   "light": [
+    0.114,
+    0.129,
+    0.216
+   ],
+   "groundLight": [
+    0.114,
+    0.129,
+    0.216,
+    0.357
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.65503,
+    0.35588,
+    0.0021,
+    7282.0,
+    -0.34824,
+    0.64186,
+    -0.14986,
+    -14502.0,
+    -0.07335,
+    0.1307,
+    0.73024,
+    -491.0
+   ],
+   "light": [
+    0.11,
+    0.122,
+    0.188
+   ],
+   "groundLight": [
+    0.11,
+    0.122,
+    0.188,
+    0.322
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.65519,
+    0.35452,
+    -0.02769,
+    6967.0,
+    -0.35553,
+    0.65196,
+    -0.06532,
+    -14420.0,
+    -0.00685,
+    0.07062,
+    0.74208,
+    -493.0
+   ],
+   "light": [
+    0.102,
+    0.114,
+    0.184
+   ],
+   "groundLight": [
+    0.102,
+    0.114,
+    0.184,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.35348,
+    -0.35135,
+    0.04004,
+    6938.0,
+    0.35348,
+    0.35269,
+    -0.02572,
+    -14414.0,
+    -0.01017,
+    0.04649,
+    0.49773,
+    -494.0
+   ],
+   "light": [
+    0.125,
+    0.145,
+    0.235
+   ],
+   "groundLight": [
+    0.125,
+    0.145,
+    0.235,
+    0.62
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.36598,
+    -0.33788,
+    0.04355,
+    8265.0,
+    0.33327,
+    0.34184,
+    -0.14857,
+    -14179.0,
+    0.07062,
+    0.13777,
+    0.47543,
+    -673.0
+   ],
+   "light": [
+    0.192,
+    0.2,
+    0.267
+   ],
+   "groundLight": [
+    0.192,
+    0.2,
+    0.267,
+    0.541
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.44164,
+    -0.2005,
+    -0.12148,
+    9177.0,
+    0.19195,
+    0.45802,
+    -0.0581,
+    -13821.0,
+    0.13458,
+    0.00468,
+    0.48153,
+    -531.0
+   ],
+   "light": [
+    0.129,
+    0.149,
+    0.247
+   ],
+   "groundLight": [
+    0.129,
+    0.149,
+    0.247,
+    0.584
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.45102,
+    -0.21572,
+    -0.00714,
+    7953.0,
+    0.21156,
+    0.44512,
+    -0.08431,
+    -13987.0,
+    0.04273,
+    0.07303,
+    0.49279,
+    -511.0
+   ],
+   "light": [
+    0.149,
+    0.157,
+    0.224
+   ],
+   "groundLight": [
+    0.149,
+    0.157,
+    0.224,
+    0.396
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.45039,
+    -0.21461,
+    0.03306,
+    8786.0,
+    0.21586,
+    0.45077,
+    -0.01455,
+    -13098.0,
+    -0.02356,
+    0.02738,
+    0.49869,
+    -485.0
+   ],
+   "light": [
+    0.129,
+    0.145,
+    0.224
+   ],
+   "groundLight": [
+    0.129,
+    0.145,
+    0.224,
+    0.463
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    0.28231,
+    -0.28318,
+    0.01049,
+    8792.0,
+    0.28231,
+    0.27979,
+    -0.04494,
+    -13074.0,
+    0.02448,
+    0.03912,
+    0.39733,
+    -482.0
+   ],
+   "light": [
+    0.129,
+    0.141,
+    0.224
+   ],
+   "groundLight": [
+    0.129,
+    0.141,
+    0.224,
+    0.18
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.33872,
+    0.35531,
+    0.09501,
+    7623.0,
+    -0.3619,
+    -0.345,
+    -0.0,
+    -13602.0,
+    0.06556,
+    -0.06877,
+    0.49089,
+    -509.0
+   ],
+   "light": [
+    0.137,
+    0.153,
+    0.247
+   ],
+   "groundLight": [
+    0.137,
+    0.153,
+    0.247,
+    0.718
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.47421,
+    0.49743,
+    0.13301,
+    7591.0,
+    -0.50666,
+    -0.48301,
+    -0.0,
+    -13585.0,
+    0.09178,
+    -0.09628,
+    0.68725,
+    -503.0
+   ],
+   "light": [
+    0.114,
+    0.122,
+    0.173
+   ],
+   "groundLight": [
+    0.114,
+    0.122,
+    0.173,
+    0.329
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.47354,
+    0.51387,
+    -0.04119,
+    7017.0,
+    -0.51525,
+    -0.47359,
+    0.01522,
+    -13215.0,
+    -0.01669,
+    0.04062,
+    0.69862,
+    -496.0
+   ],
+   "light": [
+    0.129,
+    0.141,
+    0.212
+   ],
+   "groundLight": [
+    0.129,
+    0.141,
+    0.212,
+    0.247
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.44392,
+    -0.3983,
+    0.06554,
+    7599.0,
+    0.40314,
+    -0.43255,
+    0.10188,
+    -13558.0,
+    -0.02039,
+    0.11941,
+    0.58764,
+    -507.0
+   ],
+   "light": [
+    0.11,
+    0.125,
+    0.204
+   ],
+   "groundLight": [
+    0.11,
+    0.125,
+    0.204,
+    0.0
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.52035,
+    -0.46821,
+    -0.00356,
+    9381.0,
+    0.46657,
+    -0.51805,
+    -0.06276,
+    -13008.0,
+    0.03934,
+    -0.04903,
+    0.69717,
+    -508.0
+   ],
+   "light": [
+    0.102,
+    0.11,
+    0.176
+   ],
+   "groundLight": [
+    0.102,
+    0.11,
+    0.176,
+    0.243
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.52086,
+    -0.46563,
+    0.04351,
+    8501.0,
+    0.46659,
+    -0.52182,
+    0.00114,
+    -12050.0,
+    0.03168,
+    0.02985,
+    0.69865,
+    -493.0
+   ],
+   "light": [
+    0.11,
+    0.129,
+    0.216
+   ],
+   "groundLight": [
+    0.11,
+    0.129,
+    0.216,
+    0.451
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.75822,
+    -0.36988,
+    0.44374,
+    6630.0,
+    0.47195,
+    -0.81886,
+    0.12386,
+    -14393.0,
+    0.33314,
+    0.31823,
+    0.83449,
+    -445.0
+   ],
+   "light": [
+    0.122,
+    0.133,
+    0.2
+   ],
+   "groundLight": [
+    0.122,
+    0.133,
+    0.2,
+    0.118
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.40128,
+    0.89987,
+    0.17091,
+    6301.0,
+    -0.90609,
+    0.4173,
+    -0.06972,
+    -14442.0,
+    -0.13406,
+    -0.12688,
+    0.98282,
+    -330.0
+   ],
+   "light": [
+    0.161,
+    0.18,
+    0.298
+   ],
+   "groundLight": [
+    0.161,
+    0.18,
+    0.298,
+    0.769
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.04846,
+    0.99381,
+    0.1,
+    6304.0,
+    -0.99363,
+    0.03776,
+    0.10622,
+    -14398.0,
+    0.10179,
+    -0.10451,
+    0.9893,
+    -335.0
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.00798,
+    0.9949,
+    0.10053,
+    6301.0,
+    -0.99135,
+    0.02104,
+    -0.12955,
+    -14339.0,
+    -0.13101,
+    -0.09863,
+    0.98646,
+    -339.0
+   ],
+   "light": [
+    0.153,
+    0.176,
+    0.298
+   ],
+   "groundLight": [
+    0.153,
+    0.176,
+    0.298,
+    0.651
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.26868,
+    0.96062,
+    0.07079,
+    6290.0,
+    -0.95108,
+    0.25294,
+    0.17739,
+    -14296.0,
+    0.1525,
+    -0.11499,
+    0.98159,
+    -346.0
+   ],
+   "light": [
+    0.153,
+    0.176,
+    0.302
+   ],
+   "groundLight": [
+    0.153,
+    0.176,
+    0.302,
+    0.745
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.22942,
+    0.96541,
+    0.12394,
+    6274.0,
+    -0.97006,
+    0.23722,
+    -0.05215,
+    -14239.0,
+    -0.07974,
+    -0.10826,
+    0.99092,
+    -353.0
+   ],
+   "light": [
+    0.149,
+    0.169,
+    0.282
+   ],
+   "groundLight": [
+    0.149,
+    0.169,
+    0.282,
+    0.678
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.59476,
+    0.80389,
+    0.00531,
+    6248.0,
+    -0.80342,
+    0.59416,
+    0.03861,
+    -14200.0,
+    0.02789,
+    -0.02723,
+    0.99924,
+    -357.0
+   ],
+   "light": [
+    0.122,
+    0.137,
+    0.22
+   ],
+   "groundLight": [
+    0.122,
+    0.137,
+    0.22,
+    0.565
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.56422,
+    0.81404,
+    0.13785,
+    6212.0,
+    -0.79941,
+    0.58037,
+    -0.15527,
+    -14152.0,
+    -0.2064,
+    -0.02259,
+    0.97821,
+    -357.0
+   ],
+   "light": [
+    0.106,
+    0.122,
+    0.192
+   ],
+   "groundLight": [
+    0.106,
+    0.122,
+    0.192,
+    0.0
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    -0.28351,
+    -0.95628,
+    0.07173,
+    6207.0,
+    0.95282,
+    -0.27244,
+    0.1338,
+    -14393.0,
+    -0.10841,
+    0.10628,
+    0.98841,
+    -330.0
+   ],
+   "light": [
+    0.165,
+    0.184,
+    0.302
+   ],
+   "groundLight": [
+    0.165,
+    0.184,
+    0.302,
+    0.769
+   ]
+  },
+  {
+   "model": 0,
+   "name": "xmodel/brush_egypt_desert_1",
+   "matrix": [
+    -0.04131,
+    -0.99408,
+    -0.10049,
+    8695.0,
+    0.99721,
+    -0.04728,
+    0.05779,
+    -12656.0,
+    -0.0622,
+    -0.09782,
+    0.99326,
+    -489.0
+   ],
+   "light": [
+    0.098,
+    0.11,
+    0.176
+   ],
+   "groundLight": [
+    0.098,
+    0.11,
+    0.176,
+    0.275
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    -0.05667,
+    0.92326,
+    0.37997,
+    5551.0,
+    -0.98224,
+    0.01663,
+    -0.1869,
+    -13667.0,
+    -0.17888,
+    -0.38381,
+    0.90592,
+    -431.0
+   ],
+   "light": [
+    0.173,
+    0.192,
+    0.271
+   ],
+   "groundLight": [
+    0.173,
+    0.192,
+    0.271,
+    0.0
+   ]
+  },
+  {
+   "model": 3,
+   "name": "xmodel/caen_barbedwire_4",
+   "matrix": [
+    0.27618,
+    0.89186,
+    0.3582,
+    5540.0,
+    -0.96094,
+    0.24934,
+    0.12008,
+    -13623.0,
+    0.01778,
+    -0.37737,
+    0.92589,
+    -432.0
+   ],
+   "light": [
+    0.188,
+    0.212,
+    0.306
+   ],
+   "groundLight": [
+    0.188,
+    0.212,
+    0.306,
+    0.0
+   ]
+  },
+  {
+   "model": 2,
+   "name": "xmodel/caen_barbedwire_3",
+   "matrix": [
+    0.17058,
+    0.89795,
+    0.40569,
+    5524.0,
+    -0.96615,
+    0.23329,
+    -0.11011,
+    -13566.0,
+    -0.19352,
+    -0.37317,
+    0.90735,
+    -431.0
+   ],
+   "light": [
+    0.204,
+    0.227,
+    0.318
+   ],
+   "groundLight": [
+    0.204,
+    0.227,
+    0.318,
+    0.788
+   ]
+  },
+  {
+   "model": 33,
+   "name": "xmodel/vehicle_opel_blitz_desert_static",
+   "matrix": [
+    0.63836,
+    -0.76677,
+    -0.0675,
+    9032.0,
+    0.76243,
+    0.64192,
+    -0.08149,
+    -13289.0,
+    0.10581,
+    0.00055,
+    0.99439,
+    -519.0
+   ],
+   "light": [
+    0.11,
+    0.118,
+    0.188
+   ],
+   "groundLight": [
+    0.11,
+    0.118,
+    0.188,
+    0.0
+   ]
+  },
+  {
+   "model": 33,
+   "name": "xmodel/vehicle_opel_blitz_desert_static",
+   "matrix": [
+    0.43252,
+    -0.89825,
+    -0.07799,
+    8666.0,
+    0.8886,
+    0.43932,
+    -0.13187,
+    -13721.0,
+    0.15271,
+    -0.01226,
+    0.98819,
+    -590.0
+   ],
+   "light": [
+    0.145,
+    0.153,
+    0.22
+   ],
+   "groundLight": [
+    0.145,
+    0.153,
+    0.22,
+    0.0
+   ]
+  },
+  {
+   "model": 30,
+   "name": "xmodel/sign_minefield1",
+   "matrix": [
+    0.98881,
+    0.13296,
+    0.06764,
+    9195.0,
+    -0.13325,
+    0.99108,
+    -0.00024,
+    -12265.0,
+    -0.06707,
+    -0.00877,
+    0.99771,
+    -509.0
+   ],
+   "light": [
+    0.137,
+    0.161,
+    0.286
+   ],
+   "groundLight": [
+    0.137,
+    0.161,
+    0.286,
+    0.769
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    0.78152,
+    0.62388,
+    0.0,
+    6408.0,
+    -0.62388,
+    0.78152,
+    -0.0,
+    -13106.0,
+    -0.0,
+    0.0,
+    1.0,
+    -543.0
+   ],
+   "light": [
+    0.165,
+    0.176,
+    0.243
+   ],
+   "groundLight": [
+    0.165,
+    0.176,
+    0.243,
+    0.447
+   ]
+  },
+  {
+   "model": 4,
+   "name": "xmodel/crate01",
+   "matrix": [
+    -0.57928,
+    -0.81513,
+    0.0,
+    6369.0,
+    0.81513,
+    -0.57928,
+    0.0,
+    -13143.0,
+    -0.0,
+    0.0,
+    1.0,
+    -543.0
+   ],
+   "light": [
+    0.169,
+    0.176,
+    0.235
+   ],
+   "groundLight": [
+    0.169,
+    0.176,
+    0.235,
+    0.353
+   ]
+  }
+ ],
+ "fallback": []
+}
