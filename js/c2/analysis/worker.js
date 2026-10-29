@@ -8,6 +8,8 @@ C2.define('workerMain', function (C2) {
     const list = [];
     for (const p of Object.values(data.positions)) for (const a of Object.values(p)) list.push(a.buffer);
     if (data.sightJob) for (const j of data.sightJob.kills) list.push(j.segs.buffer);
+    if (data.psWeapon) for (const a of Object.values(data.psWeapon)) list.push(a.buffer);
+    if (data.psHud) for (const k of ['ammo', 'obj', 'hud']) list.push(data.psHud[k].start.buffer, data.psHud[k].data.buffer);
     return list;
   }
 

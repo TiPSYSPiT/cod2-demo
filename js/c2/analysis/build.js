@@ -612,6 +612,41 @@ C2.define('build', function (C2) {
         return { events, local };
       })(),
       shotsSeen: Object.fromEntries([...col.shots].map(([cl, a]) => [cl, a.map(rel)])),
+      // the first-person weapon (viewanim.js): the recording player's weapon per snapshot (player state),
+      // the weapon events of every player, the hands models of the viewmodel indices
+      psWeapon: (() => {
+        const W = col.psWeapon, T = { t: Int32Array.from(W.t, rel) };
+        const typed = { client: Int8Array, anim: Uint16Array, state: Uint8Array, weapon: Uint8Array, offhand: Uint8Array, ads: Float32Array,
+          spread: Float32Array, viewmodel: Uint8Array, bob: Uint8Array, vx: Float32Array, vy: Float32Array, vz: Float32Array,
+          ground: Uint16Array, vh: Float32Array, breath: Float32Array, fuse: Int32Array, friend: Uint8Array,
+          pmType: Uint8Array, health: Int16Array, ammoRef: Uint32Array, objRef: Uint32Array, hudRef: Uint32Array };
+        for (const [k, A] of Object.entries(typed)) T[k] = A.from(W[k]);
+        return T;
+      })(),
+      // the recording player's HUD (hud.js): the tables psWeapon.ammoRef / objRef / hudRef point to, flat with
+      // their start offsets; t0 turns the HUD elements' server times into the replay's
+      psHud: (() => {
+        const flat = list => {
+          const start = new Uint32Array(list.length + 1);
+          for (let i = 0; i < list.length; i++) start[i + 1] = start[i] + list[i].length;
+          const data = new Int32Array(start[list.length]);
+          list.forEach((a, i) => data.set(a, start[i]));
+          return { start, data };
+        };
+        const T = col.psTables;
+        // the config strings the HUD reads: north yaw (11), localized strings (1310 + i: HUD element texts),
+        // materials (1566 + i: HUD element and objective images); the client dvars the server sets (zPAM's
+        // HUD menus show some) and the game / bold messages (the lower left and the centre message windows)
+        const want = i => i === 11 || (i >= 1310 && i < 1694);
+        const init = {};
+        for (const [i, v] of csInit) if (want(i)) init[i] = v;
+        return { t0, ammo: flat(T.ammo), obj: flat(T.obj), hud: flat(T.hud),
+          cs: { init, changes: csChanges.filter(c => want(c.index) && c.t >= main.start && c.t < main.end).map(c => [c.t, c.index, c.value]) },
+          dvars: commands.filter(c => c.d.verb === 'v').flatMap(c => c.d.dvars.map(([n, v]) => [c.t, n.toLowerCase(), v])),
+          messages: commands.filter(c => c.d.verb === 'f' || c.d.verb === 'g').map(c => [c.t, c.d.verb, c.d.text]) };
+      })(),
+      weapEvents: col.weapEvents.map(r => [rel(r[0]), r[1], r[2], r[3]]),
+      viewHands: (() => { const out = {}; for (const i of new Set(col.psWeapon.viewmodel)) { const n = i && cs.get(K.CS.MODELS + i); if (n) out[i] = n.toLowerCase(); } return out; })(),
       fx3d: {
         impacts: col.impacts.map(r => [rel(r[0])].concat(r.slice(1))).filter(r => onMainMap(r[0])),
         playFx: col.playFx.map(r => [rel(r[0])].concat(r.slice(1))).filter(r => onMainMap(r[0])),

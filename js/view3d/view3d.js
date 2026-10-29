@@ -19,6 +19,8 @@ import { CookieShadows } from './shadows.js';
 import { LightGrid } from './lightGrid.js';
 import { gameObjectFilter, Exploders } from './gameObjects.js';
 import { XRay, XRAY_MODES } from './xray.js';
+import { ViewModel, FP_FOV } from './viewmodel.js';
+import { Hud, HUD_PARTS } from './hud.js';
 
 const C2 = window.C2;
 const { el, icon, switchRow, selectRow } = C2.ui;
@@ -31,6 +33,7 @@ const FX_KEY = 'cod2demo3d.fx';                  // 'game' / 'simple'
 const PLAYERS_KEY = 'cod2demo3d.players';        // 'simple' / 'models'
 const SOUND_KEY = 'cod2demo3d.sound';            // 'on' / 'off' (default off) and '.volume'
 const SHADOWS_KEY = 'cod2demo3d.shadows';        // 'on' / 'off' (default on)
+const VIEWMODEL_KEY = 'cod2demo3d.viewmodel';    // 'on' / 'off' (default on): the first-person weapon
 const MODE_HELP = { orbit: 'Left drag: rotate · right drag: pan · wheel: zoom · click a player: select',
   free: 'Drag: look · W A S D: move · R / F: up / down · Shift: fast · wheel: speed',
   follow: 'Follows the selected player · drag: turn around them · wheel: distance',
@@ -41,6 +44,16 @@ const store = (key, v) => { try { localStorage.setItem(key, v); } catch (err) { 
 const XRAY_KEY = 'cod2demo3d.xray';              // 'off' / 'player' / 'names'
 const sessionGet = key => { try { return sessionStorage.getItem(key); } catch (err) { return null; } };
 const sessionSet = (key, v) => { try { sessionStorage.setItem(key, v); } catch (err) { /* not stored */ } };
+// the game's HUD in first person (hud.js): per part 'on' / 'off', remembered for the browser session
+const HUD_KEY = 'cod2demo3d.hud.';
+const HUD_TITLES = {
+  compass: "The game's compass: turning with the view, the teammates, the objectives (bomb sites), enemies only while they fire",
+  score: 'The team score as the server shows it (stock game or zPAM), updated live',
+  killfeed: "The game's kill messages above the compass (killer, weapon icon, victim in the team colours) and \"You killed\" / \"Killed by\"",
+  ammo: 'Clip and reserve ammo, red when low, and the weapon name after a switch (recording player only)',
+  grenades: 'Frag and smoke grenades with their icons and counts (recording player only)',
+  server: "The rest the server shows: zPAM's players left and info texts, timers, the game messages (recording player)"
+};
 
 export class View3D {
   constructor(replay, container) {
@@ -79,7 +92,23 @@ export class View3D {
     this.effects = new Effects(scene, this.labels, this.M);
     // the game's particle effects (fx.js): explosions, smoke, impacts, muzzle flashes
     this.fx = new FxPlayer(scene, this.M);
+    // the first-person weapon (viewmodel.js), its crosshair and scope
+    this.viewmodel = new ViewModel();
+    this.viewmodel.setMatch(this.M, k => (this.characters.animsInfo ? this.characters.animsInfo.table[k] || '' : null));
+    this.viewmodel.onLoaded = () => { this.needsRender = true; };
+    this.viewmodel.crosshair = true;              // (always in first person)
+    // the game's HUD (hud.js): a canvas over the view, drawn after each first-person frame
+    this.hud = new Hud();
+    this.hud.setMatch(this.M);
+    this.hudCanvas = el('canvas', { class: 'hud-layer' });
+    this.stage.append(this.hudCanvas);
+    this.hudInsets = null; this.hudInsetsAt = 0;
     this.fx.muzzleOf = (cl, ts, t) => {
+      // the first-person player's shot: the view flash at the view model's muzzle
+      if (cl === this.fpClient && this.viewmodel.shown) {
+        const mz = this.viewmodel.muzzle(this.camera), st = this.viewmodel.state;
+        return mz ? Object.assign(mz, { weapon: st.weapon, flash: st.entry.strings.viewFlashEffect || null, view: true }) : null;
+      }
       const s = this.M.sampleAt(cl, t);
       const mz = s && s.age <= CFG.STALE_MS ? this.actors.muzzle(cl) : null;
       return mz ? Object.assign(mz, { weapon: this.M.weaponName(s.weapon, t) }) : null;
@@ -100,6 +129,8 @@ export class View3D {
     this.setPlayersMode(stored(PLAYERS_KEY) === 'simple' ? 'simple' : 'models');
     this.setFxMode(stored(FX_KEY) === 'simple' ? 'simple' : 'game');
     this.setShadows(new URLSearchParams(location.search).get('shadows') !== 'off' && stored(SHADOWS_KEY) !== 'off');
+    this.setViewModel(stored(VIEWMODEL_KEY) !== 'off');
+    for (const [k, , def] of HUD_PARTS) { const v = sessionGet(HUD_KEY + k); this.setHudPart(k, v == null ? def : v === 'on'); }
     this.xray = new XRay(this.renderer);
     this.setXray(sessionGet(XRAY_KEY));
 
@@ -165,6 +196,7 @@ export class View3D {
           if (!g || this.world !== w) return;
           g.apply();
           this.actors.grid = g;
+          this.viewmodel.setGrid(g);
           if (this.props) this.props.applyGrid(g);
           this.R.invalidate(); this.needsRender = true;
         }).catch(err => console.warn('light grid not loaded:', err));
@@ -266,11 +298,18 @@ export class View3D {
     this.killfeedBox = el('input', { type: 'checkbox', onchange: e => this.setKillfeed(e.target.checked, true) });
     this.killIconsBox = el('input', { type: 'checkbox', onchange: e => this.setKillIcons(e.target.checked, true) });
     this.shadowsBox = el('input', { type: 'checkbox', onchange: e => this.setShadows(e.target.checked, true) });
+    this.viewmodelBox = el('input', { type: 'checkbox', onchange: e => this.setViewModel(e.target.checked, true) });
+    this.hudBoxes = {};
+    for (const [k] of HUD_PARTS) this.hudBoxes[k] = el('input', { type: 'checkbox', onchange: e => this.setHudPart(k, e.target.checked, true) });
     this.panels = [
       { key: 'camera', title: 'Camera', hint: 'C cycles', icon: 'camera', node: el('div', { class: 'pop-body' },
         el('div', { class: 'grp' }, this.modeSel,
           selectRow('Player', playerSel, 'Selected player (follow / first person); also click a player in the view or the team panel'),
-          el('button', { class: 'tb wide', title: 'Back to the overview', onclick: () => this.resetView() }, icon('reset', 's'), 'Reset view'))) },
+          el('button', { class: 'tb wide', title: 'Back to the overview', onclick: () => this.resetView() }, icon('reset', 's'), 'Reset view')),
+        el('div', { class: 'grp' }, el('h4', null, 'First person'),
+          switchRow('Weapon', this.viewmodelBox, { title: "The weapon in the player's hands, with the game's own view animations; aiming down the sights zooms as in the game (exact for the recording player, approximated for the others). The game's crosshair is always shown" })),
+        el('div', { class: 'grp' }, el('h4', null, 'First person HUD'),
+          ...HUD_PARTS.map(([k, label]) => switchRow(label, this.hudBoxes[k], { title: HUD_TITLES[k] })))) },
       { key: 'display', title: 'Display', hint: '3D only', icon: 'sliders', node: el('div', { class: 'pop-body' },
         el('div', { class: 'grp' },
           selectRow('Players', this.playersSel, 'Player display: capsules, or the real character models (body, head and helmet from the demo, animated with the game\'s animations the demo sends)'),
@@ -313,6 +352,18 @@ export class View3D {
     this.killfeedBox.checked = on;
     if (user) store(KILLFEED_KEY, on ? 'on' : 'off');
     this.killfeed.update(this.t || 0);
+  }
+  setViewModel(on, user = false) {
+    this.viewmodel.enabled = on;
+    this.viewmodelBox.checked = on;
+    if (user) store(VIEWMODEL_KEY, on ? 'on' : 'off');
+    this.needsRender = true;
+  }
+  setHudPart(k, on, user = false) {
+    this.hud.parts[k] = on;
+    this.hudBoxes[k].checked = on;
+    if (user) sessionSet(HUD_KEY + k, on ? 'on' : 'off');
+    this.needsRender = true;
   }
   setShadows(on, user = false) {
     this.shadows.setEnabled(on);
@@ -453,8 +504,24 @@ export class View3D {
     const cl = this.R.focus != null ? this.R.focus : M.followedAt(t);
     const s = cl != null ? M.sampleAt(cl, t) : null;
     if (!s || s.age > CFG.STALE_MS) return { cl, target: null };
-    const pos = new THREE.Vector3(s.x, s.y, s.z);
-    return { cl, target: { pos, eye: new THREE.Vector3(s.x, s.y, s.z + EYE[stanceOf(s)]), yaw: s.yaw, pitch: s.pitch } };
+    const pos = new THREE.Vector3(s.x, s.y, s.z), eye = new THREE.Vector3(s.x, s.y, s.z + EYE[stanceOf(s)]);
+    // first person as CG_CalcViewValues: the recording player's view height (viewHeightCurrent: the engine moves
+    // it over a stance change; the others: their stance's), the view bob (up, and sideways along the view's
+    // right), the lean (AddLeanToPosition: along the right vector of (0, yaw, 16 f), 20 f units, f =
+    // GetLeanFraction), and the eye at least 8 units over the feet
+    const va = this.cams.mode === 'fp' && this.viewmodel.anim;
+    if (va) {
+      eye.z = s.z + this.eyeHeight(va, cl, t, s);
+      const b = va.viewBob(cl, t, s), y = s.yaw * Math.PI / 180;
+      eye.x += Math.sin(y) * b.right; eye.y -= Math.cos(y) * b.right; eye.z += b.up;
+      const f = (s.lean || 0) * (2 - Math.abs(s.lean || 0));
+      if (f) {
+        const r = 16 * f * Math.PI / 180, d = 20 * f;
+        eye.x += Math.cos(r) * Math.sin(y) * d; eye.y -= Math.cos(r) * Math.cos(y) * d; eye.z -= Math.sin(r) * d;
+      }
+      eye.z = Math.max(eye.z, s.z + 8);
+    }
+    return { cl, target: { pos, eye, yaw: s.yaw, pitch: s.pitch } };
   }
 
   loop(now) {
@@ -484,9 +551,20 @@ export class View3D {
         if (msg) holdHint(this.camHint); else fadeHint(this.camHint);
       }
       if (mode === 'fp' && target) { hideClient = cl; this.actors.hide(cl); }
-    } else if (this.cams.tick(dt, null)) this.needsRender = true;
+      this.fpClient = mode === 'fp' && target ? cl : null;
+    } else { this.fpClient = null; if (this.cams.tick(dt, null)) this.needsRender = true; }
     if (!this.needsRender && !force) return false;
     this.needsRender = false;
+    // the first-person weapon at this time (before the effects: its muzzle flash) and the sights' zoom
+    const fpSample = this.fpClient != null ? this.M.sampleAt(this.fpClient, this.t || 0) : null;
+    this.viewmodel.update(this.fpClient != null ? this.fpClient : -1, this.t || 0, fpSample);
+    if (mode === 'fp') {
+      const fov = fpSample ? this.viewmodel.fov(FP_FOV) : FP_FOV;
+      if (Math.abs(this.camera.fov - fov) > 1e-4) { this.camera.fov = fov; this.camera.updateProjectionMatrix(); }
+      // a player without a player state: is a teammate under the crosshair (the recorder's comes from the demo)
+      const st = this.viewmodel.state;
+      if (st && st.entry && !st.recorder) st.friend = this.teammateInSight(this.fpClient, st.entry.params.enemyCrosshairRange || 0);
+    }
     this.camera.updateMatrixWorld();
     this.fx.update(this.t || 0, this.camera);
     if (this.shadows.enabled) {
@@ -496,11 +574,83 @@ export class View3D {
     this.renderer.render(this.scene, this.camera);
     if (this.xrayMode !== 'off') this.xray.render(this.scene, this.camera, this.actors.xrayTargets(hideClient));
     this.actors.setXrayHidden(this.xrayMode === 'names' ? this.xray.hidden() : null);
+    if (this.fpClient != null) this.viewmodel.render(this.renderer, this.camera, FP_FOV, [this.hemi, this.sun], this.fx.viewRoot);
     if (!this.exporting) {
       this.actors.projectLabels(this.camera, this.w, this.h, hideClient);
       this.effects.projectLabels(this.camera, this.w, this.h);
+      this.drawHud(fpSample);
     }
-    return { hideClient };
+    return { hideClient, fpSample };
+  }
+
+  /** the eye's height over the feet: the recording player's viewHeightCurrent at t (between two snapshots
+   *  interpolated), else the stance's */
+  eyeHeight(va, cl, t, s) {
+    const ri = va.recorderRow(cl, t), W = this.M.d.psWeapon;
+    if (ri < 0 || !W || !W.vh) return EYE[stanceOf(s)];
+    let vh = W.vh[ri];
+    if (ri + 1 < W.t.length && W.client[ri + 1] === cl && W.t[ri + 1] > W.t[ri]) vh += (W.vh[ri + 1] - vh) * Math.min(1, Math.max(0, (t - W.t[ri]) / (W.t[ri + 1] - W.t[ri])));
+    return vh > 0 ? vh : EYE[stanceOf(s)];
+  }
+
+  /** whether the game's HUD is drawn: first person, a part switched on */
+  hudShown() { return this.fpClient != null && HUD_PARTS.some(([k]) => this.hud.parts[k]); }
+  /** the game's HUD over the first-person view (hud.js), clear of the viewer's own controls; the viewer's kill feed
+   *  gives way to the game's */
+  drawHud(fpSample) {
+    const cv = this.hudCanvas, on = this.hudShown() && !!fpSample;
+    this.killfeed.box.style.visibility = on && this.hud.parts.killfeed ? 'hidden' : '';
+    if (on && !this.hud.data) this.hud.load().then(ok => { if (ok) this.needsRender = true; });
+    if (!on || !this.hud.data) { if (cv.width) { cv.width = 0; cv.height = 0; } return; }
+    const dpr = this.renderer.getPixelRatio(), w = Math.round(this.w * dpr), h = Math.round(this.h * dpr);
+    if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; this.hudInsets = null; }
+    const now = performance.now();
+    if (!this.hudInsets || now - this.hudInsetsAt > 500) { this.hudInsets = this.uiInsets(dpr); this.hudInsetsAt = now; }
+    const g = cv.getContext('2d');
+    g.setTransform(1, 0, 0, 1, 0, 0);
+    g.clearRect(0, 0, w, h);
+    this.hud.draw(g, w, h, this.t || 0, this.fpClient, { x: fpSample.x, y: fpSample.y, yaw: fpSample.yaw }, this.hudInsets);
+  }
+  /** the viewer's controls over the 3D canvas (rail, score, drawer, the playback bar) as the HUD's safe area: per
+   *  control the canvas edge it hugs, inset past it (device pixels) */
+  uiInsets(dpr) {
+    const c = this.renderer.domElement.getBoundingClientRect(), ins = { l: 0, t: 0, r: 0, b: 0 }, gap = 8;
+    for (const sel of ['#rail', '#overview', '#drawer', '#controls']) {
+      for (const e of document.querySelectorAll(sel)) {
+        const r = e.getBoundingClientRect(), cs = getComputedStyle(e);
+        if (!r.width || !r.height || cs.display === 'none' || cs.visibility === 'hidden' || Number(cs.opacity) === 0) continue;
+        if (r.right <= c.left || r.left >= c.right || r.bottom <= c.top || r.top >= c.bottom) continue;
+        const cand = { l: r.right - c.left, r: c.right - r.left, t: r.bottom - c.top, b: c.bottom - r.top };
+        const edge = Object.keys(cand).reduce((a, b) => (cand[a] <= cand[b] ? a : b));
+        ins[edge] = Math.max(ins[edge], cand[edge] + gap);
+      }
+    }
+    for (const k in ins) ins[k] = Math.round(ins[k] * dpr);
+    return ins;
+  }
+
+  /** a living teammate of client cl on the first-person camera's view axis within `range` units, not behind the
+   *  world (the light grid's collision) - the approximation of the server's flag for the other players; each
+   *  player an upright capsule of his stance's height */
+  teammateInSight(cl, range) {
+    const me = this.M.player(cl);
+    if (!range || !me || (me.team !== 'A' && me.team !== 'B')) return false;
+    const e = this.camera.position, d = this.camera.getWorldDirection(new THREE.Vector3());
+    let best = null;
+    for (const it of this.actors.items.values()) {
+      if (it.cl === cl || !it.visible || !it.sample || it.sample.age > CFG.STALE_MS) continue;
+      const p = this.M.player(it.cl);
+      if (!p || p.team !== me.team) continue;
+      const h = it.sample.prone ? 20 : it.sample.crouch ? 50 : 70;
+      // the closest approach of the view ray to the capsule's axis (a vertical segment), sampled along its height
+      for (let z = 6; z <= h; z += 8) {
+        const vx = it.pos.x - e.x, vy = it.pos.y - e.y, vz = it.pos.z + z - e.z, along = vx * d.x + vy * d.y + vz * d.z;
+        if (along <= 0 || along > range || (best && along >= best.along)) continue;
+        if (Math.hypot(vx - d.x * along, vy - d.y * along, vz - d.z * along) < 14) { best = { along, x: e.x + d.x * along, y: e.y + d.y * along, z: e.z + d.z * along }; break; }
+      }
+    }
+    const col = this.actors.grid && this.actors.grid.collision;
+    return !!best && !(col && col.blocked(e.x, e.y, e.z, best.x, best.y, best.z));
   }
 
   /** the point the shadow map is centred on: what the orbit / follow camera looks at, else 600 units ahead */
@@ -522,6 +672,7 @@ export class View3D {
     this.visible = false;
     this.offFocus();
     this.actors.dispose();
+    this.viewmodel.dispose();
     this.effects.dispose();
     this.fx.dispose();
     this.shadows.dispose();

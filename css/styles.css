@@ -617,6 +617,7 @@ table.data.scoreboard tbody tr.team-head ~ tr.team-head td { border-top: 14px so
 
 /* ---- 3D view labels and kill feed (actors.js, effects.js, killfeed.js) ---- */
 .view3d .label-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 2; }
+.view3d .hud-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
 .view3d canvas { cursor: grab; }
 /* player names in their team colour (--tc, actors.js), outlined dark so they read on bright walls */
 .p3-label { position: absolute; transform: translate(-50%, -100%); white-space: nowrap; font: 600 11.5px var(--sans); color: var(--tc, var(--text));

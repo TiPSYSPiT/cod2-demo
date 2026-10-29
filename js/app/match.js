@@ -73,7 +73,8 @@ export class Match {
 
   /** position of client cl at time t, interpolated between two samples when they are close
    *  enough (same life, same round, gap <= GAP_MS, no jump); null when dead / not in this life.
-   *  -> {x, y, z, yaw, pitch, age (ms since the sample, 0 = interpolated), crouch, prone, firing, turret, weapon, ps} */
+   *  -> {x, y, z, yaw, pitch, lean (leanf: -1 .. 1), age (ms since the sample, 0 = interpolated), crouch, prone, firing,
+   *  turret, weapon, ps} */
   sampleAt(cl, t) {
     const P = this.d.positions[cl];
     if (!P || !P.t.length) return null;
@@ -84,7 +85,7 @@ export class Match {
     const dl = this.deaths.get(cl);
     if (dl) for (const k of dl) if (k.t > t0 && k.t <= t) return null;
     if (t0 < this.epochStart(t)) return null;
-    let x = P.x[i], y = P.y[i], z = P.z[i], yaw = P.yaw[i], pitch = P.pitch[i], age = t - t0;
+    let x = P.x[i], y = P.y[i], z = P.z[i], yaw = P.yaw[i], pitch = P.pitch[i], age = t - t0, lean = P.lean ? P.lean[i] : 0;
     if (i + 1 < P.t.length && this.epochStart(P.t[i + 1]) <= t0) {
       const t1 = P.t[i + 1];
       const dx = P.x[i + 1] - x, dy = P.y[i + 1] - y;
@@ -93,11 +94,12 @@ export class Match {
         x += dx * f; y += dy * f; z += (P.z[i + 1] - z) * f;
         yaw += dAngle(yaw, P.yaw[i + 1]) * f;
         pitch += dAngle(pitch, P.pitch[i + 1]) * f;
+        if (P.lean) lean += (P.lean[i + 1] - lean) * f;
         age = 0;
       }
     }
     const fl = P.flags[i];
-    return { x, y, z, yaw, pitch, age, crouch: !!(fl & PF.CROUCH), prone: !!(fl & PF.PRONE), firing: !!(fl & PF.FIRING), turret: !!(fl & PF.TURRET),
+    return { x, y, z, yaw, pitch, lean, age, crouch: !!(fl & PF.CROUCH), prone: !!(fl & PF.PRONE), firing: !!(fl & PF.FIRING), turret: !!(fl & PF.TURRET),
       weapon: P.weapon[i], ps: !!(fl & PF.FROM_PS), i, legs: P.legs ? P.legs[i] : 0, torso: P.torso ? P.torso[i] : 0 };
   }
 

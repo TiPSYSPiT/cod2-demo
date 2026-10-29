@@ -140,6 +140,9 @@ export class FxPlayer {
     this.root = new THREE.Group();
     this.root.name = 'fx';
     scene.add(this.root);
+    // the first-person weapon's muzzle flashes: drawn in the view model's pass, after the gun (viewmodel.js)
+    this.viewRoot = new THREE.Group();
+    this.viewRoot.name = 'fx view';
     this.batches = new Map();
     this.durations = new Map();
     this.events = [];
@@ -261,14 +264,21 @@ export class FxPlayer {
     this.shots = Object.entries(d.shotsSeen || {}).map(([cl, ts]) => ({ cl: +cl, ts }));
   }
 
-  batch(name) {
-    let b = this.batches.get(name);
+  batch(name, view = false) {
+    const key = view ? name + '#view' : name;
+    let b = this.batches.get(key);
     if (b !== undefined) return b;
     const m = this.doc.materials[name];
     b = null;
     if (m && m.texture) {
-      const tex = loadTexture('maps3d/' + m.texture);
-      tex.colorSpace = THREE.NoColorSpace; tex.flipY = false;
+      // (one texture per file: the view flashes' batches share the world's)
+      this.texCache = this.texCache || new Map();
+      let tex = this.texCache.get(m.texture);
+      if (!tex) {
+        tex = loadTexture('maps3d/' + m.texture);
+        tex.colorSpace = THREE.NoColorSpace; tex.flipY = false;
+        this.texCache.set(m.texture, tex);
+      }
       const add = m.blend === 'add';
       const mat = new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, depthWrite: false, side: THREE.DoubleSide,
         blending: add ? THREE.AdditiveBlending : THREE.NormalBlending, fog: false });
@@ -277,10 +287,10 @@ export class FxPlayer {
       const mesh = new THREE.Mesh(new THREE.BufferGeometry(), mat);
       mesh.frustumCulled = false;
       mesh.renderOrder = add ? 7 : 6;
-      this.root.add(mesh);
+      (view ? this.viewRoot : this.root).add(mesh);
       b = { mesh, add, cap: 0, list: [], atlas: m.atlas || [1, 1] };
     }
-    this.batches.set(name, b);
+    this.batches.set(key, b);
     return b;
   }
 
@@ -330,9 +340,9 @@ export class FxPlayer {
         const mz = this.muzzleOf(cl, ts[i], t);
         if (!mz || !mz.weapon) continue;
         const w = this.doc.weapons[mz.weapon.toLowerCase()];
-        const name = w && w.flash;
+        const name = mz.flash || (w && w.flash);          // (the first-person view: the weapon's view flash)
         if (!name || !this.def(name)) continue;
-        this.effect({ name, t0: ts[i], origin: mz.pos, axis: axisFromDir(mz.dir), seed: hash(cl, ts[i]), ground: -Infinity }, t, 0);
+        this.effect({ name, t0: ts[i], origin: mz.pos, axis: axisFromDir(mz.dir), seed: hash(cl, ts[i]), ground: -Infinity, view: !!mz.view }, t, 0);
       }
     }
   }
@@ -386,7 +396,7 @@ export class FxPlayer {
       if (age >= life || !e.shaders.length) continue;
       if (e.kills) { const land = this.landing(e, P, life); if (land && age >= land.t) continue; }   // gone on impact
       const shader = e.shaders.length > 1 ? e.shaders[Math.floor(rnd(ps, 3) * e.shaders.length)] : e.shaders[0];
-      const b = this.batch(shader);
+      const b = this.batch(shader, !!inst.view);
       if (b) this.sprite(b, inst, e, P, ps, age, life);
     }
   }

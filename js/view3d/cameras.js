@@ -6,6 +6,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { forward } from './actors.js';
+import { FP_FOV } from './viewmodel.js';
 
 export const MODES = [['orbit', 'Orbit'], ['free', 'Free fly'], ['follow', 'Follow player'], ['fp', 'First person']];
 const MOVE_KEYS = new Set(['KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyQ', 'KeyE', 'KeyR', 'KeyF', 'ShiftLeft', 'ShiftRight']);
@@ -51,7 +52,7 @@ export class Cameras {
       this.orbit.target.copy(this.camera.position).addScaledVector(d, 600);
     }
     if (mode === 'follow') this.followLast = null;
-    this.camera.fov = mode === 'fp' ? 80 : 60;
+    this.camera.fov = mode === 'fp' ? FP_FOV : 60;
     this.camera.updateProjectionMatrix();
     this.onChange();
   }

@@ -12,7 +12,7 @@ other servers: three.js r170 comes with the project in `vendor/`, the fonts (Int
 Font License) in `assets/fonts/`. The site is plain HTML, CSS and JavaScript with no build step and runs on
 GitHub Pages. The game data (3D maps, textures, 2D backgrounds, sounds, player models and animations,
 particle effects) is extracted once from your own game files with Python scripts (below) and committed
-with the site (the whole site: ~575 MB in ~3,600 files, the largest 14 MB).
+with the site (the whole site: ~585 MB in ~3,800 files, the largest 14 MB).
 
 ## Features
 
@@ -74,7 +74,37 @@ falloff and stereo panning at the camera. Cameras (Camera popover, `C` cycles):
 | Orbit | Left drag rotates, right drag pans, wheel zooms. Click a player to select them |
 | Free fly | Drag to look, `W A S D` to move, `R` / `F` for up / down, `Shift` for fast, wheel sets the speed |
 | Follow player | Travels with the selected player (or the POV's followed player). Drag to turn around them |
-| First person | The selected player's eyes with their view angles |
+| First person | The selected player's eyes with their view angles, the **weapon in their hands**, the game's **crosshair** and the game's **HUD** (Camera popover: *Weapon*, *First person HUD*) |
+
+**First-person weapon**: the game's own view models - the gun of the weapon file in the hands the server
+gave the player (American, British, Russian, German sleeves) - animated with the weapon's own view animations
+as the demo drives them: idle, fire / last shot, rechamber, reload (also empty, and the start / loop / end of
+the bolt-action and shotgun reloads), raise / put away (quick for a grenade throw), melee, the grenade's pin and
+throw, aiming down the sights. The gun kick, the sway when turning and the bob (the gun's and the camera's) use
+the game's own formulas with the weapon file's numbers (the kick's random part is fixed per shot, so seeking shows
+the same); the idle sway and the stance and movement offsets follow the weapon file's numbers. Aiming down the sights zooms as the game does (the weapon's ADS fov), the sniper rifles show
+their scope overlay; the view flash at the muzzle on every shot. The crosshair is the game's: the weapon's
+reticle images at the spread of the moment (stance, movement, shots), shrinking and fading while the sights come
+up, hidden during reloads, switches and on a mounted MG, green while it is on a teammate (as in CoD2, which has no
+red crosshair over enemies). **Exact for the recording player** (the demo's player
+state: the animation the game plays, the weapon state, the ADS fraction, the spread, the hands model); **the other
+players are approximated** from their weapon events (shots, reloads, switches, melee, the offhand throw), their
+legs animation (aiming) and their movement. All of it is part of the video export.
+
+**First-person HUD**: the game's own HUD, built from the game files (the HUD menu files, the fonts, the images,
+the English strings) and drawn as the 1.3 client draws it: on the game's 640 × 480 screen scaled by the height
+and anchored to the edges (wide screens keep it at the corners), clear of the viewer's own controls. Parts
+(Camera popover, remembered for the browser session): **Compass** (the compass face turning with the view, the
+teammates as arrows, the objectives such as the bomb sites and the bomb carrier, enemies only as a ping where
+they fire; CoD2's compass has no map image), **Team score** (the server's score display - the stock game's and
+zPAM's, shown and hidden when the server does it: zPAM shows it at strat time), **Kill feed** (the game's kill
+messages above the compass - killer, weapon or headshot / melee / fall / suicide icon, victim, in the team
+colours, 5 s and fading - and "You killed" / "Killed by" in the centre), **Ammo** (clip and reserve, red when
+low, the weapon name after a switch), **Grenades** (frag and smoke counts with the faction's icons) and **Server
+HUD** (off by default: everything else the server shows - zPAM's players left, sniper / shotgun info and
+round texts, the clocks, the game messages). zPAM demos use zPAM's HUD layout (smaller ammo counter, grenades
+side by side), the others the stock game's. Exact for the recording player (the demo's player state); with
+another player in first person the compass, the kill feed and the team score. Part of the video export.
 
 **Video export** (2D and 3D): MP4 (H.264 via WebCodecs) or GIF of a round, a kill or the `[ ]` range, with
 overlays (names, kill feed, score); rendered offline frame by frame. The 3D MP4 carries the game's sounds as
@@ -163,6 +193,14 @@ py tools/export/characters_export.py --game "C:/Games/Call of Duty 2"
 py tools/export/fx_export.py --game "C:/Games/Call of Duty 2"
 ```
 
+```bash
+py tools/export/viewmodels_export.py --game "C:/Games/Call of Duty 2"
+```
+
+```bash
+py tools/export/hud_export.py --game "C:/Games/Call of Duty 2"
+```
+
 | Option (export_maps.py) | Meaning |
 |---|---|
 | `--game DIR` | the install folder (with `main/`) |
@@ -196,7 +234,14 @@ world models, ~9.5 MB, and the 280 animations of the multiplayer anim tree by th
 `maps3d/_textures/`). Without it the 3D view falls back to capsules. `fx_export.py` writes
 `maps3d/_fx/effects.json` (all 380 effects of `fx/` with their curves, the impact tables, the weapons'
 flash / explosion effects, 102 effect materials; ~2.3 MB, textures into `maps3d/_textures/`); without it
-the 3D view draws the marker clouds. Display names of new maps go into `assets/maps/maps.js`.
+the 3D view draws the marker clouds. `viewmodels_export.py` writes `maps3d/_characters/viewmodels.json + .bin`
+(the 44 weapons' gun models and the 9 hands models, ~3.4 MB, with each weapon file's view animation names, its
+numbers for the motion, the ADS and the crosshair, the reticle and scope overlay images) and `vanims.json + .bin`
+(the 309 view animations, ~2.1 MB); without it first person shows no weapon. `hud_export.py` writes
+`maps3d/_hud/` (`hud.json`: both HUD menu layouts - stock and zPAM - as parsed from `ui_mp/hud.menu`, the six
+fonts' glyph tables, the English text of 1720 localized strings, the weapon files' HUD fields; and 156 HUD
+images as PNG; ~2.6 MB); without it first person shows no HUD. Display names of new maps go into
+`assets/maps/maps.js`.
 
 `tools/gen_tables.py` regenerates `js/c2/parser/tables.js` (the Huffman code table built from the
 engine's `msg_hData` and the net field tables).
@@ -288,7 +333,7 @@ assets/maps/                      map registry and 2D backgrounds (generated), a
 vendor/three/                     three.js r170 (build + OrbitControls, MIT licence)
 maps3d/                           exported map data (generated)
 tools/export/                     Python export (iwd, iwi, materials, bsp, xmodel, xanim, top-down, sounds,
-                                  characters, effects)
+                                  characters, effects, view models, HUD)
 tools/validate/                   alignment check;   tools/serve.py: local server
 tools/audit/                      release audits (site, maps, demos, UI, X-Ray)
 tools/check_deploy.py             data manifest + check of the deployed site

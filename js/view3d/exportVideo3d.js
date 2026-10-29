@@ -409,6 +409,11 @@ async function prepare(view, p, progress) {
   if (view.fx && view.fx.ready) await Promise.race([view.fx.ready, sleep(20000)]);
   const A = view.actors;
   if (A.mode === 'models' && view.characters && view.characters.ready) await Promise.race([view.characters.ready, sleep(20000)]);
+  // the first-person weapons (viewmodel.js: view models + view animations), built during the warm-up
+  const fp = view.cams.mode === 'fp';
+  if (fp) { view.viewmodel.request(); await Promise.race([view.viewmodel.library.load(), sleep(20000)]); await sleep(0); }
+  // the game's HUD (hud.js: fonts, images, strings), when a part of it is on
+  if (fp && view.hudShown && HUD_PARTS_ON(view)) await Promise.race([view.hud.load(), sleep(20000)]);
   const warm = [];
   for (let t = p.a; t <= p.b; t += WARM_STEP) warm.push(t);
   warm.push(p.b);
@@ -417,6 +422,7 @@ async function prepare(view, p, progress) {
     R.pb.t = warm[i];
     R.frame(warm[i]);
     if (view.fx) view.fx.update(warm[i], view.camera);
+    if (fp && i % 8 === 0) view.renderFrame(0, 0, true);     // (the weapons of the range and their textures)
     if (i % 8 === 0) { progress(i, warm.length * 4); await sleep(0); }
   }
   // the first frame once more: the characters built during the warm-up, their textures requested
@@ -424,8 +430,9 @@ async function prepare(view, p, progress) {
   R.frame(p.a);
   if (view.fx) view.fx.update(p.a, view.camera);
   // textures still loading (image not there yet)
-  await waitFor(() => pendingTextures(view.scene) === 0, Math.max(1000, deadline - performance.now()));
-  const left = pendingTextures(view.scene);
+  const pending = () => pendingTextures(view.scene) + (fp ? pendingTextures(view.viewmodel.scene) + pendingTextures(view.viewmodel.hud) + pendingTextures(view.fx.viewRoot) : 0);
+  await waitFor(() => pending() === 0, Math.max(1000, deadline - performance.now()));
+  const left = pending();
   if (left) D.note.textContent = left + ' texture(s) did not finish loading - they may appear late in the video.';
   progress(1, 4);
 }
@@ -448,7 +455,9 @@ function pendingTextures(scene) {
   return n;
 }
 
-/** draw output frame i: demo time t, one frame of camera motion, render, copy, overlays */
+const HUD_PARTS_ON = view => Object.values(view.hud.parts).some(Boolean);
+
+/** draw output frame i: demo time t, one frame of camera motion, render, copy, the game's HUD, overlays */
 function drawFrame(ctx, i) {
   const { view, p, g, C } = ctx, R = view.R, t = p.times[i];
   if (view.renderer.getContext().isContextLost()) throw new Error('WebGL context lost');
@@ -458,6 +467,14 @@ function drawFrame(ctx, i) {
   ctx.path[i] = listenerOf(view.camera);       // the sound's listener in this frame
   ctx.fp[i] = r && r.hideClient != null ? r.hideClient : null;
   g.drawImage(view.renderer.domElement, 0, 0, C.width, C.height);
+  // the game's HUD in first person (hud.js), clear of this video's own score box (top left) and title (bottom left)
+  ctx.hudDrawn = false;
+  if (view.fpClient != null && r && r.fpSample && view.hud.data && HUD_PARTS_ON(view)) {
+    const s = p.H / 720, o = ctx.opts;
+    view.hud.draw(g, C.width, C.height, t, view.fpClient, { x: r.fpSample.x, y: r.fpSample.y, yaw: r.fpSample.yaw },
+      { l: 0, t: o.hud ? Math.round(58 * s) : 0, r: 0, b: o.title ? Math.round(38 * s) : 0 });
+    ctx.hudDrawn = true;
+  }
   drawOverlays(ctx, t, r ? r.hideClient : null);
 }
 
@@ -705,7 +722,7 @@ function drawOverlays(ctx, t, hideClient) {
     }
   }
   // kill feed, top right: the kills and bomb events of the last seconds of this round, with the icons
-  if (opts.killfeed) C2.killfeed.draw(g, app, d, t, { right: p.W - 8 * s, top: 18 * s, scale: s, imgs: ctx.kfImgs });
+  if (opts.killfeed && !(ctx.hudDrawn && view.hud.parts.killfeed)) C2.killfeed.draw(g, app, d, t, { right: p.W - 8 * s, top: 18 * s, scale: s, imgs: ctx.kfImgs });
   // title, bottom left: map, game type, round
   if (opts.title) {
     const m = d.meta;

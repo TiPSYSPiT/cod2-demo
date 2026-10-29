@@ -36,11 +36,23 @@ C2.define('collect', function (C2) {
     seq: PS.eventSequence, events: [0, 1, 2, 3].map(i => PS['events[' + i + ']']),
     parms: [0, 1, 2, 3].map(i => PS['eventParms[' + i + ']']), legs: PS.legsAnim, torso: PS.torsoAnim,
     lean: PS.leanf, viewHeight: PS.viewHeightCurrent, damageEvent: PS.damageEvent, damageYaw: PS.damageYaw,
-    damageCount: PS.damageCount
+    damageCount: PS.damageCount,
+    // the first-person weapon (viewanim.js): the view animation (index + 0x200 restart toggle), weapon state,
+    // offhand grenade, ADS fraction, crosshair spread (0..255), hands model, bob cycle, velocity, ground
+    weapAnim: PS.weapAnim, weaponState: PS.weaponstate, offhand: PS.offHandIndex, ads: PS.fWeaponPosFrac,
+    spread: PS.aimSpreadScale, viewmodel: PS.viewmodelIndex, bob: PS.bobCycle, ground: PS.groundEntityNum,
+    vel: [0, 1, 2].map(i => PS['velocity[' + i + ']']), breath: PS.holdBreathScale, fuse: PS.grenadeTimeLeft,
+    // the HUD (hud.js): the weapons owned (two bit fields)
+    weapBits: [PS['weapons[0]'], PS['weapons[1]']]
   };
   const C = { team: CS.team, model: CS.modelindex, name: [0, 4, 8, 12, 16, 20, 24, 28].map(i => CS['name[' + i + ']']),
     attach: [0, 1, 2, 3, 4, 5].map(i => CS['attachModelIndex[' + i + ']']) };
   const SHOT_EVENTS = new Set([EV.FIRE_WEAPON, EV.FIRE_WEAPONB, EV.FIRE_WEAPON_LASTSHOT, EV.FIRE_WEAPON_MG42]);
+  // the weapon events of every player (EV_RELOAD .. EV_USE_OFFHAND): what the first-person weapon of a
+  // player without a player state plays (viewanim.js)
+  const WEAP_EVENTS = new Set([EV.RELOAD, EV.RELOAD_FROM_EMPTY, EV.RELOAD_START, EV.RELOAD_END, EV.RAISE_WEAPON, EV.PUTAWAY_WEAPON,
+    EV.PULLBACK_WEAPON, EV.FIRE_WEAPON, EV.FIRE_WEAPONB, EV.FIRE_WEAPON_LASTSHOT, EV.RECHAMBER_WEAPON, EV.MELEE_SWIPE, EV.FIRE_MELEE,
+    EV.PREP_OFFHAND, EV.USE_OFFHAND]);
   const EXPLOSIONS = new Set([EV.GRENADE_EXPLODE, EV.ROCKET_EXPLODE, EV.ROCKET_EXPLODE_NOMARKS, EV.CUSTOM_EXPLODE,
     EV.CUSTOM_EXPLODE_NOMARKS]);
   const IMPACTS = new Set([EV.BULLET_HIT_SMALL, EV.BULLET_HIT_LARGE, EV.SHOTGUN_HIT, EV.BULLET_HIT_AP]);
@@ -113,6 +125,15 @@ C2.define('collect', function (C2) {
       povTimeline: [],              // {t, client} changes of the followed client
       povStates: [],                // {t, client, health, pmType, weapon, damageCount}
       shots: new Map(),             // client -> [t] of fire events
+      // the recording player's weapon per snapshot (the player state: viewanim.js)
+      psWeapon: { t: [], client: [], anim: [], state: [], weapon: [], offhand: [], ads: [], spread: [], viewmodel: [], bob: [],
+        vx: [], vy: [], vz: [], ground: [], vh: [], breath: [], fuse: [], friend: [],
+        pmType: [], health: [], ammoRef: [], objRef: [], hudRef: [] },
+      // the recording player's HUD state (hud.js): the distinct ammo states ([weapons bits 0, 1, ammo[64],
+      // clip[64]]), objective lists and HUD element lists (the elements in use, current then archival, after a
+      // header [count current, count archival]) psWeapon's rows point to
+      psTables: { ammo: [], obj: [], hud: [] },
+      weapEvents: [],               // [t, client, event, weapon] (WEAP_EVENTS)
       impacts: [],                  // [t, x, y, z, dir, surfType, weapon, event]
       hitsTaken: [],                // bullet hits on clients: {t, victim, attacker, weapon}
       playFx: [],                   // [t, x, y, z, effect id]
@@ -184,6 +205,39 @@ C2.define('collect', function (C2) {
       }
     }
 
+    // the HUD tables (psTables): the player state shares a part that did not change with the previous one,
+    // so a new array is a candidate for a new entry (the same content again reuses the entry)
+    const psLast = { ammo: null, clip: null, w0: null, w1: null, obj: null, cur: null, arc: null, refs: [0, 0, 0] };
+    const psKeys = { ammo: new Map(), obj: new Map(), hud: new Map() };
+    function psRef(kind, arr) {
+      const key = arr.join(',');
+      let r = psKeys[kind].get(key);
+      if (r == null) { r = c.psTables[kind].length; c.psTables[kind].push(arr); psKeys[kind].set(key, r); }
+      return r;
+    }
+    function hudUsed(a) {
+      let n = 0;
+      while (n < C2.delta.MAX_HUDELEMS && a[n * NH + HE.type]) n++;
+      return n;
+    }
+    function doPsTables(ps, f) {
+      const L = psLast, W = c.psWeapon;
+      const w0 = f[P.weapBits[0]], w1 = f[P.weapBits[1]];
+      if (ps.ammo !== L.ammo || ps.clip !== L.clip || w0 !== L.w0 || w1 !== L.w1) {
+        const a = new Int32Array(130);
+        a[0] = w0; a[1] = w1; a.set(ps.ammo.subarray(0, 64), 2); a.set(ps.clip.subarray(0, 64), 66);
+        L.refs[0] = psRef('ammo', a); L.ammo = ps.ammo; L.clip = ps.clip; L.w0 = w0; L.w1 = w1;
+      }
+      if (ps.objectives !== L.obj) { L.refs[1] = psRef('obj', Int32Array.from(ps.objectives)); L.obj = ps.objectives; }
+      if (ps.hudCurrent !== L.cur || ps.hudArchival !== L.arc) {
+        const nc = hudUsed(ps.hudCurrent), na = hudUsed(ps.hudArchival);
+        const a = new Int32Array(2 + (nc + na) * NH);
+        a[0] = nc; a[1] = na; a.set(ps.hudCurrent.subarray(0, nc * NH), 2); a.set(ps.hudArchival.subarray(0, na * NH), 2 + nc * NH);
+        L.refs[2] = psRef('hud', a); L.cur = ps.hudCurrent; L.arc = ps.hudArchival;
+      }
+      W.ammoRef.push(L.refs[0]); W.objRef.push(L.refs[1]); W.hudRef.push(L.refs[2]);
+    }
+
     function onSnapshot(s) {
       const t = s.serverTime;
       if (c.firstTime === null) c.firstTime = t;
@@ -239,12 +293,22 @@ C2.define('collect', function (C2) {
           for (let i = prevPsSeq; i < prevPsSeq + n; i++) {
             const ev = f[P.events[i & 3]] & 0xff;
             if (SHOT_EVENTS.has(ev)) addTime(c.shots, cl, t);
+            if (WEAP_EVENTS.has(ev)) c.weapEvents.push([t, cl, ev, f[P.weapon]]);
             playerSound(ev, f[P.parms[i & 3]] & 0xff, f[P.weapon], u2f(f[P.ox]), u2f(f[P.oy]), u2f(f[P.oz]), cl, t);
           }
         }
       }
       prevPsSeq = f[P.seq]; prevPsClient = cl;
       if (cl < 0 || cl >= 64) return;
+      const W = c.psWeapon;
+      W.t.push(t); W.client.push(cl); W.anim.push(f[P.weapAnim]); W.state.push(f[P.weaponState]); W.weapon.push(f[P.weapon]);
+      W.offhand.push(f[P.offhand]); W.ads.push(u2f(f[P.ads])); W.spread.push(u2f(f[P.spread])); W.viewmodel.push(f[P.viewmodel]);
+      W.bob.push(f[P.bob]); W.vx.push(u2f(f[P.vel[0]])); W.vy.push(u2f(f[P.vel[1]])); W.vz.push(u2f(f[P.vel[2]]));
+      W.ground.push(f[P.ground]); W.vh.push(u2f(f[P.viewHeight])); W.breath.push(u2f(f[P.breath])); W.fuse.push(f[P.fuse] | 0);
+      // pm_flags 0x100000: the crosshair rests on a teammate (the server sets it; CG_DrawCrosshair draws it green)
+      W.friend.push(f[P.pmFlags] & 0x100000 ? 1 : 0);
+      W.pmType.push(pmType); W.health.push(health);
+      doPsTables(s.ps, f);
       const alive = (pmType === K.PM.NORMAL || pmType === K.PM.NORMAL_LINKED) && health > 0;
       if (!alive) return;
       const pmf = f[P.pmFlags], ef = f[P.eFlags];
@@ -295,6 +359,7 @@ C2.define('collect', function (C2) {
             for (let i = prev[E.seq]; i < prev[E.seq] + n; i++) {
               const ev = e[E.events[i & 3]] & 0xff;
               if (et === K.ET.PLAYER && SHOT_EVENTS.has(ev)) addTime(c.shots, num, t);
+              if (et === K.ET.PLAYER && WEAP_EVENTS.has(ev) && num !== psClient) c.weapEvents.push([t, num, ev, e[E.weapon]]);
               if (EXPLOSIONS.has(ev)) onExplosion(e, ev, t, e[E.parms[i & 3]]);
               else playerSound(ev, e[E.parms[i & 3]] & 0xff, e[E.weapon], u2f(e[E.px]), u2f(e[E.py]), u2f(e[E.pz]), num, t);
             }
