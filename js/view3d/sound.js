@@ -24,6 +24,8 @@
  * and nothing skipped is caught up; up to MAX_SPEED the pitch follows the speed.
  * The 3D video export renders a range offline for the frames' camera path (render: OfflineAudioContext
  * -> AudioBuffer for the MP4's audio track) or records the live sound (capture, the WebM fallback). */
+import { audioContext, DEFAULT_VOLUME } from '../app/audio.js';
+
 const BASE = 'maps3d/_sound/';
 const MAX_VOICES = 48;
 export const MAX_SPEED = 2;      // faster: silent (every sound would play an octave up and pile up)
@@ -101,7 +103,7 @@ export class SoundSystem {
     this.bsp = String(mapName || '').toLowerCase();
     this.mod = null;                   // 'zpam': zPAM's alias redefinitions apply
     this.enabled = false;
-    this.volume = 0.8;
+    this.volume = DEFAULT_VOLUME;
     this.ctx = null;
     this.buffers = new Map();          // file -> Promise<AudioBuffer|null>
     this.ready = new Map();            // file -> AudioBuffer (decoded)
@@ -130,9 +132,9 @@ export class SoundSystem {
   /** audio on / off (the browsers start audio only after a click) -> enabled */
   enable(on) {
     if (on && !this.ctx) {
-      const AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return false;
-      this.ctx = new AC();
+      // (the page's context - audio.js: started by the click that loaded the demo)
+      this.ctx = audioContext();
+      if (!this.ctx) return false;
       this.master = this.ctx.createGain();
       this.master.gain.value = this.volume;
       this.master.connect(this.ctx.destination);
@@ -501,5 +503,5 @@ export class SoundSystem {
     return ctx.startRendering();
   }
 
-  dispose() { this.stopAll(); if (this.ctx) this.ctx.close().catch(() => {}); this.ctx = null; this.enabled = false; }
+  dispose() { this.stopAll(); if (this.master) this.master.disconnect(); this.master = null; this.ctx = null; this.enabled = false; }
 }

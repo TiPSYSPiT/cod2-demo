@@ -27,11 +27,12 @@ import { gameObjectFilter, Exploders } from './gameObjects.js';
 import { XRay, XRAY_MODES } from './xray.js';
 import { ViewModel, FP_FOV } from './viewmodel.js';
 import { Hud, HUD_PARTS } from './hud.js';
+import { SOUND_KEY, soundWanted, soundVolume, audioAllowed } from '../app/audio.js';
 
 const C2 = window.C2;
 const { el, icon, switchRow, selectRow } = C2.ui;
 const CFG = C2.mapConfig;
-const CAM_KEY = 'cod2demo3d.camera';
+const CAM_KEY = 'cod2demo3d.camera2';           // the camera (default fp: the demo's own view): written only by the user's choice
 const PROPS_KEY = 'cod2demo3d.props';
 const KILLFEED_KEY = 'cod2demo3d.killfeed';      // 'on' / 'off' (default on)
 const KILL_ICONS_KEY = 'cod2demo3d.killIcons';    // 'on' / 'off' (default off)
@@ -43,7 +44,6 @@ const CASINGS_KEY = 'cod2demo3d.casings';         // 'on' / 'off' (default on): 
 const SHAKE_KEY = 'cod2demo3d.shake';             // 'on' / 'off' (default on): the camera shake in first person (session)
 const FX_KEY = 'cod2demo3d.fx';                  // 'game' / 'simple'
 const PLAYERS_KEY = 'cod2demo3d.players';        // 'simple' / 'models'
-const SOUND_KEY = 'cod2demo3d.sound';            // 'on' / 'off' (default off) and '.volume'
 const SHADOWS_KEY = 'cod2demo3d.shadows';        // 'on' / 'off' (default on)
 const VIEWMODEL_KEY = 'cod2demo3d.viewmodel';    // 'on' / 'off' (default on): the first-person weapon
 const MODE_HELP = { orbit: 'Left drag: rotate · right drag: pan · wheel: zoom · click a player: select',
@@ -95,6 +95,9 @@ export class View3D {
     this.info.set('Loading the 3D map …', { open: true });
     this.camHint = el('div', { class: 'cam-hint', hidden: true });
     this.stage.append(this.camHint);
+    // sound wanted but the browser holds it back (no interaction yet, e.g. ?demo=): a click anywhere starts it
+    this.soundHint = el('button', { class: 'sound-hint', hidden: true, title: 'The browser starts sound only after a click' }, icon('sound', 's'), 'Click to enable sound');
+    this.stage.append(this.soundHint);
 
     const scene = this.scene = new THREE.Scene();
     scene.background = new THREE.Color(0x0b0b0c);
@@ -176,7 +179,8 @@ export class View3D {
     this.setItems(sessionGet(ITEMS_KEY) !== 'off');
     this.setCasings(sessionGet(CASINGS_KEY) !== 'off');
     this.setShake(sessionGet(SHAKE_KEY) !== 'off');
-    let mode = 'orbit';
+    // first person without a selected player: the demo's own view (the recorder's eyes, or whom he spectated)
+    let mode = 'fp';
     const m0 = stored(CAM_KEY);
     if (MODES.some(m => m[0] === m0)) mode = m0;
     this.setMode(mode);
@@ -289,8 +293,7 @@ export class View3D {
             snd.setDemo(this.M);
             snd.setVolume(this.soundVolume);
             this.soundRows.hidden = false;
-            if (this.soundWanted && navigator.userActivation && navigator.userActivation.hasBeenActive) this.setSound(true);
-            else if (this.soundWanted) this.soundNote.textContent = 'click to start';
+            if (this.soundWanted && this.visible) this.setSound(true);
           }).catch(err => console.warn('sounds not loaded:', err));
         }
       } catch (err) {
@@ -327,7 +330,7 @@ export class View3D {
   /* ---------- options: the Camera and Display popovers of the rail (main.js: panels) ---------- */
   buildToolbar() {
     const SHORT = { orbit: 'Orbit', free: 'Free', follow: 'Follow', fp: '1st P.' };
-    this.modeSel = C2.ui.segmented(MODES.map(([k, label]) => [k, SHORT[k] || label, label]), v => this.setMode(v));
+    this.modeSel = C2.ui.segmented(MODES.map(([k, label]) => [k, SHORT[k] || label, label]), v => this.setMode(v, true));
     const playerSel = el('select', { onchange: e => { const v = e.target.value; if (v === '') { if (this.R.focus != null) this.R.setFocus(this.R.focus); } else if (Number(v) !== this.R.focus) this.R.setFocus(Number(v)); } });
     this.playerSel = playerSel;
     this.fillPlayerSelect();
@@ -340,11 +343,11 @@ export class View3D {
     this.xraySel = el('select', { onchange: e => this.setXray(e.target.value) }, ...XRAY_MODES.map(([v, label]) => el('option', { value: v }, label)));
     this.fxSel = el('select', { onchange: e => this.setFxMode(e.target.value) },
       el('option', { value: 'game' }, 'Game'), el('option', { value: 'simple' }, 'Simple'));
-    // sound: off until switched on (the browsers start audio only after a click); remembered
-    this.soundWanted = stored(SOUND_KEY) === 'on';
-    const vol = Number(stored(SOUND_KEY + '.volume'));
-    this.soundVolume = stored(SOUND_KEY + '.volume') != null && vol >= 0 && vol <= 1 ? vol : 0.8;
+    // sound: on at 20 % unless the user changed it (audio.js: remembered; started by the loading click)
+    this.soundWanted = soundWanted();
+    this.soundVolume = soundVolume();
     this.soundBtn = el('input', { type: 'checkbox', onchange: e => this.setSound(e.target.checked, true) });
+    this.soundBtn.checked = this.soundWanted;
     this.soundNote = el('span');
     this.soundVol = el('input', { type: 'range', class: 'range', min: '0', max: '1', step: '0.05', value: String(this.soundVolume), title: 'Volume',
       oninput: e => { this.soundVolume = Number(e.target.value); if (this.sounds) this.sounds.setVolume(this.soundVolume); store(SOUND_KEY + '.volume', String(this.soundVolume)); } });
@@ -353,6 +356,7 @@ export class View3D {
       el('label', { class: 'sw' }, el('span', { class: 'sw-l' }, 'Volume'), this.soundVol));
     const arm = () => { if (this.soundWanted && this.sounds && this.visible && !this.sounds.enabled) this.setSound(true); };
     window.addEventListener('pointerdown', arm, { capture: true });
+    this.soundHint.addEventListener('click', arm);
     this.offArm = () => window.removeEventListener('pointerdown', arm, { capture: true });
     this.killfeedBox = el('input', { type: 'checkbox', onchange: e => this.setKillfeed(e.target.checked, true) });
     this.killIconsBox = el('input', { type: 'checkbox', onchange: e => this.setKillIcons(e.target.checked, true) });
@@ -408,11 +412,12 @@ export class View3D {
   }
   syncPlayerSelect() { this.playerSel.value = this.R.focus != null ? String(this.R.focus) : ''; this.needsRender = true; }
 
-  setMode(mode) {
+  /** user: the viewer's own choice (remembered) */
+  setMode(mode, user = false) {
     this.cams.setMode(mode);
     this.modeSel.value = mode;
     this.R.invalidate();
-    store(CAM_KEY, mode);
+    if (user) store(CAM_KEY, mode);
     this.camHint.textContent = MODE_HELP[mode];
     this.camHint.hidden = false;
     fadeHint(this.camHint);
@@ -488,10 +493,20 @@ export class View3D {
   /** sound on / off (user: from the button - remembered) */
   setSound(on, user = false) {
     if (user) { this.soundWanted = on; store(SOUND_KEY, on ? 'on' : 'off'); }
-    if (!this.sounds) return;
+    if (!this.sounds) { this.soundBtn.checked = this.soundWanted; return; }
+    // (no interaction yet: no context - the browser would refuse it; the hint asks for the click)
+    if (on && !this.sounds.ctx && !audioAllowed()) { this.soundBtn.checked = this.soundWanted; this.syncSoundHint(); return; }
     const ok = this.sounds.enable(on && this.visible);
-    this.soundBtn.checked = ok;
-    this.soundNote.textContent = '';
+    this.soundBtn.checked = ok || (this.soundWanted && !this.visible);
+    const c = this.sounds.ctx;
+    if (c && !c.onstatechange) c.onstatechange = () => this.syncSoundHint();
+    this.syncSoundHint();
+  }
+  /** the hint while the sound is on but its context not running (the browser waits for a click) */
+  syncSoundHint() {
+    const S = this.sounds, held = !!(S && this.soundWanted && this.visible && !(S.enabled && S.ctx && S.ctx.state === 'running'));
+    this.soundHint.hidden = !held;
+    this.soundNote.textContent = held ? 'click to start' : '';
   }
   setPlayersMode(mode) {
     mode = mode === 'models' ? 'models' : 'simple';
@@ -545,12 +560,12 @@ export class View3D {
   }
   resetView() {
     const M = this.M, b = M.bbox;
-    if (this.cams.mode !== 'orbit') this.setMode('orbit');
+    if (this.cams.mode !== 'orbit') this.setMode('orbit', true);
     if (b) this.cams.frame({ mins: [b.minX, b.minY, M.zRange[0]], maxs: [b.maxX, b.maxY, M.zRange[1]] });
   }
   capturesKeys(e) {
     if (!this.visible) return false;
-    if (e.code === 'KeyC') { const i = MODES.findIndex(m => m[0] === this.cams.mode); this.setMode(MODES[(i + 1) % MODES.length][0]); return true; }
+    if (e.code === 'KeyC') { const i = MODES.findIndex(m => m[0] === this.cams.mode); this.setMode(MODES[(i + 1) % MODES.length][0], true); return true; }
     if (e.code === 'KeyX') { const i = XRAY_MODES.findIndex(m => m[0] === this.xrayMode); this.setXray(XRAY_MODES[(i + 1) % XRAY_MODES.length][0]); return true; }
     return this.cams.captureKey(e);
   }
@@ -558,9 +573,9 @@ export class View3D {
   /* ---------- show / hide / size ---------- */
   show() {
     this.visible = true; this.stage.hidden = false; this.resize(); this.needsRender = true; this.last = null; requestAnimationFrame(this.loop);
-    if (this.sounds && this.soundWanted && this.sounds.ctx) this.setSound(true);
+    if (this.sounds && this.soundWanted) this.setSound(true);
   }
-  hide() { this.visible = false; this.stage.hidden = true; if (this.sounds && this.sounds.enabled) this.sounds.enable(false); }
+  hide() { this.visible = false; this.stage.hidden = true; if (this.sounds && this.sounds.enabled) this.sounds.enable(false); this.soundHint.hidden = true; }
   resize() {
     if (this.exporting) return;
     const r = this.stage.getBoundingClientRect();

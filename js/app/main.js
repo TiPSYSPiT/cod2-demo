@@ -5,15 +5,16 @@ import { Match } from './match.js';
 import { Replay } from './replay.js';
 import { View2D } from '../view2d/view2d.js';
 import { InfoHint } from './infoHint.js';
+import { primeAudio } from './audio.js';
 import '../c2/ui/killfeed.js';           // C2.killfeed: the kill feed of the 3D view and of both video exports
 
 const C2 = window.C2;
 const { el, clear, coloured, teamClass, icon } = C2.ui;
 const $ = id => document.getElementById(id);
-const VIEW_KEY = 'cod2demo3d.view';
+const VIEW_KEY = 'cod2demo3d.view2';        // '2d' / '3d' (default 3d): written only by the user's own switch
 const DRAWER_KEY = 'cod2demo3d.drawer';      // 'open' / 'closed' and '.teams' / '.feed' ('closed': section folded)
 
-const state = { data: null, fileInfo: null, worker: null, loadId: 0, replay: null, view: '2d', rendered: new Set(), detailsTab: 'scoreboard' };
+const state = { data: null, fileInfo: null, worker: null, loadId: 0, replay: null, view: '3d', rendered: new Set(), detailsTab: 'scoreboard' };
 try { const v = localStorage.getItem(VIEW_KEY); if (v === '2d' || v === '3d') state.view = v; } catch (err) { /* storage blocked */ }
 
 const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -224,7 +225,8 @@ async function load3d(R) {
   }
   return null;
 }
-async function setView(key) {
+/** user: the viewer's own switch (remembered); the start, a deep link and the fallback to 2D are not */
+async function setView(key, user = false) {
   const R = state.replay;
   if (!R) return;
   $('view-error').hidden = true;
@@ -237,7 +239,7 @@ async function setView(key) {
     }
   }
   state.view = key;
-  try { localStorage.setItem(VIEW_KEY, key); } catch (err) { /* not stored */ }
+  if (user) try { localStorage.setItem(VIEW_KEY, key); } catch (err) { /* not stored */ }
   for (const b of $('view-toggle').querySelectorAll('button')) b.classList.toggle('active', b.dataset.view === key);
   document.body.dataset.view = key;
   R.setView(key);
@@ -380,14 +382,17 @@ function init() {
     sec.querySelector('.sec-h').addEventListener('click', () => setSection(sec, sec.classList.contains('closed')));
     if (stored(DRAWER_KEY + '.' + sec.id.replace('sec-', '')) === 'closed') setSection(sec, false);
   }
-  const onFiles = files => { if (files && files[0]) load(files[0]); };
-  $('file-input').addEventListener('change', e => { onFiles(e.target.files); e.target.value = ''; });
-  $('file-input-2').addEventListener('change', e => { onFiles(e.target.files); e.target.value = ''; });
+  // (the interaction that loads a demo starts the audio: the sounds then play without another click)
+  const onFiles = files => { if (files && files[0]) { primeAudio(); load(files[0]); } };
+  for (const id of ['file-input', 'file-input-2']) {
+    $(id).addEventListener('click', primeAudio);
+    $(id).addEventListener('change', e => { onFiles(e.target.files); e.target.value = ''; });
+  }
   $('export-btn').addEventListener('click', exportJson);
   $('details-btn').addEventListener('click', () => showDetails($('details').hidden));
   $('details-close').addEventListener('click', () => showDetails(false));
   for (const b of document.querySelectorAll('#tabs button')) b.addEventListener('click', () => showTab(b.dataset.tab));
-  for (const b of $('view-toggle').querySelectorAll('button')) b.addEventListener('click', () => setView(b.dataset.view));
+  for (const b of $('view-toggle').querySelectorAll('button')) b.addEventListener('click', () => setView(b.dataset.view, true));
   let depth = 0;
   const isFile = e => e.dataTransfer && Array.from(e.dataTransfer.types || []).includes('Files');
   window.addEventListener('dragenter', e => { if (!isFile(e)) return; e.preventDefault(); depth++; document.body.classList.add('dragging'); });
@@ -412,7 +417,7 @@ function init() {
     if (e.code === 'Space') { e.preventDefault(); R.pb.toggle(); }
     else if (e.code === 'ArrowLeft') { e.preventDefault(); R.pb.seek(R.pb.t - C2.mapConfig.SEEK_STEP_MS, -1); }
     else if (e.code === 'ArrowRight') { e.preventDefault(); R.pb.seek(R.pb.t + C2.mapConfig.SEEK_STEP_MS, 1); }
-    else if (e.code === 'KeyV') { e.preventDefault(); setView(state.view === '2d' ? '3d' : '2d'); }
+    else if (e.code === 'KeyV') { e.preventDefault(); setView(state.view === '2d' ? '3d' : '2d', true); }
     else if (e.code === 'KeyI') { e.preventDefault(); R.setMark('a'); }
     else if (e.code === 'KeyO') { e.preventDefault(); R.setMark('b'); }
     // (in the free-fly camera F is "down": the view takes it above)

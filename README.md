@@ -18,7 +18,7 @@ with the site (the whole site without the sample demos: ~580 MB in ~4,000 files,
 
 | Part | What it does |
 |---|---|
-| Top bar | **2D / 3D** toggle (key `V`), **Match details** (chart icon: scoreboard, round by round, chat, events), **Export JSON** (file icon), **GitHub** (the source), **Open demo** |
+| Top bar | **2D / 3D** toggle (key `V`; a demo opens in 3D, in the first person of the player who recorded it, with the game's sounds on at 20 % - view, camera, sound and volume the viewer changed are remembered instead), **Match details** (chart icon: scoreboard, round by round, chat, events), **Export JSON** (file icon), **GitHub** (the source), **Open demo** |
 | Score pill | Over the view: the score at the playback time, the round and its time, map and mode; after a plant the **bomb timer** (the server's own countdown clock; also next to the bomb in 2D) |
 | Rail (left) | Icon buttons with popovers: **Layers** (names, trails 5 s, kill lines, the recording player's hits from zPAM's damage log, last known position, dropped weapons, grenade types, the map's intermission camera and hurt triggers; in 2D the map background), **Heatmap** (2D), **Camera** and **Display** (3D: players, X-Ray, props, effects, kill feed, kill icons, bullet tracers, enemy names, head icons, grenades and dropped weapons, shell casings, shadows, sound and volume), **Match info** (final score on request, map, mode, ruleset, server, POV, length, record date, protocol, the map data details; the **rules** - friendly fire, kill cam, limits, the bomb timer, antilag, zPAM's weapon limits -; zPAM's **match info** - teams, round, half, match time, timeouts; keyboard shortcuts) |
 | Drawer (right) | Round and status; per team the faction's icon, the side, score and alive bars, per player the weapon in hand (kill icon) and K / D up to now. Click a player to select them (highlighted in 2D and 3D, followed by the 3D cameras); the eye shows / hides a player, the chart icon opens the player's stats. Below it the kill feed & bomb: the game's own kill icons and bomb plants / defuses, the entry at the playback time highlighted, click one to jump to 2 s before it. Sections fold, the drawer hides (both remembered) |
@@ -74,8 +74,8 @@ balloon while a teammate talks in the voice chat, also as a speaker in the panel
 sees), the players' and corpses' **shadows** (Display popover: *Shadows*; soft shadows
 along the map's sun, as the game's character shadows - the world's own shadows are in its lightmaps;
 `?shadows=off`), kill lines, death crosses, grenade arcs, the bomb and the site labels, a
-kill feed overlay and the game's **sounds** (Display popover: *Game sounds*, off until switched
-on), chosen as the game's client chooses them: each weapon's shots (and the M1 Garand's last-shot ping),
+kill feed overlay and the game's **sounds** (Display popover: *Game sounds* and *Volume*, on at 20 % by default;
+the click or drop that opens the demo starts the audio - a demo opened by a link shows "Click to enable sound"), chosen as the game's client chooses them: each weapon's shots (and the M1 Garand's last-shot ping),
 reloads, bolt / pump actions, the weapon switch, the grenade's pin pull and throw, melee by weapon and its hit,
 empty clicks; footsteps, jumps and landings by surface with the gear rattle, foliage, fall damage; bullet
 impacts on the world and on players, near-miss whizzes at the camera, grenade bounces and explosions, smoke;
@@ -96,7 +96,7 @@ the camera; pausing or seeking cuts the sounds, the pitch follows the speed up t
 | Orbit | Left drag rotates, right drag pans, wheel zooms. Click a player to select them |
 | Free fly | Drag to look, `W A S D` to move, `R` / `F` for up / down, `Shift` for fast, wheel sets the speed |
 | Follow player | Travels with the selected player (or the POV's followed player). Drag to turn around them |
-| First person | The selected player's eyes with their view angles, the **weapon in their hands**, the game's **crosshair** and the game's **HUD** (Camera popover: *Weapon*, *First person HUD*), the game's **camera shake** (near the bomb's explosion, on a firing MG42; Camera popover) and the flinch when hit; hold `Tab` for the game's **scoreboard** |
+| First person | The selected player's eyes (none selected: the demo's own view - the recording player, or whom he spectated) with their view angles, the **weapon in their hands**, the game's **crosshair** and the game's **HUD** (Camera popover: *Weapon*, *First person HUD*), the game's **camera shake** (near the bomb's explosion, on a firing MG42; Camera popover) and the flinch when hit; hold `Tab` for the game's **scoreboard** |
 
 **First-person weapon**: the game's own view models - the gun of the weapon file in the hands the server
 gave the player (American, British, Russian, German sleeves) - animated with the weapon's own view animations
@@ -162,7 +162,8 @@ finger and zooms / pans with two; the timeline seeks by touch.
 
 Deep links: `index.html?demo=demos/my.dm_1&view=3d&t=300&focus=name` loads a demo served from the same
 site (`?demo=` takes only a path on the site, no other website), opens the 3D view at 5:00 and selects the first player whose name contains "name";
-`&cam=x,y,z,yaw,pitch` opens the free camera there; `&sound=off` leaves the sounds out.
+`&cam=x,y,z,yaw,pitch` opens the free camera there; `&sound=off` leaves the sounds out. A link opens no audio by
+itself (the browsers wait for a click): the 3D view asks for one with a small "Click to enable sound".
 
 ## What a demo contains (and does not)
 

@@ -293,6 +293,13 @@ kbd { font: 500 var(--fs-xs) var(--mono); padding: 1px 6px; border-radius: 5px; 
   padding: 6px 12px; border-radius: 999px; font-size: var(--fs-s); background: var(--glass-2); border: 1px solid var(--line); color: var(--muted);
   pointer-events: none; transition: opacity .6s; max-width: calc(100% - 2 * var(--drawer-space)); overflow: hidden; text-overflow: ellipsis; }
 .cam-hint.faded { opacity: 0; }
+/* the 3D view's sound waits for a click (a demo opened by a link): small, above the camera hint */
+.sound-hint { position: absolute; left: 50%; transform: translateX(-50%); bottom: calc(var(--bar-h) + 2 * var(--gutter) + 38px); z-index: 7;
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; font: inherit; font-size: var(--fs-s);
+  background: var(--glass-2); border: 1px solid var(--line); color: var(--text); cursor: pointer; backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur); }
+.sound-hint:hover { border-color: var(--muted); }
+.sound-hint[hidden] { display: none; }
+.stage.fs .sound-hint { bottom: calc(var(--bar-h) + 2 * var(--gutter)); }
 
 /* 2D map tools (view2d.js), bottom right next to the drawer */
 .map-tools { position: absolute; right: var(--drawer-space); bottom: calc(var(--bar-h) + 2 * var(--gutter)); z-index: 5; display: flex; flex-direction: column; gap: 2px; padding: 4px; }
