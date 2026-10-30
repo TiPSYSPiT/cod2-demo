@@ -28,7 +28,7 @@ C2.define('collect', function (C2) {
     legs: ES.legsAnim, torso: ES.torsoAnim, lean: ES.leanf, clientNum: ES.clientNum, time: ES.time, time2: ES.time2,
     scale: ES.scale, delay: ES['angles2[1]'], dir: [0, 1, 2].map(i => ES['origin2[' + i + ']']),
     torsoPitch: ES.fTorsoPitch, waistPitch: ES.fWaistPitch, ground: ES.groundEntityNum,
-    aim: [ES['angles2[0]'], ES['angles2[1]']], loopSound: ES.loopSound
+    aim: [ES['angles2[0]'], ES['angles2[1]']], loopSound: ES.loopSound, headIcon: ES.iHeadIcon, headIconTeam: ES.iHeadIconTeam
   };
   const P = {
     client: PS.clientNum, pmType: PS.pm_type, pmFlags: PS.pm_flags, eFlags: PS.eFlags, weapon: PS.weapon,
@@ -75,15 +75,18 @@ C2.define('collect', function (C2) {
   class PosTrack {
     constructor() {
       this.t = []; this.x = []; this.y = []; this.z = []; this.yaw = []; this.pitch = []; this.flags = []; this.weapon = [];
-      this.legs = []; this.torso = []; this.lean = []; this.torsoPitch = []; this.waistPitch = [];
+      this.legs = []; this.torso = []; this.lean = []; this.torsoPitch = []; this.waistPitch = []; this.icon = [];
     }
-    push(t, x, y, z, yaw, pitch, flags, weapon, legs, torso, lean, torsoPitch = 0, waistPitch = 0) {
+    /** icon: the player's sprites (CG_PlayerSprites) - bits 0-3 the script's head icon (config string 30 + n), 4-5 the
+     *  team that sees it (0 every team, 1 axis, 2 allies, 3 spectators), 6 talking (EF_TALK), 7 connection problem */
+    push(t, x, y, z, yaw, pitch, flags, weapon, legs, torso, lean, torsoPitch = 0, waistPitch = 0, icon = 0) {
       const n = this.t.length;
       if (n && this.t[n - 1] === t) return;               // one sample per snapshot time
       this.t.push(t); this.x.push(x); this.y.push(y); this.z.push(z);
       this.yaw.push(yaw); this.pitch.push(pitch); this.flags.push(flags); this.weapon.push(weapon);
       this.legs.push(legs | 0); this.torso.push(torso | 0); this.lean.push(lean || 0);
       this.torsoPitch.push(torsoPitch || 0); this.waistPitch.push(waistPitch || 0);    // (prone on a slope)
+      this.icon.push(icon | 0);
     }
   }
 
@@ -355,7 +358,9 @@ C2.define('collect', function (C2) {
       if (ef & K.EF.USETURRET) flags |= PF.TURRET;
       if (pmType === K.PM.NORMAL_LINKED) flags |= PF.LINKED;
       const x = u2f(f[P.ox]), y = u2f(f[P.oy]), z = u2f(f[P.oz]);
-      track(cl).push(t, x, y, z, u2f(f[P.yaw]), u2f(f[P.pitch]), flags, f[P.weapon], f[P.legs], f[P.torso], u2f(f[P.lean]));
+      // (the player state has no head icon: only the talk flag)
+      track(cl).push(t, x, y, z, u2f(f[P.yaw]), u2f(f[P.pitch]), flags, f[P.weapon], f[P.legs], f[P.torso], u2f(f[P.lean]), 0, 0,
+        ef & K.EF.TALK ? 64 : 0);
       lastWeapon.set(cl, f[P.weapon]);
       lastPos.set(cl, [t, x, y, z]);
     }
@@ -447,8 +452,9 @@ C2.define('collect', function (C2) {
       if (ef & K.EF.USETURRET) flags |= PF.TURRET;
       if (e[E.ground] === ENTITYNUM_NONE) flags |= PF.LINKED;
       const x = u2f(e[E.px]), y = u2f(e[E.py]), z = u2f(e[E.pz]);
+      const icon = (e[E.headIcon] & 15) | ((e[E.headIconTeam] & 3) << 4) | (ef & K.EF.TALK ? 64 : 0) | (ef & 0x80 ? 128 : 0);
       track(num).push(t, x, y, z, u2f(e[E.yaw]), u2f(e[E.pitch]), flags, e[E.weapon], e[E.legs], e[E.torso], u2f(e[E.lean]),
-        u2f(e[E.torsoPitch]), u2f(e[E.waistPitch]));
+        u2f(e[E.torsoPitch]), u2f(e[E.waistPitch]), icon);
       lastWeapon.set(num, e[E.weapon]);
       lastPos.set(num, [t, x, y, z]);
     }

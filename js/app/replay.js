@@ -26,7 +26,7 @@ export class Replay {
     this.focus = null;               // the selected player: highlighted in both views, followed by the 3D camera
     this.selection = { a: null, b: null };   // the export range markers on the timeline (I / O)
     this.hover = null;               // player under the mouse in the team panel
-    this.opts = { labels: true, lastKnown: false, trails: true, killLines: true, grenadeKinds: new Set(['smoke', 'frag', 'other']) };
+    this.opts = { labels: true, lastKnown: false, trails: true, killLines: true, hits: true, grenadeKinds: new Set(['smoke', 'frag', 'other']) };
     this.scope = -1;
     this.base = 0;
     this.listeners = new Set();
@@ -131,6 +131,7 @@ export class Replay {
         el('div', { class: 'grp' },
           sw('Names', 'labels'), sw('Trails', 'trails', 'Last ' + CFG.TRAIL_MS / 1000 + ' s of movement', 'last ' + CFG.TRAIL_MS / 1000 + ' s'),
           sw('Kill lines', 'killLines', 'Line from killer to victim for 5 s after a kill'),
+          this.d.zpamHits && this.d.zpamHits.length ? sw('Hits (zPAM log)', 'hits', "The recording player's hits from zPAM's damage log (rifle, scoped, shotgun and grenade hits): a line to the hit point and the damage, 2D, 2.5 s", '2D') : null,
           sw('Last known position', 'lastKnown', 'Players the server stopped sending are drawn hollow at their last known position (same life only)')),
         nades) };
   }
@@ -240,14 +241,16 @@ export class Replay {
       onclick: e => { e.stopPropagation(); if (this.selected.has(p.client)) this.selected.delete(p.client); else this.selected.add(p.client); this.emit('selection'); this.pb.invalidate(); } }, icon('eye', 's'));
     const stats = el('button', { class: 'rp-stats', title: 'Player stats', 'aria-label': 'Player stats: ' + p.cleanName,
       onclick: e => { e.stopPropagation(); C2.mapStats.open(stats, p.client, this.statsCtx); } }, icon('chart', 's'));
+    // talking in the voice chat (EF_TALK, sprites.js): a speaker beside the name
+    const talk = el('span', { class: 'rp-talk', title: 'talking (voice chat)', hidden: true }, icon('sound', 's'));
     const tr = el('div', { class: 'rp-row' + (p.isPov ? ' pov' : ''), title: p.cleanName + ' - click: select', onclick: () => this.setFocus(p.client),
       onmouseenter: () => this.setHover(p.client), onmouseleave: () => this.setHover(null) },
       eye,
       el('span', { class: 'rp-name' }, el('span', { class: 'rp-pname' }, p.cleanName),
-        p.isPov ? el('span', { class: 'pov-tag', title: 'Recording player' }, 'POV') : null),
+        p.isPov ? el('span', { class: 'pov-tag', title: 'Recording player' }, 'POV') : null, talk),
       w, k, dd, stats);
     rows.append(tr);
-    return { p, tr, w, k, d: dd };
+    return { p, tr, w, k, d: dd, talk };
   }
 
   updateTeamPanel(t) {
@@ -309,6 +312,11 @@ export class Replay {
         const ic = name ? C2.weapons.weaponIcon(name) : null;
         row.w.replaceChildren(ic ? C2.ui.iconNode(ic, w) : w);
         row.w.title = w === '✕' ? 'dead' : w;
+      }
+      {
+        const P = d.positions[cl], i = P ? upperBound(P.t, t) - 1 : -1;
+        const talking = !!(i >= 0 && P.icon && t - P.t[i] < 300 && (P.icon[i] & 64));
+        if (row.talk.hidden === talking) row.talk.hidden = !talking;
       }
       row.tr.classList.toggle('dead', isDead);
       row.tr.classList.toggle('off', !this.selected.has(cl));

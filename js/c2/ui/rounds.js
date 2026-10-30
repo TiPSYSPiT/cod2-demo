@@ -160,9 +160,35 @@
       el('table', { class: 'rr-table' }, el('tbody', null, rows)));
   }
 
+  const LOC = { torso_upper: 'Torso upper', torso_lower: 'Torso lower', left_arm_upper: 'Left arm upper', left_arm_lower: 'Left arm lower',
+    right_arm_upper: 'Right arm upper', right_arm_lower: 'Right arm lower', left_hand: 'Left hand', right_hand: 'Right hand',
+    left_leg_upper: 'Left leg upper', left_leg_lower: 'Left leg lower', right_leg_upper: 'Right leg upper', right_leg_lower: 'Right leg lower',
+    left_foot: 'Left foot', right_foot: 'Right foot', head: 'Head', helmet: 'Helmet', neck: 'Neck', none: '-' };
+  /** zPAM's damage log of the round (build.js zpamHits): every hit of the recording player */
+  function hitsBlock(app, i) {
+    const d = app.data, hits = (d.zpamHits || []).filter(h => h.round === i);
+    if (!hits.length) return null;
+    const total = hits.reduce((a, h) => a + Math.min(h.damage, h.health), 0);
+    const rows = hits.map(h => {
+      const lethal = h.damage >= h.health, dist = h.my && h.enemy ? Math.hypot(h.enemy[0] - h.my[0], h.enemy[1] - h.my[1], h.enemy[2] - h.my[2]) : null;
+      return el('tr', { class: 'clickable' + (lethal ? ' rr-kill' : ''), title: 'show on the map', onclick: () => app.gotoMap(h.t, i) },
+        el('td', { class: 'mono', title: h.bomb ? 'the bomb timer' : 'the round clock' }, (h.bomb ? 'B ' : '') + h.clock),
+        el('td', null, h.victim != null ? app.playerNode(h.victim) : na('nobody at the hit position in the demo')),
+        el('td', { class: 'num', title: 'health ' + h.health + ' → ' + Math.max(0, h.health - h.damage) }, String(h.damage), lethal ? el('span', { class: 'dim' }, '  kill') : el('span', { class: 'dim' }, '  ' + h.health + '→' + (h.health - h.damage))),
+        el('td', null, LOC[h.hitLoc] || h.hitLoc),
+        el('td', { class: 'dim' }, C2.weapons.label(h.weapon)),
+        el('td', { class: 'dim num', title: 'distance from the shooter to the victim (game units; 1 m ≈ 39 units)' }, dist != null ? Math.round(dist) + ' u' : ''));
+    });
+    return el('div', { class: 'round-report' },
+      el('div', { class: 'rr-head', title: "zPAM's damage log (pam_damage_debug): the server's record of every rifle, scoped rifle, shotgun and grenade hit of the recording player - damage, the victim's health before the hit, hit location, both positions. The victim is the player at the logged position (checked: every lethal hit matches a kill of that player)" },
+        'Hits of ', d.meta.povClient != null ? app.playerNode(d.meta.povClient) : 'the recording player',
+        el('span', { class: 'dim' }, ' · ' + hits.length + ' hit' + (hits.length === 1 ? '' : 's') + ', ' + total + ' hp (zPAM damage log)')),
+      el('table', { class: 'rr-table' }, el('tbody', null, rows)));
+  }
+
   function fillTimeline(app, r, i, body) {
     const d = app.data;
-    const extra = [combatLine(app, r), reportBlock(app, r)].filter(Boolean);
+    const extra = [combatLine(app, r), reportBlock(app, r), hitsBlock(app, i)].filter(Boolean);
     if (extra.length) body.append(...extra);
     const items = [];
     for (const ki of r.kills) items.push({ t: d.kills[ki].t, kill: d.kills[ki] });

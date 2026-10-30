@@ -309,6 +309,24 @@
       g.globalAlpha = 1;
     }
 
+    /** a hit (zPAM's damage log): a ring at the point and its damage beside it */
+    drawHit(x, y, color, alpha, text) {
+      const g = this.ctx;
+      const [X, Y] = this.pt(x, y);
+      g.globalAlpha = alpha;
+      g.lineWidth = 3; g.strokeStyle = 'rgba(0,0,0,0.85)';
+      g.beginPath(); g.arc(X, Y, 4.5, 0, Math.PI * 2); g.stroke();
+      g.lineWidth = 1.8; g.strokeStyle = color;
+      g.beginPath(); g.arc(X, Y, 4.5, 0, Math.PI * 2); g.stroke();
+      if (text) {
+        g.font = '700 10.5px Inter, "Segoe UI", system-ui, sans-serif';
+        g.textBaseline = 'middle';
+        g.lineWidth = 3; g.strokeStyle = 'rgba(0,0,0,0.85)'; g.strokeText(text, X + 7, Y + 11);      // (below: the name label is beside the player)
+        g.fillStyle = color; g.fillText(text, X + 7, Y + 11);
+      }
+      g.globalAlpha = 1;
+    }
+
     drawPath(points, color, alpha, dash) {
       if (points.length < 2) return;
       const g = this.ctx;

@@ -147,6 +147,18 @@ export class View2D {
       if (vp && shown.has(k.victim)) R.drawDeath(vp[0], vp[1], M.color(k.victim), 1 - (age / CFG.DEATH_MARKER_MS) * 0.7);
     }
 
+    // the recording player's hits from zPAM's damage log: a dotted line to the hit point and the damage, 2.5 s
+    if (o.hits && M.d.zpamHits && M.d.zpamHits.length) {
+      for (const h of M.d.zpamHits) {
+        if (h.t > t) break;
+        const age = t - h.t;
+        if (age > CFG.HIT_MS || !h.my) continue;
+        const p = h.hit || h.enemy, fade = 1 - age / CFG.HIT_MS, col = M.color(M.d.meta.povClient);
+        R.drawPath([[h.my[0], h.my[1]], [p[0], p[1]]], col, 0.6 * fade, [2, 3]);
+        R.drawHit(p[0], p[1], col, fade, '-' + h.damage + (h.damage >= h.health ? ' ✝' : ''));
+      }
+    }
+
     // players (hovered / selected on top)
     const povFollow = M.followedAt(t);
     const rank = cl => (cl === hover ? 2 : 0) + (cl === RP.focus ? 1 : 0);

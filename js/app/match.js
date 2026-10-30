@@ -100,7 +100,8 @@ export class Match {
     }
     const fl = P.flags[i];
     return { x, y, z, yaw, pitch, lean, age, crouch: !!(fl & PF.CROUCH), prone: !!(fl & PF.PRONE), firing: !!(fl & PF.FIRING), turret: !!(fl & PF.TURRET),
-      weapon: P.weapon[i], ps: !!(fl & PF.FROM_PS), i, legs: P.legs ? P.legs[i] : 0, torso: P.torso ? P.torso[i] : 0 };
+      weapon: P.weapon[i], ps: !!(fl & PF.FROM_PS), i, legs: P.legs ? P.legs[i] : 0, torso: P.torso ? P.torso[i] : 0,
+      icon: P.icon ? P.icon[i] : 0 };
   }
 
   /** the recording player's player state at t (DemoData.psWeapon, one row per snapshot): the row of client cl at or

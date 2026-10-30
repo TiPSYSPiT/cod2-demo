@@ -8,10 +8,11 @@
 (function (C2) {
   'use strict';
   const SMOKE_RADIUS = 220;          // world units (was 300, -27 %); frags use 120
-  const SMOKE_DURATION_MS = 10000;   // smoke circle visible for exactly 10 s from the detonation
+  const SMOKE_DURATION_MS = 10000;
+  const HIT_MS = 2500;               // a hit of zPAM's damage log stays on the 2D map for 2.5 s   // smoke circle visible for exactly 10 s from the detonation
   const SMOKE_FADE_MS = 1000;        // ... fading out during the last second
   C2.mapConfig = {
-    SMOKE_RADIUS, SMOKE_DURATION_MS, SMOKE_FADE_MS,
+    SMOKE_RADIUS, SMOKE_DURATION_MS, SMOKE_FADE_MS, HIT_MS,
     GRENADE: {
       smoke: { color: '#a9b0b8', radius: SMOKE_RADIUS, duration: SMOKE_DURATION_MS, fade: SMOKE_FADE_MS, label: 'Smoke' },
       frag: { color: '#ff8a1f', radius: 120, duration: 1500, fade: 800, label: 'Frag' },

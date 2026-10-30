@@ -40,7 +40,13 @@
     const st = (d.shotsSeen || {})[cl] || [];
     let shots = 0;
     for (const t of st) if (inRange(t)) shots++;
-    return { kills, deaths, hs, nades, nadesUnknown, shots,
+    // zPAM's damage log (the recording player only): hits and the damage done (capped at the victim's health)
+    let hits = null, damage = 0;
+    if (cl === d.meta.povClient && d.zpamHits && d.zpamHits.length) {
+      hits = 0;
+      for (const h of d.zpamHits) if (inRange(h.t)) { hits++; damage += Math.min(h.damage, h.health); }
+    }
+    return { kills, deaths, hs, nades, nadesUnknown, shots, hits, damage,
       weapons: [...weapons.values()].sort((a, b) => b.kills - a.kills || a.label.localeCompare(b.label)) };
   }
 
@@ -133,6 +139,7 @@
             (s.nadesUnknown ? s.nadesUnknown + ' grenade(s) in this range could not be given to a player.' : ''))], null],
         ['Shots fired (seen)', [String(s.shots), approx('only shots visible in the demo: fire events of this player - every shot of the recording player (and of the player he follows), others only while they were in the POV\'s snapshots')], null]
       ];
+      if (s.hits != null) rows.push(['Hits / damage (zPAM log)', s.hits + ' / ' + s.damage + ' hp', "zPAM's damage log of the recording player: rifle, scoped rifle, shotgun and grenade hits, the damage capped at the victim's health"]);
       const tb = el('tbody');
       for (const [k, v, note] of rows) tb.append(el('tr', { title: note || null }, el('td', null, k), el('td', { class: 'num' }, v, note ? el('span', { class: 'stats-note' }, ' *') : null)));
       P.box.append(el('table', { class: 'stats-table' }, tb));

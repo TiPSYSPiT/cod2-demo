@@ -13,6 +13,8 @@ import { Cameras, MODES } from './cameras.js';
 import { Props } from './props.js';
 import { Sky } from './sky.js';
 import { SoundSystem } from './sound.js';
+import { Tracers } from './tracers.js';
+import { PlayerSprites } from './sprites.js';
 import { CharacterLibrary } from './characters.js';
 import { InfoHint, fadeHint, holdHint } from '../app/infoHint.js';
 import { CookieShadows } from './shadows.js';
@@ -29,6 +31,7 @@ const CAM_KEY = 'cod2demo3d.camera';
 const PROPS_KEY = 'cod2demo3d.props';
 const KILLFEED_KEY = 'cod2demo3d.killfeed';      // 'on' / 'off' (default on)
 const KILL_ICONS_KEY = 'cod2demo3d.killIcons';    // 'on' / 'off' (default off)
+const HEAD_ICONS_KEY = 'cod2demo3d.headIcons';    // 'on' / 'off' (default on): the game's head icons and talk balloons
 const FX_KEY = 'cod2demo3d.fx';                  // 'game' / 'simple'
 const PLAYERS_KEY = 'cod2demo3d.players';        // 'simple' / 'models'
 const SOUND_KEY = 'cod2demo3d.sound';            // 'on' / 'off' (default off) and '.volume'
@@ -92,6 +95,10 @@ export class View3D {
     this.effects = new Effects(scene, this.labels, this.M);
     // the game's particle effects (fx.js): explosions, smoke, impacts, muzzle flashes
     this.fx = new FxPlayer(scene, this.M);
+    // the bullet tracers (tracers.js), with the game effects
+    this.tracers = new Tracers(scene, this.M);
+    // the players' head icons and talk balloons (sprites.js)
+    this.sprites = new PlayerSprites(scene, this.M);
     // the first-person weapon (viewmodel.js), its crosshair and scope
     this.viewmodel = new ViewModel();
     this.viewmodel.setMatch(this.M, k => (this.characters.animsInfo ? this.characters.animsInfo.table[k] || '' : null));
@@ -122,6 +129,7 @@ export class View3D {
     this.buildToolbar();
     this.setKillfeed(stored(KILLFEED_KEY) !== 'off');
     this.setKillIcons(stored(KILL_ICONS_KEY) === 'on');
+    this.setHeadIcons(stored(HEAD_ICONS_KEY) !== 'off');
     let mode = 'orbit';
     const m0 = stored(CAM_KEY);
     if (MODES.some(m => m[0] === m0)) mode = m0;
@@ -297,6 +305,7 @@ export class View3D {
     this.offArm = () => window.removeEventListener('pointerdown', arm, { capture: true });
     this.killfeedBox = el('input', { type: 'checkbox', onchange: e => this.setKillfeed(e.target.checked, true) });
     this.killIconsBox = el('input', { type: 'checkbox', onchange: e => this.setKillIcons(e.target.checked, true) });
+    this.headIconsBox = el('input', { type: 'checkbox', onchange: e => this.setHeadIcons(e.target.checked, true) });
     this.shadowsBox = el('input', { type: 'checkbox', onchange: e => this.setShadows(e.target.checked, true) });
     this.viewmodelBox = el('input', { type: 'checkbox', onchange: e => this.setViewModel(e.target.checked, true) });
     this.hudBoxes = {};
@@ -318,6 +327,7 @@ export class View3D {
           selectRow('Effects', this.fxSel, 'Explosions, smoke grenades, bullet impacts and muzzle flashes: the game\'s own particle effects, or simple markers'),
           switchRow('Kill feed', this.killfeedBox, { title: 'The kills and bomb plants / defuses of the last ' + CFG.EXPORT.KILLFEED_MS / 1000 + ' s over the view, with the weapon icons' }),
           switchRow('Kill icons', this.killIconsBox, { title: 'The weapon icon over each death marker' }),
+          switchRow('Head icons', this.headIconsBox, { title: "The game's icons over the players' heads: the team icon the server gives them, the talk balloon while a teammate talks (voice chat), the connection-problem icon. In first person as that player sees them (teammates only), in the other cameras all" }),
           switchRow('Shadows', this.shadowsBox, { title: 'Soft shadows of the players and corpses on the ground, along the sun (as the game\'s character shadows; the world\'s own shadows are in its lightmaps)' })),
         this.soundRows) }
     ];
@@ -371,6 +381,12 @@ export class View3D {
     if (user) store(SHADOWS_KEY, on ? 'on' : 'off');
     this.needsRender = true;
   }
+  setHeadIcons(on, user = false) {
+    this.sprites.enabled = on;
+    this.headIconsBox.checked = on;
+    if (user) store(HEAD_ICONS_KEY, on ? 'on' : 'off');
+    this.needsRender = true;
+  }
   setKillIcons(on, user = false) {
     this.effects.killIcons = on;
     this.killIconsBox.checked = on;
@@ -409,6 +425,7 @@ export class View3D {
     const apply = ok => {
       const on = mode === 'game' && ok;
       this.fx.setEnabled(on);
+      this.tracers.enabled = mode === 'game';
       this.effects.realFx = on;              // no marker spheres for explosions / smoke
       this.actors.realFlash = on;            // no muzzle flash sphere
       if (!ok) this.fxSel.parentNode.title = 'The effects are not exported (tools/export/fx_export.py)';
@@ -571,6 +588,8 @@ export class View3D {
     }
     this.camera.updateMatrixWorld();
     this.fx.update(this.t || 0, this.camera);
+    this.tracers.update(this.t || 0, this.camera, cl => this.actors.muzzle(cl), this.fpClient);
+    this.sprites.update(this.t || 0, this.camera, this.actors, this.fpClient);
     if (this.shadows.enabled) {
       const occluders = [this.world && this.world.group, this.props && this.props.mode !== 'off' && this.props.group].filter(Boolean);
       this.shadows.update(this.renderer, this.scene, [this.actors.root], occluders, this.shadowCenter(), this.sun.position);
@@ -708,6 +727,8 @@ export class View3D {
     this.viewmodel.dispose();
     this.effects.dispose();
     this.fx.dispose();
+    this.tracers.dispose();
+    this.sprites.dispose();
     this.shadows.dispose();
     this.xray.dispose();
     this.killfeed.dispose();

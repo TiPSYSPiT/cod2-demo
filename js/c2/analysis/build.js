@@ -246,7 +246,8 @@ C2.define('build', function (C2) {
         yaw: pick(tr.yaw, Float32Array), pitch: pick(tr.pitch, Float32Array),
         flags: pick(tr.flags, Uint8Array), weapon: pick(tr.weapon, Uint8Array),
         legs: pick(tr.legs, Uint16Array), torso: pick(tr.torso, Uint16Array), lean: pick(tr.lean, Float32Array),
-        torsoPitch: pick(tr.torsoPitch, Float32Array), waistPitch: pick(tr.waistPitch, Float32Array)
+        torsoPitch: pick(tr.torsoPitch, Float32Array), waistPitch: pick(tr.waistPitch, Float32Array),
+        icon: pick(tr.icon, Uint8Array)
       };
       holdTeleports(positions[cl]);
     }
@@ -390,7 +391,12 @@ C2.define('build', function (C2) {
     // when it is older than the last live kill (assists change only at kills).
     const zpamKey = s => String(s || '').replace(/\^\^[0-9]{2}/g, '').replace(/\^./g, '')
       .replace(/^\s*\[-\]\s*/, '').replace(/^o {2}/, '').replace(/\s+/g, ' ').trim().toLowerCase();
+    // The other columns of zPAM's scoreboard the same way (_menu_scoreboard.gsc, _player_stat.gsc): score (kills
+    // + 0.5 per assist ...), damage (the damage to enemies who survived it - counted when the enemy starts to heal;
+    // shown as hundreds of hp, "12.3" = 1230), grenade kills, plants, defuses - each player's last number per column.
     const zpamAssists = new Map();          // name key -> {value, t}
+    const zpamStats = new Map();            // name key -> {score, damage, grenades, plants, defuses: {value, t}}
+    const ZPAM_COLS = { scores: 'score', damages: 'damage', grenades: 'grenades', plants: 'plants', defuses: 'defuses' };
     {
       const state = {};
       let cur = null;
@@ -400,12 +406,21 @@ C2.define('build', function (C2) {
         if (!cur || c.t - cur.t > 100) ups.push(cur = { t: c.t });
         for (const [k, v] of c.d.dvars) if (k.startsWith('ui_scoreboard_')) state[k] = v;
         cur.names = state.ui_scoreboard_names; cur.assists = state.ui_scoreboard_assists;
+        for (const col of Object.keys(ZPAM_COLS)) cur[col] = state['ui_scoreboard_' + col];
       }
       for (const u of ups) {
         const names = String(u.names || '').split('\n'), values = String(u.assists || '').split('\n');
         names.forEach((n, i) => {
           const key = zpamKey(n), v = stripColors(values[i] || '').trim();
           if (key && /^\d+$/.test(v)) zpamAssists.set(key, { value: Number(v), t: u.t });     // (commands: relative times)
+          if (!key) return;
+          for (const [col, name] of Object.entries(ZPAM_COLS)) {
+            const x = stripColors(String(u[col] || '').split('\n')[i] || '').trim();
+            if (!/^-?\d+(\.\d+)?$/.test(x)) continue;
+            const st = zpamStats.get(key) || {};
+            st[name] = { value: name === 'damage' ? Math.round(Number(x) * 100) : Number(x), t: u.t };
+            zpamStats.set(key, st);
+          }
         });
       }
     }
@@ -420,6 +435,22 @@ C2.define('build', function (C2) {
       for (const [key, p] of owner) {
         const a = zpamAssists.get(key);
         Object.assign(p, { assists: a.value, assistsSource: 'zpam', assistsAt: a.t, assistsApprox: a.t < lastLiveKill });
+      }
+    }
+    if (zpamStats.size) {
+      const lastLiveKill = kills.reduce((a, k) => (k.phase === 'live' && k.t > a ? k.t : a), -Infinity);
+      const owner = new Map();
+      for (const p of players) {
+        const key = zpamKey(p.name), o = owner.get(key);
+        if (zpamStats.has(key) && (!o || (o.team === 'spectator' && p.team !== 'spectator') || (o.team === p.team && p.kills > o.kills))) owner.set(key, p);
+      }
+      // p.zpam: {score, damage (hp), grenades, plants, defuses, at (the newest value's time), approx (older than the
+      // last live kill: later changes are missing)}
+      for (const [key, p] of owner) {
+        const st = zpamStats.get(key), at = Math.max(...Object.values(st).map(x => x.t));
+        p.zpam = Object.fromEntries(Object.entries(st).map(([k, x]) => [k, x.value]));
+        p.zpam.at = at;
+        p.zpam.approx = at < lastLiveKill;
       }
     }
     const tagInfo = C2.teams.clanTags(byTeam);
@@ -581,6 +612,46 @@ C2.define('build', function (C2) {
       teams: teamList, players, rounds, initialScore: R.initialScore, halfInfo, halftimes: R.halftimes,
       phases: R.phases, match: { start: R.matchStart, end: R.matchEnd, endSource: R.matchEndSource, decided: R.matchDecided, winRule: R.winRule }, swaps: teams.swaps,
       kills, events, chat, console: consoleLines,
+      // the scripts' head icons (config strings 31..45: CS 30 + the entity's iHeadIcon) -> material name
+      headIcons: (() => { const out = {}; for (let i = 1; i <= 15; i++) { const n = cs.get(30 + i); if (n) out[i] = n.toLowerCase(); } return out; })(),
+      // zPAM's damage log of the recording player (client dvars pam_damage_debug .. _debug4, _round_report.gsc:
+      // every rifle / scoped / shotgun / grenade hit he made, resent after each round):
+      // [{t, clock, bomb, damage, health (the victim's health before the hit), weapon, hitLoc, my, enemy, hit,
+      //   victim (the player at the enemy's position ≈), round}]
+      zpamHits: (() => {
+        const state = {}, seen = new Set(), out = [];
+        const vec = s => { const m = /\(([-\d.e]+),\s*([-\d.e]+),\s*([-\d.e]+)\)/.exec(s || ''); return m ? [+m[1], +m[2], +m[3]] : null; };
+        for (const c of commands) {
+          if (c.d.verb !== 'v' || !c.d.dvars) continue;
+          let changed = false;
+          for (const [k, v] of c.d.dvars) if (/^pam_damage_debug\d?$/.test(k)) { state[k] = v; changed = true; }
+          if (!changed) continue;
+          const lines = ['pam_damage_debug', 'pam_damage_debug2', 'pam_damage_debug3', 'pam_damage_debug4'].map(k => state[k] || '').join('\n').split('\n');
+          for (const line of lines) {
+            const f = line.split('|');
+            const m = /^(B )?(\d+:\d\d)$/.exec((f[0] || '').trim());
+            if (!m || f.length < 8) continue;
+            const key = f[1] + '|' + f[2] + '|' + f[7];
+            if (seen.has(key)) continue;
+            seen.add(key);
+            const kv = {};
+            for (const x of f.slice(2)) { const i = x.indexOf(':'); if (i > 0) kv[x.slice(0, i)] = x.slice(i + 1); }
+            // (gettime() is the server time of the snapshots: the hit's shot comes in the next snapshot)
+            const t = rel(Number(f[1]));
+            if (t == null || !onMainMap(t)) continue;
+            const enemy = vec(kv.xyz_enemy), my = vec(kv.xyz_my);
+            let victim = null, best = 64;
+            if (enemy) for (const cl of Object.keys(positions)) {
+              if (+cl >= 64 || +cl === povClient) continue;
+              const p = posAt(cl, t, 250);
+              if (p) { const dd = Math.hypot(p.x - enemy[0], p.y - enemy[1]); if (dd < best) { best = dd; victim = +cl; } }
+            }
+            out.push({ t, clock: m[2], bomb: !!m[1], damage: Number(kv.dmg), health: Number(kv.health), weapon: f[6], hitLoc: f[7],
+              my, enemy, hit: vec(kv.xyz_hit), victim, round: rounds.findIndex(r => t >= r.segStart && t < r.segEnd) });
+          }
+        }
+        return out.sort((a, b) => a.t - b.t);
+      })(),
       eventTypes: C2.events.EVENT_TYPES,
       positions, grenades,
       playerModels: (() => {

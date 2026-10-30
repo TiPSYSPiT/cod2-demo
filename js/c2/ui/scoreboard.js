@@ -18,7 +18,9 @@
     return { score: sum('score'), kills: K, assists: rows.some(p => p.assists != null) ? sum('assists') : null, deaths: D, kd: D ? K / D : K,
       nadeKills: sum('nadeKills'), nadeDeaths: sum('nadeDeaths'), tk: sum('teamkills'), teamKilled: sum('teamKilled'), hsPercent: ownK ? HS / ownK * 100 : null, plants: sum('plants'), defuses: sum('defuses'),
       openingKills: csum('openingKills'), openingDeaths: csum('openingDeaths'), trades: csum('trades'), multi3: rows.reduce((a, p) => a + multi3(p), 0),
-      clutchesWon: csum('clutchesWon'), clutchesPlayed: csum('clutchesPlayed') };
+      clutchesWon: csum('clutchesWon'), clutchesPlayed: csum('clutchesPlayed'),
+      zpamDamage: rows.some(p => p.zpam && p.zpam.damage != null) ? rows.reduce((a, p) => a + (p.zpam && p.zpam.damage || 0), 0) : null,
+      zpamScore: rows.some(p => p.zpam && p.zpam.score != null) ? rows.reduce((a, p) => a + (p.zpam && p.zpam.score || 0), 0) : null };
   }
 
   /** the scoreboard as plain JSON: map, record date, half scores, then teams (in table order),
@@ -71,7 +73,9 @@
           plants: p.plants,
           defuses: p.defuses
         }, p.combat ? { openingKills: p.combat.openingKills, openingDeaths: p.combat.openingDeaths, trades: p.combat.trades,
-          multikills: p.combat.multi, clutchesWon: p.combat.clutchesWon, clutchesPlayed: p.combat.clutchesPlayed } : null, p.isPov ? { pov: true } : null)),
+          multikills: p.combat.multi, clutchesWon: p.combat.clutchesWon, clutchesPlayed: p.combat.clutchesPlayed } : null,
+        p.zpam ? { zpam: { score: p.zpam.score, damage: p.zpam.damage, grenadeKills: p.zpam.grenades, plants: p.zpam.plants, defuses: p.zpam.defuses } } : null,
+        p.isPov ? { pov: true } : null)),
         teamTotal: Object.assign(tot, { kd: round2(tot.kd), hsPercent: tot.hsPercent == null ? null : Math.round(tot.hsPercent) })
       });
     }
@@ -153,11 +157,27 @@
           p.combat ? p.combat.clutchesWon + '/' + p.combat.clutchesPlayed : ''),
         total: t => t.clutchesWon + '/' + t.clutchesPlayed
       },
+      {
+        key: 'zpamScore', label: 'zPAM pts', sort: p => (p.zpam && p.zpam.score != null ? p.zpam.score : -Infinity),
+        title: "zPAM's own score from its scoreboard in the demo: a kill 1, an assist 0.5, a team kill -1 (sd.gsc)",
+        render: p => (p.zpam && p.zpam.score != null ? [String(p.zpam.score), p.zpam.approx ? approx("zPAM's scoreboard as of " + fmtTime(p.zpam.at) + ' - later changes are missing') : null]
+          : na("no value for this player in zPAM's scoreboard of this demo")),
+        total: t => (t.zpamScore == null ? '–' : String(Math.round(t.zpamScore * 10) / 10))
+      },
+      {
+        key: 'zpamDamage', label: 'Dmg', sort: p => (p.zpam && p.zpam.damage != null ? p.zpam.damage : -Infinity),
+        title: "zPAM's damage count from its scoreboard in the demo: the damage dealt to enemies who survived it (zPAM counts a hit when the enemy starts to heal, not when he dies), in hp",
+        render: p => (p.zpam && p.zpam.damage != null ? [String(p.zpam.damage), p.zpam.approx ? approx("zPAM's scoreboard as of " + fmtTime(p.zpam.at) + ' - later changes are missing') : null]
+          : na("no value for this player in zPAM's scoreboard of this demo")),
+        total: t => (t.zpamDamage == null ? '–' : t.zpamDamage)
+      },
       { key: 'plants', label: 'Plants', title: 'bomb plants (server message "planted the bomb", match rounds only)', total: t => t.plants },
       { key: 'defuses', label: 'Defuses', title: 'bomb defuses (server message "defused the bomb", match rounds only)', total: t => t.defuses }
     ];
     // no assists anywhere in the demo (stock CoD2, or zPAM's scoreboard never sent to the recording player): no A column
     if (!d.players.some(p => p.assists != null)) columns.splice(columns.findIndex(c => c.key === 'assists'), 1);
+    // zPAM's own score / damage only where its scoreboard is in the demo (zPAM 3)
+    if (!d.players.some(p => p.zpam)) for (const k of ['zpamScore', 'zpamDamage']) columns.splice(columns.findIndex(c => c.key === k), 1);
     // every column after Player is a statistics column: numeric, right-aligned, sharing the width
     // the fixed Clan and Player columns leave (styles.css; cut names: tooltip)
     for (const c of columns) if (!c.cls) { c.cls = 'col-stat'; c.num = true; }
@@ -186,7 +206,8 @@
         'Click a column header to sort. ', el('span', { class: 'approx' }, '≈'), ' marks values completed from the kill feed. ',
         'HS %, TK, Nade K / D, Open, Trades, 3K+, Clutch, Plants and Defuses are not in the game’s scoreboard - they are counted from the kill feed and the bomb messages of this demo (only the recorded rounds; ',
         'team kills only while a match round is live, not in warm-up, pauses or the knife round).',
-        columns.some(c => c.key === 'assists') ? ' A (assists) is zPAM’s own count from its scoreboard in the demo - CoD2 has no assists; ≈ there: an older zPAM scoreboard.' : ''),
+        columns.some(c => c.key === 'assists') ? ' A (assists) is zPAM’s own count from its scoreboard in the demo - CoD2 has no assists; ≈ there: an older zPAM scoreboard.' : '',
+        columns.some(c => c.key === 'zpamDamage') ? ' zPAM pts and Dmg come from zPAM’s scoreboard too (Dmg: the damage to enemies who survived it).' : ''),
       sortableTable(columns, groups, { sortKey: 'score', asc: false, cls: 'scoreboard', rowClass: p => (p.isPov ? 'pov ' : '') })
     );
   }

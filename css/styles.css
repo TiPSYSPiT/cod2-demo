@@ -390,6 +390,8 @@ kbd { font: 500 var(--fs-xs) var(--mono); padding: 1px 6px; border-radius: 5px; 
 .rp-cols span:nth-child(3) { text-align: right; }
 .rp-name { display: flex; align-items: center; gap: 6px; min-width: 0; }
 .rp-pname { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rp-talk { display: inline-flex; color: var(--tl-defuse); flex: none; }
+.rp-talk[hidden] { display: none; }
 .rp-w { color: var(--muted); font-size: var(--fs-xs); text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: flex-end; }
 .rp-w .kf-icon { zoom: .7; opacity: .8; }
 .rp-row.dead .rp-w { justify-content: flex-end; }

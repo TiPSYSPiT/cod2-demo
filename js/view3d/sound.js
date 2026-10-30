@@ -17,7 +17,9 @@
  * client). An alias variant loads on this map by the engine's loadspec rule (Com_LoadSoundAliases: the
  * tokens name the map's BSP or all_mp; a leading "!" makes the list an exclusion). While the replay plays
  * forward every event between two frames is played: one variant by probability, its random volume and
- * pitch, attenuated linearly from dist_min to dist_max (SND_Attenuate with the default falloff curve) and
+ * pitch, attenuated from dist_min to dist_max along the alias's volume falloff curve (SND_Attenuate: the
+ * soundaliases/*.vfcurve points, linear between them - weapon1 for footsteps, weapon2 for bullet impacts ...;
+ * without one a straight line) and
  * panned left / right by the camera. A seek, a pause or a speed over MAX_SPEED cuts the sounds (short fade)
  * and nothing skipped is caught up; up to MAX_SPEED the pitch follows the speed.
  * The 3D video export renders a range offline for the frames' camera path (render: OfflineAudioContext
@@ -61,6 +63,15 @@ export function listenerOf(camera, fallback = null) {
 
 const rand = (a, b) => a + Math.random() * (b - a);
 const ub = (a, x) => { let lo = 0, hi = a.length; while (lo < hi) { const m = (lo + hi) >> 1; if (a[m] <= x) lo = m + 1; else hi = m; } return lo; };
+
+/** the value of a falloff curve (points [[fraction, volume], ...]) at fraction x (GraphGetValueFromFraction) */
+function curveAt(pts, x) {
+  if (!pts || pts.length < 2) return 1 - x;
+  for (let i = 1; i < pts.length; i++) {
+    if (x <= pts[i][0]) { const a = pts[i - 1], b = pts[i]; return a[1] + (b[1] - a[1]) * (x - a[0]) / Math.max(1e-6, b[0] - a[0]); }
+  }
+  return pts[pts.length - 1][1];
+}
 
 /** the whizby of bullet w for listener L -> its position, or null (CG_WhizbySound) */
 export function whizbyAt(w, L) {
@@ -212,7 +223,7 @@ export class SoundSystem {
       const d = Math.hypot(dx, dy, dz);
       const [d0, d1] = v.d;
       if (d > d1) return null;
-      if (d > d0) gain = Math.max(0, 1 - (d - d0) / Math.max(1, d1 - d0));
+      if (d > d0) gain = Math.max(0, curveAt(v.fc && this.table.curves ? this.table.curves[v.fc] : null, (d - d0) / Math.max(1, d1 - d0)));
       if (d > 1) pan = Math.max(-1, Math.min(1, (dx * L.right[0] + dy * L.right[1] + dz * L.right[2]) / d));
     }
     return [gain, pan * 0.8];

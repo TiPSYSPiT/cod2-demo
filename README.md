@@ -20,11 +20,11 @@ with the site (the whole site without the sample demos: ~570 MB in ~3,950 files,
 |---|---|
 | Top bar | **2D / 3D** toggle (key `V`), **Match details** (chart icon: scoreboard, round by round, chat, events), **Export JSON** (file icon), **GitHub** (the source), **Open demo** |
 | Score pill | Over the view: the score at the playback time, the round and its time, map and mode; after a plant the **bomb timer** (the server's own countdown clock; also next to the bomb in 2D) |
-| Rail (left) | Icon buttons with popovers: **Layers** (names, trails 5 s, kill lines, last known position, grenade types; in 2D the map background), **Heatmap** (2D), **Camera** and **Display** (3D: players, X-Ray, props, effects, kill feed, kill icons, shadows, sound and volume), **Match info** (final score on request, map, mode, ruleset, server, POV, length, record date, protocol, the map data details, keyboard shortcuts) |
+| Rail (left) | Icon buttons with popovers: **Layers** (names, trails 5 s, kill lines, the recording player's hits from zPAM's damage log, last known position, grenade types; in 2D the map background), **Heatmap** (2D), **Camera** and **Display** (3D: players, X-Ray, props, effects, kill feed, kill icons, head icons, shadows, sound and volume), **Match info** (final score on request, map, mode, ruleset, server, POV, length, record date, protocol, the map data details, keyboard shortcuts) |
 | Drawer (right) | Round and status; per team the side, score and alive bars, per player the weapon in hand (kill icon) and K / D up to now. Click a player to select them (highlighted in 2D and 3D, followed by the 3D cameras); the eye shows / hides a player, the chart icon opens the player's stats. Below it the kill feed & bomb: the game's own kill icons and bomb plants / defuses, the entry at the playback time highlighted, click one to jump to 2 s before it. Sections fold, the drawer hides (both remembered) |
 | Fullscreen | The button at the top right (or `F`; in the free-fly camera `F` stays "down"): only the view (2D or 3D) with its HUD fills the screen - top bar, score pill, rail, panel and player bar hidden; moving the mouse brings the player bar up for 2.5 s; `Esc` or the button returns |
 | Player bar (bottom) | ⏪ / ⏩ 5 s (`←` / `→`), play / pause (`Space`), the time, the timeline (rounds as segments underlined in the winner's colour, kills as ticks - one team above, the other below -, bomb plants / defuses, halftimes), range (whole match or one round), 0.5–4× speed, export range `[ ]` (`I` / `O`), **Export video** |
-| Match details | Scoreboard (score, K / A / D, K/D, HS %, TK, nade kills / deaths, opening duels won–lost, trade kills, rounds with 3+ kills, clutches won / played, plants / defuses per player, halves; names in their colour codes), round-by-round table with win reasons and round times from the round clock (after zPAM's strat time), per round the first blood, 3K+ rounds, the clutches (1vX) and the trades, and in zPAM demos zPAM's **round report** of the recording player (his hits with damage and hit location, how he was killed), chat, events (joins, team changes, ready-up, halftime, timeouts, bomb) |
+| Match details | Scoreboard (score, K / A / D, K/D, HS %, TK, nade kills / deaths, opening duels won–lost, trade kills, rounds with 3+ kills, clutches won / played, in zPAM 3 demos zPAM's own score and damage count, plants / defuses per player, halves; names in their colour codes), round-by-round table with win reasons and round times from the round clock (after zPAM's strat time), per round the first blood, 3K+ rounds, the clutches (1vX) and the trades, and in zPAM demos zPAM's **round report** of the recording player (his hits with damage and hit location, how he was killed) and zPAM's **damage log** (every rifle / scoped / shotgun / grenade hit he made: victim, damage, the victim's health before it, hit location, weapon, distance; also in his stats and as hit markers on the 2D map), chat, events (joins, team changes, ready-up, halftime, timeouts, bomb) |
 
 **2D** – stock CoD2 has no minimap image, so the 2D view offers (Layers popover, *Background*):
 - **Render**: a top-down render of the map's BSP (textures, lightmaps, props, wall outlines),
@@ -59,9 +59,12 @@ every name, with a badge for a player out of sight; remembered for the browser s
 swapped for their destroyed model when the bomb explodes, the game's own **particle effects**
 (Display popover, *Effects*: *Game* = grenade explosions by the surface hit, smoke grenades, bullet impacts by
 bullet type and surface, scripted effects, the map's ambient smoke, dust and fires when the server ran
-them (stock servers; zPAM's rules switch them off) and every shot's muzzle flash at the weapon's muzzle, smoke
+them (stock servers; zPAM's rules switch them off), every shot's muzzle flash at the weapon's muzzle and the game's
+**bullet tracers** (as the server set them: zPAM gives every bullet one, 1000 units long at 20000 units/s), smoke
 and dust lit by the map's baked light under them, debris landing on the floor and bouncing; *Simple* = marker
-clouds and flash spheres), the players' and corpses' **shadows** (Display popover: *Shadows*; soft shadows
+clouds and flash spheres), the game's **head icons** over the players (the team icon the server gives them, the talk
+balloon while a teammate talks in the voice chat, also as a speaker in the panel; in first person only what that player
+sees), the players' and corpses' **shadows** (Display popover: *Shadows*; soft shadows
 along the map's sun, as the game's character shadows - the world's own shadows are in its lightmaps;
 `?shadows=off`), kill lines, death crosses, grenade arcs, the bomb and the site labels, a
 kill feed overlay and the game's **sounds** (Display popover: *Game sounds*, off until switched
@@ -74,7 +77,8 @@ sound-alias events (bomb plant / defuse / explosion, quick-chat voices, zPAM's s
 recording player's local sounds (announcer, hit marker, breathing). The player watched in first person hears
 his own sounds as the game plays them for the local player (the `_plr` variants, at the ear). zPAM demos use
 zPAM's alias changes (its silenced stock switch sound). One alias variant by probability (the variants of the
-map by the engine's loadspec rule), its volume / pitch ranges, linear distance falloff and stereo panning at
+map by the engine's loadspec rule), its volume / pitch ranges, the distance falloff along the alias's curve (the game's
+`.vfcurve` files) and stereo panning at
 the camera; pausing or seeking cuts the sounds, the pitch follows the speed up to 2×, faster is silent. Cameras
 (Camera popover, `C` cycles):
 
