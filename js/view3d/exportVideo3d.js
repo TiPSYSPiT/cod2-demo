@@ -471,7 +471,8 @@ function drawFrame(ctx, i) {
   ctx.hudDrawn = false;
   if (view.fpClient != null && r && r.fpSample && view.hud.data && HUD_PARTS_ON(view)) {
     const s = p.H / 720, o = ctx.opts;
-    view.hud.draw(g, C.width, C.height, t, view.fpClient, { x: r.fpSample.x, y: r.fpSample.y, yaw: r.fpSample.yaw },
+    view.hud.draw(g, C.width, C.height, t, view.fpClient, { x: r.fpSample.x, y: r.fpSample.y, yaw: r.fpSample.yaw, pitch: r.fpSample.pitch,
+      ads: view.viewmodel.zoomFrac() > 0.01 || view.viewmodel.overlayFrac() > 0 },
       { l: 0, t: o.hud ? Math.round(58 * s) : 0, r: 0, b: o.title ? Math.round(38 * s) : 0 });
     ctx.hudDrawn = true;
   }

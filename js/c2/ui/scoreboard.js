@@ -187,7 +187,8 @@
       if (!rows.length) continue;
       const tot = teamTotals(rows);
       groups.push({
-        label: el('span', null, t.name, t.nameHeuristic ? approx('team name from the common name prefix') : null, el('span', { class: 'dim' }, '  —  ' + t.wins + ' rounds won')),
+        label: el('span', null, ((d.teamFactions && d.teamFactions[t.key]) || []).map(([, f]) => C2.ui.factionIcon(f, 14)), ' ', t.name,
+          t.nameHeuristic ? approx('team name from the common name prefix') : null, el('span', { class: 'dim' }, '  —  ' + t.wins + ' rounds won')),
         cls: t.key === 'A' ? 'a' : 'b', rows,
         totals: Object.fromEntries(columns.filter(c => c.total).map(c => [c.key, c.total(tot)]))
       });

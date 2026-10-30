@@ -17,11 +17,15 @@
  * Drawn as sprites (billboards; oriented sprites and decals in the effect's frame; tails stretched
  * along the velocity), one batch per material; the blended ones tinted by the lightmap of the floor
  * under the effect (lightProbe.js); colliding elements (usePhysics) come down on the floor under them (the
- * same probe), then vanish (impactKills) or bounce (bounce) and rest. Not drawn: lights, models (debris),
- * camera shakes. */
+ * same probe), then vanish (impactKills) or bounce (bounce) and rest. Model elements (useModel: shell casings,
+ * the burnt smoke grenade, debris) draw their model (modelBatch.js) in the particle's frame, turned by angle +
+ * angleDelta x age, still once at rest. The shell casings: the weapon's shellEjectEffect at its tag_brass on
+ * every shot - a bolt-action weapon's on EV_EJECT_BRASS, its rechamber (CG_FireWeapon / CG_EjectWeaponBrass).
+ * Not drawn: lights, camera shakes. */
 import * as THREE from 'three';
 import { fetchJSON } from './data.js';
 import { loadTexture, setMap } from './mapLoader.js';
+import { entityMatrix } from './modelBatch.js';
 
 const C2 = window.C2;
 const MAX_PARTICLES = 6000;
@@ -92,6 +96,8 @@ function byteDir(b) {
 const TYPES = { Particle: 'sprite', Emitter: 'sprite', Cloud: 'sprite', OrientedParticle: 'oriented', Tail: 'tail',
   Decal: 'decal', FxRunner: 'runner' };
 const range = (v, def) => (Array.isArray(v) && v.length ? [v[0], v.length > 1 ? v[1] : v[0]] : def);
+/** pitch yaw roll: 3 values (fixed) or 6 (min xyz, max xyz) -> [min xyz, max xyz] */
+const angles = v => (Array.isArray(v) && v.length >= 3 ? (v.length >= 6 ? v.slice(0, 6) : v.slice(0, 3).concat(v.slice(0, 3))) : null);
 
 /** an element of the .efx made ready for evaluation */
 function prepare(el) {
@@ -124,6 +130,8 @@ function prepare(el) {
     accel: Array.isArray(el.acceleration) && el.acceleration.length >= 3 ? (el.acceleration.length >= 6 ? el.acceleration : el.acceleration.concat(el.acceleration)) : null,
     rotSpeed: Array.isArray(el.rotationDelta) && typeof el.rotationDelta[0] === 'number' ? range(el.rotationDelta) : null,
     shaders: fl.has('useModel') ? [] : (el.shaders || []),
+    models: fl.has('useModel') ? (el.models || []).map(m => String(m).toLowerCase()) : [],
+    angle: angles(el.angle), angleDelta: angles(el.angleDelta),
     playfx: el.playfx || null, deathfx: el.deathfx || null, emitfx: fl.has('emitFx') ? el.emitfx || null : null,
     // the camera distance the element spawns at: one value = up to that distance
     spawnRange: (r => (Array.isArray(r) && r.length ? (r.length > 1 ? [r[0], r[1]] : [0, r[0]]) : null))(el.spawnRange || el.cullrange),
@@ -149,6 +157,11 @@ export class FxPlayer {
     this.landings = new Map();            // particle seed -> its landing on the floor (colliding elements)
     this.enabled = true;
     this.muzzleOf = null;                 // (client, t) -> {pos, dir} of the weapon's muzzle, set by the view
+    this.brassOf = null;                  // (client, shot t, t) -> {pos, axis} of the weapon's tag_brass, set by the view
+    this.modelBatches = null;             // the model elements' models (modelBatch.js), set by the view
+    this.casings = true;                  // the shell casings (a switch of the view)
+    this.modelCache = new Map();          // particle seed -> its light (the model particles)
+    this._mf = new THREE.Matrix4(); this._mr = new THREE.Matrix4();
     this.cam = new THREE.Vector3();
     this.camRight = [1, 0, 0]; this.camUp = [0, 0, 1];
   }
@@ -262,6 +275,18 @@ export class FxPlayer {
     this.maxDur = out.reduce((m, e) => Math.max(m, e.end - e.t0), 0);
     // the shots, per client, for the muzzle flashes
     this.shots = Object.entries(d.shotsSeen || {}).map(([cl, ts]) => ({ cl: +cl, ts }));
+    // the shell casings (CG_EjectWeaponBrass): the weapon's shellEjectEffect on every shot, a bolt-action weapon's
+    // on EV_EJECT_BRASS (its rechamber) only
+    const EV = C2.constants.EV, FIRE = new Set([EV.FIRE_WEAPON, EV.FIRE_WEAPONB, EV.FIRE_WEAPON_LASTSHOT]);
+    this.ejects = [];
+    for (const [t, cl, ev, wi] of d.weapEvents || []) {
+      if (ev !== EV.EJECT_BRASS && !FIRE.has(ev)) continue;
+      const w = this.M.weaponName(wi, t), def = w ? doc.weapons[w.toLowerCase()] : null;
+      if (!def || !def.eject || (ev !== EV.EJECT_BRASS && def.bolt) || !this.def(def.eject)) continue;
+      this.ejects.push({ cl, t0: t, name: def.eject.toLowerCase(), key: hash(cl + 4099, t), inst: null });
+    }
+    this.ejects.sort((a, b) => a.t0 - b.t0);
+    this.ejectDur = this.ejects.reduce((m, e) => Math.max(m, this.duration(e.name)), 0);
   }
 
   batch(name, view = false) {
@@ -299,6 +324,7 @@ export class FxPlayer {
     for (const b of this.batches.values()) if (b) b.list.length = 0;
     this.count = 0;
     this.landBudget = this.simPerFrame === Infinity ? Infinity : LANDINGS_PER_FRAME;   // (the video export: all)
+    if (this.modelBatches) this.modelBatches.begin();
     if (this.enabled && this.defs) {
       this.cam.setFromMatrixPosition(camera.matrixWorld);
       const e = camera.matrixWorld.elements;
@@ -310,8 +336,10 @@ export class FxPlayer {
       for (let i = lo; i < ev.length && ev[i].t0 <= t; i++) if (ev[i].end >= t) this.effect(ev[i], t, 0);
       this.loops(t);
       this.flashes(t);
+      if (this.casings) this.ejected(t);
     }
     for (const b of this.batches.values()) if (b) this.upload(b);
+    if (this.modelBatches) this.modelBatches.end();
   }
 
   /** the looping effects: the starts of the last `dur` ms (started before the demo too: already running) */
@@ -344,6 +372,24 @@ export class FxPlayer {
         if (!name || !this.def(name)) continue;
         this.effect({ name, t0: ts[i], origin: mz.pos, axis: axisFromDir(mz.dir), seed: hash(cl, ts[i]), ground: -Infinity, view: !!mz.view }, t, 0);
       }
+    }
+  }
+
+  /** the shell casings of the shots of the last ejectDur ms; where each came out is taken once (the gun as drawn
+   *  at the shot, else as held then: brassOf) and kept */
+  ejected(t) {
+    const E = this.ejects;
+    if (!this.brassOf || !E.length) return;
+    let lo = 0, hi = E.length;
+    while (lo < hi) { const m = (lo + hi) >> 1; if (E[m].t0 < t - this.ejectDur) lo = m + 1; else hi = m; }
+    for (let i = lo; i < E.length && E[i].t0 <= t; i++) {
+      const ej = E[i];
+      if (!ej.inst) {
+        const b = this.brassOf(ej.cl, ej.t0, t);
+        if (!b) continue;
+        ej.inst = { name: ej.name, t0: ej.t0, origin: b.pos, axis: b.axis, seed: ej.key, ground: -Infinity };
+      }
+      if (t - ej.t0 <= this.duration(ej.name)) this.effect(ej.inst, t, 0);
     }
   }
 
@@ -393,12 +439,34 @@ export class FxPlayer {
           for (let j = first; j <= last; j++) this.effect({ name, t0: begin + j * EMIT_MS, origin: this.position(e, P, j * EMIT_MS, life), axis: inst.axis, seed: hash(ps, 40 + j), ground: inst.ground, light: inst.light }, t, depth + 1);
         }
       }
-      if (age >= life || !e.shaders.length) continue;
+      if (age >= life || (!e.shaders.length && !e.models.length)) continue;
       if (e.kills) { const land = this.landing(e, P, life); if (land && age >= land.t) continue; }   // gone on impact
+      if (e.models.length) { this.modelParticle(e, P, ps, age, life); continue; }
       const shader = e.shaders.length > 1 ? e.shaders[Math.floor(rnd(ps, 3) * e.shaders.length)] : e.shaders[0];
       const b = this.batch(shader, !!inst.view);
       if (b) this.sprite(b, inst, e, P, ps, age, life);
     }
+  }
+
+  /** a model element's particle: its model at the particle's position in the particle's frame, turned by
+   *  angle + angleDelta x age (pitch yaw roll: degrees, degrees / s), the turn stopped once it is at rest */
+  modelParticle(e, P, ps, age, life) {
+    if (!this.modelBatches || this.count >= MAX_PARTICLES) return;
+    const model = e.models.length > 1 ? e.models[Math.floor(rnd(ps, 61) * e.models.length)] : e.models[0];
+    const pos = this.position(e, P, age, life);
+    let tr = age;
+    if (e.physics) {
+      const land = this.landing(e, P, life);
+      if (land && land.t < Infinity) tr = Math.min(age, land.segs && land.segs.length ? land.segs[land.segs.length - 1].t1 : land.t);
+    }
+    const A = e.angle, D = e.angleDelta, a = [0, 0, 0];
+    for (let c = 0; c < 3; c++) a[c] = (A ? lerp(A[c], A[c + 3], rnd(ps, 62 + c)) : 0) + (D ? lerp(D[c], D[c + 3], rnd(ps, 65 + c)) * tr / 1000 : 0);
+    const F = P.frame;
+    this._mf.set(F.f[0], F.l[0], F.u[0], pos[0], F.f[1], F.l[1], F.u[1], pos[1], F.f[2], F.l[2], F.u[2], pos[2], 0, 0, 0, 1);
+    this._mf.multiply(entityMatrix(this._mr, 0, 0, 0, a[0], a[1], a[2]));
+    let c = this.modelCache.get(ps);
+    if (!c) { if (this.modelCache.size > 20000) this.modelCache.clear(); this.modelCache.set(ps, c = {}); }
+    if (this.modelBatches.add(model, this._mf, pos[0], pos[1], pos[2], c)) this.count++;
   }
 
   /** a particle's spawn: world position, its velocity frame and its random factors */
@@ -638,6 +706,7 @@ export class FxPlayer {
   setEnabled(on) {
     this.enabled = on;
     if (!on) for (const b of this.batches.values()) if (b) b.mesh.visible = false;
+    if (!on && this.modelBatches) { this.modelBatches.begin(); this.modelBatches.end(); }
   }
 
   dispose() {

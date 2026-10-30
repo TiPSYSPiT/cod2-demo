@@ -261,6 +261,8 @@ export class ViewModel {
     skin(G, gb);
     // the muzzle (the effect of a shot plays there: fx.js)
     rig.flash = gb[G.bones.findIndex(b => b.name === 'tag_flash')] || null;
+    // the ejection port (the shell casings: fx.js)
+    rig.brass = gb[G.bones.findIndex(b => b.name === 'tag_brass')] || null;
     group.userData.rig = rig;
     group.userData.triangles = G.triangles + (H ? H.triangles : 0);
     rig.q = new Float32Array(4 * rig.bones.length); rig.p = new Float32Array(3 * rig.bones.length);
@@ -339,6 +341,15 @@ export class ViewModel {
     this.root.updateMatrixWorld(true);
     const m = rig.flash.matrixWorld, e = m.elements;
     return { pos: [e[12], e[13], e[14]], dir: [e[0], e[1], e[2]] };
+  }
+
+  /** the ejection port (tag_brass) of the shown view model in world space -> the bone's world matrix or null */
+  brass(camera) {
+    const g = this.current, rig = g && g.userData.rig;
+    if (!rig || !rig.brass) return null;
+    this.place(camera);
+    this.root.updateMatrixWorld(true);
+    return rig.brass.matrixWorld;
   }
 
   /** the rig at the camera, with its axes */

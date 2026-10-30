@@ -2,19 +2,22 @@
  *
  * Every bullet that hits the world (DemoData.sounds3d.whiz: shooter's eye -> impact, the shooter) gets a tracer with
  * the chance cg_tracerChance - never the bullets of the player watched in first person (the game spawns none for the
- * local player). The tracer is a local entity flying from the muzzle at cg_tracerSpeed; it is drawn as a camera-facing
- * quad of cg_tracerLength behind its head, cg_tracerWidth wide - wider with the distance from the camera
- * (cg_tracerScale over cg_tracerScaleDistRange beyond cg_tracerScaleMinDist), with the additive material
- * gfx/misc/tracer (maps3d/_hud/tracer.png). The values: the server's client dvars in the demo (zPAM sets chance 1,
- * width 1, length 1000, speed 20000), else the client's defaults. The chance is decided per bullet by a hash, so a
- * seek or the export shows the same tracers. */
+ * local player). The tracer is a local entity (CG_SpawnTracer): a point leaving the muzzle at the shot at
+ * cg_tracerSpeed, removed when it reaches the impact (its life: the distance / the speed - ~30 ms for a 600 unit shot
+ * at zPAM's 20000 units/s). CG_AddLocalEntities draws the segment from that point cg_tracerLength ahead, no further
+ * than the impact, as a camera-facing quad cg_tracerWidth either side - wider with the distance from the camera
+ * (cg_tracerScale over cg_tracerScaleDistRange beyond cg_tracerScaleMinDist) - with the additive material
+ * gfx/misc/tracer (maps3d/_hud/tracer.png: s along the tracer, t across, as CG_DrawTracer maps it). The values: the
+ * server's client dvars in the demo (zPAM sets chance 1, width 1, length 1000, speed 20000), else the client's
+ * defaults. The chance is decided per bullet by a hash; a tracer is a function of the playback time, so pausing,
+ * seeking, any speed and the export show the same. Off by default (Display, Bullet tracers). */
 import * as THREE from 'three';
 import { loadTexture } from './mapLoader.js';
 
 const DEFAULTS = { cg_tracerchance: 0.4, cg_tracerwidth: 0.8, cg_tracerspeed: 4500, cg_tracerlength: 160,
   cg_tracerscale: 50, cg_tracerscalemindist: 5000, cg_tracerscaledistrange: 25000 };
 const MAX = 96;                        // tracers drawn at once
-const MAX_LIFE_MS = 3000;              // (a tracer of a long shot at the default speed: ~1 s)
+const RANGE = 8192;                    // a bullet's longest path (Bullet_Fire's trace): the longest life is RANGE / speed
 
 const hash01 = (a, b) => {
   let h = (Math.imul(a | 0, 0x9e3779b1) ^ Math.imul(b | 0, 0x85ebca77)) >>> 0;
@@ -30,10 +33,11 @@ export class Tracers {
     const P = Object.assign({}, DEFAULTS);
     for (const [, n, v] of (match.d.psHud && match.d.psHud.dvars) || []) if (n in P && Number.isFinite(Number(v))) P[n] = Number(v);
     this.p = P;
-    this.enabled = true;
+    this.enabled = false;
     const pos = new Float32Array(MAX * 4 * 3), uv = new Float32Array(MAX * 4 * 2), idx = [];
     for (let i = 0; i < MAX; i++) {
-      uv.set([0, 0, 1, 0, 0, 1, 1, 1], i * 8);
+      // (the corners: back - side, back + side, front - side, front + side; s along the tracer, t across)
+      uv.set([0, 0, 0, 1, 1, 0, 1, 1], i * 8);
       const b = i * 4;
       idx.push(b, b + 1, b + 2, b + 2, b + 1, b + 3);
     }
@@ -43,7 +47,7 @@ export class Tracers {
     this.geo.setIndex(idx);
     this.geo.setDrawRange(0, 0);
     const tex = loadTexture('maps3d/_hud/tracer.png');
-    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.colorSpace = THREE.NoColorSpace;               // (gamma-space colours, as the game blends them)
     this.mesh = new THREE.Mesh(this.geo, new THREE.MeshBasicMaterial({ map: tex, transparent: true, blending: THREE.AdditiveBlending,
       depthWrite: false, side: THREE.DoubleSide, fog: false, toneMapped: false }));
     this.mesh.frustumCulled = false;
@@ -67,10 +71,10 @@ export class Tracers {
   update(t, camera, muzzleOf, fp) {
     let n = 0;
     const P = this.p;
-    if (this.enabled && P.cg_tracerchance > 0 && this.whiz.length) {
-      const pos = this.geo.attributes.position.array, cam = camera.position;
+    if (this.enabled && P.cg_tracerchance > 0 && P.cg_tracerspeed > 0 && this.whiz.length) {
+      const pos = this.geo.attributes.position.array, cam = camera.position, speed = P.cg_tracerspeed;
       let lo = 0, hi = this.times.length;
-      while (lo < hi) { const m = (lo + hi) >> 1; if (this.times[m] < t - MAX_LIFE_MS) lo = m + 1; else hi = m; }
+      while (lo < hi) { const m = (lo + hi) >> 1; if (this.times[m] < t - RANGE * 1000 / speed) lo = m + 1; else hi = m; }
       for (let i = lo; i < this.whiz.length && this.whiz[i][0] <= t && n < MAX; i++) {
         const w = this.whiz[i];
         if (w[7] === fp || hash01(w[0], w[7] * 7919 + i) >= P.cg_tracerchance) continue;
@@ -80,10 +84,12 @@ export class Tracers {
         const dist = Math.hypot(dx, dy, dz);
         if (dist < 1) continue;
         dx /= dist; dy /= dist; dz /= dist;
-        const head = Math.min(dist, P.cg_tracerspeed * (t - w[0]) / 1000), tail = Math.max(0, head - P.cg_tracerlength);
-        if (tail >= dist) continue;
-        const ax = sx + dx * tail, ay = sy + dy * tail, az = sz + dz * tail;
-        const bx = sx + dx * head, by = sy + dy * head, bz = sz + dz * head;
+        // the point flown so far (gone at the impact) and the segment ahead of it
+        const travel = speed * (t - w[0]) / 1000;
+        if (travel >= dist) continue;
+        const ahead = travel + Math.min(dist - travel, P.cg_tracerlength);
+        const ax = sx + dx * travel, ay = sy + dy * travel, az = sz + dz * travel;
+        const bx = sx + dx * ahead, by = sy + dy * ahead, bz = sz + dz * ahead;
         // the side vector: across the tracer, facing the camera
         const mx = (ax + bx) / 2 - cam.x, my = (ay + by) / 2 - cam.y, mz2 = (az + bz) / 2 - cam.z;
         let px = dy * mz2 - dz * my, py = dz * mx - dx * mz2, pz = dx * my - dy * mx;

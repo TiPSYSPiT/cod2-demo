@@ -19,7 +19,10 @@ C2.define('events', function (C2) {
     ['timeout', 'Timeout called', true],
     ['team_join', 'Joined team', false],
     ['bomb_pickup', 'Bomb picked up', false],
-    ['bomb_drop', 'Bomb dropped', false]
+    ['bomb_drop', 'Bomb dropped', false],
+    ['pickup', 'Weapon picked up', false],
+    ['ammo_pickup', 'Ammo picked up', false],
+    ['no_grenade', 'Out of grenades', false]
   ];
 
   /**

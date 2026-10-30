@@ -12,7 +12,7 @@ other servers: three.js r170 comes with the project in `vendor/`, the fonts (Int
 Font License) in `assets/fonts/`. The site is plain HTML, CSS and JavaScript with no build step and runs on
 GitHub Pages. The game data (3D maps, textures, 2D backgrounds, sounds, player models and animations,
 particle effects) is extracted once from your own game files with Python scripts (below) and committed
-with the site (the whole site without the sample demos: ~570 MB in ~3,950 files, the largest 14 MB).
+with the site (the whole site without the sample demos: ~580 MB in ~4,000 files, the largest 14 MB).
 
 ## Features
 
@@ -20,11 +20,11 @@ with the site (the whole site without the sample demos: ~570 MB in ~3,950 files,
 |---|---|
 | Top bar | **2D / 3D** toggle (key `V`), **Match details** (chart icon: scoreboard, round by round, chat, events), **Export JSON** (file icon), **GitHub** (the source), **Open demo** |
 | Score pill | Over the view: the score at the playback time, the round and its time, map and mode; after a plant the **bomb timer** (the server's own countdown clock; also next to the bomb in 2D) |
-| Rail (left) | Icon buttons with popovers: **Layers** (names, trails 5 s, kill lines, the recording player's hits from zPAM's damage log, last known position, grenade types; in 2D the map background), **Heatmap** (2D), **Camera** and **Display** (3D: players, X-Ray, props, effects, kill feed, kill icons, head icons, shadows, sound and volume), **Match info** (final score on request, map, mode, ruleset, server, POV, length, record date, protocol, the map data details, keyboard shortcuts) |
-| Drawer (right) | Round and status; per team the side, score and alive bars, per player the weapon in hand (kill icon) and K / D up to now. Click a player to select them (highlighted in 2D and 3D, followed by the 3D cameras); the eye shows / hides a player, the chart icon opens the player's stats. Below it the kill feed & bomb: the game's own kill icons and bomb plants / defuses, the entry at the playback time highlighted, click one to jump to 2 s before it. Sections fold, the drawer hides (both remembered) |
+| Rail (left) | Icon buttons with popovers: **Layers** (names, trails 5 s, kill lines, the recording player's hits from zPAM's damage log, last known position, dropped weapons, grenade types, the map's intermission camera and hurt triggers; in 2D the map background), **Heatmap** (2D), **Camera** and **Display** (3D: players, X-Ray, props, effects, kill feed, kill icons, bullet tracers, enemy names, head icons, grenades and dropped weapons, shell casings, shadows, sound and volume), **Match info** (final score on request, map, mode, ruleset, server, POV, length, record date, protocol, the map data details; the **rules** - friendly fire, kill cam, limits, the bomb timer, antilag, zPAM's weapon limits -; zPAM's **match info** - teams, round, half, match time, timeouts; keyboard shortcuts) |
+| Drawer (right) | Round and status; per team the faction's icon, the side, score and alive bars, per player the weapon in hand (kill icon) and K / D up to now. Click a player to select them (highlighted in 2D and 3D, followed by the 3D cameras); the eye shows / hides a player, the chart icon opens the player's stats. Below it the kill feed & bomb: the game's own kill icons and bomb plants / defuses, the entry at the playback time highlighted, click one to jump to 2 s before it. Sections fold, the drawer hides (both remembered) |
 | Fullscreen | The button at the top right (or `F`; in the free-fly camera `F` stays "down"): only the view (2D or 3D) with its HUD fills the screen - top bar, score pill, rail, panel and player bar hidden; moving the mouse brings the player bar up for 2.5 s; `Esc` or the button returns |
 | Player bar (bottom) | ⏪ / ⏩ 5 s (`←` / `→`), play / pause (`Space`), the time, the timeline (rounds as segments underlined in the winner's colour, kills as ticks - one team above, the other below -, bomb plants / defuses, halftimes), range (whole match or one round), 0.5–4× speed, export range `[ ]` (`I` / `O`), **Export video** |
-| Match details | Scoreboard (score, K / A / D, K/D, HS %, TK, nade kills / deaths, opening duels won–lost, trade kills, rounds with 3+ kills, clutches won / played, in zPAM 3 demos zPAM's own score and damage count, plants / defuses per player, halves; names in their colour codes), round-by-round table with win reasons and round times from the round clock (after zPAM's strat time), per round the first blood, 3K+ rounds, the clutches (1vX) and the trades, and in zPAM demos zPAM's **round report** of the recording player (his hits with damage and hit location, how he was killed) and zPAM's **damage log** (every rifle / scoped / shotgun / grenade hit he made: victim, damage, the victim's health before it, hit location, weapon, distance; also in his stats and as hit markers on the 2D map), chat, events (joins, team changes, ready-up, halftime, timeouts, bomb) |
+| Match details | **Weapons** (every weapon of the demo with the weapon file's numbers - damage and falloff in metres, hit-location multipliers, hits to kill, RPM, clip, reload, ADS, speed - and how it was used: kills, HS %, average kill distance, users; in zPAM demos the damage model checked against zPAM's damage log), Scoreboard (score, K / A / D, K/D, HS %, TK, nade kills / deaths, opening duels won–lost, trade kills, rounds with 3+ kills, clutches won / played, in zPAM 3 demos zPAM's own score and damage count, plants / defuses per player, halves; names in their colour codes), round-by-round table with win reasons and round times from the round clock (after zPAM's strat time), per round the first blood, 3K+ rounds, the clutches (1vX) and the trades, and in zPAM demos zPAM's **round report** of the recording player (his hits with damage and hit location, how he was killed) and zPAM's **damage log** (every rifle / scoped / shotgun / grenade hit he made: victim, damage, the victim's health before it, hit location, weapon, distance; also in his stats and as hit markers on the 2D map), chat, events (joins, team changes, ready-up, halftime, timeouts, bomb; optional: weapon and ammo pickups, out of grenades); the player stats show the ping over time |
 
 **2D** – stock CoD2 has no minimap image, so the 2D view offers (Layers popover, *Background*):
 - **Render**: a top-down render of the map's BSP (textures, lightmaps, props, wall outlines),
@@ -34,7 +34,9 @@ with the site (the whole site without the sample demos: ~570 MB in ~3,950 files,
 - **Grid**.
 
 It shows players with team colours, names and view cones, trails, kill lines, death crosses, grenade
-flights and smoke / explosion circles, the bomb sites (A / B) and the planted bomb. Wheel zooms,
+flights and smoke / explosion circles, the bomb sites (A / B) and the planted bomb, the **dropped weapons** (the
+game's weapon icon, turned the way the weapon lies) and, as Layers *Map*, the map's intermission camera and its
+hurt triggers (the kill planes under the map, water, with their damage). Wheel zooms,
 dragging pans, double-click resets, `Q` / `E` (or the map tools bottom right) rotate in 90° steps. The **heatmap** button offers
 positions, kills, deaths, grenade landings, smokes and shots, filtered by team, side and player.
 
@@ -60,9 +62,14 @@ swapped for their destroyed model when the bomb explodes, the game's own **parti
 (Display popover, *Effects*: *Game* = grenade explosions by the surface hit, smoke grenades, bullet impacts by
 bullet type and surface, scripted effects, the map's ambient smoke, dust and fires when the server ran
 them (stock servers; zPAM's rules switch them off), every shot's muzzle flash at the weapon's muzzle and the game's
-**bullet tracers** (as the server set them: zPAM gives every bullet one, 1000 units long at 20000 units/s), smoke
+**bullet tracers** (Display: *Bullet tracers*, off by default; as the server set them - zPAM gives every bullet one,
+1000 units long at 20000 units/s: a streak flying from the muzzle, gone at the impact within a few frames), smoke
 and dust lit by the map's baked light under them, debris landing on the floor and bouncing; *Simple* = marker
-clouds and flash spheres), the game's **head icons** over the players (the team icon the server gives them, the talk
+clouds and flash spheres), the effects' **models** - the **shell casings** each shot ejects at the gun's ejection port
+(bolt-action rifles and the shotgun: when the bolt is worked; as in the game only near the camera), the burnt smoke
+grenade, debris -, the **grenades in flight** (the game's grenade model, spinning as the demo has it) and the
+**dropped weapons** on the ground (Display: *Grenades and dropped weapons*, *Shell casings*; the effects' dynamic
+lights are not drawn - their falloff is made in the game's renderer, not known), the game's **head icons** over the players (the team icon the server gives them, the talk
 balloon while a teammate talks in the voice chat, also as a speaker in the panel; in first person only what that player
 sees), the players' and corpses' **shadows** (Display popover: *Shadows*; soft shadows
 along the map's sun, as the game's character shadows - the world's own shadows are in its lightmaps;
@@ -73,8 +80,10 @@ reloads, bolt / pump actions, the weapon switch, the grenade's pin pull and thro
 empty clicks; footsteps, jumps and landings by surface with the gear rattle, foliage, fall damage; bullet
 impacts on the world and on players, near-miss whizzes at the camera, grenade bounces and explosions, smoke;
 the looping sounds of entities (the planted bomb's ticking, a firing MG42 / .30 cal, map fires); the server's
-sound-alias events (bomb plant / defuse / explosion, quick-chat voices, zPAM's switch and drop sounds) and the
-recording player's local sounds (announcer, hit marker, breathing). The player watched in first person hears
+sound-alias events (bomb plant / defuse / explosion, quick-chat voices, zPAM's switch and drop sounds), weapon and
+ammo pickups, and the recording player's local sounds (announcer, hit marker; in his first person his breath while
+he holds it on a scope - breathing in, the heartbeat, breathing out or gasping after 4.5 s - with the other sounds
+turned down as the game does). The player watched in first person hears
 his own sounds as the game plays them for the local player (the `_plr` variants, at the ear). zPAM demos use
 zPAM's alias changes (its silenced stock switch sound). One alias variant by probability (the variants of the
 map by the engine's loadspec rule), its volume / pitch ranges, the distance falloff along the alias's curve (the game's
@@ -87,7 +96,7 @@ the camera; pausing or seeking cuts the sounds, the pitch follows the speed up t
 | Orbit | Left drag rotates, right drag pans, wheel zooms. Click a player to select them |
 | Free fly | Drag to look, `W A S D` to move, `R` / `F` for up / down, `Shift` for fast, wheel sets the speed |
 | Follow player | Travels with the selected player (or the POV's followed player). Drag to turn around them |
-| First person | The selected player's eyes with their view angles, the **weapon in their hands**, the game's **crosshair** and the game's **HUD** (Camera popover: *Weapon*, *First person HUD*) |
+| First person | The selected player's eyes with their view angles, the **weapon in their hands**, the game's **crosshair** and the game's **HUD** (Camera popover: *Weapon*, *First person HUD*), the game's **camera shake** (near the bomb's explosion, on a firing MG42; Camera popover) and the flinch when hit; hold `Tab` for the game's **scoreboard** |
 
 **First-person weapon**: the game's own view models - the gun of the weapon file in the hands the server
 gave the player (American, British, Russian, German sleeves) - animated with the weapon's own view animations
@@ -95,7 +104,10 @@ as the demo drives them: idle, fire / last shot, rechamber, reload (also empty, 
 the bolt-action and shotgun reloads), raise / put away (quick for a grenade throw), melee, the grenade's pin and
 throw, aiming down the sights. The gun kick, the sway when turning and the bob (the gun's and the camera's) use
 the game's own formulas with the weapon file's numbers (the kick's random part is fixed per shot, so seeking shows
-the same); the idle sway and the stance and movement offsets follow the weapon file's numbers. Aiming down the sights zooms as the game does (the weapon's ADS fov), the sniper rifles show
+the same); the idle sway and the stance and movement offsets follow the weapon file's numbers; the recording player's
+scope sways as the game sways the view while aiming (calm while he holds his breath, faster after a long hold).
+In third person a player's gun goes to the left hand during grenade throws and rifle reloads, as the animations'
+notetracks tell the game. Aiming down the sights zooms as the game does (the weapon's ADS fov), the sniper rifles show
 their scope overlay; the view flash at the muzzle on every shot. The crosshair is the game's: the weapon's
 reticle images at the spread of the moment (stance, movement, shots), shrinking and fading while the sights come
 up, hidden during reloads, switches and on a mounted MG, green while it is on a teammate (as in CoD2, which has no
@@ -115,14 +127,25 @@ messages above the compass - killer, weapon or headshot / melee / fall / suicide
 colours, 5 s and fading - and "You killed" / "Killed by" in the centre), **Ammo** (clip and reserve, red when
 low, the weapon name after a switch), **Grenades** (frag and smoke counts with the faction's icons) and **Server
 HUD** (off by default: everything else the server shows - zPAM's players left, sniper / shotgun info and
-round texts, the clocks, the game messages). zPAM demos use zPAM's HUD layout (smaller ammo counter, grenades
-side by side), the others the stock game's. Exact for the recording player (the demo's player state); with
+round texts, the clocks, the game messages), **Low health** (the red screen edges pulsing after a hit), **Health
+bar** (off: the game hides it, cg_drawHealth 0), **Damage direction** (the arrows to where a hit came from and the
+short red flash), **Stance** (the stance icon after a change, "Prone Blocked"; stock HUD only, as in the game),
+**Hints** (plant / defuse the bomb, pick up or swap a weapon, mantle - with the game's default keys),
+**Scoreboard** (the game's scoreboard while `Tab` is held and at the intermission, from the scores the server sent;
+zPAM's own scoreboard while the recording player had it open) and **zPAM match info** (as the recording player
+had it). zPAM demos use zPAM's HUD layout (smaller ammo counter, grenades side by side), the others the stock
+game's. Exact for the recording player (the demo's player state); with
 another player in first person the compass, the kill feed and the team score. Part of the video export.
 
 **Video export** (2D and 3D): MP4 (H.264 via WebCodecs) or GIF of a round, a kill or the `[ ]` range, with
 overlays (names, kill feed, score); rendered offline frame by frame. The 3D MP4 carries the game's sounds as
 heard at the camera of each frame (rendered offline, AAC - Opus where AAC is missing); where the browser
 cannot encode H.264 the WebM fallback records the live sound; GIFs are silent.
+
+**Names over the players** (3D): Layers *Names* shows them; the enemies' names only with Display *Enemy names*
+(off by default - the game never shows an enemy's name: only a teammate's under the crosshair); enemies are those of
+the player in first person, else of the selected player, else of the player the demo follows. X-Ray *Player + name*
+names everyone.
 
 **Player names**: the colour codes (`^1`, also CoD2x / zPAM's runs like `^^00`) are removed on the 2D and 3D
 maps, in the kill feed and the panels; the scoreboard shows each name in its colours.
@@ -177,7 +200,7 @@ py tools/serve.py
 
 Open <http://127.0.0.1:8765/> and drop a `.dm_1` file on the page (or use **Open demo**).
 `tools/serve.py` is `python -m http.server` without browser caching (plain `py -m http.server 8765`
-works too, but may keep old files after an update: reload with `Ctrl+F5`). Tested with Chrome 156, Edge 156 and Firefox 158 (Safari not yet); any
+works too, but may keep old files after an update: reload with `Ctrl+F5`). Tested with Chrome 156, Edge 156 and Firefox 159 (Safari not yet); any
 browser with WebGL 2 and ES modules should work.
 
 ## Regenerate the map data (Python)
@@ -225,6 +248,7 @@ py tools/export/hud_export.py --game "C:/Games/Call of Duty 2"
 | `--no-icons` | skip the kill icons |
 | `--icons-only` | only the kill icons (`assets/killfeed/`: each weapon's `killIcon`, mirrored where the weapon file sets `flipKillIcon` - as the game's kill feed shows it) |
 | `--grid-only` | only add the light grid (`lightgrid.bin`), its collision (`collision.bin`), the sun keys and the props' lighting keys to maps already exported |
+| `--entities-only` | only add the hurt triggers (`trigger_hurt`: boxes and damage) to the `entities.json` of maps already exported |
 
 Per map it writes into `maps3d/<map>/`: `world.bin/json` (BSP triangle soups: positions, normals, vertex
 colours, UVs, lightmap UVs, indices; one draw group per material + lightmap with its blend / alpha test),
@@ -241,20 +265,23 @@ maps' colour), the index
 `maps3d/index.json`, the 2D registry `assets/maps/backgrounds.js` and the kill icons in `assets/killfeed/`.
 All 32 maps (15 stock + 17 zPAM map pack) take about 8 minutes and ~470 MB (+ ~51 MB shared textures).
 `sound_export.py` writes
-`maps3d/_sound/` (746 aliases + zPAM's 3 redefinitions, ~28 MB, 22 kHz mono WAV; no map ambience / music). `characters_export.py` writes
-`maps3d/_characters/` (116 body / head / helmet models skinned to their skeletons and the 35 weapons'
-world models, ~9.5 MB, and the 280 animations of the multiplayer anim tree by the index the demo sends,
-~6 MB; textures into
+`maps3d/_sound/` (746 aliases + zPAM's 3 redefinitions, ~28 MB, 22 kHz mono WAV, the volume falloff curves and
+hold_breath.shock's channel volumes; no map ambience / music). `characters_export.py` writes
+`maps3d/_characters/` (116 body / head / helmet models skinned to their skeletons, the 35 weapons' world models,
+the 7 grenade / rocket projectile models and the 58 models of the effects' model elements - shell casings, the
+burnt smoke grenade, debris -, ~9.9 MB, and the 280 animations of the multiplayer anim tree by the index the demo
+sends, with their gun-hand notetracks, ~6 MB; textures into
 `maps3d/_textures/`). Without it the 3D view falls back to capsules. `fx_export.py` writes
 `maps3d/_fx/effects.json` (all 380 effects of `fx/` with their curves, the impact tables, the weapons'
-flash / explosion effects, 102 effect materials; ~2.3 MB, textures into `maps3d/_textures/`); without it
+flash / explosion / shell eject effects and which are bolt-action, 102 effect materials; ~2.3 MB, textures into `maps3d/_textures/`); without it
 the 3D view draws the marker clouds. `viewmodels_export.py` writes `maps3d/_characters/viewmodels.json + .bin`
 (the 44 weapons' gun models and the 9 hands models, ~3.4 MB, with each weapon file's view animation names, its
 numbers for the motion, the ADS and the crosshair, the reticle and scope overlay images) and `vanims.json + .bin`
 (the 309 view animations, ~2.1 MB); without it first person shows no weapon. `hud_export.py` writes
-`maps3d/_hud/` (`hud.json`: both HUD menu layouts - stock and zPAM - as parsed from `ui_mp/hud.menu`, the six
-fonts' glyph tables, the English text of 1720 localized strings, the weapon files' HUD fields; and 156 HUD
-images as PNG; ~2.6 MB); without it first person shows no HUD. Display names of new maps go into
+`maps3d/_hud/` (`hud.json`: both HUD menu layouts - stock and zPAM - as parsed from `ui_mp/hud.menu`, zPAM's
+scoreboard menu, the six fonts' glyph tables, the English text of 1746 localized strings, the weapon files' HUD
+fields and combat numbers, the default key binds, the game type and map names; and 205 HUD images as PNG -
+hints, stance, damage direction, scoreboard flags and status icons included; ~2.8 MB); without it first person shows no HUD. Display names of new maps go into
 `assets/maps/maps.js`.
 
 `tools/gen_tables.py` regenerates `js/c2/parser/tables.js` (the Huffman code table built from the

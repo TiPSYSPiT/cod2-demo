@@ -151,6 +151,7 @@ export class Cameras {
     if (this.mode === 'fp') {
       cam.position.copy(target.eye);
       cam.lookAt(target.eye.clone().add(forward(target.yaw, target.pitch)));
+      if (target.roll) cam.rotateZ(target.roll * Math.PI / 180);         // (the camera shake's roll)
       return true;
     }
     return false;

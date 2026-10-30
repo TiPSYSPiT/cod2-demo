@@ -111,7 +111,7 @@ export class CharacterLibrary {
     let clip = null;
     if (a) {
       const B = this.animsBuf;
-      clip = { name, frames: a.frames, keyFrames: a.keyFrames, rate: a.rate || 30, loop: a.loop, speed: a.speed || 0, tracks: a.tracks.map(t => ({
+      clip = { name, frames: a.frames, keyFrames: a.keyFrames, rate: a.rate || 30, loop: a.loop, speed: a.speed || 0, gunhand: a.gunhand || null, tracks: a.tracks.map(t => ({
         bone: this.animsInfo.bones[t[0]],
         rf: t[2] ? new Uint16Array(B, t[1], t[2]) : null, rq: t[2] ? new Float32Array(B, t[3], t[2] * 4) : null,
         tf: t[5] ? new Uint16Array(B, t[4], t[5]) : null, tv: t[5] ? new Float32Array(B, t[6], t[5] * 3) : null })) };
@@ -190,14 +190,15 @@ export class Character {
     this.triangles += t.triangles;
   }
 
-  /** the weapon in the right hand: its world model (origin = the grip) on the body's tag_weapon_right;
+  /** the weapon in the hand: its world model (origin = the grip) on the body's tag_weapon_right, or on
+   *  tag_weapon_left while an anim_gunhand notetrack has put it there (left: CG_CreateDObj's cg_weaponleftbone);
    *  null / unknown removes it. One mesh per model, kept for when the player switches back. */
-  setWeapon(model) {
-    if (model === this.weaponKey) return;
-    this.weaponKey = model;
+  setWeapon(model, left = false) {
+    if (model === this.weaponKey && left === this.weaponLeft) return;
+    this.weaponKey = model; this.weaponLeft = left;
     if (this.weapon) this.weapon.visible = false;
     this.weapon = null;
-    const hand = this.byName.get('tag_weapon_right');
+    const hand = this.byName.get(left ? 'tag_weapon_left' : 'tag_weapon_right') || this.byName.get('tag_weapon_right');
     if (!model || !hand) return;
     this.weapons = this.weapons || new Map();
     let mesh = this.weapons.get(model);
@@ -210,10 +211,13 @@ export class Character {
         // the muzzle: the model's tag_flash in its bind pose (fx.js plays the flash there)
         const k = t.bones.findIndex(b => b.name === 'tag_flash');
         if (k >= 0) mesh.userData.flash = new THREE.Vector3().setFromMatrixPosition(t.bindWorld[k]);
+        // the ejection port: tag_brass (fx.js plays the shell eject effect in its frame)
+        const kb = t.bones.findIndex(b => b.name === 'tag_brass');
+        if (kb >= 0) mesh.userData.brass = t.bindWorld[kb];
       }
       this.weapons.set(model, mesh);
     }
-    if (mesh) { mesh.visible = true; this.weapon = mesh; }
+    if (mesh) { if (mesh.parent !== hand) hand.add(mesh); mesh.visible = true; this.weapon = mesh; }
   }
 
   /** reset every body bone to the bind pose */

@@ -185,6 +185,15 @@ export class Match {
     return e;
   }
 
+  /** a team's faction at t (DemoData.teamFactions: from the player models) -> 'american' | 'british' | 'russian' | 'german' | null */
+  factionAt(key, t) {
+    const F = this.d.teamFactions && this.d.teamFactions[key];
+    if (!F || !F.length) return null;
+    let f = F[0][1];
+    for (const [ft, name] of F) if (ft <= t) f = name; else break;
+    return f;
+  }
+
   /** the planted bomb's timer at t -> {left (ms), heuristic} or null (no bomb ticking) */
   bombTimer(t) {
     const e = this.bombAt(t);
@@ -213,6 +222,29 @@ export class Match {
     const name = this.weaponName(index, t);
     return name ? C2.weapons.label(name) : '#' + index;
   }
+}
+
+/** an entity's position and angles at t from one of its trajectories (collect.js trajectory(): pos and apos), as
+ *  BG_EvaluateTrajectory: TR_STATIONARY / INTERPOLATE the base, TR_LINEAR base + delta x dt, TR_LINEAR_STOP the same
+ *  up to trTime + trDuration, TR_GRAVITY with the gravity on z -> out [x, y, z, pitch, yaw, roll] */
+export function evalTrajectory(s, t, out = new Array(6)) {
+  const lin = (type, time, dur) => {
+    if (type !== 2 && type !== 3 && type !== 5) return 0;
+    let tt = t;
+    if (type === 3 && dur > 0 && tt > time + dur) tt = time + dur;
+    return (tt - time) / 1000;
+  };
+  const dp = lin(s[1], s[0], s[16]), da = lin(s[9], s[8], s[17]);
+  out[0] = s[2] + s[5] * dp; out[1] = s[3] + s[6] * dp; out[2] = s[4] + s[7] * dp;
+  if (s[1] === 5) out[2] -= 0.5 * CFG.GRAVITY * dp * dp;
+  out[3] = s[10] + s[13] * da; out[4] = s[11] + s[14] * da; out[5] = s[12] + s[15] * da;
+  return out;
+}
+
+/** the trajectory of an entity's list that holds at t: the last one seen by then (s[18]), else the first */
+export function trajectoryAt(segs, t) {
+  for (let i = segs.length - 1; i > 0; i--) if (segs[i][18] <= t) return segs[i];
+  return segs[0] || null;
 }
 
 /** grenade flight path from the trajectory segments: points [t, x, y, z] every 40 ms */

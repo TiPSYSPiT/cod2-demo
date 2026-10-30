@@ -500,6 +500,8 @@ C2.define('build', function (C2) {
 
     // grenades
     const grenades = [];
+    // a trajectory (collect.js trajectory()) on the demo's time line
+    const relTraj = s => [s[0] - t0, s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8] - t0, s[9], s[10], s[11], s[12], s[13], s[14], s[15], s[16], s[17], s[18] - t0];
     const detOut = d => ({ t: rel(d.t), x: d.x, y: d.y, z: d.z, event: d.event, surf: d.surf, dir: d.dir, start: null });
     const onMainMap = t => t != null && t >= mapWindow.start && t < mapWindow.end;
     for (const key of col.grenadeOrder) {
@@ -517,7 +519,7 @@ C2.define('build', function (C2) {
       grenades.push({
         entity: g.entity, weapon: wName, kind: kind || 'other',
         launch: g.launch ? rel(g.launch) : null, first: rel(g.first), last: rel(g.last),
-        segments: g.segments.map(s => [s[0] - t0, s[1], s[2], s[3], s[4], s[5], s[6], s[7]]),
+        segments: g.segments.map(relTraj),
         detonation: det, thrower: null
       });
     }
@@ -606,12 +608,63 @@ C2.define('build', function (C2) {
       isSearchAndDestroy: isSD
     };
 
+    // weapon / ammo pickups and out-of-grenade attempts (the item is the weapon of that index, CS 7)
+    for (const [ta, cl, ev, parm] of col.itemEvents) {
+      const t = rel(ta);
+      if (!onMainMap(t) || cl < 0 || cl >= 64) continue;
+      const w = parm ? weaponName(parm, t) : null, label = w ? C2.weapons.label(w) : null;
+      const at = { round: C2.events.roundAt(rounds, t), phase: phaseAt(t) };
+      if (ev === K.EV.ITEM_PICKUP && label) events.push(Object.assign({ t, type: 'pickup', text: playerName(cl) + ' picked up ' + label, clients: [cl], weapon: w }, at));
+      else if (ev === K.EV.AMMO_PICKUP && label) events.push(Object.assign({ t, type: 'ammo_pickup', text: playerName(cl) + ' picked up ammo (' + label + ')', clients: [cl], weapon: w }, at));
+      else if (ev === K.EV.EMPTY_OFFHAND) events.push(Object.assign({ t, type: 'no_grenade', text: playerName(cl) + ' tried to throw a grenade: none left', clients: [cl] }, at));
+    }
+    events.sort((a, b) => a.t - b.t);
     const data = {
       format: 'cod2-demo3d/1',
       meta, serverinfo, systeminfo, warnings, diagnostics,
       teams: teamList, players, rounds, initialScore: R.initialScore, halfInfo, halftimes: R.halftimes,
       phases: R.phases, match: { start: R.matchStart, end: R.matchEnd, endSource: R.matchEndSource, decided: R.matchDecided, winRule: R.winRule }, swaps: teams.swaps,
       kills, events, chat, console: consoleLines,
+      // the game's scoreboard over time (the "b" updates): client -> {t, score, ping, deaths, status} (typed)
+      scoreboardTrack: (() => {
+        const tr = {};
+        for (const sb of col.scoreboards) {
+          const t = rel(sb.t);
+          if (!onMainMap(t)) continue;
+          for (const e of sb.entries) {
+            if (e.client == null || e.client < 0 || e.client >= 64) continue;
+            const o = tr[e.client] || (tr[e.client] = { t: [], score: [], ping: [], deaths: [], status: [] });
+            const n = o.t.length;
+            if (n && o.score[n - 1] === e.score && o.ping[n - 1] === e.ping && o.deaths[n - 1] === e.deaths && o.status[n - 1] === e.statusIcon) continue;
+            o.t.push(t); o.score.push(e.score | 0); o.ping.push(e.ping | 0); o.deaths.push(e.deaths | 0); o.status.push(e.statusIcon | 0);
+          }
+        }
+        for (const o of Object.values(tr)) {
+          o.t = Int32Array.from(o.t); o.score = Int16Array.from(o.score); o.ping = Uint16Array.from(o.ping);
+          o.deaths = Int16Array.from(o.deaths); o.status = Uint8Array.from(o.status);
+        }
+        return tr;
+      })(),
+      // zPAM's client dvars about the match (_matchinfo.gsc, _weapon_limiter.gsc, _menu_scoreboard.gsc): the last value
+      // of each and when it came, plus the time series of the ones that change (null without zPAM)
+      zpamInfo: (() => {
+        const last = {};
+        let any = false;
+        const KEEP = /^(ui_matchinfo_|g_teamname_|ui_timeout_info$|ui_allow_|ui_weapons_usedby_|ui_sniper_info$|ui_shotgun_info$|ui_quicksettings_|ui_scoreboard_line_19$|ui_playersleft_list$)/;
+        for (const c of commands) {
+          if (c.d.verb !== 'v' || !c.d.dvars) continue;
+          for (const [k, v] of c.d.dvars) {
+            const key = k.toLowerCase();
+            if (!KEEP.test(key)) continue;
+            any = true;
+            const o = last[key] || (last[key] = { value: v, t: c.t, values: [] });
+            o.value = v; o.t = c.t;
+            if (!o.values.includes(v) && o.values.length < 24) o.values.push(v);
+          }
+        }
+        return any && zpamVersion ? last : null;
+      })(),
+
       // the scripts' head icons (config strings 31..45: CS 30 + the entity's iHeadIcon) -> material name
       headIcons: (() => { const out = {}; for (let i = 1; i <= 15; i++) { const n = cs.get(30 + i); if (n) out[i] = n.toLowerCase(); } return out; })(),
       // zPAM's damage log of the recording player (client dvars pam_damage_debug .. _debug4, _round_report.gsc:
@@ -661,6 +714,30 @@ C2.define('build', function (C2) {
         return out;
       })(),
       corpses: col.corpses.map(c => Object.assign({}, c, { t0: rel(c.t0), t1: rel(c.t1) })).filter(c => onMainMap(c.t0)),
+      // the game's scoreboard as the server sent it ("b": CG_ParseScores - the teams' scores, per client score, ping,
+      // deaths, status icon): [{t, axis, allies, e: [client, score, ping, deaths, status, ...]}], a new one when it changed
+      scores: (() => {
+        const out = [];
+        let last = '';
+        for (const sb of col.scoreboards) {
+          const t = rel(sb.t);
+          if (!onMainMap(t)) continue;
+          const e = [];
+          for (const x of sb.entries) if (x.client != null && x.client >= 0 && x.client < 64) e.push(x.client, x.score | 0, x.ping | 0, x.deaths | 0, x.statusIcon | 0);
+          const key = sb.axis + '|' + sb.allies + '|' + e.join(',');
+          if (key === last) continue;
+          last = key;
+          out.push({ t, axis: sb.axis | 0, allies: sb.allies | 0, e: Int16Array.from(e) });
+        }
+        return out;
+      })(),
+      // the scripts' earthquakes (the camera shake): [t, scale, duration ms, radius, x, y, z]
+      earthquakes: col.earthquakes.map(r => [rel(r[0])].concat(r.slice(1))).filter(r => onMainMap(r[0])),
+      // the mounted MGs' shots [t, x, y, z] (each shakes the camera near the gun)
+      mgFire: col.mgFire.map(r => [rel(r[0]), r[1], r[2], r[3]]).filter(r => onMainMap(r[0])).sort((a, b) => a[0] - b[0]),
+      // the items on the ground (dropped weapons): {num, weapon, t0, t1 (last seen), segments (trajectories)}
+      items: col.items.map(r => ({ num: r.num, weapon: weaponName(r.index, rel(r.t0)), t0: rel(r.t0), t1: rel(r.t1), segments: r.segments.map(relTraj) }))
+        .filter(r => r.weapon && onMainMap(r.t0)),
       bombTrack,
       // the mounted MGs' aim (js/view3d/view3d.js): [{x, y, z, yaw, t, pitch, aimYaw}] - pitch / aimYaw relative to the
       // stand, samples on the main map
@@ -698,6 +775,41 @@ C2.define('build', function (C2) {
           else if (r[1] === 12) names.push('player_out_of_ammo');
           for (const name of names) if (name) events.push([t, String(name).toLowerCase(), r[4], r[5], r[6], r[7]]);
         }
+        // the breath of the player whose view the demo holds (CG_AddPlayerWeapon: his local sounds - heard only in
+        // his first person, e[6] / l[7] = 1): holding it (pm_flags 0x4000) plays weap_sniper_breathin unless a breath
+        // sound played within player_breath_snd_delay (1 s), then weap_sniper_heartbeat loops once the breath-in has
+        // ended (l[8]: the alias whose length it waits for); letting go plays weap_sniper_breathout (the same delay),
+        // or weap_sniper_breathgasp after more than player_breath_hold_time (4.5 s). holds: [t0, t1, client] (the
+        // sounds ducked by hold_breath.shock meanwhile)
+        const holds = [], breathLoops = [];
+        {
+          const W = col.psWeapon;
+          let start = null, cl = -1, sndUntil = -Infinity, breathIn = false;
+          const close = (t, sound) => {
+            if (sound) {
+              if (t - start > 4500) events.push([rel(t), 'weap_sniper_breathgasp', 0, 0, 0, cl, 1]);
+              else if (t >= sndUntil) { events.push([rel(t), 'weap_sniper_breathout', 0, 0, 0, cl, 1]); sndUntil = t + 1000; }
+            }
+            if (onMainMap(rel(start))) {
+              holds.push([rel(start), rel(t), cl]);
+              breathLoops.push([rel(start), rel(t), 'weap_sniper_heartbeat', 0, 0, 0, cl, 1, breathIn ? 'weap_sniper_breathin' : null]);
+            }
+            start = null;
+          };
+          for (let i = 0; i < W.t.length; i++) {
+            const t = W.t[i], c = W.client[i];
+            // another player's view, or a gap: what was held ends quietly
+            if (start != null && (c !== cl || t - W.t[i - 1] > 1000)) close(W.t[i - 1], false);
+            cl = c;
+            if (W.hold[i] && start == null) {
+              start = t;
+              breathIn = t >= sndUntil;
+              if (breathIn) { events.push([rel(t), 'weap_sniper_breathin', 0, 0, 0, cl, 1]); sndUntil = t + 1000; }
+            } else if (!W.hold[i] && start != null) close(t, true);
+          }
+          if (start != null) close(W.t[W.t.length - 1], false);
+        }
+        for (let i = events.length - 1; i >= 0 && events[i][6]; i--) if (!onMainMap(events[i][0])) events.splice(i, 1);
         events.sort((a, b) => a[0] - b[0]);
         const local = [];
         for (const c of commands) {
@@ -710,10 +822,11 @@ C2.define('build', function (C2) {
           const t0 = rel(r[0]), name = csAt(r[2]);
           if (name && onMainMap(t0)) loops.push([t0, rel(r[1]) + 50, name.toLowerCase(), r[3], r[4], r[5], r[6]]);
         }
+        loops.push(...breathLoops);
         loops.sort((a, b) => a[0] - b[0]);
         const whiz = col.whizEvents.map(r => [rel(r[0]), r[1], r[2], r[3], r[4], r[5], r[6], r[7]]).filter(r => onMainMap(r[0]));
         whiz.sort((a, b) => a[0] - b[0]);
-        return { events, local, loops, whiz };
+        return { events, local, loops, whiz, holds };
       })(),
       shotsSeen: Object.fromEntries([...col.shots].map(([cl, a]) => [cl, a.map(rel)])),
       // the first-person weapon (viewanim.js): the recording player's weapon per snapshot (player state),
@@ -722,7 +835,9 @@ C2.define('build', function (C2) {
         const W = col.psWeapon, T = { t: Int32Array.from(W.t, rel) };
         const typed = { client: Int8Array, anim: Uint16Array, state: Uint8Array, weapon: Uint8Array, offhand: Uint8Array, ads: Float32Array,
           spread: Float32Array, viewmodel: Uint8Array, bob: Uint8Array, vx: Float32Array, vy: Float32Array, vz: Float32Array,
-          ground: Uint16Array, vh: Float32Array, breath: Float32Array, fuse: Int32Array, friend: Uint8Array,
+          ground: Uint16Array, vh: Float32Array, breath: Float32Array, hold: Uint8Array, fuse: Int32Array, friend: Uint8Array,
+          pmf: Int32Array, hint: Int16Array, hintStr: Int16Array, mantle: Int32Array, maxHealth: Int16Array, dmgEv: Int32Array,
+          dmgYaw: Uint8Array, dmgPitch: Uint8Array, dmgCount: Int16Array,
           pmType: Uint8Array, health: Int16Array, ammoRef: Uint32Array, objRef: Uint32Array, hudRef: Uint32Array,
           speed: Int16Array, vht: Int8Array };
         for (const [k, A] of Object.entries(typed)) T[k] = A.from(W[k]);
@@ -739,10 +854,11 @@ C2.define('build', function (C2) {
           return { start, data };
         };
         const T = col.psTables;
-        // the config strings the HUD reads: north yaw (11), localized strings (1310 + i: HUD element texts),
-        // materials (1566 + i: HUD element and objective images); the client dvars the server sets (zPAM's
-        // HUD menus show some) and the game / bold messages (the lower left and the centre message windows)
-        const want = i => i === 11 || (i >= 1310 && i < 1694);
+        // the config strings the HUD reads: north yaw (11), the scoreboard's status icons (22 + i), localized strings
+        // (1278 + i: the cursor hints' texts, HUD element texts), materials (1566 + i: HUD element and objective images);
+        // the client dvars the server sets (zPAM's HUD menus show some) and the game / bold messages (the lower left and
+        // the centre message windows)
+        const want = i => i === 11 || (i >= 22 && i < 30) || (i >= 1278 && i < 1694);
         const init = {};
         for (const [i, v] of csInit) if (want(i)) init[i] = v;
         return { t0, ammo: flat(T.ammo), obj: flat(T.obj), hud: flat(T.hud),
@@ -761,6 +877,21 @@ C2.define('build', function (C2) {
       },
       weaponLists
     };
+    // the teams' factions (the player models: playerbody_american / _british / _russian / _german ...): team key ->
+    // [[t, faction], ...] - a team's faction changes when it swaps sides
+    data.teamFactions = (() => {
+      const out = { A: [], B: [] };
+      const byClient = new Map(data.players.map(p => [p.client, p.team]));
+      const ev2 = [];
+      for (const [cl, list] of Object.entries(data.playerModels || {})) {
+        const team = byClient.get(+cl);
+        if (team !== 'A' && team !== 'B') continue;
+        for (const m of list) { const f = /playerbody_(american|british|russian|german)/.exec(m.body || ''); if (f) ev2.push([m.t, team, f[1]]); }
+      }
+      ev2.sort((a, b) => a[0] - b[0]);
+      for (const [t, team, f] of ev2) { const arr = out[team]; if (!arr.length || arr[arr.length - 1][1] !== f) arr.push([t, f]); }
+      return out;
+    })();
     // opening duels, trades, multikills, clutches, zPAM's round report (combat.js)
     C2.combat.analyze(data);
     return data;

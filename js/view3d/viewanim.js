@@ -413,6 +413,72 @@ export class ViewAnimator {
     return { pos: cur.pos, rot: cur.rot, idle };
   }
 
+  /** the recording player's scope sway on the camera (BG_CalculateViewAngles, its idle part - client-side, not in
+   *  the demo's view angles): while aiming down the sights the weapon's idle amount (hip / ADS by the ADS fraction) x
+   *  the stance factor (idleCrouchFactor / idleProneFactor, followed at 0.5 / s while aiming) x the ADS fraction x
+   *  holdBreathScale, its phase advancing by the idle speed x holdBreathScale (holding the breath calms it, the gasp
+   *  after a long hold speeds it up); pitch / yaw += sin(T x 0.001 / 0.0007) x amount / 100. Simulated over the last
+   *  2.5 s in 1/60 s steps (the same t gives the same sway after a seek). entryOf: weapon name -> view model entry ->
+   *  [pitch, yaw] (degrees) or null - another player's holdBreathScale is not in the demo */
+  viewSway(cl, t, entryOf) {
+    const M = this.M, W = this.rec && this.rec.W;
+    const ri = this.recorderRow(cl, t);
+    if (ri < 0) return null;
+    const e = entryOf(M.weaponName(W.weapon[ri], t)), P = e && e.params;
+    if (!P || !M.psLerp(ri, 'ads', t)) return null;                   // (none without aiming: the sway x the ADS fraction)
+    const v = k => P[k] || 0, STEP = 1000 / 60, SPAN = 2500;
+    const idleOf = ads => (P.aimDownSight ? [(v('adsIdleAmount') - v('hipIdleAmount')) * ads + v('hipIdleAmount'), (v('adsIdleSpeed') - v('hipIdleSpeed')) * ads + v('hipIdleSpeed')]
+      : v('hipIdleAmount') ? [v('hipIdleAmount'), v('hipIdleSpeed')] : [80, 1]);
+    let tm = Math.floor((t - SPAN) / STEP) * STEP, factor = null, phase = 0, ads = 0, breath = 1, amt = 0;
+    while (true) {
+      const next = Math.min(t, tm + STEP), dt = (next - tm) / 1000;
+      const i = this.gunInputs(cl, next, null, W, P), r = M.psRow(cl, next);
+      ads = i.ads || 0; breath = r >= 0 ? M.psLerp(r, 'breath', next) : 1;
+      const tf = i.prone ? (P.idleProneFactor != null ? P.idleProneFactor : 1) : i.crouch ? (P.idleCrouchFactor != null ? P.idleCrouchFactor : 1) : 1;
+      const [a, sp] = idleOf(ads);
+      amt = a;
+      if (factor == null) { factor = tf; phase = tm * sp; }
+      else {
+        if (ads !== 0 && factor !== tf) factor = factor < tf ? Math.min(tf, factor + dt * 0.5) : Math.max(tf, factor - dt * 0.5);
+        phase += dt * breath * 1000 * sp;
+      }
+      if (next >= t) break;
+      tm = next;
+    }
+    const k = factor * amt * ads * breath * 0.01;
+    return k ? [Math.sin(phase * 0.001) * k, Math.sin(phase * 0.0007) * k] : null;
+  }
+
+  /** the recording player's flinch when hit (CG_DamageFeedback + BG_CalculateViewAngles): the kick is the damage x 0.2
+   *  (5 .. 90) along the view - pitch by the damage direction's share forward, roll by its share to the left (no
+   *  direction: pitch up by all of it) - rising over 100 ms and falling over the next 400 ms (GetLeanFraction), half as
+   *  much at full ADS (x (1 + ADS / 2) with an ADS weapon) -> [pitch, roll] (degrees) or null */
+  damageKick(cl, t, entryOf) {
+    const M = this.M, W = this.rec && this.rec.W;
+    const ri = this.recorderRow(cl, t);
+    if (ri < 0 || !W.dmgEv) return null;
+    let k = ri;
+    while (k > 0 && W.client[k - 1] === cl && t - W.t[k] < 500 && !(W.dmgEv[k] !== W.dmgEv[k - 1] && W.dmgCount[k])) k--;
+    if (k <= 0 || W.client[k - 1] !== cl || W.dmgEv[k] === W.dmgEv[k - 1] || !W.dmgCount[k]) return null;
+    const dt = t - W.t[k];
+    if (dt < 0 || dt >= 500) return null;
+    const lf = f => f * (2 - Math.abs(f));
+    const ads = M.psLerp(ri, 'ads', t) || 0, e = entryOf(M.weaponName(W.weapon[ri], t));
+    let scale = 1 - 0.5 * ads;
+    if (ads && e && e.params && e.params.aimDownSight) scale *= 1 + 0.5 * ads;
+    const v = dt < 100 ? scale * lf(dt / 100) : (1 - lf((dt - 100) / 400)) * scale;
+    const kick = Math.min(90, Math.max(5, W.dmgCount[k] * 0.2));
+    if (W.dmgYaw[k] === 255 && W.dmgPitch[k] === 255) return [-kick * v, 0];
+    const s = M.sampleAt(cl, W.t[k]);
+    if (!s) return null;
+    const D2 = Math.PI / 180, dy = W.dmgYaw[k] / 255 * 360 * D2, dp = W.dmgPitch[k] / 255 * 360 * D2;
+    const dir = [Math.cos(dp) * Math.cos(dy), Math.cos(dp) * Math.sin(dy), -Math.sin(dp)];
+    const vy = s.yaw * D2, vp = s.pitch * D2;
+    const fw = [Math.cos(vp) * Math.cos(vy), Math.cos(vp) * Math.sin(vy), -Math.sin(vp)], left = [-Math.sin(vy), Math.cos(vy), 0];
+    const kp = (dir[0] * fw[0] + dir[1] * fw[1] + dir[2] * fw[2]) * kick, kr = -kick * (dir[0] * left[0] + dir[1] * left[1]);
+    return [kp * v, kr * v];
+  }
+
   /** the recording player's landing dip at t (CG_EntityEvent + CG_CalcViewValues): a landing sets the change
    *  (EV_LANDING: -parm; EV_LANDING_PAIN: the fall height between bg_fallDamageMinHeight 256 and MaxHeight 480 ->
    *  -min(24, 4 + (h - 12) / 26 x 4)); over 150 ms it goes down to it, then back over 300 ms -> units (the camera; the

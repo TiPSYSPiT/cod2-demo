@@ -8,6 +8,7 @@
 import * as THREE from 'three';
 import { Character } from './characters.js';
 import { Controllers } from './controllers.js';
+import { entityMatrix } from './modelBatch.js';
 
 const C2 = window.C2;
 const CFG = C2.mapConfig;
@@ -29,6 +30,13 @@ const smooth = x => (x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x));
 /** the index of the first sample at or after time t (times ascending) */
 function lowerIndex(T, t) { let lo = 0, hi = T.length; while (lo < hi) { const m = (lo + hi) >> 1; if (T[m] < t) lo = m + 1; else hi = m; } return Math.min(lo, T.length - 1); }
 
+const _bm = new THREE.Matrix4(), _bo = new THREE.Matrix4();
+/** a world matrix -> {pos, axis: {f, l, u}} (its x / y / z axes, unit length) */
+export function frameOf(m) {
+  const e = m.elements, n = (a, b, c) => { const l = Math.hypot(a, b, c) || 1; return [a / l, b / l, c / l]; };
+  return { pos: [e[12], e[13], e[14]], axis: { f: n(e[0], e[1], e[2]), l: n(e[4], e[5], e[6]), u: n(e[8], e[9], e[10]) } };
+}
+
 export class Actors {
   constructor(scene, labelLayer, match, library) {
     this.scene = scene;
@@ -37,6 +45,7 @@ export class Actors {
     this.controllers = library ? new Controllers(match, library) : null;   // legs / torso / head turns, lean, slopes
     this.mode = 'simple';
     this.starts = new Map();
+    this.hands = new Map();            // client -> {t, left} the gun-hand switches (gunLeft)
     this.corpseItems = new Map();      // client@t0 -> {ch} the corpses shown in mode "models"           // client -> {legs: Int32Array, torso: Int32Array} start time of each sample's animation
     this.layer = labelLayer;
     this.root = new THREE.Group();
@@ -75,6 +84,29 @@ export class Actors {
     }
     const s = it.sample, f = forward(s.yaw, s.pitch, new THREE.Vector3());
     return { pos: [it.eye.x + f.x * 34, it.eye.y + f.y * 34, it.eye.z - 8 + f.z * 34], dir: [f.x, f.y, f.z] };
+  }
+
+  /** the ejection port of a client's weapon as drawn now (its world model's tag_brass, mode "models") ->
+   *  {pos, axis: {f, l, u}} or null */
+  brass(cl) {
+    const it = this.items.get(cl);
+    if (!it || !it.visible || !it.sample) return null;
+    const w = it.modelShown && it.char && it.char.weapon;
+    if (!w || !w.userData.brass) return null;
+    w.updateWorldMatrix(true, false);
+    return frameOf(_bm.multiplyMatrices(w.matrixWorld, w.userData.brass));
+  }
+
+  /** the ejection port of a client's weapon at time t when it was not drawn then (a seek): the weapon's
+   *  tag_brass with the gun held along the view at the eye (12 forward, 5 right, 6 down) -> as brass() or null */
+  brassAt(cl, t) {
+    const s = this.M.sampleAt(cl, t), L = this.library;
+    if (!s || s.age > CFG.STALE_MS || !L || !L.modelsInfo) return null;
+    const model = L.weaponModel(this.M.weaponName(s.weapon, t)), tpl = model && L.template(model);
+    const k = tpl ? tpl.bones.findIndex(b => b.name === 'tag_brass') : -1;
+    if (k < 0) return null;
+    entityMatrix(_bm, s.x, s.y, s.z + EYE[stanceOf(s)], s.pitch, s.yaw, 0);
+    return frameOf(_bm.multiply(_bo.makeTranslation(12, -5, -6)).multiply(tpl.bindWorld[k]));
   }
 
   /** when each sample's legs / torso animation started (the value incl. the restart bit changed) */
@@ -190,7 +222,41 @@ export class Actors {
     const c = this.controllers && this.controllers.at(cl, t);
     if (c) ch.applyControllers(c);
     // (on a mounted MG the gun is the turret's: no weapon in the hand)
-    ch.setWeapon(s.turret ? null : L.weaponModel(s.weapon ? this.M.weaponName(s.weapon, t) : null));
+    ch.setWeapon(s.turret ? null : L.weaponModel(s.weapon ? this.M.weaponName(s.weapon, t) : null), this.gunLeft(cl, t));
+  }
+
+  /** is a client's gun in the left hand at t? CG_ProcessClientNoteTracks: an anim_gunhand = "left" / "right"
+   *  notetrack of a legs or torso animation the player plays past sets it (grenade throws, rifle reloads), until
+   *  the next one - nothing else resets it (a standing rifle reload or a crouched throw leaves it left) */
+  gunLeft(cl, t) {
+    let ev = this.hands.get(cl);
+    if (!ev) {
+      const L = this.library, P = this.M.d.positions[cl], st = this.startsOf(cl);
+      if (!L || !L.animsInfo || !P) return false;
+      ev = { t: [], left: [] };
+      const list = [];
+      for (const k of ['legs', 'torso']) {
+        const S = st[k], V = P[k], n = P.t.length;
+        if (!V) continue;
+        for (let i = 0; i < n;) {
+          let j = i + 1;
+          while (j < n && S[j] === S[i]) j++;
+          const clip = (V[i] & 0x1ff) ? L.clip(V[i]) : null;
+          if (clip && clip.gunhand) {
+            // (played until the next animation, or to the last sample before a gap)
+            const end = j < n && P.t[j] - P.t[j - 1] <= 1000 ? P.t[j] : P.t[j - 1] + 50;
+            for (const [f, h] of clip.gunhand) { const tn = S[i] + f / clip.rate * 1000; if (tn < end) list.push([tn, h === 'left']); }
+          }
+          i = j;
+        }
+      }
+      list.sort((a, b) => a[0] - b[0]);
+      for (const [tn, l] of list) { ev.t.push(tn); ev.left.push(l); }
+      this.hands.set(cl, ev);
+    }
+    let lo = 0, hi = ev.t.length;
+    while (lo < hi) { const m = (lo + hi) >> 1; if (ev.t[m] <= t) lo = m + 1; else hi = m; }
+    return lo > 0 && ev.left[lo - 1];
   }
 
   item(cl) {
@@ -281,7 +347,7 @@ export class Actors {
       it.ring.position.set(s.x, s.y, s.z + 1.5);
       it.ring.material.color.set(focus ? 0xffb35c : 0xffffff);
       const name = M.name(cl) + (stale ? ' (' + Math.round(s.age / 1000) + 's ago)' : '');
-      it.labelText = opts.labels || focus || hover ? name + (focus && !stale ? '  ·  ' + M.weaponLabel(s.weapon, t) : '') : '';
+      it.labelText = (opts.labels && !this.isEnemy(cl, opts.enemyOf)) || focus || hover ? name + (focus && !stale ? '  ·  ' + M.weaponLabel(s.weapon, t) : '') : '';
       it.label.classList.toggle('stale', stale);
       it.label.classList.toggle('focus', focus);
     }
@@ -361,6 +427,14 @@ export class Actors {
       }
       it.label.style.display = 'none';
     }
+  }
+
+  /** is cl an enemy of client ref? (the other team; in a deathmatch everyone else; none for a spectator / no ref) */
+  isEnemy(cl, ref) {
+    if (ref == null || ref < 0 || cl === ref) return false;
+    const M = this.M, a = M.player(ref), b = M.player(cl);
+    if (String(M.d.meta.gametype || '').toLowerCase() === 'dm') return !!a;
+    return !!(a && b && (a.team === 'A' || a.team === 'B') && (b.team === 'A' || b.team === 'B') && a.team !== b.team);
   }
 
   /** the player under the mouse ray, or null */

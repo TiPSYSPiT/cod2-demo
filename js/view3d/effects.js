@@ -147,7 +147,7 @@ export class Effects {
           if (last) this.lines.seg([last[1], last[2], last[3]], [p[1], p[2], p[3]], gr.cfg.color, 0.85);
           last = p;
         }
-        if (last) {
+        if (last && !(this.modelGrenades && this.modelGrenades.has(gr.g))) {     // (else drawn as its model: items.js)
           const m = this.grenades.next();
           m.position.set(last[1], last[2], last[3]);
           m.scale.setScalar(4);

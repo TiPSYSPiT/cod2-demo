@@ -260,4 +260,10 @@
   C2.ui = { el, append, clear, coloured, fmtTime, fmtRoundTime, na, approx, teamClass, sortableTable, virtualList, PHASES, phaseBadge, roundCell,
     icon, switchRow, selectRow, segmented };
   C2.tabs = C2.tabs || {};       // tab modules register here
+  /** the game's team icon of a faction (hudicon_<faction>, maps3d/_hud: the scoreboard's team icons) -> <img> */
+  const FACTION_NAMES = { american: 'American', british: 'British', russian: 'Russian', german: 'German' };
+  C2.ui.factionIcon = (faction, size = 16) => (faction && FACTION_NAMES[faction]
+    ? el('img', { class: 'faction-icon', src: 'maps3d/_hud/hudicon_' + faction + '.png', alt: '', title: FACTION_NAMES[faction], width: size, height: size, draggable: 'false' })
+    : null);
+  C2.ui.FACTION_NAMES = FACTION_NAMES;
 })(window.C2);

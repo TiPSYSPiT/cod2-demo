@@ -47,7 +47,9 @@ const WSND = {
   alt: [['altSwitchSound'], ['altSwitchSound']],
   pullback: [['pullbackSound'], ['pullbackSound']],
   throw: [['fireSound'], ['fireSound']],
-  melee: [['meleeSwipeSound'], ['meleeSwipeSound']]
+  melee: [['meleeSwipeSound'], ['meleeSwipeSound']],
+  pickup: [['pickupSound'], ['pickupSound']],
+  ammopickup: [['ammoPickupSound'], ['ammoPickupSound']]
 };
 // the watched player's own movement sounds (CG_EntityEvent: the _plr tables for the local client)
 const PLR = /^(step_run|step_walk|step_prone|land)_([a-z]+)$/;
@@ -108,7 +110,8 @@ export class SoundSystem {
     this.loopsOn = new Map();          // loop index -> {src, g, p, v, vol}
     this.lastT = null;
     this.seeks = null;
-    this.events = []; this.local = []; this.loops = []; this.whiz = [];
+    this.events = []; this.local = []; this.loops = []; this.whiz = []; this.holds = [];
+    this.duck = null;                  // the channel volumes while the watched player holds his breath (or null)
   }
 
   setDemo(match) {
@@ -117,6 +120,7 @@ export class SoundSystem {
     this.local = s.local || [];
     this.loops = s.loops || [];
     this.whiz = s.whiz || [];
+    this.holds = s.holds || [];
     this.mod = match.d.meta && match.d.meta.zpamVersion ? 'zpam' : null;
     this.times = Float64Array.from(this.events, e => e[0]);
     this.localTimes = Float64Array.from(this.local, e => e.t);
@@ -215,6 +219,12 @@ export class SoundSystem {
     return v;
   }
 
+  /** the length of an alias's (first) sound in ms, 0 until it is decoded */
+  lengthOf(name) {
+    const list = this.variants(name), buf = list && this.ready.get(list[0].f);
+    return buf ? buf.duration * 1000 / ((list[0].p[0] + list[0].p[1]) / 2) : 0;
+  }
+
   /** the distance gain and pan of variant v at pos for listener L (pos null: at the listener) -> [gain, pan] or null */
   place(v, pos, L) {
     let gain = 1, pan = 0;
@@ -252,6 +262,22 @@ export class SoundSystem {
   /** decode the files of every alias the demo plays */
   preload() { for (const n of this.aliasNames()) for (const v of this.variants(n) || []) this.buffer(v.f); }
 
+  /** the channel volumes at t while client fp holds his breath (CG_AddPlayerWeapon: hold_breath.shock's
+   *  cg_shock_volume_<channel>, faded in by DiffTrack at player_breath_snd_lerp 2 / s; back at once on letting go)
+   *  -> {channel: factor} or null */
+  duckAt(t, fp) {
+    const V = this.table && this.table.holdBreath;
+    if (fp == null || !V || !this.holds.length) return null;
+    let lo = 0, hi = this.holds.length;
+    while (lo < hi) { const m = (lo + hi) >> 1; if (this.holds[m][0] <= t) lo = m + 1; else hi = m; }
+    const h = lo > 0 ? this.holds[lo - 1] : null;
+    if (!h || t >= h[1] || h[2] !== fp) return null;
+    const f = 1 - Math.exp(-2 * (t - h[0]) / 1000), out = {};
+    for (const [ch, vol] of Object.entries(V)) out[ch] = (vol - 1) * f + 1;
+    return out;
+  }
+  duckOf(v, duck = this.duck) { return duck && duck[v.ch] != null ? duck[v.ch] : 1; }
+
   /** play alias `name` at pos (null = at the listener, unattenuated) */
   play(name, pos, L, rate, depth = 0) {
     const list = this.variants(name);
@@ -264,7 +290,7 @@ export class SoundSystem {
       const ctx = this.ctx, src = ctx.createBufferSource(), g = ctx.createGain();
       src.buffer = buf;
       src.playbackRate.value = rand(v.p[0], v.p[1]) * rate;
-      g.gain.value = m[0];
+      g.gain.value = m[0] * this.duckOf(v);
       let node = g;
       if (ctx.createStereoPanner) { const p = ctx.createStereoPanner(); p.pan.value = m[1]; g.connect(p); node = p; }
       node.connect(this.master);
@@ -280,7 +306,9 @@ export class SoundSystem {
   /** the entity loops at time t: start, follow the listener, stop (live) */
   updateLoops(t, L, fp, on) {
     for (let i = 0; i < this.loops.length; i++) {
-      const l = this.loops[i], active = on && t >= l[0] && t < l[1];
+      const l = this.loops[i];
+      // (a local loop of the watched player only: the heartbeat, after the breath-in)
+      const active = on && t >= l[0] + (l[8] ? this.lengthOf(l[8]) : 0) && t < l[1] && (!l[7] || l[6] === fp);
       let s = this.loopsOn.get(i);
       if (!active) { if (s) this.stopLoop(i); continue; }
       const pos = fp != null && l[6] === fp ? null : [l[3], l[4], l[5]];
@@ -300,7 +328,7 @@ export class SoundSystem {
         this.loopsOn.set(i, s);
       }
       const m = this.place(s.v, pos, L) || [0, 0];
-      s.g.gain.setTargetAtTime(m[0] * s.vol, this.ctx.currentTime, 0.03);
+      s.g.gain.setTargetAtTime(m[0] * s.vol * this.duckOf(s.v), this.ctx.currentTime, 0.03);
       s.p.pan.setTargetAtTime(m[1], this.ctx.currentTime, 0.03);
     }
   }
@@ -328,10 +356,12 @@ export class SoundSystem {
       if (this.sources.size || this.loopsOn.size) this.stopAll();
       return;
     }
+    this.duck = this.duckAt(t, fp);
     if (t === last) { this.updateLoops(t, L, fp, true); return; }
     const rate = Math.max(0.5, Math.min(MAX_SPEED, pb.speed || 1));
     for (let i = ub(this.times, last), n = ub(this.times, t); i < n; i++) {
       const e = this.events[i], own = fp != null && e[5] === fp;
+      if (e[6] && !own) continue;                              // (the watched player's own local sound)
       this.play(this.resolve(e[1], own), own ? null : [e[2], e[3], e[4]], L, rate);
     }
     for (let i = ub(this.localTimes, last), n = ub(this.localTimes, t); i < n; i++) this.play(this.local[i].name, null, null, rate);
@@ -399,6 +429,7 @@ export class SoundSystem {
       if (!list) return;
       const v = this.pick(list);
       const m = this.mix(v, pos, pos ? L(Math.max(0, vt)) : null);
+      if (m) m[0] *= this.duckOf(v, this.duckAt(times[frame(Math.max(0, vt))], fpAt(vt)));
       if (m) plans.push({ v, m, vt, pitch: rand(v.p[0], v.p[1]) });
       if (v.sec && depth < 2) add(v.sec, pos, vt, depth + 1);
     };
@@ -409,6 +440,7 @@ export class SoundSystem {
       const vt = videoTime(e[0]);
       if (vt == null) continue;
       const own = e[5] === fpAt(vt);
+      if (e[6] && !own) continue;
       add(this.resolve(e[1], own), own ? null : [e[2], e[3], e[4]], vt);
     }
     for (const l of this.local) {
@@ -428,8 +460,10 @@ export class SoundSystem {
     // the loops: from where they start (or the range's start) to where they end, at the listener of their start
     const loops = [];
     for (const l of this.loops) {
-      if (l[1] <= times[0] || l[0] > t1) continue;
-      const a = videoTime(Math.max(l[0], times[0])), b = l[1] > t1 ? n / fps : videoTime(l[1]);
+      const l0 = l[0] + (l[8] ? this.lengthOf(l[8]) : 0);
+      if (l[1] <= times[0] || l0 > t1 || l0 >= l[1]) continue;
+      if (l[7] && l[6] !== fpAt(videoTime(Math.max(l0, times[0])) || 0)) continue;
+      const a = videoTime(Math.max(l0, times[0])), b = l[1] > t1 ? n / fps : videoTime(l[1]);
       if (a == null || b == null || b <= a) continue;
       const list = this.variants(l[2]);
       if (!list) continue;

@@ -261,6 +261,8 @@ body.loaded main { height: calc(100vh - var(--top-h)); }
 .score-final-toggle:hover { color: var(--text); }
 .score-halves { color: var(--text); font-size: var(--fs-s); line-height: 1.5; }
 .ov-items { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+.ov-items + .ov-items { margin-top: 10px; }
+.ov-sub-h { grid-column: 1 / -1; font-size: var(--fs-cap); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .ov-item { display: contents; font-size: var(--fs-s); }
 .ov-item .ov-label { color: var(--muted); white-space: nowrap; }
 .ov-item .ov-value { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
@@ -390,6 +392,11 @@ kbd { font: 500 var(--fs-xs) var(--mono); padding: 1px 6px; border-radius: 5px; 
 .rp-cols span:nth-child(3) { text-align: right; }
 .rp-name { display: flex; align-items: center; gap: 6px; min-width: 0; }
 .rp-pname { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.stats-spark { vertical-align: middle; }
+/* the game's team icons (hudicon_<faction>) */
+.faction-icon { display: inline-block; vertical-align: -2px; margin-right: 4px; image-rendering: auto; }
+.faction-slot:empty { display: none; }
+.faction-slot { display: inline-flex; align-items: center; }
 .rp-talk { display: inline-flex; color: var(--tl-defuse); flex: none; }
 .rp-talk[hidden] { display: none; }
 .rp-w { color: var(--muted); font-size: var(--fs-xs); text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: flex-end; }

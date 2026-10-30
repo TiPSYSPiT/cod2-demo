@@ -15,6 +15,10 @@ import { Sky } from './sky.js';
 import { SoundSystem } from './sound.js';
 import { Tracers } from './tracers.js';
 import { PlayerSprites } from './sprites.js';
+import { WorldItems } from './items.js';
+import { MapMarks } from './mapMarks.js';
+import { ModelBatches } from './modelBatch.js';
+import { frameOf } from './actors.js';
 import { CharacterLibrary } from './characters.js';
 import { InfoHint, fadeHint, holdHint } from '../app/infoHint.js';
 import { CookieShadows } from './shadows.js';
@@ -31,7 +35,12 @@ const CAM_KEY = 'cod2demo3d.camera';
 const PROPS_KEY = 'cod2demo3d.props';
 const KILLFEED_KEY = 'cod2demo3d.killfeed';      // 'on' / 'off' (default on)
 const KILL_ICONS_KEY = 'cod2demo3d.killIcons';    // 'on' / 'off' (default off)
-const HEAD_ICONS_KEY = 'cod2demo3d.headIcons';    // 'on' / 'off' (default on): the game's head icons and talk balloons
+const HEAD_ICONS_KEY = 'cod2demo3d.headIcons';    // 'on' / 'off' (default on): the game's head icons and talk balloons (session)
+const TRACERS_KEY = 'cod2demo3d.tracers';         // 'on' / 'off' (default off): the bullet tracers (session)
+const ENEMY_NAMES_KEY = 'cod2demo3d.enemyNames';  // 'on' / 'off' (default off): the names over enemies (session)
+const ITEMS_KEY = 'cod2demo3d.items';             // 'on' / 'off' (default on): grenades in flight, dropped weapons (session)
+const CASINGS_KEY = 'cod2demo3d.casings';         // 'on' / 'off' (default on): the shell casings (session)
+const SHAKE_KEY = 'cod2demo3d.shake';             // 'on' / 'off' (default on): the camera shake in first person (session)
 const FX_KEY = 'cod2demo3d.fx';                  // 'game' / 'simple'
 const PLAYERS_KEY = 'cod2demo3d.players';        // 'simple' / 'models'
 const SOUND_KEY = 'cod2demo3d.sound';            // 'on' / 'off' (default off) and '.volume'
@@ -55,7 +64,14 @@ const HUD_TITLES = {
   killfeed: "The game's kill messages above the compass (killer, weapon icon, victim in the team colours) and \"You killed\" / \"Killed by\"",
   ammo: 'Clip and reserve ammo, red when low, and the weapon name after a switch (recording player only)',
   grenades: 'Frag and smoke grenades with their icons and counts (recording player only)',
-  server: "The rest the server shows: zPAM's players left and info texts, timers, the game messages (recording player)"
+  server: "The rest the server shows: zPAM's players left and info texts, timers, the game messages (recording player)",
+  lowHealth: 'The red screen edges when the health is low, pulsing after a hit (recording player only)',
+  health: "The health bar, for 2 s after a hit (the game's cg_drawHealth - off in the game; recording player only)",
+  damage: 'Where the damage came from (arrows around the centre, 2 s) and the short red flash of a hit (recording player only)',
+  stance: "The stance icon after a stance change and \"Prone Blocked\" (recording player only; zPAM's HUD has no stance icon)",
+  hints: 'The use hints (plant / defuse the bomb, pick up a weapon) and the mantle hint, with the default keys (recording player only)',
+  scoreboard: "The game's scoreboard while Tab is held and at the intermission (the last scores the server sent); zPAM's own scoreboard while the recording player had it open",
+  matchinfo: "zPAM's match info at the top (teams, round, match time) as the recording player had it"
 };
 
 export class View3D {
@@ -97,6 +113,20 @@ export class View3D {
     this.fx = new FxPlayer(scene, this.M);
     // the bullet tracers (tracers.js), with the game effects
     this.tracers = new Tracers(scene, this.M);
+    // the effects' model particles (shell casings, the burnt smoke grenade, debris) and the grenades in flight /
+    // dropped weapons (items.js): the game's models, from the character library
+    this.fx.modelBatches = new ModelBatches(scene, this.characters);
+    this.items = new WorldItems(scene, this.M, this.characters);
+    this.fx.brassOf = (cl, ts, t) => {
+      // just fired: the gun as drawn now (the first-person view model, else the world model); later (a seek) as held then
+      if (t - ts <= 120) {
+        const m = cl === this.fpClient && this.viewmodel.shown ? this.viewmodel.brass(this.camera) : null;
+        if (m) return frameOf(m);
+        const b = this.actors.brass(cl);
+        if (b) return b;
+      }
+      return this.actors.brassAt(cl, ts);
+    };
     // the players' head icons and talk balloons (sprites.js)
     this.sprites = new PlayerSprites(scene, this.M);
     // the first-person weapon (viewmodel.js), its crosshair and scope
@@ -110,6 +140,17 @@ export class View3D {
     this.hudCanvas = el('canvas', { class: 'hud-layer' });
     this.stage.append(this.hudCanvas);
     this.hudInsets = null; this.hudInsetsAt = 0;
+    // the game's scoreboard while Tab is held (first person: the game's +scores)
+    this.onScoresKey = e => {
+      if (e.code !== 'Tab' || !this.visible || this.cams.mode !== 'fp' || (e.target && e.target.closest && e.target.closest('input, textarea, select'))) return;
+      e.preventDefault();
+      const on = e.type === 'keydown';
+      if (!!this.hud.showScores !== on) { this.hud.showScores = on; this.needsRender = true; }
+    };
+    this.offScoresKey = () => { this.hud.showScores = false; this.needsRender = true; };
+    window.addEventListener('keydown', this.onScoresKey);
+    window.addEventListener('keyup', this.onScoresKey);
+    window.addEventListener('blur', this.offScoresKey);
     this.fx.muzzleOf = (cl, ts, t) => {
       // the first-person player's shot: the view flash at the view model's muzzle
       if (cl === this.fpClient && this.viewmodel.shown) {
@@ -129,7 +170,12 @@ export class View3D {
     this.buildToolbar();
     this.setKillfeed(stored(KILLFEED_KEY) !== 'off');
     this.setKillIcons(stored(KILL_ICONS_KEY) === 'on');
-    this.setHeadIcons(stored(HEAD_ICONS_KEY) !== 'off');
+    this.setHeadIcons(sessionGet(HEAD_ICONS_KEY) !== 'off');
+    this.setTracers(sessionGet(TRACERS_KEY) === 'on');
+    this.setEnemyNames(sessionGet(ENEMY_NAMES_KEY) === 'on');
+    this.setItems(sessionGet(ITEMS_KEY) !== 'off');
+    this.setCasings(sessionGet(CASINGS_KEY) !== 'off');
+    this.setShake(sessionGet(SHAKE_KEY) !== 'off');
     let mode = 'orbit';
     const m0 = stored(CAM_KEY);
     if (MODES.some(m => m[0] === m0)) mode = m0;
@@ -198,6 +244,9 @@ export class View3D {
         }
         if (sun.color) this.sun.color.setRGB(...sun.color);
         this.effects.setSites(w.sites || []);
+        // the intermission camera and hurt triggers (Layers panel)
+        if (this.mapMarks) this.mapMarks.dispose();
+        this.mapMarks = new MapMarks(this.scene, w.entities);
         try { this.fx.probe = this.actors.probe = new LightProbe(w, w.lightScale); } catch (err) { console.warn('light probe:', err); }
         // the models' light: the map's light grid (lightGrid.js), when exported
         LightGrid.load('maps3d/' + name + '/', w.info).then(g => {
@@ -205,6 +254,8 @@ export class View3D {
           g.apply();
           this.actors.grid = g;
           this.viewmodel.setGrid(g);
+          this.fx.modelBatches.setGrid(g);
+          this.items.setGrid(g);
           if (this.props) this.props.applyGrid(g);
           this.R.invalidate(); this.needsRender = true;
         }).catch(err => console.warn('light grid not loaded:', err));
@@ -306,6 +357,11 @@ export class View3D {
     this.killfeedBox = el('input', { type: 'checkbox', onchange: e => this.setKillfeed(e.target.checked, true) });
     this.killIconsBox = el('input', { type: 'checkbox', onchange: e => this.setKillIcons(e.target.checked, true) });
     this.headIconsBox = el('input', { type: 'checkbox', onchange: e => this.setHeadIcons(e.target.checked, true) });
+    this.tracersBox = el('input', { type: 'checkbox', onchange: e => this.setTracers(e.target.checked, true) });
+    this.enemyNamesBox = el('input', { type: 'checkbox', onchange: e => this.setEnemyNames(e.target.checked, true) });
+    this.itemsBox = el('input', { type: 'checkbox', onchange: e => this.setItems(e.target.checked, true) });
+    this.casingsBox = el('input', { type: 'checkbox', onchange: e => this.setCasings(e.target.checked, true) });
+    this.shakeBox = el('input', { type: 'checkbox', onchange: e => this.setShake(e.target.checked, true) });
     this.shadowsBox = el('input', { type: 'checkbox', onchange: e => this.setShadows(e.target.checked, true) });
     this.viewmodelBox = el('input', { type: 'checkbox', onchange: e => this.setViewModel(e.target.checked, true) });
     this.hudBoxes = {};
@@ -316,6 +372,7 @@ export class View3D {
           selectRow('Player', playerSel, 'Selected player (follow / first person); also click a player in the view or the team panel'),
           el('button', { class: 'tb wide', title: 'Back to the overview', onclick: () => this.resetView() }, icon('reset', 's'), 'Reset view')),
         el('div', { class: 'grp' }, el('h4', null, 'First person'),
+          switchRow('Camera shake', this.shakeBox, { title: "The game's camera shake: near an earthquake of the scripts (the bomb's explosion) and on a mounted MG42 while it fires" }),
           switchRow('Weapon', this.viewmodelBox, { title: "The weapon in the player's hands, with the game's own view animations; aiming down the sights zooms as in the game (exact for the recording player, approximated for the others). The game's crosshair is always shown" })),
         el('div', { class: 'grp' }, el('h4', null, 'First person HUD'),
           ...HUD_PARTS.map(([k, label]) => switchRow(label, this.hudBoxes[k], { title: HUD_TITLES[k] })))) },
@@ -327,6 +384,10 @@ export class View3D {
           selectRow('Effects', this.fxSel, 'Explosions, smoke grenades, bullet impacts and muzzle flashes: the game\'s own particle effects, or simple markers'),
           switchRow('Kill feed', this.killfeedBox, { title: 'The kills and bomb plants / defuses of the last ' + CFG.EXPORT.KILLFEED_MS / 1000 + ' s over the view, with the weapon icons' }),
           switchRow('Kill icons', this.killIconsBox, { title: 'The weapon icon over each death marker' }),
+          switchRow('Bullet tracers', this.tracersBox, { title: "The game's bullet tracers as the server set them (cg_tracer*: zPAM gives every bullet one, 1000 units long at 20000 units/s; else 40 %, 160 units at 4500 units/s): a short streak flying from the muzzle, gone at the impact" }),
+          switchRow('Enemy names', this.enemyNamesBox, { title: "The names over the enemies of the player you watch (first person) or select - the game never shows them (only a teammate's name under the crosshair); teammates' names follow Layers, Names. X-Ray Player + name shows every name" }),
+          switchRow('Grenades and dropped weapons', this.itemsBox, { title: "The grenades in flight (their own model, spinning as the demo has it) and the weapons on the ground (a dying player drops his gun and a grenade), where the demo's entities have them" }),
+          switchRow('Shell casings', this.casingsBox, { title: "The cases each shot ejects (bolt-action rifles and the shotgun: when the bolt is worked), the game's shell eject effect at the gun's ejection port; as in the game only near the camera (rifles 100 units, pistols 250)" }),
           switchRow('Head icons', this.headIconsBox, { title: "The game's icons over the players' heads: the team icon the server gives them, the talk balloon while a teammate talks (voice chat), the connection-problem icon. In first person as that player sees them (teammates only), in the other cameras all" }),
           switchRow('Shadows', this.shadowsBox, { title: 'Soft shadows of the players and corpses on the ground, along the sun (as the game\'s character shadows; the world\'s own shadows are in its lightmaps)' })),
         this.soundRows) }
@@ -384,7 +445,38 @@ export class View3D {
   setHeadIcons(on, user = false) {
     this.sprites.enabled = on;
     this.headIconsBox.checked = on;
-    if (user) store(HEAD_ICONS_KEY, on ? 'on' : 'off');
+    if (user) sessionSet(HEAD_ICONS_KEY, on ? 'on' : 'off');
+    this.needsRender = true;
+  }
+  setItems(on, user = false) {
+    this.items.setEnabled(on);
+    this.itemsBox.checked = on;
+    if (on) this.characters.load().then(() => this.R.invalidate());
+    if (user) { sessionSet(ITEMS_KEY, on ? 'on' : 'off'); this.R.invalidate(); }
+  }
+  setShake(on, user = false) {
+    this.shakeOn = on;
+    this.shakeBox.checked = on;
+    if (user) sessionSet(SHAKE_KEY, on ? 'on' : 'off');
+    this.needsRender = true;
+  }
+  setCasings(on, user = false) {
+    this.fx.casings = on;
+    this.casingsBox.checked = on;
+    if (on) this.characters.load().then(() => { this.needsRender = true; });
+    if (user) sessionSet(CASINGS_KEY, on ? 'on' : 'off');
+    this.needsRender = true;
+  }
+  setEnemyNames(on, user = false) {
+    this.enemyNames = on;
+    this.enemyNamesBox.checked = on;
+    if (user) { sessionSet(ENEMY_NAMES_KEY, on ? 'on' : 'off'); this.R.invalidate(); }
+  }
+  setTracers(on, user = false) {
+    this.tracersOn = on;
+    this.tracers.enabled = on;
+    this.tracersBox.checked = on;
+    if (user) sessionSet(TRACERS_KEY, on ? 'on' : 'off');
     this.needsRender = true;
   }
   setKillIcons(on, user = false) {
@@ -425,7 +517,6 @@ export class View3D {
     const apply = ok => {
       const on = mode === 'game' && ok;
       this.fx.setEnabled(on);
-      this.tracers.enabled = mode === 'game';
       this.effects.realFx = on;              // no marker spheres for explosions / smoke
       this.actors.realFlash = on;            // no muzzle flash sphere
       if (!ok) this.fxSel.parentNode.title = 'The effects are not exported (tools/export/fx_export.py)';
@@ -485,7 +576,12 @@ export class View3D {
   draw(t) {
     this.t = t;
     const R = this.R;
-    this.actors.update(t, { shown: R.shownPlayers(), focus: R.focus, hover: R.hover, labels: R.opts.labels || this.xrayMode === 'names', lastKnown: R.opts.lastKnown });
+    // the enemies (no names unless Enemy names): of the player in first person, else of the selected one, else of the
+    // player the demo's view follows; X-Ray's "Player + name" names everyone
+    const ref = this.cams.mode === 'fp' && this.fpClient != null ? this.fpClient : R.focus != null ? R.focus : this.M.followedAt(t);
+    this.actors.update(t, { shown: R.shownPlayers(), focus: R.focus, hover: R.hover, labels: R.opts.labels || this.xrayMode === 'names', lastKnown: R.opts.lastKnown,
+      enemyOf: this.enemyNames || this.xrayMode === 'names' ? null : ref });
+    this.effects.modelGrenades = this.items.update(t);
     this.effects.update(t, R);
     // the destroyed bomb-site target after its bomb exploded, until the next round
     if (this.exploders) {
@@ -493,6 +589,7 @@ export class View3D {
       if (this.exploders.set(b && b.state === 'exploded' ? b.site : null)) this.shadows.invalidate();
     }
     this.aimTurrets(t);
+    if (this.mapMarks) this.mapMarks.set(R.opts.mapCams, R.opts.hurt);
     this.killfeed.update(t);
     this.needsRender = true;
   }
@@ -541,6 +638,15 @@ export class View3D {
       if (dip != null) eye.z += dip;
       eye.z += this.stepSmoothing(va, cl, t);
       eye.z = Math.max(eye.z, s.z + 8);
+      // the view's own motion (the refdef angles): the recorder's scope sway, the camera shake
+      const out = { pos, eye, yaw: s.yaw, pitch: s.pitch, roll: 0 };
+      const sw = va.viewSway(cl, t, n => this.viewmodel.entry(n));
+      if (sw) { out.pitch += sw[0]; out.yaw += sw[1]; }
+      const dk = va.damageKick(cl, t, n => this.viewmodel.entry(n));
+      if (dk) { out.pitch += dk[0]; out.roll += dk[1]; }
+      const sh = this.shakeOn ? this.shakeAt(t, eye) : null;
+      if (sh) { out.pitch += sh[0]; out.yaw += sh[1]; out.roll += sh[2]; }
+      return { cl, target: out };
     }
     return { cl, target: { pos, eye, yaw: s.yaw, pitch: s.pitch } };
   }
@@ -606,6 +712,44 @@ export class View3D {
     return { hideClient, fpSample };
   }
 
+  /** the camera shake at t for a view at eye (CG_StartShakeCamera / CG_ShakeCamera): the scripts' earthquakes (the
+   *  bomb: scale 0.2, 2 s, radius 1200) and every shot of a mounted MG42 (0.05, 100 ms, radius 100 around the gun).
+   *  Each fades as (1 - age / duration) x scale, its strength 1 - distance / radius (outside the radius negative); the
+   *  strongest one turns pitch / yaw / roll by sin(T x 8 pi / 15 pi / 12 pi + phase) x 18 / 16 / 10 x its fade x
+   *  min(1, strength), T = time / 600 ms; the game draws the phase anew while nothing shakes (here: from the start of
+   *  the shaking, so a seek gives the same) -> [pitch, yaw, roll] (degrees) or null */
+  shakeAt(t, eye) {
+    let S = this.shakes;
+    if (!S) {
+      const d = this.M.d;
+      S = (d.earthquakes || []).map(r => ({ t0: r[0], scale: r[1], dur: r[2], radius: r[3], pos: [r[4], r[5], r[6]] }))
+        .concat((d.mgFire || []).map(r => ({ t0: r[0], scale: 0.05, dur: 100, radius: 100, pos: [r[1], r[2], r[3]] })));
+      S.sort((a, b) => a.t0 - b.t0);
+      S.maxDur = S.reduce((m, s) => Math.max(m, s.dur), 0);
+      this.shakes = S;
+    }
+    if (!S.length) return null;
+    let lo = 0, hi = S.length;
+    while (lo < hi) { const m = (lo + hi) >> 1; if (S[m].t0 < t - S.maxDur) lo = m + 1; else hi = m; }
+    let best = 0, fade = 0, first = -1;
+    for (let i = lo; i < S.length && S[i].t0 <= t; i++) {
+      const s = S[i], age = t - s.t0;
+      if (age >= s.dur) continue;
+      if (first < 0) first = i;
+      const f = (1 - age / s.dur) * s.scale;
+      if (f <= 0) continue;
+      const v3 = 1 - Math.hypot(s.pos[0] - eye.x, s.pos[1] - eye.y, s.pos[2] - eye.z) / s.radius, v4 = v3 < 0 ? v3 / f : v3 * f;
+      if (v4 > best) { best = v4; fade = f; }
+    }
+    if (best <= 0) return null;
+    // the start of the shaking: back over the shakes that still ran when the next one began
+    let start = S[first].t0;
+    for (let j = first - 1, n = 0; j >= 0 && n < 500; j--, n++) { if (S[j].t0 + S[j].dur >= start) start = Math.min(start, S[j].t0); else break; }
+    const ph = (((Math.imul(start | 0, 0x9E3779B1) >>> 0) / 4294967296) * 2 - 1) * Math.PI;
+    const T = t / 600, k = fade * Math.min(1, best);
+    return [Math.sin(8 * Math.PI * T + ph) * 18 * k, Math.sin(15 * Math.PI * T + ph) * 16 * k, Math.sin(12 * Math.PI * T + ph) * 10 * k];
+  }
+
   /** the eye's height over the feet: the recording player's viewHeightCurrent at t (between two snapshots
    *  interpolated); the others' moves to the new stance's height as the game moves it (PM_GetViewHeightLerpTime:
    *  200 ms to standing and down to crouched, 400 ms to prone and up from prone; linear) */
@@ -658,7 +802,8 @@ export class View3D {
     const g = cv.getContext('2d');
     g.setTransform(1, 0, 0, 1, 0, 0);
     g.clearRect(0, 0, w, h);
-    this.hud.draw(g, w, h, this.t || 0, this.fpClient, { x: fpSample.x, y: fpSample.y, yaw: fpSample.yaw }, this.hudInsets);
+    this.hud.draw(g, w, h, this.t || 0, this.fpClient, { x: fpSample.x, y: fpSample.y, yaw: fpSample.yaw, pitch: fpSample.pitch,
+      ads: this.viewmodel.zoomFrac() > 0.01 || this.viewmodel.overlayFrac() > 0 }, this.hudInsets);
   }
   /** the viewer's controls over the 3D canvas (rail, score, drawer, the playback bar) as the HUD's safe area: per
    *  control the canvas edge it hugs, inset past it (device pixels) */
@@ -729,6 +874,9 @@ export class View3D {
     this.fx.dispose();
     this.tracers.dispose();
     this.sprites.dispose();
+    this.items.dispose();
+    if (this.mapMarks) this.mapMarks.dispose();
+    this.fx.modelBatches.dispose();
     this.shadows.dispose();
     this.xray.dispose();
     this.killfeed.dispose();
@@ -736,6 +884,9 @@ export class View3D {
     if (this.sky) { this.sky.dispose(); this.sky = null; }
     if (this.sounds) { this.sounds.dispose(); this.sounds = null; }
     if (this.offArm) this.offArm();
+    window.removeEventListener('keydown', this.onScoresKey);
+    window.removeEventListener('keyup', this.onScoresKey);
+    window.removeEventListener('blur', this.offScoresKey);
     // (the module-level hook and shared textures would keep this view and its demo in memory)
     if (textureArrivals.onArrive === this.onArrive) textureArrivals.onArrive = null;
     releaseStandins();
