@@ -125,12 +125,7 @@ export class ViewAnimator {
 
   /* ---------- per frame ---------- */
   /** the recorder's row at t when it is client cl's (and recent) -> index or -1 */
-  recorderRow(cl, t) {
-    const R = this.rec;
-    if (!R) return -1;
-    const i = lower(R.W.t, t);
-    return i >= 0 && R.W.client[i] === cl && t - R.W.t[i] < 250 ? i : -1;
-  }
+  recorderRow(cl, t) { return this.rec ? this.M.psRow(cl, t) : -1; }
 
   /** the hands model the server set for the recorder (playerState viewmodelIndex) or null */
   handsOf(cl, t) {
@@ -285,84 +280,179 @@ export class ViewAnimator {
     return on ? [clamp01(since / tin), true] : [clamp01(1 - since / tout), false];
   }
 
-  /** stance offsets (duckedOfs / proneOfs), the movement offsets (standMove / duckedMove / proneMove), the bob,
-   *  the landing dip, the idle sway (hipIdleAmount / adsIdleAmount), the turn sway (sway*) and the gun kick
-   *  (hipGunKick* / adsGunKick*) -> out.offset (model space: x forward, y left, z up; pitch > 0 down, yaw > 0
-   *  left, roll) */
+  /** the gun's offsets from the view -> out.offset (model space: x forward, y left, z up; pitch > 0 down, yaw > 0
+   *  left, roll), as the game computes them every frame (CG_CalculateWeaponPosition + BG_CalculateWeaponAngles):
+   *  the movement and stance offsets and their rotation followed at the weapon's rates and the idle sway (gunFollow),
+   *  the ADS aim pitch, the lean, the bob, the landing dip, the turn sway (sway) and the gun kick (kick) */
   motion(out, cl, t, s, W, ri, P, ads) {
-    const M = this.M, pos = out.offset.pos, rot = out.offset.rot, v = k => P[k] || 0;
-    // stance (0 stand .. 1 crouched, prone): the recorder's view height, else the flags of the last 250 ms
-    let crouch = 0, prone = 0;
-    if (W) {
-      const vh = W.vh[ri];
-      prone = clamp01((40 - vh) / 29); crouch = clamp01((60 - vh) / 20) - prone;
-    } else {
-      let n = 0;
-      for (let k = 0; k <= 5; k++) { const x = M.sampleAt(cl, t - k * 50); if (!x) continue; n++; if (x.prone) prone++; else if (x.crouch) crouch++; }
-      if (n) { prone /= n; crouch /= n; }
+    const pos = out.offset.pos, rot = out.offset.rot, v = k => P[k] || 0;
+    const scoped = !!(out.entry.strings && out.entry.strings.adsOverlayShader);
+    const now = this.gunInputs(cl, t, s, W, P);
+    // the movement / stance offsets, their rotation and the idle sway (followed over the recent past)
+    const g = this.gunFollow(cl, t, W, P, scoped);
+    const ak = ads === 0 ? 1 : ads < 0.5 ? 1 - 2 * ads : 0;           // (the offsets leave over the first half of the ADS)
+    pos[0] += g.pos[0] * ak; pos[1] -= g.pos[1] * ak; pos[2] += g.pos[2] * ak;
+    rot[0] += g.rot[0] * ak; rot[1] += g.rot[1] * ak; rot[2] += g.rot[2] * ak;
+    rot[0] += g.idle[0]; rot[1] += g.idle[1]; rot[2] += g.idle[2];
+    // aiming down the sights: the weapon's adsAimPitch
+    if (P.aimDownSight) rot[0] += ads * v('adsAimPitch');
+    // leaning: the gun rolls -2 f and slides along the right vector of (0, 0, -2 f), (1 - ADS) x f x 1.6 units (not at
+    // full ADS); f = GetLeanFraction(leanf)
+    const lf = s && s.lean ? s.lean * (2 - Math.abs(s.lean)) : 0;
+    if (lf) {
+      rot[2] -= 2 * lf;
+      if (ads < 1) { const d = (1 - ads) * lf * 1.6, r = -2 * lf * Math.PI / 180; pos[1] -= Math.cos(r) * d; pos[2] -= Math.sin(r) * d; }
     }
-    const stand = clamp01(1 - crouch - prone);
-    // horizontal and vertical speed, on the ground
-    let vx = 0, vy = 0, vz = 0, ground = true;
-    if (W) {
-      vx = W.vx[ri]; vy = W.vy[ri]; vz = W.vz[ri]; ground = W.ground[ri] !== ENTITYNUM_NONE;
-    } else {
-      const a = M.sampleAt(cl, t - 50);
-      if (a) { vx = (s.x - a.x) * 20; vy = (s.y - a.y) * 20; vz = (s.z - a.z) * 20; }
-      ground = Math.abs(vz) < 40;
-    }
-    const speed = Math.hypot(vx, vy), move = clamp01(speed / RUN_SPEED) * (ground ? 1 : 0.3);
-    // stance offsets (the weapon file's, units) and movement offsets (scaled: the prone ones are large)
-    pos[0] += crouch * v('duckedOfsF') + prone * v('proneOfsF');
-    pos[1] -= crouch * v('duckedOfsR') + prone * v('proneOfsR');
-    pos[2] += crouch * v('duckedOfsU') + prone * v('proneOfsU');
-    const mv = (a, b, c) => stand * v(a) + crouch * v(b) + prone * v(c) * 0.05;
-    const noAds = 1 - ads;
-    pos[0] += move * noAds * mv('standMoveF', 'duckedMoveF', 'proneMoveF');
-    pos[1] -= move * noAds * mv('standMoveR', 'duckedMoveR', 'proneMoveR');
-    pos[2] += move * noAds * mv('standMoveU', 'duckedMoveU', 'proneMoveU');
-    rot[0] += move * noAds * mv('standRotP', 'duckedRotP', 'proneRotP');
-    rot[1] += move * noAds * mv('standRotY', 'duckedRotY', 'proneRotY');
-    rot[2] += move * noAds * mv('standRotR', 'duckedRotR', 'proneRotR');
     // bob (BG_CalculateWeaponAngles): angles from the bob cycle, the speed and the stance's bg_bobAmplitude*;
     // less while aiming down the sights (adsBobFactor), none at full ADS with a scope
-    const B = this.bobInputs(cl, t, s, W, ri, speed, crouch, prone), ph = B.cycle + Math.PI / 4;
+    const B = this.bobInputs(cl, t, s, W, ri, now.speed, now.crouch ? 1 : 0, now.prone ? 1 : 0), ph = B.cycle + Math.PI / 4;
     const bs = B.speed * 0.16, a1 = Math.min(10, B.amp * bs), a2 = Math.min(10, 1.5 * B.amp * bs);
     const bp = -0.75 * (Math.sin(4 * ph + Math.PI / 2) * 0.2 + Math.sin(2 * ph)) * a1, by = -Math.sin(ph) * a1;
     const br = Math.min(0, Math.sin(ph - 0.4712389) * a2);
     let bk = ads ? 1 - (1 - (P.adsBobFactor != null ? P.adsBobFactor : 1)) * ads : 1;
-    if (out.entry.strings && out.entry.strings.adsOverlayShader) bk *= 1 - ads;
+    if (scoped) bk *= 1 - ads;
     rot[0] += bp * bk; rot[1] += by * bk; rot[2] += br * bk;
-    // the landing dip: a fall that ended within the last 0.6 s
-    const land = this.landing(cl, t, W, ri);
-    if (land) {
-      const k = Math.min(1, land.speed / 350) * Math.sin(Math.PI * Math.min(1, land.dt / 0.3)) * Math.exp(-land.dt * 4);
-      pos[2] -= 2.2 * k; rot[0] += 2.5 * k;
-    }
-    // the idle sway (the weapon file's amount and speed; crouched / prone scaled); holding the breath (scoped) calms it
-    const breath = W ? clamp01(W.breath[ri]) : 0;
-    const idleAmt = (ads > 0.5 ? v('adsIdleAmount') : v('hipIdleAmount')) * (stand + crouch * (P.idleCrouchFactor || 1) + prone * (P.idleProneFactor || 1)) * (1 - 0.8 * breath);
-    const idleSpd = (ads > 0.5 ? P.adsIdleSpeed : P.hipIdleSpeed) || 1, ts = t / 1000 * idleSpd;
-    rot[0] += idleAmt * 0.012 * Math.sin(ts * 1.1);
-    rot[1] += idleAmt * 0.012 * Math.sin(ts * 0.7 + 1.3);
-    // leaning: the gun slides along the right vector of (0, 0, -2 f), (1 - ADS) x f x 1.6 units (CG_CalculateWeaponPosition;
-    // not at full ADS)
-    const lf = s && s.lean ? s.lean * (2 - Math.abs(s.lean)) : 0;
-    if (lf && ads < 1) {
-      const d = (1 - ads) * lf * 1.6, r = -2 * lf * Math.PI / 180;
-      pos[1] -= Math.cos(r) * d; pos[2] -= Math.sin(r) * d;
+    // the landing dip: the recording player's landing event (a quarter of the camera's dip, view3d.js), the others
+    // from their fall
+    const dip = this.landDip(cl, t);
+    if (dip != null) pos[2] += dip * 0.25;
+    else if (!W) {
+      const land = this.landing(cl, t, W, ri);
+      if (land) { const k = Math.min(1, land.speed / 350) * Math.sin(Math.PI * Math.min(1, land.dt / 0.3)) * Math.exp(-land.dt * 4); pos[2] -= 2.2 * k; rot[0] += 2.5 * k; }
     }
     // the turn sway (the gun lags behind the view)
-    const sw = this.sway(cl, t, P, ads, !!(out.entry.strings && out.entry.strings.adsOverlayShader));
+    const sw = this.sway(cl, t, P, ads, scoped);
     rot[0] -= sw.pitch; rot[1] -= sw.yaw; pos[1] -= sw.horiz; pos[2] -= sw.vert;
     // the gun kick: the shots of the last 1.2 s through the weapon's kick spring
     const k = this.kick(cl, t, P, ads);
     rot[0] -= k[0]; rot[1] += k[1];
   }
 
+  /** what the gun's position depends on at time tm: horizontal speed (the recorder's player state interpolated,
+   *  the others' from their positions), stance (the eFlags' crouch / prone), the eye height heading for and current
+   *  (11 / 40 / 60), the player's speed (g_speed), the ADS fraction, a reload (weapon state 5) */
+  gunInputs(cl, tm, s, W, P) {
+    const M = this.M;
+    const smp = s || M.sampleAt(cl, tm);
+    const prone = !!(smp && smp.prone), crouch = !prone && !!(smp && smp.crouch);
+    const ri = W ? M.psRow(cl, tm) : -1;
+    if (ri >= 0) {
+      return { speed: Math.hypot(M.psLerp(ri, 'vx', tm), M.psLerp(ri, 'vy', tm)), prone, crouch,
+        vht: W.vht ? W.vht[ri] : prone ? 11 : crouch ? 40 : 60, vhc: M.psLerp(ri, 'vh', tm), gspeed: (W.speed && W.speed[ri]) || 190,
+        ads: M.psLerp(ri, 'ads', tm), reload: W.state[ri] === 5 };
+    }
+    let speed = 0;
+    const a = smp && M.sampleAt(cl, tm - 50);
+    if (a) speed = Math.hypot(smp.x - a.x, smp.y - a.y) * 20;
+    const h = prone ? 11 : crouch ? 40 : 60;
+    return { speed, prone, crouch, vht: h, vhc: h, gspeed: 190, ads: this.adsOther(cl, tm, P)[0], reload: false };
+  }
+
+  /** the gun's movement / stance offsets and their rotation as the game follows them frame by frame, simulated over
+   *  the last 2.5 s in 1/60 s steps on a fixed time grid (the same t always gives the same result, also after a
+   *  seek): the targets are the weapon file's *Move F / R / U and *Rot P / Y / R (stand / ducked / prone) times the
+   *  speed's share above *MoveMinSpeed / *RotMinSpeed (none while reloading; the rotation x (1 - ADS)), plus the
+   *  stance offsets duckedOfs / proneOfs by the eye height heading for; each axis moves (target - now) x dt x
+   *  posMoveRate / posRotRate (posProne* when prone), at least 0.1 units / s, never past the target. The idle sway:
+   *  hip / ADS idle amount and speed (by the ADS fraction; 80 and 1 without), the stance factor (idleCrouchFactor /
+   *  idleProneFactor) followed at 0.5 / s, its phase advancing by the idle speed; roll / yaw / pitch sin(T x 0.0005 /
+   *  0.0007 / 0.001) x amount / 100 -> {pos [f, r, u], rot [p, y, r], idle [p, y, r]} */
+  gunFollow(cl, t, W, P, scoped) {
+    const v = k => P[k] || 0, STEP = 1000 / 60, SPAN = 2500;
+    const stance = (i, st, du, pr) => (i.prone ? v(pr) : i.crouch ? v(du) : v(st));
+    const targets = i => {
+      const minS = stance(i, 'standMoveMinSpeed', 'duckedMoveMinSpeed', 'proneMoveMinSpeed');
+      const fm = i.speed <= minS || i.reload ? 0 : clamp01((i.speed - minS) / Math.max(1, i.gspeed - minS));
+      const tp = [stance(i, 'standMoveF', 'duckedMoveF', 'proneMoveF') * fm, stance(i, 'standMoveR', 'duckedMoveR', 'proneMoveR') * fm,
+        stance(i, 'standMoveU', 'duckedMoveU', 'proneMoveU') * fm];
+      if (i.vht === 11) { tp[0] += v('proneOfsF'); tp[1] += v('proneOfsR'); tp[2] += v('proneOfsU'); }
+      else if (i.vht === 40) { tp[0] += v('duckedOfsF'); tp[1] += v('duckedOfsR'); tp[2] += v('duckedOfsU'); }
+      const minR = stance(i, 'standRotMinSpeed', 'duckedRotMinSpeed', 'proneRotMinSpeed');
+      const fr = i.speed <= minR || i.reload ? 0 : clamp01((i.speed - minR) / Math.max(1, i.gspeed - minR)) * (1 - i.ads);
+      const tr = [stance(i, 'standRotP', 'duckedRotP', 'proneRotP') * fr, stance(i, 'standRotY', 'duckedRotY', 'proneRotY') * fr,
+        stance(i, 'standRotR', 'duckedRotR', 'proneRotR') * fr];
+      const tf = i.prone ? (P.idleProneFactor != null ? P.idleProneFactor : 1) : i.crouch ? (P.idleCrouchFactor != null ? P.idleCrouchFactor : 1) : 1;
+      return { tp, tr, tf };
+    };
+    const follow = (cur, tgt, dt, rate) => {
+      for (let k = 0; k < 3; k++) {
+        if (cur[k] === tgt[k]) continue;
+        const d = (tgt[k] - cur[k]) * dt * rate;
+        if (tgt[k] <= cur[k]) { cur[k] += Math.min(-0.1 * dt, d); if (cur[k] < tgt[k]) cur[k] = tgt[k]; }
+        else { cur[k] += Math.max(0.1 * dt, d); if (cur[k] > tgt[k]) cur[k] = tgt[k]; }
+      }
+    };
+    const idleOf = i => {
+      if (P.aimDownSight) return [(v('adsIdleAmount') - v('hipIdleAmount')) * i.ads + v('hipIdleAmount'), (v('adsIdleSpeed') - v('hipIdleSpeed')) * i.ads + v('hipIdleSpeed')];
+      return v('hipIdleAmount') ? [v('hipIdleAmount'), v('hipIdleSpeed')] : [80, 1];
+    };
+    let tm = Math.floor((t - SPAN) / STEP) * STEP, cur = null, phase = 0, i = null;
+    while (true) {
+      const next = Math.min(t, tm + STEP), dt = (next - tm) / 1000;
+      i = this.gunInputs(cl, next, null, W, P);
+      const T = targets(i);
+      if (!cur) {
+        // (the start of the window: settled at its targets; the idle phase as if the speed had always been this one)
+        cur = { pos: T.tp.slice(), rot: T.tr.slice(), factor: T.tf };
+        phase = tm * idleOf(i)[1];
+      } else {
+        follow(cur.pos, T.tp, dt, i.vhc === 11 ? v('posProneMoveRate') : v('posMoveRate'));
+        follow(cur.rot, T.tr, dt, i.vhc === 11 ? v('posProneRotRate') : v('posRotRate'));
+        const tf = scoped && i.ads ? cur.factor : T.tf;
+        if (cur.factor < tf) cur.factor = Math.min(tf, cur.factor + dt * 0.5);
+        else if (cur.factor > tf) cur.factor = Math.max(tf, cur.factor - dt * 0.5);
+        phase += dt * 1000 * idleOf(i)[1];
+      }
+      if (next >= t) break;
+      tm = next;
+    }
+    const [amt] = idleOf(i);
+    let a = cur.factor * amt;
+    if (scoped) a *= 1 - i.ads;
+    const idle = [Math.sin(phase * 0.001) * a * 0.01, Math.sin(phase * 0.0007) * a * 0.01, Math.sin(phase * 0.0005) * a * 0.01];
+    return { pos: cur.pos, rot: cur.rot, idle };
+  }
+
+  /** the recording player's landing dip at t (CG_EntityEvent + CG_CalcViewValues): a landing sets the change
+   *  (EV_LANDING: -parm; EV_LANDING_PAIN: the fall height between bg_fallDamageMinHeight 256 and MaxHeight 480 ->
+   *  -min(24, 4 + (h - 12) / 26 x 4)); over 150 ms it goes down to it, then back over 300 ms -> units (the camera; the
+   *  gun a quarter more) or null without a landing in the last 450 ms */
+  landDip(cl, t) {
+    const E = this.viewEventsOf(cl).land;
+    const k = lower(E.t, t);
+    if (k < 0 || t - E.t[k] >= 450) return null;
+    const dt = t - E.t[k], ch = E.change[k];
+    return dt < 150 ? ch * dt / 150 : ch * (450 - dt) / 300;
+  }
+  /** the recording player's landings / steps (DemoData.viewEvents) per client: land {t, change}, step {t, change, prev}
+   *  (EV_STEP_VIEW: parm - 128, plus 90 % of what is left of the previous step within 100 ms, held within -16 .. 24) */
+  viewEventsOf(cl) {
+    let r = this.viewEv && this.viewEv.get(cl);
+    if (r) return r;
+    if (!this.viewEv) this.viewEv = new Map();
+    const land = { t: [], change: [] }, step = { t: [], change: [], raw: [] };
+    let lastStep = -1e9, lastChange = 0;
+    const K = window.C2.constants.EV;
+    for (const [t, c, ev, parm] of this.M.d.viewEvents || []) {
+      if (c !== cl) continue;
+      if (ev === K.STEP_VIEW) {
+        const since = t - lastStep;
+        let ch = (parm - 128) + (since < 100 ? (100 - since) * lastChange / 100 * 0.9 : 0);
+        ch = Math.max(-16, Math.min(24, ch));
+        step.t.push(t); step.change.push(ch); step.raw.push(parm - 128); lastStep = t; lastChange = ch;
+      } else if (ev >= K.LANDING_PAIN_DEFAULT) {
+        const h = parm * 0.01 * (480 - 256) + 256, n = h > 12 ? Math.trunc((h - 12) / 26 * 4 + 4) : 0, c24 = Math.min(24, n);
+        if (c24 > 0) { land.t.push(t); land.change.push(-c24); }
+      } else if (parm > 0) { land.t.push(t); land.change.push(-parm); }
+    }
+    r = { land, step };
+    this.viewEv.set(cl, r);
+    return r;
+  }
+
   /** the bob's inputs: the cycle (rad, BG_GetBobCycle: the recorder's bobCycle / 255 * 2 pi, else the distance
    *  walked, one cycle per 2 steps), the horizontal speed and the stance's amplitude (bg_bobAmplitudeStanding
-   *  0.007, Ducked 0.0075, Prone 0.03: the view height 40 / 11, else the stance mix) */
+   *  0.007, Ducked 0.0075, Prone 0.03: the eye height heading for (viewHeightTarget) 40 / 11, else the stance mix) */
   bobInputs(cl, t, s, W, ri, speed, crouch, prone) {
     const M = this.M;
     let cycle;
@@ -379,7 +469,8 @@ export class ViewAnimator {
       if (i >= 0 && i + 1 < Ps.t.length && Ps.t[i + 1] > Ps.t[i]) d += (D[i + 1] - D[i]) * clamp01((t - Ps.t[i]) / (Ps.t[i + 1] - Ps.t[i]));
       cycle = d / 96 * Math.PI;
     }
-    const amp = W ? (W.vh[ri] === 40 ? BOB_AMP[1] : W.vh[ri] === 11 ? BOB_AMP[2] : BOB_AMP[0])
+    const vht = W ? (W.vht ? W.vht[ri] : Math.round(W.vh[ri])) : 0;
+    const amp = W ? (vht === 40 ? BOB_AMP[1] : vht === 11 ? BOB_AMP[2] : BOB_AMP[0])
       : (1 - crouch - prone) * BOB_AMP[0] + crouch * BOB_AMP[1] + prone * BOB_AMP[2];
     return { cycle, speed, amp };
   }
@@ -389,7 +480,7 @@ export class ViewAnimator {
   viewBob(cl, t, s) {
     const ri = this.recorderRow(cl, t), W = ri >= 0 ? this.rec.W : null;
     let speed = 0, crouch = 0, prone = 0;
-    if (W) speed = Math.hypot(W.vx[ri], W.vy[ri]);
+    if (W) speed = Math.hypot(this.M.psLerp(ri, 'vx', t), this.M.psLerp(ri, 'vy', t));
     else {
       const a = this.M.sampleAt(cl, t - 50);
       if (a) speed = Math.hypot(s.x - a.x, s.y - a.y) * 20;
@@ -500,7 +591,7 @@ export class ViewAnimator {
     const v = k => P[k] || 0;
     let mn, mx, scale;
     if (W) {
-      const vh = W.vh[ri];
+      const vh = this.M.psLerp(ri, 'vh', t);
       if (vh <= 40) { const f = (vh - 11) / 29; mn = (v('hipSpreadDuckedMin') - v('hipSpreadProneMin')) * f + v('hipSpreadProneMin'); mx = (v('hipSpreadDuckedMax') - v('hipSpreadProneMax')) * f + v('hipSpreadProneMax'); }
       else { const f = (vh - 40) / 20; mn = (v('hipSpreadStandMin') - v('hipSpreadDuckedMin')) * f + v('hipSpreadDuckedMin'); mx = (v('hipSpreadMax') - v('hipSpreadDuckedMax')) * f + v('hipSpreadDuckedMax'); }
       let a = W.spread[ri];

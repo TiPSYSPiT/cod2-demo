@@ -527,6 +527,21 @@ C2.define('build', function (C2) {
         bombTrack.push({ t: r.segEnd, state: 'none', x: null, y: null, z: null, carrier: null, site: null, source: null });
       }
       bombTrack.sort((a, b) => a.t - b.t);
+      // the bomb timer: the server's countdown clock that appears with the plant (zPAM / stock: setClock, 60 s
+      // by default) - exact; else the plant -> explosion time of the demo's exploded rounds, else 60 s (≈)
+      const clocks = col.hudClocks.map(h => ({ t: rel(h.t), end: rel(h.t) + (h.end - h.t) }));    // (unclamped: past the recording's end)
+      const fuses = [];
+      for (let i = 0; i + 1 < bombTrack.length; i++) {
+        if (bombTrack[i].state === 'planted' && bombTrack[i + 1].state === 'exploded') fuses.push(bombTrack[i + 1].t - bombTrack[i].t);
+      }
+      fuses.sort((a, b) => a - b);
+      const fuse = fuses.length ? fuses[fuses.length >> 1] : 60000;
+      for (const b of bombTrack) {
+        if (b.state !== 'planted') continue;
+        const ck = clocks.find(h => h.t >= b.t - 200 && h.t <= b.t + 1500 && h.end - h.t >= 10000);
+        b.explodeAt = ck ? ck.end : b.t + fuse;
+        b.timerSource = ck ? 'clock' : fuses.length ? 'exploded rounds' : 'default';
+      }
     }
 
     const fsGame = serverinfo.fs_game || systeminfo.fs_game || '';
@@ -560,7 +575,7 @@ C2.define('build', function (C2) {
       isSearchAndDestroy: isSD
     };
 
-    return {
+    const data = {
       format: 'cod2-demo3d/1',
       meta, serverinfo, systeminfo, warnings, diagnostics,
       teams: teamList, players, rounds, initialScore: R.initialScore, halfInfo, halftimes: R.halftimes,
@@ -583,24 +598,34 @@ C2.define('build', function (C2) {
         return { x: r.x, y: r.y, z: r.z, yaw: r.yaw, t: Int32Array.from(keep, i => rel(r.t[i])),
           pitch: Float32Array.from(keep, i => r.pitch[i]), aimYaw: Float32Array.from(keep, i => r.aimYaw[i]) };
       }).filter(r => r.t.length),
-      // the sounds of the 3D view (js/view3d/sound.js): [t, alias | 'weapon:<name>', x, y, z, entity],
-      // the POV's local sounds ("s <n>" = config string 590 + n) {t, name}
+      // the sounds of the 3D view (js/view3d/sound.js), as CG_EntityEvent plays them: events [t, alias |
+      // 'weapon:<name>[:<key>]', x, y, z, entity]; the POV's local sounds ("s <n>" = config string 590 + n)
+      // {t, name}; the entities' loop sounds [t0, t1, alias, x, y, z, entity]; the bullets for the whizby
+      // [t, shooter's eye x y z, impact x y z, shooter]
       sounds3d: (() => {
         const S = K.SURFACES, surf = i => S[i] || 'default';
         const csAt = i => cs.get(K.CS.SOUNDS + i) || null;
+        const weapon = (i, t, key) => { const w = weaponName(i, t); return w && w !== 'none' ? 'weapon:' + w + (key ? ':' + key : '') : null; };
         const events = [];
         for (const r of col.sndEvents) {
           const t = rel(r[0]);
           if (!onMainMap(t)) continue;
-          let name = null;
-          if (r[1] === 1) { const w = weaponName(r[2], t); name = w && w !== 'none' ? 'weapon:' + w : null; }
-          else if (r[1] === 2) name = ['step_run_', 'step_walk_', 'step_prone_'][r[3]] + surf(r[2]);
-          else if (r[1] === 3) name = 'land_' + surf(r[2]);
-          else if (r[1] === 4) name = r[3] ? 'melee_hit' : 'melee_swing_large';
-          else if (r[1] === 5) { const w = weaponName(r[2], t) || ''; name = /smoke/.test(w) ? 'smokegrenade_explode_default' : 'grenade_explode_' + surf(r[3]); }
-          else if (r[1] === 6) name = (r[3] ? 'bullet_large_' : 'bullet_small_') + surf(r[2]);
-          else if (r[1] === 7) name = csAt(r[2]);
-          if (name) events.push([t, String(name).toLowerCase(), r[4], r[5], r[6], r[7]]);
+          const names = [];
+          if (r[1] === 1) names.push(weapon(r[2], t, r[3] ? 'last' : ''));
+          else if (r[1] === 2) names.push(['step_run_', 'step_walk_', 'step_prone_'][r[3]] + surf(r[2]), r[3] ? 'gear_rattle_walk' : 'gear_rattle_run');
+          else if (r[1] === 9) names.push('step_run_' + surf(r[2]), 'gear_rattle_run');               // a jump
+          else if (r[1] === 3) names.push('land_' + surf(r[2]), r[3] ? 'land_damage' : null);
+          else if (r[1] === 4) names.push(r[3] === 1 ? 'melee_hit' : r[3] === 2 ? 'melee_hit_other' : weapon(r[2], t, 'melee'));
+          else if (r[1] === 5) { const w = weaponName(r[2], t) || ''; names.push(/smoke/.test(w) ? 'smokegrenade_explode_default' : 'grenade_explode_' + surf(r[3])); }
+          else if (r[1] === 6) names.push((r[3] ? 'bullet_large_' : 'bullet_small_') + surf(r[2]));
+          // (CG_BulletHitClientEvent plays the small table for the small hit, the spray table for the large one)
+          else if (r[1] === 13) names.push((r[3] ? 'bulletspray_small_' : 'bullet_small_') + surf(r[2]));
+          else if (r[1] === 7) names.push(csAt(r[2]));
+          else if (r[1] === 8) names.push(weapon(r[2], t, r[3]));
+          else if (r[1] === 10) names.push('movement_foliage');
+          else if (r[1] === 11) names.push('grenade_bounce_' + surf(r[2]));
+          else if (r[1] === 12) names.push('player_out_of_ammo');
+          for (const name of names) if (name) events.push([t, String(name).toLowerCase(), r[4], r[5], r[6], r[7]]);
         }
         events.sort((a, b) => a[0] - b[0]);
         const local = [];
@@ -609,7 +634,15 @@ C2.define('build', function (C2) {
           const v = csAt(c.d.sound);
           if (v) local.push({ t: c.t, name: v.toLowerCase() });
         }
-        return { events, local };
+        const loops = [];
+        for (const r of col.loopSounds) {
+          const t0 = rel(r[0]), name = csAt(r[2]);
+          if (name && onMainMap(t0)) loops.push([t0, rel(r[1]) + 50, name.toLowerCase(), r[3], r[4], r[5], r[6]]);
+        }
+        loops.sort((a, b) => a[0] - b[0]);
+        const whiz = col.whizEvents.map(r => [rel(r[0]), r[1], r[2], r[3], r[4], r[5], r[6], r[7]]).filter(r => onMainMap(r[0]));
+        whiz.sort((a, b) => a[0] - b[0]);
+        return { events, local, loops, whiz };
       })(),
       shotsSeen: Object.fromEntries([...col.shots].map(([cl, a]) => [cl, a.map(rel)])),
       // the first-person weapon (viewanim.js): the recording player's weapon per snapshot (player state),
@@ -619,7 +652,8 @@ C2.define('build', function (C2) {
         const typed = { client: Int8Array, anim: Uint16Array, state: Uint8Array, weapon: Uint8Array, offhand: Uint8Array, ads: Float32Array,
           spread: Float32Array, viewmodel: Uint8Array, bob: Uint8Array, vx: Float32Array, vy: Float32Array, vz: Float32Array,
           ground: Uint16Array, vh: Float32Array, breath: Float32Array, fuse: Int32Array, friend: Uint8Array,
-          pmType: Uint8Array, health: Int16Array, ammoRef: Uint32Array, objRef: Uint32Array, hudRef: Uint32Array };
+          pmType: Uint8Array, health: Int16Array, ammoRef: Uint32Array, objRef: Uint32Array, hudRef: Uint32Array,
+          speed: Int16Array, vht: Int8Array };
         for (const [k, A] of Object.entries(typed)) T[k] = A.from(W[k]);
         return T;
       })(),
@@ -646,6 +680,7 @@ C2.define('build', function (C2) {
           messages: commands.filter(c => c.d.verb === 'f' || c.d.verb === 'g').map(c => [c.t, c.d.verb, c.d.text]) };
       })(),
       weapEvents: col.weapEvents.map(r => [rel(r[0]), r[1], r[2], r[3]]),
+      viewEvents: col.viewEvents.map(r => [rel(r[0]), r[1], r[2], r[3]]),
       viewHands: (() => { const out = {}; for (const i of new Set(col.psWeapon.viewmodel)) { const n = i && cs.get(K.CS.MODELS + i); if (n) out[i] = n.toLowerCase(); } return out; })(),
       fx3d: {
         impacts: col.impacts.map(r => [rel(r[0])].concat(r.slice(1))).filter(r => onMainMap(r[0])),
@@ -655,6 +690,9 @@ C2.define('build', function (C2) {
       },
       weaponLists
     };
+    // opening duels, trades, multikills, clutches, zPAM's round report (combat.js)
+    C2.combat.analyze(data);
+    return data;
   }
 
   /** K / D of one kill - THE rule of the scoreboard (only kills of phase "live" count; the caller

@@ -28,7 +28,7 @@ C2.define('collect', function (C2) {
     legs: ES.legsAnim, torso: ES.torsoAnim, lean: ES.leanf, clientNum: ES.clientNum, time: ES.time, time2: ES.time2,
     scale: ES.scale, delay: ES['angles2[1]'], dir: [0, 1, 2].map(i => ES['origin2[' + i + ']']),
     torsoPitch: ES.fTorsoPitch, waistPitch: ES.fWaistPitch, ground: ES.groundEntityNum,
-    aim: [ES['angles2[0]'], ES['angles2[1]']]
+    aim: [ES['angles2[0]'], ES['angles2[1]']], loopSound: ES.loopSound
   };
   const P = {
     client: PS.clientNum, pmType: PS.pm_type, pmFlags: PS.pm_flags, eFlags: PS.eFlags, weapon: PS.weapon,
@@ -43,7 +43,9 @@ C2.define('collect', function (C2) {
     spread: PS.aimSpreadScale, viewmodel: PS.viewmodelIndex, bob: PS.bobCycle, ground: PS.groundEntityNum,
     vel: [0, 1, 2].map(i => PS['velocity[' + i + ']']), breath: PS.holdBreathScale, fuse: PS.grenadeTimeLeft,
     // the HUD (hud.js): the weapons owned (two bit fields)
-    weapBits: [PS['weapons[0]'], PS['weapons[1]']]
+    weapBits: [PS['weapons[0]'], PS['weapons[1]']],
+    // the first-person weapon's position (viewanim.js): the player's speed (g_speed), the eye height it heads for
+    speed: PS.speed, viewHeightTarget: PS.viewHeightTarget
   };
   const C = { team: CS.team, model: CS.modelindex, name: [0, 4, 8, 12, 16, 20, 24, 28].map(i => CS['name[' + i + ']']),
     attach: [0, 1, 2, 3, 4, 5].map(i => CS['attachModelIndex[' + i + ']']) };
@@ -53,6 +55,11 @@ C2.define('collect', function (C2) {
   const WEAP_EVENTS = new Set([EV.RELOAD, EV.RELOAD_FROM_EMPTY, EV.RELOAD_START, EV.RELOAD_END, EV.RAISE_WEAPON, EV.PUTAWAY_WEAPON,
     EV.PULLBACK_WEAPON, EV.FIRE_WEAPON, EV.FIRE_WEAPONB, EV.FIRE_WEAPON_LASTSHOT, EV.RECHAMBER_WEAPON, EV.MELEE_SWIPE, EV.FIRE_MELEE,
     EV.PREP_OFFHAND, EV.USE_OFFHAND]);
+  // the weapon events with a sound of the weapon file (sound.js WSND): event -> key (prep / use offhand: the
+  // grenade is the event parm)
+  const WEAPON_SOUND = new Map([[EV.RELOAD, 'reload'], [EV.RELOAD_FROM_EMPTY, 'reloadempty'], [EV.RELOAD_START, 'reloadstart'],
+    [EV.RELOAD_END, 'reloadend'], [EV.RECHAMBER_WEAPON, 'rechamber'], [EV.RAISE_WEAPON, 'raise'], [EV.PUTAWAY_WEAPON, 'putaway'],
+    [EV.WEAPON_ALT, 'alt'], [EV.PULLBACK_WEAPON, 'pullback'], [EV.PREP_OFFHAND, 'pullback'], [EV.USE_OFFHAND, 'throw']]);
   const EXPLOSIONS = new Set([EV.GRENADE_EXPLODE, EV.ROCKET_EXPLODE, EV.ROCKET_EXPLODE_NOMARKS, EV.CUSTOM_EXPLODE,
     EV.CUSTOM_EXPLODE_NOMARKS]);
   const IMPACTS = new Set([EV.BULLET_HIT_SMALL, EV.BULLET_HIT_LARGE, EV.SHOTGUN_HIT, EV.BULLET_HIT_AP]);
@@ -118,6 +125,7 @@ C2.define('collect', function (C2) {
       restarts: [],                 // server times of 'n' (fast restart = new round)
       levelStarts: [],              // {t, value} of config string 13 (the round's start time)
       hudTimers: [],                // {t, type, end} HUD countdowns seen by the POV (round clock, strat time)
+      hudClocks: [],                // {t, end} HUD clocks counting down (type 11 / 12, setClock: the bomb timer)
       bombModels: [],               // {t, x, y, z} the planted bomb (script model xmodel/mp_tntbomb) when it appears
       issues: [],
       firstTime: null, lastTime: null,
@@ -128,7 +136,10 @@ C2.define('collect', function (C2) {
       // the recording player's weapon per snapshot (the player state: viewanim.js)
       psWeapon: { t: [], client: [], anim: [], state: [], weapon: [], offhand: [], ads: [], spread: [], viewmodel: [], bob: [],
         vx: [], vy: [], vz: [], ground: [], vh: [], breath: [], fuse: [], friend: [],
-        pmType: [], health: [], ammoRef: [], objRef: [], hudRef: [] },
+        pmType: [], health: [], ammoRef: [], objRef: [], hudRef: [], speed: [], vht: [] },
+      // the recording player's landings and steps (EV_LANDING*, EV_LANDING_PAIN*, EV_STEP_VIEW: [t, client, event,
+      // parm]): the first-person camera's and weapon's landing dip and the stair-step smoothing (view3d.js)
+      viewEvents: [],
       // the recording player's HUD state (hud.js): the distinct ammo states ([weapons bits 0, 1, ammo[64],
       // clip[64]]), objective lists and HUD element lists (the elements in use, current then archival, after a
       // header [count current, count archival]) psWeapon's rows point to
@@ -141,11 +152,19 @@ C2.define('collect', function (C2) {
       // server allows them - zPAM's rules switch them off): num -> {fx: config string index, delay (ms),
       // x y z, dir, t0, t1 (first / last seen)}
       loopFx: new Map(),
-      // the sounds of the 3D view: [t, kind, a, b, x, y, z, entity]; kind 1 shot (a = weapon index),
-      // 2 footstep (a = surface, b = 0 run / 1 walk / 2 prone), 3 landing (a = surface), 4 melee (b = 1 hit),
-      // 5 explosion (a = weapon index, b = surface, smoke: custom explode), 6 bullet impact (a = surface,
-      // b = 1 large), 7 sound alias (a = sound index: config string 590 + a)
+      // the sounds of the 3D view (CG_EntityEvent): [t, kind, a, b, x, y, z, entity]; kind 1 shot (a = weapon
+      // index, b = 1 last shot), 2 footstep (a = surface, b = 0 run / 1 walk / 2 prone), 3 landing (a = surface,
+      // b = 1 with fall damage), 4 melee (a = weapon, b = 0 swing / 1 hit / 2 into the world), 5 explosion
+      // (a = weapon index, b = surface, smoke: custom explode), 6 bullet impact (a = surface, b = 1 large),
+      // 7 sound alias (a = sound index: config string 590 + a), 8 weapon sound (a = weapon, b = WEAPON_SOUND
+      // key), 9 jump (a = surface), 10 foliage, 11 grenade bounce (a = surface), 12 out of ammo,
+      // 13 bullet into a player (a = surface, b = 1 large)
       sndEvents: [],
+      // the near misses (whizby): the world impacts' bullets [t, eye x y z of the shooter, impact x y z, shooter]
+      whizEvents: [],
+      // the entities' loop sounds (entityState.loopSound: the planted bomb, an MG firing, map fires):
+      // [t0, t1, sound index, x, y, z, entity]
+      loopSounds: [],
       scriptEnts: [],
       // the mounted MGs (eType turret): num -> {x, y, z, yaw (the stand), t: [], pitch: [], aimYaw: []} - the gun's
       // aim relative to the stand (angles2: CG_UpdateTurretBones turns tag_aim / tag_aim_animated by it; idle
@@ -155,15 +174,26 @@ C2.define('collect', function (C2) {
     const track = cl => { let t = c.tracks.get(cl); if (!t) c.tracks.set(cl, t = new PosTrack()); return t; };
     const addTime = (map, cl, t) => { let a = map.get(cl); if (!a) map.set(cl, a = []); if (a[a.length - 1] !== t) a.push(t); };
     const SURF = K.SURFACES.length;
-    /** the sound of a player event ev at x y z (entity number src) */
-    const playerSound = (ev, parm, weapon, x, y, z, src, t) => {
-      if (SHOT_EVENTS.has(ev)) c.sndEvents.push([t, 1, weapon, 0, x, y, z, src]);
+    /** the sound of a player event ev at x y z (entity number src; surf: the entity's surface type; own: from
+     *  the player state - the offhand pin pull and throw are the local player's only, CG_EntityEvent) */
+    const playerSound = (ev, parm, weapon, x, y, z, src, t, surf = 0, own = false) => {
+      const S = c.sndEvents;
+      if (SHOT_EVENTS.has(ev)) S.push([t, 1, weapon, ev === EV.FIRE_WEAPON_LASTSHOT ? 1 : 0, x, y, z, src]);
       else if (ev >= EV.FOOTSTEP_RUN_DEFAULT && ev < EV.JUMP_DEFAULT) {
         const k = ev - EV.FOOTSTEP_RUN_DEFAULT;
-        c.sndEvents.push([t, 2, k % SURF, Math.floor(k / SURF), x, y, z, src]);
-      } else if (ev >= EV.LANDING_DEFAULT && ev < EV.FOLIAGE_SOUND) c.sndEvents.push([t, 3, (ev - EV.LANDING_DEFAULT) % SURF, 0, x, y, z, src]);
-      else if (ev === EV.MELEE_SWIPE || ev === EV.MELEE_HIT || ev === EV.MELEE_MISS) c.sndEvents.push([t, 4, weapon, ev === EV.MELEE_HIT ? 1 : 0, x, y, z, src]);
-      else if (ev === EV.SOUND_ALIAS || ev === EV.SOUND_ALIAS_AS_MASTER) c.sndEvents.push([t, 7, parm, 0, x, y, z, src]);
+        S.push([t, 2, k % SURF, Math.floor(k / SURF), x, y, z, src]);
+      } else if (ev >= EV.JUMP_DEFAULT && ev < EV.LANDING_DEFAULT) S.push([t, 9, ev - EV.JUMP_DEFAULT, 0, x, y, z, src]);
+      else if (ev >= EV.LANDING_DEFAULT && ev < EV.FOLIAGE_SOUND) S.push([t, 3, (ev - EV.LANDING_DEFAULT) % SURF, ev >= EV.LANDING_PAIN_DEFAULT ? 1 : 0, x, y, z, src]);
+      else if (ev === EV.FOLIAGE_SOUND) S.push([t, 10, 0, 0, x, y, z, src]);
+      else if (ev === EV.MELEE_SWIPE || ev === EV.MELEE_HIT || ev === EV.MELEE_MISS) S.push([t, 4, weapon, ev === EV.MELEE_HIT ? 1 : ev === EV.MELEE_MISS ? 2 : 0, x, y, z, src]);
+      else if (ev === EV.SOUND_ALIAS || ev === EV.SOUND_ALIAS_AS_MASTER) S.push([t, 7, parm, 0, x, y, z, src]);
+      else if (ev === EV.GRENADE_BOUNCE) S.push([t, 11, surf, 0, x, y, z, src]);
+      else if (ev === EV.NOAMMO) S.push([t, 12, weapon, 0, x, y, z, src]);
+      else if (WEAPON_SOUND.has(ev)) {
+        const key = WEAPON_SOUND.get(ev);
+        if (ev === EV.PREP_OFFHAND || ev === EV.USE_OFFHAND) { if (own) S.push([t, 8, parm, key, x, y, z, src]); }
+        else S.push([t, 8, weapon, key, x, y, z, src]);
+      }
     };
     let prevEvents = new Set();     // event entities of the previous snapshot (number:eType:time)
     let prevEntities = new Map();   // number -> state of the previous snapshot
@@ -196,6 +226,11 @@ C2.define('collect', function (C2) {
         if (!arr) continue;
         for (let i = 0; i < C2.delta.MAX_HUDELEMS; i++) {
           const type = arr[i * NH + HE.type], end = arr[i * NH + HE.time];
+          if ((type === 11 || type === 12) && end) {
+            const ck = 'c|' + end;
+            if (!timerSeen.has(ck)) { timerSeen.add(ck); c.hudClocks.push({ t, end }); }
+            continue;
+          }
           if (type !== 7 || !end) continue;
           const key = type + '|' + end;
           if (timerSeen.has(key)) continue;
@@ -294,7 +329,8 @@ C2.define('collect', function (C2) {
             const ev = f[P.events[i & 3]] & 0xff;
             if (SHOT_EVENTS.has(ev)) addTime(c.shots, cl, t);
             if (WEAP_EVENTS.has(ev)) c.weapEvents.push([t, cl, ev, f[P.weapon]]);
-            playerSound(ev, f[P.parms[i & 3]] & 0xff, f[P.weapon], u2f(f[P.ox]), u2f(f[P.oy]), u2f(f[P.oz]), cl, t);
+            if ((ev >= EV.LANDING_DEFAULT && ev < EV.LANDING_DEFAULT + 46) || ev === EV.STEP_VIEW) c.viewEvents.push([t, cl, ev, f[P.parms[i & 3]] & 0xff]);
+            playerSound(ev, f[P.parms[i & 3]] & 0xff, f[P.weapon], u2f(f[P.ox]), u2f(f[P.oy]), u2f(f[P.oz]), cl, t, 0, true);
           }
         }
       }
@@ -307,7 +343,7 @@ C2.define('collect', function (C2) {
       W.ground.push(f[P.ground]); W.vh.push(u2f(f[P.viewHeight])); W.breath.push(u2f(f[P.breath])); W.fuse.push(f[P.fuse] | 0);
       // pm_flags 0x100000: the crosshair rests on a teammate (the server sets it; CG_DrawCrosshair draws it green)
       W.friend.push(f[P.pmFlags] & 0x100000 ? 1 : 0);
-      W.pmType.push(pmType); W.health.push(health);
+      W.pmType.push(pmType); W.health.push(health); W.speed.push(f[P.speed] | 0); W.vht.push(f[P.viewHeightTarget] | 0);
       doPsTables(s.ps, f);
       const alive = (pmType === K.PM.NORMAL || pmType === K.PM.NORMAL_LINKED) && health > 0;
       if (!alive) return;
@@ -351,6 +387,7 @@ C2.define('collect', function (C2) {
           continue;
         }
         const prev = prevEntities.get(num);
+        if (e[E.loopSound]) doLoopSound(e, num, t);
         // entity events (eventSequence ring), only when the entity was there before; an exploding
         // grenade turns into a general entity that carries EV_GRENADE_EXPLODE (G_ExplodeMissile)
         if (prev && prev[E.type] < K.ET.EVENTS && prev[E.seq] !== e[E.seq]) {
@@ -361,7 +398,7 @@ C2.define('collect', function (C2) {
               if (et === K.ET.PLAYER && SHOT_EVENTS.has(ev)) addTime(c.shots, num, t);
               if (et === K.ET.PLAYER && WEAP_EVENTS.has(ev) && num !== psClient) c.weapEvents.push([t, num, ev, e[E.weapon]]);
               if (EXPLOSIONS.has(ev)) onExplosion(e, ev, t, e[E.parms[i & 3]]);
-              else playerSound(ev, e[E.parms[i & 3]] & 0xff, e[E.weapon], u2f(e[E.px]), u2f(e[E.py]), u2f(e[E.pz]), num, t);
+              else playerSound(ev, e[E.parms[i & 3]] & 0xff, e[E.weapon], u2f(e[E.px]), u2f(e[E.py]), u2f(e[E.pz]), num, t, e[E.surf]);
             }
           }
         }
@@ -388,6 +425,16 @@ C2.define('collect', function (C2) {
       }
       prevEvents = events;
       prevEntities = cur;
+    }
+
+    // the open loop sounds: entity number -> record (a loop ends where its entity stops sending it)
+    const loopOpen = new Map();
+    function doLoopSound(e, num, t) {
+      const snd = e[E.loopSound];
+      let r = loopOpen.get(num);
+      if (r && (r[2] !== snd || t - r[1] > 300)) r = null;
+      if (!r) { r = [t, t, snd, u2f(e[E.px]), u2f(e[E.py]), u2f(e[E.pz]), num]; loopOpen.set(num, r); c.loopSounds.push(r); }
+      r[1] = t;
     }
 
     function doPlayer(e, num, t) {
@@ -468,13 +515,23 @@ C2.define('collect', function (C2) {
       } else if (EXPLOSIONS.has(ev)) {
         onExplosion(e, ev, t, e[E.parm]);
       } else if (IMPACTS.has(ev)) {
-        c.impacts.push([t, u2f(e[E.px]), u2f(e[E.py]), u2f(e[E.pz]), e[E.parm], e[E.surf], e[E.weapon], ev]);
-        c.sndEvents.push([t, 6, e[E.surf], ev === EV.BULLET_HIT_SMALL ? 0 : 1, u2f(e[E.px]), u2f(e[E.py]), u2f(e[E.pz]), e[0]]);
+        const x = u2f(e[E.px]), y = u2f(e[E.py]), z = u2f(e[E.pz]);
+        c.impacts.push([t, x, y, z, e[E.parm], e[E.surf], e[E.weapon], ev]);
+        c.sndEvents.push([t, 6, e[E.surf], ev === EV.BULLET_HIT_SMALL ? 0 : 1, x, y, z, e[0]]);
+        // the bullet's path for the whizby: from the shooter's eye (otherEntityNum, his last sample) to the impact
+        const sh = e[E.other], tr = c.tracks.get(sh), n = tr ? tr.t.length : 0;
+        if (n && t - tr.t[n - 1] <= 250) {
+          const fl = tr.flags[n - 1], eye = fl & PF.PRONE ? 11 : fl & PF.CROUCH ? 40 : 60;
+          c.whizEvents.push([t, tr.x[n - 1], tr.y[n - 1], tr.z[n - 1] + eye, x, y, z, sh]);
+        }
+      } else if (ev === EV.MELEE_HIT || ev === EV.MELEE_MISS) {
+        c.sndEvents.push([t, 4, e[E.weapon], ev === EV.MELEE_HIT ? 1 : 2, u2f(e[E.px]), u2f(e[E.py]), u2f(e[E.pz]), e[0]]);
       } else if (ev === EV.SOUND_ALIAS || ev === EV.SOUND_ALIAS_AS_MASTER) {
         c.sndEvents.push([t, 7, e[E.parm], 0, u2f(e[E.px]), u2f(e[E.py]), u2f(e[E.pz]), e[0]]);
       } else if (CLIENT_HITS.has(ev)) {
         // (the shooter is in clientNum - attackerEntityNum is always 0; weapon is 0 as well, PLAN.md step 44)
         c.hitsTaken.push({ t, victim: e[E.other], attacker: e[E.clientNum], weapon: e[E.weapon] });
+        c.sndEvents.push([t, 13, e[E.surf], ev === EV.BULLET_HIT_CLIENT_SMALL ? 0 : 1, u2f(e[E.px]), u2f(e[E.py]), u2f(e[E.pz]), e[0]]);
       } else if (ev === EV.PLAY_FX) {
         c.playFx.push([t, u2f(e[E.px]), u2f(e[E.py]), u2f(e[E.pz]), e[E.parm]]);
       }
@@ -489,6 +546,7 @@ C2.define('collect', function (C2) {
         prevEntities = new Map();
         prevEvents = new Set();
         missileKey.clear();
+        loopOpen.clear();
       },
       onConfigstring(u) { csUpdate(u.serverTime, u.index, u.value); },
       onServerCommand(cmd) {

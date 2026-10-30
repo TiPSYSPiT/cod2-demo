@@ -519,6 +519,10 @@ export class View3D {
         const r = 16 * f * Math.PI / 180, d = 20 * f;
         eye.x += Math.cos(r) * Math.sin(y) * d; eye.y -= Math.cos(r) * Math.cos(y) * d; eye.z -= Math.sin(r) * d;
       }
+      // the recording player's landing dip and stair steps
+      const dip = va.landDip(cl, t);
+      if (dip != null) eye.z += dip;
+      eye.z += this.stepSmoothing(va, cl, t);
       eye.z = Math.max(eye.z, s.z + 8);
     }
     return { cl, target: { pos, eye, yaw: s.yaw, pitch: s.pitch } };
@@ -532,7 +536,7 @@ export class View3D {
     this.last = now;
     if (this.xrayMode === 'names' && this.xray.poll()) this.needsRender = true;     // (a name badge changed)
     this.renderFrame(dt, dt);
-    if (this.sounds && this.sounds.enabled) this.sounds.update(this.t || 0, this.camera, this.R.pb);
+    if (this.sounds && this.sounds.enabled) this.sounds.update(this.t || 0, this.camera, this.R.pb, this.fpClient);
   }
 
   /** move the camera by dt (s), then render if anything changed (force: always); shadowDt is unused
@@ -584,13 +588,39 @@ export class View3D {
   }
 
   /** the eye's height over the feet: the recording player's viewHeightCurrent at t (between two snapshots
-   *  interpolated), else the stance's */
+   *  interpolated); the others' moves to the new stance's height as the game moves it (PM_GetViewHeightLerpTime:
+   *  200 ms to standing and down to crouched, 400 ms to prone and up from prone; linear) */
   eyeHeight(va, cl, t, s) {
     const ri = va.recorderRow(cl, t), W = this.M.d.psWeapon;
-    if (ri < 0 || !W || !W.vh) return EYE[stanceOf(s)];
-    let vh = W.vh[ri];
-    if (ri + 1 < W.t.length && W.client[ri + 1] === cl && W.t[ri + 1] > W.t[ri]) vh += (W.vh[ri + 1] - vh) * Math.min(1, Math.max(0, (t - W.t[ri]) / (W.t[ri + 1] - W.t[ri])));
-    return vh > 0 ? vh : EYE[stanceOf(s)];
+    if (ri >= 0 && W && W.vh) { const vh = this.M.psLerp(ri, 'vh', t); if (vh > 0) return vh; }
+    const P = this.M.d.positions[cl], i = s.i, PF = C2.collect.PF;
+    const h = k => (P.flags[k] & PF.PRONE ? EYE.prone : P.flags[k] & PF.CROUCH ? EYE.crouch : EYE.stand);
+    // the last stance change within 400 ms
+    for (let k = i; k > 0 && t - P.t[k] < 400; k--) {
+      const a = h(k - 1), b = h(k);
+      if (a === b) continue;
+      const dur = b === EYE.prone || a === EYE.prone ? 400 : 200;
+      return a + (b - a) * Math.min(1, Math.max(0, (t - P.t[k]) / dur));
+    }
+    return h(i);
+  }
+  /** the recording player's stair steps spread over 100 ms (CG_EntityEvent EV_STEP_VIEW + CG_CalcViewValues: the eye
+   *  keeps its height and follows the step within 100 ms - as the game does when played live; its demo playback
+   *  does not). Between the two snapshots of a step the interpolated position already rises: that rise is held back
+   *  too -> units added to the eye height */
+  stepSmoothing(va, cl, t) {
+    const S = va.viewEventsOf(cl).step;
+    if (!S.t.length) return 0;
+    let off = 0, lo = 0, hi = S.t.length;
+    while (lo < hi) { const m = (lo + hi) >> 1; if (S.t[m] <= t) lo = m + 1; else hi = m; }
+    const k = lo - 1;
+    if (k >= 0 && t - S.t[k] < 100) off -= S.change[k] * (100 - (t - S.t[k])) / 100;
+    if (lo < S.t.length) {
+      const W = this.M.d.psWeapon, r = this.M.psRow(cl, S.t[lo]);
+      const tp = r > 0 && W.client[r - 1] === cl ? W.t[r - 1] : S.t[lo] - 50;
+      if (t > tp && S.t[lo] > tp) off -= S.raw[lo] * (t - tp) / (S.t[lo] - tp);
+    }
+    return off;
   }
 
   /** whether the game's HUD is drawn: first person, a part switched on */

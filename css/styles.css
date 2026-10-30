@@ -231,6 +231,12 @@ body.loaded main { height: calc(100vh - var(--top-h)); }
 .score .meta { color: var(--muted); padding-left: 14px; border-left: 1px solid var(--line-2); display: flex; gap: 10px; }
 .score .meta b { color: var(--text); font-weight: 500; }
 .score .meta-round:empty { display: none; }
+/* the planted bomb's timer (overview.js): its own slot, also on narrow screens */
+.score .bomb-timer { display: inline-flex; align-items: center; gap: 6px; padding-left: 12px; border-left: 1px solid var(--line-2); color: var(--accent); font-weight: 600; }
+.score .bomb-timer[hidden] { display: none; }
+.score .bomb-timer .bomb-dot { width: 8px; height: 8px; transform: rotate(45deg); background: var(--accent); animation: bomb-blink 1s steps(2, start) infinite; }
+@keyframes bomb-blink { to { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .score .bomb-timer .bomb-dot { animation: none; } }
 
 /* icon rail + popovers (main.js) */
 .rail { position: absolute; left: var(--gutter); top: var(--gutter); z-index: 20; display: flex; flex-direction: column; gap: 2px; padding: 5px; }
@@ -531,6 +537,17 @@ table.data.scoreboard tbody tr.team-head ~ tr.team-head td { border-top: 14px so
 .round-toggle { color: var(--muted); transition: transform var(--ease); text-align: center; }
 .round-card.open .round-toggle { transform: rotate(90deg); }
 .round-body { display: none; border-top: 1px solid var(--line); padding: 6px 0; }
+/* the round's combat facts and zPAM's round report (rounds.js) */
+.round-combat { display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 4px 16px 6px 18px; }
+.round-combat .rc-item { display: inline-flex; align-items: center; gap: 4px; }
+.badge.win { color: var(--tl-defuse); }
+.tl-what > .badge { margin-left: 8px; }
+.round-report { margin: 2px 16px 8px 18px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; }
+.round-report .rr-head { font-size: 12px; margin-bottom: 4px; }
+.rr-table { border-collapse: collapse; font-size: 12px; }
+.rr-table td { padding: 1px 12px 1px 0; vertical-align: top; }
+.rr-table .rr-kill td:nth-child(2) { color: var(--tl-defuse); }
+.rr-table .rr-killed td:nth-child(2), .rr-table .rr-team td:nth-child(2) { color: var(--warn); }
 .round-card.open .round-body { display: block; }
 .round-card.not-counted { opacity: .72; border-style: dashed; }
 .tl-row { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 4px 16px 4px 18px; align-items: center; }

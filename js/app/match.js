@@ -103,6 +103,25 @@ export class Match {
       weapon: P.weapon[i], ps: !!(fl & PF.FROM_PS), i, legs: P.legs ? P.legs[i] : 0, torso: P.torso ? P.torso[i] : 0 };
   }
 
+  /** the recording player's player state at t (DemoData.psWeapon, one row per snapshot): the row of client cl at or
+   *  before t (at most 250 ms old) or -1. With psLerp the one place the first-person weapon, camera and HUD read the
+   *  player state from, so they agree */
+  psRow(cl, t) {
+    const W = this.d.psWeapon;
+    if (!W || !W.t.length) return -1;
+    const i = upperBound(W.t, t) - 1;
+    return i >= 0 && W.client[i] === cl && t - W.t[i] < 250 ? i : -1;
+  }
+  /** a numeric player state field (psWeapon[key]) of row i at t, interpolated towards the next snapshot as the
+   *  positions are (the same client, gap <= GAP_MS) */
+  psLerp(i, key, t) {
+    const W = this.d.psWeapon, a = W[key];
+    let v = a[i];
+    if (i + 1 < W.t.length && W.client[i + 1] === W.client[i] && W.t[i + 1] > W.t[i] && W.t[i + 1] - W.t[i] <= CFG.GAP_MS)
+      v += (a[i + 1] - v) * Math.min(1, Math.max(0, (t - W.t[i]) / (W.t[i + 1] - W.t[i])));
+    return v;
+  }
+
   /** trail of the last TRAIL_MS before t: segments of [x, y, z, age 0..1], broken at gaps / jumps / deaths */
   trailOf(cl, t, ms = CFG.TRAIL_MS) {
     const P = this.d.positions[cl];
@@ -163,6 +182,13 @@ export class Match {
     const e = i >= 0 ? T[i] : null;
     if (!e || e.state === 'none' || e.t < this.epochStart(t)) return null;
     return e;
+  }
+
+  /** the planted bomb's timer at t -> {left (ms), heuristic} or null (no bomb ticking) */
+  bombTimer(t) {
+    const e = this.bombAt(t);
+    if (!e || e.state !== 'planted' || e.explodeAt == null || t >= e.explodeAt) return null;
+    return { left: e.explodeAt - t, heuristic: e.timerSource !== 'clock', source: e.timerSource };
   }
 
   /** the round at t; between two rounds the last one before t (null before the first) */

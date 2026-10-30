@@ -14,6 +14,7 @@
       this.dirty = true;
       this.active = false;
       this.skips = [];            // [[a, b), ...] intervals that are never shown (strat time / countdown)
+      this.seeks = 0;             // counts the seeks (the 3D sound cuts on one: sound.js)
       requestAnimationFrame(this.loop);
     }
     setRange(a, b) { this.range = [a, Math.max(a + 1, b)]; this.seek(this.t); }
@@ -29,6 +30,7 @@
       const s = this.skipAt(t);
       if (s) t = clamp(dir < 0 && s[0] - 1 >= this.range[0] ? s[0] - 1 : s[1]);
       this.t = t;
+      this.seeks++;
       this.dirty = true;
     }
     toggle() {

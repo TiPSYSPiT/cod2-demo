@@ -332,7 +332,7 @@ export class Replay {
     this.timeline.setTime(t);
     this.updateTeamPanel(t);
     // the score pill: the rounds won up to now (the final score only on request: overview.js)
-    C2.tabs.overview.update(this.scoreNow, this.rp.title.textContent, rl ? rl.split(' · ')[1] : '');
+    C2.tabs.overview.update(this.scoreNow, this.rp.title.textContent, rl ? rl.split(' · ')[1] : '', this.match.bombTimer(t));
     if (this.view) this.view.draw(t);
     C2.mapStats.refresh();
     // feed: the latest entry highlighted and kept in view, the ones after the playback time dimmed

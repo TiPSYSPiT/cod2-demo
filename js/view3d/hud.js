@@ -265,12 +265,7 @@ export class Hud {
     return out.replace(/&&(\d)/g, (m, n) => (params[n - 1] != null ? params[n - 1] : ''));
   }
   /** the recording player's player state row at t (the snapshot at or before t) or -1 */
-  row(cl, t) {
-    const W = this.W;
-    if (!W) return -1;
-    const i = lower(W.t, t);
-    return i >= 0 && W.client[i] === cl && t - W.t[i] < 300 ? i : -1;
-  }
+  row(cl, t) { return this.W ? this.M.psRow(cl, t) : -1; }
 
   // ---- drawing primitives ----
   /** the screen: device pixels, the safe area (insets: the viewer's own controls over the canvas) */

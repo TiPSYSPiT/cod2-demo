@@ -123,8 +123,47 @@
     return card;
   }
 
+  /** the round's combat facts (combat.js): opening duel, multikills, clutches */
+  function combatLine(app, r) {
+    const c = r.combat, d = app.data;
+    if (!c) return null;
+    const parts = [];
+    if (c.opening != null) {
+      const k = d.kills[c.opening];
+      parts.push(el('span', { class: 'rc-item', title: 'the opening duel: the first kill of the round' },
+        el('span', { class: 'badge' }, 'First blood'), ' ', app.playerNode(k.attacker), el('span', { class: 'dim' }, ' → '), app.playerNode(k.victim)));
+    }
+    for (const m of c.multikills.filter(m => m.kills >= 3)) {
+      parts.push(el('span', { class: 'rc-item', title: m.kills + ' kills by one player in this round' }, el('span', { class: 'badge' }, m.kills + 'K'), ' ', app.playerNode(m.client)));
+    }
+    for (const x of c.clutches) {
+      parts.push(el('span', { class: 'rc-item', title: 'the last player of his team alive against ' + x.vs + ' (' + (x.won ? 'his team won the round' : 'his team lost the round') + ')' },
+        el('span', { class: 'badge' + (x.won ? ' win' : '') }, '1v' + x.vs + (x.won ? ' won' : '')), ' ', app.playerNode(x.client)));
+    }
+    return parts.length ? el('div', { class: 'round-combat' }, parts) : null;
+  }
+
+  /** zPAM's round report of the recording player (combat.js parseReport) as a small table */
+  function reportBlock(app, r) {
+    const rep = r.report, d = app.data;
+    if (!rep) return null;
+    const who = d.meta.povClient != null ? app.playerNode(d.meta.povClient) : 'the recording player';
+    const loc = (o) => [o.damage != null ? o.damage + ' hp' : '', o.location ? (o.damage != null ? ' · ' : '') + o.location : ''];
+    const rows = rep.lines.map(e => el('tr', { class: 'rr-' + e.kind + (e.team ? ' rr-team' : '') },
+      el('td', { class: 'mono', title: e.bomb ? 'the bomb timer' : 'the round clock' }, (e.bomb ? 'B ' : '') + e.time),
+      el('td', null, e.kind === 'kill' ? (e.team ? 'Team kill' : 'Kill') : e.kind === 'hit' ? (e.team ? 'Team hit' : 'Hit') : 'Killed'),
+      el('td', null, e.kind === 'killed' ? (e.location || '') : loc(e), e.first ? el('span', { class: 'dim' }, '  (first hit ', loc(e.first), ')') : null),
+      el('td', { class: 'dim' }, e.weapon || (e.first && e.first.weapon) || '')));
+    return el('div', { class: 'round-report' },
+      el('div', { class: 'rr-head', title: "zPAM's round report (scr_sd_round_report), printed to the recording player after the round: his own hits as the server counted them - the damage and hit location (zPAM 3: rifle, scoped rifle, shotgun and grenade hits only)" },
+        'Round report of ', who, el('span', { class: 'dim' }, ' · ' + rep.kills + ' kill' + (rep.kills === 1 ? '' : 's') + ', ' + rep.hits + ' hit' + (rep.hits === 1 ? '' : 's') + ' without a kill' + (rep.hits ? ' (' + rep.damage + ' hp)' : ''))),
+      el('table', { class: 'rr-table' }, el('tbody', null, rows)));
+  }
+
   function fillTimeline(app, r, i, body) {
     const d = app.data;
+    const extra = [combatLine(app, r), reportBlock(app, r)].filter(Boolean);
+    if (extra.length) body.append(...extra);
     const items = [];
     for (const ki of r.kills) items.push({ t: d.kills[ki].t, kill: d.kills[ki] });
     for (const b of r.bomb) if (b.action === 'planted' || b.action === 'defused') items.push({ t: b.t, bomb: b });
@@ -133,8 +172,12 @@
     const time = t => el('div', { class: 'tl-time', title: 'match time ' + fmtTime(t) }, fmtRoundTime(d, i, t));
     for (const it of items) {
       if (it.kill) {
+        const k = it.kill, avenged = k.tradeOf != null ? d.kills[k.tradeOf] : null;
+        const mate = avenged ? d.players.find(p => p.client === avenged.victim) : null;
         body.append(el('div', { class: 'tl-row clickable', onclick: () => app.gotoMap(it.t, i), title: 'show on the map' },
-          time(it.t), el('div', { class: 'tl-what' }, killNodes(app, it.kill))));
+          time(it.t), el('div', { class: 'tl-what' }, killNodes(app, k),
+            k.opening ? el('span', { class: 'badge', title: 'the first kill of the round' }, 'First blood') : null,
+            avenged ? el('span', { class: 'badge', title: 'a trade: avenges ' + (mate ? mate.cleanName : 'a teammate') + ', killed by this victim ' + ((k.t - avenged.t) / 1000).toFixed(1) + ' s before' }, 'Trade') : null)));
       } else {
         const b = it.bomb;
         const who = d.players.find(p => p.cleanName === b.name);

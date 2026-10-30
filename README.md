@@ -12,18 +12,18 @@ other servers: three.js r170 comes with the project in `vendor/`, the fonts (Int
 Font License) in `assets/fonts/`. The site is plain HTML, CSS and JavaScript with no build step and runs on
 GitHub Pages. The game data (3D maps, textures, 2D backgrounds, sounds, player models and animations,
 particle effects) is extracted once from your own game files with Python scripts (below) and committed
-with the site (the whole site: ~585 MB in ~3,800 files, the largest 14 MB).
+with the site (the whole site without the sample demos: ~570 MB in ~3,950 files, the largest 14 MB).
 
 ## Features
 
 | Part | What it does |
 |---|---|
 | Top bar | **2D / 3D** toggle (key `V`), **Match details** (chart icon: scoreboard, round by round, chat, events), **Export JSON** (file icon), **GitHub** (the source), **Open demo** |
-| Score pill | Over the view: the score at the playback time, the round and its time, map and mode |
+| Score pill | Over the view: the score at the playback time, the round and its time, map and mode; after a plant the **bomb timer** (the server's own countdown clock; also next to the bomb in 2D) |
 | Rail (left) | Icon buttons with popovers: **Layers** (names, trails 5 s, kill lines, last known position, grenade types; in 2D the map background), **Heatmap** (2D), **Camera** and **Display** (3D: players, X-Ray, props, effects, kill feed, kill icons, shadows, sound and volume), **Match info** (final score on request, map, mode, ruleset, server, POV, length, record date, protocol, the map data details, keyboard shortcuts) |
 | Drawer (right) | Round and status; per team the side, score and alive bars, per player the weapon in hand (kill icon) and K / D up to now. Click a player to select them (highlighted in 2D and 3D, followed by the 3D cameras); the eye shows / hides a player, the chart icon opens the player's stats. Below it the kill feed & bomb: the game's own kill icons and bomb plants / defuses, the entry at the playback time highlighted, click one to jump to 2 s before it. Sections fold, the drawer hides (both remembered) |
 | Player bar (bottom) | ⏪ / ⏩ 5 s (`←` / `→`), play / pause (`Space`), the time, the timeline (rounds as segments underlined in the winner's colour, kills as ticks - one team above, the other below -, bomb plants / defuses, halftimes), range (whole match or one round), 0.5–4× speed, export range `[ ]` (`I` / `O`), **Export video** |
-| Match details | Scoreboard (score, K / A / D, K/D, HS %, TK, nade kills / deaths, plants / defuses per player, halves; names in their colour codes), round-by-round table with win reasons and round times from the round clock (after zPAM's strat time), chat, events (joins, team changes, ready-up, halftime, timeouts, bomb) |
+| Match details | Scoreboard (score, K / A / D, K/D, HS %, TK, nade kills / deaths, opening duels won–lost, trade kills, rounds with 3+ kills, clutches won / played, plants / defuses per player, halves; names in their colour codes), round-by-round table with win reasons and round times from the round clock (after zPAM's strat time), per round the first blood, 3K+ rounds, the clutches (1vX) and the trades, and in zPAM demos zPAM's **round report** of the recording player (his hits with damage and hit location, how he was killed), chat, events (joins, team changes, ready-up, halftime, timeouts, bomb) |
 
 **2D** – stock CoD2 has no minimap image, so the 2D view offers (Layers popover, *Background*):
 - **Render**: a top-down render of the map's BSP (textures, lightmaps, props, wall outlines),
@@ -64,10 +64,18 @@ clouds and flash spheres), the players' and corpses' **shadows** (Display popove
 along the map's sun, as the game's character shadows - the world's own shadows are in its lightmaps;
 `?shadows=off`), kill lines, death crosses, grenade arcs, the bomb and the site labels, a
 kill feed overlay and the game's **sounds** (Display popover: *Game sounds*, off until switched
-on): shots (each weapon's `fireSound`), footsteps and landings by surface, bullet impacts, grenade and
-smoke explosions, melee, the server's sound-alias events and the recording player's local sounds
-(announcer, hit marker) - one alias variant by probability, its volume / pitch ranges, linear distance
-falloff and stereo panning at the camera. Cameras (Camera popover, `C` cycles):
+on), chosen as the game's client chooses them: each weapon's shots (and the M1 Garand's last-shot ping),
+reloads, bolt / pump actions, the weapon switch, the grenade's pin pull and throw, melee by weapon and its hit,
+empty clicks; footsteps, jumps and landings by surface with the gear rattle, foliage, fall damage; bullet
+impacts on the world and on players, near-miss whizzes at the camera, grenade bounces and explosions, smoke;
+the looping sounds of entities (the planted bomb's ticking, a firing MG42 / .30 cal, map fires); the server's
+sound-alias events (bomb plant / defuse / explosion, quick-chat voices, zPAM's switch and drop sounds) and the
+recording player's local sounds (announcer, hit marker, breathing). The player watched in first person hears
+his own sounds as the game plays them for the local player (the `_plr` variants, at the ear). zPAM demos use
+zPAM's alias changes (its silenced stock switch sound). One alias variant by probability (the variants of the
+map by the engine's loadspec rule), its volume / pitch ranges, linear distance falloff and stereo panning at
+the camera; pausing or seeking cuts the sounds, the pitch follows the speed up to 2×, faster is silent. Cameras
+(Camera popover, `C` cycles):
 
 | Camera | Controls |
 |---|---|
@@ -210,6 +218,7 @@ py tools/export/hud_export.py --game "C:/Games/Call of Duty 2"
 | `--topdown-size N` | edge of the top-down image (default 2048) |
 | `--force` | re-encode textures already in `maps3d/_textures` |
 | `--no-icons` | skip the kill icons |
+| `--icons-only` | only the kill icons (`assets/killfeed/`: each weapon's `killIcon`, mirrored where the weapon file sets `flipKillIcon` - as the game's kill feed shows it) |
 | `--grid-only` | only add the light grid (`lightgrid.bin`), its collision (`collision.bin`), the sun keys and the props' lighting keys to maps already exported |
 
 Per map it writes into `maps3d/<map>/`: `world.bin/json` (BSP triangle soups: positions, normals, vertex
@@ -227,7 +236,7 @@ maps' colour), the index
 `maps3d/index.json`, the 2D registry `assets/maps/backgrounds.js` and the kill icons in `assets/killfeed/`.
 All 32 maps (15 stock + 17 zPAM map pack) take about 8 minutes and ~470 MB (+ ~51 MB shared textures).
 `sound_export.py` writes
-`maps3d/_sound/` (431 aliases, ~20 MB, 22 kHz mono WAV). `characters_export.py` writes
+`maps3d/_sound/` (746 aliases + zPAM's 3 redefinitions, ~28 MB, 22 kHz mono WAV; no map ambience / music). `characters_export.py` writes
 `maps3d/_characters/` (116 body / head / helmet models skinned to their skeletons and the 35 weapons'
 world models, ~9.5 MB, and the 280 animations of the multiplayer anim tree by the index the demo sends,
 ~6 MB; textures into

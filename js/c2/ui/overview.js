@@ -19,9 +19,12 @@
 
   const setText = (node, text) => { if (node.textContent !== text) node.textContent = text; };
 
-  /** the score at the playback time (Replay: rounds won so far), the round it is in ('Round 8', ...)
-   *  and the round time ('01:23') */
-  function update(score, roundText, roundTime) {
+  /** the bomb timer as the game's clock shows it: whole seconds, rounded up ('0:42') */
+  const bombClock = ms => { const s = Math.ceil(ms / 1000); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+
+  /** the score at the playback time (Replay: rounds won so far), the round it is in ('Round 8', ...),
+   *  the round time ('01:23') and the planted bomb's timer (match.js bombTimer: {left, heuristic} or null) */
+  function update(score, roundText, roundTime, bomb) {
     if (!live) return;
     if (live.A) {
       setText(live.A, String(score && score.A != null ? score.A : 0));
@@ -29,6 +32,14 @@
     }
     setText(live.round, roundText || '');
     setText(live.time, roundTime || '');
+    if (live.bomb) {
+      live.bomb.hidden = !bomb;
+      if (bomb) {
+        setText(live.bombTime, (bomb.heuristic ? '≈ ' : '') + bombClock(bomb.left));
+        const title = 'Bomb timer: ' + (bomb.heuristic ? 'derived (' + bomb.source + ': the server\'s clock was not seen)' : 'the server\'s countdown clock');
+        if (live.bomb.title !== title) live.bomb.title = title;
+      }
+    }
   }
 
   /** root: the score pill; info: the box of the match facts (the info popover) */
@@ -84,8 +95,11 @@
     }
     // the meta part: round, round time, map and mode
     live.round = el('b'); live.time = el('span', { class: 'mono' });
+    live.bombTime = el('span', { class: 'mono' });
+    live.bomb = el('span', { class: 'bomb-timer', hidden: true }, el('span', { class: 'bomb-dot', 'aria-hidden': 'true' }), live.bombTime);
     root.append(el('span', { class: 'meta' }, el('span', { class: 'meta-round' }, live.round, ' ', live.time),
       el('span', { class: 'opt' }, (m.mapDisplay || m.map || '?') + ' · ' + (m.gametypeDisplay || m.gametype || '?'))));
+    root.append(live.bomb);
 
     const ruleset = m.ruleset
       ? [m.ruleset, el('span', { class: 'dim' }, m.mod ? '  (' + m.mod + ')' : '')]
