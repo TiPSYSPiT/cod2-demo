@@ -165,18 +165,23 @@ export class Character {
     for (const a of attach || []) this.attach(a);
   }
 
-  /** a head / helmet: bound to the body's bones of the same name; its other bones become children */
+  /** a head / helmet: bound to the bones of the same name of the models attached before it (the body's, and
+   *  the earlier attachments' own: the helmet's root j_helmet is a bone of the head, as the game's DObj matches
+   *  them); its other bones become children, available to the next attachment */
   attach(name) {
     const t = this.lib.template(name);
     if (!t) return;
+    this.extraBones = this.extraBones || new Map();
+    const known = n => this.byName.get(n) || this.extraBones.get(n);
     const bones = t.bones.map((b, i) => {
-      const own = this.byName.get(b.name);
+      const own = known(b.name);
       if (own) return own;
       const o = new THREE.Bone();
       o.name = b.name; o.position.fromArray(b.t); o.quaternion.set(b.q[0], b.q[1], b.q[2], b.q[3]);
       return o;
     });
-    t.bones.forEach((b, i) => { if (this.byName.has(b.name)) return; const parent = b.parent >= 0 ? bones[b.parent] : this.group; parent.add(bones[i]); });
+    const fresh = t.bones.map(b => !known(b.name));
+    t.bones.forEach((b, i) => { if (!fresh[i]) return; const parent = b.parent >= 0 ? bones[b.parent] : this.group; parent.add(bones[i]); this.extraBones.set(b.name, bones[i]); });
     const mesh = new THREE.SkinnedMesh(t.geometry, t.materials);
     mesh.frustumCulled = false;
     this.group.add(mesh);

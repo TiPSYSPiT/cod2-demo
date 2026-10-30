@@ -160,7 +160,8 @@ export class ViewModel {
     }
     // the game does not draw the view model while the scope overlay is up, nor on a mounted MG (EF_USETURRET:
     // the turret is the gun - CG_AddViewWeapon)
-    if (obj && (this.overlayFrac() > 0 || (s && s.turret))) obj = null;
+    this.onTurret = !!(s && s.turret);
+    if (obj && (this.overlayFrac() > 0 || this.onTurret)) obj = null;
     if (this.state && s && s.turret) this.state.noReticle = true;
     if (obj !== this.current) {
       if (this.current) this.current.visible = false;
@@ -190,21 +191,24 @@ export class ViewModel {
     return Math.min(1, Math.max(0, (st.ads - (1 - f)) / f));
   }
 
-  /** the vertical field of view of the first-person camera at the base fov: the weapon's adsZoomFov (a
-   *  horizontal fov of the 4:3 screen, relative to cg_fov 80) */
+  /** the vertical field of view of the first-person camera at the base fov (CG_GetViewFov): the horizontal fov of
+   *  the 4:3 screen goes linearly from cg_fov to the weapon's adsZoomFov over the zoom fraction; 55 on a mounted MG
+   *  (the fovs relative to cg_fov 80, so another base scales them) */
   fov(base) {
+    const hb = hFov43(base), scale = hb / CG_FOV;
+    if (this.onTurret) return vFov43(55 * scale);
     const z = this.zoomFrac();
     if (!z) return base;
-    const P = this.state.entry.params, scale = hFov43(base) / CG_FOV;
-    return base + (vFov43(Math.min(170, P.adsZoomFov * scale)) - base) * z;
+    const P = this.state.entry.params;
+    return vFov43(hb - (hb - Math.min(170, P.adsZoomFov * scale)) * z);
   }
 
   /** the view model's own fov: the scene's, or the weapon's adsZoomGunFov while aiming (bazooka, panzerschreck) */
   gunFov(base, sceneFov) {
     const z = this.zoomFrac(), P = this.state && this.state.entry && this.state.entry.params;
     if (!z || !P || !P.adsZoomGunFov) return sceneFov;
-    const scale = hFov43(base) / CG_FOV;
-    return base + (vFov43(Math.min(170, P.adsZoomGunFov * scale)) - base) * z;
+    const hb = hFov43(base), scale = hb / CG_FOV;
+    return vFov43(hb - (hb - Math.min(170, P.adsZoomGunFov * scale)) * z);
   }
 
   /** the rig of gun + hands (built when the library is loaded) */

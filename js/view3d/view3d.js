@@ -645,7 +645,10 @@ export class View3D {
    *  control the canvas edge it hugs, inset past it (device pixels) */
   uiInsets(dpr) {
     const c = this.renderer.domElement.getBoundingClientRect(), ins = { l: 0, t: 0, r: 0, b: 0 }, gap = 8;
+    // (in fullscreen the player bar floats over the view only while the mouse moves: the HUD stays put)
+    const fs = !!document.fullscreenElement;
     for (const sel of ['#rail', '#overview', '#drawer', '#controls']) {
+      if (fs && sel === '#controls') continue;
       for (const e of document.querySelectorAll(sel)) {
         const r = e.getBoundingClientRect(), cs = getComputedStyle(e);
         if (!r.width || !r.height || cs.display === 'none' || cs.visibility === 'hidden' || Number(cs.opacity) === 0) continue;

@@ -335,6 +335,21 @@ kbd { font: 500 var(--fs-xs) var(--mono); padding: 1px 6px; border-radius: 5px; 
 .drawer { position: absolute; top: var(--gutter); right: var(--gutter); bottom: calc(var(--bar-h) + 2 * var(--gutter)); z-index: 15; width: var(--drawer-w);
   display: flex; flex-direction: column; overflow: hidden; container: drawer / inline-size; }
 .drawer-open { position: absolute; top: var(--gutter); right: var(--gutter); z-index: 15; width: 36px; height: 36px; }
+/* fullscreen (main.js): the toggle left of the panel, unobtrusive until hovered; in fullscreen only the view, its HUD
+   and this button - the player bar shows on mouse move (.fs-ui) */
+.fs-btn { position: absolute; top: var(--gutter); right: var(--drawer-space); z-index: 17; width: 36px; height: 36px; opacity: .55; transition: opacity .15s; }
+.fs-btn:hover, .fs-btn:focus-visible { opacity: 1; }
+.stage.fs { height: 100vh; width: 100vw; display: block; overflow: hidden; background: var(--stage); }
+.stage.fs::before { display: none; }
+.stage.fs .view-stage { inset: 0; height: auto; }
+.stage.fs .fs-btn { right: var(--gutter); }
+.stage.fs .score, .stage.fs .rail, .stage.fs .drawer, .stage.fs .drawer-open, .stage.fs .toasts, .stage.fs .details, .stage.fs .pop,
+.stage.fs .map-tools, .stage.fs .map-hint, .stage.fs .cam-hint, .stage.fs .heat-chip { display: none !important; }
+.stage.fs .bar { position: absolute; left: var(--gutter); right: var(--gutter); bottom: var(--gutter); margin: 0; opacity: 0; pointer-events: none; transition: opacity .25s; }
+.stage.fs.fs-ui .bar { opacity: 1; pointer-events: auto; }
+.stage.fs:not(.fs-ui) { cursor: none; }
+.stage.fs:not(.fs-ui) .fs-btn { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .fs-btn, .stage.fs .bar { transition: none; } }
 .dhead { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 10px 10px 16px; border-bottom: 1px solid var(--line); flex: none; }
 .rp-head-text { flex: 1; min-width: 0; display: flex; align-items: baseline; gap: 8px; white-space: nowrap; overflow: hidden; }
 .rp-title { font-weight: 600; flex: none; }
@@ -703,6 +718,7 @@ table.data.scoreboard tbody tr.team-head ~ tr.team-head td { border-top: 14px so
   .teams-sec { max-height: none; }
   .feed-sec .sec-body { max-height: 50vh; }
   .drawer-open, .dhead > .ib { display: none !important; }
+  .fs-btn { right: var(--gutter); }
   .stage.drawer-off .drawer { display: flex !important; }
   .pop { max-height: calc(var(--stack-view-h) - 2 * var(--gutter)); }
   .kf-overlay { max-width: 75%; }
@@ -715,6 +731,8 @@ table.data.scoreboard tbody tr.team-head ~ tr.team-head td { border-top: 14px so
   .top-r { gap: 0; }
   .top-r .tb { padding: 0 10px; margin-left: 4px; }
   .score { gap: 8px; padding: 5px 12px; max-width: calc(100% - 70px); left: auto; right: var(--gutter); transform: none; }
+  .fs-btn { top: calc(var(--gutter) + 44px); }
+  .stage.fs .fs-btn { top: var(--gutter); }
   .score .meta { display: none; }
   .kf-row .kf-name { max-width: 110px; }
   .bar-r .pill { padding: 0 8px; }
