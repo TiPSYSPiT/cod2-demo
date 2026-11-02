@@ -27,6 +27,7 @@ import { gameObjectFilter, Exploders } from './gameObjects.js';
 import { XRay, XRAY_MODES } from './xray.js';
 import { ViewModel, FP_FOV } from './viewmodel.js';
 import { Hud, HUD_PARTS } from './hud.js';
+import { uiInsets } from '../app/scoresOverlay.js';
 import { SOUND_KEY, soundWanted, soundVolume, audioAllowed } from '../app/audio.js';
 
 const C2 = window.C2;
@@ -35,7 +36,6 @@ const CFG = C2.mapConfig;
 const CAM_KEY = 'cod2demo3d.camera2';           // the camera (default fp: the demo's own view): written only by the user's choice
 const PROPS_KEY = 'cod2demo3d.props';
 const KILLFEED_KEY = 'cod2demo3d.killfeed';      // 'on' / 'off' (default on)
-const KILL_ICONS_KEY = 'cod2demo3d.killIcons';    // 'on' / 'off' (default off)
 const HEAD_ICONS_KEY = 'cod2demo3d.headIcons';    // 'on' / 'off' (default on): the game's head icons and talk balloons (session)
 const TRACERS_KEY = 'cod2demo3d.tracers';         // 'on' / 'off' (default off): the bullet tracers (session)
 const ENEMY_NAMES_KEY = 'cod2demo3d.enemyNames';  // 'on' / 'off' (default off): the names over enemies (session)
@@ -71,7 +71,6 @@ const HUD_TITLES = {
   hitmarker: "The hit marker in the centre when the player hits someone, as the server's script draws it - zPAM: yellowish for a hit, white and larger for a kill, red for a teammate, a second mark for two at once (recording player only)",
   stance: "The stance icon after a stance change and \"Prone Blocked\" (recording player only; zPAM's HUD has no stance icon)",
   hints: 'The use hints (plant / defuse the bomb, pick up a weapon) and the mantle hint, with the default keys (recording player only)',
-  scoreboard: "The game's scoreboard while Tab is held and at the intermission (the last scores the server sent); zPAM's own scoreboard while the recording player had it open",
   matchinfo: "zPAM's match info at the top (teams, round, match time) as the recording player had it"
 };
 
@@ -144,17 +143,6 @@ export class View3D {
     this.hudCanvas = el('canvas', { class: 'hud-layer' });
     this.stage.append(this.hudCanvas);
     this.hudInsets = null; this.hudInsetsAt = 0;
-    // the game's scoreboard while Tab is held (first person: the game's +scores)
-    this.onScoresKey = e => {
-      if (e.code !== 'Tab' || !this.visible || this.cams.mode !== 'fp' || (e.target && e.target.closest && e.target.closest('input, textarea, select'))) return;
-      e.preventDefault();
-      const on = e.type === 'keydown';
-      if (!!this.hud.showScores !== on) { this.hud.showScores = on; this.needsRender = true; }
-    };
-    this.offScoresKey = () => { this.hud.showScores = false; this.needsRender = true; };
-    window.addEventListener('keydown', this.onScoresKey);
-    window.addEventListener('keyup', this.onScoresKey);
-    window.addEventListener('blur', this.offScoresKey);
     this.fx.muzzleOf = (cl, ts, t) => {
       // the first-person player's shot: the view flash at the view model's muzzle
       if (cl === this.fpClient && this.viewmodel.shown) {
@@ -178,7 +166,6 @@ export class View3D {
     this.cams = new Cameras(this.camera, this.renderer.domElement, () => { this.needsRender = true; });
     this.buildToolbar();
     this.setKillfeed(stored(KILLFEED_KEY) !== 'off');
-    this.setKillIcons(stored(KILL_ICONS_KEY) === 'on');
     this.setHeadIcons(sessionGet(HEAD_ICONS_KEY) !== 'off');
     this.setTracers(sessionGet(TRACERS_KEY) === 'on');
     this.setEnemyNames(sessionGet(ENEMY_NAMES_KEY) === 'on');
@@ -369,7 +356,6 @@ export class View3D {
     this.soundHint.addEventListener('click', arm);
     this.offArm = () => window.removeEventListener('pointerdown', arm, { capture: true });
     this.killfeedBox = el('input', { type: 'checkbox', onchange: e => this.setKillfeed(e.target.checked, true) });
-    this.killIconsBox = el('input', { type: 'checkbox', onchange: e => this.setKillIcons(e.target.checked, true) });
     this.headIconsBox = el('input', { type: 'checkbox', onchange: e => this.setHeadIcons(e.target.checked, true) });
     this.tracersBox = el('input', { type: 'checkbox', onchange: e => this.setTracers(e.target.checked, true) });
     this.enemyNamesBox = el('input', { type: 'checkbox', onchange: e => this.setEnemyNames(e.target.checked, true) });
@@ -397,7 +383,6 @@ export class View3D {
           this.propsRow,
           selectRow('Effects', this.fxSel, 'Explosions, smoke grenades, bullet impacts and muzzle flashes: the game\'s own particle effects, or simple markers'),
           switchRow('Kill feed', this.killfeedBox, { title: 'The kills and bomb plants / defuses of the last ' + CFG.EXPORT.KILLFEED_MS / 1000 + ' s over the view, with the weapon icons' }),
-          switchRow('Kill icons', this.killIconsBox, { title: 'The weapon icon over each death marker' }),
           switchRow('Bullet tracers', this.tracersBox, { title: "The game's bullet tracers as the server set them (cg_tracer*: zPAM gives every bullet one, 1000 units long at 20000 units/s; else 40 %, 160 units at 4500 units/s): a short streak flying from the muzzle, gone at the impact" }),
           switchRow('Enemy names', this.enemyNamesBox, { title: "The names over the enemies of the player you watch (first person) or select - the game never shows them (only a teammate's name under the crosshair); teammates' names follow Layers, Names. X-Ray Player + name shows every name" }),
           switchRow('Grenades and dropped weapons', this.itemsBox, { title: "The grenades in flight (their own model, spinning as the demo has it) and the weapons on the ground (a dying player drops his gun and a grenade), where the demo's entities have them" }),
@@ -493,12 +478,6 @@ export class View3D {
     this.tracersBox.checked = on;
     if (user) sessionSet(TRACERS_KEY, on ? 'on' : 'off');
     this.needsRender = true;
-  }
-  setKillIcons(on, user = false) {
-    this.effects.killIcons = on;
-    this.killIconsBox.checked = on;
-    if (user) store(KILL_ICONS_KEY, on ? 'on' : 'off');
-    this.R.invalidate();
   }
   /** sound on / off (user: from the button - remembered) */
   setSound(on, user = false) {
@@ -839,24 +818,7 @@ export class View3D {
   }
   /** the viewer's controls over the 3D canvas (rail, score, drawer, the playback bar) as the HUD's safe area: per
    *  control the canvas edge it hugs, inset past it (device pixels) */
-  uiInsets(dpr) {
-    const c = this.renderer.domElement.getBoundingClientRect(), ins = { l: 0, t: 0, r: 0, b: 0 }, gap = 8;
-    // (in fullscreen the player bar floats over the view only while the mouse moves: the HUD stays put)
-    const fs = !!document.fullscreenElement;
-    for (const sel of ['#rail', '#overview', '#drawer', '#controls']) {
-      if (fs && sel === '#controls') continue;
-      for (const e of document.querySelectorAll(sel)) {
-        const r = e.getBoundingClientRect(), cs = getComputedStyle(e);
-        if (!r.width || !r.height || cs.display === 'none' || cs.visibility === 'hidden' || Number(cs.opacity) === 0) continue;
-        if (r.right <= c.left || r.left >= c.right || r.bottom <= c.top || r.top >= c.bottom) continue;
-        const cand = { l: r.right - c.left, r: c.right - r.left, t: r.bottom - c.top, b: c.bottom - r.top };
-        const edge = Object.keys(cand).reduce((a, b) => (cand[a] <= cand[b] ? a : b));
-        ins[edge] = Math.max(ins[edge], cand[edge] + gap);
-      }
-    }
-    for (const k in ins) ins[k] = Math.round(ins[k] * dpr);
-    return ins;
-  }
+  uiInsets(dpr) { return uiInsets(this.renderer.domElement, dpr); }
 
   /** a living teammate of client cl on the first-person camera's view axis within `range` units, not behind the
    *  world (the light grid's collision) - the approximation of the server's flag for the other players; each
@@ -919,9 +881,6 @@ export class View3D {
     if (this.sounds) { this.sounds.dispose(); this.sounds = null; }
     if (this.offArm) this.offArm();
     if (this.resizeObs) this.resizeObs.disconnect();
-    window.removeEventListener('keydown', this.onScoresKey);
-    window.removeEventListener('keyup', this.onScoresKey);
-    window.removeEventListener('blur', this.offScoresKey);
     // (the module-level hook and shared textures would keep this view and its demo in memory)
     if (textureArrivals.onArrive === this.onArrive) textureArrivals.onArrive = null;
     clearTimeout(this.redrawTimer);

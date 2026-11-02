@@ -80,9 +80,9 @@ const SCORE_SPOTS = new Set(['6,28', '6,50', '36,26', '36,48', '49,26', '49,48']
 const ENTITYNUM_WORLD = 1022;
 
 export const HUD_PARTS = [['compass', 'Compass', true], ['score', 'Team score', false], ['killfeed', 'Kill feed', false],
-  ['ammo', 'Ammo', true], ['grenades', 'Grenades', true], ['server', 'Server HUD', false], ['lowHealth', 'Low health', true],
-  ['health', 'Health bar', false], ['damage', 'Damage direction', true], ['hitmarker', 'Hit marker', true], ['stance', 'Stance', true], ['hints', 'Hints', true],
-  ['scoreboard', 'Scoreboard', true], ['matchinfo', 'zPAM match info', true]];
+  ['ammo', 'Ammo', true], ['grenades', 'Grenades', true], ['server', 'Server HUD', false], ['lowHealth', 'Low health', false],
+  ['health', 'Health bar', false], ['damage', 'Damage direction', false], ['hitmarker', 'Hit marker', true], ['stance', 'Stance', false], ['hints', 'Hints', false],
+  ['matchinfo', 'zPAM match info', true]];
 
 const lower = (a, t) => { let lo = 0, hi = a.length; while (lo < hi) { const m = (lo + hi) >> 1; if (a[m] <= t) lo = m + 1; else hi = m; } return lo - 1; };
 const clamp01 = x => (x < 0 ? 0 : x > 1 ? 1 : x);
@@ -272,6 +272,13 @@ export class Hud {
     this.teams = new Map(d.teams.map(t => [t.key, t]));
     this._damages = null;
   }
+  /** forget the match: its data may go (the font and the images stay) */
+  clearMatch() {
+    this.M = this.H = this.W = null;
+    this.lists = []; this.cs = new Map(); this.dvars = new Map(); this.teams = new Map();
+    this.notify = this.bold = this.notifyT = this.boldT = this.killT = [];
+    this._damages = null;
+  }
 
   // ---- lookups ----
   csAt(i, t) { const a = this.cs.get(i); if (!a) return ''; let v = ''; for (const [ct, cv] of a) { if (ct <= t) v = cv; else break; } return v; }
@@ -429,14 +436,7 @@ export class Hud {
     if (P.killfeed || P.server) this.notifyWindow(st, P.killfeed, P.server);
     if (P.server) this.boldWindow(st);
     if (P.killfeed) this.centerPrint(st);
-    // the scoreboard: held Tab or the intermission (pm_type 5); zPAM's own while the recorder had it open
-    if (P.scoreboard) {
-      if (this.showScores || (st.recorder && this.W.pmType[st.ri] === 5)) this.scoreboard(st);
-      const Z = this.data.layouts.zpamScoreboard;
-      if (Z && st.recorder && this.M.d.meta.zpamVersion && this.dvarAt('ui_scoreboard_visible', t) === '1') {
-        for (const menu of Z) for (const it of menu.items) if (this.dvarTest(it, t)) this.item(menu, it, st);
-      }
-    }
+    // (the scoreboard: only while the viewer holds Tab - drawScores, scoresOverlay.js; not the demo's own)
     g.restore();
   }
 
@@ -732,7 +732,17 @@ export class Hud {
   }
 
   // ---- the scoreboard ----
-  /** the game's scoreboard (CG_DrawScoreboard): held Tab or the intermission; the last scores the server sent ("b":
+  /** the scoreboard alone into g (device size w x h) at replay time t, the row of client cl lit (null: none); insets as
+   *  draw() - the viewer holds Tab (scoresOverlay.js), any view */
+  drawScores(g, w, h, t, cl, insets) {
+    if (!this.data || !this.M) return;
+    this.screen(g, w, h, insets);
+    g.save();
+    g.imageSmoothingEnabled = true;
+    this.scoreboard({ t, cl });
+    g.restore();
+  }
+  /** the game's scoreboard (CG_DrawScoreboard) as Tab shows it; the last scores the server sent ("b":
    *  CG_ParseScores). 400 x 430 at (120, 22), 80 % black, white lines; the game type and the map (0.41), the objective
    *  text (0.24, wrapped at 374); the columns (the client's table: voice 0.05, status 0.05, name 0.47, score 0.13, deaths
    *  0.13, ping 0.17 of 382 units - 374 with a scroll bar) and their titles (0.3); per team a banner (the

@@ -666,6 +666,8 @@ table.data.scoreboard tbody tr.team-head ~ tr.team-head td { border-top: 14px so
 /* ---- 3D view labels and kill feed (actors.js, effects.js, killfeed.js) ---- */
 .view3d .label-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 2; }
 .view3d .hud-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
+/* the game's scoreboard while Tab is held (scoresOverlay.js): over the 2D / 3D view and its HUD, under the panels */
+.scores-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 8; }
 .view3d canvas { cursor: grab; }
 /* player names in their team colour (--tc, actors.js), outlined dark so they read on bright walls */
 .p3-label { position: absolute; transform: translate(-50%, -100%); white-space: nowrap; font: 600 11.5px var(--sans); color: var(--tc, var(--text));
@@ -676,9 +678,6 @@ table.data.scoreboard tbody tr.team-head ~ tr.team-head td { border-top: 14px so
 .p3-label.xray-hidden { color: #fff; padding: 1px 6px; margin-top: -4px; border-radius: 5px; background: color-mix(in srgb, var(--tc, var(--text)) 62%, rgba(11, 11, 12, .5));
   text-shadow: 0 0 2px #000; }
 .p3-label.site { font: 700 22px var(--sans); color: var(--site); text-shadow: 0 0 4px #000, 0 0 2px #000; }
-/* weapon icon over a death marker (Display popover: Kill icons) */
-.p3-label.kf-mark { display: flex; align-items: center; gap: 3px; padding: 1px 6px; border-radius: 5px; background: rgba(11, 11, 12, .6); }
-.p3-label.kf-mark .kf-icon { height: 18px; }
 /* the 3D kill feed: top right, left of the drawer, newest at the bottom */
 .kf-overlay { position: absolute; right: var(--drawer-space); top: calc(var(--gutter) + 50px); z-index: 3; display: flex; flex-direction: column; align-items: flex-end; gap: 3px;
   pointer-events: none; max-width: 46%; }

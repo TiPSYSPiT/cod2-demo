@@ -11,8 +11,8 @@ const PF = C2.collect.PF;
 const setText = (node, text) => { if (node.textContent !== text) node.textContent = text; };
 
 /** the layers remembered for the session (cod2demo.layer.<key>) and their defaults: zPAM's damage log and the map's
- *  intermission camera / hurt triggers are analysis layers (off), the dropped weapons the game's own (on) */
-const SESSION_LAYERS = { hits: false, items: true, mapCams: false, hurt: false };
+ *  intermission camera / hurt triggers are analysis layers (off), the dropped weapons too (off) */
+const SESSION_LAYERS = { hits: false, items: false, mapCams: false, hurt: false };
 
 export class Replay {
   /** dom: {viewport, controls, teams, feed, head (the drawer's header: round and status)} */
@@ -30,7 +30,7 @@ export class Replay {
     this.focus = null;               // the selected player: highlighted in both views, followed by the 3D camera
     this.selection = { a: null, b: null };   // the export range markers on the timeline (I / O)
     this.hover = null;               // player under the mouse in the team panel
-    this.opts = { labels: true, lastKnown: false, trails: true, killLines: true, grenadeKinds: new Set(['smoke', 'frag', 'other']) };
+    this.opts = { labels: true, lastKnown: false, trails: false, killLines: true, grenadeKinds: new Set(['smoke', 'frag', 'other']) };
     for (const [k, def] of Object.entries(SESSION_LAYERS)) {
       let on = def;
       try { const s = sessionStorage.getItem('cod2demo.layer.' + k); if (s) on = s === 'on'; } catch (err) { /* default */ }

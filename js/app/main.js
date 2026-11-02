@@ -6,7 +6,11 @@ import { Replay } from './replay.js';
 import { View2D } from '../view2d/view2d.js';
 import { InfoHint } from './infoHint.js';
 import { primeAudio } from './audio.js';
+import { migrateSettings } from './settings.js';
+import { ScoresOverlay } from './scoresOverlay.js';
 import '../c2/ui/killfeed.js';           // C2.killfeed: the kill feed of the 3D view and of both video exports
+
+migrateSettings();                    // (before the first read of a remembered setting)
 
 const C2 = window.C2;
 const { el, clear, coloured, teamClass, icon } = C2.ui;
@@ -16,6 +20,8 @@ const DRAWER_KEY = 'cod2demo3d.drawer';      // 'open' / 'closed' and '.teams' /
 
 const state = { data: null, fileInfo: null, worker: null, loadId: 0, replay: null, view: '3d', rendered: new Set(), detailsTab: 'scoreboard' };
 try { const v = localStorage.getItem(VIEW_KEY); if (v === '2d' || v === '3d') state.view = v; } catch (err) { /* storage blocked */ }
+
+const scores = new ScoresOverlay($('viewport'));   // the scoreboard while Tab is held
 
 const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
@@ -85,7 +91,7 @@ async function load(file) {
   $('viewer').hidden = true;
   for (const id of ['export-btn', 'details-btn', 'view-toggle']) $(id).hidden = true;
   document.body.classList.remove('loaded');
-  if (state.replay) { state.replay.destroy(); state.replay = null; }
+  if (state.replay) { scores.setReplay(null); state.replay.destroy(); state.replay = null; }
   $('dropzone').hidden = true;
   $('progress').hidden = false;
   $('progress-label').textContent = 'Reading ' + file.name + ' …';
@@ -181,7 +187,8 @@ function show(data) {
   const replay = new Replay(match, app, { viewport: $('viewport'), controls: $('controls'), teams: $('teams'), feed: $('feed'), head: $('drawer-head') });
   $('drawer-head').append(el('button', { class: 'ib', title: 'Hide the panel', 'aria-label': 'Hide panel', onclick: () => setDrawer(false) }, icon('panel')));
   state.replay = replay;
-  window.cod2 = { replay, match, data };            // debugging handle
+  scores.setReplay(replay);
+  window.cod2 = { replay, match, data, scores };    // debugging handle
   replay.addView(new View2D(replay, $('viewport')));
   // deep link: ?view=2d|3d&t=<match time in seconds>&focus=<player name>
   const q = new URLSearchParams(location.search);
@@ -315,7 +322,7 @@ InfoHint.onChange = () => { const o = rail.open; if (o && o.p.key === 'info') fi
 /** the info popover: the match facts (overview.js), the active view's map details, the shortcuts */
 function fillInfo(node) {
   const R = state.replay, v = R && R.view;
-  const keys = [['Space', 'Play / pause'], ['← / →', '5 s back / forward'], ['V', 'Switch 2D / 3D'], ['F', 'Fullscreen (not in the free-fly camera: down there)'], ['I / O', 'Export range start / end'], ['Esc', 'Close a dialog']];
+  const keys = [['Space', 'Play / pause'], ['← / →', '5 s back / forward'], ['V', 'Switch 2D / 3D'], ['F', 'Fullscreen (not in the free-fly camera: down there)'], ['I / O', 'Export range start / end'], ['Tab', 'Hold for the scoreboard'], ['Esc', 'Close a dialog']];
   if (v && v.key === '2d') keys.push(['Q / E', 'Rotate the map'], ['Wheel / drag', 'Zoom / pan, double-click: reset']);
   if (v && v.key === '3d') keys.push(['C', 'Cycle the camera'], ['X', 'X-Ray: off / player / player + name'], ['W A S D, R / F', 'Free camera: move, up / down']);
   const text = v && v.info ? v.info.text : '';
@@ -405,6 +412,16 @@ function init() {
     document.body.classList.remove('dragging');
     onFiles(e.dataTransfer.files);
   });
+  // the scoreboard while Tab is held (scoresOverlay.js) - only while the viewer has the focus: in a form field, a
+  // popover, a dialog or the match details Tab moves the focus as usual; released, or the window loses the focus: gone
+  window.addEventListener('keydown', e => {
+    if (e.code !== 'Tab' || e.ctrlKey || e.metaKey || e.altKey || !viewerHasFocus()) return;
+    e.preventDefault();
+    scores.show();
+  });
+  window.addEventListener('keyup', e => { if (e.code === 'Tab' && scores.shown) { e.preventDefault(); scores.hide(); } });
+  window.addEventListener('blur', () => scores.hide());
+  document.addEventListener('visibilitychange', () => { if (document.hidden) scores.hide(); });
   window.addEventListener('keydown', e => {
     const R = state.replay;
     if (!R) return;
@@ -441,6 +458,14 @@ function init() {
  * panel and map tools hidden (css .stage.fs); the player bar comes up on mouse move / touch for FS_UI_MS. The
  * browser's own exit (Esc) restores the layout through fullscreenchange, like the button and F. */
 const FS_UI_MS = 2500;
+/** whether the keyboard is the viewer's: a demo shown, no match details or dialog open, the focus on the page, the
+ *  view or a button - not in a form field (input, dropdown, text), a popover or a dialog */
+function viewerHasFocus() {
+  if (!state.replay || $('viewer').hidden || !$('details').hidden || document.querySelector('.export-dlg')) return false;
+  const a = document.activeElement;
+  if (!a || a === document.body || a === document.documentElement) return true;
+  return !a.closest('input, select, textarea, [contenteditable], [role=dialog], .pop, dialog');
+}
 const fsElement = () => document.fullscreenElement || document.webkitFullscreenElement || null;
 function toggleFullscreen() {
   const st = $('viewport');
