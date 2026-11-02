@@ -82,7 +82,7 @@ const ENTITYNUM_WORLD = 1022;
 export const HUD_PARTS = [['compass', 'Compass', true], ['score', 'Team score', false], ['killfeed', 'Kill feed', false],
   ['ammo', 'Ammo', true], ['grenades', 'Grenades', true], ['server', 'Server HUD', false], ['lowHealth', 'Low health', false],
   ['health', 'Health bar', false], ['damage', 'Damage direction', false], ['hitmarker', 'Hit marker', true], ['stance', 'Stance', false], ['hints', 'Hints', false],
-  ['matchinfo', 'zPAM match info', true]];
+  ['matchinfo', 'zPAM match info', false]];
 
 const lower = (a, t) => { let lo = 0, hi = a.length; while (lo < hi) { const m = (lo + hi) >> 1; if (a[m] <= t) lo = m + 1; else hi = m; } return lo - 1; };
 const clamp01 = x => (x < 0 ? 0 : x > 1 ? 1 : x);

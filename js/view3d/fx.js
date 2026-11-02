@@ -159,7 +159,7 @@ export class FxPlayer {
     this.muzzleOf = null;                 // (client, t) -> {pos, dir} of the weapon's muzzle, set by the view
     this.brassOf = null;                  // (client, shot t, t) -> {pos, axis} of the weapon's tag_brass, set by the view
     this.modelBatches = null;             // the model elements' models (modelBatch.js), set by the view
-    this.casings = true;                  // the shell casings (a switch of the view)
+    this.casings = false;                 // the shell casings (a switch of the view: setCasings)
     this.modelCache = new Map();          // particle seed -> its light (the model particles)
     this._mf = new THREE.Matrix4(); this._mr = new THREE.Matrix4();
     this.cam = new THREE.Vector3();
@@ -373,6 +373,30 @@ export class FxPlayer {
         this.effect({ name, t0: ts[i], origin: mz.pos, axis: axisFromDir(mz.dir), seed: hash(cl, ts[i]), ground: -Infinity, view: !!mz.view }, t, 0);
       }
     }
+  }
+
+  /** the shell casings on / off; off: none is made, and what they had goes - their models' copies (modelBatch.js),
+   *  the kept ejection points, the model particles' light */
+  setCasings(on) {
+    this.casings = on;
+    if (on) return;
+    for (const ej of this.ejects || []) ej.inst = null;
+    this.modelCache.clear();
+    if (this.modelBatches) for (const m of this.casingModels()) this.modelBatches.drop(m);
+  }
+  /** the models of the shell eject effects (and the effects they start) */
+  casingModels() {
+    const out = new Set(), seen = new Set();
+    const walk = name => {
+      if (!name || seen.has(name)) return;
+      seen.add(name);
+      for (const e of this.def(name) || []) {
+        for (const m of e.models) out.add(m);
+        for (const n of [...(e.playfx || []), ...(e.deathfx || []), ...(e.emitfx || [])]) walk(n);
+      }
+    };
+    for (const ej of this.ejects || []) walk(ej.name);
+    return out;
   }
 
   /** the shell casings of the shots of the last ejectDur ms; where each came out is taken once (the gun as drawn

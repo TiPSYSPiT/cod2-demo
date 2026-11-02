@@ -1,10 +1,11 @@
 /* Players in 3D: a capsule in the team colour (standing 72, crouched 50 units high, prone lying
- * along the view direction), an aim line from the eye with the real pitch, a ring for the selected
- * player, a muzzle flash while firing and HTML name labels projected on top. Driven by
- * Match.sampleAt - the same positions the 2D view draws (from cod4-demo3d's actors.js).
+ * along the view direction), a ring for the selected player, a muzzle flash while firing and HTML name labels
+ * projected on top; optional (Display popover, off by default): the view line from the eye with the real pitch
+ * (View lines). Driven by Match.sampleAt - the same positions the 2D view draws (from cod4-demo3d's actors.js).
  * Mode "models": the player's real character (body, head, helmet from the demo's client state, see
- * characters.js) animated with the legs / torso animation the demo sends, with a ring in the team
- * colour at the feet; the capsule stays the pick target and is drawn while a model is missing. */
+ * characters.js) animated with the legs / torso animation the demo sends, optionally with a ring in the team
+ * colour at the feet (Player rings); the capsule stays the pick target and is drawn while a model is missing.
+ * The view lines and the team rings exist only while switched on (setViewLines / setRings). */
 import * as THREE from 'three';
 import { Character } from './characters.js';
 import { Controllers } from './controllers.js';
@@ -60,6 +61,8 @@ export class Actors {
     };
     this.ringGeo = new THREE.RingGeometry(RADIUS + 6, RADIUS + 10, 32);
     this.teamRingGeo = new THREE.RingGeometry(13, 17, 28);
+    this.viewLines = false;            // the view lines and the team rings (setViewLines / setRings)
+    this.rings = false;
   }
 
   /** 'simple' (capsules) | 'models' (the characters; loads them on first use) */
@@ -266,24 +269,58 @@ export class Actors {
     const body = new THREE.Mesh(this.geo.stand, new THREE.MeshLambertMaterial({ color, transparent: true }));
     const group = new THREE.Group();
     group.add(body);
-    const aimGeo = new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
-    const aim = new THREE.Line(aimGeo, new THREE.LineBasicMaterial({ color: color.clone().lerp(new THREE.Color(0xffffff), 0.35), transparent: true }));
-    aim.frustumCulled = false;
     const ring = new THREE.Mesh(this.ringGeo, new THREE.MeshBasicMaterial({ color: 0xffb35c, side: THREE.DoubleSide, transparent: true, opacity: 0.9, depthTest: false }));
     ring.renderOrder = 5;
     const fire = new THREE.Mesh(new THREE.SphereGeometry(4, 8, 6), new THREE.MeshBasicMaterial({ color: 0xfff0b4 }));
-    const teamRing = new THREE.Mesh(this.teamRingGeo, new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide, transparent: true, opacity: 0.85, depthWrite: false }));
-    teamRing.renderOrder = 4;
     const label = document.createElement('div');
     label.className = 'p3-label';
     label.style.setProperty('--tc', '#' + color.getHexString());     // the name in the team colour (styles.css)
     this.layer.append(label);
     // the markers throw no shadow (shadows.js: every other mesh of the actors does)
-    ring.userData.noCookie = fire.userData.noCookie = teamRing.userData.noCookie = true;
-    it = { cl, group, body, aim, ring, fire, label, color, teamRing, visible: false, pos: new THREE.Vector3(), eye: new THREE.Vector3(), sample: null };
-    this.root.add(group, aim, ring, fire, teamRing);
+    ring.userData.noCookie = fire.userData.noCookie = true;
+    it = { cl, group, body, aim: null, ring, fire, label, color, teamRing: null, visible: false, pos: new THREE.Vector3(), eye: new THREE.Vector3(), sample: null };
+    this.root.add(group, ring, fire);
     this.items.set(cl, it);
     return it;
+  }
+
+  /** the view lines (View lines) on / off: off, every player's line goes (made again when switched on) */
+  setViewLines(on) {
+    this.viewLines = on;
+    if (on) return;
+    for (const it of this.items.values()) {
+      if (!it.aim) continue;
+      this.root.remove(it.aim); it.aim.geometry.dispose(); it.aim.material.dispose(); it.aim = null;
+    }
+  }
+  /** the team rings at the feet of the player models (Player rings) on / off: off, every ring goes */
+  setRings(on) {
+    this.rings = on;
+    if (on) return;
+    for (const it of this.items.values()) {
+      if (!it.teamRing) continue;
+      this.root.remove(it.teamRing); it.teamRing.material.dispose(); it.teamRing = null;
+    }
+  }
+  /** a player's view line: from the eye along the view, in a lighter team colour */
+  aimOf(it) {
+    if (!it.aim) {
+      const geo = new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
+      it.aim = new THREE.Line(geo, new THREE.LineBasicMaterial({ color: it.color.clone().lerp(new THREE.Color(0xffffff), 0.35), transparent: true }));
+      it.aim.frustumCulled = false;
+      this.root.add(it.aim);
+    }
+    return it.aim;
+  }
+  /** a player's team ring on the ground */
+  teamRingOf(it) {
+    if (!it.teamRing) {
+      it.teamRing = new THREE.Mesh(this.teamRingGeo, new THREE.MeshBasicMaterial({ color: it.color, side: THREE.DoubleSide, transparent: true, opacity: 0.85, depthWrite: false }));
+      it.teamRing.renderOrder = 4;
+      it.teamRing.userData.noCookie = true;           // (no shadow: shadows.js)
+      this.root.add(it.teamRing);
+    }
+    return it.teamRing;
   }
 
   /** place every player at time t; opts: {shown:Set, focus, hover, labels, lastKnown} */
@@ -317,11 +354,13 @@ export class Actors {
       b.material.wireframe = stale;
       b.material.emissive.set(hover || focus ? 0x333333 : 0x000000);
       it.eye.set(s.x, s.y, s.z + EYE[st]);
-      const a = it.aim.geometry.attributes.position.array;
-      a[0] = it.eye.x; a[1] = it.eye.y; a[2] = it.eye.z;
-      a[3] = it.eye.x + fwd.x * AIM_LEN; a[4] = it.eye.y + fwd.y * AIM_LEN; a[5] = it.eye.z + fwd.z * AIM_LEN;
-      it.aim.geometry.attributes.position.needsUpdate = true;
-      it.aim.visible = !stale;
+      if (this.viewLines && !stale) {
+        const aim = this.aimOf(it), a = aim.geometry.attributes.position.array;
+        a[0] = it.eye.x; a[1] = it.eye.y; a[2] = it.eye.z;
+        a[3] = it.eye.x + fwd.x * AIM_LEN; a[4] = it.eye.y + fwd.y * AIM_LEN; a[5] = it.eye.z + fwd.z * AIM_LEN;
+        aim.geometry.attributes.position.needsUpdate = true;
+        aim.visible = true;
+      } else if (it.aim) it.aim.visible = false;
       it.fire.visible = s.firing && !stale && !this.realFlash;   // (realFlash: fx.js draws the weapon's own flash)
       it.fire.position.set(it.eye.x + fwd.x * 34, it.eye.y + fwd.y * 34, it.eye.z - 8 + fwd.z * 34);
       // the real model (mode "models"): at the feet, turned by the yaw, posed by the demo's animations
@@ -341,8 +380,11 @@ export class Actors {
       }
       it.modelShown = !!ch;
       b.visible = !ch;
-      it.teamRing.visible = !!ch;
-      it.teamRing.position.set(s.x, s.y, s.z + 1);
+      if (this.rings && ch) {
+        const r = this.teamRingOf(it);
+        r.visible = true;
+        r.position.set(s.x, s.y, s.z + 1);
+      } else if (it.teamRing) it.teamRing.visible = false;
       it.ring.visible = focus || hover;
       it.ring.position.set(s.x, s.y, s.z + 1.5);
       it.ring.material.color.set(focus ? 0xffb35c : 0xffffff);
@@ -354,7 +396,12 @@ export class Actors {
     this.updateCorpses(t, opts);
     for (const it of this.items.values()) {
       it.group.visible = it.visible;
-      if (!it.visible) { it.aim.visible = false; it.ring.visible = false; it.fire.visible = false; it.teamRing.visible = false; if (it.char) it.char.group.visible = false; }
+      if (!it.visible) {
+        it.ring.visible = false; it.fire.visible = false;
+        if (it.aim) it.aim.visible = false;
+        if (it.teamRing) it.teamRing.visible = false;
+        if (it.char) it.char.group.visible = false;
+      }
     }
   }
 
@@ -460,7 +507,9 @@ export class Actors {
   hide(cl) {
     const it = this.items.get(cl);
     if (!it) return;
-    it.group.visible = false; it.aim.visible = it.ring.visible = it.fire.visible = it.teamRing.visible = false;
+    it.group.visible = false; it.ring.visible = it.fire.visible = false;
+    if (it.aim) it.aim.visible = false;
+    if (it.teamRing) it.teamRing.visible = false;
     if (it.char) it.char.group.visible = false;
   }
 

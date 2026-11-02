@@ -40,7 +40,9 @@ const HEAD_ICONS_KEY = 'cod2demo3d.headIcons';    // 'on' / 'off' (default on): 
 const TRACERS_KEY = 'cod2demo3d.tracers';         // 'on' / 'off' (default off): the bullet tracers (session)
 const ENEMY_NAMES_KEY = 'cod2demo3d.enemyNames';  // 'on' / 'off' (default off): the names over enemies (session)
 const ITEMS_KEY = 'cod2demo3d.items';             // 'on' / 'off' (default on): grenades in flight, dropped weapons (session)
-const CASINGS_KEY = 'cod2demo3d.casings';         // 'on' / 'off' (default on): the shell casings (session)
+const CASINGS_KEY = 'cod2demo3d.casings';         // 'on' / 'off' (default off): the shell casings (session)
+const VIEW_LINES_KEY = 'cod2demo3d.viewLines';    // 'on' / 'off' (default off): the players' view lines (session)
+const RINGS_KEY = 'cod2demo3d.rings';             // 'on' / 'off' (default off): the team rings at the players' feet (session)
 const SHAKE_KEY = 'cod2demo3d.shake';             // 'on' / 'off' (default on): the camera shake in first person (session)
 const FX_KEY = 'cod2demo3d.fx';                  // 'game' / 'simple'
 const PLAYERS_KEY = 'cod2demo3d.players';        // 'simple' / 'models'
@@ -170,7 +172,9 @@ export class View3D {
     this.setTracers(sessionGet(TRACERS_KEY) === 'on');
     this.setEnemyNames(sessionGet(ENEMY_NAMES_KEY) === 'on');
     this.setItems(sessionGet(ITEMS_KEY) !== 'off');
-    this.setCasings(sessionGet(CASINGS_KEY) !== 'off');
+    this.setCasings(sessionGet(CASINGS_KEY) === 'on');
+    this.setViewLines(sessionGet(VIEW_LINES_KEY) === 'on');
+    this.setRings(sessionGet(RINGS_KEY) === 'on');
     this.setShake(sessionGet(SHAKE_KEY) !== 'off');
     // first person without a selected player: the demo's own view (the recorder's eyes, or whom he spectated)
     let mode = 'fp';
@@ -361,6 +365,8 @@ export class View3D {
     this.enemyNamesBox = el('input', { type: 'checkbox', onchange: e => this.setEnemyNames(e.target.checked, true) });
     this.itemsBox = el('input', { type: 'checkbox', onchange: e => this.setItems(e.target.checked, true) });
     this.casingsBox = el('input', { type: 'checkbox', onchange: e => this.setCasings(e.target.checked, true) });
+    this.viewLinesBox = el('input', { type: 'checkbox', onchange: e => this.setViewLines(e.target.checked, true) });
+    this.ringsBox = el('input', { type: 'checkbox', onchange: e => this.setRings(e.target.checked, true) });
     this.shakeBox = el('input', { type: 'checkbox', onchange: e => this.setShake(e.target.checked, true) });
     this.shadowsBox = el('input', { type: 'checkbox', onchange: e => this.setShadows(e.target.checked, true) });
     this.viewmodelBox = el('input', { type: 'checkbox', onchange: e => this.setViewModel(e.target.checked, true) });
@@ -385,6 +391,8 @@ export class View3D {
           switchRow('Kill feed', this.killfeedBox, { title: 'The kills and bomb plants / defuses of the last ' + CFG.EXPORT.KILLFEED_MS / 1000 + ' s over the view, with the weapon icons' }),
           switchRow('Bullet tracers', this.tracersBox, { title: "The game's bullet tracers as the server set them (cg_tracer*: zPAM gives every bullet one, 1000 units long at 20000 units/s; else 40 %, 160 units at 4500 units/s): a short streak flying from the muzzle, gone at the impact" }),
           switchRow('Enemy names', this.enemyNamesBox, { title: "The names over the enemies of the player you watch (first person) or select - the game never shows them (only a teammate's name under the crosshair); teammates' names follow Layers, Names. X-Ray Player + name shows every name" }),
+          switchRow('View lines', this.viewLinesBox, { title: "A thin line in the team colour from each player's eyes along their view direction (with the real pitch)" }),
+          switchRow('Player rings', this.ringsBox, { title: 'A ring in the team colour on the ground under each player model (the selected player keeps their own orange ring)' }),
           switchRow('Grenades and dropped weapons', this.itemsBox, { title: "The grenades in flight (their own model, spinning as the demo has it) and the weapons on the ground (a dying player drops his gun and a grenade), where the demo's entities have them" }),
           switchRow('Shell casings', this.casingsBox, { title: "The cases each shot ejects (bolt-action rifles and the shotgun: when the bolt is worked), the game's shell eject effect at the gun's ejection port; as in the game only near the camera (rifles 100 units, pistols 250)" }),
           switchRow('Head icons', this.headIconsBox, { title: "The game's icons over the players' heads: the team icon the server gives them, the talk balloon while a teammate talks (voice chat), the connection-problem icon. In first person as that player sees them (teammates only), in the other cameras all" }),
@@ -461,10 +469,22 @@ export class View3D {
     this.needsRender = true;
   }
   setCasings(on, user = false) {
-    this.fx.casings = on;
+    this.fx.setCasings(on);
     this.casingsBox.checked = on;
     if (on) this.characters.load().then(() => { this.needsRender = true; });
     if (user) sessionSet(CASINGS_KEY, on ? 'on' : 'off');
+    this.needsRender = true;
+  }
+  setViewLines(on, user = false) {
+    this.actors.setViewLines(on);
+    this.viewLinesBox.checked = on;
+    if (user) { sessionSet(VIEW_LINES_KEY, on ? 'on' : 'off'); this.R.invalidate(); }
+    this.needsRender = true;
+  }
+  setRings(on, user = false) {
+    this.actors.setRings(on);
+    this.ringsBox.checked = on;
+    if (user) { sessionSet(RINGS_KEY, on ? 'on' : 'off'); this.R.invalidate(); }
     this.needsRender = true;
   }
   setEnemyNames(on, user = false) {

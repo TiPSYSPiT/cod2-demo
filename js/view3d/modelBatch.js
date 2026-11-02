@@ -122,6 +122,13 @@ export class ModelBatches {
     }
   }
 
+  /** let a model's copies go (made again when added again) */
+  drop(model) {
+    const b = this.batches.get(model);
+    if (b) this.free(b);
+    this.batches.delete(model);
+  }
+
   /** the copies drawn now (for the stats) */
   count() { let n = 0; for (const b of this.batches.values()) if (b) n += b.n; return n; }
 

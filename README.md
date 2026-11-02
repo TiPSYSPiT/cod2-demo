@@ -57,8 +57,8 @@ crawls advance by the distance the player covers, so the feet keep step), turned
 legs follow diagonal movement while the upper body and head aim with the view's yaw and pitch, lean
 rolls and shifts the upper body, prone players tilt with the slope), lit as the game lights its models -
 from the map's light grid (the baked light from 8 directions at their position, plus the sun where it
-reaches them), with a team-coloured ring at the feet, and the corpses playing their death animation; *Simple* = capsules,
-standing / crouched / prone), an aim line using their real pitch, **X-Ray** (Display popover or key `X`:
+reaches them), optionally a team-coloured ring at the feet (Display: *Player rings*, off by default), and the corpses playing their death animation; *Simple* = capsules,
+standing / crouched / prone), optionally a view line from the eyes using their real pitch (Display: *View lines*, off by default; the selected player's own ring stays), **X-Ray** (Display popover or key `X`:
 *Player* = living players behind walls and props as a silhouette in the team colour, *Player + name* = also
 every name, with a badge for a player out of sight; remembered for the browser session), the mounted
 **MGs** turning with their user's aim (the user's own weapon hidden meanwhile), the S&D bomb-site targets
@@ -72,7 +72,7 @@ and dust lit by the map's baked light under them, debris landing on the floor an
 clouds and flash spheres), the effects' **models** - the **shell casings** each shot ejects at the gun's ejection port
 (bolt-action rifles and the shotgun: when the bolt is worked; as in the game only near the camera), the burnt smoke
 grenade, debris -, the **grenades in flight** (the game's grenade model, spinning as the demo has it) and the
-**dropped weapons** on the ground (Display: *Grenades and dropped weapons*, *Shell casings*; the effects' dynamic
+**dropped weapons** on the ground (Display: *Grenades and dropped weapons*, *Shell casings* - off by default; off, none is made -; the effects' dynamic
 lights are not drawn - their falloff is made in the game's renderer, not known), the game's **head icons** over the players (the team icon the server gives them, the talk
 balloon while a teammate talks in the voice chat, also as a speaker in the panel; in first person only what that player
 sees), the players' and corpses' **shadows** (Display popover: *Shadows*; soft shadows
@@ -137,7 +137,7 @@ short red flash), **Hit marker** (the cross on the crosshair when the player hit
 draws it: zPAM yellowish for a hit, white and larger for a kill, red for a teammate; with the game's hit sound),
 **Stance** (off by default: the stance icon after a change, "Prone Blocked"; stock HUD only, as in the game),
 **Hints** (off by default: plant / defuse the bomb, pick up or swap a weapon, mantle - with the game's default keys)
-and **zPAM match info** (as the recording player had it); the scoreboard is the viewer's `Tab` (see above). zPAM demos use zPAM's HUD layout (smaller ammo counter, grenades side by side), the others the stock
+and **zPAM match info** (off by default: as the recording player had it); the scoreboard is the viewer's `Tab` (see above). zPAM demos use zPAM's HUD layout (smaller ammo counter, grenades side by side), the others the stock
 game's. Exact for the recording player (the demo's player state); with
 another player in first person the compass, the kill feed and the team score. Part of the video export.
 
