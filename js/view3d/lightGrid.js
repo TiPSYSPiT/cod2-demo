@@ -313,25 +313,64 @@ export function setGridUniforms(u, s) {
   u.sun.value = s.sun;
 }
 
-/** light a (Lambert) material from the grid: albedo x (grid + sun); its colour and emissive are left out */
+/* the normal-mapped players / weapons / view models, per pixel as lightprobe.hlsl (as the props): the tangent
+   (cTangent: xyz + the binormal's sign) skinned like the normal, the grid light for N + (2x - 1) T + (2y - 1) B,
+   the sun x N.L, with a specular map the sun's highlight (the power in the normal map's blue channel) */
+const SKIN_BUMP_VERT_HEAD = 'attribute vec4 cTangent;\nvarying vec3 vGridT, vGridB, vGridW;\n';
+const SKIN_BUMP_VERT_BODY = `
+{
+  vec3 gT = cTangent.xyz;
+  #ifdef USE_SKINNING
+    gT = ( skinMatrix * vec4( gT, 0.0 ) ).xyz;
+  #endif
+  vGridT = normalize( mat3( modelMatrix ) * gT );
+  vGridB = cross( vGridN, vGridT ) * sign( cTangent.w );
+}`;
+const SKIN_BUMP_FRAG_HEAD = `varying vec3 vGridT, vGridB, vGridW;
+uniform sampler2D uNormalMap;
+#ifdef GRID_SPECULAR
+uniform sampler2D uSpecMap;
+${SPECULARITY_GLSL}
+#endif
+`;
+const SKIN_BUMP_FRAG_BODY = `vec3 nsp = texture2D( uNormalMap, vMapUv ).xyz;
+vec3 gn = normalize( normalize( vGridN ) + ( nsp.x * 2.0 - 1.0 ) * vGridT + ( nsp.y * 2.0 - 1.0 ) * vGridB );
+vec3 gridSpec = vec3( 0.0 );
+#ifdef GRID_SPECULAR
+  vec3 gh = normalize( normalize( cameraPosition - vGridW ) + uSunDir );
+  gridSpec = uSunColor * texture2D( uSpecMap, vMapUv ).rgb * specularity( nsp.z, dot( gh, gn ) ) * mix( 0.3, 1.0, clamp( uGridSun, 0.0, 1.0 ) );
+#endif
+outgoingLight = diffuseColor.rgb * gridLight( gn ) + gridSpec;
+`;
+
+/** light a (Lambert) material from the grid: albedo x (grid + sun); its colour and emissive are left out. With
+ *  mat.userData.bump {normalMap, specMap} (uniforms {value}; the geometry has cTangent and the material a colour
+ *  map) per pixel with the normal map and the specular highlight */
 export function gridMaterial(mat, u) {
   const prev = mat.onBeforeCompile;
+  const bump = mat.userData.bump && mat.userData.bump.normalMap && mat.map ? mat.userData.bump : null;
+  const specular = !!(bump && bump.specMap);
   mat.onBeforeCompile = (shader, renderer) => {
     if (prev) prev.call(mat, shader, renderer);
     shader.uniforms.uGrid = u.grid;
     shader.uniforms.uGridSun = u.sun;
     shader.uniforms.uSunColor = GRID_SUN.color;
     shader.uniforms.uSunDir = GRID_SUN.dir;
+    if (bump) {
+      shader.uniforms.uNormalMap = bump.normalMap;
+      if (specular) shader.uniforms.uSpecMap = bump.specMap;
+    }
     shader.vertexShader = shader.vertexShader
-      .replace('#include <common>', '#include <common>\n' + VERT_HEAD)
-      .replace('#include <defaultnormal_vertex>', '#include <defaultnormal_vertex>' + VERT_BODY);
+      .replace('#include <common>', '#include <common>\n' + VERT_HEAD + (bump ? SKIN_BUMP_VERT_HEAD : ''))
+      .replace('#include <defaultnormal_vertex>', '#include <defaultnormal_vertex>' + VERT_BODY + (bump ? SKIN_BUMP_VERT_BODY : ''));
+    if (bump) shader.vertexShader = shader.vertexShader.replace('#include <project_vertex>', '#include <project_vertex>\nvGridW = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz;');
     shader.fragmentShader = shader.fragmentShader
-      .replace('#include <common>', '#include <common>\n' + FRAG_HEAD)
-      .replace('#include <opaque_fragment>', 'outgoingLight = diffuseColor.rgb * gridLight( normalize( vGridN ) );\n#include <opaque_fragment>');
+      .replace('#include <common>', '#include <common>\n' + FRAG_HEAD + (bump ? (specular ? '#define GRID_SPECULAR\n' : '') + SKIN_BUMP_FRAG_HEAD : ''))
+      .replace('#include <opaque_fragment>', (bump ? SKIN_BUMP_FRAG_BODY : 'outgoingLight = diffuseColor.rgb * gridLight( normalize( vGridN ) );\n') + '#include <opaque_fragment>');
   };
   // the program cache key: the previous patch's key (chained), or the previous onBeforeCompile's source
   const prevKey = mat.customProgramCacheKey !== THREE.Material.prototype.customProgramCacheKey ? mat.customProgramCacheKey.bind(mat) : (k => () => k)(prev ? prev.toString() : '');
-  mat.customProgramCacheKey = () => 'grid|' + prevKey();
+  mat.customProgramCacheKey = () => 'grid|' + (bump ? 'n' : '') + (specular ? 's' : '') + '|' + prevKey();
   mat.color.setRGB(1, 1, 1);
   mat.needsUpdate = true;
   return mat;

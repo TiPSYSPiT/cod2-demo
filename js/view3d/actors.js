@@ -407,6 +407,16 @@ export class Actors {
     for (const it of this.items.values()) it.xrayHidden = !!(hidden && hidden.get(it.cl));
   }
 
+  /** the players' and corpses' LODs for the camera (characters.js setLod; the game's lod scale: tan(fov_x / 2) /
+   *  tan(40 deg), the view's fov as the 4:3 horizontal fov cg_fov is) */
+  updateLods(camera) {
+    const p = camera.position;
+    const scale = Math.tan(Math.atan(Math.tan(camera.fov * Math.PI / 360) * 4 / 3)) / Math.tan(40 * Math.PI / 180);
+    const lod = ch => { if (!ch || !ch.group.visible || !ch.setLod) return; const g = ch.group.position; ch.setLod(Math.hypot(g.x - p.x, g.y - p.y, g.z - p.z) * scale); };
+    for (const it of this.items.values()) lod(it.char);
+    for (const h of this.corpseItems.values()) lod(h.ch);
+  }
+
   /** HTML labels above the heads (after the camera moved) */
   projectLabels(camera, w, h, hideClient) {
     const v = new THREE.Vector3();

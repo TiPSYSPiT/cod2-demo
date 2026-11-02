@@ -169,7 +169,12 @@ export class View3D {
     // the players' and corpses' shadows (shadows.js, CoD2's shadow cookies); ?shadows=off
     this.shadows = new CookieShadows();
     this.needsRender = true;
-    this.onArrive = textureArrivals.onArrive = () => { this.needsRender = true; };
+    // a texture arrived: the frame anew, and once the burst is over the players drawn anew (paused too: they change
+    // to the grid lighting once all their textures are there)
+    this.onArrive = textureArrivals.onArrive = () => {
+      this.needsRender = true;
+      if (!this.redrawTimer) this.redrawTimer = setTimeout(() => { this.redrawTimer = null; if (this.visible) this.R.invalidate(); }, 100);
+    };
     this.cams = new Cameras(this.camera, this.renderer.domElement, () => { this.needsRender = true; });
     this.buildToolbar();
     this.setKillfeed(stored(KILLFEED_KEY) !== 'off');
@@ -719,6 +724,7 @@ export class View3D {
     }
     this.camera.updateMatrixWorld();
     if (this.props) this.props.update(this.camera);         // (the props' LODs for this eye and fov)
+    this.actors.updateLods(this.camera);                     // (the players' LODs)
     this.fx.update(this.t || 0, this.camera);
     this.tracers.update(this.t || 0, this.camera, cl => this.actors.muzzle(cl), this.fpClient);
     this.sprites.update(this.t || 0, this.camera, this.actors, this.fpClient);
@@ -918,6 +924,7 @@ export class View3D {
     window.removeEventListener('blur', this.offScoresKey);
     // (the module-level hook and shared textures would keep this view and its demo in memory)
     if (textureArrivals.onArrive === this.onArrive) textureArrivals.onArrive = null;
+    clearTimeout(this.redrawTimer);
     releaseStandins();
     this.scene.traverse(o => { if (o.geometry) o.geometry.dispose(); });
     this.renderer.dispose();

@@ -10,10 +10,16 @@
  *   rotation) and translation keys (added to the bind translation), at the animation's frame rate.
  * A player plays the legs animation on the whole body and the torso animation (shooting, reloading,
  * throwing) on top for the bones it has keys for, from the time the demo switched to it; a new legs
- * animation crossfades from the old one, a torso animation fades in and out (actors.js). */
+ * animation crossfades from the old one, a torso animation fades in and out (actors.js).
+ * Materials: the colour map, the normal map + specular map lit per pixel from the light grid (lightGrid.js), the
+ * view models' detail maps; alpha test (soft edges: alpha to coverage) or blend - the uniforms' markings are
+ * blended decals with the material's polygon offset. LODs: each body / head / helmet's coarser meshes by the
+ * game's rule (XModelGetLodForDist: the first LOD whose distance is 0 or beyond the eye's distance x the lod scale)
+ * with 8 % of hysteresis against switching back and forth at a threshold (setLod). The meshes are culled with a
+ * sphere around the player (any pose: 80 units from 32 above the feet) - by every camera, the shadow cookie's too. */
 import * as THREE from 'three';
 import { fetchJSON, fetchBinary } from './data.js';
-import { loadTexture, setMap } from './mapLoader.js';
+import { loadTexture, setMap, uniformMap, detailMap, polygonOffset } from './mapLoader.js';
 
 import { gridUniforms, setGridUniforms, gridMaterial } from './lightGrid.js';
 
@@ -59,13 +65,16 @@ export class CharacterLibrary {
     return this.textures.get(file);
   }
 
-  /** model template: {geometry, materials, bones, bindWorld (Matrix4 per bone)} or null */
-  template(name) {
+  /** model template of a LOD (0 the finest): {geometry, materials, bones, bindWorld (Matrix4 per bone), lods (the
+   *  model's LOD count), dists (their switch distances)} or null */
+  template(name, lod = 0) {
     if (!name || !this.modelsInfo) return null;
     name = String(name).toLowerCase();
-    if (this.templates.has(name)) return this.templates.get(name);
-    const m = this.modelsInfo.models[name];
-    if (!m) { this.templates.set(name, null); return null; }
+    const key = lod ? name + '#' + lod : name;
+    if (this.templates.has(key)) return this.templates.get(key);
+    const m0 = this.modelsInfo.models[name];
+    const m = m0 && (lod ? m0.lods && m0.lods[lod - 1] : m0);
+    if (!m) { this.templates.set(key, null); return null; }
     const B = this.modelsBuf, G = m.geometry;
     const geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(B, G.position.offset, G.position.length / 4), 3));
@@ -74,20 +83,31 @@ export class CharacterLibrary {
     geo.setAttribute('skinIndex', new THREE.BufferAttribute(new Uint8Array(B, G.joints.offset, G.joints.length), 4));
     geo.setAttribute('skinWeight', new THREE.BufferAttribute(new Uint8Array(B, G.weights.offset, G.weights.length), 4, true));
     geo.setIndex(new THREE.BufferAttribute(new Uint16Array(B, G.index.offset, G.index.length / 2), 1));
+    // the tangent of the normal-mapped surfaces (int8 x 4: xyz, w = the binormal's sign; lightGrid.js skins it)
+    if (G.tangent) geo.setAttribute('cTangent', new THREE.BufferAttribute(new Int8Array(B, G.tangent.offset, G.tangent.length), 4, true));
     const materials = [];
     m.groups.forEach((g, i) => {
       geo.addGroup(g.start, g.count, i);
       const tex = this.texture(g.texture);
-      // a little of the colour map as emission: the scene lights alone leave the characters dark
-      const mat = new THREE.MeshLambertMaterial({ color: tex ? 0xffffff : 0x777777, alphaTest: g.alphaTest ? 0.5 : 0,
-        emissive: 0x4a4a4a, side: g.alphaTest ? THREE.DoubleSide : THREE.FrontSide });
-      setMap(mat, 'map', tex, g.alphaTest ? 'clear' : 'grey');
-      setMap(mat, 'emissiveMap', tex, g.alphaTest ? 'clear' : 'grey');
+      const cut = !!g.alphaTest || !!g.blend;
+      // a little of the colour map as emission: the scene lights alone leave the characters dark (until the grid)
+      const opts = { color: tex ? 0xffffff : 0x777777, alphaTest: g.alphaTest ? 0.5 : 0, alphaToCoverage: !!g.alphaTest,
+        emissive: 0x4a4a4a, side: cut ? THREE.DoubleSide : THREE.FrontSide };
+      if (g.blend) {
+        opts.transparent = true; opts.depthWrite = false;
+        if (g.blend === 'add') opts.blending = THREE.AdditiveBlending;
+      }
+      polygonOffset(opts, g.polygonOffset || 0, !!g.blend);   // (the markings on the uniforms lie on the cloth)
+      const mat = new THREE.MeshLambertMaterial(opts);
+      setMap(mat, 'map', tex, cut ? 'clear' : 'grey');
+      setMap(mat, 'emissiveMap', tex, cut ? 'clear' : 'grey');
+      if (tex && g.normalMap && G.tangent) {
+        mat.userData.bump = { normalMap: uniformMap(this.texture(g.normalMap), 'flat'), specMap: g.specularMap ? uniformMap(this.texture(g.specularMap), 'black') : null };
+      }
+      if (tex && g.detailMap) detailMap(mat, this.texture(g.detailMap), g.detailScale);
       materials.push(mat);
     });
-    // the exported normals light the skinned meshes wrong (black): smooth normals from the triangles
-    geo.deleteAttribute('normal');
-    geo.computeVertexNormals();
+    // the game's own normals (smoothing as the artists set it; posed with the bones)
     geo.computeBoundingSphere();
     // the bind pose in model space
     const bindWorld = [];
@@ -96,8 +116,9 @@ export class CharacterLibrary {
       local.compose(p.fromArray(b.t), q.set(b.q[0], b.q[1], b.q[2], b.q[3]), one);
       bindWorld[i] = b.parent >= 0 ? bindWorld[b.parent].clone().multiply(local) : local.clone();
     });
-    const tpl = { name, geometry: geo, materials, bones: m.bones, bindWorld, triangles: m.triangles };
-    this.templates.set(name, tpl);
+    const tpl = { name, geometry: geo, materials, bones: m.bones, bindWorld, triangles: m.triangles,
+      lods: 1 + (m0.lods ? m0.lods.length : 0), dists: m0.lodDistances || [0] };
+    this.templates.set(key, tpl);
     return tpl;
   }
 
@@ -129,6 +150,16 @@ export class CharacterLibrary {
 }
 
 const qa = new THREE.Quaternion(), qb = new THREE.Quaternion();
+const CULL_SPHERE = new THREE.Sphere(new THREE.Vector3(0, 0, 32), 80);   // (any pose: standing, prone, a corpse)
+const LOD_HYSTERESIS = 0.08;
+/** a skinned mesh of a template on the bones, culled with the player's sphere */
+function skinned(t, bones, group) {
+  const mesh = new THREE.SkinnedMesh(t.geometry, t.materials);
+  mesh.boundingSphere = CULL_SPHERE;
+  group.add(mesh);
+  mesh.bind(new THREE.Skeleton(bones, t.bindWorld.map(m => m.clone().invert())), new THREE.Matrix4());
+  return mesh;
+}
 const EMISSIVE = 0x4a / 255;                             // the materials' emissive grey (template())
 const clampLight = v => Math.round(Math.min(1, Math.max(0.2, v)) * 50) / 50;   // (steps of 0.02: fewer updates)
 /** key interval of frame f in a key frame list -> [i, j, fraction] */
@@ -155,14 +186,41 @@ export class Character {
     this.byName = new Map();
     this.indexOf = new Map(tb.bones.map((b, i) => [this.bones[i], i]));
     tb.bones.forEach((b, i) => { this.byName.set(b.name, this.bones[i]); if (b.parent >= 0) this.bones[b.parent].add(this.bones[i]); else this.group.add(this.bones[i]); });
-    const mesh = new THREE.SkinnedMesh(tb.geometry, tb.materials);
-    mesh.frustumCulled = false;
-    this.group.add(mesh);
     this.group.updateMatrixWorld(true);
-    mesh.bind(new THREE.Skeleton(this.bones, tb.bindWorld.map(m => m.clone().invert())), new THREE.Matrix4());
-    this.meshes = [mesh];
+    this.meshes = [];                  // every mesh (all LODs): lighting, disposal
+    this.parts = [];                   // [{meshes: [LOD 0 ..], dists, level}]
+    this.addPart(body, this.bones);
     this.triangles += tb.triangles;
     for (const a of attach || []) this.attach(a);
+  }
+
+  /** one model with its LODs on the given bones (the coarser LODs share LOD 0's skeleton) */
+  addPart(name, bones) {
+    const t0 = this.lib.template(name);
+    const part = { meshes: [], dists: t0.dists, level: 0 };
+    for (let lv = 0; lv < t0.lods; lv++) {
+      const t = lv ? this.lib.template(name, lv) : t0;
+      if (!t) break;
+      const mesh = skinned(t, bones, this.group);
+      mesh.visible = lv === 0;
+      part.meshes.push(mesh);
+      this.meshes.push(mesh);
+    }
+    this.parts.push(part);
+  }
+
+  /** the LODs for an eye at distance d (lod scale applied): per part the game's choice, with hysteresis - a part
+   *  goes coarser past its distance x 1.08, back finer under x 0.92 */
+  setLod(d) {
+    for (const p of this.parts) {
+      const D = p.dists, n = p.meshes.length;
+      let lv = n - 1;
+      for (let k = 0; k < Math.min(D.length, n); k++) {
+        const lim = D[k] * (k >= p.level ? 1 + LOD_HYSTERESIS : 1 - LOD_HYSTERESIS);
+        if (D[k] === 0 || lim > d) { lv = k; break; }
+      }
+      if (lv !== p.level) { p.meshes[p.level].visible = false; p.meshes[lv].visible = true; p.level = lv; }
+    }
   }
 
   /** a head / helmet: bound to the bones of the same name of the models attached before it (the body's, and
@@ -182,11 +240,7 @@ export class Character {
     });
     const fresh = t.bones.map(b => !known(b.name));
     t.bones.forEach((b, i) => { if (!fresh[i]) return; const parent = b.parent >= 0 ? bones[b.parent] : this.group; parent.add(bones[i]); this.extraBones.set(b.name, bones[i]); });
-    const mesh = new THREE.SkinnedMesh(t.geometry, t.materials);
-    mesh.frustumCulled = false;
-    this.group.add(mesh);
-    mesh.bind(new THREE.Skeleton(bones, t.bindWorld.map(m => m.clone().invert())), new THREE.Matrix4());
-    this.meshes.push(mesh);
+    this.addPart(name, bones);
     this.triangles += t.triangles;
   }
 
@@ -206,7 +260,7 @@ export class Character {
       const t = this.lib.template(model);
       mesh = t ? new THREE.Mesh(t.geometry, t.materials) : null;
       if (mesh) {
-        mesh.frustumCulled = false; hand.add(mesh);
+        hand.add(mesh);                 // (culled by its own bounds, where the hand holds it)
         if (this.lit && ![].concat(mesh.material).some(x => !x.map || x.map.isDataTexture)) this.ownMaterials(mesh);
         // the muzzle: the model's tag_flash in its bind pose (fx.js plays the flash there)
         const k = t.bones.findIndex(b => b.name === 'tag_flash');

@@ -275,15 +275,16 @@ polygon offset level.
 `sound_export.py` writes
 `maps3d/_sound/` (746 aliases + zPAM's 3 redefinitions, ~28 MB, 22 kHz mono WAV, the volume falloff curves and
 hold_breath.shock's channel volumes; no map ambience / music). `characters_export.py` writes
-`maps3d/_characters/` (116 body / head / helmet models skinned to their skeletons, the 35 weapons' world models,
-the 7 grenade / rocket projectile models and the 58 models of the effects' model elements - shell casings, the
-burnt smoke grenade, debris -, ~9.9 MB, and the 280 animations of the multiplayer anim tree by the index the demo
+`maps3d/_characters/` (116 body / head / helmet models skinned to their skeletons - with their coarser LODs and switch
+distances -, the 35 weapons' world models, the 7 grenade / rocket projectile models and the 58 models of the effects'
+model elements - shell casings, the burnt smoke grenade, debris -, each surface with its material's colour, normal +
+specular and detail maps, tangents, alpha test or blend, sort key and polygon offset, ~18 MB, and the 280 animations of the multiplayer anim tree by the index the demo
 sends, with their gun-hand notetracks, ~6 MB; textures into
 `maps3d/_textures/`). Without it the 3D view falls back to capsules. `fx_export.py` writes
 `maps3d/_fx/effects.json` (all 380 effects of `fx/` with their curves, the impact tables, the weapons'
 flash / explosion / shell eject effects and which are bolt-action, 102 effect materials; ~2.3 MB, textures into `maps3d/_textures/`); without it
 the 3D view draws the marker clouds. `viewmodels_export.py` writes `maps3d/_characters/viewmodels.json + .bin`
-(the 44 weapons' gun models and the 9 hands models, ~3.4 MB, with each weapon file's view animation names, its
+(the 44 weapons' gun models and the 9 hands models with their normal, specular and detail maps, ~3.7 MB, with each weapon file's view animation names, its
 numbers for the motion, the ADS and the crosshair, the reticle and scope overlay images) and `vanims.json + .bin`
 (the 309 view animations, ~2.1 MB); without it first person shows no weapon. `hud_export.py` writes
 `maps3d/_hud/` (`hud.json`: both HUD menu layouts - stock and zPAM - as parsed from `ui_mp/hud.menu`, zPAM's
@@ -338,6 +339,7 @@ git-ignored):
 |---|---|
 | `py tools/audit/site_audit.py` | GitHub Pages readiness: manifest against the files, every reference with its exact case, `.nojekyll`, sizes, leftovers (local paths, `console.log`), the page head |
 | `py tools/audit/map_audit.py --game DIR` | every map of the game files against its export: geometry, model placements, textures, bounds, entities |
+| `py tools/audit/model_audit.py --game DIR` | the game's player sets (mptype / character scripts) per faction and map type against the export - bodies, heads, hats, attachments, LODs, material layers, alpha modes -, the anim tree, every weapon's world / view / projectile model, view animations, hands and tags, the textures decoded |
 | `py tools/audit/map_quality.py --game DIR [--decode]` | per map the materials' layers, alpha modes, sort keys and polygon offsets against the export, every source image decoded, lightmap pages, sun, fog, the props' LODs and heaviest models |
 | `node tools/audit/demo_audit.mjs` | every demo in `demos/`: players, teams, kills, scores, rounds, bomb events, MG tracks |
 | `py tools/audit/leftovers.py` | flash / stun grenades (CoD4 template, not in CoD2) left in the code, styles or exported data |
