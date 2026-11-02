@@ -132,7 +132,9 @@ low, the weapon name after a switch), **Grenades** (frag and smoke counts with t
 HUD** (off by default: everything else the server shows - zPAM's players left, sniper / shotgun info and
 round texts, the clocks, the game messages), **Low health** (the red screen edges pulsing after a hit), **Health
 bar** (off: the game hides it, cg_drawHealth 0), **Damage direction** (the arrows to where a hit came from and the
-short red flash), **Stance** (the stance icon after a change, "Prone Blocked"; stock HUD only, as in the game),
+short red flash), **Hit marker** (the cross on the crosshair when the player hits someone, as the server's script
+draws it: zPAM yellowish for a hit, white and larger for a kill, red for a teammate; with the game's hit sound),
+**Stance** (the stance icon after a change, "Prone Blocked"; stock HUD only, as in the game),
 **Hints** (plant / defuse the bomb, pick up or swap a weapon, mantle - with the game's default keys),
 **Scoreboard** (the game's scoreboard while `Tab` is held and at the intermission, from the scores the server sent;
 zPAM's own scoreboard while the recording player had it open) and **zPAM match info** (as the recording player
@@ -341,6 +343,7 @@ git-ignored):
 | `py tools/audit/leftovers.py` | flash / stun grenades (CoD4 template, not in CoD2) left in the code, styles or exported data |
 | `node tools/audit/demo_detail.mjs <demo> [client]` | the details behind a demo-audit finding: kill records, deaths against the scoreboard by phase, the positions around a jump |
 | `ui_audit.js`, `xray_audit.js` | pasted into the DevTools console on a loaded demo (the console is not bound by the page's CSP - `eval` from the page is): every control of both views, the X-Ray rules |
+| `node tools/audit/browser/run.mjs [suite ...] [--browsers chrome,edge,firefox]` | the browser checks, headless, against the dev server (`py tools/serve.py 8776`): `ui` (the UI audit, a 3D MP4, a 2D GIF), `xray`, `start` (the start state, remembered settings), `features` (tracers, enemy names, camera shake, low-health overlay, Tab, a first-person MP4), `hit` (the hit marker on every demo), `decals` (decal flicker), `perf` (load and frame time per map, `--maps`), `leak` (memory on demo changes); a line per run, details in `tools/audit/out/browser/`, exit code 1 on a failure or any console error / warning / failed request |
 
 ## Deploy to GitHub Pages
 

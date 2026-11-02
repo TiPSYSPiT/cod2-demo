@@ -68,6 +68,7 @@ const HUD_TITLES = {
   lowHealth: 'The red screen edges when the health is low, pulsing after a hit (recording player only)',
   health: "The health bar, for 2 s after a hit (the game's cg_drawHealth - off in the game; recording player only)",
   damage: 'Where the damage came from (arrows around the centre, 2 s) and the short red flash of a hit (recording player only)',
+  hitmarker: "The hit marker in the centre when the player hits someone, as the server's script draws it - zPAM: yellowish for a hit, white and larger for a kill, red for a teammate, a second mark for two at once (recording player only)",
   stance: "The stance icon after a stance change and \"Prone Blocked\" (recording player only; zPAM's HUD has no stance icon)",
   hints: 'The use hints (plant / defuse the bomb, pick up a weapon) and the mantle hint, with the default keys (recording player only)',
   scoreboard: "The game's scoreboard while Tab is held and at the intermission (the last scores the server sent); zPAM's own scoreboard while the recording player had it open",

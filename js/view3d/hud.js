@@ -73,7 +73,7 @@ const OWNERDRAW = { 5: 'ammo', 6: 'ammo', 81: 'ammo', 84: 'compass', 85: 'compas
   100: 'grenades', 101: 'grenades', 102: 'grenades', 103: 'grenades', 104: 'grenades', 105: 'grenades',
   79: 'health', 95: 'health', 109: 'lowHealth', 20: 'stance', 72: 'hints', 80: 'hints' };
 // the parts drawn from the recording player's player state only
-const RECORDER_PARTS = new Set(['ammo', 'grenades', 'server', 'health', 'lowHealth', 'stance', 'hints', 'matchinfo']);
+const RECORDER_PARTS = new Set(['ammo', 'grenades', 'server', 'hitmarker', 'health', 'lowHealth', 'stance', 'hints', 'matchinfo']);
 // the team score: the server's HUD elements of _hud_teamscore.gsc (stock 1.3 and zPAM) / _hud_playerscore.gsc
 // (deathmatch) at these places (left / top): the icons at 6, 28 / 50, the scores at 36 and the "/ limit" at 49
 const SCORE_SPOTS = new Set(['6,28', '6,50', '36,26', '36,48', '49,26', '49,48']);
@@ -81,7 +81,7 @@ const ENTITYNUM_WORLD = 1022;
 
 export const HUD_PARTS = [['compass', 'Compass', true], ['score', 'Team score', false], ['killfeed', 'Kill feed', false],
   ['ammo', 'Ammo', true], ['grenades', 'Grenades', true], ['server', 'Server HUD', false], ['lowHealth', 'Low health', true],
-  ['health', 'Health bar', false], ['damage', 'Damage direction', true], ['stance', 'Stance', true], ['hints', 'Hints', true],
+  ['health', 'Health bar', false], ['damage', 'Damage direction', true], ['hitmarker', 'Hit marker', true], ['stance', 'Stance', true], ['hints', 'Hints', true],
   ['scoreboard', 'Scoreboard', true], ['matchinfo', 'zPAM match info', true]];
 
 const lower = (a, t) => { let lo = 0, hi = a.length; while (lo < hi) { const m = (lo + hi) >> 1; if (a[m] <= t) lo = m + 1; else hi = m; } return lo - 1; };
@@ -423,8 +423,8 @@ export class Hud {
     }
     // the damage direction and flash (the recorder's damage feedback)
     if (P.damage && st.recorder && view) this.damage(st, view);
-    // the server's HUD elements (the team score, the rest)
-    if ((P.score || (P.server && st.recorder)) && this.H) this.hudElems(st, P.score, P.server && st.recorder);
+    // the server's HUD elements (the team score, the hit marker, the rest)
+    if ((P.score || (st.recorder && (P.server || P.hitmarker))) && this.H) this.hudElems(st, P.score, P.server && st.recorder, P.hitmarker && st.recorder);
     // the message windows
     if (P.killfeed || P.server) this.notifyWindow(st, P.killfeed, P.server);
     if (P.server) this.boldWindow(st);
@@ -1060,7 +1060,10 @@ export class Hud {
   }
 
   // ---- the server's HUD elements ----
-  hudElems(st, score, rest) {
+  /** score / hit / rest: the team score's elements, the hit marker (the gametype scripts' damage feedback - stock
+   *  and zPAM _damagefeedback.gsc: a client element with the material damage_feedback, set visible on a hit and
+   *  faded, zPAM also scaled), the other elements */
+  hudElems(st, score, rest, hit = false) {
     const H = this.H, W = this.W;
     let ri = st.ri;
     if (ri < 0) { ri = lower(W.t, st.t); if (ri < 0) return; }
@@ -1072,11 +1075,20 @@ export class Hud {
       for (const k of ['x', 'y', 'z', 'fontScale', 'value', 'sort', 'fromX', 'fromY']) e[k] = u2f(e[k]);
       if (!e.type || e.type === 13) continue;
       const isScore = (e.alignScreen === 9 || e.fromAlignScreen === 9) && SCORE_SPOTS.has(Math.round(e.x) + ',' + Math.round(e.y));
-      if (isScore ? !score : !rest) continue;
-      els.push([e, i]);
+      const isHit = e.type === 6 && e.materialIndex > 0 && this.csAt(1566 + e.materialIndex, st.t) === 'damage_feedback';
+      if (isHit ? !hit : isScore ? !score : !rest) continue;
+      els.push([e, i, isHit]);
     }
     els.sort((a, b) => a[0].sort - b[0].sort || a[1] - b[1]);
-    for (const fg of [0, 1]) for (const [e] of els) if ((e.foreground ? 1 : 0) === fg) this.hudElem(e, st);
+    for (const fg of [0, 1]) for (const [e, , isHit] of els) if ((e.foreground ? 1 : 0) === fg) {
+      if (!isHit) { this.hudElem(e, st); continue; }
+      // the hit marker on the crosshair: placed in the whole view as the game places it (centre / middle of the
+      // screen, its size from the screen's height) - not in the safe area the rest keeps clear of the panels
+      const S0 = this.S;
+      this.S = Object.assign({}, S0, { l: 0, t: 0, aw: S0.w, ah: S0.h, s: S0.h / 480 });
+      this.hudElem(e, st);
+      this.S = S0;
+    }
   }
   /** CG_GetHudElemInfo + CG_Draw2dHudElems for one element (times: the server's -> the replay's) */
   hudElem(e, st) {
