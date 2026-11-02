@@ -15,7 +15,7 @@
  * Modes: models, see-through boxes of the model bounds, off. */
 import * as THREE from 'three';
 import { fetchJSON, fetchBinary, checkedView } from './data.js';
-import { loadTexture, setMap, uniformMap, detailMap, multiplyMaterial } from './mapLoader.js';
+import { loadTexture, setMap, uniformMap, detailMap, multiplyMaterial, polygonOffset } from './mapLoader.js';
 import { receiveCookie } from './shadows.js';
 import { propGridMaterial } from './lightGrid.js';
 import { gameObjectFilter } from './gameObjects.js';
@@ -89,7 +89,7 @@ export class Props {
         const tex = texture(g.texture);
         // the multiply decals (crate stencils, grime): the framebuffer x the colour map, unlit (mapLoader.js)
         if (g.blend === 'multiply' && tex) {
-          const mat = multiplyMaterial(tex, { side: opts.side, vertexColors: false });
+          const mat = multiplyMaterial(tex, { side: opts.side, vertexColors: false }, g.polygonOffset != null ? g.polygonOffset : 1);
           mat.name = g.material;
           const mesh = new THREE.InstancedMesh(sub, mat, list.length);
           list.forEach((inst, i) => mesh.setMatrixAt(i, matrixOf(inst.matrix)));
@@ -105,6 +105,8 @@ export class Props {
         }
         if (!tex) opts.color = new THREE.Color(0x8a8a84);
         if (g.alphaTest || (g.blend && g.textureAlpha)) opts.alphaTest = 0.5;
+        // the model's decal surfaces (the material's polygon offset level, mapLoader.js)
+        if (g.polygonOffset) polygonOffset(opts, g.polygonOffset);
         // "ambient_*" techniques (grass, foliage cards) take no light from their normals in the game, only
         // the ground light: unlit here, or the double-sided blades turn black on their back faces
         const unlit = /^ambient/.test(g.technique || '');

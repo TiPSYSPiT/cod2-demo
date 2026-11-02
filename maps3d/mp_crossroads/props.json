@@ -49,7 +49,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -98,7 +100,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -147,7 +151,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -196,7 +202,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -245,7 +253,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -294,7 +304,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -343,7 +355,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -392,7 +406,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -441,7 +457,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -490,7 +508,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -539,7 +559,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -588,7 +610,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -642,6 +666,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_barbed_wire_a_nrml-gggr__barbed_wire_a_spec-rgbl-23.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_barbed_wire_a_spec-rgbl-23.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -701,6 +727,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_barbed_wire_a_nrml-gggr__barbed_wire_a_spec-rgbl-23.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_barbed_wire_a_spec-rgbl-23.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -755,7 +783,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -808,7 +838,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": "_textures/_fence_wood_normal-gggr.webp"
+     "normalMap": "_textures/_fence_wood_normal-gggr.webp",
+     "sort": 11,
+     "polygonOffset": 1
     }
    ]
   },
@@ -861,7 +893,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": "_textures/_fence_wood_normal-gggr.webp"
+     "normalMap": "_textures/_fence_wood_normal-gggr.webp",
+     "sort": 11,
+     "polygonOffset": 1
     }
    ]
   },
@@ -914,7 +948,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": "_textures/_fence_wood_normal-gggr.webp"
+     "normalMap": "_textures/_fence_wood_normal-gggr.webp",
+     "sort": 11,
+     "polygonOffset": 1
     }
    ]
   },
@@ -967,7 +1003,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": "_textures/_fence_wood_normal-gggr.webp"
+     "normalMap": "_textures/_fence_wood_normal-gggr.webp",
+     "sort": 11,
+     "polygonOffset": 1
     }
    ]
   },
@@ -1016,7 +1054,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -1065,7 +1105,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -1114,7 +1156,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -1163,7 +1207,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -1212,7 +1258,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -1261,7 +1309,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     }
    ]
   },
@@ -1315,6 +1365,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_cow_normals-gggr__cow_spec-rgbl02.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_cow_spec-rgbl02.webp",
      "detailMap": "_textures/fur_01.webp",
      "detailScale": [
@@ -1374,6 +1426,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crate_n-gggr__crate_s-r-87g-87b-87_crate_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_crate_s-r-87g-87b-87_crate_cp-l-11.webp"
     }
    ]
@@ -1428,6 +1482,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crate_n-gggr__crate_s-r-87g-87b-87_crate_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_crate_s-r-87g-87b-87_crate_cp-l-11.webp"
     }
    ]
@@ -1482,6 +1538,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_victoriancouch_n-gggr__victoriancouch_s-r-25g-25b-25_victoriancou_dd868480.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_victoriancouch_s-r-25g-25b-25_victoriancou_dd868480.webp"
     }
    ]
@@ -1535,7 +1593,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_armoire_n-gggr.webp"
+     "normalMap": "_textures/_armoire_n-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -1584,7 +1644,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -1638,6 +1700,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_mattress_n-gggr__mattress_s-r-87g-87b-87l-64.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_mattress_s-r-87g-87b-87l-64.webp"
     },
     {
@@ -1651,6 +1715,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_mattressgrain_n-gggr__mattressgrain_s-r-87g-87b-87l-64.webp",
+     "sort": 9,
+     "polygonOffset": 0,
      "specularMap": "_textures/_mattressgrain_s-r-87g-87b-87l-64.webp"
     }
    ]
@@ -1705,6 +1771,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_piano01_n-gggr__furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp"
     }
    ]
@@ -1759,6 +1827,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_piano01_d_n-gggr__furniture_piano01_s-r-44g-44b-44_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_piano01_s-r-44g-44b-44_furniture_7634fb37.webp"
     }
    ]
@@ -1813,6 +1883,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_piano01_n-gggr__furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp"
     }
    ]
@@ -1867,6 +1939,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_piano01_n-gggr__furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp"
     }
    ]
@@ -1921,6 +1995,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_wood_dull_normal-gggr__furniture_wood_dull_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_wood_dull_spec-rgb__white-l-11.webp"
     }
    ]
@@ -1975,6 +2051,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_piano01_n-gggr__furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp"
     }
    ]
@@ -2029,6 +2107,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_desk_b_nrml-gggr__desk_b_spec-rgbl08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_desk_b_spec-rgbl08.webp"
     }
    ]
@@ -2083,6 +2163,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_desk_b_nrml-gggr__desk_b_spec-rgbl08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_desk_b_spec-rgbl08.webp"
     }
    ]
@@ -2137,6 +2219,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_piano01_n-gggr__furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp"
     }
    ]
@@ -2191,6 +2275,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_piano01_d_n-gggr__furniture_piano01_s-r-44g-44b-44_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_piano01_s-r-44g-44b-44_furniture_7634fb37.webp"
     }
    ]
@@ -2245,6 +2331,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_wood_dull_normal-gggr__furniture_wood_dull_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_wood_dull_spec-rgb__white-l-11.webp"
     }
    ]
@@ -2299,6 +2387,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_duhoc_furniture_n-gggr__duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp"
     }
    ]
@@ -2353,6 +2443,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_duhoc_furniture_n-gggr__duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp"
     }
    ]
@@ -2407,6 +2499,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_duhoc_furniture_n-gggr__duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp"
     }
    ]
@@ -2461,6 +2555,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_duhoc_furniture_n-gggr__duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp"
     }
    ]
@@ -2515,6 +2611,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_duhoc_furniture_n-gggr__duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp"
     }
    ]
@@ -2569,6 +2667,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_duhoc_furniture_n-gggr__duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp"
     }
    ]
@@ -2623,6 +2723,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_file_cabinet_a_nrml-gggr__file_cabinet_a_spec-rgbl08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_file_cabinet_a_spec-rgbl08.webp"
     }
    ]
@@ -2677,6 +2779,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_file_cabinet_a_nrml-gggr__file_cabinet_a_spec-rgbl08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_file_cabinet_a_spec-rgbl08.webp"
     }
    ]
@@ -2731,6 +2835,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_frenchbath_showerhead_normal-gggr__frenchbath_showerhead_spec-rgbl-73.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_frenchbath_showerhead_spec-rgbl-73.webp"
     }
    ]
@@ -2785,6 +2891,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_frenchbathtub_normal-gggr__frenchbathtub_spec-r-25g-25b-25l-79.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_frenchbathtub_spec-r-25g-25b-25l-79.webp"
     }
    ]
@@ -2839,6 +2947,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_duhoc_furniture_n-gggr__duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_duhoc_furniture_s-r-17g-17b-17_duhoc_furni_0f43101e.webp"
     }
    ]
@@ -2893,6 +3003,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_wood_dull_normal-gggr__furniture_wood_dull_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_wood_dull_spec-rgb__white-l-11.webp"
     }
    ]
@@ -2947,6 +3059,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_wood_dull_normal-gggr__furniture_wood_dull_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_wood_dull_spec-rgb__white-l-11.webp"
     }
    ]
@@ -3001,6 +3115,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_wood_dull_normal-gggr__furniture_wood_dull_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_wood_dull_spec-rgb__white-l-11.webp"
     }
    ]
@@ -3055,6 +3171,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_piano01_d_n-gggr__furniture_piano01_s-r-44g-44b-44_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_piano01_s-r-44g-44b-44_furniture_7634fb37.webp"
     }
    ]
@@ -3109,6 +3227,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_wood_dull_normal-gggr__furniture_wood_dull_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_wood_dull_spec-rgb__white-l-11.webp"
     }
    ]
@@ -3163,6 +3283,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_wood_dull_normal-gggr__furniture_wood_dull_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_wood_dull_spec-rgb__white-l-11.webp"
     }
    ]
@@ -3217,6 +3339,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_wood_dull_normal-gggr__furniture_wood_dull_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_wood_dull_spec-rgb__white-l-11.webp"
     }
    ]
@@ -3271,6 +3395,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_desk_a_nrml-gggr__desk_a_spec-rgbl08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_desk_a_spec-rgbl08.webp"
     }
    ]
@@ -3325,6 +3451,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_desk_b_nrml-gggr__desk_b_spec-rgbl08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_desk_b_spec-rgbl08.webp"
     }
    ]
@@ -3379,6 +3507,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_piano01_d_n-gggr__furniture_piano01_s-r-44g-44b-44_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_piano01_s-r-44g-44b-44_furniture_7634fb37.webp"
     }
    ]
@@ -3433,6 +3563,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_wood_dull_normal-gggr__furniture_wood_dull_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_wood_dull_spec-rgb__white-l-11.webp"
     }
    ]
@@ -3487,6 +3619,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_grandfatherclocktall_n-gggr__grandfatherclocktall_s-r-87g-87b-87_grandf_91b68e49.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_grandfatherclocktall_s-r-87g-87b-87_grandf_91b68e49.webp"
     }
    ]
@@ -3541,6 +3675,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_grandfatherclocktall_n-gggr__grandfatherclocktall_s-r-87g-87b-87_grandf_91b68e49.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_grandfatherclocktall_s-r-87g-87b-87_grandf_91b68e49.webp"
     }
    ]
@@ -3595,6 +3731,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_victoriancouch_n-gggr__victoriancouch_s-r-25g-25b-25_victoriancou_dd868480.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_victoriancouch_s-r-25g-25b-25_victoriancou_dd868480.webp"
     }
    ]
@@ -3648,7 +3786,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_victoriancouch_n-gggr.webp"
+     "normalMap": "_textures/_victoriancouch_n-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -3702,6 +3842,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_piano01_n-gggr__furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp"
     }
    ]
@@ -3756,6 +3898,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_piano01_d_n-gggr__furniture_piano01_s-r-44g-44b-44_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_piano01_s-r-44g-44b-44_furniture_7634fb37.webp"
     }
    ]
@@ -3810,6 +3954,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_piano01_n-gggr__furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp"
     }
    ]
@@ -3864,6 +4010,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_furniture_piano01_d_n-gggr__furniture_piano01_s-r-44g-44b-44_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_furniture_piano01_s-r-44g-44b-44_furniture_7634fb37.webp"
     }
    ]
@@ -3918,6 +4066,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_nm_normal-gggr__flak88_nm_spec-rgb_flak88_nm_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_nm_spec-rgb_flak88_nm_cosine-l-11.webp"
     },
     {
@@ -3931,6 +4081,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_nm_normal-gggr__flak88_nm_spec-rgb_flak88_nm_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_nm_spec-rgb_flak88_nm_cosine-l-11.webp"
     },
     {
@@ -3944,6 +4096,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_nm_normal-gggr__flak88_nm_spec-rgb_flak88_nm_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_nm_spec-rgb_flak88_nm_cosine-l-11.webp"
     },
     {
@@ -3957,6 +4111,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_nm_normal-gggr__flak88_nm_spec-rgb_flak88_nm_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_nm_spec-rgb_flak88_nm_cosine-l-11.webp"
     },
     {
@@ -3970,6 +4126,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_nm_normal-gggr__flak88_nm_spec-rgb_flak88_nm_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_nm_spec-rgb_flak88_nm_cosine-l-11.webp"
     }
    ],
@@ -4025,6 +4183,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_nm_destroy_normal-gggr__flak88_nm_destroy_spec-rgb_flak88_nm_destr_0596c93e.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_nm_destroy_spec-rgb_flak88_nm_destr_0596c93e.webp"
     },
     {
@@ -4038,6 +4198,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_nm_destroy_normal-gggr__flak88_nm_destroy_spec-rgb_flak88_nm_destr_0596c93e.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_nm_destroy_spec-rgb_flak88_nm_destr_0596c93e.webp"
     },
     {
@@ -4051,6 +4213,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_nm_destroy_normal-gggr__flak88_nm_destroy_spec-rgb_flak88_nm_destr_0596c93e.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_nm_destroy_spec-rgb_flak88_nm_destr_0596c93e.webp"
     },
     {
@@ -4064,6 +4228,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_nm_destroy_normal-gggr__flak88_nm_destroy_spec-rgb_flak88_nm_destr_0596c93e.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_nm_destroy_spec-rgb_flak88_nm_destr_0596c93e.webp"
     },
     {
@@ -4077,6 +4243,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_nm_destroy_normal-gggr__flak88_nm_destroy_spec-rgb_flak88_nm_destr_0596c93e.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_nm_destroy_spec-rgb_flak88_nm_destr_0596c93e.webp"
     }
    ],
@@ -4132,6 +4300,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_stielhandgranate_normals-gggr__stielhandgranate_spec-rgbl30.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_stielhandgranate_spec-rgbl30.webp"
     }
    ]
@@ -4185,7 +4355,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": "_textures/_grass_weed_all_normal_0-gggr.webp"
+     "normalMap": "_textures/_grass_weed_all_normal_0-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -4239,6 +4411,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_haycart_nm-gggr__haycart_specular-r-49g-49b-49__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_haycart_specular-r-49g-49b-49__white-l-11.webp"
     }
    ]
@@ -4292,7 +4466,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": "_textures/_lamp_ornate_n-gggr.webp"
+     "normalMap": "_textures/_lamp_ornate_n-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -4345,7 +4521,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": "_textures/_lamp_ornate_n-gggr.webp"
+     "normalMap": "_textures/_lamp_ornate_n-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_lamp_ornate_on",
@@ -4357,7 +4535,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -4406,7 +4586,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_detail_lampplain_shadewire",
@@ -4418,7 +4600,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_detail_lampplain_plainlampbase",
@@ -4430,7 +4614,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -4483,7 +4669,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_lantern_on_n-gggr.webp"
+     "normalMap": "_textures/_lantern_on_n-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_detail_lantern_alpha",
@@ -4495,7 +4683,9 @@
      "alphaTest": null,
      "blend": "blend",
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 27,
+     "polygonOffset": 0
     }
    ]
   },
@@ -4548,7 +4738,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_walllight_n-gggr.webp"
+     "normalMap": "_textures/_walllight_n-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -4601,7 +4793,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_walllight_off",
@@ -4613,7 +4807,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_walllight_n-gggr.webp"
+     "normalMap": "_textures/_walllight_n-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -4662,7 +4858,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_detail_walllightcrystal_crystal",
@@ -4674,7 +4872,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -4723,7 +4923,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_detail_walllightcrystal_crystal",
@@ -4735,7 +4937,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_detail_walllightcrystal_crystal_on",
@@ -4747,7 +4951,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -4801,6 +5007,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_dragonsteeth_n-gggr__dragonsteeth_s-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dragonsteeth_s-rgbl-11.webp"
     }
    ]
@@ -4855,6 +5063,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_barbed_wire_a_nrml-gggr__barbed_wire_a_spec-rgbl-23.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_barbed_wire_a_spec-rgbl-23.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -4914,6 +5124,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/burlap_01.webp",
      "detailScale": [
       32.0,
@@ -4972,6 +5184,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/burlap_01.webp",
      "detailScale": [
       32.0,
@@ -5030,6 +5244,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/burlap_01.webp",
      "detailScale": [
       32.0,
@@ -5088,6 +5304,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/burlap_01.webp",
      "detailScale": [
       32.0,
@@ -5146,6 +5364,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/burlap_01.webp",
      "detailScale": [
       32.0,
@@ -5204,6 +5424,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/burlap_01.webp",
      "detailScale": [
       32.0,
@@ -5257,7 +5479,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_stalingradwoodplankend",
@@ -5269,7 +5493,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -5323,6 +5549,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_greenbarrel_bump_local-gggr__greenbarrel_spec_local-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_greenbarrel_spec_local-rgb__white-l-11.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -5382,6 +5610,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_blackbarrel_bump_local-gggr__benzinbarrel_spec_local-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_benzinbarrel_spec_local-rgb__white-l-11.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -5441,6 +5671,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_silverbarrel_bump_local-gggr__silverbarrel_spec_local-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_silverbarrel_spec_local-rgb__white-l-11.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -5496,6 +5728,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
       16.0,
@@ -5554,6 +5788,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_bear_n-gggr__bear_s-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_bear_s-rgbl-11.webp"
     }
    ]
@@ -5608,6 +5844,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_bike_normal-gggr__bike_spec-rgbl-79.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_bike_spec-rgbl-79.webp"
     }
    ]
@@ -5662,6 +5900,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_bike_normal-gggr__bike_spec-rgbl-79.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_bike_spec-rgbl-79.webp"
     }
    ]
@@ -5716,6 +5956,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_chicken_coop3_n-gggr__chicken_coop3_s-r-87g-87b-87l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_chicken_coop3_s-r-87g-87b-87l-11.webp"
     }
    ]
@@ -5770,6 +6012,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
     }
    ]
@@ -5824,6 +6068,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
     }
    ]
@@ -5878,6 +6124,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
     }
    ]
@@ -5932,6 +6180,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
     }
    ]
@@ -5985,7 +6235,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate",
@@ -5998,6 +6250,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__dak_crates_spec_local-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-rgb__white-l-11.webp"
     }
    ]
@@ -6051,7 +6305,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate_wet",
@@ -6064,6 +6320,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp"
     }
    ]
@@ -6117,7 +6375,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate",
@@ -6130,6 +6390,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__dak_crates_spec_local-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-rgb__white-l-11.webp"
     }
    ]
@@ -6183,7 +6445,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate_wet",
@@ -6196,6 +6460,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp"
     }
    ]
@@ -6249,7 +6515,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate2",
@@ -6262,6 +6530,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__dak_crates_spec_local-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-rgb__white-l-11.webp"
     }
    ]
@@ -6315,7 +6585,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate_wet",
@@ -6328,6 +6600,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp"
     }
    ]
@@ -6381,7 +6655,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate",
@@ -6394,6 +6670,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__dak_crates_spec_local-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-rgb__white-l-11.webp"
     }
    ]
@@ -6447,7 +6725,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate_wet",
@@ -6460,6 +6740,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp"
     }
    ]
@@ -6513,7 +6795,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate",
@@ -6526,6 +6810,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__dak_crates_spec_local-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-rgb__white-l-11.webp"
     }
    ]
@@ -6579,7 +6865,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate_wet",
@@ -6592,6 +6880,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp"
     }
    ]
@@ -6645,7 +6935,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate2",
@@ -6658,6 +6950,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__dak_crates_spec_local-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-rgb__white-l-11.webp"
     }
    ]
@@ -6711,7 +7005,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate_wet",
@@ -6724,6 +7020,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp"
     }
    ]
@@ -6777,7 +7075,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate_wet",
@@ -6790,6 +7090,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp"
     }
    ]
@@ -6843,7 +7145,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate_wet",
@@ -6856,6 +7160,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp"
     }
    ]
@@ -6909,7 +7215,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_europe_crate_wet",
@@ -6922,6 +7230,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crates_bump-gggr__crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_crates_spec_wet-rgb_crates_wet_cosine_local-l-11.webp"
     }
    ]
@@ -6976,6 +7286,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_destroyed_crates_normal-gggr__destroyed_crates_spec-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_destroyed_crates_spec-rgbl-11.webp"
     }
    ]
@@ -7030,6 +7342,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_destroyed_crates_normal-gggr__destroyed_crates_spec-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_destroyed_crates_spec-rgbl-11.webp"
     }
    ]
@@ -7084,6 +7398,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_destroyed_crates_normal-gggr__destroyed_crates_spec-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_destroyed_crates_spec-rgbl-11.webp"
     }
    ]
@@ -7138,6 +7454,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_dining_plates_normal-gggr__dining_plates_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dining_plates_spec-rgb__white-l-11.webp"
     }
    ]
@@ -7192,6 +7510,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_dining_plates_normal-gggr__dining_plates_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dining_plates_spec-rgb__white-l-11.webp"
     }
    ]
@@ -7246,6 +7566,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_dining_plates_normal-gggr__dining_plates_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dining_plates_spec-rgb__white-l-11.webp"
     }
    ]
@@ -7300,6 +7622,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_dining_plates_normal-gggr__dining_plates_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dining_plates_spec-rgb__white-l-11.webp"
     }
    ]
@@ -7354,6 +7678,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_chicken_coop3_n-gggr__chicken_coop3_s-r-87g-87b-87l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_chicken_coop3_s-r-87g-87b-87l-11.webp"
     }
    ]
@@ -7403,7 +7729,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_caen_geraniumclaypot",
@@ -7415,7 +7743,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_caen_geraniumwindowbar",
@@ -7427,7 +7757,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     }
    ]
   },
@@ -7480,7 +7812,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": "_textures/_haybale_side_nrml-gggr.webp"
+     "normalMap": "_textures/_haybale_side_nrml-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -7534,6 +7868,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/flat__faucet01_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_faucet01_spec-rgb__white-l-11.webp"
     }
    ]
@@ -7588,6 +7924,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_sink01_normal-gggr__sink01_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_sink01_spec-rgb__white-l-11.webp"
     }
    ]
@@ -7641,7 +7979,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_market_stands_nrml-gggr.webp"
+     "normalMap": "_textures/_market_stands_nrml-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -7690,7 +8030,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -7739,7 +8081,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -7788,7 +8132,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -7842,6 +8188,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_pail_bump-gggr__pail_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_pail_spec-rgb__white-l-11.webp"
     }
    ]
@@ -7896,6 +8244,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_pail_bump-gggr__pail_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_pail_spec-rgb__white-l-11.webp"
     }
    ]
@@ -7950,6 +8300,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_pail_bump-gggr__pail_spec-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_pail_spec-rgb__white-l-11.webp"
     }
    ]
@@ -8004,6 +8356,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_mortar_case_n-gggr__mortar_case_s-r-87g-87b-87_mortar_case_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_mortar_case_s-r-87g-87b-87_mortar_case_cp-l-11.webp"
     },
     {
@@ -8017,6 +8371,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_mortar_ammunition_n-gggr__mortar_ammunition_s-rgb_mortar_ammunition_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_mortar_ammunition_s-rgb_mortar_ammunition_cp-l-11.webp"
     }
    ]
@@ -8071,6 +8427,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_mortar_crate_n-gggr__mortar_crate_s-r-87g-87b-87_mortar_crate_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_mortar_crate_s-r-87g-87b-87_mortar_crate_cp-l-11.webp"
     }
    ]
@@ -8125,6 +8483,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_mortar_case_n-gggr__mortar_case_s-r-87g-87b-87_mortar_case_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_mortar_case_s-r-87g-87b-87_mortar_case_cp-l-11.webp"
     },
     {
@@ -8138,6 +8498,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_mortar_crate_n-gggr__mortar_crate_s-r-87g-87b-87_mortar_crate_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_mortar_crate_s-r-87g-87b-87_mortar_crate_cp-l-11.webp"
     }
    ]
@@ -8192,6 +8554,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_mortar_n-gggr__mortar_s-r-17g-17b-17_mortar_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_mortar_s-r-17g-17b-17_mortar_cp-l-11.webp"
     }
    ]
@@ -8246,6 +8610,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_frame01_normal-gggr__frame01_spec-r-17g-17b-17__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_frame01_spec-r-17g-17b-17__white-l-11.webp"
     }
    ]
@@ -8300,6 +8666,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_stove01_normal-gggr__stove01_spec-r34g34b34_stove01_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_stove01_spec-r34g34b34_stove01_cp-l-11.webp"
     }
    ]
@@ -8354,6 +8722,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_stove01_normal-gggr__stove01_spec-r34g34b34_stove01_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_stove01_spec-r34g34b34_stove01_cp-l-11.webp"
     }
    ]
@@ -8408,6 +8778,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_streetlamp_n-gggr__streetlamp_s-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_streetlamp_s-rgbl-11.webp"
     }
    ]
@@ -8462,6 +8834,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_tin_boxes_normal-gggr__tin_boxes_spec-rgb__white-l44.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_tin_boxes_spec-rgb__white-l44.webp"
     }
    ]
@@ -8516,6 +8890,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_tin_boxes_normal-gggr__tin_boxes_spec-rgb__white-l44.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_tin_boxes_spec-rgb__white-l44.webp"
     }
    ]
@@ -8570,6 +8946,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_dak_crates_bump-gggr__dak_crates_spec_local-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-rgb__white-l-11.webp"
     },
     {
@@ -8583,6 +8961,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_winebottles_norm-gggr__winebottles_spec-rgb_winebottles_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_winebottles_spec-rgb_winebottles_cosine-l-11.webp"
     }
    ]
@@ -8637,6 +9017,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_winebottles_norm-gggr__winebottles_spec-rgb_winebottles_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_winebottles_spec-rgb_winebottles_cosine-l-11.webp"
     }
    ]
@@ -8686,7 +9068,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_wood_02",
@@ -8698,7 +9082,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_wood_end01",
@@ -8710,7 +9096,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -8759,7 +9147,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_wood_01",
@@ -8771,7 +9161,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_wood_end01",
@@ -8783,7 +9175,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_wood_end02",
@@ -8795,7 +9189,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -8844,7 +9240,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_wood_end02",
@@ -8856,7 +9254,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -8905,7 +9305,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_wood_end02",
@@ -8917,7 +9319,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -8966,7 +9370,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -9020,6 +9426,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_woodbarrel1bump-gggr__woodbarrel1specular-rgb_woodbarrel1cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_woodbarrel1specular-rgb_woodbarrel1cosine-l-11.webp"
     }
    ]
@@ -9074,6 +9482,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_woodstack_all_normal-gggr__woodstack_all_spec-r-25g-25b-25l08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_woodstack_all_spec-r-25g-25b-25l08.webp"
     }
    ]
@@ -9128,6 +9538,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_destroyed_trees_nrml__0-gggr__destroyed_trees_spec__0-rgb_destroyed_tree_e404dd75.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_destroyed_trees_spec__0-rgb_destroyed_tree_e404dd75.webp"
     }
    ]
@@ -9182,6 +9594,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_destroyed_trees_nrml__0-gggr__destroyed_trees_spec__0-rgb_destroyed_tree_e404dd75.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_destroyed_trees_spec__0-rgb_destroyed_tree_e404dd75.webp"
     }
    ]
@@ -9236,6 +9650,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_destroyed_trees_nrml__0-gggr__destroyed_trees_spec__0-rgb_destroyed_tree_e404dd75.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_destroyed_trees_spec__0-rgb_destroyed_tree_e404dd75.webp"
     },
     {
@@ -9248,7 +9664,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -9301,7 +9719,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_grey_oak",
@@ -9314,6 +9734,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_grey_oak_nrml__0-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/tree_bark_01.webp",
      "detailScale": [
       64.0,
@@ -9371,7 +9793,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_grey_oak",
@@ -9384,6 +9808,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_grey_oak_nrml__0-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/tree_bark_01.webp",
      "detailScale": [
       64.0,
@@ -9441,7 +9867,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_grey_oak",
@@ -9454,6 +9882,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_grey_oak_nrml__0-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/tree_bark_01.webp",
      "detailScale": [
       64.0,
@@ -9511,7 +9941,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_river_birch",
@@ -9524,6 +9956,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_river_birch_nrml__0-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/tree_bark_01.webp",
      "detailScale": [
       64.0,
@@ -9581,7 +10015,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_river_birch",
@@ -9594,6 +10030,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_river_birch_nrml__0-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/tree_bark_01.webp",
      "detailScale": [
       64.0,
@@ -9652,6 +10090,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_river_birch_nrml__0-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/tree_bark_01.webp",
      "detailScale": [
       64.0,
@@ -9668,7 +10108,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -9722,6 +10164,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_river_birch_nrml__0-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/tree_bark_01.webp",
      "detailScale": [
       64.0,
@@ -9738,7 +10182,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -9792,6 +10238,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_river_birch_nrml__0-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/tree_bark_01.webp",
      "detailScale": [
       64.0,
@@ -9808,7 +10256,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -9862,6 +10312,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_civcar_normals-gggr__civcar_spec-rgbl40.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_civcar_spec-rgbl40.webp"
     },
     {
@@ -9875,6 +10327,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_civcar_normals-gggr__civcar_spec-rgbl40.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_civcar_spec-rgbl40.webp"
     }
    ]
@@ -9929,6 +10383,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_germankubelnormdamnormal_0-gggr__germankubelnormdamspecular_0-rgb_germankub_fc218584.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_germankubelnormdamspecular_0-rgb_germankub_fc218584.webp",
      "detailMap": "_textures/africajeepdetail_0.webp",
      "detailScale": [
@@ -9988,6 +10444,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_germankubelpristinenormal_0-gggr__germankubelpristinespecular_0-rgb_germanku_ea9d9e64.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_germankubelpristinespecular_0-rgb_germanku_ea9d9e64.webp",
      "detailMap": "_textures/africajeepdetail_0.webp",
      "detailScale": [
@@ -10006,6 +10464,8 @@
      "blend": "blend",
      "doubleSided": true,
      "normalMap": "_textures/_germankubelglasspristinenormal_0-gggr__germankubelglasspristinespecular_0-rgb_ger_8bf39cad.webp",
+     "sort": 27,
+     "polygonOffset": 0,
      "specularMap": "_textures/_germankubelglasspristinespecular_0-rgb_ger_8bf39cad.webp"
     }
    ]
@@ -10059,7 +10519,9 @@
      "alphaTest": null,
      "blend": "blend",
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 27,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_halftrack_d",
@@ -10072,6 +10534,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_half_track_nrml__0-gggr__half_track_woodland_spec_d__0-rgbl08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_half_track_woodland_spec_d__0-rgbl08.webp"
     },
     {
@@ -10085,6 +10549,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_half_track_nrml__0-gggr__half_track_woodland_spec_d__0-rgbl08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_half_track_woodland_spec_d__0-rgbl08.webp"
     },
     {
@@ -10097,7 +10563,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": "_textures/_half_track_tread_nrml__0-gggr.webp"
+     "normalMap": "_textures/_half_track_tread_nrml__0-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -10150,7 +10618,9 @@
      "alphaTest": null,
      "blend": "blend",
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 27,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_halftrack_d",
@@ -10163,6 +10633,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_half_track_nrml__0-gggr__half_track_woodland_spec_d__0-rgbl08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_half_track_woodland_spec_d__0-rgbl08.webp"
     },
     {
@@ -10176,6 +10648,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_half_track_nrml__0-gggr__half_track_woodland_spec_d__0-rgbl08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_half_track_woodland_spec_d__0-rgbl08.webp"
     },
     {
@@ -10188,7 +10662,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": "_textures/_half_track_tread_nrml__0-gggr.webp"
+     "normalMap": "_textures/_half_track_tread_nrml__0-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -10242,6 +10718,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_half_track_nrml__0-gggr__half_track_woodland_spec__0-rgb_half_track_59d40030.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_half_track_woodland_spec__0-rgb_half_track_59d40030.webp"
     },
     {
@@ -10255,6 +10733,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_half_track_nrml__0-gggr__half_track_woodland_spec__0-rgb_half_track_59d40030.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_half_track_woodland_spec__0-rgb_half_track_59d40030.webp"
     },
     {
@@ -10267,7 +10747,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": "_textures/_half_track_tread_nrml__0-gggr.webp"
+     "normalMap": "_textures/_half_track_tread_nrml__0-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_halftrack_markings",
@@ -10279,7 +10761,9 @@
      "alphaTest": null,
      "blend": "blend",
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 27,
+     "polygonOffset": 0
     }
    ]
   },
@@ -10333,6 +10817,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_opel_blitz_nrml__0-gggr__opel_blitz_spec_d__0-rgbl08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_opel_blitz_spec_d__0-rgbl08.webp"
     },
     {
@@ -10346,6 +10832,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_opel_blitz_nrml__0-gggr__opel_blitz_spec_d__0-rgbl08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_opel_blitz_spec_d__0-rgbl08.webp"
     },
     {
@@ -10358,7 +10846,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     }
    ]
   },
@@ -10412,6 +10902,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_opel_blitz_nrml__0-gggr__opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp"
     },
     {
@@ -10425,6 +10917,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_opel_blitz_nrml__0-gggr__opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp"
     },
     {
@@ -10437,7 +10931,9 @@
      "alphaTest": null,
      "blend": "blend",
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 26,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_opel_blitz_glass_inner",
@@ -10449,7 +10945,9 @@
      "alphaTest": null,
      "blend": "blend",
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 25,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_opel_woodland_vm",
@@ -10462,6 +10960,8 @@
      "blend": "blend",
      "doubleSided": true,
      "normalMap": "_textures/flat__opel_vm_desert_spec__0-rgbl08.webp",
+     "sort": 27,
+     "polygonOffset": 0,
      "specularMap": "_textures/_opel_vm_desert_spec__0-rgbl08.webp"
     }
    ]
@@ -10511,7 +11011,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_stuka",
@@ -10523,7 +11025,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_stuka_canopy_in",
@@ -10535,7 +11039,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_stuka_canopy_out",
@@ -10547,7 +11053,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -10601,6 +11109,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_tiger_nrml__0-gggr__tiger_spec__0-rgb_tiger_cos__0-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_tiger_spec__0-rgb_tiger_cos__0-l-11.webp"
     },
     {
@@ -10614,6 +11124,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_tiger_nrml__0-gggr__tiger_spec__0-rgb_tiger_cos__0-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_tiger_spec__0-rgb_tiger_cos__0-l-11.webp"
     },
     {
@@ -10627,6 +11139,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_tiger_tread_nrml__0-gggr__tiger_tread_spec__0-rgbl08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_tiger_tread_spec__0-rgbl08.webp"
     },
     {
@@ -10640,6 +11154,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_camo_brush_nrml__0-gggr__camo_brush_spec__0-rgb_camo_brush_cos__0-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_camo_brush_spec__0-rgb_camo_brush_cos__0-l-11.webp"
     },
     {
@@ -10652,7 +11168,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -10706,6 +11224,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_weapon_mg42_n-gggr__weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -10724,6 +11244,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_weapon_mg42_n-gggr__weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -10789,6 +11311,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_panzerschrecknm-gggr__panzerschreckspec-r-25g-25b-25__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_panzerschreckspec-r-25g-25b-25__white-l-11.webp"
     }
    ]

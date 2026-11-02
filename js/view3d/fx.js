@@ -24,7 +24,7 @@
  * Not drawn: lights, camera shakes. */
 import * as THREE from 'three';
 import { fetchJSON } from './data.js';
-import { loadTexture, setMap } from './mapLoader.js';
+import { loadTexture, setMap, polygonOffset } from './mapLoader.js';
 import { entityMatrix } from './modelBatch.js';
 
 const C2 = window.C2;
@@ -305,9 +305,9 @@ export class FxPlayer {
         this.texCache.set(m.texture, tex);
       }
       const add = m.blend === 'add';
-      const mat = new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, depthWrite: false, side: THREE.DoubleSide,
-        blending: add ? THREE.AdditiveBlending : THREE.NormalBlending, fog: false });
-      if (m.decal) { mat.polygonOffset = true; mat.polygonOffsetFactor = -2; mat.polygonOffsetUnits = -4; }
+      // (the impact marks: the material's polygon offset level - 2 for the bullet hits; older data: 2 for the decals)
+      const mat = new THREE.MeshBasicMaterial(polygonOffset({ vertexColors: true, transparent: true, depthWrite: false, side: THREE.DoubleSide,
+        blending: add ? THREE.AdditiveBlending : THREE.NormalBlending, fog: false }, m.polygonOffset != null ? m.polygonOffset : m.decal ? 2 : 0));
       setMap(mat, 'map', tex, 'clear');
       const mesh = new THREE.Mesh(new THREE.BufferGeometry(), mat);
       mesh.frustumCulled = false;

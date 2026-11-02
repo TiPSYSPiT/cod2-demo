@@ -182,16 +182,30 @@ diffuseColor *= sampledDiffuseColor;
   return mat;
 }
 
+/** the material's polygon offset (its polygon offset level, cod2/material.py), as the game sets it: depth bias
+ *  level x r_polygonOffsetBias (-1) / 65536, slope bias level x r_polygonOffsetScale (-1) - on a 24-bit depth
+ *  buffer glPolygonOffset(-level, -256 x level), as the Mac client converts it. Level 0 on a blended layer: the
+ *  small offset of before (it lies exactly on the surface below; two shader programs may round its depth
+ *  differently) -> material options */
+export function polygonOffset(opts, level, blended = false) {
+  if (level > 0) return Object.assign(opts, { polygonOffset: true, polygonOffsetFactor: -level, polygonOffsetUnits: -256 * level });
+  if (blended) return Object.assign(opts, { polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -4 });
+  return opts;
+}
+/** a group's polygon offset level (data exported before the level was: the decals by name) */
+const offsetLevel = g => (g.polygonOffset != null ? g.polygonOffset : g.decal ? 1 : 0);
+/** a group's sort key, the game's draw order (cod2/material.py; older data: opaque 3, decals 9, blended 27) */
+const sortKey = g => (g.sort != null ? g.sort : g.blend || g.vertexAlpha ? 27 : g.decal ? 9 : 3);
+
 /** a multiply decal (techniques effect_multiply*, blend Zero x SrcColor: mul.hlsl): the framebuffer x
  *  mix(1, colour map x vertex colour, vertex alpha) - white leaves the surface below as it is, the grime
  *  darkens it; unlit, no depth writes, no fog, no shadow cookie (the surface below has it). Without vertex
- *  colours (opts.vertexColors false: the props) the colour map alone */
-export function multiplyMaterial(tex, opts = {}) {
-  const mat = new THREE.MeshBasicMaterial(Object.assign({ vertexColors: true }, opts, {
+ *  colours (opts.vertexColors false: the props) the colour map alone; level: its polygon offset level */
+export function multiplyMaterial(tex, opts = {}, level = 1) {
+  const mat = new THREE.MeshBasicMaterial(polygonOffset(Object.assign({ vertexColors: true }, opts, {
     transparent: true, depthWrite: false, fog: false,
-    blending: THREE.CustomBlending, blendEquation: THREE.AddEquation, blendSrc: THREE.ZeroFactor, blendDst: THREE.SrcColorFactor,
-    polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -4
-  }));
+    blending: THREE.CustomBlending, blendEquation: THREE.AddEquation, blendSrc: THREE.ZeroFactor, blendDst: THREE.SrcColorFactor
+  }), level, true));
   setMap(mat, 'map', tex, 'white');          // (white while it loads: no change to the surface below)
   mat.onBeforeCompile = shader => {
     shader.fragmentShader = shader.fragmentShader.replace('#include <opaque_fragment>',
@@ -277,7 +291,7 @@ vec4 wCube( vec3 c ) {      // the cube strip, as sky.js (D3D faces +X -X +Y -Y 
 function makeMaterial(g, tex, lightmaps, sunMasks, coefs, normalMap, specMap, detail, env) {
   if (g.water) return waterMaterial(g, env);      // (no shadow cookie: water.hlsl has no dynamic shadow)
   if (g.blend === 'multiply') {
-    const mat = multiplyMaterial(tex, { side: g.doubleSided ? THREE.DoubleSide : THREE.FrontSide });
+    const mat = multiplyMaterial(tex, { side: g.doubleSided ? THREE.DoubleSide : THREE.FrontSide }, offsetLevel(g));
     mat.name = g.material;
     mat.userData.group = g;
     return mat;
@@ -292,7 +306,9 @@ function makeMaterial(g, tex, lightmaps, sunMasks, coefs, normalMap, specMap, de
     opts.transparent = true; opts.depthWrite = false;
     if (g.blend === 'add') opts.blending = THREE.AdditiveBlending;
   }
-  if (g.decal || g.blend) { opts.polygonOffset = true; opts.polygonOffsetFactor = -1; opts.polygonOffsetUnits = -4; }
+  // the decals (alpha-tested ones too: rubble, posters, rugs) lie on the surfaces below - without the offset they
+  // fight them for the depth, flickering with every small move of the camera
+  polygonOffset(opts, offsetLevel(g), !!(g.blend || g.vertexAlpha));
   // lightmapped surfaces are drawn as the game does: albedo x baked light, no scene lights on top
   const mat = lm ? new THREE.MeshBasicMaterial(opts) : new THREE.MeshLambertMaterial(opts);
   mat.name = g.material;
@@ -375,20 +391,22 @@ export async function loadWorld(mapName, { onProgress } = {}) {
     return t;
   })) : null;
   const materials = [];
-  for (const g of info.groups) {
+  // in the game's draw order (the sort key: opaque, then the decal layers from the bottom up, then the blended):
+  // three draws a mesh's opaque groups by material id and its transparent ones in the groups' order - so the
+  // materials are made and the groups added in that order
+  const order = info.groups.map((g, i) => [sortKey(g), i]).sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  for (const [, gi] of order) {
+    const g = info.groups[gi];
     if (g.sky) continue;                                    // the sky is drawn by sky.js
     geo.addGroup(g.start, g.count, materials.length);
     const normalMap = coefs && g.normalMap ? texture(g.normalMap, true) : null;
     const m = makeMaterial(g, texture(g.texture, true), lightmaps, sunMasks, coefs, normalMap,
       normalMap && g.specularMap ? texture(g.specularMap, true) : null, texture(g.detailMap, true), g.water && envTexture(g.water.envMap));
-    m.userData.order = g.blend || g.vertexAlpha ? 3 : g.decal ? 2 : g.alphaTest ? 1 : 0;
     materials.push(m);
   }
   const mesh = new THREE.Mesh(geo, materials);
   mesh.name = 'world';
   mesh.matrixAutoUpdate = false;
-  // groups sorted so transparent ones draw last (three sorts objects, not groups)
-  geo.groups.sort((a, b) => materials[a.materialIndex].userData.order - materials[b.materialIndex].userData.order);
   const group = new THREE.Group();
   group.add(mesh);
   const out = { group, info, mesh, lightmaps, sunMasks, lightScale: sunMasks ? 1 : LIGHTMAP_SCALE, sites: [], entities: null };

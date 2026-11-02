@@ -49,7 +49,9 @@
      "alphaTest": "ge128",
      "blend": null,
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -102,7 +104,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_bunkerlights_off",
@@ -115,6 +119,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_bunkerlights_n-gggr__bunkerlights_s-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_bunkerlights_s-rgbl-11.webp"
     }
    ]
@@ -169,6 +175,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_barbed_wire_a_nrml-gggr__barbed_wire_a_spec-rgbl-23.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_barbed_wire_a_spec-rgbl-23.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -228,6 +236,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_barbed_wire_a_nrml-gggr__barbed_wire_a_spec-rgbl-23.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_barbed_wire_a_spec-rgbl-23.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -287,6 +297,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_crate_n-gggr__crate_s-r-87g-87b-87_crate_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_crate_s-r-87g-87b-87_crate_cp-l-11.webp"
     }
    ]
@@ -336,7 +348,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -390,6 +404,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_bunker_bed_n-gggr__bunker_bed_s-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_bunker_bed_s-rgbl-11.webp"
     },
     {
@@ -403,6 +419,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_bunker_bed_n-gggr__bunker_bed_s-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_bunker_bed_s-rgbl-11.webp"
     }
    ]
@@ -457,6 +475,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_normal-gggr__flak88_spec-rgb_flak88_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_spec-rgb_flak88_cosine-l-11.webp"
     },
     {
@@ -470,6 +490,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_normal-gggr__flak88_spec-rgb_flak88_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_spec-rgb_flak88_cosine-l-11.webp"
     },
     {
@@ -483,6 +505,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_normal-gggr__flak88_spec-rgb_flak88_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_spec-rgb_flak88_cosine-l-11.webp"
     },
     {
@@ -496,6 +520,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_normal-gggr__flak88_spec-rgb_flak88_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_spec-rgb_flak88_cosine-l-11.webp"
     },
     {
@@ -509,6 +535,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_normal-gggr__flak88_spec-rgb_flak88_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_spec-rgb_flak88_cosine-l-11.webp"
     }
    ],
@@ -564,6 +592,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
     },
     {
@@ -577,6 +607,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
     },
     {
@@ -590,6 +622,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
     },
     {
@@ -603,6 +637,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
     },
     {
@@ -616,6 +652,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_destroy_normal-gggr__flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
     }
    ],
@@ -670,7 +708,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_lantern_on_n-gggr.webp"
+     "normalMap": "_textures/_lantern_on_n-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_detail_lantern_alpha",
@@ -682,7 +722,9 @@
      "alphaTest": null,
      "blend": "blend",
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 27,
+     "polygonOffset": 0
     }
    ]
   },
@@ -736,6 +778,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_shell_spec-rgbl-11.webp"
     }
    ]
@@ -790,6 +834,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_shell_spec-rgbl-11.webp"
     }
    ]
@@ -844,6 +890,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_shell_spec-rgbl-11.webp"
     },
     {
@@ -857,6 +905,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgb__white-l08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_shell_spec-rgb__white-l08.webp"
     }
    ]
@@ -911,6 +961,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgb__white-l08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_shell_spec-rgb__white-l08.webp"
     }
    ]
@@ -965,6 +1017,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgb__white-l08.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_flak88_shell_spec-rgb__white-l08.webp"
     }
    ]
@@ -1019,6 +1073,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_barbed_wire_a_nrml-gggr__barbed_wire_a_spec-rgbl-23.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_barbed_wire_a_spec-rgbl-23.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -1078,6 +1134,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/burlap_01.webp",
      "detailScale": [
       32.0,
@@ -1136,6 +1194,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/burlap_01.webp",
      "detailScale": [
       32.0,
@@ -1194,6 +1254,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/burlap_01.webp",
      "detailScale": [
       32.0,
@@ -1252,6 +1314,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/burlap_01.webp",
      "detailScale": [
       32.0,
@@ -1310,6 +1374,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/burlap_01.webp",
      "detailScale": [
       32.0,
@@ -1368,6 +1434,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_sandbag_normals-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "detailMap": "_textures/burlap_01.webp",
      "detailScale": [
       32.0,
@@ -1426,6 +1494,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_blackbarrel_bump_local-gggr__blackbarrel_spec_local-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_blackbarrel_spec_local-rgb__white-l-11.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -1485,6 +1555,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_tanbarrel_bump_local-gggr__tanbarrel_spec_local-rgb__white-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_tanbarrel_spec_local-rgb__white-l-11.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -1543,7 +1615,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_bunkerlightswitch_normal-gggr.webp"
+     "normalMap": "_textures/_bunkerlightswitch_normal-gggr.webp",
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -1597,6 +1671,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_bunkerlocker_normal-gggr__bunkerlocker_spec-rgbl-86.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_bunkerlocker_spec-rgbl-86.webp"
     }
    ]
@@ -1651,6 +1727,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_bunkerlocker_normal-gggr__bunkerlocker_spec-rgbl-86.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_bunkerlocker_spec-rgbl-86.webp"
     }
    ]
@@ -1704,7 +1782,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_dak_crate",
@@ -1717,6 +1797,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
     }
    ]
@@ -1770,7 +1852,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_dak_crate",
@@ -1783,6 +1867,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
     }
    ]
@@ -1836,7 +1922,9 @@
      "alphaTest": null,
      "blend": "multiply",
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 11,
+     "polygonOffset": 1
     },
     {
      "material": "mtl_dak_crate",
@@ -1849,6 +1937,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
     }
    ]
@@ -1898,7 +1988,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_minefield_sign1",
@@ -1910,7 +2002,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -1959,7 +2053,9 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
     }
    ]
   },
@@ -2013,6 +2109,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_africajeepnormal_0-gggr__africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
      "detailMap": "_textures/africajeepdetail_0.webp",
      "detailScale": [
@@ -2031,6 +2129,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_africajeepnormal_0-gggr__africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
      "detailMap": "_textures/africajeepdetail_0.webp",
      "detailScale": [
@@ -2049,6 +2149,8 @@
      "blend": "blend",
      "doubleSided": true,
      "normalMap": "_textures/flat__americanjeepglassspecular_0-rgb_americanje_f087d27f.webp",
+     "sort": 27,
+     "polygonOffset": 0,
      "specularMap": "_textures/_americanjeepglassspecular_0-rgb_americanje_f087d27f.webp"
     }
    ]
@@ -2103,6 +2205,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_opel_blitz_nrml__0-gggr__opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp"
     },
     {
@@ -2116,6 +2220,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_opel_blitz_nrml__0-gggr__opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp"
     },
     {
@@ -2128,7 +2234,9 @@
      "alphaTest": null,
      "blend": "blend",
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 26,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_opel_blitz_glass_inner",
@@ -2140,7 +2248,9 @@
      "alphaTest": null,
      "blend": "blend",
      "doubleSided": true,
-     "normalMap": null
+     "normalMap": null,
+     "sort": 25,
+     "polygonOffset": 0
     },
     {
      "material": "mtl_opel_vm",
@@ -2153,6 +2263,8 @@
      "blend": "blend",
      "doubleSided": true,
      "normalMap": "_textures/flat__opel_vm_desert_spec__0-rgbl08.webp",
+     "sort": 27,
+     "polygonOffset": 0,
      "specularMap": "_textures/_opel_vm_desert_spec__0-rgbl08.webp"
     }
    ]
@@ -2207,6 +2319,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec_d-r41g41b41l-64.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_panzer2_spec_d-r41g41b41l-64.webp"
     },
     {
@@ -2220,6 +2334,8 @@
      "blend": null,
      "doubleSided": false,
      "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec_d-r41g41b41l-64.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_panzer2_spec_d-r41g41b41l-64.webp"
     },
     {
@@ -2233,6 +2349,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_panzer2_tread_normals-gggr__panzer2_tread_spec-rgbl-13.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_panzer2_tread_spec-rgbl-13.webp"
     }
    ]
@@ -2287,6 +2405,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_weapon_30cal_n-gggr__weapon_30cal_s-rgb_weapon_30cal_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_weapon_30cal_s-rgb_weapon_30cal_cp-l-11.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -2305,6 +2425,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_weapon_30cal_n-gggr__weapon_30cal_s-rgb_weapon_30cal_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_weapon_30cal_s-rgb_weapon_30cal_cp-l-11.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -2370,6 +2492,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_weapon_mg42_n-gggr__weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [
@@ -2388,6 +2512,8 @@
      "blend": null,
      "doubleSided": true,
      "normalMap": "_textures/_weapon_mg42_n-gggr__weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
      "specularMap": "_textures/_weapon_mg42_s-r-59g-59b-59_weapon_mg42_cp-l-11.webp",
      "detailMap": "_textures/metal_01.webp",
      "detailScale": [

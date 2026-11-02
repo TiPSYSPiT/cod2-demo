@@ -20,7 +20,7 @@ function describe(hit, camera) {
     Object.assign(out, {
       kind: 'world', technique: g.technique, surface: hex(g.surface), contents: hex(g.contents), texture: g.texture || '(none)',
       textureAlpha: g.textureAlpha, lightmap: g.lightmap, normalMap: g.normalMap || null, specularMap: g.specularMap || null,
-      detailMap: g.detailMap || null, alphaTest: g.alphaTest, blend: g.blend, vertexAlpha: g.vertexAlpha, decal: g.decal,
+      detailMap: g.detailMap || null, alphaTest: g.alphaTest, blend: g.blend, vertexAlpha: g.vertexAlpha, sort: g.sort, polygonOffset: g.polygonOffset,
       doubleSided: g.doubleSided, brushModel: g.brushModel, triangles: g.count / 3
     });
     const col = geo.getAttribute('color');
