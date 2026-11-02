@@ -12,6 +12,28 @@ const BASE = 'maps3d/';
 export const LIGHTMAP_SCALE = 1.25;         // the old exports' lightmap (world.json without lightmapFormat 2) x this
 let manifest = null;
 
+/* The game's fog (lib/fogcalc.hlsl): the radial distance from the eye, not three's view depth; setExpFog
+ * exp(-density x distance) (three's FogExp2 squares both), setCullFog linear from near to far (three's Fog a
+ * smoothstep) - every material's fog chunks, as the game has one fog for the whole frame (view3d.js sets it
+ * from world.json's fog) */
+THREE.ShaderChunk.fog_vertex = THREE.ShaderChunk.fog_vertex.replace('vFogDepth = - mvPosition.z;', 'vFogDepth = length( mvPosition.xyz );');
+THREE.ShaderChunk.fog_fragment = THREE.ShaderChunk.fog_fragment
+  .replace('float fogFactor = 1.0 - exp( - fogDensity * fogDensity * vFogDepth * vFogDepth );', 'float fogFactor = 1.0 - exp( - fogDensity * vFogDepth );')
+  .replace('float fogFactor = smoothstep( fogNear, fogFar, vFogDepth );', 'float fogFactor = clamp( ( vFogDepth - fogNear ) / max( fogFar - fogNear, 1.0 ), 0.0, 1.0 );');
+/** world.json's fog -> a three.js fog with the game's formula, or null (the competitive maps set none) */
+export function gameFog(fog) {
+  if (!fog || !fog.color) return null;
+  const c = new THREE.Color().setRGB(fog.color[0], fog.color[1], fog.color[2]);     // (gamma-space colours, as the game)
+  if (fog.kind === 'exp' && fog.density > 0) return new THREE.FogExp2(c, fog.density);
+  if (fog.kind === 'linear' && fog.far > fog.near) return new THREE.Fog(c, fog.near, fog.far);
+  return null;
+}
+
+/* The textures' anisotropic filtering: the most the GPU has, at most 16 (view3d.js sets it before a map loads) */
+let maxAnisotropy = 4;
+export function setMaxAnisotropy(n) { maxAnisotropy = Math.max(1, Math.min(16, n || 1)); }
+export function anisotropy() { return maxAnisotropy; }
+
 /** maps3d/index.json (cached); { maps: {} } when there is none */
 async function loadManifest() {
   if (manifest !== null) return manifest;
@@ -203,13 +225,16 @@ const sortKey = g => (g.sort != null ? g.sort : g.blend || g.vertexAlpha ? 27 : 
  *  colours (opts.vertexColors false: the props) the colour map alone; level: its polygon offset level */
 export function multiplyMaterial(tex, opts = {}, level = 1) {
   const mat = new THREE.MeshBasicMaterial(polygonOffset(Object.assign({ vertexColors: true }, opts, {
-    transparent: true, depthWrite: false, fog: false,
+    transparent: true, depthWrite: false,
     blending: THREE.CustomBlending, blendEquation: THREE.AddEquation, blendSrc: THREE.ZeroFactor, blendDst: THREE.SrcColorFactor
   }), level, true));
   setMap(mat, 'map', tex, 'white');          // (white while it loads: no change to the surface below)
   mat.onBeforeCompile = shader => {
     shader.fragmentShader = shader.fragmentShader.replace('#include <opaque_fragment>',
-      '#ifdef USE_COLOR_ALPHA\noutgoingLight = mix( vec3( 1.0 ), diffuseColor.rgb, vColor.a );\n#endif\n#include <opaque_fragment>');
+      '#ifdef USE_COLOR_ALPHA\noutgoingLight = mix( vec3( 1.0 ), diffuseColor.rgb, vColor.a );\n#endif\n#include <opaque_fragment>')
+      // in the fog the decal fades to white - it multiplies the fogged surface below (the game corrects that in a
+      // second pass, lib/multiply_fog.hlsl; this matches it unfogged and fully fogged)
+      .replace('#include <fog_fragment>', THREE.ShaderChunk.fog_fragment.replace('fogColor', 'vec3( 1.0 )'));
   };
   mat.customProgramCacheKey = () => 'multiply';
   mat.userData.multiply = true;
@@ -300,8 +325,13 @@ function makeMaterial(g, tex, lightmaps, sunMasks, coefs, normalMap, specMap, de
   if (!tex) opts.color = new THREE.Color('#8a8a84');
   const lm = g.lightmap >= 0 ? lightmaps[g.lightmap] : null;
   if (lm) opts.lightMapIntensity = LIGHTMAP_SCALE * Math.PI;
-  else opts.vertexColors = true;
-  if (g.alphaTest && g.textureAlpha) opts.alphaTest = 0.5;
+  // the vertex colour multiplies the colour map on every surface (lib/shade.hlsl ColoredTexturedDiffuse: the
+  // lightmapped ones' tint and their alpha - the blended layers fade by it -, the others' baked light)
+  opts.vertexColors = true;
+  if (g.alphaTest && g.textureAlpha) {
+    opts.alphaTest = 0.5;
+    opts.alphaToCoverage = true;               // (soft cut-out edges with the canvas' multisampling: fences, leaves)
+  }
   if (g.blend) {
     opts.transparent = true; opts.depthWrite = false;
     if (g.blend === 'add') opts.blending = THREE.AdditiveBlending;
@@ -315,25 +345,11 @@ function makeMaterial(g, tex, lightmaps, sunMasks, coefs, normalMap, specMap, de
   mat.userData.group = g;                    // (the ?debug surface picker, debugPick.js)
   setMap(mat, 'map', tex, opts.alphaTest || g.blend || g.vertexAlpha ? 'clear' : 'grey');
   setMap(mat, 'lightMap', lm, 'light');
-  // the vertex alpha blends the terrain layers (materials *_blend): colour map alpha x vertex alpha
-  if (g.vertexAlpha) vertexAlphaBlend(mat);
+  // the blended layers: colour map alpha x vertex alpha (the vertex colours' alpha, above)
+  if (g.vertexAlpha) mat.transparent = true;
   if (detail && tex) detailMap(mat, detail, g.detailScale);
   if (lm && sunMasks) gameLightmap(mat, sunMasks[g.lightmap], normalMap && coefs ? coefs[g.lightmap] : null, normalMap, specMap);
   return receiveCookie(mat);                 // the players' shadows (shadows.js)
-}
-
-/** the blended terrain layers: alpha = colour map alpha x vertex alpha */
-function vertexAlphaBlend(mat) {
-  mat.transparent = true;
-  mat.onBeforeCompile = shader => {
-    shader.vertexShader = shader.vertexShader
-      .replace('#include <common>', '#include <common>\nattribute vec4 color;\nvarying float vVa;')
-      .replace('#include <fog_vertex>', '#include <fog_vertex>\nvVa = color.a;');
-    shader.fragmentShader = shader.fragmentShader
-      .replace('#include <common>', '#include <common>\nvarying float vVa;')
-      .replace('#include <opaque_fragment>', 'diffuseColor.a *= vVa;\n#include <opaque_fragment>');
-  };
-  mat.needsUpdate = true;
 }
 
 /** the world mesh + objectives of an exported map -> {group, info, mesh, sites, entities} */
@@ -366,7 +382,7 @@ export async function loadWorld(mapName, { onProgress } = {}) {
     const t = loadTexture(BASE + file, loader);
     t.flipY = false;                                        // D3D texture coordinates: v = 0 at the top
     t.colorSpace = THREE.NoColorSpace;                      // gamma-space math, like the game
-    if (repeat) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 4; }
+    if (repeat) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = maxAnisotropy; }
     texCache.set(file, t);
     return t;
   };

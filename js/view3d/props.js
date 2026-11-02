@@ -12,10 +12,15 @@
  * The game type's filter drops the placements it deletes; the bomb sites' exploder placements are switched
  * by the explosion (gameObjects.js, exploderParts). The mounted MGs' guns (the groups of part "aim") turn
  * about the model's aimPivot by the turret's aim in the demo (turrets, view3d.js).
+ * LODs, as the game (XModelGetLodForDist, R_SetLodOrigin): per placement the first LOD whose distance is 0 or
+ * beyond the eye's distance to its origin x tan(fov / 2) / tan(40 deg) (cg_fov 80: x 1), none - not drawn - past
+ * the last one (bushes vanish at 1200 - 2000 units); the models with such distances keep every placement's state
+ * (matrix, shown, colour, grid light) and pack each LOD's instances anew when a placement changes its LOD (update,
+ * every frame). The mounted MGs keep LOD 0.
  * Modes: models, see-through boxes of the model bounds, off. */
 import * as THREE from 'three';
 import { fetchJSON, fetchBinary, checkedView } from './data.js';
-import { loadTexture, setMap, uniformMap, detailMap, multiplyMaterial, polygonOffset } from './mapLoader.js';
+import { loadTexture, setMap, uniformMap, detailMap, multiplyMaterial, polygonOffset, anisotropy } from './mapLoader.js';
 import { receiveCookie } from './shadows.js';
 import { propGridMaterial } from './lightGrid.js';
 import { gameObjectFilter } from './gameObjects.js';
@@ -55,7 +60,7 @@ export class Props {
       if (!file) return null;
       if (!texCache.has(file)) {
         const t = loadTexture('maps3d/' + file);
-        t.flipY = false; t.colorSpace = THREE.NoColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 4;
+        t.flipY = false; t.colorSpace = THREE.NoColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = anisotropy();
         texCache.set(file, t);
       }
       return texCache.get(file);
@@ -70,11 +75,18 @@ export class Props {
     const matrixOf = a => m4.set(a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10], a[11], 0, 0, 0, 1);
     const hidden = new THREE.Matrix4().makeScale(0, 0, 0);
     this.triangles = 0;
+    this.lodModels = [];              // the models switched by distance: {list, dists, levels: [[mesh]], level, shown, mats, col, grid}
+    this.lodDirty = true;
     info.models.forEach((m, mi) => {
       const list = byModel.get(mi) || [];
       if (!list.length) return;
-      const G = m.geometry;
       const meshes = [], aimMeshes = [];
+      const dists = m.lodDistances || [];
+      // switched by distance: a distance on any LOD (all its LODs exported) and not a mounted MG
+      const lodded = !m.aimPivot && dists.some(d => d > 0) && (m.lods ? m.lods.length : 0) === dists.length - 1;
+      // one LOD's surfaces as instanced meshes over all placements -> [mesh]
+      const buildLevel = (G, groups, lv) => {
+      const levelMeshes = [];
       const geo = new THREE.BufferGeometry();
       geo.setAttribute('position', new THREE.BufferAttribute(checkedView(Float32Array, buf, G.position.offset, G.position.length / 4, 'props.bin'), 3));
       geo.setAttribute('normal', new THREE.InterleavedBufferAttribute(new THREE.InterleavedBuffer(checkedView(Int8Array, buf, G.normal.offset, G.normal.length, 'props.bin'), 4), 3, 0, true));
@@ -82,7 +94,7 @@ export class Props {
       // the tangent of the normal-mapped surfaces (int8 x 4: xyz, w = the binormal's sign: B = w cross(N, T))
       if (G.tangent) geo.setAttribute('cTangent', new THREE.BufferAttribute(checkedView(Int8Array, buf, G.tangent.offset, G.tangent.length, 'props.bin'), 4, true));
       const index = checkedView(Uint32Array, buf, G.index.offset, G.index.length / 4, 'props.bin');
-      for (const g of m.groups) {
+      for (const g of groups) {
         const sub = geo.clone();
         sub.setIndex(new THREE.BufferAttribute(index.subarray(g.start, g.start + g.count), 1));
         const opts = { side: g.doubleSided ? THREE.DoubleSide : THREE.FrontSide };
@@ -96,15 +108,19 @@ export class Props {
           mesh.instanceMatrix.needsUpdate = true;
           mesh.computeBoundingSphere();
           mesh.name = m.name + ':' + g.material;
-          mesh.userData = { multiply: true };
+          mesh.userData = { multiply: true, lv };
           this.models.add(mesh);
-          meshes.push(mesh);
-          if (g.part === 'aim') aimMeshes.push(mesh);
-          this.triangles += g.count / 3 * list.length;
+          levelMeshes.push(mesh);
+          if (!lv) {
+            meshes.push(mesh);
+            if (g.part === 'aim') aimMeshes.push(mesh);
+            this.triangles += g.count / 3 * list.length;
+          }
           continue;
         }
         if (!tex) opts.color = new THREE.Color(0x8a8a84);
         if (g.alphaTest || (g.blend && g.textureAlpha)) opts.alphaTest = 0.5;
+        if (g.alphaTest) opts.alphaToCoverage = true;      // (soft cut-out edges with multisampling: leaves, fences)
         // the model's decal surfaces (the material's polygon offset level, mapLoader.js)
         if (g.polygonOffset) polygonOffset(opts, g.polygonOffset);
         // "ambient_*" techniques (grass, foliage cards) take no light from their normals in the game, only
@@ -130,11 +146,34 @@ export class Props {
         if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
         mesh.computeBoundingSphere();
         mesh.name = m.name + ':' + g.material;
-        mesh.userData = { list, model: m, unlit, bump };
+        mesh.userData = { list, model: m, unlit, bump, lv };
         this.models.add(mesh);
-        meshes.push(mesh);
-        if (g.part === 'aim') aimMeshes.push(mesh);
-        this.triangles += g.count / 3 * list.length;
+        levelMeshes.push(mesh);
+        if (!lv) {
+          meshes.push(mesh);
+          if (g.part === 'aim') aimMeshes.push(mesh);
+          this.triangles += g.count / 3 * list.length;
+        }
+      }
+      return levelMeshes;
+      };
+      const levels = [buildLevel(m.geometry, m.groups, 0)];
+      let L = null;
+      if (lodded) {
+        // (a model of one LOD with a distance: switched off beyond it - no coarser levels)
+        const coarser = m.lods || [];
+        for (let k = 0; k < coarser.length; k++) levels.push(buildLevel(coarser[k].geometry, coarser[k].groups, k + 1));
+        const n = list.length, col = new Float32Array(n * 3);
+        list.forEach((inst, i) => {
+          const gain = LIT_GAIN;          // (the instance colour until the grid lights them: as the meshes have it)
+          if (inst.light) for (let c = 0; c < 3; c++) col[i * 3 + c] = Math.min(2, inst.light[c] * gain); else col.fill(1, i * 3, i * 3 + 3);
+        });
+        L = { list, dists, levels, level: new Int8Array(n), shown: new Uint8Array(n).fill(1),
+          mats: list.map(inst => matrixOf(inst.matrix).clone()), col, unlitCol: list.map(inst => inst.light ? inst.light.map(c => Math.min(2, c * LIGHT_GAIN)) : [1, 1, 1]),
+          grid: null, gridLevels: [], dirty: true };
+        for (const lvMeshes of levels) for (const mesh of lvMeshes) mesh.userData.L = L;
+        this.lodModels.push(L);
+        this.pack(L);                    // (every placement at LOD 0 until the first update)
       }
       // the see-through box of the model bounds per placement
       const size = new THREE.Vector3().fromArray(m.maxs).sub(new THREE.Vector3().fromArray(m.mins));
@@ -151,6 +190,11 @@ export class Props {
         if (!inst.exploder) return;
         this.exploderParts.push({ site: inst.exploder.site, show: inst.exploder.show, apply: visible => {
           const M = visible ? matrixOf(inst.matrix) : hidden;
+          if (L) {
+            L.shown[i] = visible ? 1 : 0; L.dirty = true; this.lodDirty = true;
+            box.setMatrixAt(i, M); box.instanceMatrix.needsUpdate = true;
+            return;
+          }
           for (const mesh of meshes) { mesh.setMatrixAt(i, M); mesh.instanceMatrix.needsUpdate = true; }
         } });
       });
@@ -205,9 +249,17 @@ export class Props {
     };
     const white = new THREE.Color(1, 1, 1);
     for (const mesh of this.models.children) {
-      const { list, model, unlit, bump } = mesh.userData;
+      const { list, model, unlit, bump, L, lv } = mesh.userData;
       if (!list) continue;
-      const A = attrs(model, list);
+      let A = attrs(model, list);
+      if (L) {
+        // a LOD model: the master light per placement, each level its packed copy (filled by pack)
+        L.grid = A;
+        if (!L.gridLevels[lv]) L.gridLevels[lv] = { C: A.C.map(a => new THREE.InstancedBufferAttribute(new Float32Array(a.array.length), 4)), S: new THREE.InstancedBufferAttribute(new Float32Array(A.S.array.length), 1) };
+        A = L.gridLevels[lv];
+        L.col.fill(1);
+        L.dirty = true; this.lodDirty = true;
+      }
       A.C.forEach((a, k) => mesh.geometry.setAttribute('gridC' + k, a));
       mesh.geometry.setAttribute('gridSun', A.S);
       for (let i = 0; i < list.length; i++) mesh.setColorAt(i, white);
@@ -215,6 +267,60 @@ export class Props {
       // (white now: the normal-mapped ones drop it - 16 vertex attributes at most, the grid takes 7)
       if (bump) mesh.instanceColor = null;
       propGridMaterial(mesh.material, unlit, bump);
+    }
+    for (const L of this.lodModels) this.pack(L);
+  }
+
+  /** a LOD model's placements into its levels' instanced meshes: each level the placements at that LOD, their
+   *  matrices, colours and grid light packed from the first slot on */
+  pack(L) {
+    L.dirty = false;
+    const n = L.list.length;
+    for (let lv = 0; lv < L.levels.length; lv++) {
+      const idx = [];
+      for (let i = 0; i < n; i++) if (L.level[i] === lv && L.shown[i]) idx.push(i);
+      const G = L.grid && L.gridLevels[lv];
+      if (G) {
+        idx.forEach((i, k) => {
+          for (let c = 0; c < 6; c++) { const src = L.grid.C[c].array, dst = G.C[c].array; for (let j = 0; j < 4; j++) dst[k * 4 + j] = src[i * 4 + j]; }
+          G.S.array[k] = L.grid.S.array[i];
+        });
+        G.C.forEach(a => { a.needsUpdate = true; }); G.S.needsUpdate = true;
+      }
+      for (const mesh of L.levels[lv]) {
+        idx.forEach((i, k) => mesh.setMatrixAt(k, L.mats[i]));
+        if (mesh.instanceColor) {
+          const unlit = mesh.userData.unlit && !L.grid, a = mesh.instanceColor.array;
+          idx.forEach((i, k) => { for (let c = 0; c < 3; c++) a[k * 3 + c] = unlit ? L.unlitCol[i][c] : L.col[i * 3 + c]; });
+          mesh.instanceColor.needsUpdate = true;
+        }
+        mesh.count = idx.length;
+        mesh.instanceMatrix.needsUpdate = true;
+      }
+    }
+  }
+
+  /** the LOD of every switched placement for the camera (each frame; repacks a model whose LODs changed) */
+  update(camera) {
+    if (!this.lodModels.length || this.mode !== 'high') return;
+    const p = camera.position;
+    // the game's lod scale: tan(fov_x / 2) / tan(40 deg) - the view's fov as the 4:3 horizontal fov cg_fov is
+    const scale = Math.tan(Math.atan(Math.tan(camera.fov * DEG / 2) * 4 / 3)) / Math.tan(40 * DEG);
+    const last = this.lastLod;
+    if (!this.lodDirty && last && Math.abs(last.x - p.x) + Math.abs(last.y - p.y) + Math.abs(last.z - p.z) < 8 && Math.abs(last.scale - scale) < 1e-3) return;
+    this.lastLod = { x: p.x, y: p.y, z: p.z, scale };
+    this.lodDirty = false;
+    for (const L of this.lodModels) {
+      let changed = L.dirty;
+      const D = L.dists, top = L.levels.length - 1;
+      for (let i = 0; i < L.list.length; i++) {
+        const e = L.mats[i].elements;
+        const d = Math.hypot(e[12] - p.x, e[13] - p.y, e[14] - p.z) * scale;
+        let lv = -1;
+        for (let k = 0; k < D.length; k++) if (D[k] === 0 || D[k] > d) { lv = Math.min(k, top); break; }
+        if (lv !== L.level[i]) { L.level[i] = lv; changed = true; }
+      }
+      if (changed) this.pack(L);
     }
   }
 

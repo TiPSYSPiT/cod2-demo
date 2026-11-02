@@ -12,7 +12,7 @@ other servers: three.js r170 comes with the project in `vendor/`, the fonts (Int
 Font License) in `assets/fonts/`. The site is plain HTML, CSS and JavaScript with no build step and runs on
 GitHub Pages. The game data (3D maps, textures, 2D backgrounds, sounds, player models and animations,
 particle effects) is extracted once from your own game files with Python scripts (below) and committed
-with the site (the whole site without the sample demos: ~580 MB in ~4,000 files, the largest 14 MB).
+with the site (the whole site without the sample demos: ~720 MB in ~3,900 files, the largest 14 MB).
 
 ## Features
 
@@ -43,10 +43,13 @@ positions, kills, deaths, grenade landings, smokes and shots, filtered by team, 
 **3D** – the map geometry from the `.d3dbsp` (textures, lit as the game's world shader lights it: the baked
 lightmaps plus the sun where the map's sun mask lets it through, so buildings throw their shadows and walls
 facing the sun are bright, with the materials' normal maps, detail maps and the sun's specular
-highlights; alpha-tested foliage, blended
-terrain layers, the sky cube), the map's static models (misc_model props: crates, sandbags, trees,
-vehicles, and the bomb-site objects; lit as the game lights them - from the light grid at their centre,
-or the compiler's ground light for the models made for it - with their normal, specular and detail maps), the **players** (Display popover, *Players*: *Models* = the game's own
+highlights; the vertex colours tint every surface and fade the blended terrain layers (snow, ground, footprints) as
+in the game; alpha-tested foliage and fences with soft edges (alpha to coverage), the sky cube, the map's **fog**
+as its script sets it - exponential with its colour and density on the stock maps, none on the competitive
+versions -, textures up to 1024 px with the GPU's full anisotropic filtering), the map's static models (misc_model props:
+crates, sandbags, trees, vehicles, and the bomb-site objects; lit as the game lights them - from the light grid at their centre,
+or the compiler's ground light for the models made for it - with their normal, specular and detail maps; with the
+game's **LODs**: the coarser meshes by distance and field of view, bushes gone past the game's cull distance), the **players** (Display popover, *Players*: *Models* = the game's own
 character models - body, head and helmet or hat (on the head's `j_helmet` bone, as the game attaches it) from the demo's client state, the weapon in hand in their
 right hand - animated with the legs / torso animations the demo sends (crossfaded; runs, walks and
 crawls advance by the distance the player covers, so the feet keep step), turned like in the game (the
@@ -243,7 +246,7 @@ py tools/export/hud_export.py --game "C:/Games/Call of Duty 2"
 | `--game DIR` | the install folder (with `main/`) |
 | `--map NAME` | only this map (repeatable); default: every `maps/mp/*.d3dbsp` in the archives |
 | `--out DIR` | output folder (default `maps3d/`) |
-| `--tex-size N` | largest texture edge (default 512) |
+| `--tex-size N` | largest colour / detail map edge (default 1024; normal and specular maps: 512) |
 | `--topdown-size N` | edge of the top-down image (default 2048) |
 | `--force` | re-encode textures already in `maps3d/_textures` |
 | `--no-icons` | skip the kill icons |
@@ -257,14 +260,16 @@ colours, UVs, lightmap UVs, indices; one draw group per material + lightmap with
 surface without normal map), `lmc<N>_<k>.webp` (the 4 coefficients, weighted per pixel by the normal maps)
 and `sun<N>.webp` (the sun's visibility, 1024 × 1024), `lightgrid.bin` (the models' light grid: the BSP's grid points and colours as
 stored), `collision.bin` (the world's solid brushes and terrain triangles: the grid's visibility traces),
-`sky.webp` (the six cube faces), `props.bin/json` (each misc_model's LOD 0 from its
-XModel with its flags and, for normal-mapped models, the tangents; placements as 3 × 4 matrices with the compiler's ground light and the entity's
+`sky.webp` (the six cube faces), `props.bin/json` (each misc_model's LODs from its
+XModel - their switch distances, the coarser ones' meshes - with its flags and, for normal-mapped models, the tangents; placements as 3 × 4 matrices with the compiler's ground light and the entity's
 light scales), `entities.json` (spawns, bomb
 sites, props), `topdown.webp` and `radar.webp`; shared textures in `maps3d/_textures/` (colour and
 detail maps; normal maps with the specular power in blue, `<normal>+<specular>.webp`; the specular
 maps' colour), the index
 `maps3d/index.json`, the 2D registry `assets/maps/backgrounds.js` and the kill icons in `assets/killfeed/`.
-All 32 maps (15 stock + 17 zPAM map pack) take about 8 minutes and ~470 MB (+ ~51 MB shared textures).
+All 32 maps (15 stock + 17 zPAM map pack) take about 13 minutes with `--force` and ~610 MB (+ ~109 MB shared textures);
+`world.json` also holds the map's fog (`setExpFog` / `setCullFog` of its level script) and each group's sort key and
+polygon offset level.
 `sound_export.py` writes
 `maps3d/_sound/` (746 aliases + zPAM's 3 redefinitions, ~28 MB, 22 kHz mono WAV, the volume falloff curves and
 hold_breath.shock's channel volumes; no map ambience / music). `characters_export.py` writes
@@ -331,6 +336,7 @@ git-ignored):
 |---|---|
 | `py tools/audit/site_audit.py` | GitHub Pages readiness: manifest against the files, every reference with its exact case, `.nojekyll`, sizes, leftovers (local paths, `console.log`), the page head |
 | `py tools/audit/map_audit.py --game DIR` | every map of the game files against its export: geometry, model placements, textures, bounds, entities |
+| `py tools/audit/map_quality.py --game DIR [--decode]` | per map the materials' layers, alpha modes, sort keys and polygon offsets against the export, every source image decoded, lightmap pages, sun, fog, the props' LODs and heaviest models |
 | `node tools/audit/demo_audit.mjs` | every demo in `demos/`: players, teams, kills, scores, rounds, bomb events, MG tracks |
 | `py tools/audit/leftovers.py` | flash / stun grenades (CoD4 template, not in CoD2) left in the code, styles or exported data |
 | `node tools/audit/demo_detail.mjs <demo> [client]` | the details behind a demo-audit finding: kill records, deaths against the scoreboard by phase, the positions around a jump |
@@ -393,10 +399,15 @@ The code is GPL-3.0 (see `LICENSE`). Projects it builds on or was checked agains
 - **[CoD2x](https://github.com/callofduty2x/CoD2x)** by callofduty2x: its decompiled CoD2 1.3 client
   (`src/other`) is the reference the demo format, the net field tables, the events and the scoreboard command
   were checked against and the light-grid lighting of the models was taken from; also CoD2x 1.4's protocol,
-  its radar formula (`cg_hudRadar*`) and how it draws colour codes in names.
+  its radar formula (`cg_hudRadar*`) and how it draws colour codes in names. Last checked against CoD2x
+  1.4.6.9-test.1 (2026-10-18; protocol generation 6 as 1.4.6.8 - its new automatic demo recording and upload
+  does not change the demo format).
 - **[zPAM 3](https://github.com/eyza-cod2/zpam3)** by eyza-cod2: the competitive match logic of zPAM 3.34 /
   4.09 - rounds, halftimes, overtime, timeouts and scores from its server info and messages, its own assist
-  count and the scoreboard values it sends (`sd.gsc`, `_menu_scoreboard.gsc`).
+  count and the scoreboard values it sends (`sd.gsc`, `_menu_scoreboard.gsc`). Last checked against zPAM 4.11
+  (2026-11-01; 4.10 / 4.11 add server-side match data - weapon-class kills, multi-kills, trades, leaver and
+  ready-up timeouts - and names the zPAM weapons in the round report; the game data the viewer exports stays
+  that of `zpam409.iwd` / `zpam_maps_v7.iwd`, whose files 4.11 left unchanged).
 
 three.js is MIT (`vendor/three/LICENSE`); the fonts Inter and JetBrains Mono are under the SIL Open Font
 License 1.1 (`assets/fonts/*-OFL.txt`).

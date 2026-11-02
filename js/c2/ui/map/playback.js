@@ -97,8 +97,12 @@
         this.canvas.title = C2.ui.fmtTime(t - this.base);
       });
       this.canvas.addEventListener('pointerup', () => { down = false; });
-      new ResizeObserver(() => this.draw()).observe(container);
+      // (disconnected by dispose: a live observer keeps the timeline and its replay in memory)
+      this.resizeObs = new ResizeObserver(() => this.draw());
+      this.resizeObs.observe(container);
     }
+    /** the closed replay's timeline: its resize observer off */
+    dispose() { if (this.resizeObs) this.resizeObs.disconnect(); this.resizeObs = null; }
     /** opts: {skips: [[a, b), ...] cut out of the bar, base: time shown as 00:00} */
     set(range, markers, opts) {
       this.range = range;

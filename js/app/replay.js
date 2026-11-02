@@ -404,6 +404,7 @@ export class Replay {
     this.pb.playing = false;
     this.pb.onFrame = () => {};
     C2.mapStats.close();
+    if (this.timeline && this.timeline.dispose) this.timeline.dispose();
     for (const v of Object.values(this.views)) if (v.destroy) v.destroy();
   }
 }

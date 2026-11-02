@@ -4,7 +4,7 @@
  * lighting, characters, effects and sound - see PLAN.md). */
 import * as THREE from 'three';
 import '../c2/ui/killfeed.js';
-import { loadWorld, groundPlane, resolveMap, textureArrivals, releaseStandins } from './mapLoader.js';
+import { loadWorld, groundPlane, resolveMap, textureArrivals, releaseStandins, gameFog, setMaxAnisotropy } from './mapLoader.js';
 import { LightProbe } from './lightProbe.js';
 import { Actors, EYE, stanceOf } from './actors.js';
 import { Effects } from './effects.js';
@@ -206,7 +206,8 @@ export class View3D {
     // ?debug: the surface picker (debugPick.js, loaded only then)
     if (new URLSearchParams(location.search).has('debug')) import('./debugPick.js').then(m => m.attachDebugPick(this));
     this.offFocus = replay.on(what => { if (what === 'focus') this.syncPlayerSelect(); });
-    new ResizeObserver(() => this.resize()).observe(this.stage);
+    this.resizeObs = new ResizeObserver(() => this.resize());      // (disconnected by destroy)
+    this.resizeObs.observe(this.stage);
     this.loop = this.loop.bind(this);
     this.last = null;
     this.load();
@@ -217,6 +218,7 @@ export class View3D {
     const M = this.M, map = M.d.meta.map;
     let name = null;
     try { name = await resolveMap(map); } catch (err) { name = null; }
+    setMaxAnisotropy(this.renderer.capabilities.getMaxAnisotropy());
     if (name) {
       try {
         const w = await loadWorld(name, { onProgress: f => { this.info.set('Loading the 3D map ' + name + ' … ' + Math.round(f * 100) + ' %', { open: true }); } });
@@ -237,9 +239,11 @@ export class View3D {
           if (!sky || this.world !== w) return;
           this.sky = sky; this.scene.add(sky.mesh); this.needsRender = true;
         }).catch(err => console.warn('sky not loaded:', err));
+        // the fog of the map's script (setExpFog / setCullFog, world.json; none on the competitive versions);
+        // data exported before it: a light haze far out as before
         const b = w.info.bounds;
         const span = b ? Math.max(b.maxs[0] - b.mins[0], b.maxs[1] - b.mins[1]) : 8000;
-        this.scene.fog = new THREE.Fog(0x8ea2b4, span * 1.2, span * 4);
+        this.scene.fog = 'fog' in w.info ? gameFog(w.info.fog) : new THREE.Fog(0x8ea2b4, span * 1.2, span * 4);
         // the sun of the map (worldspawn "sundirection": pitch yaw roll towards the sun)
         const sun = w.info.sun || {};
         if (sun.direction) {
@@ -498,8 +502,13 @@ export class View3D {
     if (on && !this.sounds.ctx && !audioAllowed()) { this.soundBtn.checked = this.soundWanted; this.syncSoundHint(); return; }
     const ok = this.sounds.enable(on && this.visible);
     this.soundBtn.checked = ok || (this.soundWanted && !this.visible);
+    // (the page's shared context: this view's handler, taken off again by destroy - it would keep the view alive)
     const c = this.sounds.ctx;
-    if (c && !c.onstatechange) c.onstatechange = () => this.syncSoundHint();
+    if (c && c.onstatechange !== this.onCtxState) {
+      this.onCtxState = this.onCtxState || (() => this.syncSoundHint());
+      c.onstatechange = this.onCtxState;
+      this.watchedCtx = c;
+    }
     this.syncSoundHint();
   }
   /** the hint while the sound is on but its context not running (the browser waits for a click) */
@@ -708,6 +717,7 @@ export class View3D {
       if (st && st.entry && !st.recorder) st.friend = this.teammateInSight(this.fpClient, st.entry.params.enemyCrosshairRange || 0);
     }
     this.camera.updateMatrixWorld();
+    if (this.props) this.props.update(this.camera);         // (the props' LODs for this eye and fov)
     this.fx.update(this.t || 0, this.camera);
     this.tracers.update(this.t || 0, this.camera, cl => this.actors.muzzle(cl), this.fpClient);
     this.sprites.update(this.t || 0, this.camera, this.actors, this.fpClient);
@@ -897,8 +907,11 @@ export class View3D {
     this.killfeed.dispose();
     this.cams.dispose();
     if (this.sky) { this.sky.dispose(); this.sky = null; }
+    if (this.watchedCtx && this.watchedCtx.onstatechange === this.onCtxState) this.watchedCtx.onstatechange = null;
+    this.watchedCtx = null;
     if (this.sounds) { this.sounds.dispose(); this.sounds = null; }
     if (this.offArm) this.offArm();
+    if (this.resizeObs) this.resizeObs.disconnect();
     window.removeEventListener('keydown', this.onScoresKey);
     window.removeEventListener('keyup', this.onScoresKey);
     window.removeEventListener('blur', this.offScoresKey);

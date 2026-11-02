@@ -91,5 +91,10 @@ export class PlayerSprites {
   dispose() {
     this.root.removeFromParent();
     for (const m of this.mats.values()) if (m) { if (m.map) m.map.dispose(); m.dispose(); }
+    // (three.js gives every Sprite one shared geometry: disposed while this view's renderer lives, it drops that
+    // renderer's buffer and dispose listener - kept, they held every closed view with its demo in memory)
+    const any = this.items.values().next().value;
+    if (any) any[0].geometry.dispose();
+    this.items.clear();
   }
 }

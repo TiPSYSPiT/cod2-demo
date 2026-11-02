@@ -2,7 +2,7 @@
  "format": "cod2-demo3d-props/1",
  "map": "mp_toujane_fix",
  "file": "props.bin",
- "byteLength": 2372688,
+ "byteLength": 4310692,
  "models": [
   {
    "name": "xmodel/awning_2x4_2",
@@ -57,6 +57,55 @@
      "sort": 3,
      "polygonOffset": 0
     }
+   ],
+   "lodDistances": [
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "awning_2x4_2_lowlod0",
+     "vertices": 228,
+     "triangles": 154,
+     "geometry": {
+      "position": {
+       "offset": 10872,
+       "length": 2736
+      },
+      "normal": {
+       "offset": 13608,
+       "length": 912
+      },
+      "uv": {
+       "offset": 14520,
+       "length": 1824
+      },
+      "index": {
+       "offset": 16344,
+       "length": 1848
+      },
+      "tangent": {
+       "offset": 18192,
+       "length": 912
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_market_stands",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 462,
+       "texture": "_textures/market_stands.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_market_stands_nrml-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    }
    ]
   },
   {
@@ -77,23 +126,23 @@
    "triangles": 376,
    "geometry": {
     "position": {
-     "offset": 10872,
+     "offset": 19104,
      "length": 5616
     },
     "normal": {
-     "offset": 16488,
+     "offset": 24720,
      "length": 1872
     },
     "uv": {
-     "offset": 18360,
+     "offset": 26592,
      "length": 3744
     },
     "index": {
-     "offset": 22104,
+     "offset": 30336,
      "length": 4512
     },
     "tangent": {
-     "offset": 26616,
+     "offset": 34848,
      "length": 1872
     }
    },
@@ -111,6 +160,55 @@
      "normalMap": "_textures/_market_stands_nrml-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "awning_2x4_3_lowlod0",
+     "vertices": 230,
+     "triangles": 156,
+     "geometry": {
+      "position": {
+       "offset": 36720,
+       "length": 2760
+      },
+      "normal": {
+       "offset": 39480,
+       "length": 920
+      },
+      "uv": {
+       "offset": 40400,
+       "length": 1840
+      },
+      "index": {
+       "offset": 42240,
+       "length": 1872
+      },
+      "tangent": {
+       "offset": 44112,
+       "length": 920
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_market_stands",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 468,
+       "texture": "_textures/market_stands.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_market_stands_nrml-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -132,23 +230,23 @@
    "triangles": 234,
    "geometry": {
     "position": {
-     "offset": 28488,
+     "offset": 45032,
      "length": 3504
     },
     "normal": {
-     "offset": 31992,
+     "offset": 48536,
      "length": 1168
     },
     "uv": {
-     "offset": 33160,
+     "offset": 49704,
      "length": 2336
     },
     "index": {
-     "offset": 35496,
+     "offset": 52040,
      "length": 2808
     },
     "tangent": {
-     "offset": 38304,
+     "offset": 54848,
      "length": 1168
     }
    },
@@ -181,6 +279,69 @@
      "sort": 3,
      "polygonOffset": 0
     }
+   ],
+   "lodDistances": [
+    500.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "awning_2x5_20",
+     "vertices": 292,
+     "triangles": 234,
+     "geometry": {
+      "position": {
+       "offset": 56016,
+       "length": 3504
+      },
+      "normal": {
+       "offset": 59520,
+       "length": 1168
+      },
+      "uv": {
+       "offset": 60688,
+       "length": 2336
+      },
+      "index": {
+       "offset": 63024,
+       "length": 2808
+      },
+      "tangent": {
+       "offset": 65832,
+       "length": 1168
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1cloth",
+       "technique": "phong_alphatest",
+       "start": 0,
+       "count": 288,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      },
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 288,
+       "count": 414,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    }
    ]
   },
   {
@@ -201,23 +362,23 @@
    "triangles": 570,
    "geometry": {
     "position": {
-     "offset": 39472,
+     "offset": 67000,
      "length": 7920
     },
     "normal": {
-     "offset": 47392,
+     "offset": 74920,
      "length": 2640
     },
     "uv": {
-     "offset": 50032,
+     "offset": 77560,
      "length": 5280
     },
     "index": {
-     "offset": 55312,
+     "offset": 82840,
      "length": 6840
     },
     "tangent": {
-     "offset": 62152,
+     "offset": 89680,
      "length": 2640
     }
    },
@@ -235,6 +396,99 @@
      "normalMap": "_textures/_market_stands_nrml-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "market_canopy_large_med0",
+     "vertices": 564,
+     "triangles": 410,
+     "geometry": {
+      "position": {
+       "offset": 92320,
+       "length": 6768
+      },
+      "normal": {
+       "offset": 99088,
+       "length": 2256
+      },
+      "uv": {
+       "offset": 101344,
+       "length": 4512
+      },
+      "index": {
+       "offset": 105856,
+       "length": 4920
+      },
+      "tangent": {
+       "offset": 110776,
+       "length": 2256
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_market_stands",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 1230,
+       "texture": "_textures/market_stands.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_market_stands_nrml-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "market_canopy_large_low0",
+     "vertices": 474,
+     "triangles": 288,
+     "geometry": {
+      "position": {
+       "offset": 113032,
+       "length": 5688
+      },
+      "normal": {
+       "offset": 118720,
+       "length": 1896
+      },
+      "uv": {
+       "offset": 120616,
+       "length": 3792
+      },
+      "index": {
+       "offset": 124408,
+       "length": 3456
+      },
+      "tangent": {
+       "offset": 127864,
+       "length": 1896
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_market_stands",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 864,
+       "texture": "_textures/market_stands.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_market_stands_nrml-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -256,23 +510,23 @@
    "triangles": 570,
    "geometry": {
     "position": {
-     "offset": 64792,
+     "offset": 129760,
      "length": 7920
     },
     "normal": {
-     "offset": 72712,
+     "offset": 137680,
      "length": 2640
     },
     "uv": {
-     "offset": 75352,
+     "offset": 140320,
      "length": 5280
     },
     "index": {
-     "offset": 80632,
+     "offset": 145600,
      "length": 6840
     },
     "tangent": {
-     "offset": 87472,
+     "offset": 152440,
      "length": 2640
     }
    },
@@ -290,6 +544,99 @@
      "normalMap": "_textures/_market_stands_nrml-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "market_canopy_large2_med0",
+     "vertices": 564,
+     "triangles": 410,
+     "geometry": {
+      "position": {
+       "offset": 155080,
+       "length": 6768
+      },
+      "normal": {
+       "offset": 161848,
+       "length": 2256
+      },
+      "uv": {
+       "offset": 164104,
+       "length": 4512
+      },
+      "index": {
+       "offset": 168616,
+       "length": 4920
+      },
+      "tangent": {
+       "offset": 173536,
+       "length": 2256
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_market_stands",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 1230,
+       "texture": "_textures/market_stands.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_market_stands_nrml-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "market_canopy_large2_low0",
+     "vertices": 476,
+     "triangles": 290,
+     "geometry": {
+      "position": {
+       "offset": 175792,
+       "length": 5712
+      },
+      "normal": {
+       "offset": 181504,
+       "length": 1904
+      },
+      "uv": {
+       "offset": 183408,
+       "length": 3808
+      },
+      "index": {
+       "offset": 187216,
+       "length": 3480
+      },
+      "tangent": {
+       "offset": 190696,
+       "length": 1904
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_market_stands",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 870,
+       "texture": "_textures/market_stands.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_market_stands_nrml-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -311,23 +658,23 @@
    "triangles": 570,
    "geometry": {
     "position": {
-     "offset": 90112,
+     "offset": 192600,
      "length": 7920
     },
     "normal": {
-     "offset": 98032,
+     "offset": 200520,
      "length": 2640
     },
     "uv": {
-     "offset": 100672,
+     "offset": 203160,
      "length": 5280
     },
     "index": {
-     "offset": 105952,
+     "offset": 208440,
      "length": 6840
     },
     "tangent": {
-     "offset": 112792,
+     "offset": 215280,
      "length": 2640
     }
    },
@@ -345,6 +692,99 @@
      "normalMap": "_textures/_market_stands_nrml-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "market_canopy_medium1_med0",
+     "vertices": 564,
+     "triangles": 410,
+     "geometry": {
+      "position": {
+       "offset": 217920,
+       "length": 6768
+      },
+      "normal": {
+       "offset": 224688,
+       "length": 2256
+      },
+      "uv": {
+       "offset": 226944,
+       "length": 4512
+      },
+      "index": {
+       "offset": 231456,
+       "length": 4920
+      },
+      "tangent": {
+       "offset": 236376,
+       "length": 2256
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_market_stands",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 1230,
+       "texture": "_textures/market_stands.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_market_stands_nrml-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "market_canopy_medium1_low0",
+     "vertices": 474,
+     "triangles": 304,
+     "geometry": {
+      "position": {
+       "offset": 238632,
+       "length": 5688
+      },
+      "normal": {
+       "offset": 244320,
+       "length": 1896
+      },
+      "uv": {
+       "offset": 246216,
+       "length": 3792
+      },
+      "index": {
+       "offset": 250008,
+       "length": 3648
+      },
+      "tangent": {
+       "offset": 253656,
+       "length": 1896
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_market_stands",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 912,
+       "texture": "_textures/market_stands.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_market_stands_nrml-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -366,23 +806,23 @@
    "triangles": 570,
    "geometry": {
     "position": {
-     "offset": 115432,
+     "offset": 255552,
      "length": 8064
     },
     "normal": {
-     "offset": 123496,
+     "offset": 263616,
      "length": 2688
     },
     "uv": {
-     "offset": 126184,
+     "offset": 266304,
      "length": 5376
     },
     "index": {
-     "offset": 131560,
+     "offset": 271680,
      "length": 6840
     },
     "tangent": {
-     "offset": 138400,
+     "offset": 278520,
      "length": 2688
     }
    },
@@ -400,6 +840,99 @@
      "normalMap": "_textures/_market_stands_nrml-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "market_canopy_medium2_med0",
+     "vertices": 576,
+     "triangles": 410,
+     "geometry": {
+      "position": {
+       "offset": 281208,
+       "length": 6912
+      },
+      "normal": {
+       "offset": 288120,
+       "length": 2304
+      },
+      "uv": {
+       "offset": 290424,
+       "length": 4608
+      },
+      "index": {
+       "offset": 295032,
+       "length": 4920
+      },
+      "tangent": {
+       "offset": 299952,
+       "length": 2304
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_market_stands",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 1230,
+       "texture": "_textures/market_stands.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_market_stands_nrml-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "market_canopy_medium2_low0",
+     "vertices": 464,
+     "triangles": 286,
+     "geometry": {
+      "position": {
+       "offset": 302256,
+       "length": 5568
+      },
+      "normal": {
+       "offset": 307824,
+       "length": 1856
+      },
+      "uv": {
+       "offset": 309680,
+       "length": 3712
+      },
+      "index": {
+       "offset": 313392,
+       "length": 3432
+      },
+      "tangent": {
+       "offset": 316824,
+       "length": 1856
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_market_stands",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 858,
+       "texture": "_textures/market_stands.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_market_stands_nrml-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -421,23 +954,23 @@
    "triangles": 304,
    "geometry": {
     "position": {
-     "offset": 141088,
+     "offset": 318680,
      "length": 4320
     },
     "normal": {
-     "offset": 145408,
+     "offset": 323000,
      "length": 1440
     },
     "uv": {
-     "offset": 146848,
+     "offset": 324440,
      "length": 2880
     },
     "index": {
-     "offset": 149728,
+     "offset": 327320,
      "length": 3648
     },
     "tangent": {
-     "offset": 153376,
+     "offset": 330968,
      "length": 1440
     }
    },
@@ -455,6 +988,99 @@
      "normalMap": "_textures/_market_stands_nrml-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "market_canopy_small_med0",
+     "vertices": 312,
+     "triangles": 224,
+     "geometry": {
+      "position": {
+       "offset": 332408,
+       "length": 3744
+      },
+      "normal": {
+       "offset": 336152,
+       "length": 1248
+      },
+      "uv": {
+       "offset": 337400,
+       "length": 2496
+      },
+      "index": {
+       "offset": 339896,
+       "length": 2688
+      },
+      "tangent": {
+       "offset": 342584,
+       "length": 1248
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_market_stands",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 672,
+       "texture": "_textures/market_stands.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_market_stands_nrml-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "market_canopy_small_low0",
+     "vertices": 261,
+     "triangles": 158,
+     "geometry": {
+      "position": {
+       "offset": 343832,
+       "length": 3132
+      },
+      "normal": {
+       "offset": 346964,
+       "length": 1044
+      },
+      "uv": {
+       "offset": 348008,
+       "length": 2088
+      },
+      "index": {
+       "offset": 350096,
+       "length": 1896
+      },
+      "tangent": {
+       "offset": 351992,
+       "length": 1044
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_market_stands",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 474,
+       "texture": "_textures/market_stands.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_market_stands_nrml-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -476,23 +1102,23 @@
    "triangles": 212,
    "geometry": {
     "position": {
-     "offset": 154816,
+     "offset": 353036,
      "length": 4416
     },
     "normal": {
-     "offset": 159232,
+     "offset": 357452,
      "length": 1472
     },
     "uv": {
-     "offset": 160704,
+     "offset": 358924,
      "length": 2944
     },
     "index": {
-     "offset": 163648,
+     "offset": 361868,
      "length": 2544
     },
     "tangent": {
-     "offset": 166192,
+     "offset": 364412,
      "length": 1472
     }
    },
@@ -510,6 +1136,99 @@
      "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "wooden_canopy2_med0",
+     "vertices": 304,
+     "triangles": 168,
+     "geometry": {
+      "position": {
+       "offset": 365884,
+       "length": 3648
+      },
+      "normal": {
+       "offset": 369532,
+       "length": 1216
+      },
+      "uv": {
+       "offset": 370748,
+       "length": 2432
+      },
+      "index": {
+       "offset": 373180,
+       "length": 2016
+      },
+      "tangent": {
+       "offset": 375196,
+       "length": 1216
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 504,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "wooden_canopy2_low0",
+     "vertices": 216,
+     "triangles": 124,
+     "geometry": {
+      "position": {
+       "offset": 376412,
+       "length": 2592
+      },
+      "normal": {
+       "offset": 379004,
+       "length": 864
+      },
+      "uv": {
+       "offset": 379868,
+       "length": 1728
+      },
+      "index": {
+       "offset": 381596,
+       "length": 1488
+      },
+      "tangent": {
+       "offset": 383084,
+       "length": 864
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 372,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -531,23 +1250,23 @@
    "triangles": 200,
    "geometry": {
     "position": {
-     "offset": 167664,
+     "offset": 383948,
      "length": 4080
     },
     "normal": {
-     "offset": 171744,
+     "offset": 388028,
      "length": 1360
     },
     "uv": {
-     "offset": 173104,
+     "offset": 389388,
      "length": 2720
     },
     "index": {
-     "offset": 175824,
+     "offset": 392108,
      "length": 2400
     },
     "tangent": {
-     "offset": 178224,
+     "offset": 394508,
      "length": 1360
     }
    },
@@ -565,6 +1284,99 @@
      "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "wooden_canopy3_low0",
+     "vertices": 208,
+     "triangles": 120,
+     "geometry": {
+      "position": {
+       "offset": 395868,
+       "length": 2496
+      },
+      "normal": {
+       "offset": 398364,
+       "length": 832
+      },
+      "uv": {
+       "offset": 399196,
+       "length": 1664
+      },
+      "index": {
+       "offset": 400860,
+       "length": 1440
+      },
+      "tangent": {
+       "offset": 402300,
+       "length": 832
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 360,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "wooden_canopy3_low0",
+     "vertices": 208,
+     "triangles": 120,
+     "geometry": {
+      "position": {
+       "offset": 403132,
+       "length": 2496
+      },
+      "normal": {
+       "offset": 405628,
+       "length": 832
+      },
+      "uv": {
+       "offset": 406460,
+       "length": 1664
+      },
+      "index": {
+       "offset": 408124,
+       "length": 1440
+      },
+      "tangent": {
+       "offset": 409564,
+       "length": 832
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 360,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -586,23 +1398,23 @@
    "triangles": 236,
    "geometry": {
     "position": {
-     "offset": 179584,
+     "offset": 410396,
      "length": 4944
     },
     "normal": {
-     "offset": 184528,
+     "offset": 415340,
      "length": 1648
     },
     "uv": {
-     "offset": 186176,
+     "offset": 416988,
      "length": 3296
     },
     "index": {
-     "offset": 189472,
+     "offset": 420284,
      "length": 2832
     },
     "tangent": {
-     "offset": 192304,
+     "offset": 423116,
      "length": 1648
     }
    },
@@ -620,6 +1432,99 @@
      "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "wooden_canopy4_med0",
+     "vertices": 344,
+     "triangles": 188,
+     "geometry": {
+      "position": {
+       "offset": 424764,
+       "length": 4128
+      },
+      "normal": {
+       "offset": 428892,
+       "length": 1376
+      },
+      "uv": {
+       "offset": 430268,
+       "length": 2752
+      },
+      "index": {
+       "offset": 433020,
+       "length": 2256
+      },
+      "tangent": {
+       "offset": 435276,
+       "length": 1376
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 564,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "wooden_canopy4_low0",
+     "vertices": 232,
+     "triangles": 132,
+     "geometry": {
+      "position": {
+       "offset": 436652,
+       "length": 2784
+      },
+      "normal": {
+       "offset": 439436,
+       "length": 928
+      },
+      "uv": {
+       "offset": 440364,
+       "length": 1856
+      },
+      "index": {
+       "offset": 442220,
+       "length": 1584
+      },
+      "tangent": {
+       "offset": 443804,
+       "length": 928
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 396,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -641,23 +1546,23 @@
    "triangles": 260,
    "geometry": {
     "position": {
-     "offset": 193952,
+     "offset": 444732,
      "length": 5520
     },
     "normal": {
-     "offset": 199472,
+     "offset": 450252,
      "length": 1840
     },
     "uv": {
-     "offset": 201312,
+     "offset": 452092,
      "length": 3680
     },
     "index": {
-     "offset": 204992,
+     "offset": 455772,
      "length": 3120
     },
     "tangent": {
-     "offset": 208112,
+     "offset": 458892,
      "length": 1840
     }
    },
@@ -675,6 +1580,99 @@
      "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "wooden_canopy_large1_med0",
+     "vertices": 384,
+     "triangles": 208,
+     "geometry": {
+      "position": {
+       "offset": 460732,
+       "length": 4608
+      },
+      "normal": {
+       "offset": 465340,
+       "length": 1536
+      },
+      "uv": {
+       "offset": 466876,
+       "length": 3072
+      },
+      "index": {
+       "offset": 469948,
+       "length": 2496
+      },
+      "tangent": {
+       "offset": 472444,
+       "length": 1536
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 624,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "wooden_canopy_large1_low0",
+     "vertices": 248,
+     "triangles": 140,
+     "geometry": {
+      "position": {
+       "offset": 473980,
+       "length": 2976
+      },
+      "normal": {
+       "offset": 476956,
+       "length": 992
+      },
+      "uv": {
+       "offset": 477948,
+       "length": 1984
+      },
+      "index": {
+       "offset": 479932,
+       "length": 1680
+      },
+      "tangent": {
+       "offset": 481612,
+       "length": 992
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 420,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -696,23 +1694,23 @@
    "triangles": 236,
    "geometry": {
     "position": {
-     "offset": 209952,
+     "offset": 482604,
      "length": 4944
     },
     "normal": {
-     "offset": 214896,
+     "offset": 487548,
      "length": 1648
     },
     "uv": {
-     "offset": 216544,
+     "offset": 489196,
      "length": 3296
     },
     "index": {
-     "offset": 219840,
+     "offset": 492492,
      "length": 2832
     },
     "tangent": {
-     "offset": 222672,
+     "offset": 495324,
      "length": 1648
     }
    },
@@ -730,6 +1728,99 @@
      "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "wooden_canopy_large2_med0",
+     "vertices": 344,
+     "triangles": 188,
+     "geometry": {
+      "position": {
+       "offset": 496972,
+       "length": 4128
+      },
+      "normal": {
+       "offset": 501100,
+       "length": 1376
+      },
+      "uv": {
+       "offset": 502476,
+       "length": 2752
+      },
+      "index": {
+       "offset": 505228,
+       "length": 2256
+      },
+      "tangent": {
+       "offset": 507484,
+       "length": 1376
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 564,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "wooden_canopy_large2_low0",
+     "vertices": 232,
+     "triangles": 132,
+     "geometry": {
+      "position": {
+       "offset": 508860,
+       "length": 2784
+      },
+      "normal": {
+       "offset": 511644,
+       "length": 928
+      },
+      "uv": {
+       "offset": 512572,
+       "length": 1856
+      },
+      "index": {
+       "offset": 514428,
+       "length": 1584
+      },
+      "tangent": {
+       "offset": 516012,
+       "length": 928
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 396,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -751,23 +1842,23 @@
    "triangles": 236,
    "geometry": {
     "position": {
-     "offset": 224320,
+     "offset": 516940,
      "length": 4992
     },
     "normal": {
-     "offset": 229312,
+     "offset": 521932,
      "length": 1664
     },
     "uv": {
-     "offset": 230976,
+     "offset": 523596,
      "length": 3328
     },
     "index": {
-     "offset": 234304,
+     "offset": 526924,
      "length": 2832
     },
     "tangent": {
-     "offset": 237136,
+     "offset": 529756,
      "length": 1664
     }
    },
@@ -785,6 +1876,99 @@
      "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "wooden_canopy_large3_med0",
+     "vertices": 344,
+     "triangles": 188,
+     "geometry": {
+      "position": {
+       "offset": 531420,
+       "length": 4128
+      },
+      "normal": {
+       "offset": 535548,
+       "length": 1376
+      },
+      "uv": {
+       "offset": 536924,
+       "length": 2752
+      },
+      "index": {
+       "offset": 539676,
+       "length": 2256
+      },
+      "tangent": {
+       "offset": 541932,
+       "length": 1376
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 564,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "wooden_canopy_large3_low0",
+     "vertices": 232,
+     "triangles": 132,
+     "geometry": {
+      "position": {
+       "offset": 543308,
+       "length": 2784
+      },
+      "normal": {
+       "offset": 546092,
+       "length": 928
+      },
+      "uv": {
+       "offset": 547020,
+       "length": 1856
+      },
+      "index": {
+       "offset": 548876,
+       "length": 1584
+      },
+      "tangent": {
+       "offset": 550460,
+       "length": 928
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 396,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -806,23 +1990,23 @@
    "triangles": 224,
    "geometry": {
     "position": {
-     "offset": 238800,
+     "offset": 551388,
      "length": 4656
     },
     "normal": {
-     "offset": 243456,
+     "offset": 556044,
      "length": 1552
     },
     "uv": {
-     "offset": 245008,
+     "offset": 557596,
      "length": 3104
     },
     "index": {
-     "offset": 248112,
+     "offset": 560700,
      "length": 2688
     },
     "tangent": {
-     "offset": 250800,
+     "offset": 563388,
      "length": 1552
     }
    },
@@ -840,6 +2024,99 @@
      "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "wooden_canopy_large4_med0",
+     "vertices": 324,
+     "triangles": 178,
+     "geometry": {
+      "position": {
+       "offset": 564940,
+       "length": 3888
+      },
+      "normal": {
+       "offset": 568828,
+       "length": 1296
+      },
+      "uv": {
+       "offset": 570124,
+       "length": 2592
+      },
+      "index": {
+       "offset": 572716,
+       "length": 2136
+      },
+      "tangent": {
+       "offset": 574852,
+       "length": 1296
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 534,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "wooden_canopy_large4_low0",
+     "vertices": 224,
+     "triangles": 128,
+     "geometry": {
+      "position": {
+       "offset": 576148,
+       "length": 2688
+      },
+      "normal": {
+       "offset": 578836,
+       "length": 896
+      },
+      "uv": {
+       "offset": 579732,
+       "length": 1792
+      },
+      "index": {
+       "offset": 581524,
+       "length": 1536
+      },
+      "tangent": {
+       "offset": 583060,
+       "length": 896
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 384,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -861,23 +2138,23 @@
    "triangles": 360,
    "geometry": {
     "position": {
-     "offset": 252352,
+     "offset": 583956,
      "length": 7944
     },
     "normal": {
-     "offset": 260296,
+     "offset": 591900,
      "length": 2648
     },
     "uv": {
-     "offset": 262944,
+     "offset": 594548,
      "length": 5296
     },
     "index": {
-     "offset": 268240,
+     "offset": 599844,
      "length": 4320
     },
     "tangent": {
-     "offset": 272560,
+     "offset": 604164,
      "length": 2648
     }
    },
@@ -895,6 +2172,99 @@
      "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "wooden_canopy_long_med0",
+     "vertices": 555,
+     "triangles": 293,
+     "geometry": {
+      "position": {
+       "offset": 606812,
+       "length": 6660
+      },
+      "normal": {
+       "offset": 613472,
+       "length": 2220
+      },
+      "uv": {
+       "offset": 615692,
+       "length": 4440
+      },
+      "index": {
+       "offset": 620132,
+       "length": 3516
+      },
+      "tangent": {
+       "offset": 623648,
+       "length": 2220
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 879,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "wooden_canopy_long_low0",
+     "vertices": 303,
+     "triangles": 167,
+     "geometry": {
+      "position": {
+       "offset": 625868,
+       "length": 3636
+      },
+      "normal": {
+       "offset": 629504,
+       "length": 1212
+      },
+      "uv": {
+       "offset": 630716,
+       "length": 2424
+      },
+      "index": {
+       "offset": 633140,
+       "length": 2004
+      },
+      "tangent": {
+       "offset": 635144,
+       "length": 1212
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_canopies1wood",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 501,
+       "texture": "_textures/desert_canopies1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_desert_canopies1bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -916,19 +2286,19 @@
    "triangles": 20,
    "geometry": {
     "position": {
-     "offset": 275208,
+     "offset": 636356,
      "length": 384
     },
     "normal": {
-     "offset": 275592,
+     "offset": 636740,
      "length": 128
     },
     "uv": {
-     "offset": 275720,
+     "offset": 636868,
      "length": 256
     },
     "index": {
-     "offset": 275976,
+     "offset": 637124,
      "length": 240
     }
    },
@@ -947,6 +2317,9 @@
      "sort": 3,
      "polygonOffset": 0
     }
+   ],
+   "lodDistances": [
+    2000.0
    ]
   },
   {
@@ -967,19 +2340,19 @@
    "triangles": 12,
    "geometry": {
     "position": {
-     "offset": 276216,
+     "offset": 637364,
      "length": 288
     },
     "normal": {
-     "offset": 276504,
+     "offset": 637652,
      "length": 96
     },
     "uv": {
-     "offset": 276600,
+     "offset": 637748,
      "length": 192
     },
     "index": {
-     "offset": 276792,
+     "offset": 637940,
      "length": 144
     }
    },
@@ -998,6 +2371,9 @@
      "sort": 3,
      "polygonOffset": 0
     }
+   ],
+   "lodDistances": [
+    2000.0
    ]
   },
   {
@@ -1018,19 +2394,19 @@
    "triangles": 16,
    "geometry": {
     "position": {
-     "offset": 276936,
+     "offset": 638084,
      "length": 384
     },
     "normal": {
-     "offset": 277320,
+     "offset": 638468,
      "length": 128
     },
     "uv": {
-     "offset": 277448,
+     "offset": 638596,
      "length": 256
     },
     "index": {
-     "offset": 277704,
+     "offset": 638852,
      "length": 192
     }
    },
@@ -1049,6 +2425,9 @@
      "sort": 3,
      "polygonOffset": 0
     }
+   ],
+   "lodDistances": [
+    2000.0
    ]
   },
   {
@@ -1069,19 +2448,19 @@
    "triangles": 12,
    "geometry": {
     "position": {
-     "offset": 277896,
+     "offset": 639044,
      "length": 288
     },
     "normal": {
-     "offset": 278184,
+     "offset": 639332,
      "length": 96
     },
     "uv": {
-     "offset": 278280,
+     "offset": 639428,
      "length": 192
     },
     "index": {
-     "offset": 278472,
+     "offset": 639620,
      "length": 144
     }
    },
@@ -1100,6 +2479,9 @@
      "sort": 3,
      "polygonOffset": 0
     }
+   ],
+   "lodDistances": [
+    2000.0
    ]
   },
   {
@@ -1120,19 +2502,19 @@
    "triangles": 102,
    "geometry": {
     "position": {
-     "offset": 278616,
+     "offset": 639764,
      "length": 2448
     },
     "normal": {
-     "offset": 281064,
+     "offset": 642212,
      "length": 816
     },
     "uv": {
-     "offset": 281880,
+     "offset": 643028,
      "length": 1632
     },
     "index": {
-     "offset": 283512,
+     "offset": 644660,
      "length": 1224
     }
    },
@@ -1150,6 +2532,51 @@
      "normalMap": null,
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    600.0,
+    3000.0
+   ],
+   "lods": [
+    {
+     "lod": "brush_desertshrubgroup01_low0",
+     "vertices": 102,
+     "triangles": 42,
+     "geometry": {
+      "position": {
+       "offset": 645884,
+       "length": 1224
+      },
+      "normal": {
+       "offset": 647108,
+       "length": 408
+      },
+      "uv": {
+       "offset": 647516,
+       "length": 816
+      },
+      "index": {
+       "offset": 648332,
+       "length": 504
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_desertshrubs",
+       "technique": "ambient_alphatest",
+       "start": 0,
+       "count": 126,
+       "texture": "_textures/desertshrubs_0.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": null,
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -1171,19 +2598,19 @@
    "triangles": 12,
    "geometry": {
     "position": {
-     "offset": 284736,
+     "offset": 648836,
      "length": 288
     },
     "normal": {
-     "offset": 285024,
+     "offset": 649124,
      "length": 96
     },
     "uv": {
-     "offset": 285120,
+     "offset": 649220,
      "length": 192
     },
     "index": {
-     "offset": 285312,
+     "offset": 649412,
      "length": 144
     }
    },
@@ -1202,6 +2629,9 @@
      "sort": 3,
      "polygonOffset": 0
     }
+   ],
+   "lodDistances": [
+    1200.0
    ]
   },
   {
@@ -1222,19 +2652,19 @@
    "triangles": 72,
    "geometry": {
     "position": {
-     "offset": 285456,
+     "offset": 649556,
      "length": 1344
     },
     "normal": {
-     "offset": 286800,
+     "offset": 650900,
      "length": 448
     },
     "uv": {
-     "offset": 287248,
+     "offset": 651348,
      "length": 896
     },
     "index": {
-     "offset": 288144,
+     "offset": 652244,
      "length": 864
     }
    },
@@ -1252,6 +2682,51 @@
      "normalMap": null,
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    600.0,
+    4000.0
+   ],
+   "lods": [
+    {
+     "lod": "brush_egyptdesert01_lod20",
+     "vertices": 64,
+     "triangles": 32,
+     "geometry": {
+      "position": {
+       "offset": 653108,
+       "length": 768
+      },
+      "normal": {
+       "offset": 653876,
+       "length": 256
+      },
+      "uv": {
+       "offset": 654132,
+       "length": 512
+      },
+      "index": {
+       "offset": 654644,
+       "length": 384
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_brush_egypt_desert",
+       "technique": "phong_alphatest",
+       "start": 0,
+       "count": 96,
+       "texture": "_textures/brush_egypt_desert.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": null,
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -1273,19 +2748,19 @@
    "triangles": 60,
    "geometry": {
     "position": {
-     "offset": 289008,
+     "offset": 655028,
      "length": 1440
     },
     "normal": {
-     "offset": 290448,
+     "offset": 656468,
      "length": 480
     },
     "uv": {
-     "offset": 290928,
+     "offset": 656948,
      "length": 960
     },
     "index": {
-     "offset": 291888,
+     "offset": 657908,
      "length": 720
     }
    },
@@ -1303,6 +2778,51 @@
      "normalMap": null,
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    600.0,
+    4000.0
+   ],
+   "lods": [
+    {
+     "lod": "brush_egyptdesert02_lod20",
+     "vertices": 64,
+     "triangles": 32,
+     "geometry": {
+      "position": {
+       "offset": 658628,
+       "length": 768
+      },
+      "normal": {
+       "offset": 659396,
+       "length": 256
+      },
+      "uv": {
+       "offset": 659652,
+       "length": 512
+      },
+      "index": {
+       "offset": 660164,
+       "length": 384
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_brush_egypt_desert",
+       "technique": "phong_alphatest",
+       "start": 0,
+       "count": 96,
+       "texture": "_textures/brush_egypt_desert.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": null,
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -1324,19 +2844,19 @@
    "triangles": 286,
    "geometry": {
     "position": {
-     "offset": 292608,
+     "offset": 660548,
      "length": 6336
     },
     "normal": {
-     "offset": 298944,
+     "offset": 666884,
      "length": 2112
     },
     "uv": {
-     "offset": 301056,
+     "offset": 668996,
      "length": 4224
     },
     "index": {
-     "offset": 305280,
+     "offset": 673220,
      "length": 3432
     }
    },
@@ -1354,6 +2874,91 @@
      "normalMap": null,
      "sort": 11,
      "polygonOffset": 1
+    }
+   ],
+   "lodDistances": [
+    500.0,
+    1000.0,
+    2000.0
+   ],
+   "lods": [
+    {
+     "lod": "brush_toujanebigbushy_med0",
+     "vertices": 372,
+     "triangles": 188,
+     "geometry": {
+      "position": {
+       "offset": 676652,
+       "length": 4464
+      },
+      "normal": {
+       "offset": 681116,
+       "length": 1488
+      },
+      "uv": {
+       "offset": 682604,
+       "length": 2976
+      },
+      "index": {
+       "offset": 685580,
+       "length": 2256
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_brush_toujanebigbushy",
+       "technique": "phong_alphatest",
+       "start": 0,
+       "count": 564,
+       "texture": "_textures/tree_desertbushy_col_0.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": null,
+       "sort": 11,
+       "polygonOffset": 1
+      }
+     ]
+    },
+    {
+     "lod": "brush_toujanebigbushy_low0",
+     "vertices": 24,
+     "triangles": 12,
+     "geometry": {
+      "position": {
+       "offset": 687836,
+       "length": 288
+      },
+      "normal": {
+       "offset": 688124,
+       "length": 96
+      },
+      "uv": {
+       "offset": 688220,
+       "length": 192
+      },
+      "index": {
+       "offset": 688412,
+       "length": 144
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_brush_toujanebigbushy",
+       "technique": "phong_alphatest",
+       "start": 0,
+       "count": 36,
+       "texture": "_textures/tree_desertbushy_col_0.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": null,
+       "sort": 11,
+       "polygonOffset": 1
+      }
+     ]
     }
    ]
   },
@@ -1375,23 +2980,23 @@
    "triangles": 136,
    "geometry": {
     "position": {
-     "offset": 308712,
+     "offset": 688556,
      "length": 3264
     },
     "normal": {
-     "offset": 311976,
+     "offset": 691820,
      "length": 1088
     },
     "uv": {
-     "offset": 313064,
+     "offset": 692908,
      "length": 2176
     },
     "index": {
-     "offset": 315240,
+     "offset": 695084,
      "length": 1632
     },
     "tangent": {
-     "offset": 316872,
+     "offset": 696716,
      "length": 1088
     }
    },
@@ -1410,6 +3015,101 @@
      "sort": 3,
      "polygonOffset": 0,
      "specularMap": "_textures/_crate_s-r-87g-87b-87_crate_cp-l-11.webp"
+    }
+   ],
+   "lodDistances": [
+    1000.0,
+    1500.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "crate01_med_lod0",
+     "vertices": 72,
+     "triangles": 36,
+     "geometry": {
+      "position": {
+       "offset": 697804,
+       "length": 864
+      },
+      "normal": {
+       "offset": 698668,
+       "length": 288
+      },
+      "uv": {
+       "offset": 698956,
+       "length": 576
+      },
+      "index": {
+       "offset": 699532,
+       "length": 432
+      },
+      "tangent": {
+       "offset": 699964,
+       "length": 288
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_crate",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 108,
+       "texture": "_textures/crate.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_crate_n-gggr__crate_s-r-87g-87b-87_crate_cp-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_crate_s-r-87g-87b-87_crate_cp-l-11.webp"
+      }
+     ]
+    },
+    {
+     "lod": "crate01_low_lod0",
+     "vertices": 24,
+     "triangles": 12,
+     "geometry": {
+      "position": {
+       "offset": 700252,
+       "length": 288
+      },
+      "normal": {
+       "offset": 700540,
+       "length": 96
+      },
+      "uv": {
+       "offset": 700636,
+       "length": 192
+      },
+      "index": {
+       "offset": 700828,
+       "length": 144
+      },
+      "tangent": {
+       "offset": 700972,
+       "length": 96
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_crate",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 36,
+       "texture": "_textures/crate.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_crate_n-gggr__crate_s-r-87g-87b-87_crate_cp-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_crate_s-r-87g-87b-87_crate_cp-l-11.webp"
+      }
+     ]
     }
    ]
   },
@@ -1431,23 +3131,23 @@
    "triangles": 714,
    "geometry": {
     "position": {
-     "offset": 317960,
+     "offset": 701068,
      "length": 7008
     },
     "normal": {
-     "offset": 324968,
+     "offset": 708076,
      "length": 2336
     },
     "uv": {
-     "offset": 327304,
+     "offset": 710412,
      "length": 4672
     },
     "index": {
-     "offset": 331976,
+     "offset": 715084,
      "length": 8568
     },
     "tangent": {
-     "offset": 340544,
+     "offset": 723652,
      "length": 2336
     }
    },
@@ -1466,6 +3166,101 @@
      "sort": 3,
      "polygonOffset": 0,
      "specularMap": "_textures/_toujane_dome_02_s-r-17g-17b-17_toujane_dom_f78fb26d.webp"
+    }
+   ],
+   "lodDistances": [
+    1000.0,
+    1500.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "toujane_dome_05_high0",
+     "vertices": 584,
+     "triangles": 714,
+     "geometry": {
+      "position": {
+       "offset": 725988,
+       "length": 7008
+      },
+      "normal": {
+       "offset": 732996,
+       "length": 2336
+      },
+      "uv": {
+       "offset": 735332,
+       "length": 4672
+      },
+      "index": {
+       "offset": 740004,
+       "length": 8568
+      },
+      "tangent": {
+       "offset": 748572,
+       "length": 2336
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_dome_02",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 2142,
+       "texture": "_textures/toujane_dome_02.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_toujane_dome_02_n-gggr__toujane_dome_02_s-r-17g-17b-17_toujane_dom_f78fb26d.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_toujane_dome_02_s-r-17g-17b-17_toujane_dom_f78fb26d.webp"
+      }
+     ]
+    },
+    {
+     "lod": "toujane_dome_05_low0",
+     "vertices": 410,
+     "triangles": 350,
+     "geometry": {
+      "position": {
+       "offset": 750908,
+       "length": 4920
+      },
+      "normal": {
+       "offset": 755828,
+       "length": 1640
+      },
+      "uv": {
+       "offset": 757468,
+       "length": 3280
+      },
+      "index": {
+       "offset": 760748,
+       "length": 4200
+      },
+      "tangent": {
+       "offset": 764948,
+       "length": 1640
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_dome_02",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 1050,
+       "texture": "_textures/toujane_dome_02.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_toujane_dome_02_n-gggr__toujane_dome_02_s-r-17g-17b-17_toujane_dom_f78fb26d.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_toujane_dome_02_s-r-17g-17b-17_toujane_dom_f78fb26d.webp"
+      }
+     ]
     }
    ]
   },
@@ -1487,23 +3282,23 @@
    "triangles": 610,
    "geometry": {
     "position": {
-     "offset": 342880,
+     "offset": 766588,
      "length": 5472
     },
     "normal": {
-     "offset": 348352,
+     "offset": 772060,
      "length": 1824
     },
     "uv": {
-     "offset": 350176,
+     "offset": 773884,
      "length": 3648
     },
     "index": {
-     "offset": 353824,
+     "offset": 777532,
      "length": 7320
     },
     "tangent": {
-     "offset": 361144,
+     "offset": 784852,
      "length": 1824
     }
    },
@@ -1522,6 +3317,101 @@
      "sort": 3,
      "polygonOffset": 0,
      "specularMap": "_textures/_mtl_egypt_vase1_s-rgb_mtl_egypt_vase1_cp-l99.webp"
+    }
+   ],
+   "lodDistances": [
+    1000.0,
+    1500.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "egypt_prop_vase1_med0",
+     "vertices": 304,
+     "triangles": 370,
+     "geometry": {
+      "position": {
+       "offset": 786676,
+       "length": 3648
+      },
+      "normal": {
+       "offset": 790324,
+       "length": 1216
+      },
+      "uv": {
+       "offset": 791540,
+       "length": 2432
+      },
+      "index": {
+       "offset": 793972,
+       "length": 4440
+      },
+      "tangent": {
+       "offset": 798412,
+       "length": 1216
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_egypt_vase1",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 1110,
+       "texture": "_textures/mtl_egypt_vase1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_mtl_egypt_vase1_n-gggr__mtl_egypt_vase1_s-rgb_mtl_egypt_vase1_cp-l99.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_mtl_egypt_vase1_s-rgb_mtl_egypt_vase1_cp-l99.webp"
+      }
+     ]
+    },
+    {
+     "lod": "egypt_prop_vase1_low0",
+     "vertices": 68,
+     "triangles": 64,
+     "geometry": {
+      "position": {
+       "offset": 799628,
+       "length": 816
+      },
+      "normal": {
+       "offset": 800444,
+       "length": 272
+      },
+      "uv": {
+       "offset": 800716,
+       "length": 544
+      },
+      "index": {
+       "offset": 801260,
+       "length": 768
+      },
+      "tangent": {
+       "offset": 802028,
+       "length": 272
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_egypt_vase1",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 192,
+       "texture": "_textures/mtl_egypt_vase1.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_mtl_egypt_vase1_n-gggr__mtl_egypt_vase1_s-rgb_mtl_egypt_vase1_cp-l99.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_mtl_egypt_vase1_s-rgb_mtl_egypt_vase1_cp-l99.webp"
+      }
+     ]
     }
    ]
   },
@@ -1543,23 +3433,23 @@
    "triangles": 3087,
    "geometry": {
     "position": {
-     "offset": 362968,
+     "offset": 802300,
      "length": 55116
     },
     "normal": {
-     "offset": 418084,
+     "offset": 857416,
      "length": 18372
     },
     "uv": {
-     "offset": 436456,
+     "offset": 875788,
      "length": 36744
     },
     "index": {
-     "offset": 473200,
+     "offset": 912532,
      "length": 37044
     },
     "tangent": {
-     "offset": 510244,
+     "offset": 949576,
      "length": 18372
     }
    },
@@ -1640,6 +3530,11 @@
      "specularMap": "_textures/_flak88_destroy_spec-rgb_flak88_destroy_cosine-l-11.webp"
     }
    ],
+   "lodDistances": [
+    300.0,
+    600.0,
+    0.0
+   ],
    "skinned": true
   },
   {
@@ -1660,23 +3555,23 @@
    "triangles": 3044,
    "geometry": {
     "position": {
-     "offset": 528616,
+     "offset": 967948,
      "length": 42360
     },
     "normal": {
-     "offset": 570976,
+     "offset": 1010308,
      "length": 14120
     },
     "uv": {
-     "offset": 585096,
+     "offset": 1024428,
      "length": 28240
     },
     "index": {
-     "offset": 613336,
+     "offset": 1052668,
      "length": 36528
     },
     "tangent": {
-     "offset": 649864,
+     "offset": 1089196,
      "length": 14120
     }
    },
@@ -1695,6 +3590,101 @@
      "sort": 3,
      "polygonOffset": 0,
      "specularMap": "_textures/_haycart_specular-r-49g-49b-49__white-l-11.webp"
+    }
+   ],
+   "lodDistances": [
+    250.0,
+    500.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "haycart_med0",
+     "vertices": 2726,
+     "triangles": 2040,
+     "geometry": {
+      "position": {
+       "offset": 1103316,
+       "length": 32712
+      },
+      "normal": {
+       "offset": 1136028,
+       "length": 10904
+      },
+      "uv": {
+       "offset": 1146932,
+       "length": 21808
+      },
+      "index": {
+       "offset": 1168740,
+       "length": 24480
+      },
+      "tangent": {
+       "offset": 1193220,
+       "length": 10904
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_haycart",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 6120,
+       "texture": "_textures/haycart.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_haycart_nm-gggr__haycart_specular-r-49g-49b-49__white-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_haycart_specular-r-49g-49b-49__white-l-11.webp"
+      }
+     ]
+    },
+    {
+     "lod": "haycart_low0",
+     "vertices": 1369,
+     "triangles": 878,
+     "geometry": {
+      "position": {
+       "offset": 1204124,
+       "length": 16428
+      },
+      "normal": {
+       "offset": 1220552,
+       "length": 5476
+      },
+      "uv": {
+       "offset": 1226028,
+       "length": 10952
+      },
+      "index": {
+       "offset": 1236980,
+       "length": 10536
+      },
+      "tangent": {
+       "offset": 1247516,
+       "length": 5476
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_haycart",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 2634,
+       "texture": "_textures/haycart.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_haycart_nm-gggr__haycart_specular-r-49g-49b-49__white-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_haycart_specular-r-49g-49b-49__white-l-11.webp"
+      }
+     ]
     }
    ]
   },
@@ -1716,23 +3706,23 @@
    "triangles": 1702,
    "geometry": {
     "position": {
-     "offset": 663984,
+     "offset": 1252992,
      "length": 16488
     },
     "normal": {
-     "offset": 680472,
+     "offset": 1269480,
      "length": 5496
     },
     "uv": {
-     "offset": 685968,
+     "offset": 1274976,
      "length": 10992
     },
     "index": {
-     "offset": 696960,
+     "offset": 1285968,
      "length": 20424
     },
     "tangent": {
-     "offset": 717384,
+     "offset": 1306392,
      "length": 5496
     }
    },
@@ -1756,6 +3746,60 @@
       32.0
      ]
     }
+   ],
+   "lodDistances": [
+    400.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "sandbag_curvedsection_low0",
+     "vertices": 503,
+     "triangles": 524,
+     "geometry": {
+      "position": {
+       "offset": 1311888,
+       "length": 6036
+      },
+      "normal": {
+       "offset": 1317924,
+       "length": 2012
+      },
+      "uv": {
+       "offset": 1319936,
+       "length": 4024
+      },
+      "index": {
+       "offset": 1323960,
+       "length": 6288
+      },
+      "tangent": {
+       "offset": 1330248,
+       "length": 2012
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_sandbags",
+       "technique": "phong_replace_detail",
+       "start": 0,
+       "count": 1572,
+       "texture": "_textures/sandbags_coler.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_sandbag_normals-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "detailMap": "_textures/burlap_01.webp",
+       "detailScale": [
+        32.0,
+        32.0
+       ]
+      }
+     ]
+    }
    ]
   },
   {
@@ -1776,23 +3820,23 @@
    "triangles": 1074,
    "geometry": {
     "position": {
-     "offset": 722880,
+     "offset": 1332260,
      "length": 9600
     },
     "normal": {
-     "offset": 732480,
+     "offset": 1341860,
      "length": 3200
     },
     "uv": {
-     "offset": 735680,
+     "offset": 1345060,
      "length": 6400
     },
     "index": {
-     "offset": 742080,
+     "offset": 1351460,
      "length": 12888
     },
     "tangent": {
-     "offset": 754968,
+     "offset": 1364348,
      "length": 3200
     }
    },
@@ -1816,6 +3860,60 @@
       32.0
      ]
     }
+   ],
+   "lodDistances": [
+    400.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "sandbag_cornersection_low0",
+     "vertices": 239,
+     "triangles": 227,
+     "geometry": {
+      "position": {
+       "offset": 1367548,
+       "length": 2868
+      },
+      "normal": {
+       "offset": 1370416,
+       "length": 956
+      },
+      "uv": {
+       "offset": 1371372,
+       "length": 1912
+      },
+      "index": {
+       "offset": 1373284,
+       "length": 2724
+      },
+      "tangent": {
+       "offset": 1376008,
+       "length": 956
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_sandbags_desert",
+       "technique": "phong_replace_detail",
+       "start": 0,
+       "count": 681,
+       "texture": "_textures/sandbags_coler_tan.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_sandbag_normals-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "detailMap": "_textures/burlap_01.webp",
+       "detailScale": [
+        32.0,
+        32.0
+       ]
+      }
+     ]
+    }
    ]
   },
   {
@@ -1836,23 +3934,23 @@
    "triangles": 594,
    "geometry": {
     "position": {
-     "offset": 758168,
+     "offset": 1376964,
      "length": 5736
     },
     "normal": {
-     "offset": 763904,
+     "offset": 1382700,
      "length": 1912
     },
     "uv": {
-     "offset": 765816,
+     "offset": 1384612,
      "length": 3824
     },
     "index": {
-     "offset": 769640,
+     "offset": 1388436,
      "length": 7128
     },
     "tangent": {
-     "offset": 776768,
+     "offset": 1395564,
      "length": 1912
     }
    },
@@ -1876,6 +3974,60 @@
       32.0
      ]
     }
+   ],
+   "lodDistances": [
+    400.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "sandbag_endsection_left_low0",
+     "vertices": 221,
+     "triangles": 222,
+     "geometry": {
+      "position": {
+       "offset": 1397476,
+       "length": 2652
+      },
+      "normal": {
+       "offset": 1400128,
+       "length": 884
+      },
+      "uv": {
+       "offset": 1401012,
+       "length": 1768
+      },
+      "index": {
+       "offset": 1402780,
+       "length": 2664
+      },
+      "tangent": {
+       "offset": 1405444,
+       "length": 884
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_sandbags_desert",
+       "technique": "phong_replace_detail",
+       "start": 0,
+       "count": 666,
+       "texture": "_textures/sandbags_coler_tan.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_sandbag_normals-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "detailMap": "_textures/burlap_01.webp",
+       "detailScale": [
+        32.0,
+        32.0
+       ]
+      }
+     ]
+    }
    ]
   },
   {
@@ -1896,23 +4048,23 @@
    "triangles": 580,
    "geometry": {
     "position": {
-     "offset": 778680,
+     "offset": 1406328,
      "length": 6204
     },
     "normal": {
-     "offset": 784884,
+     "offset": 1412532,
      "length": 2068
     },
     "uv": {
-     "offset": 786952,
+     "offset": 1414600,
      "length": 4136
     },
     "index": {
-     "offset": 791088,
+     "offset": 1418736,
      "length": 6960
     },
     "tangent": {
-     "offset": 798048,
+     "offset": 1425696,
      "length": 2068
     }
    },
@@ -1936,6 +4088,60 @@
       32.0
      ]
     }
+   ],
+   "lodDistances": [
+    400.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "sandbag_endsection_right_low0",
+     "vertices": 214,
+     "triangles": 237,
+     "geometry": {
+      "position": {
+       "offset": 1427764,
+       "length": 2568
+      },
+      "normal": {
+       "offset": 1430332,
+       "length": 856
+      },
+      "uv": {
+       "offset": 1431188,
+       "length": 1712
+      },
+      "index": {
+       "offset": 1432900,
+       "length": 2844
+      },
+      "tangent": {
+       "offset": 1435744,
+       "length": 856
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_sandbags_desert",
+       "technique": "phong_replace_detail",
+       "start": 0,
+       "count": 711,
+       "texture": "_textures/sandbags_coler_tan.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_sandbag_normals-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "detailMap": "_textures/burlap_01.webp",
+       "detailScale": [
+        32.0,
+        32.0
+       ]
+      }
+     ]
+    }
    ]
   },
   {
@@ -1956,23 +4162,23 @@
    "triangles": 528,
    "geometry": {
     "position": {
-     "offset": 800116,
+     "offset": 1436600,
      "length": 4476
     },
     "normal": {
-     "offset": 804592,
+     "offset": 1441076,
      "length": 1492
     },
     "uv": {
-     "offset": 806084,
+     "offset": 1442568,
      "length": 2984
     },
     "index": {
-     "offset": 809068,
+     "offset": 1445552,
      "length": 6336
     },
     "tangent": {
-     "offset": 815404,
+     "offset": 1451888,
      "length": 1492
     }
    },
@@ -1996,6 +4202,60 @@
       32.0
      ]
     }
+   ],
+   "lodDistances": [
+    400.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "sandbag_shortsection_low0",
+     "vertices": 123,
+     "triangles": 114,
+     "geometry": {
+      "position": {
+       "offset": 1453380,
+       "length": 1476
+      },
+      "normal": {
+       "offset": 1454856,
+       "length": 492
+      },
+      "uv": {
+       "offset": 1455348,
+       "length": 984
+      },
+      "index": {
+       "offset": 1456332,
+       "length": 1368
+      },
+      "tangent": {
+       "offset": 1457700,
+       "length": 492
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_sandbags_desert",
+       "technique": "phong_replace_detail",
+       "start": 0,
+       "count": 342,
+       "texture": "_textures/sandbags_coler_tan.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_sandbag_normals-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "detailMap": "_textures/burlap_01.webp",
+       "detailScale": [
+        32.0,
+        32.0
+       ]
+      }
+     ]
+    }
    ]
   },
   {
@@ -2016,23 +4276,23 @@
    "triangles": 236,
    "geometry": {
     "position": {
-     "offset": 816896,
+     "offset": 1458192,
      "length": 1884
     },
     "normal": {
-     "offset": 818780,
+     "offset": 1460076,
      "length": 628
     },
     "uv": {
-     "offset": 819408,
+     "offset": 1460704,
      "length": 1256
     },
     "index": {
-     "offset": 820664,
+     "offset": 1461960,
      "length": 2832
     },
     "tangent": {
-     "offset": 823496,
+     "offset": 1464792,
      "length": 628
     }
    },
@@ -2056,6 +4316,109 @@
       32.0
      ]
     }
+   ],
+   "lodDistances": [
+    100.0,
+    350.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "sandbag_single_flat_med0",
+     "vertices": 72,
+     "triangles": 84,
+     "geometry": {
+      "position": {
+       "offset": 1465420,
+       "length": 864
+      },
+      "normal": {
+       "offset": 1466284,
+       "length": 288
+      },
+      "uv": {
+       "offset": 1466572,
+       "length": 576
+      },
+      "index": {
+       "offset": 1467148,
+       "length": 1008
+      },
+      "tangent": {
+       "offset": 1468156,
+       "length": 288
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_sandbags",
+       "technique": "phong_replace_detail",
+       "start": 0,
+       "count": 252,
+       "texture": "_textures/sandbags_coler.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_sandbag_normals-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "detailMap": "_textures/burlap_01.webp",
+       "detailScale": [
+        32.0,
+        32.0
+       ]
+      }
+     ]
+    },
+    {
+     "lod": "sandbag_single_flat_low0",
+     "vertices": 14,
+     "triangles": 14,
+     "geometry": {
+      "position": {
+       "offset": 1468444,
+       "length": 168
+      },
+      "normal": {
+       "offset": 1468612,
+       "length": 56
+      },
+      "uv": {
+       "offset": 1468668,
+       "length": 112
+      },
+      "index": {
+       "offset": 1468780,
+       "length": 168
+      },
+      "tangent": {
+       "offset": 1468948,
+       "length": 56
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_sandbags",
+       "technique": "phong_replace_detail",
+       "start": 0,
+       "count": 42,
+       "texture": "_textures/sandbags_coler.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_sandbag_normals-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "detailMap": "_textures/burlap_01.webp",
+       "detailScale": [
+        32.0,
+        32.0
+       ]
+      }
+     ]
+    }
    ]
   },
   {
@@ -2076,23 +4439,23 @@
    "triangles": 372,
    "geometry": {
     "position": {
-     "offset": 824124,
+     "offset": 1469004,
      "length": 4728
     },
     "normal": {
-     "offset": 828852,
+     "offset": 1473732,
      "length": 1576
     },
     "uv": {
-     "offset": 830428,
+     "offset": 1475308,
      "length": 3152
     },
     "index": {
-     "offset": 833580,
+     "offset": 1478460,
      "length": 4464
     },
     "tangent": {
-     "offset": 838044,
+     "offset": 1482924,
      "length": 1576
     }
    },
@@ -2117,6 +4480,111 @@
       16.0
      ]
     }
+   ],
+   "lodDistances": [
+    256.0,
+    512.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "barrel_medium0",
+     "vertices": 203,
+     "triangles": 180,
+     "geometry": {
+      "position": {
+       "offset": 1484500,
+       "length": 2436
+      },
+      "normal": {
+       "offset": 1486936,
+       "length": 812
+      },
+      "uv": {
+       "offset": 1487748,
+       "length": 1624
+      },
+      "index": {
+       "offset": 1489372,
+       "length": 2160
+      },
+      "tangent": {
+       "offset": 1491532,
+       "length": 812
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_barrel_silver",
+       "technique": "phong_replace_spec_detail",
+       "start": 0,
+       "count": 540,
+       "texture": "_textures/silverbarrel_local.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_silverbarrel_bump_local-gggr__silverbarrel_spec_local-rgb__white-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_silverbarrel_spec_local-rgb__white-l-11.webp",
+       "detailMap": "_textures/metal_01.webp",
+       "detailScale": [
+        16.0,
+        16.0
+       ]
+      }
+     ]
+    },
+    {
+     "lod": "barrel_low0",
+     "vertices": 34,
+     "triangles": 28,
+     "geometry": {
+      "position": {
+       "offset": 1492344,
+       "length": 408
+      },
+      "normal": {
+       "offset": 1492752,
+       "length": 136
+      },
+      "uv": {
+       "offset": 1492888,
+       "length": 272
+      },
+      "index": {
+       "offset": 1493160,
+       "length": 336
+      },
+      "tangent": {
+       "offset": 1493496,
+       "length": 136
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_barrel_silver",
+       "technique": "phong_replace_spec_detail",
+       "start": 0,
+       "count": 84,
+       "texture": "_textures/silverbarrel_local.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_silverbarrel_bump_local-gggr__silverbarrel_spec_local-rgb__white-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_silverbarrel_spec_local-rgb__white-l-11.webp",
+       "detailMap": "_textures/metal_01.webp",
+       "detailScale": [
+        16.0,
+        16.0
+       ]
+      }
+     ]
+    }
    ]
   },
   {
@@ -2137,23 +4605,23 @@
    "triangles": 358,
    "geometry": {
     "position": {
-     "offset": 839620,
+     "offset": 1493632,
      "length": 8592
     },
     "normal": {
-     "offset": 848212,
+     "offset": 1502224,
      "length": 2864
     },
     "uv": {
-     "offset": 851076,
+     "offset": 1505088,
      "length": 5728
     },
     "index": {
-     "offset": 856804,
+     "offset": 1510816,
      "length": 4296
     },
     "tangent": {
-     "offset": 861100,
+     "offset": 1515112,
      "length": 2864
     }
    },
@@ -2187,6 +4655,56 @@
      "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
     }
+   ],
+   "lodDistances": [
+    700.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "dak_crate1_low0",
+     "vertices": 24,
+     "triangles": 12,
+     "geometry": {
+      "position": {
+       "offset": 1517976,
+       "length": 288
+      },
+      "normal": {
+       "offset": 1518264,
+       "length": 96
+      },
+      "uv": {
+       "offset": 1518360,
+       "length": 192
+      },
+      "index": {
+       "offset": 1518552,
+       "length": 144
+      },
+      "tangent": {
+       "offset": 1518696,
+       "length": 96
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_dak_crate",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 36,
+       "texture": "_textures/dak_crates_local.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
+      }
+     ]
+    }
    ]
   },
   {
@@ -2207,23 +4725,23 @@
    "triangles": 334,
    "geometry": {
     "position": {
-     "offset": 863964,
+     "offset": 1518792,
      "length": 8016
     },
     "normal": {
-     "offset": 871980,
+     "offset": 1526808,
      "length": 2672
     },
     "uv": {
-     "offset": 874652,
+     "offset": 1529480,
      "length": 5344
     },
     "index": {
-     "offset": 879996,
+     "offset": 1534824,
      "length": 4008
     },
     "tangent": {
-     "offset": 884004,
+     "offset": 1538832,
      "length": 2672
     }
    },
@@ -2257,6 +4775,56 @@
      "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
     }
+   ],
+   "lodDistances": [
+    700.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "dak_crate7_low0",
+     "vertices": 24,
+     "triangles": 12,
+     "geometry": {
+      "position": {
+       "offset": 1541504,
+       "length": 288
+      },
+      "normal": {
+       "offset": 1541792,
+       "length": 96
+      },
+      "uv": {
+       "offset": 1541888,
+       "length": 192
+      },
+      "index": {
+       "offset": 1542080,
+       "length": 144
+      },
+      "tangent": {
+       "offset": 1542224,
+       "length": 96
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_dak_crate",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 36,
+       "texture": "_textures/dak_crates_local.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
+      }
+     ]
+    }
    ]
   },
   {
@@ -2277,23 +4845,23 @@
    "triangles": 328,
    "geometry": {
     "position": {
-     "offset": 886676,
+     "offset": 1542320,
      "length": 7872
     },
     "normal": {
-     "offset": 894548,
+     "offset": 1550192,
      "length": 2624
     },
     "uv": {
-     "offset": 897172,
+     "offset": 1552816,
      "length": 5248
     },
     "index": {
-     "offset": 902420,
+     "offset": 1558064,
      "length": 3936
     },
     "tangent": {
-     "offset": 906356,
+     "offset": 1562000,
      "length": 2624
     }
    },
@@ -2327,6 +4895,56 @@
      "polygonOffset": 0,
      "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
     }
+   ],
+   "lodDistances": [
+    700.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "dak_crate8_low0",
+     "vertices": 24,
+     "triangles": 12,
+     "geometry": {
+      "position": {
+       "offset": 1564624,
+       "length": 288
+      },
+      "normal": {
+       "offset": 1564912,
+       "length": 96
+      },
+      "uv": {
+       "offset": 1565008,
+       "length": 192
+      },
+      "index": {
+       "offset": 1565200,
+       "length": 144
+      },
+      "tangent": {
+       "offset": 1565344,
+       "length": 96
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_dak_crate",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 36,
+       "texture": "_textures/dak_crates_local.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_dak_crates_n-gggr__dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_dak_crates_spec_local-r-61g-61b-61_dak_cra_6dd4463d.webp"
+      }
+     ]
+    }
    ]
   },
   {
@@ -2347,23 +4965,23 @@
    "triangles": 32,
    "geometry": {
     "position": {
-     "offset": 908980,
+     "offset": 1565440,
      "length": 432
     },
     "normal": {
-     "offset": 909412,
+     "offset": 1565872,
      "length": 144
     },
     "uv": {
-     "offset": 909556,
+     "offset": 1566016,
      "length": 288
     },
     "index": {
-     "offset": 909844,
+     "offset": 1566304,
      "length": 384
     },
     "tangent": {
-     "offset": 910228,
+     "offset": 1566688,
      "length": 144
     }
    },
@@ -2382,6 +5000,56 @@
      "sort": 3,
      "polygonOffset": 0,
      "specularMap": "_textures/_doorknob1_specular-rgb__white-l-11.webp"
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "doorknob1lowlod0",
+     "vertices": 9,
+     "triangles": 8,
+     "geometry": {
+      "position": {
+       "offset": 1566832,
+       "length": 108
+      },
+      "normal": {
+       "offset": 1566940,
+       "length": 36
+      },
+      "uv": {
+       "offset": 1566976,
+       "length": 72
+      },
+      "index": {
+       "offset": 1567048,
+       "length": 96
+      },
+      "tangent": {
+       "offset": 1567144,
+       "length": 36
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_doorknob1",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 24,
+       "texture": "_textures/doorknob1.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_doorknob1_normal-gggr__doorknob1_specular-rgb__white-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_doorknob1_specular-rgb__white-l-11.webp"
+      }
+     ]
     }
    ]
   },
@@ -2403,23 +5071,23 @@
    "triangles": 344,
    "geometry": {
     "position": {
-     "offset": 910372,
+     "offset": 1567180,
      "length": 5016
     },
     "normal": {
-     "offset": 915388,
+     "offset": 1572196,
      "length": 1672
     },
     "uv": {
-     "offset": 917060,
+     "offset": 1573868,
      "length": 3344
     },
     "index": {
-     "offset": 920404,
+     "offset": 1577212,
      "length": 4128
     },
     "tangent": {
-     "offset": 924532,
+     "offset": 1581340,
      "length": 1672
     }
    },
@@ -2438,6 +5106,101 @@
      "sort": 3,
      "polygonOffset": 0,
      "specularMap": "_textures/_pail_spec-rgb__white-l-11.webp"
+    }
+   ],
+   "lodDistances": [
+    100.0,
+    250.0,
+    9999.0
+   ],
+   "lods": [
+    {
+     "lod": "metal_pail1med0",
+     "vertices": 135,
+     "triangles": 128,
+     "geometry": {
+      "position": {
+       "offset": 1583012,
+       "length": 1620
+      },
+      "normal": {
+       "offset": 1584632,
+       "length": 540
+      },
+      "uv": {
+       "offset": 1585172,
+       "length": 1080
+      },
+      "index": {
+       "offset": 1586252,
+       "length": 1536
+      },
+      "tangent": {
+       "offset": 1587788,
+       "length": 540
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_metal_pail",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 384,
+       "texture": "_textures/pail.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_pail_bump-gggr__pail_spec-rgb__white-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_pail_spec-rgb__white-l-11.webp"
+      }
+     ]
+    },
+    {
+     "lod": "metal_pail1low0",
+     "vertices": 43,
+     "triangles": 30,
+     "geometry": {
+      "position": {
+       "offset": 1588328,
+       "length": 516
+      },
+      "normal": {
+       "offset": 1588844,
+       "length": 172
+      },
+      "uv": {
+       "offset": 1589016,
+       "length": 344
+      },
+      "index": {
+       "offset": 1589360,
+       "length": 360
+      },
+      "tangent": {
+       "offset": 1589720,
+       "length": 172
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_metal_pail",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 90,
+       "texture": "_textures/pail.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_pail_bump-gggr__pail_spec-rgb__white-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_pail_spec-rgb__white-l-11.webp"
+      }
+     ]
     }
    ]
   },
@@ -2459,23 +5222,23 @@
    "triangles": 492,
    "geometry": {
     "position": {
-     "offset": 926204,
+     "offset": 1589892,
      "length": 4584
     },
     "normal": {
-     "offset": 930788,
+     "offset": 1594476,
      "length": 1528
     },
     "uv": {
-     "offset": 932316,
+     "offset": 1596004,
      "length": 3056
     },
     "index": {
-     "offset": 935372,
+     "offset": 1599060,
      "length": 5904
     },
     "tangent": {
-     "offset": 941276,
+     "offset": 1604964,
      "length": 1528
     }
    },
@@ -2493,6 +5256,55 @@
      "normalMap": "_textures/_basket2bump-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "basket_wicker6lod10",
+     "vertices": 244,
+     "triangles": 284,
+     "geometry": {
+      "position": {
+       "offset": 1606492,
+       "length": 2928
+      },
+      "normal": {
+       "offset": 1609420,
+       "length": 976
+      },
+      "uv": {
+       "offset": 1610396,
+       "length": 1952
+      },
+      "index": {
+       "offset": 1612348,
+       "length": 3408
+      },
+      "tangent": {
+       "offset": 1615756,
+       "length": 976
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_wickerbasket1",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 852,
+       "texture": "_textures/basket2.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_basket2bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -2514,23 +5326,23 @@
    "triangles": 460,
    "geometry": {
     "position": {
-     "offset": 942804,
+     "offset": 1616732,
      "length": 4380
     },
     "normal": {
-     "offset": 947184,
+     "offset": 1621112,
      "length": 1460
     },
     "uv": {
-     "offset": 948644,
+     "offset": 1622572,
      "length": 2920
     },
     "index": {
-     "offset": 951564,
+     "offset": 1625492,
      "length": 5520
     },
     "tangent": {
-     "offset": 957084,
+     "offset": 1631012,
      "length": 1460
     }
    },
@@ -2548,6 +5360,55 @@
      "normalMap": "_textures/_basket2bump-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "basket_wicker7lod10",
+     "vertices": 236,
+     "triangles": 268,
+     "geometry": {
+      "position": {
+       "offset": 1632472,
+       "length": 2832
+      },
+      "normal": {
+       "offset": 1635304,
+       "length": 944
+      },
+      "uv": {
+       "offset": 1636248,
+       "length": 1888
+      },
+      "index": {
+       "offset": 1638136,
+       "length": 3216
+      },
+      "tangent": {
+       "offset": 1641352,
+       "length": 944
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_wickerbasket1",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 804,
+       "texture": "_textures/basket2.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_basket2bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -2569,23 +5430,23 @@
    "triangles": 492,
    "geometry": {
     "position": {
-     "offset": 958544,
+     "offset": 1642296,
      "length": 4788
     },
     "normal": {
-     "offset": 963332,
+     "offset": 1647084,
      "length": 1596
     },
     "uv": {
-     "offset": 964928,
+     "offset": 1648680,
      "length": 3192
     },
     "index": {
-     "offset": 968120,
+     "offset": 1651872,
      "length": 5904
     },
     "tangent": {
-     "offset": 974024,
+     "offset": 1657776,
      "length": 1596
     }
    },
@@ -2603,6 +5464,55 @@
      "normalMap": "_textures/_basket2bump-gggr.webp",
      "sort": 3,
      "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "basket_wicker8lod10",
+     "vertices": 253,
+     "triangles": 284,
+     "geometry": {
+      "position": {
+       "offset": 1659372,
+       "length": 3036
+      },
+      "normal": {
+       "offset": 1662408,
+       "length": 1012
+      },
+      "uv": {
+       "offset": 1663420,
+       "length": 2024
+      },
+      "index": {
+       "offset": 1665444,
+       "length": 3408
+      },
+      "tangent": {
+       "offset": 1668852,
+       "length": 1012
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_wickerbasket1",
+       "technique": "phong_replace",
+       "start": 0,
+       "count": 852,
+       "texture": "_textures/basket2.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_basket2bump-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
     }
    ]
   },
@@ -2624,23 +5534,23 @@
    "triangles": 252,
    "geometry": {
     "position": {
-     "offset": 975620,
+     "offset": 1669864,
      "length": 2604
     },
     "normal": {
-     "offset": 978224,
+     "offset": 1672468,
      "length": 868
     },
     "uv": {
-     "offset": 979092,
+     "offset": 1673336,
      "length": 1736
     },
     "index": {
-     "offset": 980828,
+     "offset": 1675072,
      "length": 3024
     },
     "tangent": {
-     "offset": 983852,
+     "offset": 1678096,
      "length": 868
     }
    },
@@ -2659,6 +5569,101 @@
      "sort": 3,
      "polygonOffset": 0,
      "specularMap": "_textures/_woodbarrel1specular-rgb_woodbarrel1cosine-l-11.webp"
+    }
+   ],
+   "lodDistances": [
+    256.0,
+    1024.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "wooden_barrel1lod20",
+     "vertices": 106,
+     "triangles": 124,
+     "geometry": {
+      "position": {
+       "offset": 1678964,
+       "length": 1272
+      },
+      "normal": {
+       "offset": 1680236,
+       "length": 424
+      },
+      "uv": {
+       "offset": 1680660,
+       "length": 848
+      },
+      "index": {
+       "offset": 1681508,
+       "length": 1488
+      },
+      "tangent": {
+       "offset": 1682996,
+       "length": 424
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_wooden_barrel1",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 372,
+       "texture": "_textures/woodbarrel1.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_woodbarrel1bump-gggr__woodbarrel1specular-rgb_woodbarrel1cosine-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_woodbarrel1specular-rgb_woodbarrel1cosine-l-11.webp"
+      }
+     ]
+    },
+    {
+     "lod": "wooden_barrel1lod40",
+     "vertices": 24,
+     "triangles": 12,
+     "geometry": {
+      "position": {
+       "offset": 1683420,
+       "length": 288
+      },
+      "normal": {
+       "offset": 1683708,
+       "length": 96
+      },
+      "uv": {
+       "offset": 1683804,
+       "length": 192
+      },
+      "index": {
+       "offset": 1683996,
+       "length": 144
+      },
+      "tangent": {
+       "offset": 1684140,
+       "length": 96
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_wooden_barrel1",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 36,
+       "texture": "_textures/woodbarrel1.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_woodbarrel1bump-gggr__woodbarrel1specular-rgb_woodbarrel1cosine-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_woodbarrel1specular-rgb_woodbarrel1cosine-l-11.webp"
+      }
+     ]
     }
    ]
   },
@@ -2680,19 +5685,19 @@
    "triangles": 535,
    "geometry": {
     "position": {
-     "offset": 984720,
+     "offset": 1684236,
      "length": 9792
     },
     "normal": {
-     "offset": 994512,
+     "offset": 1694028,
      "length": 3264
     },
     "uv": {
-     "offset": 997776,
+     "offset": 1697292,
      "length": 6528
     },
     "index": {
-     "offset": 1004304,
+     "offset": 1703820,
      "length": 6420
     }
    },
@@ -2725,6 +5730,119 @@
      "sort": 3,
      "polygonOffset": 0
     }
+   ],
+   "lodDistances": [
+    800.0,
+    1400.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "tree_desertbushy_med0",
+     "vertices": 607,
+     "triangles": 362,
+     "geometry": {
+      "position": {
+       "offset": 1710240,
+       "length": 7284
+      },
+      "normal": {
+       "offset": 1717524,
+       "length": 2428
+      },
+      "uv": {
+       "offset": 1719952,
+       "length": 4856
+      },
+      "index": {
+       "offset": 1724808,
+       "length": 4344
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_tree_desertbushy",
+       "technique": "phong_alphatest",
+       "start": 0,
+       "count": 558,
+       "texture": "_textures/tree_desertbushy_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": null,
+       "sort": 3,
+       "polygonOffset": 0
+      },
+      {
+       "material": "mtl_tree_desertbushycanopy",
+       "technique": "ambient_alphatest",
+       "start": 558,
+       "count": 528,
+       "texture": "_textures/tree_desertbushy_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": null,
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "tree_desertbushy_low0",
+     "vertices": 440,
+     "triangles": 246,
+     "geometry": {
+      "position": {
+       "offset": 1729152,
+       "length": 5280
+      },
+      "normal": {
+       "offset": 1734432,
+       "length": 1760
+      },
+      "uv": {
+       "offset": 1736192,
+       "length": 3520
+      },
+      "index": {
+       "offset": 1739712,
+       "length": 2952
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_tree_desertbushy",
+       "technique": "phong_alphatest",
+       "start": 0,
+       "count": 384,
+       "texture": "_textures/tree_desertbushy_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": null,
+       "sort": 3,
+       "polygonOffset": 0
+      },
+      {
+       "material": "mtl_tree_desertbushycanopy",
+       "technique": "ambient_alphatest",
+       "start": 384,
+       "count": 354,
+       "texture": "_textures/tree_desertbushy_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": null,
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    }
    ]
   },
   {
@@ -2745,23 +5863,23 @@
    "triangles": 614,
    "geometry": {
     "position": {
-     "offset": 1010724,
+     "offset": 1742664,
      "length": 8964
     },
     "normal": {
-     "offset": 1019688,
+     "offset": 1751628,
      "length": 2988
     },
     "uv": {
-     "offset": 1022676,
+     "offset": 1754616,
      "length": 5976
     },
     "index": {
-     "offset": 1028652,
+     "offset": 1760592,
      "length": 7368
     },
     "tangent": {
-     "offset": 1036020,
+     "offset": 1767960,
      "length": 2988
     }
    },
@@ -2794,6 +5912,185 @@
      "sort": 3,
      "polygonOffset": 0
     }
+   ],
+   "lodDistances": [
+    800.0,
+    1400.0,
+    2000.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "tree_desertpalm02_med0",
+     "vertices": 500,
+     "triangles": 397,
+     "geometry": {
+      "position": {
+       "offset": 1770948,
+       "length": 6000
+      },
+      "normal": {
+       "offset": 1776948,
+       "length": 2000
+      },
+      "uv": {
+       "offset": 1778948,
+       "length": 4000
+      },
+      "index": {
+       "offset": 1782948,
+       "length": 4764
+      },
+      "tangent": {
+       "offset": 1787712,
+       "length": 2000
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_desertpalm",
+       "technique": "phong_alphatest",
+       "start": 0,
+       "count": 453,
+       "texture": "_textures/tree_desertpalm_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      },
+      {
+       "material": "mtl_desertpalmfronds",
+       "technique": "phong_alphatest",
+       "start": 453,
+       "count": 738,
+       "texture": "_textures/tree_desertpalm_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "tree_desertpalm02_low0",
+     "vertices": 250,
+     "triangles": 153,
+     "geometry": {
+      "position": {
+       "offset": 1789712,
+       "length": 3000
+      },
+      "normal": {
+       "offset": 1792712,
+       "length": 1000
+      },
+      "uv": {
+       "offset": 1793712,
+       "length": 2000
+      },
+      "index": {
+       "offset": 1795712,
+       "length": 1836
+      },
+      "tangent": {
+       "offset": 1797548,
+       "length": 1000
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_desertpalm",
+       "technique": "phong_alphatest",
+       "start": 0,
+       "count": 129,
+       "texture": "_textures/tree_desertpalm_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      },
+      {
+       "material": "mtl_desertpalmfronds",
+       "technique": "phong_alphatest",
+       "start": 129,
+       "count": 330,
+       "texture": "_textures/tree_desertpalm_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "tree_desertpalm02_low0",
+     "vertices": 250,
+     "triangles": 153,
+     "geometry": {
+      "position": {
+       "offset": 1798548,
+       "length": 3000
+      },
+      "normal": {
+       "offset": 1801548,
+       "length": 1000
+      },
+      "uv": {
+       "offset": 1802548,
+       "length": 2000
+      },
+      "index": {
+       "offset": 1804548,
+       "length": 1836
+      },
+      "tangent": {
+       "offset": 1806384,
+       "length": 1000
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_desertpalm",
+       "technique": "phong_alphatest",
+       "start": 0,
+       "count": 129,
+       "texture": "_textures/tree_desertpalm_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      },
+      {
+       "material": "mtl_desertpalmfronds",
+       "technique": "phong_alphatest",
+       "start": 129,
+       "count": 330,
+       "texture": "_textures/tree_desertpalm_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    }
    ]
   },
   {
@@ -2814,23 +6111,23 @@
    "triangles": 598,
    "geometry": {
     "position": {
-     "offset": 1039008,
+     "offset": 1807384,
      "length": 8604
     },
     "normal": {
-     "offset": 1047612,
+     "offset": 1815988,
      "length": 2868
     },
     "uv": {
-     "offset": 1050480,
+     "offset": 1818856,
      "length": 5736
     },
     "index": {
-     "offset": 1056216,
+     "offset": 1824592,
      "length": 7176
     },
     "tangent": {
-     "offset": 1063392,
+     "offset": 1831768,
      "length": 2868
     }
    },
@@ -2863,6 +6160,185 @@
      "sort": 3,
      "polygonOffset": 0
     }
+   ],
+   "lodDistances": [
+    800.0,
+    1400.0,
+    2000.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "tree_desertpalm03_med0",
+     "vertices": 500,
+     "triangles": 403,
+     "geometry": {
+      "position": {
+       "offset": 1834636,
+       "length": 6000
+      },
+      "normal": {
+       "offset": 1840636,
+       "length": 2000
+      },
+      "uv": {
+       "offset": 1842636,
+       "length": 4000
+      },
+      "index": {
+       "offset": 1846636,
+       "length": 4836
+      },
+      "tangent": {
+       "offset": 1851472,
+       "length": 2000
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_desertpalm",
+       "technique": "phong_alphatest",
+       "start": 0,
+       "count": 471,
+       "texture": "_textures/tree_desertpalm_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      },
+      {
+       "material": "mtl_desertpalmfronds",
+       "technique": "phong_alphatest",
+       "start": 471,
+       "count": 738,
+       "texture": "_textures/tree_desertpalm_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "tree_desertpalm03_low0",
+     "vertices": 241,
+     "triangles": 152,
+     "geometry": {
+      "position": {
+       "offset": 1853472,
+       "length": 2892
+      },
+      "normal": {
+       "offset": 1856364,
+       "length": 964
+      },
+      "uv": {
+       "offset": 1857328,
+       "length": 1928
+      },
+      "index": {
+       "offset": 1859256,
+       "length": 1824
+      },
+      "tangent": {
+       "offset": 1861080,
+       "length": 964
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_desertpalm",
+       "technique": "phong_alphatest",
+       "start": 0,
+       "count": 126,
+       "texture": "_textures/tree_desertpalm_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      },
+      {
+       "material": "mtl_desertpalmfronds",
+       "technique": "phong_alphatest",
+       "start": 126,
+       "count": 330,
+       "texture": "_textures/tree_desertpalm_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "tree_desertpalm03_low0",
+     "vertices": 241,
+     "triangles": 152,
+     "geometry": {
+      "position": {
+       "offset": 1862044,
+       "length": 2892
+      },
+      "normal": {
+       "offset": 1864936,
+       "length": 964
+      },
+      "uv": {
+       "offset": 1865900,
+       "length": 1928
+      },
+      "index": {
+       "offset": 1867828,
+       "length": 1824
+      },
+      "tangent": {
+       "offset": 1869652,
+       "length": 964
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_desertpalm",
+       "technique": "phong_alphatest",
+       "start": 0,
+       "count": 126,
+       "texture": "_textures/tree_desertpalm_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      },
+      {
+       "material": "mtl_desertpalmfronds",
+       "technique": "phong_alphatest",
+       "start": 126,
+       "count": 330,
+       "texture": "_textures/tree_desertpalm_col.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_tree_desertpalm_normal-gggr.webp",
+       "sort": 3,
+       "polygonOffset": 0
+      }
+     ]
+    }
    ]
   },
   {
@@ -2883,23 +6359,23 @@
    "triangles": 4935,
    "geometry": {
     "position": {
-     "offset": 1066260,
+     "offset": 1870616,
      "length": 63396
     },
     "normal": {
-     "offset": 1129656,
+     "offset": 1934012,
      "length": 21132
     },
     "uv": {
-     "offset": 1150788,
+     "offset": 1955144,
      "length": 42264
     },
     "index": {
-     "offset": 1193052,
+     "offset": 1997408,
      "length": 59220
     },
     "tangent": {
-     "offset": 1252272,
+     "offset": 2056628,
      "length": 21132
     }
    },
@@ -2939,6 +6415,206 @@
      "polygonOffset": 0,
      "specularMap": "_textures/_americanjeepglassspecular_0-rgb_americanje_f087d27f.webp"
     }
+   ],
+   "lodDistances": [
+    0.0,
+    30000.0,
+    31000.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "american_jeep_LOD10",
+     "vertices": 3373,
+     "triangles": 2656,
+     "geometry": {
+      "position": {
+       "offset": 2077760,
+       "length": 40476
+      },
+      "normal": {
+       "offset": 2118236,
+       "length": 13492
+      },
+      "uv": {
+       "offset": 2131728,
+       "length": 26984
+      },
+      "index": {
+       "offset": 2158712,
+       "length": 31872
+      },
+      "tangent": {
+       "offset": 2190584,
+       "length": 13492
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_africa_jeep",
+       "technique": "phong_replace_spec_detail",
+       "start": 0,
+       "count": 7956,
+       "texture": "_textures/africajeepcolor_0.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_africajeepnormal_0-gggr__africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+       "detailMap": "_textures/africajeepdetail_0.webp",
+       "detailScale": [
+        32.0,
+        32.0
+       ]
+      },
+      {
+       "material": "mtl_jeep_glass",
+       "technique": "phong_blend_spec",
+       "start": 7956,
+       "count": 12,
+       "texture": "_textures/americanjeepglasscolor_0.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": "blend",
+       "doubleSided": true,
+       "normalMap": "_textures/flat__americanjeepglassspecular_0-rgb_americanje_f087d27f.webp",
+       "sort": 27,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_americanjeepglassspecular_0-rgb_americanje_f087d27f.webp"
+      }
+     ]
+    },
+    {
+     "lod": "american_jeep_LOD20",
+     "vertices": 1666,
+     "triangles": 1204,
+     "geometry": {
+      "position": {
+       "offset": 2204076,
+       "length": 19992
+      },
+      "normal": {
+       "offset": 2224068,
+       "length": 6664
+      },
+      "uv": {
+       "offset": 2230732,
+       "length": 13328
+      },
+      "index": {
+       "offset": 2244060,
+       "length": 14448
+      },
+      "tangent": {
+       "offset": 2258508,
+       "length": 6664
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_africa_jeep",
+       "technique": "phong_replace_spec_detail",
+       "start": 0,
+       "count": 3600,
+       "texture": "_textures/africajeepcolor_0.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_africajeepnormal_0-gggr__africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+       "detailMap": "_textures/africajeepdetail_0.webp",
+       "detailScale": [
+        32.0,
+        32.0
+       ]
+      },
+      {
+       "material": "mtl_jeep_glass",
+       "technique": "phong_blend_spec",
+       "start": 3600,
+       "count": 12,
+       "texture": "_textures/americanjeepglasscolor_0.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": "blend",
+       "doubleSided": true,
+       "normalMap": "_textures/flat__americanjeepglassspecular_0-rgb_americanje_f087d27f.webp",
+       "sort": 27,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_americanjeepglassspecular_0-rgb_americanje_f087d27f.webp"
+      }
+     ]
+    },
+    {
+     "lod": "american_jeep_LOD30",
+     "vertices": 896,
+     "triangles": 593,
+     "geometry": {
+      "position": {
+       "offset": 2265172,
+       "length": 10752
+      },
+      "normal": {
+       "offset": 2275924,
+       "length": 3584
+      },
+      "uv": {
+       "offset": 2279508,
+       "length": 7168
+      },
+      "index": {
+       "offset": 2286676,
+       "length": 7116
+      },
+      "tangent": {
+       "offset": 2293792,
+       "length": 3584
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_africa_jeep",
+       "technique": "phong_replace_spec_detail",
+       "start": 0,
+       "count": 1767,
+       "texture": "_textures/africajeepcolor_0.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_africajeepnormal_0-gggr__africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_africajeepspecular_0-r-61g-61b-61_africaje_f57328a8.webp",
+       "detailMap": "_textures/africajeepdetail_0.webp",
+       "detailScale": [
+        32.0,
+        32.0
+       ]
+      },
+      {
+       "material": "mtl_jeep_glass",
+       "technique": "phong_blend_spec",
+       "start": 1767,
+       "count": 12,
+       "texture": "_textures/americanjeepglasscolor_0.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": "blend",
+       "doubleSided": true,
+       "normalMap": "_textures/flat__americanjeepglassspecular_0-rgb_americanje_f087d27f.webp",
+       "sort": 27,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_americanjeepglassspecular_0-rgb_americanje_f087d27f.webp"
+      }
+     ]
+    }
    ]
   },
   {
@@ -2959,23 +6635,23 @@
    "triangles": 5397,
    "geometry": {
     "position": {
-     "offset": 1273404,
+     "offset": 2297376,
      "length": 81984
     },
     "normal": {
-     "offset": 1355388,
+     "offset": 2379360,
      "length": 27328
     },
     "uv": {
-     "offset": 1382716,
+     "offset": 2406688,
      "length": 54656
     },
     "index": {
-     "offset": 1437372,
+     "offset": 2461344,
      "length": 64764
     },
     "tangent": {
-     "offset": 1502136,
+     "offset": 2526108,
      "length": 27328
     }
    },
@@ -3025,6 +6701,146 @@
      "polygonOffset": 0,
      "specularMap": "_textures/_german_armored_car_spec-rgbl30.webp"
     }
+   ],
+   "lodDistances": [
+    1500.0,
+    3000.0,
+    5000.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "vehicle_german_armored_car_lod10",
+     "vertices": 4393,
+     "triangles": 2977,
+     "geometry": {
+      "position": {
+       "offset": 2553436,
+       "length": 52716
+      },
+      "normal": {
+       "offset": 2606152,
+       "length": 17572
+      },
+      "uv": {
+       "offset": 2623724,
+       "length": 35144
+      },
+      "index": {
+       "offset": 2658868,
+       "length": 35724
+      },
+      "tangent": {
+       "offset": 2694592,
+       "length": 17572
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_german_armored_car",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 8931,
+       "texture": "_textures/german_armored_car_color.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_german_armored_car_normals-gggr__german_armored_car_spec-rgbl30.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_german_armored_car_spec-rgbl30.webp"
+      }
+     ]
+    },
+    {
+     "lod": "vehicle_german_armored_car_lod20",
+     "vertices": 1869,
+     "triangles": 1215,
+     "geometry": {
+      "position": {
+       "offset": 2712164,
+       "length": 22428
+      },
+      "normal": {
+       "offset": 2734592,
+       "length": 7476
+      },
+      "uv": {
+       "offset": 2742068,
+       "length": 14952
+      },
+      "index": {
+       "offset": 2757020,
+       "length": 14580
+      },
+      "tangent": {
+       "offset": 2771600,
+       "length": 7476
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_german_armored_car",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 3645,
+       "texture": "_textures/german_armored_car_color.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_german_armored_car_normals-gggr__german_armored_car_spec-rgbl30.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_german_armored_car_spec-rgbl30.webp"
+      }
+     ]
+    },
+    {
+     "lod": "vehicle_german_armored_car_lod30",
+     "vertices": 373,
+     "triangles": 224,
+     "geometry": {
+      "position": {
+       "offset": 2779076,
+       "length": 4476
+      },
+      "normal": {
+       "offset": 2783552,
+       "length": 1492
+      },
+      "uv": {
+       "offset": 2785044,
+       "length": 2984
+      },
+      "index": {
+       "offset": 2788028,
+       "length": 2688
+      },
+      "tangent": {
+       "offset": 2790716,
+       "length": 1492
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_german_armored_car",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 672,
+       "texture": "_textures/german_armored_car_color.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_german_armored_car_normals-gggr__german_armored_car_spec-rgbl30.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_german_armored_car_spec-rgbl30.webp"
+      }
+     ]
+    }
    ]
   },
   {
@@ -3045,23 +6861,23 @@
    "triangles": 5225,
    "geometry": {
     "position": {
-     "offset": 1529464,
+     "offset": 2792208,
      "length": 65412
     },
     "normal": {
-     "offset": 1594876,
+     "offset": 2857620,
      "length": 21804
     },
     "uv": {
-     "offset": 1616680,
+     "offset": 2879424,
      "length": 43608
     },
     "index": {
-     "offset": 1660288,
+     "offset": 2923032,
      "length": 62700
     },
     "tangent": {
-     "offset": 1722988,
+     "offset": 2985732,
      "length": 21804
     }
    },
@@ -3101,6 +6917,206 @@
      "polygonOffset": 0,
      "specularMap": "_textures/_germankubelglasspristinespecular_0-rgb_ger_8bf39cad.webp"
     }
+   ],
+   "lodDistances": [
+    0.0,
+    30000.0,
+    31000.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "vehicle_kubelwagenLOD10",
+     "vertices": 3919,
+     "triangles": 2415,
+     "geometry": {
+      "position": {
+       "offset": 3007536,
+       "length": 47028
+      },
+      "normal": {
+       "offset": 3054564,
+       "length": 15676
+      },
+      "uv": {
+       "offset": 3070240,
+       "length": 31352
+      },
+      "index": {
+       "offset": 3101592,
+       "length": 28980
+      },
+      "tangent": {
+       "offset": 3130572,
+       "length": 15676
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_kubel_africa",
+       "technique": "phong_replace_spec_detail",
+       "start": 0,
+       "count": 7233,
+       "texture": "_textures/_german_germankubelpristinecolor_0.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_germankubelpristinenormal_0-gggr__germankubelpristinespecular_0-rgb_germanku_ea9d9e64.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_germankubelpristinespecular_0-rgb_germanku_ea9d9e64.webp",
+       "detailMap": "_textures/africajeepdetail_0.webp",
+       "detailScale": [
+        32.0,
+        32.0
+       ]
+      },
+      {
+       "material": "mtl_kubel_glass_africa",
+       "technique": "phong_blend_spec",
+       "start": 7233,
+       "count": 12,
+       "texture": "_textures/germankubelglasspristinecolor_0.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": "blend",
+       "doubleSided": true,
+       "normalMap": "_textures/_germankubelglasspristinenormal_0-gggr__germankubelglasspristinespecular_0-rgb_ger_8bf39cad.webp",
+       "sort": 27,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_germankubelglasspristinespecular_0-rgb_ger_8bf39cad.webp"
+      }
+     ]
+    },
+    {
+     "lod": "vehicle_kubelwagenLOD20",
+     "vertices": 2200,
+     "triangles": 1227,
+     "geometry": {
+      "position": {
+       "offset": 3146248,
+       "length": 26400
+      },
+      "normal": {
+       "offset": 3172648,
+       "length": 8800
+      },
+      "uv": {
+       "offset": 3181448,
+       "length": 17600
+      },
+      "index": {
+       "offset": 3199048,
+       "length": 14724
+      },
+      "tangent": {
+       "offset": 3213772,
+       "length": 8800
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_kubel_africa",
+       "technique": "phong_replace_spec_detail",
+       "start": 0,
+       "count": 3669,
+       "texture": "_textures/_german_germankubelpristinecolor_0.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_germankubelpristinenormal_0-gggr__germankubelpristinespecular_0-rgb_germanku_ea9d9e64.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_germankubelpristinespecular_0-rgb_germanku_ea9d9e64.webp",
+       "detailMap": "_textures/africajeepdetail_0.webp",
+       "detailScale": [
+        32.0,
+        32.0
+       ]
+      },
+      {
+       "material": "mtl_kubel_glass_africa",
+       "technique": "phong_blend_spec",
+       "start": 3669,
+       "count": 12,
+       "texture": "_textures/germankubelglasspristinecolor_0.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": "blend",
+       "doubleSided": true,
+       "normalMap": "_textures/_germankubelglasspristinenormal_0-gggr__germankubelglasspristinespecular_0-rgb_ger_8bf39cad.webp",
+       "sort": 27,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_germankubelglasspristinespecular_0-rgb_ger_8bf39cad.webp"
+      }
+     ]
+    },
+    {
+     "lod": "vehicle_kubelwagenLOD30",
+     "vertices": 1221,
+     "triangles": 642,
+     "geometry": {
+      "position": {
+       "offset": 3222572,
+       "length": 14652
+      },
+      "normal": {
+       "offset": 3237224,
+       "length": 4884
+      },
+      "uv": {
+       "offset": 3242108,
+       "length": 9768
+      },
+      "index": {
+       "offset": 3251876,
+       "length": 7704
+      },
+      "tangent": {
+       "offset": 3259580,
+       "length": 4884
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_kubel_africa",
+       "technique": "phong_replace_spec_detail",
+       "start": 0,
+       "count": 1914,
+       "texture": "_textures/_german_germankubelpristinecolor_0.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_germankubelpristinenormal_0-gggr__germankubelpristinespecular_0-rgb_germanku_ea9d9e64.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_germankubelpristinespecular_0-rgb_germanku_ea9d9e64.webp",
+       "detailMap": "_textures/africajeepdetail_0.webp",
+       "detailScale": [
+        32.0,
+        32.0
+       ]
+      },
+      {
+       "material": "mtl_kubel_glass_africa",
+       "technique": "phong_blend_spec",
+       "start": 1914,
+       "count": 12,
+       "texture": "_textures/germankubelglasspristinecolor_0.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": "blend",
+       "doubleSided": true,
+       "normalMap": "_textures/_germankubelglasspristinenormal_0-gggr__germankubelglasspristinespecular_0-rgb_ger_8bf39cad.webp",
+       "sort": 27,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_germankubelglasspristinespecular_0-rgb_ger_8bf39cad.webp"
+      }
+     ]
+    }
    ]
   },
   {
@@ -3121,23 +7137,23 @@
    "triangles": 5338,
    "geometry": {
     "position": {
-     "offset": 1744792,
+     "offset": 3264464,
      "length": 82836
     },
     "normal": {
-     "offset": 1827628,
+     "offset": 3347300,
      "length": 27612
     },
     "uv": {
-     "offset": 1855240,
+     "offset": 3374912,
      "length": 55224
     },
     "index": {
-     "offset": 1910464,
+     "offset": 3430136,
      "length": 64056
     },
     "tangent": {
-     "offset": 1974520,
+     "offset": 3494192,
      "length": 27612
     }
    },
@@ -3215,6 +7231,188 @@
      "polygonOffset": 0,
      "specularMap": "_textures/_opel_vm_desert_spec__0-rgbl08.webp"
     }
+   ],
+   "lodDistances": [
+    0.0,
+    31000.0,
+    31000.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "opel_blitz_no_bars_lod10",
+     "vertices": 3545,
+     "triangles": 2454,
+     "geometry": {
+      "position": {
+       "offset": 3521804,
+       "length": 42540
+      },
+      "normal": {
+       "offset": 3564344,
+       "length": 14180
+      },
+      "uv": {
+       "offset": 3578524,
+       "length": 28360
+      },
+      "index": {
+       "offset": 3606884,
+       "length": 29448
+      },
+      "tangent": {
+       "offset": 3636332,
+       "length": 14180
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_opel_blitz",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 7275,
+       "texture": "_textures/opel_blitz_desert__0.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_opel_blitz_nrml__0-gggr__opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp"
+      },
+      {
+       "material": "mtl_opel_blitz_glass",
+       "technique": "phong_blend",
+       "start": 7275,
+       "count": 87,
+       "texture": "_textures/opel_blitz_glass__0.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": "blend",
+       "doubleSided": true,
+       "normalMap": null,
+       "sort": 26,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "opel_blitz_no_bars_lod20",
+     "vertices": 1738,
+     "triangles": 1251,
+     "geometry": {
+      "position": {
+       "offset": 3650512,
+       "length": 20856
+      },
+      "normal": {
+       "offset": 3671368,
+       "length": 6952
+      },
+      "uv": {
+       "offset": 3678320,
+       "length": 13904
+      },
+      "index": {
+       "offset": 3692224,
+       "length": 15012
+      },
+      "tangent": {
+       "offset": 3707236,
+       "length": 6952
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_opel_blitz",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 3666,
+       "texture": "_textures/opel_blitz_desert__0.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_opel_blitz_nrml__0-gggr__opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp"
+      },
+      {
+       "material": "mtl_opel_blitz_glass",
+       "technique": "phong_blend",
+       "start": 3666,
+       "count": 87,
+       "texture": "_textures/opel_blitz_glass__0.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": "blend",
+       "doubleSided": true,
+       "normalMap": null,
+       "sort": 26,
+       "polygonOffset": 0
+      }
+     ]
+    },
+    {
+     "lod": "opel_blitz_no_bars_lod30",
+     "vertices": 1044,
+     "triangles": 694,
+     "geometry": {
+      "position": {
+       "offset": 3714188,
+       "length": 12528
+      },
+      "normal": {
+       "offset": 3726716,
+       "length": 4176
+      },
+      "uv": {
+       "offset": 3730892,
+       "length": 8352
+      },
+      "index": {
+       "offset": 3739244,
+       "length": 8328
+      },
+      "tangent": {
+       "offset": 3747572,
+       "length": 4176
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_opel_blitz",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 1995,
+       "texture": "_textures/opel_blitz_desert__0.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_opel_blitz_nrml__0-gggr__opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_opel_blitz_spec__0-rgb_opel_blitz_cos__0-l-11.webp"
+      },
+      {
+       "material": "mtl_opel_blitz_glass",
+       "technique": "phong_blend",
+       "start": 1995,
+       "count": 87,
+       "texture": "_textures/opel_blitz_glass__0.webp",
+       "textureAlpha": true,
+       "alphaTest": null,
+       "blend": "blend",
+       "doubleSided": true,
+       "normalMap": null,
+       "sort": 26,
+       "polygonOffset": 0
+      }
+     ]
+    }
    ]
   },
   {
@@ -3235,23 +7433,23 @@
    "triangles": 5869,
    "geometry": {
     "position": {
-     "offset": 2002132,
+     "offset": 3751748,
      "length": 102072
     },
     "normal": {
-     "offset": 2104204,
+     "offset": 3853820,
      "length": 34024
     },
     "uv": {
-     "offset": 2138228,
+     "offset": 3887844,
      "length": 68048
     },
     "index": {
-     "offset": 2206276,
+     "offset": 3955892,
      "length": 70428
     },
     "tangent": {
-     "offset": 2276704,
+     "offset": 4026320,
      "length": 34024
     }
    },
@@ -3301,6 +7499,176 @@
      "polygonOffset": 0,
      "specularMap": "_textures/_panzer2_tread_spec-rgbl-13.webp"
     }
+   ],
+   "lodDistances": [
+    0.0,
+    30000.0,
+    31000.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "vehicle_german_panzer_2lod10",
+     "vertices": 4589,
+     "triangles": 3111,
+     "geometry": {
+      "position": {
+       "offset": 4060344,
+       "length": 55068
+      },
+      "normal": {
+       "offset": 4115412,
+       "length": 18356
+      },
+      "uv": {
+       "offset": 4133768,
+       "length": 36712
+      },
+      "index": {
+       "offset": 4170480,
+       "length": 37332
+      },
+      "tangent": {
+       "offset": 4207812,
+       "length": 18356
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_panzer2",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 8109,
+       "texture": "_textures/panzer2_color.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec-rgbl99.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_panzer2_spec-rgbl99.webp"
+      },
+      {
+       "material": "mtl_panzer2_treads_static",
+       "technique": "phong_alphatest_spec",
+       "start": 8109,
+       "count": 1224,
+       "texture": "_textures/panzer2_tread_color.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_panzer2_tread_normals-gggr__panzer2_tread_spec-rgbl-13.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_panzer2_tread_spec-rgbl-13.webp"
+      }
+     ]
+    },
+    {
+     "lod": "vehicle_german_panzer_2lod30",
+     "vertices": 517,
+     "triangles": 344,
+     "geometry": {
+      "position": {
+       "offset": 4226168,
+       "length": 6204
+      },
+      "normal": {
+       "offset": 4232372,
+       "length": 2068
+      },
+      "uv": {
+       "offset": 4234440,
+       "length": 4136
+      },
+      "index": {
+       "offset": 4238576,
+       "length": 4128
+      },
+      "tangent": {
+       "offset": 4242704,
+       "length": 2068
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_panzer2_2sided",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 744,
+       "texture": "_textures/panzer2_color.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec-rgbl99.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_panzer2_spec-rgbl99.webp"
+      },
+      {
+       "material": "mtl_panzer2_treads_2sided",
+       "technique": "phong_alphatest_spec_scroll",
+       "start": 744,
+       "count": 288,
+       "texture": "_textures/panzer2_tread_color.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_panzer2_tread_normals-gggr__panzer2_tread_spec-rgbl-13.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_panzer2_tread_spec-rgbl-13.webp"
+      }
+     ]
+    },
+    {
+     "lod": "vehicle_german_panzer_2lod40",
+     "vertices": 114,
+     "triangles": 64,
+     "geometry": {
+      "position": {
+       "offset": 4244772,
+       "length": 1368
+      },
+      "normal": {
+       "offset": 4246140,
+       "length": 456
+      },
+      "uv": {
+       "offset": 4246596,
+       "length": 912
+      },
+      "index": {
+       "offset": 4247508,
+       "length": 768
+      },
+      "tangent": {
+       "offset": 4248276,
+       "length": 456
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_panzer2_2sided",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 192,
+       "texture": "_textures/panzer2_color.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec-rgbl99.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_panzer2_spec-rgbl99.webp"
+      }
+     ]
+    }
    ]
   },
   {
@@ -3321,23 +7689,23 @@
    "triangles": 1297,
    "geometry": {
     "position": {
-     "offset": 2310728,
+     "offset": 4248732,
      "length": 19884
     },
     "normal": {
-     "offset": 2330612,
+     "offset": 4268616,
      "length": 6628
     },
     "uv": {
-     "offset": 2337240,
+     "offset": 4275244,
      "length": 13256
     },
     "index": {
-     "offset": 2350496,
+     "offset": 4288500,
      "length": 15564
     },
     "tangent": {
-     "offset": 2366060,
+     "offset": 4304064,
      "length": 6628
     }
    },
@@ -3383,6 +7751,11 @@
      ],
      "part": "aim"
     }
+   ],
+   "lodDistances": [
+    250.0,
+    450.0,
+    2000.0
    ],
    "aimPivot": [
     -2.986,

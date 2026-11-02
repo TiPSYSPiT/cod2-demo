@@ -10,10 +10,10 @@ C2.define('weapons', function (C2) {
     thompson: 'Thompson', bar: 'BAR', bar_buffed: 'BAR', colt: 'Colt .45', frag_grenade_american: 'MK2 Frag Grenade',
     smoke_grenade_american: 'Smoke Grenade', '30cal_stand': '.30 cal MG', '30cal_prone': '.30 cal MG',
     // British
-    enfield: 'Lee-Enfield', enfield_scope: 'Scoped Lee-Enfield', sten: 'Sten', bren: 'Bren LMG', webley: 'Webley',
+    enfield: 'Lee-Enfield', enfield_scope: 'Scoped Lee-Enfield', sten: 'Sten', bren: 'Bren LMG', bren_buffed: 'Bren LMG', webley: 'Webley',
     frag_grenade_british: 'Mills Bomb', smoke_grenade_british: 'Smoke Grenade',
     // Russian
-    mosin_nagant: 'Mosin-Nagant', mosin_nagant_sniper: 'Scoped Mosin-Nagant', pps42: 'PPS-42', ppsh: 'PPSh-41',
+    mosin_nagant: 'Mosin-Nagant', mosin_nagant_sniper: 'Scoped Mosin-Nagant', pps42: 'PPS-42', ppsh: 'PPSh-41', ppsh_stick30: 'PPSh-41 (stick)',
     svt40: 'SVT-40', tt30: 'Tokarev TT-30', frag_grenade_russian: 'RGD-33', smoke_grenade_russian: 'Smoke Grenade',
     // German
     kar98k: 'Kar98k', kar98k_sniper: 'Scoped Kar98k', mp40: 'MP40', mp44: 'MP44', g43: 'Gewehr 43', luger: 'Luger',

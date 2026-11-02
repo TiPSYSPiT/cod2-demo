@@ -33,7 +33,8 @@
       this.dpr = 1;
       this.resize();
       if (!opts.noInput) {
-        new ResizeObserver(() => { this.resize(); if (this.onChange) this.onChange(); }).observe(stage);
+        this.resizeObs = new ResizeObserver(() => { this.resize(); if (this.onChange) this.onChange(); });
+        this.resizeObs.observe(stage);
         this.bindInput();
       }
     }
@@ -107,6 +108,8 @@
     dispose() {
       if (this.unbindWindow) this.unbindWindow();
       this.unbindWindow = null;
+      if (this.resizeObs) this.resizeObs.disconnect();
+      this.resizeObs = null;
       this.onChange = null;
     }
 

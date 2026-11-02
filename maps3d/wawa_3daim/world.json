@@ -242,6 +242,7 @@
   "ambient": 0.0,
   "diffuseFraction": 0.5
  },
+ "fog": null,
  "lightGrid": null,
  "collision": {
   "file": "collision.bin",
