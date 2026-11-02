@@ -19,7 +19,7 @@
  * sphere around the player (any pose: 80 units from 32 above the feet) - by every camera, the shadow cookie's too. */
 import * as THREE from 'three';
 import { fetchJSON, fetchBinary } from './data.js';
-import { loadTexture, setMap, uniformMap, detailMap, polygonOffset } from './mapLoader.js';
+import { loadTexture, setMap, uniformMap, detailMap, polygonOffset, cloneMaterial } from './mapLoader.js';
 
 import { gridUniforms, setGridUniforms, gridMaterial } from './lightGrid.js';
 
@@ -92,7 +92,7 @@ export class CharacterLibrary {
       const cut = !!g.alphaTest || !!g.blend;
       // a little of the colour map as emission: the scene lights alone leave the characters dark (until the grid)
       const opts = { color: tex ? 0xffffff : 0x777777, alphaTest: g.alphaTest ? 0.5 : 0, alphaToCoverage: !!g.alphaTest,
-        emissive: 0x4a4a4a, side: cut ? THREE.DoubleSide : THREE.FrontSide };
+        emissive: 0x4a4a4a, side: cut ? THREE.DoubleSide : THREE.FrontSide, forceSinglePass: true };   // (mapLoader.js)
       if (g.blend) {
         opts.transparent = true; opts.depthWrite = false;
         if (g.blend === 'add') opts.blending = THREE.AdditiveBlending;
@@ -163,13 +163,15 @@ function skinned(t, bones, group) {
 const EMISSIVE = 0x4a / 255;                             // the materials' emissive grey (template())
 const clampLight = v => Math.round(Math.min(1, Math.max(0.2, v)) * 50) / 50;   // (steps of 0.02: fewer updates)
 /** key interval of frame f in a key frame list -> [i, j, fraction] */
+const KEY = { i: 0, j: 0, u: 0 };          // (keyAt's result, reused: read it before the next call)
 function keyAt(frames, f) {
   const n = frames.length;
-  if (n === 1 || f <= frames[0]) return [0, 0, 0];
-  if (f >= frames[n - 1]) return [n - 1, n - 1, 0];
+  if (n === 1 || f <= frames[0]) { KEY.i = KEY.j = 0; KEY.u = 0; return KEY; }
+  if (f >= frames[n - 1]) { KEY.i = KEY.j = n - 1; KEY.u = 0; return KEY; }
   let lo = 0, hi = n - 1;
   while (hi - lo > 1) { const m = (lo + hi) >> 1; if (frames[m] <= f) lo = m; else hi = m; }
-  return [lo, hi, (f - frames[lo]) / Math.max(1, frames[hi] - frames[lo])];
+  KEY.i = lo; KEY.j = hi; KEY.u = (f - frames[lo]) / Math.max(1, frames[hi] - frames[lo]);
+  return KEY;
 }
 
 export class Character {
@@ -289,13 +291,13 @@ export class Character {
       const o = this.byName.get(tr.bone);
       if (!o) continue;
       if (tr.rf) {
-        const [i, j, u] = keyAt(tr.rf, f);
+        const { i, j, u } = keyAt(tr.rf, f);
         qa.fromArray(tr.rq, i * 4);
         if (i !== j) { qb.fromArray(tr.rq, j * 4); qa.slerp(qb, u); }
         o.quaternion.copy(qa);
       }
       if (tr.tf) {
-        const [i, j, u] = keyAt(tr.tf, f);
+        const { i, j, u } = keyAt(tr.tf, f);
         const b = this.bind[this.indexOf.get(o)];
         const v = tr.tv;
         const x = v[i * 3] + (v[j * 3] - v[i * 3]) * u, y = v[i * 3 + 1] + (v[j * 3 + 1] - v[i * 3 + 1]) * u, z = v[i * 3 + 2] + (v[j * 3 + 2] - v[i * 3 + 2]) * u;
@@ -332,9 +334,9 @@ export class Character {
     if (!this.ctrl) {
       const bones = CONTROLLER_BONES.map((n, k) => ({ bone: this.byName.get(n), k })).filter(x => x.bone)
         .sort((x, y) => this.bones.indexOf(x.bone) - this.bones.indexOf(y.bone));
-      this.ctrl = { root: this.byName.get('tag_origin'), bones, q: new THREE.Quaternion(), W: new THREE.Quaternion(), e: new THREE.Euler(0, 0, 0, 'ZYX') };
+      this.ctrl = { root: this.byName.get('tag_origin'), bones, q: new THREE.Quaternion(), W: new THREE.Quaternion(), Wi: new THREE.Quaternion(), e: new THREE.Euler(0, 0, 0, 'ZYX') };
     }
-    const { root, bones, q, W, e } = this.ctrl;
+    const { root, bones, q, W, Wi, e } = this.ctrl;
     const angles = (a, k) => q.setFromEuler(e.set(a[k + 2] * D2R, a[k] * D2R, a[k + 1] * D2R, 'ZYX'));   // yaw · pitch · roll
     if (root) {
       root.quaternion.premultiply(angles(c.tag, 0));
@@ -347,8 +349,7 @@ export class Character {
       W.identity();
       for (let o = bone.parent; o && o !== root && o !== this.group; o = o.parent) W.premultiply(o.quaternion);
       angles(a, 3 * k);
-      const Wi = W.clone().invert();
-      bone.quaternion.premultiply(Wi.multiply(q).multiply(W)).normalize();
+      bone.quaternion.premultiply(Wi.copy(W).invert().multiply(q).multiply(W)).normalize();
     }
   }
 
@@ -410,7 +411,7 @@ export class Character {
   }
 
   ownMaterials(mesh) {
-    mesh.material = [].concat(mesh.material).map(x => x.clone());
+    mesh.material = [].concat(mesh.material).map(cloneMaterial);
     if (mesh.material.length === 1) mesh.material = mesh.material[0];
     for (const mat of [].concat(mesh.material)) {
       this.lit.push(mat);

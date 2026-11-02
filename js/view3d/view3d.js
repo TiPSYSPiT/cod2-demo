@@ -21,7 +21,7 @@ import { ModelBatches } from './modelBatch.js';
 import { frameOf } from './actors.js';
 import { CharacterLibrary } from './characters.js';
 import { InfoHint, fadeHint, holdHint } from '../app/infoHint.js';
-import { CookieShadows } from './shadows.js';
+import { CookieShadows, COOKIE_LAYER, WORLD_LAYER } from './shadows.js';
 import { LightGrid } from './lightGrid.js';
 import { gameObjectFilter, Exploders } from './gameObjects.js';
 import { XRay, XRAY_MODES } from './xray.js';
@@ -110,6 +110,10 @@ export class View3D {
     this.sun = new THREE.DirectionalLight(0xffffff, 1.3);
     this.sun.position.set(-0.4, -0.5, 1);
     scene.add(this.hemi, this.sun);
+    // (the lights on the shadow passes' layers too: three.js gathers the lights a camera sees - without them the
+    // passes' light setup would differ from the frame's, and every lit material would rebuild its program
+    // parameters twice a frame)
+    for (const l of [this.hemi, this.sun]) { l.layers.enable(COOKIE_LAYER); l.layers.enable(WORLD_LAYER); }
     this.characters = new CharacterLibrary();
     this.actors = new Actors(scene, this.labels, this.M, this.characters);
     this.actors.onLoaded = () => { this.R.invalidate(); this.needsRender = true; if (this.actors.failed) this.playersSel.parentNode.title = 'The player models are not exported (tools/export/characters_export.py)'; };
@@ -735,12 +739,29 @@ export class View3D {
     if (this.xrayMode !== 'off') this.xray.render(this.scene, this.camera, this.actors.xrayTargets(hideClient));
     this.actors.setXrayHidden(this.xrayMode === 'names' ? this.xray.hidden() : null);
     if (this.fpClient != null) this.viewmodel.render(this.renderer, this.camera, FP_FOV, [this.hemi, this.sun], this.fx.viewRoot);
+    this.opaqueCanvas();
     if (!this.exporting) {
       this.actors.projectLabels(this.camera, this.w, this.h, hideClient);
       this.effects.projectLabels(this.camera, this.w, this.h);
       this.drawHud(fpSample);
     }
     return { hideClient, fpSample };
+  }
+
+  /** the finished frame's alpha set to 1 everywhere: three.js' canvas always has an alpha channel, and the cut-outs
+   *  with alpha to coverage, the blended layers and the decals leave it below 1 - on the page the canvas lies over the
+   *  dark stage and looks the same, but read as an image (the video export, a screenshot) the colour comes out
+   *  un-premultiplied, burnt towards white. A clear of the alpha channel alone, then three.js' state cache reset (it
+   *  did not see these GL calls) */
+  opaqueCanvas() {
+    const r = this.renderer;
+    if (r.getRenderTarget() !== null) return;
+    const gl = r.getContext();
+    gl.colorMask(false, false, false, true);
+    gl.clearColor(0, 0, 0, 1);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.colorMask(true, true, true, true);
+    r.resetState();
   }
 
   /** the camera shake at t for a view at eye (CG_StartShakeCamera / CG_ShakeCamera): the scripts' earthquakes (the

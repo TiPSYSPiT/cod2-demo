@@ -17,7 +17,7 @@
  * game's 640 x 480 screen units (scaled to the canvas height) - part of the canvas, so also in the video export. */
 import * as THREE from 'three';
 import { fetchJSON, fetchBinary } from './data.js';
-import { loadTexture } from './mapLoader.js';
+import { loadTexture, cloneMaterial } from './mapLoader.js';
 import { CharacterLibrary } from './characters.js';
 import { gridUniforms, setGridUniforms, gridMaterial } from './lightGrid.js';
 import { ViewAnimator } from './viewanim.js';
@@ -76,14 +76,16 @@ class ViewModelLibrary extends CharacterLibrary {
   }
 }
 
-/** key interval of frame f in a key frame list -> [i, j, fraction] */
+/** key interval of frame f in a key frame list -> {i, j, u: the fraction} */
+const KEY = { i: 0, j: 0, u: 0 };          // (keyAt's result, reused: read it before the next call)
 function keyAt(frames, f) {
   const n = frames.length;
-  if (n === 1 || f <= frames[0]) return [0, 0, 0];
-  if (f >= frames[n - 1]) return [n - 1, n - 1, 0];
+  if (n === 1 || f <= frames[0]) { KEY.i = KEY.j = 0; KEY.u = 0; return KEY; }
+  if (f >= frames[n - 1]) { KEY.i = KEY.j = n - 1; KEY.u = 0; return KEY; }
   let lo = 0, hi = n - 1;
   while (hi - lo > 1) { const m = (lo + hi) >> 1; if (frames[m] <= f) lo = m; else hi = m; }
-  return [lo, hi, (f - frames[lo]) / Math.max(1, frames[hi] - frames[lo])];
+  KEY.i = lo; KEY.j = hi; KEY.u = (f - frames[lo]) / Math.max(1, frames[hi] - frames[lo]);
+  return KEY;
 }
 
 export class ViewModel {
@@ -292,7 +294,7 @@ export class ViewModel {
           if (b < 0) continue;
           const tr = c.tracks[k];
           if (tr.rf) {
-            const [i, j, u] = keyAt(tr.rf, f);
+            const { i, j, u } = keyAt(tr.rf, f);
             q0.fromArray(tr.rq, i * 4);
             if (i !== j) { q1.fromArray(tr.rq, j * 4); q0.slerp(q1, u); }
             if (pass) { Q[4 * b] = q0.x; Q[4 * b + 1] = q0.y; Q[4 * b + 2] = q0.z; Q[4 * b + 3] = q0.w; wq[b] = 1; }
@@ -303,7 +305,7 @@ export class ViewModel {
             }
           }
           if (tr.tf) {
-            const [i, j, u] = keyAt(tr.tf, f), V = tr.tv, R = rig.rest[b].t;
+            const { i, j, u } = keyAt(tr.tf, f), V = tr.tv, R = rig.rest[b].t;
             const x = R.x + V[3 * i] + (V[3 * j] - V[3 * i]) * u, y = R.y + V[3 * i + 1] + (V[3 * j + 1] - V[3 * i + 1]) * u, z = R.z + V[3 * i + 2] + (V[3 * j + 2] - V[3 * i + 2]) * u;
             if (pass) { Pp[3 * b] = x; Pp[3 * b + 1] = y; Pp[3 * b + 2] = z; wp[b] = 1; }
             else { Pp[3 * b] += x * w; Pp[3 * b + 1] += y * w; Pp[3 * b + 2] += z * w; wp[b] += w; }
@@ -367,7 +369,7 @@ export class ViewModel {
       if (!this.gridU) this.gridU = gridUniforms();
       rig.lit = true;
       for (const m of rig.meshes) {
-        m.material = [].concat(m.material).map(x => gridMaterial(x.clone(), this.gridU) || x);
+        m.material = [].concat(m.material).map(x => gridMaterial(cloneMaterial(x), this.gridU) || x);
         if (m.material.length === 1) m.material = m.material[0];
       }
     }

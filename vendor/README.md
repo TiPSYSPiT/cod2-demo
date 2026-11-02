@@ -1,8 +1,7 @@
 # Third-party libraries (vendor/)
 
-The page loads its only external library from here, through the import map in `index.html`
-(and in the dev tools `tools/validate/validate.html`, `tools/characters/preview.html`,
-`tools/probes/orient.html`). No build step, no npm: the files are the package's own files, unchanged.
+The page loads its only external library from here, through the import map in `index.html`.
+No build step, no npm: the files are the package's own files, unchanged.
 
 | Library | Version | Files | Source | Licence |
 |---|---|---|---|---|

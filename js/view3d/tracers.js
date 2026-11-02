@@ -49,7 +49,7 @@ export class Tracers {
     const tex = loadTexture('maps3d/_hud/tracer.png');
     tex.colorSpace = THREE.NoColorSpace;               // (gamma-space colours, as the game blends them)
     this.mesh = new THREE.Mesh(this.geo, new THREE.MeshBasicMaterial({ map: tex, transparent: true, blending: THREE.AdditiveBlending,
-      depthWrite: false, side: THREE.DoubleSide, fog: false, toneMapped: false }));
+      depthWrite: false, side: THREE.DoubleSide, forceSinglePass: true, fog: false, toneMapped: false }));
     this.mesh.frustumCulled = false;
     this.mesh.renderOrder = 5;
     scene.add(this.mesh);

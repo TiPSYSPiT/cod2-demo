@@ -97,7 +97,7 @@ export class Props {
       for (const g of groups) {
         const sub = geo.clone();
         sub.setIndex(new THREE.BufferAttribute(index.subarray(g.start, g.start + g.count), 1));
-        const opts = { side: g.doubleSided ? THREE.DoubleSide : THREE.FrontSide };
+        const opts = { side: g.doubleSided ? THREE.DoubleSide : THREE.FrontSide, forceSinglePass: true };      // (forceSinglePass: mapLoader.js)
         const tex = texture(g.texture);
         // the multiply decals (crate stencils, grime): the framebuffer x the colour map, unlit (mapLoader.js)
         if (g.blend === 'multiply' && tex) {

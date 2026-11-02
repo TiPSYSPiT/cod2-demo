@@ -5,7 +5,7 @@
  * only when the copy moved 4 units; until the grid is there the scene lights. */
 import * as THREE from 'three';
 import { propGridMaterial } from './lightGrid.js';
-import { setMap } from './mapLoader.js';
+import { setMap, cloneMaterial } from './mapLoader.js';
 
 const START = 16;
 
@@ -44,7 +44,7 @@ export class ModelBatches {
       // own copies of the materials, their colour maps set again (a copy would keep a stand-in while the texture loads)
       const groups = this.lib.modelsInfo.models[tpl.name].groups;
       const mats = tpl.materials.map((m, i) => {
-        const c = m.clone(), g = groups[i], tex = g && this.lib.texture(g.texture);
+        const c = cloneMaterial(m), g = groups[i], tex = g && this.lib.texture(g.texture);
         if (tex) { setMap(c, 'map', tex, g.alphaTest ? 'clear' : 'grey'); setMap(c, 'emissiveMap', tex, g.alphaTest ? 'clear' : 'grey'); }
         if (this.grid) propGridMaterial(c, false);
         return c;

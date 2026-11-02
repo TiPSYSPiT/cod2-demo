@@ -61,6 +61,7 @@ function swing(st, key, flag, dest, tol, clamp, speed, dt) {
 }
 
 /** BG_Player_DoControllersInternal: goal angles of the controller bones and the root */
+const HEAD = [0, 0, 0], TORSO = [0, 0, 0], TAG = [0, 0, 0];      // (goals' scratch: no arrays per step)
 function goals(st, inp, out) {
   const torsoP0 = inp.climb ? 0 : st.pitch;
   let torsoP = torsoP0;
@@ -69,13 +70,14 @@ function goals(st, inp, out) {
     torsoP = (v - Math.floor(v + 0.5)) * 360;
     torsoP = torsoP <= 0 ? torsoP * 0.25 : torsoP * 0.5;
   }
-  const head = [delta(inp.pitch, torsoP), delta(inp.yaw, st.torso), 0];
-  const torso = [delta(torsoP, 0), delta(st.torso, st.legs), 0];
+  const head = HEAD, torso = TORSO, tag = TAG;
+  head[0] = delta(inp.pitch, torsoP); head[1] = delta(inp.yaw, st.torso); head[2] = 0;
+  torso[0] = delta(torsoP, 0); torso[1] = delta(st.torso, st.legs); torso[2] = 0;
   const f = inp.lean * (2 - Math.abs(inp.lean));                      // GetLeanFraction
   torso[2] = f * 50 * 0.925; head[2] = torso[2];
   let offX = 0, offY = 0;
   if (f) offY += inp.crouch ? (f <= 0 ? -f * LEAN_SHIFT.crouchLeft : -f * LEAN_SHIFT.crouchRight) : (f <= 0 ? -f * LEAN_SHIFT.left : -f * LEAN_SHIFT.right);
-  const tag = [0, delta(st.legs, inp.yaw), 0];
+  tag[0] = 0; tag[1] = delta(st.legs, inp.yaw); tag[2] = 0;
   const slope = inp.torsoPitch || inp.waistPitch ? delta(inp.torsoPitch, inp.waistPitch) : 0;
   const a = out.angles;
   if (inp.prone) {
@@ -130,13 +132,20 @@ function step(st, inp, dt, snap) {
 const fresh = () => ({ legs: 0, torso: 0, pitch: 0, legsYawing: 0, torsoYawing: 0, pitching: 0, idle: true,
   angles: new Float32Array(18), tag: new Float32Array(3), offset: new Float32Array(2),
   goal: { angles: new Float32Array(18), tag: new Float32Array(3), offset: new Float32Array(2) } });
-const copy = s => ({ legs: s.legs, torso: s.torso, pitch: s.pitch, legsYawing: s.legsYawing, torsoYawing: s.torsoYawing, pitching: s.pitching,
-  idle: s.idle, angles: s.angles.slice(), tag: s.tag.slice(), offset: s.offset.slice(),
-  goal: { angles: new Float32Array(18), tag: new Float32Array(3), offset: new Float32Array(2) } });
+const copy = s => copyInto(fresh(), s);
+/** state s into d (d's arrays kept) -> d */
+function copyInto(d, s) {
+  d.legs = s.legs; d.torso = s.torso; d.pitch = s.pitch; d.legsYawing = s.legsYawing; d.torsoYawing = s.torsoYawing; d.pitching = s.pitching;
+  d.idle = s.idle; d.angles.set(s.angles); d.tag.set(s.tag); d.offset.set(s.offset);
+  return d;
+}
 
 export class Controllers {
   /** match: Match, lib: CharacterLibrary (the legs animations' names) */
-  constructor(match, lib) { this.M = match; this.lib = lib; this.cache = new Map(); }
+  constructor(match, lib) {
+    this.M = match; this.lib = lib; this.cache = new Map();
+    this.inp = {};                     // (input's result, reused: read before the next call)
+  }
 
   /** the legs' direction relative to the view (degrees): 0, or ±45 for the diagonals */
   moveDir(P, i, yaw) {
@@ -159,13 +168,12 @@ export class Controllers {
       const f = (t - P.t[i]) / (P.t[i + 1] - P.t[i]);
       yaw += delta(P.yaw[i + 1], yaw) * f; pitch += delta(P.pitch[i + 1], pitch) * f;
     }
-    const fl = P.flags[i], moving = MOVING.test(name);
-    return {
-      yaw, pitch, moveDir: this.moveDir(P, i, yaw), lean: P.lean ? P.lean[i] : 0,
-      torsoPitch: P.torsoPitch ? P.torsoPitch[i] : 0, waistPitch: P.waistPitch ? P.waistPitch[i] : 0,
-      crouch: !!(fl & PF.CROUCH), prone: !!(fl & PF.PRONE), firing: !!(fl & PF.FIRING),
-      idle: !moving, climb: /climb/.test(name), strafe: moving && STRAFE.test(name)
-    };
+    const fl = P.flags[i], moving = MOVING.test(name), o = this.inp;
+    o.yaw = yaw; o.pitch = pitch; o.moveDir = this.moveDir(P, i, yaw); o.lean = P.lean ? P.lean[i] : 0;
+    o.torsoPitch = P.torsoPitch ? P.torsoPitch[i] : 0; o.waistPitch = P.waistPitch ? P.waistPitch[i] : 0;
+    o.crouch = !!(fl & PF.CROUCH); o.prone = !!(fl & PF.PRONE); o.firing = !!(fl & PF.FIRING);
+    o.idle = !moving; o.climb = /climb/.test(name); o.strafe = moving && STRAFE.test(name);
+    return o;
   }
 
   /** a new life / a gap / a new round restarts the simulation at sample i */
@@ -207,12 +215,13 @@ export class Controllers {
       // per sample the latest restart at or before it; checkpoint sample index -> state at that sample
       const R = new Int32Array(P.t.length);
       for (let j = 1; j < R.length; j++) R[j] = this.restartsAt(P, j) ? j : R[j - 1];
-      this.cache.set(cl, C = { restart: R, states: new Map() });
+      // (work: the state run from a checkpoint, out: the result - both reused frame after frame)
+      this.cache.set(cl, C = { restart: R, states: new Map(), work: fresh(), out: { angles: null, tag: null, offset: null } });
     }
     const r = C.restart[i], S = C.states;
     let k = i - ((i - r) % CHECK), st;
     for (let c = k; c >= r; c -= CHECK) {
-      if (S.has(c)) { st = copy(S.get(c)); k = c; break; }
+      if (S.has(c)) { st = copyInto(C.work, S.get(c)); k = c; break; }
     }
     if (!st) { st = this.start(P, r); k = r; S.set(r, copy(st)); }
     for (let j = k; j < i; j++) {
@@ -220,6 +229,8 @@ export class Controllers {
       if ((j + 1 - r) % CHECK === 0 && !S.has(j + 1)) S.set(j + 1, copy(st));
     }
     this.run(P, i, st, P.t[i], t);
-    return { angles: st.angles, tag: st.tag, offset: st.offset };
+    const o = C.out;
+    o.angles = st.angles; o.tag = st.tag; o.offset = st.offset;
+    return o;
   }
 }

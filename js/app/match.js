@@ -74,8 +74,18 @@ export class Match {
   /** position of client cl at time t, interpolated between two samples when they are close
    *  enough (same life, same round, gap <= GAP_MS, no jump); null when dead / not in this life.
    *  -> {x, y, z, yaw, pitch, lean (leanf: -1 .. 1), age (ms since the sample, 0 = interpolated), crouch, prone, firing,
-   *  turret, weapon, ps} */
+   *  turret, weapon, ps} - the same object again for the same client and time (the last two per client are kept: a
+   *  frame asks for a player from several places; callers must not change it) */
   sampleAt(cl, t) {
+    const C = this.sampleCache || (this.sampleCache = []);
+    const e = C[cl];
+    if (e) { if (e.t0 === t) return e.s0; if (e.t1 === t) return e.s1; }
+    const s = this.sampleNow(cl, t);
+    if (!e) C[cl] = { t0: t, s0: s, t1: NaN, s1: null };
+    else { e.t1 = e.t0; e.s1 = e.s0; e.t0 = t; e.s0 = s; }
+    return s;
+  }
+  sampleNow(cl, t) {
     const P = this.d.positions[cl];
     if (!P || !P.t.length) return null;
     const i = upperBound(P.t, t) - 1;

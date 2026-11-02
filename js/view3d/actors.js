@@ -27,6 +27,7 @@ export function forward(yaw, pitch, out = new THREE.Vector3()) {
 }
 export function stanceOf(s) { return s.prone ? 'prone' : s.crouch ? 'crouch' : 'stand'; }
 const LEGS_BLEND = 200, TORSO_BLEND = 120;     // ms: crossfade of the models' animations
+const CORPSE_POOL = 24;                        // corpses kept hidden for reuse
 const smooth = x => (x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x));
 /** the index of the first sample at or after time t (times ascending) */
 function lowerIndex(T, t) { let lo = 0, hi = T.length; while (lo < hi) { const m = (lo + hi) >> 1; if (T[m] < t) lo = m + 1; else hi = m; } return Math.min(lo, T.length - 1); }
@@ -45,9 +46,10 @@ export class Actors {
     this.library = library || null;
     this.controllers = library ? new Controllers(match, library) : null;   // legs / torso / head turns, lean, slopes
     this.mode = 'simple';
-    this.starts = new Map();
+    this.starts = new Map();           // client -> {legs: Int32Array, torso: Int32Array} start time of each sample's animation
     this.hands = new Map();            // client -> {t, left} the gun-hand switches (gunLeft)
-    this.corpseItems = new Map();      // client@t0 -> {ch} the corpses shown in mode "models"           // client -> {legs: Int32Array, torso: Int32Array} start time of each sample's animation
+    this.corpseItems = new Map();      // client@t0 -> {ch, mkey} the corpses shown in mode "models"
+    this.corpsePool = new Map();       // models key -> [Character] hidden corpses for reuse (releaseCorpse)
     this.layer = labelLayer;
     this.root = new THREE.Group();
     this.root.name = 'players';
@@ -269,7 +271,7 @@ export class Actors {
     const body = new THREE.Mesh(this.geo.stand, new THREE.MeshLambertMaterial({ color, transparent: true }));
     const group = new THREE.Group();
     group.add(body);
-    const ring = new THREE.Mesh(this.ringGeo, new THREE.MeshBasicMaterial({ color: 0xffb35c, side: THREE.DoubleSide, transparent: true, opacity: 0.9, depthTest: false }));
+    const ring = new THREE.Mesh(this.ringGeo, new THREE.MeshBasicMaterial({ color: 0xffb35c, side: THREE.DoubleSide, forceSinglePass: true, transparent: true, opacity: 0.9, depthTest: false }));
     ring.renderOrder = 5;
     const fire = new THREE.Mesh(new THREE.SphereGeometry(4, 8, 6), new THREE.MeshBasicMaterial({ color: 0xfff0b4 }));
     const label = document.createElement('div');
@@ -315,7 +317,7 @@ export class Actors {
   /** a player's team ring on the ground */
   teamRingOf(it) {
     if (!it.teamRing) {
-      it.teamRing = new THREE.Mesh(this.teamRingGeo, new THREE.MeshBasicMaterial({ color: it.color, side: THREE.DoubleSide, transparent: true, opacity: 0.85, depthWrite: false }));
+      it.teamRing = new THREE.Mesh(this.teamRingGeo, new THREE.MeshBasicMaterial({ color: it.color, side: THREE.DoubleSide, forceSinglePass: true, transparent: true, opacity: 0.85, depthWrite: false }));
       it.teamRing.renderOrder = 4;
       it.teamRing.userData.noCookie = true;           // (no shadow: shadows.js)
       this.root.add(it.teamRing);
@@ -417,9 +419,13 @@ export class Actors {
         let h = this.corpseItems.get(key);
         if (!h) {
           const models = this.modelsAt(c.client, c.t0);
-          const ch = models ? new Character(this.library, models.body, models.attach) : null;
-          h = { ch: ch && ch.ok ? ch : null };
-          if (h.ch) { this.root.add(h.ch.group); h.ch.group.position.set(c.x, c.y, c.z); h.ch.group.rotation.set(0, 0, c.yaw * D2R); }
+          const mkey = models ? models.body + '|' + models.attach.join('|') : null;
+          // a hidden corpse of the same models from the pool (building one stalls a frame), else a new one
+          const pool = mkey && this.corpsePool.get(mkey);
+          let ch = pool && pool.length ? pool.pop() : null;
+          if (!ch && models) { ch = new Character(this.library, models.body, models.attach); if (ch.ok) this.root.add(ch.group); else ch = null; }
+          h = { ch, mkey };
+          if (ch) { ch.group.position.set(c.x, c.y, c.z); ch.group.rotation.set(0, 0, c.yaw * D2R); }
           this.corpseItems.set(key, h);
         }
         if (!h.ch) continue;
@@ -432,9 +438,18 @@ export class Actors {
     }
     for (const [key, h] of this.corpseItems) {
       if (want.has(key)) continue;
-      if (h.ch) h.ch.dispose();
+      if (h.ch) this.releaseCorpse(h);
       this.corpseItems.delete(key);
     }
+  }
+  /** a corpse no longer shown: hidden into the pool of its models (up to CORPSE_POOL in all), else disposed */
+  releaseCorpse(h) {
+    h.ch.group.visible = false;
+    let n = 0; for (const p of this.corpsePool.values()) n += p.length;
+    if (n >= CORPSE_POOL) { h.ch.dispose(); return; }
+    let p = this.corpsePool.get(h.mkey);
+    if (!p) this.corpsePool.set(h.mkey, p = []);
+    p.push(h.ch);
   }
 
   /** X-Ray (xray.js): the living players as drawn now - not a last known position, not the first-person

@@ -223,10 +223,26 @@ const sortKey = g => (g.sort != null ? g.sort : g.blend || g.vertexAlpha ? 27 : 
  *  mix(1, colour map x vertex colour, vertex alpha) - white leaves the surface below as it is, the grime
  *  darkens it; unlit, no depth writes, no fog, no shadow cookie (the surface below has it). Without vertex
  *  colours (opts.vertexColors false: the props) the colour map alone; level: its polygon offset level */
+/** a material's copy with its userData copied shallow: three.js's Material.copy copies userData through JSON - a
+ *  texture in it (the normal / specular maps' uniforms, characters.js) would be encoded as an image (slow) and come
+ *  back as plain data, not a texture */
+export function cloneMaterial(m) {
+  const ud = m.userData;
+  m.userData = {};
+  const c = m.clone();
+  m.userData = ud;
+  c.userData = Object.assign({}, ud);
+  return c;
+}
+
 export function multiplyMaterial(tex, opts = {}, level = 1) {
   const mat = new THREE.MeshBasicMaterial(polygonOffset(Object.assign({ vertexColors: true }, opts, {
     transparent: true, depthWrite: false,
-    blending: THREE.CustomBlending, blendEquation: THREE.AddEquation, blendSrc: THREE.ZeroFactor, blendDst: THREE.SrcColorFactor
+    blending: THREE.CustomBlending, blendEquation: THREE.AddEquation, blendSrc: THREE.ZeroFactor, blendDst: THREE.SrcColorFactor,
+    // the canvas' alpha stays as the surface below left it: with the colour's factors the decal multiplied it down
+    // too, and where the canvas is read as an image (the video export, a screenshot) the colour un-premultiplied by
+    // that alpha burned out to white (the dirt decals on mp_burgundy_fix's streets)
+    blendEquationAlpha: THREE.AddEquation, blendSrcAlpha: THREE.ZeroFactor, blendDstAlpha: THREE.OneFactor
   }), level, true));
   setMap(mat, 'map', tex, 'white');          // (white while it loads: no change to the surface below)
   mat.onBeforeCompile = shader => {
@@ -247,7 +263,7 @@ export function multiplyMaterial(tex, opts = {}, level = 1) {
  *  colour, the cube's alpha) + the sun x max(0, R.L)^64; opaque, unlit, no lightmap */
 function waterMaterial(g, env) {
   const w = g.water;
-  const mat = new THREE.MeshBasicMaterial({ side: g.doubleSided ? THREE.DoubleSide : THREE.FrontSide });
+  const mat = new THREE.MeshBasicMaterial({ side: g.doubleSided ? THREE.DoubleSide : THREE.FrontSide, forceSinglePass: true });
   const uniforms = {
     uEnv: uniformMap(env, 'black'), uEnvSize: { value: w.envSize || 128 }, uHasEnv: { value: env ? 1 : 0 },
     uWaterColor: { value: new THREE.Vector3(...w.color) }
@@ -316,12 +332,14 @@ vec4 wCube( vec3 c ) {      // the cube strip, as sky.js (D3D faces +X -X +Y -Y 
 function makeMaterial(g, tex, lightmaps, sunMasks, coefs, normalMap, specMap, detail, env) {
   if (g.water) return waterMaterial(g, env);      // (no shadow cookie: water.hlsl has no dynamic shadow)
   if (g.blend === 'multiply') {
-    const mat = multiplyMaterial(tex, { side: g.doubleSided ? THREE.DoubleSide : THREE.FrontSide }, offsetLevel(g));
+    const mat = multiplyMaterial(tex, { side: g.doubleSided ? THREE.DoubleSide : THREE.FrontSide, forceSinglePass: true }, offsetLevel(g));
     mat.name = g.material;
     mat.userData.group = g;
     return mat;
   }
-  const opts = { side: g.doubleSided ? THREE.DoubleSide : THREE.FrontSide };
+  // (forceSinglePass: a blended double-sided surface in one pass, as the game draws it with culling off - three.js's
+  // default draws it twice, back faces then front faces, and marks the material for a new program before each)
+  const opts = { side: g.doubleSided ? THREE.DoubleSide : THREE.FrontSide, forceSinglePass: true };
   if (!tex) opts.color = new THREE.Color('#8a8a84');
   const lm = g.lightmap >= 0 ? lightmaps[g.lightmap] : null;
   if (lm) opts.lightMapIntensity = LIGHTMAP_SCALE * Math.PI;

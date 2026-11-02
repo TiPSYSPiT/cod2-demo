@@ -63,7 +63,7 @@ export class Effects {
     this.clouds = new Pool(scene, () => { const m = new THREE.Mesh(sphere, new THREE.MeshLambertMaterial({ transparent: true, depthWrite: false })); m.renderOrder = 4; return m; });
     this.bomb = new THREE.Mesh(new THREE.BoxGeometry(14, 9, 5), new THREE.MeshBasicMaterial({ color: CFG.BOMB.color }));
     this.bomb.visible = false;
-    this.bombRing = new THREE.Mesh(new THREE.RingGeometry(16, 20, 40), new THREE.MeshBasicMaterial({ color: CFG.BOMB.color, transparent: true, side: THREE.DoubleSide, depthTest: false }));
+    this.bombRing = new THREE.Mesh(new THREE.RingGeometry(16, 20, 40), new THREE.MeshBasicMaterial({ color: CFG.BOMB.color, transparent: true, side: THREE.DoubleSide, forceSinglePass: true, depthTest: false }));
     this.bombRing.renderOrder = 6;
     this.bombRing.visible = false;
     this.blast = new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0xff8a1f, transparent: true, depthWrite: false }));

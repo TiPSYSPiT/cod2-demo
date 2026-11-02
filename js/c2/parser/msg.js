@@ -14,14 +14,6 @@ C2.define('msg', function (C2) {
   function u2f(u) { u32[0] = u; return f32[0]; }
   /** Float -> 32-bit pattern (float32 rounding). */
   function f2u(f) { f32[0] = f; return u32[0]; }
-  /** (int)*(float*)&u with C truncation; NaN / infinity / out of range -> 0. */
-  function f2i(u) {
-    u32[0] = u;
-    const f = f32[0];
-    if (!(f > -2147483648 && f < 2147483648)) return 0;
-    return f < 0 ? Math.ceil(f) : Math.floor(f);
-  }
-  function s32(u) { return u | 0; }
 
   class Msg {
     constructor(data) {
@@ -116,5 +108,5 @@ C2.define('msg', function (C2) {
     get remaining() { return this.cursize - this.readcount; }
   }
 
-  C2.msg = { Msg, u2f, f2u, f2i, s32 };
+  C2.msg = { Msg, u2f, f2u };
 });

@@ -87,7 +87,42 @@ export function axisFromDir(dir) {
   const u = cross(f, l);
   return { f, l, u };
 }
+/** rawPosition's velocity curves (vel / vel2: per axis base, rand, scale) added to out: in world axes (abs) or in
+ *  the particle's frame */
+function addVel(out, P, vel, abs, k0, u, ls) {
+  let x = 0, y = 0, z = 0;
+  for (let c = 0; c < 3; c++) {
+    const v = vel[c];
+    if (!v.base) continue;
+    let I = integCurve(v.base, u);
+    if (v.rand) I = lerp(I, integCurve(v.rand, u), rnd(P.ps, k0 + c));
+    const L = I * lerp(v.scale[0], v.scale[1], rnd(P.ps, k0 + 3 + c)) * ls;
+    if (c === 0) x = L; else if (c === 1) y = L; else z = L;
+  }
+  if (abs) { out[0] += x; out[1] += y; out[2] += z; return; }
+  const F = P.frame;
+  for (let c = 0; c < 3; c++) out[c] += F.f[c] * x + F.l[c] * y + F.u[c] * z;
+}
+/** axisFromDir into a frame {f, l, u} of arrays (no new arrays) -> out */
+function axisInto(x, y, z, out) {
+  const f = out.f, l = out.l, u = out.u;
+  f[0] = x; f[1] = y; f[2] = z;
+  if (!normalize(f)) { f[0] = 0; f[1] = 0; f[2] = 1; }
+  // l = cross(ref, f), ref: up, else x
+  if (Math.abs(f[2]) < 0.95) { l[0] = -f[1]; l[1] = f[0]; l[2] = 0; } else { l[0] = 0; l[1] = -f[2]; l[2] = f[1]; }
+  normalize(l);
+  u[0] = f[1] * l[2] - f[2] * l[1]; u[1] = f[2] * l[0] - f[0] * l[2]; u[2] = f[0] * l[1] - f[1] * l[0];
+  return out;
+}
+const frame3 = () => ({ f: [0, 0, 1], l: [0, 1, 0], u: [1, 0, 0] });
 const UP = axisFromDir([0, 0, 1]);
+// the per-frame simulation's scratch (each frame simulates every particle anew): a spawn per effect depth (a
+// runner's child effects run at the next depth while its spawn is still in use), the velocity sums, the sprite's
+// vectors
+const SPAWNS = Array.from({ length: MAX_DEPTH + 2 }, () => ({ pos: [0, 0, 0], frame: null, own: frame3(), ps: 0, ground: 0, g: 0 }));
+const V3 = [0, 0, 0], W3 = [0, 0, 0], B3 = [0, 0, 0], O3 = [0, 0, 0], T3 = [0, 0, 0], TAN = [0, 0, 0], DC = [0, 0, 0], COL = [1, 1, 1];
+const SP_POS = [0, 0, 0], SP_P0 = [0, 0, 0], MP_POS = [0, 0, 0], MP_A = [0, 0, 0];
+const set3 = (o, x, y, z) => { o[0] = x; o[1] = y; o[2] = z; return o; };
 function byteDir(b) {
   const D = C2.constants.BYTE_DIRS;
   return b != null && b >= 0 && b < D.length / 3 ? [D[b * 3], D[b * 3 + 1], D[b * 3 + 2]] : [0, 0, 1];
@@ -306,14 +341,14 @@ export class FxPlayer {
       }
       const add = m.blend === 'add';
       // (the impact marks: the material's polygon offset level - 2 for the bullet hits; older data: 2 for the decals)
-      const mat = new THREE.MeshBasicMaterial(polygonOffset({ vertexColors: true, transparent: true, depthWrite: false, side: THREE.DoubleSide,
+      const mat = new THREE.MeshBasicMaterial(polygonOffset({ vertexColors: true, transparent: true, depthWrite: false, side: THREE.DoubleSide, forceSinglePass: true,
         blending: add ? THREE.AdditiveBlending : THREE.NormalBlending, fog: false }, m.polygonOffset != null ? m.polygonOffset : m.decal ? 2 : 0));
       setMap(mat, 'map', tex, 'clear');
       const mesh = new THREE.Mesh(new THREE.BufferGeometry(), mat);
       mesh.frustumCulled = false;
       mesh.renderOrder = add ? 7 : 6;
       (view ? this.viewRoot : this.root).add(mesh);
-      b = { mesh, add, cap: 0, list: [], atlas: m.atlas || [1, 1] };
+      b = { mesh, add, cap: 0, list: [], pool: [], atlas: m.atlas || [1, 1] };
     }
     this.batches.set(key, b);
     return b;
@@ -441,7 +476,7 @@ export class FxPlayer {
       const delay = e.even && n > 1 ? lerp(e.delay[0], e.delay[1], i / (n - 1)) : lerp(e.delay[0], e.delay[1], rnd(ps, 1));
       const begin = inst.t0 + delay;
       if (begin > t) continue;
-      const P = this.spawn(inst, e, ps);
+      const P = this.spawn(inst, e, ps, depth);
       if (e.type === 'runner') {
         if (!e.playfx || depth >= MAX_DEPTH) continue;
         const name = e.playfx[Math.floor(rnd(ps, 30) * e.playfx.length)];
@@ -477,13 +512,13 @@ export class FxPlayer {
   modelParticle(e, P, ps, age, life) {
     if (!this.modelBatches || this.count >= MAX_PARTICLES) return;
     const model = e.models.length > 1 ? e.models[Math.floor(rnd(ps, 61) * e.models.length)] : e.models[0];
-    const pos = this.position(e, P, age, life);
+    const pos = this.position(e, P, age, life, MP_POS);
     let tr = age;
     if (e.physics) {
       const land = this.landing(e, P, life);
       if (land && land.t < Infinity) tr = Math.min(age, land.segs && land.segs.length ? land.segs[land.segs.length - 1].t1 : land.t);
     }
-    const A = e.angle, D = e.angleDelta, a = [0, 0, 0];
+    const A = e.angle, D = e.angleDelta, a = MP_A;
     for (let c = 0; c < 3; c++) a[c] = (A ? lerp(A[c], A[c + 3], rnd(ps, 62 + c)) : 0) + (D ? lerp(D[c], D[c + 3], rnd(ps, 65 + c)) * tr / 1000 : 0);
     const F = P.frame;
     this._mf.set(F.f[0], F.l[0], F.u[0], pos[0], F.f[1], F.l[1], F.u[1], pos[1], F.f[2], F.l[2], F.u[2], pos[2], 0, 0, 0, 1);
@@ -493,9 +528,10 @@ export class FxPlayer {
     if (this.modelBatches.add(model, this._mf, pos[0], pos[1], pos[2], c)) this.count++;
   }
 
-  /** a particle's spawn: world position, its velocity frame and its random factors */
-  spawn(inst, e, ps) {
-    const A = inst.axis, o = [0, 0, 0];
+  /** a particle's spawn: world position, its velocity frame and its random factors - in depth's scratch (valid
+   *  until the next spawn at that depth) */
+  spawn(inst, e, ps, depth = 0) {
+    const A = inst.axis, o = set3(O3, 0, 0, 0);
     if (e.origin) {
       const b = e.origin;
       if (b.length >= 6) for (let c = 0; c < 3; c++) o[c] = lerp(b[c], b[c + 3], rnd(ps, 4 + c));
@@ -510,21 +546,23 @@ export class FxPlayer {
       o[0] += lerp(e.height[0], e.height[1], rnd(ps, 10));
       o[1] += Math.cos(a) * rad; o[2] += Math.sin(a) * rad;
     }
-    const off = [A.f[0] * o[0] + A.l[0] * o[1] + A.u[0] * o[2], A.f[1] * o[0] + A.l[1] * o[1] + A.u[1] * o[2], A.f[2] * o[0] + A.l[2] * o[1] + A.u[2] * o[2]];
-    let frame = A;
+    const off = set3(T3, A.f[0] * o[0] + A.l[0] * o[1] + A.u[0] * o[2], A.f[1] * o[0] + A.l[1] * o[1] + A.u[1] * o[2], A.f[2] * o[0] + A.l[2] * o[1] + A.u[2] * o[2]);
+    const P = SPAWNS[depth];
+    P.frame = A;
     if (e.axisFromSphere) {
-      const d = [off[0], off[1], off[2]];
-      if (normalize(d) > 1e-3) frame = axisFromDir(d);
-      else { const z = rnd(ps, 11) * 2 - 1, a = rnd(ps, 12) * Math.PI * 2, r = Math.sqrt(1 - z * z); frame = axisFromDir([r * Math.cos(a), r * Math.sin(a), z]); }
+      const d = set3(V3, off[0], off[1], off[2]);
+      if (normalize(d) > 1e-3) P.frame = axisInto(d[0], d[1], d[2], P.own);
+      else { const z = rnd(ps, 11) * 2 - 1, a = rnd(ps, 12) * Math.PI * 2, r = Math.sqrt(1 - z * z); P.frame = axisInto(r * Math.cos(a), r * Math.sin(a), z, P.own); }
     }
-    return { pos: [inst.origin[0] + off[0], inst.origin[1] + off[1], inst.origin[2] + off[2]], frame, ps, ground: inst.ground,
-      g: lerp(e.gravity[0], e.gravity[1], rnd(ps, 13)) };
+    set3(P.pos, inst.origin[0] + off[0], inst.origin[1] + off[1], inst.origin[2] + off[2]);
+    P.ps = ps; P.ground = inst.ground; P.g = lerp(e.gravity[0], e.gravity[1], rnd(ps, 13));
+    return P;
   }
 
   /** position at `age` ms: spawn + the integral of the velocity curves + gravity (stopped on the ground
    *  under the effect for usePhysics elements) */
-  position(e, P, age, life) {
-    const p = this.rawPosition(e, P, age, life);
+  position(e, P, age, life, out) {
+    const p = this.rawPosition(e, P, age, life, out);
     if (!e.physics) return p;
     // on the map's floor (lightProbe.js), once its landing is known; else a flat ground at the effect
     const land = this.landing(e, P, life);
@@ -533,16 +571,16 @@ export class FxPlayer {
       if (land.segs) {
         for (const s of land.segs) if (age < s.t1) {
           const dt = (age - s.t0) / 1000;
-          return [s.p0[0] + s.v[0] * dt, s.p0[1] + s.v[1] * dt, s.p0[2] + s.v[2] * dt + 0.5 * P.g * dt * dt];
+          return set3(p, s.p0[0] + s.v[0] * dt, s.p0[1] + s.v[1] * dt, s.p0[2] + s.v[2] * dt + 0.5 * P.g * dt * dt);
         }
-        return land.rest.slice();
+        return set3(p, land.rest[0], land.rest[1], land.rest[2]);
       }
-      return land.p.slice();
+      return set3(p, land.p[0], land.p[1], land.p[2]);
     }
     if (p[2] < P.ground) {
       let lo = 0, hi = age;
-      for (let k = 0; k < 10; k++) { const m = (lo + hi) / 2; if (this.rawPosition(e, P, m, life)[2] < P.ground) hi = m; else lo = m; }
-      const q = this.rawPosition(e, P, lo, life);
+      for (let k = 0; k < 10; k++) { const m = (lo + hi) / 2; if (this.rawPosition(e, P, m, life, B3)[2] < P.ground) hi = m; else lo = m; }
+      const q = this.rawPosition(e, P, lo, life, p);
       q[2] = Math.max(q[2], P.ground);
       return q;
     }
@@ -608,26 +646,15 @@ export class FxPlayer {
     L.rest = p0;
   }
 
-  rawPosition(e, P, age, life) {
-    const u = Math.min(1, age / life), ls = life / 1000, out = [P.pos[0], P.pos[1], P.pos[2]];
-    const add = (vel, abs, k0) => {
-      const L = [0, 0, 0];
-      for (let c = 0; c < 3; c++) {
-        const v = vel[c];
-        if (!v.base) continue;
-        let I = integCurve(v.base, u);
-        if (v.rand) I = lerp(I, integCurve(v.rand, u), rnd(P.ps, k0 + c));
-        L[c] = I * lerp(v.scale[0], v.scale[1], rnd(P.ps, k0 + 3 + c)) * ls;
-      }
-      if (abs) { out[0] += L[0]; out[1] += L[1]; out[2] += L[2]; return; }
-      const F = P.frame;
-      for (let c = 0; c < 3; c++) out[c] += F.f[c] * L[0] + F.l[c] * L[1] + F.u[c] * L[2];
-    };
-    add(e.vel, e.absVel, 14);
-    add(e.vel2, e.absVel2, 20);
+  /** the position at `age` ms without the floor -> out (a new array if none given) */
+  rawPosition(e, P, age, life, out = [0, 0, 0]) {
+    const u = Math.min(1, age / life), ls = life / 1000;
+    set3(out, P.pos[0], P.pos[1], P.pos[2]);
+    addVel(out, P, e.vel, e.absVel, 14, u, ls);
+    addVel(out, P, e.vel2, e.absVel2, 20, u, ls);
     const s = Math.min(age, life) / 1000;
     if (e.velConst || e.accel) {
-      const L = [0, 0, 0], F = P.frame;
+      const L = set3(W3, 0, 0, 0), F = P.frame;
       for (let c = 0; c < 3; c++) {
         if (e.velConst) L[c] += lerp(e.velConst[c], e.velConst[c + 3], rnd(P.ps, 26 + c)) * s;
         if (e.accel) L[c] += 0.5 * lerp(e.accel[c], e.accel[c + 3], rnd(P.ps, 29 + c)) * s * s;
@@ -647,7 +674,7 @@ export class FxPlayer {
     };
     let alpha = e.alpha ? pick(e.alpha, e.alphaRand, 50) : 1;
     if (alpha <= 0.004) return;
-    const col = e.rgb ? [1, 2, 3].map(k => pick(e.rgb, e.rgbRand, 51, 4, k)) : [1, 1, 1];
+    const col = e.rgb ? set3(COL, pick(e.rgb, e.rgbRand, 51, 4, 1), pick(e.rgb, e.rgbRand, 51, 4, 2), pick(e.rgb, e.rgbRand, 51, 4, 3)) : set3(COL, 1, 1, 1);
     // blended sprites and decals take the map's light (smoke at night is dark); additive ones glow
     if (!b.add && inst.light) for (let c = 0; c < 3; c++) col[c] *= Math.min(1, Math.max(0.1, inst.light[c]));
     const w = (e.size ? pick(e.size, e.sizeRand, 52) : 1) * lerp(e.sizeScale[0], e.sizeScale[1], rnd(ps, 53));
@@ -661,36 +688,42 @@ export class FxPlayer {
     }
     if (e.rotSpeed) rot += lerp(e.rotSpeed[0], e.rotSpeed[1], rnd(ps, 57)) * age / 1000;
     rot *= D2R;
-    let pos = this.position(e, P, age, life), tan, bin, half = [w, h];
+    const pos = this.position(e, P, age, life, SP_POS);
+    let tan, bin, h0 = w, h1 = h;
     if (e.type === 'oriented' || e.type === 'decal') {
       const A = e.type === 'decal' ? inst.axis : P.frame;
       tan = A.l; bin = A.u;
-      if (e.type === 'decal') pos = [pos[0] + A.f[0] * 0.5, pos[1] + A.f[1] * 0.5, pos[2] + A.f[2] * 0.5];
+      if (e.type === 'decal') set3(pos, pos[0] + A.f[0] * 0.5, pos[1] + A.f[1] * 0.5, pos[2] + A.f[2] * 0.5);
     } else if (e.type === 'tail') {
-      const p0 = this.position(e, P, Math.max(0, age - 16), life);
-      const v = [pos[0] - p0[0], pos[1] - p0[1], pos[2] - p0[2]];
+      const p0 = this.position(e, P, Math.max(0, age - 16), life, SP_P0);
+      const v = set3(V3, pos[0] - p0[0], pos[1] - p0[1], pos[2] - p0[2]);
       if (!normalize(v)) return;
       const len = (e.length ? pick(e.length, e.lengthRand, 58) : 1) * lerp(e.lengthScale[0], e.lengthScale[1], rnd(ps, 59));
-      pos = [pos[0] - v[0] * len * 0.5, pos[1] - v[1] * len * 0.5, pos[2] - v[2] * len * 0.5];
-      const dc = [this.cam.x - pos[0], this.cam.y - pos[1], this.cam.z - pos[2]];
-      tan = cross(v, dc); if (!normalize(tan)) return;
-      bin = v; half = [w, Math.max(len * 0.5, w)]; rot = 0;
+      set3(pos, pos[0] - v[0] * len * 0.5, pos[1] - v[1] * len * 0.5, pos[2] - v[2] * len * 0.5);
+      const dc = set3(DC, this.cam.x - pos[0], this.cam.y - pos[1], this.cam.z - pos[2]);
+      tan = set3(TAN, v[1] * dc[2] - v[2] * dc[1], v[2] * dc[0] - v[0] * dc[2], v[0] * dc[1] - v[1] * dc[0]); if (!normalize(tan)) return;
+      bin = v; h1 = Math.max(len * 0.5, w); rot = 0;
     } else { tan = this.camRight; bin = this.camUp; }
     const c = Math.cos(rot), s = Math.sin(rot);
-    const rt = [c * tan[0] + s * bin[0], c * tan[1] + s * bin[1], c * tan[2] + s * bin[2]];
-    const rb = [s * tan[0] - c * bin[0], s * tan[1] - c * bin[1], s * tan[2] - c * bin[2]];
+    // the batch's entry for this sprite (pooled: the same objects frame after frame)
+    const q = b.pool[b.list.length] || (b.pool[b.list.length] = { p: [0, 0, 0], rt: [0, 0, 0], rb: [0, 0, 0], uv: [0, 0, 1, 1], col: [1, 1, 1, 1], s0: 0, s1: 0, d2: 0 });
+    set3(q.p, pos[0], pos[1], pos[2]);
+    set3(q.rt, c * tan[0] + s * bin[0], c * tan[1] + s * bin[1], c * tan[2] + s * bin[2]);
+    set3(q.rb, s * tan[0] - c * bin[0], s * tan[1] - c * bin[1], s * tan[2] - c * bin[2]);
     // the atlas frame
-    let uv = [0, 0, 1, 1];
-    const [cols, rows] = b.atlas, nf = cols * rows;
+    const uv = q.uv, cols = b.atlas[0], rows = b.atlas[1], nf = cols * rows;
+    uv[0] = 0; uv[1] = 0; uv[2] = 1; uv[3] = 1;
     if (nf > 1) {
       let idx = e.atlasStart === 0 ? Math.floor(e.atlasFixed) : Math.floor(rnd(ps, 60) * nf);
       if (e.atlasFps != null) idx += Math.floor(e.atlasFps * age / 1000);
       else idx += Math.floor(nf * u);
       idx = e.atlasLoop ? ((idx % nf) + nf) % nf : Math.min(idx, nf - 1);
-      uv = [(idx % cols) / cols, Math.floor(idx / cols) / rows, 1 / cols, 1 / rows];
+      uv[0] = (idx % cols) / cols; uv[1] = Math.floor(idx / cols) / rows; uv[2] = 1 / cols; uv[3] = 1 / rows;
     }
-    const d2 = (pos[0] - this.cam.x) ** 2 + (pos[1] - this.cam.y) ** 2 + (pos[2] - this.cam.z) ** 2;
-    b.list.push({ p: pos, rt, rb, s0: half[0], s1: half[1], uv, col: [col[0], col[1], col[2], Math.min(1, alpha)], d2 });
+    q.col[0] = col[0]; q.col[1] = col[1]; q.col[2] = col[2]; q.col[3] = Math.min(1, alpha);
+    q.s0 = h0; q.s1 = h1;
+    q.d2 = (pos[0] - this.cam.x) ** 2 + (pos[1] - this.cam.y) ** 2 + (pos[2] - this.cam.z) ** 2;
+    b.list.push(q);
     this.count++;
   }
 
