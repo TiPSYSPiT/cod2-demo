@@ -23,7 +23,7 @@ import { CharacterLibrary } from './characters.js';
 import { InfoHint, fadeHint, holdHint } from '../app/infoHint.js';
 import { CookieShadows, COOKIE_LAYER, WORLD_LAYER } from './shadows.js';
 import { LightGrid } from './lightGrid.js';
-import { gameObjectFilter, Exploders } from './gameObjects.js';
+import { gameObjectFilter, Exploders, ScriptedParts } from './gameObjects.js';
 import { XRay, XRAY_MODES } from './xray.js';
 import { ViewModel, FP_FOV } from './viewmodel.js';
 import { Hud, HUD_PARTS } from './hud.js';
@@ -227,12 +227,15 @@ export class View3D {
         // the entities the game type deletes, the bomb sites' exploders (gameObjects.js)
         const keep = gameObjectFilter(M.d.meta.gametype);
         this.exploders = new Exploders();
+        this.scripted = new ScriptedParts(M.d.meta);            // (the map script's parts: the aim trainer, posters)
         for (const m of w.mesh.material) {
           const g = m.userData.group;
           if (!g) continue;
           if (!keep(g.gameobject)) m.visible = false;
+          else if (g.scripted) this.scripted.add(g.scripted, v => { m.visible = v; });
           else if (g.exploder) this.exploders.add(g.exploder.site, g.exploder.show, v => { m.visible = v; });
         }
+        this.scripted.set(C2.rounds.phaseAt(M.d.phases, this.t || 0));
         this.scene.add(w.group);
         this.shadows.invalidate();
         this.scene.background = new THREE.Color(0x8ea2b4);
@@ -270,7 +273,7 @@ export class View3D {
         }).catch(err => console.warn('light grid not loaded:', err));
         // the map's static models (misc_model): props.js, when exported
         try {
-          this.props = await Props.load('maps3d/' + name + '/', { gametype: M.d.meta.gametype });
+          this.props = await Props.load('maps3d/' + name + '/', { gametype: M.d.meta.gametype, meta: M.d.meta });
           if (this.props && this.world === w) {
             for (const p of this.props.exploderParts) this.exploders.add(p.site, p.show, p.apply);
             // the mounted MGs' aim from the demo (DemoData.turrets), matched to the placements by their origin
@@ -617,6 +620,8 @@ export class View3D {
     this.effects.modelGrenades = this.items.update(t);
     this.effects.update(t, R);
     // the destroyed bomb-site target after its bomb exploded, until the next round
+    // the map script's parts by the phase (ready-up or not: gameObjects.js)
+    if (this.scripted && this.scripted.set(C2.rounds.phaseAt(this.M.d.phases, t))) this.shadows.invalidate();
     if (this.exploders) {
       const b = this.M.bombAt(t);
       if (this.exploders.set(b && b.state === 'exploded' ? b.site : null)) this.shadows.invalidate();

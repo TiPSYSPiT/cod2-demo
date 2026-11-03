@@ -96,7 +96,8 @@
    "brushModel": true,
    "doubleSided": true,
    "surface": 0,
-   "contents": 1
+   "contents": 1,
+   "scripted": "poster"
   },
   {
    "material": "cod2_image_lan_poster_2048",
@@ -116,7 +117,8 @@
    "brushModel": true,
    "doubleSided": true,
    "surface": 0,
-   "contents": 1
+   "contents": 1,
+   "scripted": "poster"
   },
   {
    "material": "dawnville2_sign_pohs",

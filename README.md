@@ -62,7 +62,8 @@ standing / crouched / prone), optionally a view line from the eyes using their r
 *Player* = living players behind walls and props as a silhouette in the team colour, *Player + name* = also
 every name, with a badge for a player out of sight; remembered for the browser session), the mounted
 **MGs** turning with their user's aim (the user's own weapon hidden meanwhile), the S&D bomb-site targets
-swapped for their destroyed model when the bomb explodes, the game's own **particle effects**
+swapped for their destroyed model when the bomb explodes, what the zPAM map pack's script removes left out (the aim
+trainer's targets and "Map supports Training" sign outside ready-up, the LAN posters), the game's own **particle effects**
 (Display popover, *Effects*: *Game* = grenade explosions by the surface hit, smoke grenades, bullet impacts by
 bullet type and surface, scripted effects, the map's ambient smoke, dust and fires when the server ran
 them (stock servers; zPAM's rules switch them off), every shot's muzzle flash at the weapon's muzzle and the game's
@@ -212,7 +213,9 @@ browser with WebGL 2 and ES modules should work.
 
 Needs **Python 3.10+** and **Pillow with WebP** (`pip install pillow`), nothing else. The game folder is
 the CoD2 install with `main/` (stock `iw_*.iwd`, localized `localized_*_iw*.iwd`, and for the zPAM map
-pack and radar images `zpam_maps_v7.iwd` / `zpam409.iwd`).
+pack and radar images `zpam_maps_v7.iwd` / `zpam409.iwd`). 25 of the game's images are wavelet compressed
+(mp_matmata's well, mp_toujane's vase, a few HUD and effect images): their decode tables are read from the game
+folder's own `gfx_d3d_mp_x86_s.dll` (or `gfx_d3d_x86_s.dll`) - not shipped here.
 
 ```bash
 py tools/export/export_maps.py --game "C:/Games/Call of Duty 2"
@@ -344,7 +347,7 @@ git-ignored):
 | `py tools/audit/leftovers.py` | flash / stun grenades (CoD4 template, not in CoD2) left in the code, styles or exported data |
 | `node tools/audit/demo_detail.mjs <demo> [client]` | the details behind a demo-audit finding: kill records, deaths against the scoreboard by phase, the positions around a jump |
 | `ui_audit.js`, `xray_audit.js` | pasted into the DevTools console on a loaded demo (the console is not bound by the page's CSP - `eval` from the page is): every control of both views, the X-Ray rules |
-| `node tools/audit/browser/run.mjs [suite ...] [--browsers chrome,edge,firefox]` | the browser checks, headless, against the dev server (`py tools/serve.py 8776`): `ui` (the UI audit, a 3D MP4, a 2D GIF), `xray`, `start` (the start state, remembered settings), `features` (tracers, enemy names, camera shake, low-health overlay, Tab, a first-person MP4), `scores` (the defaults fresh and after the settings migration, Kill icons gone, the scoreboard only while Tab is held - all views, form fields, the export), `hit` (the hit marker on every demo), `sweep` (every demo in a row: 2D, 3D, follow, first person, seek, X-Ray), `badfiles` (broken / non-demo files), `layout` (five window sizes), `bump` (the players' normal maps), `alpha` (the 3D canvas opaque in every frame: images and videos as the page shows them), `baseline` (load and playback per mode and speed, seeks - the performance figures), `profile` (time and allocations per frame step, the sampling heap profiler, shader programs derived again, seeks), `fxhash` (the effects' output hashed), `closeup` (a player close-up PNG, `--pick x,y` the surface at a pixel), `decals` (decal flicker), `perf` (load and frame time per map, `--maps`), `leak` (memory on demo changes); a line per run, details in `tools/audit/out/browser/`, exit code 1 on a failure or any console error / warning / failed request |
+| `node tools/audit/browser/run.mjs [suite ...] [--browsers chrome,edge,firefox]` | the browser checks, headless, against the dev server (`py tools/serve.py 8776`): `ui` (the UI audit, a 3D MP4, a 2D GIF), `xray`, `start` (the start state, remembered settings), `features` (tracers, enemy names, camera shake, low-health overlay, Tab, a first-person MP4), `scores` (the defaults fresh and after the settings migration, Kill icons gone, the scoreboard only while Tab is held - all views, form fields, the export), `hit` (the hit marker on every demo), `sweep` (every demo in a row: 2D, 3D, follow, first person, seek, X-Ray), `badfiles` (broken / non-demo files), `layout` (five window sizes), `bump` (the players' normal maps), `alpha` (the 3D canvas opaque in every frame: images and videos as the page shows them), `baseline` (load and playback per mode and speed, seeks - the performance figures), `profile` (time and allocations per frame step, the sampling heap profiler, shader programs derived again, seeks), `fxhash` (the effects' output hashed), `closeup` (a player close-up PNG, `--pick x,y` the surface at a pixel), `spot` (camera shots of a map spot as PNGs, `--spot '{"shots":[...]}'`, with the map script's parts shown or hidden), `info` (the demos' zPAM version, server variables, phases), `feed` (the kill feed's clicks and round separators), `decals` (decal flicker), `perf` (load and frame time per map, `--maps`), `leak` (memory on demo changes); a line per run, details in `tools/audit/out/browser/`, exit code 1 on a failure or any console error / warning / failed request |
 
 ## Deploy to GitHub Pages
 

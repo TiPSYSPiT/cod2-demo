@@ -23,7 +23,7 @@ import { fetchJSON, fetchBinary, checkedView } from './data.js';
 import { loadTexture, setMap, uniformMap, detailMap, multiplyMaterial, polygonOffset, anisotropy } from './mapLoader.js';
 import { receiveCookie } from './shadows.js';
 import { propGridMaterial } from './lightGrid.js';
-import { gameObjectFilter } from './gameObjects.js';
+import { gameObjectFilter, scriptedRule } from './gameObjects.js';
 
 // gndLt (0..1) -> instance colour: stored 2x overbright like the light maps; the lit materials divide it
 // by the ~0.75 the scene lights add on average (the tint already is the light at the model)
@@ -48,8 +48,9 @@ export class Props {
     this.boxes = new THREE.Group();
     this.group.add(this.models, this.boxes);
     this.mode = 'high';
-    const keep = gameObjectFilter(opts.gametype);
-    const instances = info.instances.filter(inst => keep(inst.gameobject));
+    const keep = gameObjectFilter(opts.gametype), scripted = scriptedRule(opts.meta);
+    // (a scripted placement - none of the maps has one - is kept when its script shows it at some phase)
+    const instances = info.instances.filter(inst => keep(inst.gameobject) && (!inst.scripted || scripted.ever(inst.scripted)));
     this.instanceCount = instances.length;
     this.exploderParts = [];          // [{site, show, apply(visible)}] (gameObjects.js)
     this.turrets = [];                // [{origin, aim(pitch, yaw)}]: the mounted MGs' guns (degrees, relative to the stand)

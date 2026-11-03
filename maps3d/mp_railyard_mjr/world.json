@@ -116,7 +116,8 @@
    "brushModel": true,
    "doubleSided": true,
    "surface": 0,
-   "contents": 1
+   "contents": 1,
+   "scripted": "poster"
   },
   {
    "material": "egypt_decal_windowbars",

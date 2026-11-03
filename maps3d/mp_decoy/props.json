@@ -647,7 +647,7 @@
      "start": 0,
      "count": 834,
      "texture": "_textures/egypt_bunker_window_shutter.webp",
-     "textureAlpha": true,
+     "textureAlpha": false,
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,

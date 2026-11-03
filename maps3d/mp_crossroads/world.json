@@ -76,7 +76,8 @@
    "brushModel": true,
    "doubleSided": true,
    "surface": 0,
-   "contents": 1
+   "contents": 1,
+   "scripted": "aimTrainer"
   },
   {
    "material": "afrika_banner_german1",
@@ -116,7 +117,8 @@
    "brushModel": true,
    "doubleSided": true,
    "surface": 0,
-   "contents": 1
+   "contents": 1,
+   "scripted": "poster"
   },
   {
    "material": "cod2_image_lan_poster_2048",
@@ -136,7 +138,8 @@
    "brushModel": true,
    "doubleSided": true,
    "surface": 0,
-   "contents": 1
+   "contents": 1,
+   "scripted": "poster"
   },
   {
    "material": "d_mud_dec",

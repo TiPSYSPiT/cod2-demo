@@ -76,7 +76,8 @@
    "brushModel": true,
    "doubleSided": true,
    "surface": 0,
-   "contents": 1
+   "contents": 1,
+   "scripted": "aimTrainer"
   },
   {
    "material": "a_training_target",
@@ -96,7 +97,8 @@
    "brushModel": true,
    "doubleSided": true,
    "surface": 0,
-   "contents": 1
+   "contents": 1,
+   "scripted": "aimTrainer"
   },
   {
    "material": "africa_palm_backdrop",
@@ -176,7 +178,8 @@
    "brushModel": true,
    "doubleSided": true,
    "surface": 0,
-   "contents": 1
+   "contents": 1,
+   "scripted": "poster"
   },
   {
    "material": "cod2_image_lan_poster_2048",
@@ -196,7 +199,8 @@
    "brushModel": true,
    "doubleSided": true,
    "surface": 0,
-   "contents": 1
+   "contents": 1,
+   "scripted": "poster"
   },
   {
    "material": "egypt_brick_sand_generic1_body1",
