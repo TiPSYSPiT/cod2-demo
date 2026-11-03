@@ -79,8 +79,8 @@ const RECORDER_PARTS = new Set(['ammo', 'grenades', 'server', 'hitmarker', 'heal
 const SCORE_SPOTS = new Set(['6,28', '6,50', '36,26', '36,48', '49,26', '49,48']);
 const ENTITYNUM_WORLD = 1022;
 
-export const HUD_PARTS = [['compass', 'Compass', true], ['score', 'Team score', false], ['killfeed', 'Kill feed', false],
-  ['ammo', 'Ammo', true], ['grenades', 'Grenades', true], ['server', 'Server HUD', false], ['lowHealth', 'Low health', false],
+export const HUD_PARTS = [['compass', 'Compass', true], ['score', 'Team score', false], ['killfeed', 'Kill feed', true],
+  ['ammo', 'Ammo', true], ['grenades', 'Grenades', true], ['server', 'Server HUD', true], ['lowHealth', 'Low health', false],
   ['health', 'Health bar', false], ['damage', 'Damage direction', false], ['hitmarker', 'Hit marker', true], ['stance', 'Stance', false], ['hints', 'Hints', false],
   ['matchinfo', 'zPAM match info', false]];
 
