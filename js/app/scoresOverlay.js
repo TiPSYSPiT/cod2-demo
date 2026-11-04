@@ -8,7 +8,7 @@ import { Hud } from '../view3d/hud.js';
  *  canvas edge it hugs, inset past it (device pixels) */
 export function uiInsets(canvas, dpr) {
   const c = canvas.getBoundingClientRect(), ins = { l: 0, t: 0, r: 0, b: 0 }, gap = 8;
-  // (in fullscreen the player bar floats over the view only while the mouse moves: the HUD stays put)
+  // (in fullscreen the player bar floats over the view only while the mouse is at the bottom: the HUD stays put)
   const fs = !!document.fullscreenElement;
   for (const sel of ['#rail', '#overview', '#drawer', '#controls']) {
     if (fs && sel === '#controls') continue;

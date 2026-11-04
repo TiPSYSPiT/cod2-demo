@@ -177,7 +177,7 @@ export class Replay {
       if (e.type === 'bomb_defused') markers.push({ t: e.t, kind: 'defuse' });
     }
     if (i < 0) for (const t of d.halftimes || []) markers.push({ t, kind: 'half' });
-    this.timeline.set(range, markers, { skips: this.pb.skips, base: this.base });
+    this.timeline.set(range, markers, { skips: this.pb.skips, base: this.base, marks: this.timelineMarks(range) });
     this.buildFeed(range);
     this.emit('scope');
     this.pb.invalidate();
@@ -194,9 +194,41 @@ export class Replay {
   }
 
   /* ---------- kill & bomb feed (side panel) ---------- */
-  /** the kills and bomb events of the range in time order, with separators: each round (from the rounds the timeline
-   *  and the score pill use: knife / warm-up / after-match rounds by their kind), a warm-up phase outside every
-   *  round, each halftime (the rounds' side swaps / zPAM's messages). The separators are not entries (evItems holds
+  /** the range's separators in time order, for the feed and the timeline's labels: each round (from the rounds the
+   *  timeline and the score pill use: knife / warm-up / after-match rounds by their kind), a warm-up phase outside
+   *  every round, each halftime (the rounds' side swaps / zPAM's messages) */
+  separators(range) {
+    const d = this.d, seps = [];
+    d.rounds.forEach((r, k) => {
+      if (r.segEnd < range[0] || r.segStart > range[1]) return;
+      const label = r.kind === 'knife' ? 'Knife round' : r.kind === 'prematch' ? 'Warmup' : r.kind === 'aftermatch' ? 'After the match' : 'R' + r.label;
+      // (the jump: past the end of the round before - a round holds its last ms, and an interrupted one's successor starts there)
+      seps.push({ t: Math.max(r.segStart, range[0]), label, round: k, jump: Math.max(this.match.live[k], k ? d.rounds[k - 1].segEnd + 1 : 0) });
+    });
+    for (const p of d.phases || []) {
+      if (p.phase !== 'warmup' || p.start < range[0] || p.start > range[1] || C2.events.roundAt(d.rounds, p.start) >= 0) continue;
+      seps.push({ t: p.start, label: 'Warmup' });
+    }
+    for (const h of d.halftimes || []) if (h >= range[0] && h <= range[1]) seps.push({ t: h, label: 'Half-time – sides switched', half: true });
+    return seps.sort((a, b) => a.t - b.t);
+  }
+
+  /** the labels under the timeline (Timeline.layoutMarks): the separators with their text, short text, round number
+   *  (the thinning out) and tooltip; at the round's live start, where its segment on the bar starts */
+  timelineMarks(range) {
+    const at0 = s => (s.jump != null ? s.jump : s.t);
+    return this.separators(range).filter(s => at0(s) < range[1]).map(s => {
+      const r = s.round != null ? this.d.rounds[s.round] : null, at = at0(s);
+      const numbered = !!r && (r.kind === 'round' || r.kind === 'interrupted');
+      const score = this.scoreAt(at), when = fmtTime(at - this.base), scored = ', score ' + score.A + ':' + score.B;
+      const text = s.half ? 'HT' : numbered ? s.label : r && r.kind === 'knife' ? 'Knife' : r && r.kind === 'aftermatch' ? 'End' : 'Warmup';
+      return { t: Math.min(range[1], Math.max(range[0], at)), jump: at, round: s.round, half: !!s.half, text,
+        short: numbered ? s.label.slice(1) : s.half ? 'HT' : text[0], n: numbered ? parseInt(r.label, 10) : null,
+        title: s.half ? s.label + ', ' + when + scored : (numbered ? 'Round ' + r.label.replace('*', '') + (r.kind === 'interrupted' ? ' (interrupted)' : '') : s.label) + ' – ' + when + (numbered ? scored : '') };
+    });
+  }
+
+  /** the kills and bomb events of the range in time order, with the separators. These are not entries (evItems holds
    *  only the entries); a round's separator jumps to its live start */
   buildFeed(range) {
     const d = this.d, box = this.dom.feed;
@@ -210,18 +242,7 @@ export class Replay {
     for (const k of d.kills) if (k.t >= range[0] && k.t <= range[1]) items.push({ t: k.t, kill: k });
     for (const e of d.events) if ((e.type === 'bomb_planted' || e.type === 'bomb_defused') && e.t >= range[0] && e.t <= range[1]) items.push({ t: e.t, ev: e });
     items.sort((a, b) => a.t - b.t);
-    const seps = [];
-    d.rounds.forEach((r, k) => {
-      if (r.segEnd < range[0] || r.segStart > range[1]) return;
-      const label = r.kind === 'knife' ? 'Knife round' : r.kind === 'prematch' ? 'Warmup' : r.kind === 'aftermatch' ? 'After the match' : 'R' + r.label;
-      seps.push({ t: Math.max(r.segStart, range[0]), label, round: k, jump: this.match.live[k] });
-    });
-    for (const p of d.phases || []) {
-      if (p.phase !== 'warmup' || p.start < range[0] || p.start > range[1] || C2.events.roundAt(d.rounds, p.start) >= 0) continue;
-      seps.push({ t: p.start, label: 'Warmup' });
-    }
-    for (const h of d.halftimes || []) if (h >= range[0] && h <= range[1]) seps.push({ t: h, label: 'Half-time – sides switched', half: true });
-    seps.sort((a, b) => a.t - b.t);
+    const seps = this.separators(range);
     let si = 0;
     const addSep = s => {
       const node = el('div', { class: 'feed-sep' + (s.half ? ' half' : ''), title: s.round != null ? 'Jump to the start of the round' : null,
@@ -304,6 +325,13 @@ export class Replay {
     return { p, tr, w, k, d: dd, talk };
   }
 
+  /** the rounds won up to t */
+  scoreAt(t) {
+    let score = this.d.initialScore || { A: 0, B: 0 };
+    for (const x of this.d.rounds) if (x.kind === 'round' && x.end != null && x.end <= t && x.scoreAfter) score = x.scoreAfter;
+    return score;
+  }
+
   updateTeamPanel(t) {
     const d = this.d, M = this.match;
     const r = M.roundAtOrBefore(t);
@@ -330,9 +358,7 @@ export class Replay {
       if (death) { const o = kd.get(k.victim) || { k: 0, d: 0 }; o.d++; kd.set(k.victim, o); }
     }
     this.deadNow = dead;
-    let score = d.initialScore || { A: 0, B: 0 };
-    for (const x of d.rounds) if (x.kind === 'round' && x.end != null && x.end <= t && x.scoreAfter) score = x.scoreAfter;
-    this.scoreNow = score;
+    const score = this.scoreNow = this.scoreAt(t);
     for (const c of this.rp.cards) {
       setText(c.score, String(score[c.key] != null ? score[c.key] : 0));
       const fa = M.factionAt(c.key, t) || '';
@@ -390,6 +416,7 @@ export class Replay {
       this.playing = this.pb.playing;
       this.playBtn.replaceChildren(icon(this.playing ? 'pause' : 'play'));
     }
+    this.timeline.setCurrent(r);
     this.timeline.setTime(t);
     this.updateTeamPanel(t);
     // the score pill: the rounds won up to now (the final score only on request: overview.js)
