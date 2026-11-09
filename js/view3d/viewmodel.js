@@ -131,7 +131,15 @@ export class ViewModel {
   request() {
     if (this.requested) return;
     this.requested = true;
-    this.library.load().then(ok => { this.table = ok ? this.library.modelsInfo : null; this.changed(); });
+    this.library.load().then(ok => {
+      this.table = ok ? this.library.modelsInfo : null;
+      // (the turrets' crosshair loaded now: the first frame on a mounted MG - a video's too - has it)
+      for (const tw of Object.values((this.table && this.table.turrets) || {})) {
+        const r = this.table.reticles[tw.strings.reticleCenter];
+        if (r) this.texture(r.texture, false);
+      }
+      this.changed();
+    });
   }
 
   /** the view model entry of a demo weapon name (mp40_mp ...) or null */
@@ -447,6 +455,17 @@ export class ViewModel {
     // the crosshair's colour: green on a teammate (CG_DrawCrosshair: 0.25 / 1 / 0.25), else white
     const g = st && st.friend ? 0.25 : 1;
     for (const m of [...this.sides, this.center]) m.material.color.setRGB(g, 1, g);
+    // on a mounted MG: the turret's crosshair instead (CG_DrawTurretCrossHair: the turret weapon's reticleCenter,
+    // reticleCenterSize 640 x 480 units at the centre, white - green on a teammate -, cg_crosshairAlpha 1)
+    const T = this.onTurret && this.crosshair && this.table && this.table.turrets;
+    const tw = T && (T[this.turretWeapon] || T.mg42_bipod_stand_mp);
+    const tr = tw && this.table.reticles[tw.strings.reticleCenter];
+    if (tr) {
+      const m = this.center, c = (tw.params.reticleCenterSize || 32) * px;
+      m.material.map = this.texture(tr.texture, false); m.material.opacity = 1; m.material.needsUpdate = m.material.version === 0;
+      m.position.set(0, 0, 0); m.scale.set(c, c, 1); m.visible = true;
+      any = true;
+    }
     if (alpha > 0.01) {
       const R = this.table.reticles;
       // the sides

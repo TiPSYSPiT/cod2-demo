@@ -48,6 +48,10 @@ const FX_KEY = 'cod2demo3d.fx';                  // 'game' / 'simple'
 const PLAYERS_KEY = 'cod2demo3d.players';        // 'simple' / 'models'
 const SHADOWS_KEY = 'cod2demo3d.shadows';        // 'on' / 'off' (default on)
 const VIEWMODEL_KEY = 'cod2demo3d.viewmodel';    // 'on' / 'off' (default on): the first-person weapon
+// the first-person eye's way onto a mounted MG's tag_player and back: at most TURRET_BLEND_SPEED units per ms (about a
+// sprint), TURRET_BLEND_MS .. TURRET_BLEND_MAX_MS long (the game snaps; the server moves the player onto the spot - and
+// off it - in one snapshot, up to 60 units)
+const TURRET_BLEND_MS = 150, TURRET_BLEND_MAX_MS = 400, TURRET_BLEND_SPEED = 0.25;
 const MODE_HELP = { orbit: 'Left drag: rotate · right drag: pan · wheel: zoom · click a player: select',
   free: 'Drag: look · W A S D: move · R / F: up / down · Shift: fast · wheel: speed',
   follow: 'Follows the selected player · drag: turn around them · wheel: distance',
@@ -116,6 +120,7 @@ export class View3D {
     for (const l of [this.hemi, this.sun]) { l.layers.enable(COOKIE_LAYER); l.layers.enable(WORLD_LAYER); }
     this.characters = new CharacterLibrary();
     this.actors = new Actors(scene, this.labels, this.M, this.characters);
+    this.actors.turretMuzzle = cl => { const tu = this.turretOf(cl, this.t || 0, this.M.sampleAt(cl, this.t || 0)); return tu && tu.on ? this.turretMuzzle(tu) : null; };
     this.actors.onLoaded = () => { this.R.invalidate(); this.needsRender = true; if (this.actors.failed) this.playersSel.parentNode.title = 'The player models are not exported (tools/export/characters_export.py)'; };
     this.effects = new Effects(scene, this.labels, this.M);
     // the game's particle effects (fx.js): explosions, smoke, impacts, muzzle flashes
@@ -149,7 +154,13 @@ export class View3D {
     this.hudCanvas = el('canvas', { class: 'hud-layer' });
     this.stage.append(this.hudCanvas);
     this.hudInsets = null; this.hudInsetsAt = 0;
-    this.fx.muzzleOf = (cl, ts, t) => {
+    this.fx.muzzleOf = (cl, ts, t, turret) => {
+      // a mounted MG's shot (DemoData.turretShots): the turret weapon's flash at the gun's tag_flash
+      if (turret) {
+        const tu = this.turretOf(cl, ts, this.M.sampleAt(cl, ts));
+        const mz = tu && tu.on ? this.turretMuzzle(tu) : null;
+        return mz ? Object.assign(mz, { weapon: tu.weapon }) : null;
+      }
       // the first-person player's shot: the view flash at the view model's muzzle
       if (cl === this.fpClient && this.viewmodel.shown) {
         const mz = this.viewmodel.muzzle(this.camera), st = this.viewmodel.state;
@@ -282,6 +293,7 @@ export class View3D {
               const p = this.props.turrets.find(q => Math.hypot(q.origin[0] - r.x, q.origin[1] - r.y, q.origin[2] - r.z) < 4);
               if (p) this.turretAims.push({ track: r, prop: p, pitch: null, yaw: null });
             }
+            this.turretByTrack = new Map(this.turretAims.map(a => [a.track, a]));
             if (this.t != null) this.aimTurrets(this.t);
             this.scene.add(this.props.group);
             this.shadows.invalidate();
@@ -650,6 +662,48 @@ export class View3D {
     }
   }
 
+  /** client cl on a mounted MG at t (Match.turretUse), with the placement it uses -> {a: the turretAims entry, use, on,
+   *  f: the first-person eye's share of the turret's tag_player (0 -> 1 after mounting, back after leaving: turretBlend),
+   *  pitch / yaw: the gun's aim relative to its stand - the player's view angles (the 1.3
+   *  client turns the local player's turret by his view: sub_4CC3D0), after the use the last ones -, weapon: the
+   *  turret weapon's name} or null */
+  turretOf(cl, t, s) {
+    if (!this.turretByTrack || cl == null) return null;
+    const use = this.M.turretUse(cl, t, TURRET_BLEND_MAX_MS);
+    const a = use && this.turretByTrack.get(use.turret);
+    const d = a && this.turretBlend(cl, use, a);
+    if (!d || (!use.on && t - use.t1 >= d.out)) return null;
+    const v = use.on ? s : this.M.sampleAt(cl, use.t1);
+    if (!v) return null;
+    const k = x => x * x * (3 - 2 * x);
+    const f = use.on ? k(Math.min(1, (t - use.tIn) / d.in)) : 1 - k(Math.min(1, (t - use.t1) / d.out));
+    return { a, use, d, on: use.on, f, pitch: v.pitch, yaw: ((v.yaw - a.track.yaw + 540) % 360) - 180, weapon: this.M.weaponName(a.track.weapon, t) };
+  }
+  /** how long the eye takes onto a use's turret and back (ms): the way from the eye before (at tIn) to tag_player as
+   *  the use starts, and from tag_player as it ends to the eye 120 ms after, at TURRET_BLEND_SPEED (once per use) */
+  turretBlend(cl, use, a) {
+    const C = this.turretBlends || (this.turretBlends = new Map()), key = cl + ':' + use.t0;
+    if (C.has(key)) return C.get(key);
+    const eyeAt = t => { const s = this.M.sampleAt(cl, t); return s ? new THREE.Vector3(s.x, s.y, s.z + EYE[stanceOf(s)]) : null; };
+    const tagAt = t => {
+      const s = this.M.sampleAt(cl, t);
+      return s && a.prop.tag ? a.prop.tag('tag_player', s.pitch, ((s.yaw - a.track.yaw + 540) % 360) - 180, new THREE.Vector3()) : null;
+    };
+    const dur = (p, q) => (p && q ? Math.min(TURRET_BLEND_MAX_MS, Math.max(TURRET_BLEND_MS, p.distanceTo(q) / TURRET_BLEND_SPEED)) : TURRET_BLEND_MS);
+    const d = { in: dur(eyeAt(use.tIn), tagAt(use.t0)), out: dur(tagAt(use.t1), eyeAt(use.t1 + 120)) };
+    C.set(key, d);
+    return d;
+  }
+  /** a mounted MG's muzzle (tag_flash) and barrel direction as the gun is aimed now (turretOf) */
+  turretMuzzle(tu) {
+    const p = tu.a.prop, a = tu.a;
+    const pitch = a.pitch != null ? a.pitch : tu.pitch, yaw = a.yaw != null ? a.yaw : tu.yaw;
+    const pos = p.tag && p.tag('tag_flash', pitch, yaw, new THREE.Vector3());
+    if (!pos) return null;
+    const d = p.forward(pitch, yaw, new THREE.Vector3());
+    return { pos: [pos.x, pos.y, pos.z], dir: [d.x, d.y, d.z] };
+  }
+
   /** the player the follow / first-person camera uses: the selection, else the POV's followed player */
   cameraTarget() {
     const M = this.M, t = this.t;
@@ -663,6 +717,24 @@ export class View3D {
     // GetLeanFraction), and the eye at least 8 units over the feet
     const va = this.cams.mode === 'fp' && this.viewmodel.anim;
     if (va) {
+      // on a mounted MG (CG_CalcViewValues): the eye is the turret's tag_player, the gun turned by the player's view;
+      // no bob, eye height, lean, landing, sway or kick - the view angles as they are, the camera shake on top.
+      // Mounting and leaving: the eye moves between the two over TURRET_BLEND_MS
+      const tu = this.fpTurret = this.turretOf(cl, t, s);
+      if (tu && tu.on) { tu.a.pitch = tu.pitch; tu.a.yaw = tu.yaw; tu.a.prop.aim(tu.pitch, tu.yaw); }
+      const te = tu && tu.a.prop.tag ? tu.a.prop.tag('tag_player', tu.pitch, tu.yaw, new THREE.Vector3()) : null;
+      // (mounting: from the eye before it - the server moves the player onto the turret's spot in one snapshot; leaving:
+      // to the eye where the blend ends - on the way off the server can put the player back where he came from for a
+      // snapshot, 50 units, and correct him in the next)
+      const tOther = te && tu.f < 1 ? (tu.on ? tu.use.tIn : tu.use.t1 + tu.d.out) : null;
+      const other = tOther != null ? this.M.sampleAt(cl, tOther) : null;
+      if (te && (tu.f >= 1 || other)) {
+        const from = other ? new THREE.Vector3(other.x, other.y, other.z + this.eyeHeight(va, cl, tOther, other)) : null;
+        const out = { pos, eye: from ? from.lerp(te, tu.f) : te, yaw: s.yaw, pitch: s.pitch, roll: 0 };
+        const sh = this.shakeOn ? this.shakeAt(t, te) : null;
+        if (sh) { out.pitch += sh[0]; out.yaw += sh[1]; out.roll += sh[2]; }
+        return { cl, target: out };
+      }
       eye.z = s.z + this.eyeHeight(va, cl, t, s);
       const b = va.viewBob(cl, t, s), y = s.yaw * Math.PI / 180;
       eye.x += Math.sin(y) * b.right; eye.y -= Math.cos(y) * b.right; eye.z += b.up;
@@ -676,6 +748,7 @@ export class View3D {
       if (dip != null) eye.z += dip;
       eye.z += this.stepSmoothing(va, cl, t);
       eye.z = Math.max(eye.z, s.z + 8);
+      if (te && tu.f > 0) eye.lerp(te, tu.f);
       // the view's own motion (the refdef angles): the recorder's scope sway, the camera shake
       const out = { pos, eye, yaw: s.yaw, pitch: s.pitch, roll: 0 };
       const sw = va.viewSway(cl, t, n => this.viewmodel.entry(n));
@@ -686,6 +759,7 @@ export class View3D {
       if (sh) { out.pitch += sh[0]; out.yaw += sh[1]; out.roll += sh[2]; }
       return { cl, target: out };
     }
+    this.fpTurret = null;
     return { cl, target: { pos, eye, yaw: s.yaw, pitch: s.pitch } };
   }
 
@@ -722,6 +796,8 @@ export class View3D {
     this.needsRender = false;
     // the first-person weapon at this time (before the effects: its muzzle flash) and the sights' zoom
     const fpSample = this.fpClient != null ? this.M.sampleAt(this.fpClient, this.t || 0) : null;
+    // (on a mounted MG: the turret weapon, whose crosshair the view draws)
+    this.viewmodel.turretWeapon = this.fpClient != null && this.fpTurret && this.fpTurret.on ? this.fpTurret.weapon : null;
     this.viewmodel.update(this.fpClient != null ? this.fpClient : -1, this.t || 0, fpSample);
     if (mode === 'fp') {
       const fov = fpSample ? this.viewmodel.fov(FP_FOV) : FP_FOV;

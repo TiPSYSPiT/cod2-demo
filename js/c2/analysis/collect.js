@@ -48,7 +48,9 @@ C2.define('collect', function (C2) {
     // the HUD (hud.js): the weapons owned (two bit fields)
     weapBits: [PS['weapons[0]'], PS['weapons[1]']],
     // the first-person weapon's position (viewanim.js): the player's speed (g_speed), the eye height it heads for
-    speed: PS.speed, viewHeightTarget: PS.viewHeightTarget
+    speed: PS.speed, viewHeightTarget: PS.viewHeightTarget,
+    // on a mounted MG (turret_use): viewlocked 1 and the turret entity (viewlocked_entNum)
+    viewlocked: PS.viewlocked, lockEnt: PS.viewlocked_entNum
   };
   const C = { team: CS.team, model: CS.modelindex, name: [0, 4, 8, 12, 16, 20, 24, 28].map(i => CS['name[' + i + ']']),
     attach: [0, 1, 2, 3, 4, 5].map(i => CS['attachModelIndex[' + i + ']']) };
@@ -128,6 +130,9 @@ C2.define('collect', function (C2) {
       items: [],                    // {num, index, t0, t1, segments}: the items on the ground (eType 3; index = the weapon)
       earthquakes: [],              // [t, scale, duration ms, radius, x, y, z] (EV_EARTHQUAKE)
       mgFire: [],                   // [t, x, y, z]: the mounted MGs' shots (EV_FIRE_WEAPON_MG42 of the turret: a camera shake)
+      // client -> [t]: the same shots by their user (the turret's otherEntityNum, set by turret_use): the turret's muzzle
+      // flash - kept apart from shots: the player's own weapon does not fire (its kick, spread, the shot statistics)
+      turretShots: new Map(),
       grenadeOrder: [],
       detonations: [],              // explosions without a matching grenade
       scoreboards: [],              // {t, axis, allies, entries}
@@ -145,7 +150,7 @@ C2.define('collect', function (C2) {
       shots: new Map(),             // client -> [t] of fire events
       // the recording player's weapon per snapshot (the player state: viewanim.js)
       psWeapon: { t: [], client: [], anim: [], state: [], weapon: [], offhand: [], ads: [], spread: [], viewmodel: [], bob: [],
-        vx: [], vy: [], vz: [], ground: [], vh: [], breath: [], hold: [], fuse: [], friend: [],
+        vx: [], vy: [], vz: [], ground: [], vh: [], breath: [], hold: [], fuse: [], friend: [], lock: [],
         // the HUD's player-state parts (hud.js): pm_flags (stance, prone blocked), the cursor hint and its string, the
         // mantle hint flag, the maximum health, the damage feedback (CG_DamageFeedback: event counter, yaw, pitch, count)
         pmf: [], hint: [], hintStr: [], mantle: [], maxHealth: [], dmgEv: [], dmgYaw: [], dmgPitch: [], dmgCount: [],
@@ -367,6 +372,8 @@ C2.define('collect', function (C2) {
       W.dmgPitch.push(f[P.damagePitch] | 0); W.dmgCount.push(f[P.damageCount] | 0);
       // pm_flags 0x100000: the crosshair rests on a teammate (the server sets it; CG_DrawCrosshair draws it green)
       W.friend.push(f[P.pmFlags] & 0x100000 ? 1 : 0);
+      // on a mounted MG: the turret entity (the view's origin is its tag_player: CG_CalcViewValues), else -1
+      W.lock.push(f[P.viewlocked] ? f[P.lockEnt] : -1);
       W.pmType.push(pmType); W.health.push(health); W.speed.push(f[P.speed] | 0); W.vht.push(f[P.viewHeightTarget] | 0);
       doPsTables(s.ps, f);
       const alive = (pmType === K.PM.NORMAL || pmType === K.PM.NORMAL_LINKED) && health > 0;
@@ -389,7 +396,7 @@ C2.define('collect', function (C2) {
     function doTurret(e, num, t) {
       const p = u2f(e[E.aim[0]]), y = u2f(e[E.aim[1]]);
       let r = c.turrets.get(num);
-      if (!r) c.turrets.set(num, r = { x: u2f(e[E.px]), y: u2f(e[E.py]), z: u2f(e[E.pz]), yaw: u2f(e[E.yaw]), t: [], pitch: [], aimYaw: [], last: null });
+      if (!r) c.turrets.set(num, r = { num, weapon: e[E.weapon], x: u2f(e[E.px]), y: u2f(e[E.py]), z: u2f(e[E.pz]), yaw: u2f(e[E.yaw]), t: [], pitch: [], aimYaw: [], last: null });
       const n = r.t.length;
       if (!n || r.pitch[n - 1] !== p || r.aimYaw[n - 1] !== y) {
         if (n && r.last && r.last[0] > r.t[n - 1]) { r.t.push(r.last[0]); r.pitch.push(r.last[1]); r.aimYaw.push(r.last[2]); }
@@ -423,7 +430,10 @@ C2.define('collect', function (C2) {
               const ev = e[E.events[i & 3]] & 0xff;
               if (et === K.ET.PLAYER && SHOT_EVENTS.has(ev)) addTime(c.shots, num, t);
               // (a mounted MG's shot is the turret entity's event: CG_EntityEvent shakes the camera at its origin)
-              if (et === K.ET.TURRET && ev === EV.FIRE_WEAPON_MG42) c.mgFire.push([t, u2f(e[E.px]), u2f(e[E.py]), u2f(e[E.pz])]);
+              if (et === K.ET.TURRET && ev === EV.FIRE_WEAPON_MG42) {
+                c.mgFire.push([t, u2f(e[E.px]), u2f(e[E.py]), u2f(e[E.pz])]);
+                if (e[E.other] < 64) addTime(c.turretShots, e[E.other], t);
+              }
               if (et === K.ET.PLAYER && WEAP_EVENTS.has(ev) && num !== psClient) c.weapEvents.push([t, num, ev, e[E.weapon]]);
               if (et === K.ET.PLAYER && ITEM_EVENTS.has(ev) && num !== psClient) c.itemEvents.push([t, num, ev, e[E.parms[i & 3]] & 0xff]);
               if (EXPLOSIONS.has(ev)) onExplosion(e, ev, t, e[E.parms[i & 3]]);

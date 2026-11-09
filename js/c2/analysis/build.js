@@ -743,7 +743,7 @@ C2.define('build', function (C2) {
       // stand, samples on the main map
       turrets: [...col.turrets.values()].map(r => {
         const keep = r.t.map((t, i) => i).filter(i => onMainMap(rel(r.t[i])));
-        return { x: r.x, y: r.y, z: r.z, yaw: r.yaw, t: Int32Array.from(keep, i => rel(r.t[i])),
+        return { num: r.num, weapon: r.weapon, x: r.x, y: r.y, z: r.z, yaw: r.yaw, t: Int32Array.from(keep, i => rel(r.t[i])),
           pitch: Float32Array.from(keep, i => r.pitch[i]), aimYaw: Float32Array.from(keep, i => r.aimYaw[i]) };
       }).filter(r => r.t.length),
       // the sounds of the 3D view (js/view3d/sound.js), as CG_EntityEvent plays them: events [t, alias |
@@ -829,13 +829,14 @@ C2.define('build', function (C2) {
         return { events, local, loops, whiz, holds };
       })(),
       shotsSeen: Object.fromEntries([...col.shots].map(([cl, a]) => [cl, a.map(rel)])),
+      turretShots: Object.fromEntries([...col.turretShots].map(([cl, a]) => [cl, a.map(rel)])),
       // the first-person weapon (viewanim.js): the recording player's weapon per snapshot (player state),
       // the weapon events of every player, the hands models of the viewmodel indices
       psWeapon: (() => {
         const W = col.psWeapon, T = { t: Int32Array.from(W.t, rel) };
         const typed = { client: Int8Array, anim: Uint16Array, state: Uint8Array, weapon: Uint8Array, offhand: Uint8Array, ads: Float32Array,
           spread: Float32Array, viewmodel: Uint8Array, bob: Uint8Array, vx: Float32Array, vy: Float32Array, vz: Float32Array,
-          ground: Uint16Array, vh: Float32Array, breath: Float32Array, hold: Uint8Array, fuse: Int32Array, friend: Uint8Array,
+          ground: Uint16Array, vh: Float32Array, breath: Float32Array, hold: Uint8Array, fuse: Int32Array, friend: Uint8Array, lock: Int16Array,
           pmf: Int32Array, hint: Int16Array, hintStr: Int16Array, mantle: Int32Array, maxHealth: Int16Array, dmgEv: Int32Array,
           dmgYaw: Uint8Array, dmgPitch: Uint8Array, dmgCount: Int16Array,
           pmType: Uint8Array, health: Int16Array, ammoRef: Uint32Array, objRef: Uint32Array, hudRef: Uint32Array,

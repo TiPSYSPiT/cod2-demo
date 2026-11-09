@@ -308,8 +308,9 @@ export class FxPlayer {
         t0: r.t0, t1: r.t1, dur: this.duration(name), key: hash(i, Math.round(r.x) * 31 + Math.round(r.y)) };
     }).filter(Boolean);
     this.maxDur = out.reduce((m, e) => Math.max(m, e.end - e.t0), 0);
-    // the shots, per client, for the muzzle flashes
-    this.shots = Object.entries(d.shotsSeen || {}).map(([cl, ts]) => ({ cl: +cl, ts }));
+    // the shots, per client, for the muzzle flashes - a mounted MG's by its user (at the turret's muzzle)
+    this.shots = Object.entries(d.shotsSeen || {}).map(([cl, ts]) => ({ cl: +cl, ts }))
+      .concat(Object.entries(d.turretShots || {}).map(([cl, ts]) => ({ cl: +cl, ts, turret: true })));
     // the shell casings (CG_EjectWeaponBrass): the weapon's shellEjectEffect on every shot, a bolt-action weapon's
     // on EV_EJECT_BRASS (its rechamber) only
     const EV = C2.constants.EV, FIRE = new Set([EV.FIRE_WEAPON, EV.FIRE_WEAPONB, EV.FIRE_WEAPON_LASTSHOT]);
@@ -396,11 +397,11 @@ export class FxPlayer {
   /** muzzle flashes of the shots of the last FLASH_MS, at the muzzle as it is now */
   flashes(t) {
     if (!this.muzzleOf) return;
-    for (const { cl, ts } of this.shots) {
+    for (const { cl, ts, turret } of this.shots) {
       let lo = 0, hi = ts.length;
       while (lo < hi) { const m = (lo + hi) >> 1; if (ts[m] < t - FLASH_MS) lo = m + 1; else hi = m; }
       for (let i = lo; i < ts.length && ts[i] <= t; i++) {
-        const mz = this.muzzleOf(cl, ts[i], t);
+        const mz = this.muzzleOf(cl, ts[i], t, turret);
         if (!mz || !mz.weapon) continue;
         const w = this.doc.weapons[mz.weapon.toLowerCase()];
         const name = mz.flash || (w && w.flash);          // (the first-person view: the weapon's view flash)

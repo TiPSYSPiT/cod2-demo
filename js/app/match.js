@@ -114,6 +114,42 @@ export class Match {
       icon: P.icon ? P.icon[i] : 0 };
   }
 
+  /** client cl on a mounted MG around t (PLAN.md step 85) -> {turret: the DemoData.turrets entry, t0, t1: the use's
+   *  first and last sample, tIn: the sample before it (the server moves the player onto the turret's spot between the
+   *  two), on: t within tIn .. t1} or null; margin (ms): also that long after the use (the view's way back).
+   *  A use: a run of the client's position samples with EF_USETURRET (PF.TURRET), gaps under 500 ms; its turret: the
+   *  recording player's viewlocked_entNum (psWeapon.lock), else the turret nearest to where the player stands (45 -
+   *  50 units behind its origin: playerPositionDist); seeking anywhere gives the same answer */
+  turretUse(cl, t, margin = 0) {
+    const spans = this.turretSpans(cl);
+    let lo = 0, hi = spans.length;
+    while (lo < hi) { const m = (lo + hi) >> 1; if (spans[m].tIn <= t) lo = m + 1; else hi = m; }
+    const u = lo > 0 ? spans[lo - 1] : null;
+    return u && u.turret && t <= u.t1 + margin ? { turret: u.turret, t0: u.t0, t1: u.t1, tIn: u.tIn, on: t <= u.t1 } : null;
+  }
+  turretSpans(cl) {
+    const C = this.turretSpanCache || (this.turretSpanCache = new Map());
+    if (C.has(cl)) return C.get(cl);
+    const P = this.d.positions[cl], T = this.d.turrets || [], W = this.d.psWeapon, out = [];
+    if (P && T.length) {
+      let cur = null;
+      for (let i = 0; i < P.t.length; i++) {
+        if (!(P.flags[i] & PF.TURRET)) continue;
+        if (cur && P.t[i] - cur.t1 < 500) { cur.t1 = P.t[i]; continue; }
+        const r = W ? this.psRow(cl, P.t[i]) : -1, ent = r >= 0 && W.lock ? W.lock[r] : -1;
+        let turret = ent >= 0 ? T.find(x => x.num === ent) : null;
+        if (!turret) {
+          let best = 120;
+          for (const x of T) { const d = Math.hypot(x.x - P.x[i], x.y - P.y[i]); if (d < best) { best = d; turret = x; } }
+        }
+        const tIn = i > 0 && P.t[i] - P.t[i - 1] < 500 && !(P.flags[i - 1] & PF.DEAD) ? P.t[i - 1] : P.t[i];
+        out.push(cur = { t0: P.t[i], t1: P.t[i], tIn, turret: turret || null });
+      }
+    }
+    C.set(cl, out);
+    return out;
+  }
+
   /** the recording player's player state at t (DemoData.psWeapon, one row per snapshot): the row of client cl at or
    *  before t (at most 250 ms old) or -1. With psLerp the one place the first-person weapon, camera and HUD read the
    *  player state from, so they agree */

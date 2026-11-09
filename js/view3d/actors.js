@@ -80,6 +80,9 @@ export class Actors {
   muzzle(cl) {
     const it = this.items.get(cl);
     if (!it || !it.visible || !it.sample) return null;
+    // (on a mounted MG: the turret's muzzle - view3d.js turretOf / turretMuzzle)
+    const tm = it.sample.turret && this.turretMuzzle ? this.turretMuzzle(cl) : null;
+    if (tm) return tm;
     const w = it.modelShown && it.char && it.char.weapon;
     if (w && w.userData.flash) {
       w.updateWorldMatrix(true, false);

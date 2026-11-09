@@ -200,16 +200,32 @@ export class Props {
         } });
       });
       // the mounted MGs: the gun turned about the pivot (the game's tag_aim_animated) - pitch about the stand's y
-      // axis (positive: down, as the view angles), then yaw about its z axis
+      // axis (positive: down, as the view angles), then yaw about its z axis. tag(name, pitch, yaw, out): a bone of
+      // the model (tags: tag_aim - carrying tag_player, the user's eye -, tag_flash on tag_aim_animated - the
+      // muzzle) in the world with the gun so turned (CG_UpdateTurretBones turns tag_aim and tag_aim_animated alike)
       if (m.aimPivot && aimMeshes.length) list.forEach((inst, i) => {
         if (!inst.turret) return;
         const p = m.aimPivot, base = matrixOf(inst.matrix).clone();
         const toPivot = new THREE.Matrix4().makeTranslation(p[0], p[1], p[2]), fromPivot = new THREE.Matrix4().makeTranslation(-p[0], -p[1], -p[2]);
         const R = new THREE.Matrix4(), Ry = new THREE.Matrix4(), out = new THREE.Matrix4();
-        this.turrets.push({ origin: [inst.matrix[3], inst.matrix[7], inst.matrix[11]], aim: (pitch, yaw) => {
+        const turn = (pivot, pitch, yaw, m4) => {
+          R.makeRotationZ(yaw * DEG).multiply(Ry.makeRotationY(pitch * DEG));
+          return m4.copy(base).multiply(new THREE.Matrix4().makeTranslation(pivot[0], pivot[1], pivot[2])).multiply(R)
+            .multiply(new THREE.Matrix4().makeTranslation(-pivot[0], -pivot[1], -pivot[2]));
+        };
+        const tags = m.tags || {}, tm = new THREE.Matrix4();
+        this.turrets.push({ origin: [inst.matrix[3], inst.matrix[7], inst.matrix[11]], model: m.name, tags, aim: (pitch, yaw) => {
           R.makeRotationZ(yaw * DEG).multiply(Ry.makeRotationY(pitch * DEG));
           out.copy(base).multiply(toPivot).multiply(R).multiply(fromPivot);
           for (const mesh of aimMeshes) { mesh.setMatrixAt(i, out); mesh.instanceMatrix.needsUpdate = true; }
+        }, tag: (name, pitch, yaw, v) => {
+          const b = tags[name];
+          if (!b) return null;
+          turn(name === 'tag_flash' ? p : tags.tag_aim || p, pitch, yaw, tm);
+          return v.set(b[0], b[1], b[2]).applyMatrix4(tm);
+        }, forward: (pitch, yaw, v) => {
+          turn(p, pitch, yaw, tm);
+          return v.set(1, 0, 0).transformDirection(tm);
         } });
       });
     });
