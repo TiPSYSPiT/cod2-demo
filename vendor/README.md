@@ -5,18 +5,22 @@ No build step, no npm: the files are the package's own files, unchanged.
 
 | Library | Version | Files | Source | Licence |
 |---|---|---|---|---|
-| three.js | 0.170.0 (r170) | `three/build/three.module.js`, `three/examples/jsm/controls/OrbitControls.js` | npm package `three@0.170.0` (`https://registry.npmjs.org/three/-/three-0.170.0.tgz`) | MIT, `three/LICENSE` |
+| three.js | 0.187.0 (r187) | `three/build/three.module.js`, `three/build/three.core.js`, `three/examples/jsm/controls/OrbitControls.js` | npm package `three@0.187.0` (`https://registry.npmjs.org/three/-/three-0.187.0.tgz`, SHA-512 checked against the registry's `dist.integrity`) | MIT, `three/LICENSE` |
 
-SHA-256 of the files (identical to `https://cdn.jsdelivr.net/npm/three@0.170.0/...`):
+SHA-256 of the files (identical to `https://cdn.jsdelivr.net/npm/three@0.187.0/...`, checked 2026-11-09):
 
 ```
-ce1fa418de16a19495a9f72495580e3015d7745c296d3ce0485897f902ddedfb  three/build/three.module.js
-80efaadea4f8a636a65fb0bd08bfef62f3d93a0bb94e2e7500f23176c5c07f4e  three/examples/jsm/controls/OrbitControls.js
+104f56145899722094556490d787aae0617cc2fc3382f31df02d724ea1aee341  three/build/three.module.js
+613e370f76638fdef83926642bf256dc9615684922de1ce1f63a8583e5d78578  three/build/three.core.js
+e7fca2fe9e7670a828af9b28084669a5909445b7f36f1f26cee9bf8f2961c32c  three/examples/jsm/controls/OrbitControls.js
 ```
+
+Before: 0.170.0 (r170) until 2026-11-09 (PLAN.md step 86).
 
 The folders follow the npm package, so an addon's own `import ... from 'three'` resolves through
 the same import map entry: `'three'` and `'three/addons/'` always come from the same copy and
-version. `three.module.js` of r170 is a single file (no `three.core.js` yet). The only addon used
+version. Since r171 `three.module.js` imports `./three.core.js` (the part shared with the WebGPU build): both
+files belong together. The only addon used
 is `OrbitControls` (`js/view3d/cameras.js`); the MP4 writer and the GIF encoder are this
 project's own code (`js/c4/ui/map/mp4mux.js`, `gifenc.js`), the fonts are the system's.
 
@@ -36,5 +40,9 @@ the import map in `index.html` - replace both entries together, never only one.
 2. Copy `package/build/three.module.js` and the files it imports itself, if any (`grep -n "from '" `
    on it: newer releases split it into more files, e.g. `three.core.js`), every addon the code imports (`grep -rn "three/addons" js`) with its folder below
    `package/examples/jsm/`, and `package/LICENSE` into `vendor/three/`.
-3. Change the version here and in the CDN comment in `index.html`, then run the checks of
-   docs/validation.md (3D view, video export).
+3. Change the version here and in the CDN comment in `index.html` (the import map itself keeps its paths, so the
+   CSP hash in `index.html` stays valid), then compare the look and run the checks: `py tools/serve.py 8778 --three
+   <the old package folder>` serves the old version beside the new one with the same site; suite `looks` against
+   each (`--base http://localhost:8778/ --tag a`, then the default server `--tag b`) and `node
+   tools/audit/looks_compare.mjs a b` (per map and view the pixels that changed, difference images); then the
+   browser suites (README "Checks").
