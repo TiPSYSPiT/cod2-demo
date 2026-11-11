@@ -1,6 +1,6 @@
 /* Assemble DemoData - the only object the UI renders from.
  *
- *   C2.analyzeDemo(bytes, fileInfo, onProgress) -> DemoData
+ *   C2.analyzeDemo(bytes, fileInfo, onProgress, onMap) -> DemoData   (onMap(name): the map, early)
  *
  * All times in DemoData are milliseconds since the first snapshot. The shape follows cod4-demo3d's
  * DemoData, so the shared UI (scoreboard, rounds, chat, events, 2D / 3D views) works unchanged. */
@@ -44,8 +44,17 @@ C2.define('build', function (C2) {
   /** the side names of the localized team names (dvars g_TeamName_Allies / _Axis) */
   const SIDE_NAMES = { MPUI_AMERICAN: 'American', MPUI_BRITISH: 'British', MPUI_RUSSIAN: 'Russian', MPUI_GERMAN: 'German' };
 
-  function analyzeDemo(bytes, fileInfo, onProgress) {
+  function analyzeDemo(bytes, fileInfo, onProgress, onMap) {
     const { collector: col, visitor } = C2.collect.createCollector();
+    // the map's name as soon as the first gamestate is read (the viewer fetches its 3D data meanwhile)
+    if (onMap) {
+      const onGamestate = visitor.onGamestate;
+      visitor.onGamestate = gs => {
+        onGamestate.call(visitor, gs);
+        const map = onMap && parseInfostring(gs.configstrings.get(K.CS.SERVERINFO) || '').mapname;
+        if (map) { const f = onMap; onMap = null; try { f(map); } catch (err) { /* only a hint */ } }
+      };
+    }
     let summary = null, fatal = null;
     try {
       summary = C2.demo.parseDemo(bytes, visitor, onProgress);

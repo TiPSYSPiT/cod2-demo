@@ -133,6 +133,7 @@ export class ViewModel {
     this.requested = true;
     this.library.load().then(ok => {
       this.table = ok ? this.library.modelsInfo : null;
+      if (this.onCompile) this.onCompile();
       // (the turrets' crosshair loaded now: the first frame on a mounted MG - a video's too - has it)
       for (const tw of Object.values((this.table && this.table.turrets) || {})) {
         const r = this.table.reticles[tw.strings.reticleCenter];
@@ -230,6 +231,8 @@ export class ViewModel {
     if (G) group = this.build(G, H);
     else console.warn('first-person weapon: no model', gun);
     this.rigs.set(key, group);
+    // (a new rig: its programs compiled in parallel before it is drawn - View3D.compileAhead)
+    if (group && this.onCompile) this.onCompile();
     return group;
   }
 
@@ -368,18 +371,23 @@ export class ViewModel {
     this.root.quaternion.copy(camera.quaternion).multiply(MODEL_TO_CAMERA);
   }
 
-  /** the light grid at the eye: own copies of the materials once their textures are there, lit like the players */
-  light(camera) {
+  /** the light grid at the eye: own copies of the materials once their textures are there, lit like the players;
+   *  their programs compiled in parallel on copies of the meshes first (renderer.compileAsync), the rig drawn with
+   *  its unlit materials meanwhile - swapped in at once, three.js would wait for the driver (PLAN.md step 87) */
+  light(camera, renderer) {
     const g = this.current, rig = g && g.userData.rig;
     if (!this.grid || !rig) return;
     if (!rig.lit) {
       if (rig.meshes.some(m => [].concat(m.material).some(x => !x.map || x.map.isDataTexture))) return;   // (still loading)
       if (!this.gridU) this.gridU = gridUniforms();
-      rig.lit = true;
-      for (const m of rig.meshes) {
-        m.material = [].concat(m.material).map(x => gridMaterial(cloneMaterial(x), this.gridU) || x);
-        if (m.material.length === 1) m.material = m.material[0];
-      }
+      rig.lit = 'compiling';
+      const lit = rig.meshes.map(m => { const l = [].concat(m.material).map(x => gridMaterial(cloneMaterial(x), this.gridU) || x); return l.length === 1 ? l[0] : l; });
+      const swap = () => { rig.lit = true; rig.meshes.forEach((m, i) => { m.material = lit[i]; }); this.changed(); };
+      if (renderer && renderer.compileAsync && renderer.extensions.has('KHR_parallel_shader_compile')) {
+        const tmp = new THREE.Scene();
+        rig.meshes.forEach((m, i) => { const c = m.clone(); c.material = lit[i]; tmp.add(c); });
+        renderer.compileAsync(tmp, camera, this.scene).then(swap, swap);
+      } else swap();
     }
     const p = camera.position;
     if (!this.gridAt || Math.abs(this.gridAt.x - p.x) > 4 || Math.abs(this.gridAt.y - p.y) > 4 || Math.abs(this.gridAt.z - p.z) > 4) {
@@ -399,7 +407,7 @@ export class ViewModel {
       C.fov = this.gunFov(base, camera.fov); C.aspect = camera.aspect;
       C.updateProjectionMatrix();
       this.place(camera);
-      this.light(camera);
+      this.light(camera, renderer);
       if (sceneLights) {
         const [h, sun] = sceneLights;
         this.hemi.color.copy(h.color); this.hemi.groundColor.copy(h.groundColor); this.hemi.intensity = h.intensity;
@@ -414,6 +422,11 @@ export class ViewModel {
       renderer.autoClear = auto;
     }
     this.renderHud(renderer, camera);
+  }
+
+  /** the view model's and its overlay's shader programs compiled in parallel (View3D.compileAhead) -> Promise */
+  compileAhead(renderer) {
+    return Promise.all([renderer.compileAsync(this.scene, this.camera), renderer.compileAsync(this.hud, this.hudCam)]);
   }
 
   /** a HUD image; mip = false for the reticles (8 - 32 px drawn at about their size: a mipmap would average the

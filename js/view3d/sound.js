@@ -138,7 +138,9 @@ export class SoundSystem {
       this.master = this.ctx.createGain();
       this.master.gain.value = this.volume;
       this.master.connect(this.ctx.destination);
-      this.preload();
+      // (the files of every sound the map can play, once the map's textures are in: view3d.js sets preloadAfter;
+      // a sound played before is fetched on its own)
+      (this.preloadAfter ? this.preloadAfter() : Promise.resolve()).then(() => this.preload());
     }
     this.enabled = !!on && !!this.ctx;
     if (!this.enabled) this.stopAll();

@@ -8,6 +8,7 @@
  * the world's shader draws that floor. */
 
 import { GRID_SUN } from './lightGrid.js';
+import { dropImage } from './mapLoader.js';
 
 const CELL = 128;
 const UP_Z = 0.3;                        // triangles facing up at least this much (floors, roofs, terrain)
@@ -69,6 +70,7 @@ export class LightProbe {
     ctx.drawImage(img, 0, 0);
     px = { w: img.width, h: img.height, data: ctx.getImageData(0, 0, img.width, img.height).data };
     this.pixels.set(key, px);
+    dropImage(tex);                                 // (the pixels are here now: the decoded image can go)
     return px;
   }
 

@@ -4,7 +4,7 @@
  * lighting, characters, effects and sound - see PLAN.md). */
 import * as THREE from 'three';
 import '../c2/ui/killfeed.js';
-import { loadWorld, groundPlane, resolveMap, textureArrivals, releaseStandins, gameFog, setMaxAnisotropy } from './mapLoader.js';
+import { loadWorld, groundPlane, resolveMap, textureArrivals, texturesIn, cullWorldGroups, releaseStandins, gameFog, setMaxAnisotropy } from './mapLoader.js';
 import { LightProbe } from './lightProbe.js';
 import { Actors, EYE, stanceOf } from './actors.js';
 import { Effects } from './effects.js';
@@ -20,6 +20,7 @@ import { MapMarks } from './mapMarks.js';
 import { ModelBatches } from './modelBatch.js';
 import { frameOf } from './actors.js';
 import { CharacterLibrary } from './characters.js';
+import { prefetch } from './data.js';
 import { InfoHint, fadeHint, holdHint } from '../app/infoHint.js';
 import { CookieShadows, COOKIE_LAYER, WORLD_LAYER } from './shadows.js';
 import { LightGrid } from './lightGrid.js';
@@ -80,6 +81,25 @@ const HUD_TITLES = {
   matchinfo: "zPAM's match info at the top (teams, round, match time) as the recording player had it"
 };
 
+/** the map's files fetched while the demo is still parsed (main.js, as soon as the parser read the map's name):
+ *  the world, its objects, light grid, collision and sky, the characters - what the view's load() asks for first.
+ *  Each loader takes its response over (data.js prefetch); the textures follow when the world is built. */
+export async function prefetch3d(map) {
+  const name = await resolveMap(map).catch(() => null);
+  if (!name) return;
+  const dir = 'maps3d/' + name + '/', C = 'maps3d/_characters/';
+  const json = url => prefetch(url, { json: true });
+  json(dir + 'world.json').then(i => {
+    if (!i) return;
+    prefetch(dir + i.file);
+    if (i.lightGrid) prefetch(dir + i.lightGrid.file);
+    if (i.collision) prefetch(dir + i.collision.file);
+  });
+  prefetch(dir + 'entities.json');
+  json(dir + 'props.json').then(i => { if (i && i.byteLength && i.file) prefetch(dir + i.file); });
+  for (const k of ['models.json', 'anims.json']) json(C + k).then(i => { if (i && i.file) prefetch(C + i.file); });
+}
+
 export class View3D {
   constructor(replay, container) {
     this.key = '3d';
@@ -121,7 +141,7 @@ export class View3D {
     this.characters = new CharacterLibrary();
     this.actors = new Actors(scene, this.labels, this.M, this.characters);
     this.actors.turretMuzzle = cl => { const tu = this.turretOf(cl, this.t || 0, this.M.sampleAt(cl, this.t || 0)); return tu && tu.on ? this.turretMuzzle(tu) : null; };
-    this.actors.onLoaded = () => { this.R.invalidate(); this.needsRender = true; if (this.actors.failed) this.playersSel.parentNode.title = 'The player models are not exported (tools/export/characters_export.py)'; };
+    this.actors.onLoaded = () => { this.R.invalidate(); this.needsRender = true; this.compileAhead(); if (this.actors.failed) this.playersSel.parentNode.title = 'The player models are not exported (tools/export/characters_export.py)'; };
     this.effects = new Effects(scene, this.labels, this.M);
     // the game's particle effects (fx.js): explosions, smoke, impacts, muzzle flashes
     this.fx = new FxPlayer(scene, this.M);
@@ -147,9 +167,11 @@ export class View3D {
     this.viewmodel = new ViewModel();
     this.viewmodel.setMatch(this.M, k => (this.characters.animsInfo ? this.characters.animsInfo.table[k] || '' : null));
     this.viewmodel.onLoaded = () => { this.needsRender = true; };
+    this.viewmodel.onCompile = () => this.compileAhead();
     this.viewmodel.crosshair = true;              // (always in first person)
     // the game's HUD (hud.js): a canvas over the view, drawn after each first-person frame
     this.hud = new Hud();
+    this.hud.after = () => texturesIn();                     // (its 400 images after the map's textures)
     this.hud.setMatch(this.M);
     this.hudCanvas = el('canvas', { class: 'hud-layer' });
     this.stage.append(this.hudCanvas);
@@ -180,6 +202,8 @@ export class View3D {
       this.needsRender = true;
       if (!this.redrawTimer) this.redrawTimer = setTimeout(() => { this.redrawTimer = null; if (this.visible) this.R.invalidate(); }, 100);
     };
+    // (a decoded texture on the GPU as it arrives - its ImageBitmap closed then: mapLoader.js loadTexture)
+    this.uploadTexture = textureArrivals.upload = t => { try { this.renderer.initTexture(t); } catch (err) { /* uploaded at its first draw */ } };
     this.cams = new Cameras(this.camera, this.renderer.domElement, () => { this.needsRender = true; });
     this.buildToolbar();
     this.setKillfeed(stored(KILLFEED_KEY) !== 'off');
@@ -248,6 +272,7 @@ export class View3D {
         }
         this.scripted.set(C2.rounds.phaseAt(M.d.phases, this.t || 0));
         this.scene.add(w.group);
+        if (new URLSearchParams(location.search).get('cull') !== 'off') cullWorldGroups(this.scene, w.mesh);   // (?cull=off: the whole world drawn)
         this.shadows.invalidate();
         this.scene.background = new THREE.Color(0x8ea2b4);
         if (w.info.sky) Sky.load('maps3d/' + name + '/', w.info.sky).then(sky => {
@@ -267,6 +292,7 @@ export class View3D {
         }
         if (sun.color) this.sun.color.setRGB(...sun.color);
         this.effects.setSites(w.sites || []);
+        this.compileAhead();
         // the intermission camera and hurt triggers (Layers panel)
         if (this.mapMarks) this.mapMarks.dispose();
         this.mapMarks = new MapMarks(this.scene, w.entities);
@@ -280,6 +306,7 @@ export class View3D {
           this.fx.modelBatches.setGrid(g);
           this.items.setGrid(g);
           if (this.props) this.props.applyGrid(g);
+          this.compileAhead();
           this.R.invalidate(); this.needsRender = true;
         }).catch(err => console.warn('light grid not loaded:', err));
         // the map's static models (misc_model): props.js, when exported
@@ -300,6 +327,7 @@ export class View3D {
             if (this.actors.grid) this.props.applyGrid(this.actors.grid);
             this.propsSel.value = this.props.setMode(stored(PROPS_KEY) || 'high');
             this.propsRow.hidden = false;
+            this.compileAhead();
           }
         } catch (err) { console.warn('props not loaded:', err); }
         this.mapName = name;
@@ -310,6 +338,7 @@ export class View3D {
           SoundSystem.load(name).then(snd => {
             if (!snd || this.world !== w) return;
             this.sounds = snd;
+            snd.preloadAfter = () => texturesIn();
             snd.setDemo(this.M);
             snd.setVolume(this.soundVolume);
             this.soundRows.hidden = false;
@@ -776,7 +805,21 @@ export class View3D {
 
   /** move the camera by dt (s), then render if anything changed (force: always); shadowDt is unused
    *  here (cod4-demo3d's shadow fades - the same signature for exportVideo3d.js) */
+  /** the shader programs of what was just added or changed (the world, the props, the light grid's materials, the
+   *  players' and the view model's), compiled in parallel - renderer.compileAsync, KHR_parallel_shader_compile -
+   *  before anything draws them: drawn at once, three.js waits for the driver on the main thread at the first use
+   *  (up to 125 ms a program, 2.5 s over a map's load). Meanwhile the view keeps its last frame (renderFrame); the
+   *  video export, which forces its frames, does not wait (PLAN.md step 87) */
+  compileAhead() {
+    // (without the extension - Firefox here - checking would block like a first draw: the programs are built at their first draw then)
+    if (!this.renderer.extensions.has('KHR_parallel_shader_compile')) return;
+    const run = () => Promise.all([this.renderer.compileAsync(this.scene, this.camera), this.viewmodel.compileAhead(this.renderer)]);
+    const p = (this.compileHold || Promise.resolve()).then(run).catch(err => console.warn('shader compile:', err));
+    const hold = this.compileHold = p.finally(() => { if (this.compileHold === hold) { this.compileHold = null; this.needsRender = true; } });
+  }
+
   renderFrame(dt, shadowDt, force = false) {
+    if (this.compileHold && !force) return false;
     const mode = this.cams.mode;
     let hideClient = null;
     if (mode === 'follow' || mode === 'fp') {
@@ -799,6 +842,8 @@ export class View3D {
     // (on a mounted MG: the turret weapon, whose crosshair the view draws)
     this.viewmodel.turretWeapon = this.fpClient != null && this.fpTurret && this.fpTurret.on ? this.fpTurret.weapon : null;
     this.viewmodel.update(this.fpClient != null ? this.fpClient : -1, this.t || 0, fpSample);
+    // (a view model just built: drawn once its programs are ready)
+    if (this.compileHold && !force) { this.needsRender = true; return false; }
     if (mode === 'fp') {
       const fov = fpSample ? this.viewmodel.fov(FP_FOV) : FP_FOV;
       if (Math.abs(this.camera.fov - fov) > 1e-4) { this.camera.fov = fov; this.camera.updateProjectionMatrix(); }
@@ -812,11 +857,17 @@ export class View3D {
     this.fx.update(this.t || 0, this.camera);
     this.tracers.update(this.t || 0, this.camera, cl => this.actors.muzzle(cl), this.fpClient);
     this.sprites.update(this.t || 0, this.camera, this.actors, this.fpClient);
-    if (this.shadows.enabled) {
-      const occluders = [this.world && this.world.group, this.props && this.props.mode !== 'off' && this.props.group].filter(Boolean);
-      this.shadows.update(this.renderer, this.scene, [this.actors.root], occluders, this.shadowCenter(), this.sun.position);
-    }
-    this.renderer.render(this.scene, this.camera);
+    // the scene graph's matrices once for the frame's passes (the shadows' 1 - 2 and the view's: three.js would walk
+    // all 2,400 objects again for each - 0.5 ms a time)
+    this.scene.updateMatrixWorld();
+    this.scene.matrixWorldAutoUpdate = false;
+    try {
+      if (this.shadows.enabled) {
+        const occluders = [this.world && this.world.group, this.props && this.props.mode !== 'off' && this.props.group].filter(Boolean);
+        this.shadows.update(this.renderer, this.scene, [this.actors.root], occluders, this.shadowCenter(), this.sun.position);
+      }
+      this.renderer.render(this.scene, this.camera);
+    } finally { this.scene.matrixWorldAutoUpdate = true; }
     if (this.xrayMode !== 'off') this.xray.render(this.scene, this.camera, this.actors.xrayTargets(hideClient));
     this.actors.setXrayHidden(this.xrayMode === 'names' ? this.xray.hidden() : null);
     if (this.fpClient != null) this.viewmodel.render(this.renderer, this.camera, FP_FOV, [this.hemi, this.sun], this.fx.viewRoot);
@@ -1005,6 +1056,7 @@ export class View3D {
     if (this.resizeObs) this.resizeObs.disconnect();
     // (the module-level hook and shared textures would keep this view and its demo in memory)
     if (textureArrivals.onArrive === this.onArrive) textureArrivals.onArrive = null;
+    if (textureArrivals.upload === this.uploadTexture) textureArrivals.upload = null;
     clearTimeout(this.redrawTimer);
     releaseStandins();
     this.scene.traverse(o => { if (o.geometry) o.geometry.dispose(); });

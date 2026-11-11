@@ -210,7 +210,9 @@ py tools/serve.py
 Open <http://127.0.0.1:8765/> and drop a `.dm_1` file on the page (or use **Open demo**).
 `tools/serve.py` is `python -m http.server` without browser caching (plain `py -m http.server 8765`
 works too, but may keep old files after an update: reload with `Ctrl+F5`). Tested with Chrome 156, Edge 156 and Firefox 159 (Safari not yet); any
-browser with WebGL 2 and ES modules should work.
+browser with WebGL 2 and ES modules should work. `py tools/serve.py 8790 --pages` serves the site as GitHub Pages
+does (under `/cod2-demo/`, `Cache-Control: max-age=600`, ETag / 304, gzip for text files): open
+<http://127.0.0.1:8790/cod2-demo/>.
 
 ## Regenerate the map data (Python)
 
@@ -354,6 +356,15 @@ git-ignored):
 | `node tools/audit/demo_detail.mjs <demo> [client]` | the details behind a demo-audit finding: kill records, deaths against the scoreboard by phase, the positions around a jump |
 | `ui_audit.js`, `xray_audit.js` | pasted into the DevTools console on a loaded demo (the console is not bound by the page's CSP - `eval` from the page is): every control of both views, the X-Ray rules |
 | `node tools/audit/browser/run.mjs [suite ...] [--browsers chrome,edge,firefox]` | the browser checks, headless, against the dev server (`py tools/serve.py 8776`): `ui` (the UI audit, a 3D MP4, a 2D GIF), `xray`, `start` (the start state, remembered settings), `features` (tracers, enemy names, camera shake, low-health overlay, Tab, a first-person MP4), `scores` (the defaults fresh and after the settings migration, Kill icons gone, the scoreboard only while Tab is held - all views, form fields, the export), `hit` (the hit marker on every demo), `sweep` (every demo in a row: 2D, 3D, follow, first person, seek, X-Ray), `badfiles` (broken / non-demo files), `layout` (five window sizes), `bump` (the players' normal maps), `alpha` (the 3D canvas opaque in every frame: images and videos as the page shows them), `baseline` (load and playback per mode and speed, seeks - the performance figures), `profile` (time and allocations per frame step, the sampling heap profiler, shader programs derived again, seeks), `fxhash` (the effects' output hashed), `closeup` (a player close-up PNG, `--pick x,y` the surface at a pixel), `spot` (camera shots of a map spot as PNGs, `--spot '{"shots":[...]}'`, with the map script's parts shown or hidden), `info` (the demos' zPAM version, server variables, phases), `feed` (the kill feed's clicks and round separators), `vmscan` (the first-person weapon's motion on every demo and player: zig-zags of its offsets), `timebar` (the round labels at three window sizes, matching the feed and the score banner, no overlaps, tooltips, clicks, the ranges, none in the export; the fullscreen player bar by real mouse and key input - real fullscreen in Chrome and Edge, emulated in headless Firefox, `--headed` for a real window), `looks` (the 3D view as PNGs per map from fixed views - overview, eye, first person, X-Ray, a player close up, an effect, ADS -; `--tag x`, `--base` another server: a before / after, compared by `looks_compare.mjs`), `turretscan` (every turret use of every demo in first person: the eye on tag_player, the gun aimed by the view, the MG crosshair, no view model, smooth mounting / leaving, a video), `turret` (one demo frame by frame on a turret, `--probe '{"demo":...,"times":[...]}'`), `hudon` (the Server HUD and Kill feed HUD parts on by default, fresh and migrated; on every demo and the stock clips inside the safe area, the kill feed's pixels clear of the other parts, in the export), `vmprobe` / `samples` (a client's first-person weapon frame by frame, the raw samples), `decals` (decal flicker), `perf` (load and frame time per map, `--maps`), `leak` (memory on demo changes); a line per run, details in `tools/audit/out/browser/`, exit code 1 on a failure or any console error / warning / failed request |
+
+`tools/perf/` measures speed and memory (Chrome headless over the DevTools protocol, against `py tools/serve.py 8790
+--pages`; results in `tools/perf/results/`):
+
+| Script | Measures |
+|---|---|
+| `node tools/perf/bench.mjs [phase ...] --label x [--base url] [--runs n] [--net cable]` | `pageload` (FCP, requests, bytes, render-blocking; desktop and Slow 4G + 4x CPU, cold and warm), `coverage` (JS / CSS used at the start and after a demo), `demoload` (a demo dropped in, cold and warm: parse, first 3D frame, world, props, light grid, all textures, all data; requests and MB per folder, main-thread blocking; `--net cable`: over 50 Mbit/s), `play` (2D, 3D free / follow / first person at 1x and 4x, uncapped: FPS, frame-time percentiles, work and render ms, draw calls), `interact` (seeks, panels, 2D / 3D switches, a first-person MP4), `memory` (heap, GPU estimate) -> `results/<label>.json` |
+| `node tools/perf/cpuprofile.mjs load\|seek\|play3d\|playfp\|play2d` | a CPU profile of the task: self time by file and function, `results/cpu-<task>.cpuprofile` |
+| `node tools/perf/probe.mjs <file.js> [--uncapped] [--no-demo] [--demo name] [--base url]` | a JS file (an async body, `__perf` helpers of `page.js`) run in the page after a demo load; prints its return value |
 
 ## Deploy to GitHub Pages
 

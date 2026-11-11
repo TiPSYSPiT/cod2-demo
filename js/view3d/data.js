@@ -62,11 +62,34 @@ async function fail(url, r, bytes, message) {
   throw new DataError(message);
 }
 
+/* Files fetched ahead (prefetch): while the demo is still parsed, the map's files are already on their way; the
+ * loader that asks for one first takes over that response (once). Unclaimed ones are dropped after a while (the
+ * user went to the 2D view). */
+const ahead = new Map();
+const AHEAD_MS = 120000;
+/** start fetching a maps3d file now; the next fetchData of the same URL gets this response. json: also read a
+ *  copy of it (to find the files it names) -> Promise<object or null> */
+export function prefetch(url, { json = false } = {}) {
+  return loadDataManifest().then(() => {
+    const u = dataUrl(url);
+    if (ahead.has(u)) return null;
+    const p = fetch(u);
+    // (the copy is made before anyone can take the response and read its body)
+    const info = json ? p.then(r => (r.ok ? r.clone().json() : null)).catch(() => null) : null;
+    ahead.set(u, p);
+    p.catch(() => null);
+    setTimeout(() => { if (ahead.get(u) === p) { ahead.delete(u); p.then(r => r.body && r.body.cancel()).catch(() => null); } }, AHEAD_MS);
+    return info;
+  });
+}
+
 /** fetch a maps3d file (versioned URL, status checked) -> Response */
 export async function fetchData(url, opts) {
   await loadDataManifest();
   let r;
-  try { r = await fetch(dataUrl(url), opts); } catch (err) { return fail(url, null, null, name(url) + ': ' + err.message); }
+  const u = dataUrl(url), held = !opts && ahead.get(u);
+  if (held) ahead.delete(u);
+  try { r = await (held || fetch(u, opts)); } catch (err) { return fail(url, null, null, name(url) + ': ' + err.message); }
   if (!r.ok) return fail(url, r, null, name(url) + ': HTTP ' + r.status + (r.status === 404 ? ' (not found - not deployed?)' : ''));
   return r;
 }

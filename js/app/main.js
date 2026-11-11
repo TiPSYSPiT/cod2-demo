@@ -111,6 +111,7 @@ async function load(file) {
   worker.onmessage = ev => {
     const m = ev.data;
     if (m.type === 'progress') setProgress(m.value);
+    else if (m.type === 'map') warm3d(m.map, loadId);
     else if (m.type === 'done') { worker.terminate(); state.worker = null; finish(m.data, loadId); }
     else if (m.type === 'error') { worker.terminate(); state.worker = null; failDemo(m.message, m.invalid, m.stack); }
   };
@@ -231,6 +232,18 @@ async function load3d(R) {
     return 'The 3D view failed to start: ' + err.message;
   }
   return null;
+}
+/** while the demo is still parsed (the worker read the map's name): three.js, the 3D view's code and the map's
+ *  first files on their way - only when the demo will open in 3D, and not when the browser asks to save data.
+ *  A failure here says nothing: load3d() reports it when the view starts. */
+function warm3d(map, loadId) {
+  const q = new URLSearchParams(location.search).get('view');
+  if ((q === '2d' || q === '3d' ? q : state.view) !== '3d') return;
+  try { if (navigator.connection && navigator.connection.saveData) return; } catch (err) { /* no hint */ }
+  Promise.all([import('three'), import('three/addons/controls/OrbitControls.js')])
+    .then(() => import('../view3d/view3d.js'))
+    .then(m => { if (loadId === state.loadId) return m.prefetch3d(map); })
+    .catch(() => null);
 }
 /** user: the viewer's own switch (remembered); the start, a deep link and the fallback to 2D are not */
 async function setView(key, user = false) {

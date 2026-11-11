@@ -9,3 +9,5 @@ __pycache__/
 /tools/audit/out/
 # local dev config
 /.claude/
+# performance measurements (tools/perf/; the figures that matter are in AUDIT.md)
+/tools/perf/results/

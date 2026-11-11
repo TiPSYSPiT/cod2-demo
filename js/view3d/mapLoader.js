@@ -53,16 +53,57 @@ export async function resolveMap(raw) {
 const ARRAYS = { float32: Float32Array, int8: Int8Array, uint8: Uint8Array, uint16: Uint16Array, uint32: Uint32Array };
 function view(buf, a, what = 'world.bin') { const T = ARRAYS[a.type]; return checkedView(T, buf, a.offset, a.length / T.BYTES_PER_ELEMENT, what); }
 
-/** a texture that fails to load is drawn neutral grey (and warned about) */
+/** a texture: decoded off the main thread (createImageBitmap) - an <img> is decoded, flipped and converted on the
+ *  main thread when three.js uploads it (2 s of a map's load, PLAN.md step 87). The decode does what the upload did
+ *  for an image: flipped when the texture is (its flipY - set by the caller right after this returns), alpha
+ *  premultiplied when the texture asks, no colour conversion (three.js converts only between other primaries than
+ *  the working ones - none of ours); three.js leaves an ImageBitmap as it is. Where the browser lacks an option
+ *  of createImageBitmap, the <img> as before. A texture that fails to load is drawn neutral grey (and warned about) */
 let grey = null;
-export function loadTexture(url, loader = new THREE.TextureLoader()) {
-  const t = loader.load(dataUrl(url), tex => arrived(tex), undefined, () => {
+let bitmaps = typeof createImageBitmap === 'function';
+export function loadTexture(url) {
+  const t = new THREE.Texture();
+  t.userData.inflight = true; inflight++;
+  const failed = () => {
     console.warn('texture not loaded - drawn neutral grey:', url);
     if (!grey) { grey = document.createElement('canvas'); grey.width = grey.height = 1; const g = grey.getContext('2d'); g.fillStyle = '#808080'; g.fillRect(0, 0, 1, 1); }
     t.image = grey; t.needsUpdate = true;
     arrived(t);
-  });
+  };
+  const viaImage = () => new THREE.ImageLoader().load(dataUrl(url), img => { t.image = img; t.needsUpdate = true; arrived(t); }, undefined, failed);
+  if (!bitmaps) { viaImage(); return t; }
+  // (low priority, as an <img> had: after the world's and the models' data, which a slow line delivers first)
+  fetch(dataUrl(url), { priority: 'low' }).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.blob(); }).then(blob => {
+    const o = { premultiplyAlpha: t.premultiplyAlpha ? 'premultiply' : 'none', colorSpaceConversion: 'none' };
+    if (t.flipY) o.imageOrientation = 'flipY';
+    return createImageBitmap(blob, o).then(img => {
+      t.image = img; t.flipY = false; t.premultiplyAlpha = false; t.needsUpdate = true;
+      // (the decoded copy let go once the GPU has it - the browser keeps an <img>'s pixels as a cache it may drop,
+      // an ImageBitmap's for good: 400 MB more over a map. Its size stays readable. Kept: the images read later -
+      // userData.keepImage, the light maps the light probe samples. No texture is uploaded twice: each view
+      // loads its own)
+      t.onUpdate = () => {
+        t.onUpdate = null;
+        t.userData.uploaded = true;
+        if (!t.userData.keepImage) dropImage(t);
+      };
+      // (on the GPU at once - the 3D view's renderer.initTexture: a texture not drawn yet, a far LOD's, would keep
+      // its decoded copy until it is)
+      if (textureArrivals.upload) textureArrivals.upload(t);
+      arrived(t);
+    }, err => { if (err instanceof TypeError) { bitmaps = false; viaImage(); } else failed(); });
+  }).catch(failed);
   return t;
+}
+
+/** a texture's decoded image let go (an ImageBitmap closed, its size kept readable) once the GPU has it - now, or
+ *  at its upload (loadTexture) */
+export function dropImage(t) {
+  t.userData.keepImage = false;
+  const img = t.image;
+  if (!t.userData.uploaded || !img || typeof img.close !== 'function') return;
+  t.image = { width: img.width, height: img.height };
+  img.close();
 }
 
 /* Until a texture has arrived three.js samples it black (whole lightmapped areas, every vehicle). The
@@ -85,8 +126,24 @@ export function releaseStandins() {
   for (const t of Object.values(standins)) t.dispose();
 }
 /** called with each texture that arrives (the 3D view redraws) */
-export const textureArrivals = { onArrive: null };
+export const textureArrivals = { onArrive: null, upload: null };
+
+/* The textures still on their way: what waits for them (texturesIn) - the sounds' preload and the HUD's images,
+ * which would otherwise share the line with the map's textures (sound.js, hud.js; PLAN.md step 87) */
+let inflight = 0, whenIn = [];
+/** -> Promise, resolved once no texture is on its way any more (at the latest after maxMs) */
+export function texturesIn(maxMs = 15000) {
+  return new Promise(resolve => {
+    if (!inflight) { resolve(); return; }
+    whenIn.push(resolve);
+    setTimeout(resolve, maxMs);
+  });
+}
 function arrived(t) {
+  if (t.userData.inflight) {
+    t.userData.inflight = false;
+    if (--inflight === 0 && whenIn.length) { const list = whenIn; whenIn = []; for (const f of list) f(); }
+  }
   const list = t.userData.waiting;
   t.userData.waiting = null;
   if (list) for (const f of list) f();
@@ -370,6 +427,33 @@ function makeMaterial(g, tex, lightmaps, sunMasks, coefs, normalMap, specMap, de
   return receiveCookie(mat);                 // the players' shadows (shadows.js)
 }
 
+/* The world is one mesh with a group per material: three.js culls it as a whole, so every group was drawn from
+ * anywhere on the map. Per render (each camera: the view, the shadows' sun) only the groups whose bounding sphere
+ * meets the camera's frustum stay in the geometry's list - the same groups in the same order, so the draw order
+ * (decals, blended layers) does not change; the full list is back after the render (ray casts, compiles). */
+/** the bounding sphere of each of the geometry's groups (from its indexed vertices) */
+function groupSpheres(geo) {
+  const pos = geo.attributes.position.array, idx = geo.index.array, box = new THREE.Box3(), v = new THREE.Vector3();
+  return geo.groups.map(g => {
+    box.makeEmpty();
+    for (let i = g.start, e = g.start + g.count; i < e; i++) { const k = idx[i] * 3; box.expandByPoint(v.set(pos[k], pos[k + 1], pos[k + 2])); }
+    return box.getBoundingSphere(new THREE.Sphere());
+  });
+}
+/** the world mesh culled group by group while `scene` renders (scene.onBeforeRender / onAfterRender) */
+export function cullWorldGroups(scene, mesh) {
+  const geo = mesh.geometry, all = geo.groups, spheres = groupSpheres(geo);
+  const frustum = new THREE.Frustum(), m = new THREE.Matrix4(), s = new THREE.Sphere(), shown = [];
+  scene.onBeforeRender = (renderer, sc, camera) => {
+    m.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse);
+    frustum.setFromProjectionMatrix(m, THREE.WebGLCoordinateSystem, camera.reversedDepth);
+    shown.length = 0;
+    for (let i = 0; i < all.length; i++) if (frustum.intersectsSphere(s.copy(spheres[i]).applyMatrix4(mesh.matrixWorld))) shown.push(all[i]);
+    geo.groups = shown;
+  };
+  scene.onAfterRender = () => { geo.groups = all; };
+}
+
 /** the world mesh + objectives of an exported map -> {group, info, mesh, sites, entities} */
 export async function loadWorld(mapName, { onProgress } = {}) {
   const t0 = performance.now();
@@ -392,12 +476,11 @@ export async function loadWorld(mapName, { onProgress } = {}) {
   geo.setIndex(new THREE.BufferAttribute(view(buf, L.index), 1));
   geo.computeBoundingSphere();
 
-  const loader = new THREE.TextureLoader();
   const texCache = new Map();
   const texture = (file, repeat) => {
     if (!file) return null;
     if (texCache.has(file)) return texCache.get(file);
-    const t = loadTexture(BASE + file, loader);
+    const t = loadTexture(BASE + file);
     t.flipY = false;                                        // D3D texture coordinates: v = 0 at the top
     t.colorSpace = THREE.NoColorSpace;                      // gamma-space math, like the game
     if (repeat) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = maxAnisotropy; }
@@ -412,11 +495,11 @@ export async function loadWorld(mapName, { onProgress } = {}) {
   };
   const lightmaps = (info.lightmaps || []).map(f => {
     const t = f ? texture(mapName + '/' + f, false) : null;
-    if (t) t.channel = 1;                                   // sampled with the lightmap coordinates (uv1)
+    if (t) { t.channel = 1; t.userData.keepImage = true; }   // sampled with the lightmap coordinates (uv1); read by the light probe
     return t;
   });
   // the game's lightmaps (lightmapFormat 2): the light + the sun's visibility (a black stand-in until it arrives)
-  const sunMasks = info.lightmapFormat === 2 && info.sunMasks ? info.sunMasks.map(f => (f ? texture(mapName + '/' + f, false) : null)) : null;
+  const sunMasks = info.lightmapFormat === 2 && info.sunMasks ? info.sunMasks.map(f => { const t = f ? texture(mapName + '/' + f, false) : null; if (t) t.userData.keepImage = true; return t; }) : null;
   if (sunMasks) applySun(info.sun);
   // the lightmaps' 4 coefficients (for the normal-mapped surfaces; needs the tangent frame)
   const coefs = sunMasks && info.lightmapCoefs && L.tangent ? info.lightmapCoefs.map(list => list.map(f => {

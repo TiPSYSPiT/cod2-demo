@@ -197,6 +197,7 @@ export class Hud {
     if (!this.ready) {
       this.ready = (async () => {
         try {
+          if (this.after) await this.after();             // (the map's textures first - view3d.js)
           const d = await fetchJSON(BASE + 'hud.json');
           const bitmap = async rel => createImageBitmap(await (await fetchData('maps3d/' + rel)).blob());
           const atlas = await bitmap(d.fontImage.image);

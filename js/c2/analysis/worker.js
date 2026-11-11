@@ -20,7 +20,7 @@ C2.define('workerMain', function (C2) {
         let last = 0;
         const data = C2.analyzeDemo(new Uint8Array(buffer), fileInfo, frac => {
           if (frac - last >= 0.01 || frac === 1) { last = frac; scope.postMessage({ type: 'progress', value: frac }); }
-        });
+        }, map => scope.postMessage({ type: 'map', map }));
         scope.postMessage({ type: 'done', data }, transferList(data));
       } catch (err) {
         scope.postMessage({ type: 'error', message: err && err.message ? err.message : String(err),
