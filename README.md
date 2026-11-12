@@ -221,7 +221,20 @@ does (under `/cod2-demo/`, `Cache-Control: max-age=600`, ETag / 304, gzip for te
 
 Needs **Python 3.10+** and **Pillow with WebP** (`pip install pillow`), nothing else. The game folder is
 the CoD2 install with `main/` (stock `iw_*.iwd`, localized `localized_*_iw*.iwd`, and for the zPAM map
-pack and radar images `zpam_maps_v7.iwd` / `zpam409.iwd`). 25 of the game's images are wavelet compressed
+pack and radar images `zpam_maps_v7.iwd` / `zpam409.iwd`).
+
+**Language.** The exporters read the **English** localized archives (`localized_english_iw00..11.iwd`): the voice
+overs and battle chatter (the quick messages, the announcer), the localized strings (weapon, map and game type
+names, HUD texts, obituaries), the localized materials and images. As the game does, they are searched after every
+other archive and only those of one language - whatever the install's `localization.txt` says. The one exception
+is the **censored textures**: the German release's versions of the 58 localized materials that draw insignia (flags,
+banners, crates, posters, uniforms, the scoreboard's German flag) and their `*_local` images, so the site shows no
+swastikas; for these the German archives (`localized_german_iw*.iwd`) must be in `main/` too, else the export stops.
+Both are set at the top of `tools/export/cod2/iwd.py` (`LANGUAGE`, `CENSORED_FROM`). After a change of the
+localized archives, run `sound_export.py` (the voices) and `hud_export.py` (the strings); the maps, characters and
+effects only use the censored materials, which do not depend on the language.
+
+25 of the game's images are wavelet compressed
 (mp_matmata's well, mp_toujane's vase, a few HUD and effect images): their decode tables are read from the game
 folder's own `gfx_d3d_mp_x86_s.dll` (or `gfx_d3d_x86_s.dll`) - not shipped here.
 
