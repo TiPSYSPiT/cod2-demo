@@ -5,7 +5,8 @@ import { Match } from './match.js';
 import { Replay } from './replay.js';
 import { View2D } from '../view2d/view2d.js';
 import { InfoHint } from './infoHint.js';
-import { primeAudio } from './audio.js';
+import { primeAudio, soundWanted } from './audio.js';
+import { linkParams, checkUrl, download, parseTime, shareUrl, cleanName, nameFromUrl, LinkError } from './urlDemo.js';
 import { migrateSettings } from './settings.js';
 import { ScoresOverlay } from './scoresOverlay.js';
 import '../c2/ui/killfeed.js';           // C2.killfeed: the kill feed of the 3D view and of both video exports
@@ -18,7 +19,9 @@ const $ = id => document.getElementById(id);
 const VIEW_KEY = 'cod2demo3d.view2';        // '2d' / '3d' (default 3d): written only by the user's own switch
 const DRAWER_KEY = 'cod2demo3d.drawer';      // 'open' / 'closed' and '.teams' / '.feed' ('closed': section folded)
 
-const state = { data: null, fileInfo: null, worker: null, loadId: 0, replay: null, view: '3d', rendered: new Set(), detailsTab: 'scoreboard' };
+// source: the link the demo came from (openLink; null: dropped / picked); download: its download (an AbortController);
+// pageLink: the page was opened with a demoUrl
+const state = { data: null, fileInfo: null, worker: null, loadId: 0, replay: null, view: '3d', rendered: new Set(), detailsTab: 'scoreboard', source: null, download: null, pageLink: false };
 try { const v = localStorage.getItem(VIEW_KEY); if (v === '2d' || v === '3d') state.view = v; } catch (err) { /* storage blocked */ }
 
 const scores = new ScoresOverlay($('viewport'));   // the scoreboard while Tab is held
@@ -84,16 +87,25 @@ function applyTeamColors(data) {
 }
 
 /* ---- loading ---- */
-async function load(file) {
+/** the previous demo (or download) goes, the progress shows */
+function reset() {
+  if (state.download) { state.download.abort(); state.download = null; }
   $('error').hidden = true;
   clear($('warnings'));
   closePop();
   $('viewer').hidden = true;
-  for (const id of ['export-btn', 'details-btn', 'view-toggle']) $(id).hidden = true;
+  for (const id of ['export-btn', 'details-btn', 'view-toggle', 'share-btn', 'progress-cancel']) $(id).hidden = true;
+  for (const n of document.querySelectorAll('.link-start')) n.remove();
   document.body.classList.remove('loaded');
   if (state.replay) { scores.setReplay(null); state.replay.destroy(); state.replay = null; }
   $('dropzone').hidden = true;
   $('progress').hidden = false;
+}
+
+/** source: the link the file came from (openLink), else null (dropped, picked) */
+async function load(file, source = null) {
+  reset();
+  state.source = source;
   $('progress-label').textContent = 'Reading ' + file.name + ' …';
   setProgress(0);
   $('file-name').textContent = file.name;
@@ -157,13 +169,154 @@ function failDemo(message, invalid, stack) {
   fail(message, invalid ? null : stack, invalid ? 'Unsupported or invalid demo:' : 'The demo could not be analysed:');
 }
 
-function fail(message, stack, title = 'Error:') {
+/** a demo from a link gets "Try again" (retry: not for a link that can never work) and "Open demo manually" */
+function fail(message, stack, title = 'Error:', retry = true) {
   if (stack) console.error(stack);
   $('progress').hidden = true;
+  $('progress-cancel').hidden = true;
   $('dropzone').hidden = false;
   const box = $('error');
   clear(box).append(el('strong', null, title + ' '), message);
+  const src = state.source;
+  if (src) {
+    box.append(el('div', { class: 'banner-actions' },
+      retry ? el('button', { class: 'tb small', type: 'button', onclick: () => openLink(src.params) }, 'Try again') : null,
+      el('button', { class: 'tb small', type: 'button', onclick: () => $('file-input').click() }, 'Open demo manually')));
+  }
   box.hidden = false;
+  // (a link opened the page: its error, under the drop area, in sight)
+  if (src) try { box.scrollIntoView({ block: 'nearest' }); } catch (err) { /* old browser */ }
+}
+
+/* ---- a demo from a link: ?demoUrl=<https URL>&name=&t=&round=&player=&view=&speed= (urlDemo.js, README) ---- */
+async function openLink(params) {
+  reset();
+  const source = { params, raw: params.get('demoUrl'), href: null, name: cleanName(params.get('name') || '') };
+  state.source = source;
+  const loadId = ++state.loadId;
+  let url;
+  try { url = checkUrl(source.raw); } catch (err) { return fail(err.message, null, err.title, false); }
+  source.href = url.href;
+  const shown = source.name || nameFromUrl(url) || url.hostname;
+  $('file-name').textContent = shown;
+  const label = $('progress-label');
+  label.textContent = 'Downloading ' + shown + ' from ' + url.hostname + ' …';
+  setProgress(0);
+  const ctrl = new AbortController();
+  state.download = ctrl;
+  $('progress-cancel').hidden = false;
+  const mb = n => (n / 1048576).toFixed(1) + ' MB';
+  let got;
+  try {
+    got = await download(url, { signal: ctrl.signal, onProgress: (n, total) => {
+      if (loadId !== state.loadId) return;
+      label.textContent = 'Downloading ' + shown + ' from ' + url.hostname + ' … ' + mb(n) + (total ? ' of ' + mb(total) : '');
+      // (no length: a bar that slows down instead of none)
+      setProgress(total ? Math.min(1, n / total) : 1 - Math.exp(-n / 8e6));
+    } });
+  } catch (err) {
+    if (loadId !== state.loadId) return;             // (another demo was opened: it cancelled this download)
+    state.download = null;
+    if (!(err instanceof LinkError)) err = new LinkError('network', 'Download failed:', String((err && err.message) || err));
+    return fail(err.message, null, err.title, err.kind !== 'url');
+  }
+  if (loadId !== state.loadId) return;
+  state.download = null;
+  load(new File([got.bytes], source.name || got.name || 'demo.dm_1', { type: 'application/octet-stream', lastModified: Date.now() }), source);
+}
+
+/** the deep link's parameters: a demo from a link takes its link's; else (no demoUrl on the page) the page's query,
+ *  for every demo opened - as before the links */
+function deepParams() {
+  if (state.source) return state.source.params;
+  return state.pageLink ? new URLSearchParams() : new URLSearchParams(location.search);
+}
+
+/** a toast under the score pill (text only); ms: it goes by itself */
+function toast(content, ms = 0, kind = 'banner-warn') {
+  const t = el('div', { class: 'toast ' + kind }, typeof content === 'string' ? el('span', null, content) : content);
+  t.append(el('button', { class: 'ib x-btn', title: 'Dismiss', 'aria-label': 'Dismiss', onclick: () => t.remove() }, icon('x', 's')));
+  $('warnings').append(t);
+  if (ms) setTimeout(() => t.remove(), ms);
+  return t;
+}
+
+/** the round a link names: its label as in the Range list (5; 5* interrupted; A after-match) -> its index or -1 */
+function findRound(rounds, s) {
+  s = String(s).trim().toUpperCase();
+  const i = rounds.findIndex(r => String(r.label).toUpperCase() === s);
+  return i >= 0 ? i : rounds.findIndex(r => r.kind === 'round' && String(r.label) === s.replace(/\*$/, ''));
+}
+/** a player by name (colour codes ignored): the exact name, else the first one containing it */
+function findPlayer(players, s) {
+  s = String(s).replace(/\^./g, '').trim().toLowerCase();
+  if (!s) return null;
+  return players.find(p => p.cleanName.toLowerCase() === s) || players.find(p => p.cleanName.toLowerCase().includes(s)) || null;
+}
+
+/** the deep link on a new replay: round (the range), t (the clock's time in it), player, speed -> the view to show.
+ *  What a link from another site names wrongly is said in a toast (not for the page's own query, as before). */
+function applyDeepLink(replay, data, q) {
+  const bad = [], has = k => q.get(k) != null && q.get(k) !== '';
+  if (has('round')) {
+    const i = findRound(data.rounds, q.get('round'));
+    if (i >= 0) replay.setScope(i); else bad.push('round "' + q.get('round') + '" is not in this demo');
+  }
+  if (has('t')) {
+    const t = parseTime(q.get('t'));
+    if (t != null) replay.seek(replay.base + t); else bad.push('t "' + q.get('t') + '" is not a time (seconds or mm:ss)');
+  }
+  const who = q.get('player') || q.get('focus');
+  if (who) { const p = findPlayer(data.players, who); if (p) replay.setFocus(p.client); else bad.push('player "' + who + '" is not in this demo'); }
+  if (has('speed')) {
+    const s = Number(String(q.get('speed')).replace(/x$/i, ''));
+    if (C2.mapConfig.SPEEDS.includes(s)) replay.setSpeed(s); else bad.push('speed "' + q.get('speed') + '" is not one of ' + C2.mapConfig.SPEEDS.join(', '));
+  }
+  const v = q.get('view');
+  if (has('view') && v !== '2d' && v !== '3d') bad.push('view "' + v + '" is not 2d or 3d');
+  if (bad.length && state.source) toast('Link: ' + bad.join('; ') + ' - ignored.');
+  return v === '3d' || v === '2d' ? v : state.view;
+}
+
+/** a demo from a link: the browsers start sound only after a click - "Click to start" starts the sound and the replay */
+function linkStart(replay) {
+  const start = el('button', { class: 'link-start', type: 'button', 'aria-label': 'Start the replay' },
+    el('span', { class: 'link-start-btn' }, icon('play'), 'Click to start'),
+    el('small', null, state.fileInfo.name + (soundWanted() ? ' · with sound' : '')));
+  // (started from the player bar instead - the narrow layout leaves it free: the overlay goes too)
+  const watch = setInterval(() => { if (!start.isConnected || replay.pb.playing) { clearInterval(watch); start.remove(); } }, 250);
+  start.addEventListener('click', () => {
+    primeAudio();
+    start.remove();
+    clearInterval(watch);
+    if (state.replay !== replay) return;
+    // (from the keyboard there was no pointerdown for the 3D view's own sound start)
+    const v = replay.views['3d'];
+    if (v && v.soundWanted && v.sounds && v.visible && !v.sounds.enabled) v.setSound(true);
+    if (!replay.pb.playing) replay.pb.toggle();
+  });
+  $('viewport').append(start);
+  try { start.focus({ preventScroll: true }); } catch (err) { /* no focus */ }
+}
+
+/** "Copy link": the demo's link with the current time, range, player, view and speed */
+async function copyLink() {
+  const R = state.replay, src = state.source;
+  if (!R || !src || !src.href) return;
+  const focus = R.focus != null ? state.data.players.find(p => p.client === R.focus) : null;
+  const link = shareUrl({ demoUrl: src.href, name: src.params.get('name') ? src.name : '', t: R.pb.t - R.base,
+    round: R.scope >= 0 ? String(state.data.rounds[R.scope].label) : '', player: focus ? focus.cleanName : '', view: state.view, speed: R.pb.speed });
+  for (const n of document.querySelectorAll('.toast.share')) n.remove();
+  try {
+    await navigator.clipboard.writeText(link);
+    toast('Link copied to the clipboard.', 2500, 'banner-ok share');
+  } catch (err) {
+    // (no clipboard access: the link to copy by hand)
+    const field = el('input', { class: 'share-field', type: 'text', readonly: true, value: link, 'aria-label': 'Link to this demo', spellcheck: 'false' });
+    toast(el('span', { class: 'share-row' }, el('span', null, 'Copy this link:'), field), 0, 'banner-ok share');
+    field.focus();
+    field.select();
+  }
 }
 
 function setProgress(v) { $('progress-fill').style.width = Math.round(v * 100) + '%'; }
@@ -182,6 +335,7 @@ function show(data) {
     toast.append(el('button', { class: 'ib x-btn', title: 'Dismiss', 'aria-label': 'Dismiss', onclick: () => toast.remove() }, icon('x', 's')));
     warn.append(toast);
   }
+  if (state.source) $('share-btn').hidden = false;
   state.info = el('div', { class: 'ov-info' });
   C2.tabs.overview.render($('overview'), app, state.info);
   $('viewer').hidden = false;
@@ -197,11 +351,9 @@ function show(data) {
   scores.setReplay(replay);
   window.cod2 = { replay, match, data, scores };    // debugging handle
   replay.addView(new View2D(replay, $('viewport')));
-  // deep link: ?view=2d|3d&t=<match time in seconds>&focus=<player name>
-  const q = new URLSearchParams(location.search);
-  if (q.get('t') != null) replay.seek(Number(q.get('t')) * 1000);
-  if (q.get('focus')) { const p = data.players.find(x => x.cleanName.toLowerCase().includes(q.get('focus').toLowerCase())); if (p) replay.setFocus(p.client); }
-  setView(q.get('view') === '3d' || q.get('view') === '2d' ? q.get('view') : state.view);
+  // deep link: ?view=2d|3d&round=<label>&t=<seconds or mm:ss on the clock>&player=<name> (focus=: the same)&speed=
+  setView(applyDeepLink(replay, data, deepParams()));
+  if (state.source) linkStart(replay);
 }
 
 /* ---- 2D / 3D toggle (the 3D module and three.js load on first use) ---- */
@@ -247,7 +399,7 @@ async function load3d(R) {
  *  first files on their way - only when the demo will open in 3D, and not when the browser asks to save data.
  *  A failure here says nothing: load3d() reports it when the view starts. */
 function warm3d(map, loadId) {
-  const q = new URLSearchParams(location.search).get('view');
+  const q = deepParams().get('view');
   if ((q === '2d' || q === '3d' ? q : state.view) !== '3d') return;
   try { if (navigator.connection && navigator.connection.saveData) return; } catch (err) { /* no hint */ }
   Promise.all([import('three'), import('three/addons/controls/OrbitControls.js')])
@@ -453,6 +605,9 @@ function init() {
     if (!R) return;
     const tag = (document.activeElement && document.activeElement.tagName) || '';
     if (tag === 'INPUT' && document.activeElement.type !== 'checkbox' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+    // (a link's "Click to start" takes Space / Enter while it shows)
+    const ls = document.querySelector('.link-start');
+    if (ls && (e.code === 'Space' || e.code === 'Enter') && !e.ctrlKey && !e.metaKey && !e.altKey) { e.preventDefault(); ls.click(); return; }
     if (e.code === 'Escape' && rail.open) { closePop(); return; }
     if (e.code === 'Escape' && !$('details').hidden) { showDetails(false); return; }
     if (!$('details').hidden || e.ctrlKey || e.metaKey || e.altKey) return;
@@ -466,10 +621,20 @@ function init() {
     // (in the free-fly camera F is "down": the view takes it above)
     else if (e.code === 'KeyF' && !e.shiftKey) { e.preventDefault(); toggleFullscreen(); }
   });
-  // optional: index.html?demo=<path of a .dm_1 file on this site> (served over http). Only the site's own
-  // files: a link must not open someone else's file under the site's name (the CSP's connect-src agrees)
+  // a demo from another site: ?demoUrl=<https URL> (or #demoUrl=...) - openLink, urlDemo.js
+  $('share-btn').append(icon('link'));
+  $('share-btn').addEventListener('click', copyLink);
+  $('progress-cancel').addEventListener('click', () => { if (state.download) state.download.abort(); });
+  state.pageLink = linkParams().has('demoUrl');
+  window.addEventListener('hashchange', () => {
+    const p = linkParams();
+    if (p.has('demoUrl') && !(state.source && p.get('demoUrl') === state.source.raw)) { state.pageLink = true; openLink(p); }
+  });
+  // optional: index.html?demo=<path of a .dm_1 file on this site> (served over http): only the site's own files
+  // (another site's: demoUrl, above)
   const demoUrl = new URLSearchParams(location.search).get('demo');
-  if (demoUrl) {
+  if (state.pageLink) openLink(linkParams());
+  else if (demoUrl) {
     let url = null;
     try { url = new URL(demoUrl, location.href); } catch (err) { /* not a URL */ }
     if (!url || url.origin !== location.origin) fail('?demo= opens only a demo file on this site (a path such as demos/my.dm_1).');

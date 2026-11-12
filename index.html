@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Content-Security-Policy: only the site's own files. The sha256 is the hash of the import map below - it
        must be recomputed when the import map changes (AUDIT.md "Final full review", R3); blob: = the parser and
-       GIF workers. The CDN alternative of the import map would also need that host in script-src. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mne3CI18ZSns61UE2acmcxBJb8wPiixDKJMLGynStww='; worker-src 'self' blob:; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+       GIF workers. The CDN alternative of the import map would also need that host in script-src. connect-src
+       https: = a demo from another site by link (?demoUrl=, js/app/urlDemo.js; with LINK.ALLOWED_HOSTS set there,
+       name the same hosts here instead). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mne3CI18ZSns61UE2acmcxBJb8wPiixDKJMLGynStww='; worker-src 'self' blob:; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
   <title>CoD2 Demo Viewer</title>
   <meta name="description" content="Call of Duty 2 demo (.dm_1) replay in 2D and 3D - parsed locally in the browser.">
   <link rel="icon" href="favicon.ico" sizes="any">
@@ -37,6 +39,7 @@
       <button data-view="3d" class="active" title="3D map (V toggles)">3D</button>
     </div>
     <div class="top-r">
+      <button class="ib" id="share-btn" hidden title="Copy a link to this demo, at the current time, player and view" aria-label="Copy link"></button>
       <button class="ib" id="details-btn" hidden title="Match details: scoreboard, rounds, chat and events" aria-label="Match details"></button>
       <button class="ib" id="export-btn" hidden title="Download the parsed demo data as JSON" aria-label="Export JSON"></button>
       <a class="ib gh-link" href="https://github.com/TiPSYSPiT/cod2-demo" target="_blank" rel="noopener noreferrer" title="View source on GitHub" aria-label="View source on GitHub">
@@ -61,6 +64,7 @@
     <section id="progress" class="progress" hidden>
       <div class="progress-label" id="progress-label">Parsing…</div>
       <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <button class="tb small progress-cancel" id="progress-cancel" type="button" hidden>Cancel</button>
     </section>
 
     <section id="error" class="banner banner-error" hidden></section>

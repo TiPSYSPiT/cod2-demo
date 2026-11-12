@@ -8,7 +8,7 @@ Source: [github.com/TiPSYSPiT/cod2-demo](https://github.com/TiPSYSPiT/cod2-demo)
 top bar).
 
 The demo is parsed in your browser (a Web Worker). Nothing is uploaded, and the page loads nothing from
-other servers: three.js r187 comes with the project in `vendor/`, the fonts (Inter, JetBrains Mono, SIL Open
+other servers (but a demo you open by link, `?demoUrl=`, from its own website): three.js r187 comes with the project in `vendor/`, the fonts (Inter, JetBrains Mono, SIL Open
 Font License) in `assets/fonts/`. The site is plain HTML, CSS and JavaScript with no build step and runs on
 GitHub Pages. The game data (3D maps, textures, 2D backgrounds, sounds, player models and animations,
 particle effects) is extracted once from your own game files with Python scripts (below) and committed
@@ -174,7 +174,80 @@ finger and zooms / pans with two; the timeline seeks by touch.
 Deep links: `index.html?demo=demos/my.dm_1&view=3d&t=300&focus=name` loads a demo served from the same
 site (`?demo=` takes only a path on the site, no other website), opens the 3D view at 5:00 and selects the first player whose name contains "name";
 `&cam=x,y,z,yaw,pitch` opens the free camera there; `&sound=off` leaves the sounds out. A link opens no audio by
-itself (the browsers wait for a click): the 3D view asks for one with a small "Click to enable sound".
+itself (the browsers wait for a click): the 3D view asks for one with a small "Click to enable sound". A demo on another website: `?demoUrl=` (next section).
+
+## Open a demo by link
+
+Another website (a match archive, a league page, a Discord bot) can open a demo in the viewer with a link or a
+redirect. The demo stays on that website; the viewer downloads it in the visitor's browser and opens it as a dropped
+file (3D, the recording player's view, sound at 20 % - or what the visitor chose before):
+
+```text
+https://tipsyspit.github.io/cod2-demo/?demoUrl=https%3A%2F%2Fexample.com%2Fdemos%2Fmatch.dm_1
+```
+
+| Parameter | Value | Example |
+|---|---|---|
+| `demoUrl` | **required** - the demo's full `https://` address, URL-encoded | `demoUrl=https%3A%2F%2Fexample.com%2Fdemos%2Fmatch.dm_1` |
+| `name` | the file name shown (and used for exports); default: from the server's `Content-Disposition` (if it exposes it, below), else the last part of the URL's path | `name=Final%20-%20Team%20A%20vs%20B.dm_1` |
+| `t` | start time on the player bar's clock: seconds or `mm:ss` / `h:mm:ss` (with `round`: from the round's start) | `t=95`, `t=1:35` |
+| `round` | play only this round (as the bar's *Range* list): its number, `24*` for a round interrupted by a timeout, `A` for an after-match | `round=7` |
+| `player` | select this player and follow them (the 3D camera's POV): the exact name, else the first name containing it; colour codes (`^1`) ignored | `player=szabo` |
+| `view` | `2d` or `3d` (default: `3d`, or the visitor's last choice) | `view=2d` |
+| `speed` | `0.5`, `1`, `2` or `4` | `speed=2` |
+
+Everything also works in the hash (`#demoUrl=...&t=1:35`), which the browser does not send to the server; when a
+parameter is in both, the query wins. `focus=` is an older name of `player=`; `sound=off`, `cam=`, `shadows=off`
+(above) work in the query only. A parameter the demo does not have (a round, a player) or a value the viewer does not
+know is ignored with a short notice; without `demoUrl` the viewer works as before.
+
+**URL-encoding**: `demoUrl` (and `name`, `player`) must be encoded - in JavaScript `encodeURIComponent(url)`, in
+Python `urllib.parse.quote(url, safe='')`, in PHP `rawurlencode($url)`. Unencoded, a `&` or `#` in the demo's own
+address would end the parameter. Example in JavaScript:
+
+```js
+const link = 'https://tipsyspit.github.io/cod2-demo/?demoUrl=' + encodeURIComponent('https://example.com/demos/match 1.dm_1')
+  + '&t=' + encodeURIComponent('2:30') + '&player=' + encodeURIComponent('Not Ready :)');
+```
+
+**The server must allow it (CORS).** A browser lets the viewer read a file from another website only when that
+website says so. The server hosting the demos must send, with each demo file (and with any redirect leading to it):
+
+```http
+Access-Control-Allow-Origin: https://tipsyspit.github.io
+```
+
+(or `Access-Control-Allow-Origin: *`). To let the viewer read the file name from `Content-Disposition`, add
+`Access-Control-Expose-Headers: Content-Disposition`. Examples: nginx `add_header Access-Control-Allow-Origin
+"https://tipsyspit.github.io" always;` in the demos' `location`; Apache `Header set Access-Control-Allow-Origin
+"https://tipsyspit.github.io"`; GitHub Pages and `raw.githubusercontent.com` send `*` already. No cookies or login
+are sent (the request is made with `credentials: 'omit'` and no referrer), so the file must be public. Without the
+header the viewer says "Blocked by CORS" and names the header.
+
+**Limits and errors**: only `https:` links (not `http:`, `data:`, `blob:`, `javascript:`, `file:`; a redirect to such
+an address is refused too); at most 100 MB (a full zPAM match is 5 - 20 MB); 30 s without data ends the download (a
+timeout); the visitor can cancel it. Each failure is shown on the page with **Try again** and **Open demo manually**:
+an invalid or non-https link, CORS, 404 / other HTTP errors, no connection, a timeout, a file too large, empty, a web
+page instead of the file, or not a CoD2 demo. The downloaded file is untrusted data, parsed by the same hardened parser
+(in a Web Worker) as a dropped one; the URL, the name and the server's messages are shown as text only.
+
+**Sound and start**: the browsers start audio only after a click, so a linked demo opens paused under **Click to
+start** (Space / Enter work too); that click starts the replay with its sound.
+
+**Copy link**: a demo opened by link has a link button in the top bar that copies the link to it at the current
+time - with the round (when *Range* is a round), the selected player, the view and the speed.
+
+**Host allowlist** (optional): `LINK.ALLOWED_HOSTS` at the top of `js/app/urlDemo.js` - `null` (the default: every
+https host) or a list such as `['demos.example.org', '.github.io']` (a leading dot: the domain and its sub domains). With a
+list, narrow `connect-src` in `index.html`'s Content-Security-Policy from `https:` to the same hosts
+(`connect-src 'self' https://demos.example.org https://*.github.io`). The size limit and the timeout are `LINK.MAX_BYTES`
+and `LINK.TIMEOUT_MS` there.
+
+Tests: `node tools/audit/link_unit.mjs` (the URL check, allowlist, times, names, share link) and the browser suite
+`link` against a local https "other site" (`py tools/audit/linkhost.py`, self-signed, port 8443: CORS / no CORS, 404,
+noise, a web page, empty, 200 MB, endless, slow, stalled, redirects, Content-Disposition, special characters, a
+redirect from the other site to the viewer; plus three real hosts) - `node tools/audit/browser/run.mjs link --browsers
+chrome --base http://127.0.0.1:8790/cod2-demo/`, one browser at a time (`--cases a,b`, `--no-internet`).
 
 ## What a demo contains (and does not)
 
@@ -399,7 +472,7 @@ git-ignored):
    at the end; after copying or editing files under `maps3d/` by hand, run
    `py tools/check_deploy.py manifest`.
 5. `index.html` sets a Content-Security-Policy (`<meta http-equiv>`: only the site's own files, `blob:` for the
-   parser and GIF workers). Its `sha256-…` is the hash of the inline import map: after changing the import map
+   parser and GIF workers, `connect-src https:` for a demo opened by link - "Open a demo by link"). Its `sha256-…` is the hash of the inline import map: after changing the import map
    (e.g. to the CDN, which then also needs its host in `script-src`), compute the new hash
    (`base64(sha256(<the text between the import map's script tags>))`) or the page stops loading three.js.
 6. After a push, compare the live site with the local folder (missing files, other sizes or contents,

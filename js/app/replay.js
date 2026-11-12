@@ -86,6 +86,8 @@ export class Replay {
 
   /** seek to t (ms); switches to the whole match if t is outside the current round */
   seek(t, dir) { this.pb.seek(t, dir); }
+  /** the playback speed (one of CFG.SPEEDS), as the bar's dropdown sets it (a link's speed=) */
+  setSpeed(s) { this.pb.speed = s; this.speedSel.value = String(s); }
   gotoEvent(t, roundIndex) {
     const d = this.d;
     const ri = roundIndex != null && roundIndex >= 0 ? roundIndex : C2.events.roundAt(d.rounds, t);
@@ -106,6 +108,7 @@ export class Replay {
     this.playBtn = playBtn;
     const speedSel = el('select', { title: 'Playback speed', 'aria-label': 'Playback speed', onchange: e => { this.pb.speed = Number(e.target.value); } },
       CFG.SPEEDS.map(s => el('option', { value: String(s), selected: s === 1 ? 'selected' : null }, s + '×')));
+    this.speedSel = speedSel;
     this.timeNow = el('span', { class: 'clock-now' });
     this.timeTotal = el('small');
     this.clockSub = el('div', { class: 'clock-sub' });
