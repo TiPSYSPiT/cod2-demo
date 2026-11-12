@@ -700,7 +700,7 @@ function drawOverlays(ctx, t, hideClient) {
     let score = d.initialScore || { A: 0, B: 0 };
     for (const x of d.rounds) if (x.kind === 'round' && x.end != null && x.end <= t && x.scoreAfter) score = x.scoreAfter;
     const shown = d.teams.filter(tm => d.players.some(pl => pl.team === tm.key));
-    const line1 = r ? (r.kind === 'round' ? 'Round ' + r.label : r.kind === 'knife' ? 'Knife round' : '') + '  ·  ' + C2.ui.fmtRoundTime(d, ri, t) : fmtTime(t);
+    const line1 = r ? (r.kind === 'round' ? 'Round ' + r.label : '') + '  ·  ' + C2.ui.fmtRoundTime(d, ri, t) : fmtTime(t);
     const parts = [];
     shown.forEach((tm, i) => { if (i) parts.push([' : ', '#c8c8ce']); parts.push([tm.name + ' ' + (score[tm.key] != null ? score[tm.key] : 0), app.teamColor(tm.key)]); });
     g.font = font('700', 13);
@@ -718,7 +718,7 @@ function drawOverlays(ctx, t, hideClient) {
   // title, bottom left: map, game type, round
   if (opts.title) {
     const m = d.meta;
-    const text = [m.mapDisplay || m.map, m.gametypeDisplay || m.gametype, r ? (r.kind === 'round' ? 'Round ' + r.label : r.kind === 'knife' ? 'Knife round' : '') : ''].filter(Boolean).join('  ·  ');
+    const text = [m.mapDisplay || m.map, m.gametypeDisplay || m.gametype, r ? (r.kind === 'round' ? 'Round ' + r.label : '') : ''].filter(Boolean).join('  ·  ');
     g.font = font('600', 12);
     const w = g.measureText(text).width;
     g.globalAlpha = 0.85;

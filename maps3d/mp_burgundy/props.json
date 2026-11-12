@@ -2,7 +2,7 @@
  "format": "cod2-demo3d-props/1",
  "map": "mp_burgundy",
  "file": "props.bin",
- "byteLength": 4830940,
+ "byteLength": 4833116,
  "models": [
   {
    "name": "xmodel/brush_grassflowerplants_squareclump",
@@ -2807,6 +2807,65 @@
    ]
   },
   {
+   "name": "xmodel/military_flak88_boxlid",
+   "lod": "flak88_boxlid0",
+   "flags": 0,
+   "mins": [
+    -20.133390426635742,
+    -20.133390426635742,
+    -20.133390426635742
+   ],
+   "maxs": [
+    20.133390426635742,
+    20.133390426635742,
+    20.133390426635742
+   ],
+   "vertices": 64,
+   "triangles": 32,
+   "geometry": {
+    "position": {
+     "offset": 1304320,
+     "length": 768
+    },
+    "normal": {
+     "offset": 1305088,
+     "length": 256
+    },
+    "uv": {
+     "offset": 1305344,
+     "length": 512
+    },
+    "index": {
+     "offset": 1305856,
+     "length": 384
+    },
+    "tangent": {
+     "offset": 1306240,
+     "length": 256
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_flak88box",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 96,
+     "texture": "_textures/flak88_shell_local.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_flak88_shell_spec-rgbl-11.webp"
+    }
+   ],
+   "lodDistances": [
+    0.0
+   ]
+  },
+  {
    "name": "xmodel/prop_chickencoop",
    "lod": "chicken_coop0",
    "flags": 0,
@@ -2824,23 +2883,23 @@
    "triangles": 164,
    "geometry": {
     "position": {
-     "offset": 1304320,
+     "offset": 1306496,
      "length": 3888
     },
     "normal": {
-     "offset": 1308208,
+     "offset": 1310384,
      "length": 1296
     },
     "uv": {
-     "offset": 1309504,
+     "offset": 1311680,
      "length": 2592
     },
     "index": {
-     "offset": 1312096,
+     "offset": 1314272,
      "length": 1968
     },
     "tangent": {
-     "offset": 1314064,
+     "offset": 1316240,
      "length": 1296
     }
    },
@@ -2873,23 +2932,23 @@
      "triangles": 82,
      "geometry": {
       "position": {
-       "offset": 1315360,
+       "offset": 1317536,
        "length": 2004
       },
       "normal": {
-       "offset": 1317364,
+       "offset": 1319540,
        "length": 668
       },
       "uv": {
-       "offset": 1318032,
+       "offset": 1320208,
        "length": 1336
       },
       "index": {
-       "offset": 1319368,
+       "offset": 1321544,
        "length": 984
       },
       "tangent": {
-       "offset": 1320352,
+       "offset": 1322528,
        "length": 668
       }
      },
@@ -2917,23 +2976,23 @@
      "triangles": 26,
      "geometry": {
       "position": {
-       "offset": 1321020,
+       "offset": 1323196,
        "length": 720
       },
       "normal": {
-       "offset": 1321740,
+       "offset": 1323916,
        "length": 240
       },
       "uv": {
-       "offset": 1321980,
+       "offset": 1324156,
        "length": 480
       },
       "index": {
-       "offset": 1322460,
+       "offset": 1324636,
        "length": 312
       },
       "tangent": {
-       "offset": 1322772,
+       "offset": 1324948,
        "length": 240
       }
      },
@@ -2975,23 +3034,23 @@
    "triangles": 320,
    "geometry": {
     "position": {
-     "offset": 1323012,
+     "offset": 1325188,
      "length": 3576
     },
     "normal": {
-     "offset": 1326588,
+     "offset": 1328764,
      "length": 1192
     },
     "uv": {
-     "offset": 1327780,
+     "offset": 1329956,
      "length": 2384
     },
     "index": {
-     "offset": 1330164,
+     "offset": 1332340,
      "length": 3840
     },
     "tangent": {
-     "offset": 1334004,
+     "offset": 1336180,
      "length": 1192
     }
    },
@@ -3024,23 +3083,23 @@
      "triangles": 96,
      "geometry": {
       "position": {
-       "offset": 1335196,
+       "offset": 1337372,
        "length": 1368
       },
       "normal": {
-       "offset": 1336564,
+       "offset": 1338740,
        "length": 456
       },
       "uv": {
-       "offset": 1337020,
+       "offset": 1339196,
        "length": 912
       },
       "index": {
-       "offset": 1337932,
+       "offset": 1340108,
        "length": 1152
       },
       "tangent": {
-       "offset": 1339084,
+       "offset": 1341260,
        "length": 456
       }
      },
@@ -3067,23 +3126,23 @@
      "triangles": 12,
      "geometry": {
       "position": {
-       "offset": 1339540,
+       "offset": 1341716,
        "length": 288
       },
       "normal": {
-       "offset": 1339828,
+       "offset": 1342004,
        "length": 96
       },
       "uv": {
-       "offset": 1339924,
+       "offset": 1342100,
        "length": 192
       },
       "index": {
-       "offset": 1340116,
+       "offset": 1342292,
        "length": 144
       },
       "tangent": {
-       "offset": 1340260,
+       "offset": 1342436,
        "length": 96
       }
      },
@@ -3110,23 +3169,23 @@
      "triangles": 12,
      "geometry": {
       "position": {
-       "offset": 1340356,
+       "offset": 1342532,
        "length": 288
       },
       "normal": {
-       "offset": 1340644,
+       "offset": 1342820,
        "length": 96
       },
       "uv": {
-       "offset": 1340740,
+       "offset": 1342916,
        "length": 192
       },
       "index": {
-       "offset": 1340932,
+       "offset": 1343108,
        "length": 144
       },
       "tangent": {
-       "offset": 1341076,
+       "offset": 1343252,
        "length": 96
       }
      },
@@ -3167,23 +3226,23 @@
    "triangles": 252,
    "geometry": {
     "position": {
-     "offset": 1341172,
+     "offset": 1343348,
      "length": 2604
     },
     "normal": {
-     "offset": 1343776,
+     "offset": 1345952,
      "length": 868
     },
     "uv": {
-     "offset": 1344644,
+     "offset": 1346820,
      "length": 1736
     },
     "index": {
-     "offset": 1346380,
+     "offset": 1348556,
      "length": 3024
     },
     "tangent": {
-     "offset": 1349404,
+     "offset": 1351580,
      "length": 868
     }
    },
@@ -3216,23 +3275,23 @@
      "triangles": 124,
      "geometry": {
       "position": {
-       "offset": 1350272,
+       "offset": 1352448,
        "length": 1272
       },
       "normal": {
-       "offset": 1351544,
+       "offset": 1353720,
        "length": 424
       },
       "uv": {
-       "offset": 1351968,
+       "offset": 1354144,
        "length": 848
       },
       "index": {
-       "offset": 1352816,
+       "offset": 1354992,
        "length": 1488
       },
       "tangent": {
-       "offset": 1354304,
+       "offset": 1356480,
        "length": 424
       }
      },
@@ -3260,23 +3319,23 @@
      "triangles": 12,
      "geometry": {
       "position": {
-       "offset": 1354728,
+       "offset": 1356904,
        "length": 288
       },
       "normal": {
-       "offset": 1355016,
+       "offset": 1357192,
        "length": 96
       },
       "uv": {
-       "offset": 1355112,
+       "offset": 1357288,
        "length": 192
       },
       "index": {
-       "offset": 1355304,
+       "offset": 1357480,
        "length": 144
       },
       "tangent": {
-       "offset": 1355448,
+       "offset": 1357624,
        "length": 96
       }
      },
@@ -3318,23 +3377,23 @@
    "triangles": 316,
    "geometry": {
     "position": {
-     "offset": 1355544,
+     "offset": 1357720,
      "length": 4224
     },
     "normal": {
-     "offset": 1359768,
+     "offset": 1361944,
      "length": 1408
     },
     "uv": {
-     "offset": 1361176,
+     "offset": 1363352,
      "length": 2816
     },
     "index": {
-     "offset": 1363992,
+     "offset": 1366168,
      "length": 3792
     },
     "tangent": {
-     "offset": 1367784,
+     "offset": 1369960,
      "length": 1408
     }
    },
@@ -3367,23 +3426,23 @@
      "triangles": 206,
      "geometry": {
       "position": {
-       "offset": 1369192,
+       "offset": 1371368,
        "length": 2880
       },
       "normal": {
-       "offset": 1372072,
+       "offset": 1374248,
        "length": 960
       },
       "uv": {
-       "offset": 1373032,
+       "offset": 1375208,
        "length": 1920
       },
       "index": {
-       "offset": 1374952,
+       "offset": 1377128,
        "length": 2472
       },
       "tangent": {
-       "offset": 1377424,
+       "offset": 1379600,
        "length": 960
       }
      },
@@ -3411,23 +3470,23 @@
      "triangles": 154,
      "geometry": {
       "position": {
-       "offset": 1378384,
+       "offset": 1380560,
        "length": 2340
       },
       "normal": {
-       "offset": 1380724,
+       "offset": 1382900,
        "length": 780
       },
       "uv": {
-       "offset": 1381504,
+       "offset": 1383680,
        "length": 1560
       },
       "index": {
-       "offset": 1383064,
+       "offset": 1385240,
        "length": 1848
       },
       "tangent": {
-       "offset": 1384912,
+       "offset": 1387088,
        "length": 780
       }
      },
@@ -3469,23 +3528,23 @@
    "triangles": 1504,
    "geometry": {
     "position": {
-     "offset": 1385692,
+     "offset": 1387868,
      "length": 27780
     },
     "normal": {
-     "offset": 1413472,
+     "offset": 1415648,
      "length": 9260
     },
     "uv": {
-     "offset": 1422732,
+     "offset": 1424908,
      "length": 18520
     },
     "index": {
-     "offset": 1441252,
+     "offset": 1443428,
      "length": 18048
     },
     "tangent": {
-     "offset": 1459300,
+     "offset": 1461476,
      "length": 9260
     }
    },
@@ -3537,23 +3596,23 @@
      "triangles": 965,
      "geometry": {
       "position": {
-       "offset": 1468560,
+       "offset": 1470736,
        "length": 19512
       },
       "normal": {
-       "offset": 1488072,
+       "offset": 1490248,
        "length": 6504
       },
       "uv": {
-       "offset": 1494576,
+       "offset": 1496752,
        "length": 13008
       },
       "index": {
-       "offset": 1507584,
+       "offset": 1509760,
        "length": 11580
       },
       "tangent": {
-       "offset": 1519164,
+       "offset": 1521340,
        "length": 6504
       }
      },
@@ -3599,23 +3658,23 @@
      "triangles": 685,
      "geometry": {
       "position": {
-       "offset": 1525668,
+       "offset": 1527844,
        "length": 15108
       },
       "normal": {
-       "offset": 1540776,
+       "offset": 1542952,
        "length": 5036
       },
       "uv": {
-       "offset": 1545812,
+       "offset": 1547988,
        "length": 10072
       },
       "index": {
-       "offset": 1555884,
+       "offset": 1558060,
        "length": 8220
       },
       "tangent": {
-       "offset": 1564104,
+       "offset": 1566280,
        "length": 5036
       }
      },
@@ -3661,23 +3720,23 @@
      "triangles": 499,
      "geometry": {
       "position": {
-       "offset": 1569140,
+       "offset": 1571316,
        "length": 10608
       },
       "normal": {
-       "offset": 1579748,
+       "offset": 1581924,
        "length": 3536
       },
       "uv": {
-       "offset": 1583284,
+       "offset": 1585460,
        "length": 7072
       },
       "index": {
-       "offset": 1590356,
+       "offset": 1592532,
        "length": 5988
       },
       "tangent": {
-       "offset": 1596344,
+       "offset": 1598520,
        "length": 3536
       }
      },
@@ -3737,23 +3796,23 @@
    "triangles": 2251,
    "geometry": {
     "position": {
-     "offset": 1599880,
+     "offset": 1602056,
      "length": 42132
     },
     "normal": {
-     "offset": 1642012,
+     "offset": 1644188,
      "length": 14044
     },
     "uv": {
-     "offset": 1656056,
+     "offset": 1658232,
      "length": 28088
     },
     "index": {
-     "offset": 1684144,
+     "offset": 1686320,
      "length": 27012
     },
     "tangent": {
-     "offset": 1711156,
+     "offset": 1713332,
      "length": 14044
     }
    },
@@ -3805,23 +3864,23 @@
      "triangles": 1539,
      "geometry": {
       "position": {
-       "offset": 1725200,
+       "offset": 1727376,
        "length": 30132
       },
       "normal": {
-       "offset": 1755332,
+       "offset": 1757508,
        "length": 10044
       },
       "uv": {
-       "offset": 1765376,
+       "offset": 1767552,
        "length": 20088
       },
       "index": {
-       "offset": 1785464,
+       "offset": 1787640,
        "length": 18468
       },
       "tangent": {
-       "offset": 1803932,
+       "offset": 1806108,
        "length": 10044
       }
      },
@@ -3867,23 +3926,23 @@
      "triangles": 955,
      "geometry": {
       "position": {
-       "offset": 1813976,
+       "offset": 1816152,
        "length": 19632
       },
       "normal": {
-       "offset": 1833608,
+       "offset": 1835784,
        "length": 6544
       },
       "uv": {
-       "offset": 1840152,
+       "offset": 1842328,
        "length": 13088
       },
       "index": {
-       "offset": 1853240,
+       "offset": 1855416,
        "length": 11460
       },
       "tangent": {
-       "offset": 1864700,
+       "offset": 1866876,
        "length": 6544
       }
      },
@@ -3929,23 +3988,23 @@
      "triangles": 522,
      "geometry": {
       "position": {
-       "offset": 1871244,
+       "offset": 1873420,
        "length": 11928
       },
       "normal": {
-       "offset": 1883172,
+       "offset": 1885348,
        "length": 3976
       },
       "uv": {
-       "offset": 1887148,
+       "offset": 1889324,
        "length": 7952
       },
       "index": {
-       "offset": 1895100,
+       "offset": 1897276,
        "length": 6264
       },
       "tangent": {
-       "offset": 1901364,
+       "offset": 1903540,
        "length": 3976
       }
      },
@@ -4005,23 +4064,23 @@
    "triangles": 6366,
    "geometry": {
     "position": {
-     "offset": 1905340,
+     "offset": 1907516,
      "length": 101820
     },
     "normal": {
-     "offset": 2007160,
+     "offset": 2009336,
      "length": 33940
     },
     "uv": {
-     "offset": 2041100,
+     "offset": 2043276,
      "length": 67880
     },
     "index": {
-     "offset": 2108980,
+     "offset": 2111156,
      "length": 76392
     },
     "tangent": {
-     "offset": 2185372,
+     "offset": 2187548,
      "length": 33940
     }
    },
@@ -4112,23 +4171,23 @@
      "triangles": 3688,
      "geometry": {
       "position": {
-       "offset": 2219312,
+       "offset": 2221488,
        "length": 63816
       },
       "normal": {
-       "offset": 2283128,
+       "offset": 2285304,
        "length": 21272
       },
       "uv": {
-       "offset": 2304400,
+       "offset": 2306576,
        "length": 42544
       },
       "index": {
-       "offset": 2346944,
+       "offset": 2349120,
        "length": 44256
       },
       "tangent": {
-       "offset": 2391200,
+       "offset": 2393376,
        "length": 21272
       }
      },
@@ -4198,23 +4257,23 @@
      "triangles": 1954,
      "geometry": {
       "position": {
-       "offset": 2412472,
+       "offset": 2414648,
        "length": 37416
       },
       "normal": {
-       "offset": 2449888,
+       "offset": 2452064,
        "length": 12472
       },
       "uv": {
-       "offset": 2462360,
+       "offset": 2464536,
        "length": 24944
       },
       "index": {
-       "offset": 2487304,
+       "offset": 2489480,
        "length": 23448
       },
       "tangent": {
-       "offset": 2510752,
+       "offset": 2512928,
        "length": 12472
       }
      },
@@ -4284,23 +4343,23 @@
      "triangles": 1087,
      "geometry": {
       "position": {
-       "offset": 2523224,
+       "offset": 2525400,
        "length": 22404
       },
       "normal": {
-       "offset": 2545628,
+       "offset": 2547804,
        "length": 7468
       },
       "uv": {
-       "offset": 2553096,
+       "offset": 2555272,
        "length": 14936
       },
       "index": {
-       "offset": 2568032,
+       "offset": 2570208,
        "length": 13044
       },
       "tangent": {
-       "offset": 2581076,
+       "offset": 2583252,
        "length": 7468
       }
      },
@@ -4370,23 +4429,23 @@
    "triangles": 5338,
    "geometry": {
     "position": {
-     "offset": 2588544,
+     "offset": 2590720,
      "length": 82836
     },
     "normal": {
-     "offset": 2671380,
+     "offset": 2673556,
      "length": 27612
     },
     "uv": {
-     "offset": 2698992,
+     "offset": 2701168,
      "length": 55224
     },
     "index": {
-     "offset": 2754216,
+     "offset": 2756392,
      "length": 64056
     },
     "tangent": {
-     "offset": 2818272,
+     "offset": 2820448,
      "length": 27612
     }
    },
@@ -4478,23 +4537,23 @@
      "triangles": 2454,
      "geometry": {
       "position": {
-       "offset": 2845884,
+       "offset": 2848060,
        "length": 42540
       },
       "normal": {
-       "offset": 2888424,
+       "offset": 2890600,
        "length": 14180
       },
       "uv": {
-       "offset": 2902604,
+       "offset": 2904780,
        "length": 28360
       },
       "index": {
-       "offset": 2930964,
+       "offset": 2933140,
        "length": 29448
       },
       "tangent": {
-       "offset": 2960412,
+       "offset": 2962588,
        "length": 14180
       }
      },
@@ -4536,23 +4595,23 @@
      "triangles": 1251,
      "geometry": {
       "position": {
-       "offset": 2974592,
+       "offset": 2976768,
        "length": 20856
       },
       "normal": {
-       "offset": 2995448,
+       "offset": 2997624,
        "length": 6952
       },
       "uv": {
-       "offset": 3002400,
+       "offset": 3004576,
        "length": 13904
       },
       "index": {
-       "offset": 3016304,
+       "offset": 3018480,
        "length": 15012
       },
       "tangent": {
-       "offset": 3031316,
+       "offset": 3033492,
        "length": 6952
       }
      },
@@ -4594,23 +4653,23 @@
      "triangles": 694,
      "geometry": {
       "position": {
-       "offset": 3038268,
+       "offset": 3040444,
        "length": 12528
       },
       "normal": {
-       "offset": 3050796,
+       "offset": 3052972,
        "length": 4176
       },
       "uv": {
-       "offset": 3054972,
+       "offset": 3057148,
        "length": 8352
       },
       "index": {
-       "offset": 3063324,
+       "offset": 3065500,
        "length": 8328
       },
       "tangent": {
-       "offset": 3071652,
+       "offset": 3073828,
        "length": 4176
       }
      },
@@ -4666,23 +4725,23 @@
    "triangles": 7840,
    "geometry": {
     "position": {
-     "offset": 3075828,
+     "offset": 3078004,
      "length": 120900
     },
     "normal": {
-     "offset": 3196728,
+     "offset": 3198904,
      "length": 40300
     },
     "uv": {
-     "offset": 3237028,
+     "offset": 3239204,
      "length": 80600
     },
     "index": {
-     "offset": 3317628,
+     "offset": 3319804,
      "length": 94080
     },
     "tangent": {
-     "offset": 3411708,
+     "offset": 3413884,
      "length": 40300
     }
    },
@@ -4775,23 +4834,23 @@
      "triangles": 4466,
      "geometry": {
       "position": {
-       "offset": 3452008,
+       "offset": 3454184,
        "length": 74136
       },
       "normal": {
-       "offset": 3526144,
+       "offset": 3528320,
        "length": 24712
       },
       "uv": {
-       "offset": 3550856,
+       "offset": 3553032,
        "length": 49424
       },
       "index": {
-       "offset": 3600280,
+       "offset": 3602456,
        "length": 53592
       },
       "tangent": {
-       "offset": 3653872,
+       "offset": 3656048,
        "length": 24712
       }
      },
@@ -4863,23 +4922,23 @@
      "triangles": 2442,
      "geometry": {
       "position": {
-       "offset": 3678584,
+       "offset": 3680760,
        "length": 44460
       },
       "normal": {
-       "offset": 3723044,
+       "offset": 3725220,
        "length": 14820
       },
       "uv": {
-       "offset": 3737864,
+       "offset": 3740040,
        "length": 29640
       },
       "index": {
-       "offset": 3767504,
+       "offset": 3769680,
        "length": 29304
       },
       "tangent": {
-       "offset": 3796808,
+       "offset": 3798984,
        "length": 14820
       }
      },
@@ -4951,23 +5010,23 @@
      "triangles": 1382,
      "geometry": {
       "position": {
-       "offset": 3811628,
+       "offset": 3813804,
        "length": 25284
       },
       "normal": {
-       "offset": 3836912,
+       "offset": 3839088,
        "length": 8428
       },
       "uv": {
-       "offset": 3845340,
+       "offset": 3847516,
        "length": 16856
       },
       "index": {
-       "offset": 3862196,
+       "offset": 3864372,
        "length": 16584
       },
       "tangent": {
-       "offset": 3878780,
+       "offset": 3880956,
        "length": 8428
       }
      },
@@ -5053,23 +5112,23 @@
    "triangles": 7694,
    "geometry": {
     "position": {
-     "offset": 3887208,
+     "offset": 3889384,
      "length": 118548
     },
     "normal": {
-     "offset": 4005756,
+     "offset": 4007932,
      "length": 39516
     },
     "uv": {
-     "offset": 4045272,
+     "offset": 4047448,
      "length": 79032
     },
     "index": {
-     "offset": 4124304,
+     "offset": 4126480,
      "length": 92328
     },
     "tangent": {
-     "offset": 4216632,
+     "offset": 4218808,
      "length": 39516
     }
    },
@@ -5177,23 +5236,23 @@
      "triangles": 4542,
      "geometry": {
       "position": {
-       "offset": 4256148,
+       "offset": 4258324,
        "length": 76884
       },
       "normal": {
-       "offset": 4333032,
+       "offset": 4335208,
        "length": 25628
       },
       "uv": {
-       "offset": 4358660,
+       "offset": 4360836,
        "length": 51256
       },
       "index": {
-       "offset": 4409916,
+       "offset": 4412092,
        "length": 54504
       },
       "tangent": {
-       "offset": 4464420,
+       "offset": 4466596,
        "length": 25628
       }
      },
@@ -5265,23 +5324,23 @@
      "triangles": 2384,
      "geometry": {
       "position": {
-       "offset": 4490048,
+       "offset": 4492224,
        "length": 43680
       },
       "normal": {
-       "offset": 4533728,
+       "offset": 4535904,
        "length": 14560
       },
       "uv": {
-       "offset": 4548288,
+       "offset": 4550464,
        "length": 29120
       },
       "index": {
-       "offset": 4577408,
+       "offset": 4579584,
        "length": 28608
       },
       "tangent": {
-       "offset": 4606016,
+       "offset": 4608192,
        "length": 14560
       }
      },
@@ -5353,23 +5412,23 @@
      "triangles": 1365,
      "geometry": {
       "position": {
-       "offset": 4620576,
+       "offset": 4622752,
        "length": 25476
       },
       "normal": {
-       "offset": 4646052,
+       "offset": 4648228,
        "length": 8492
       },
       "uv": {
-       "offset": 4654544,
+       "offset": 4656720,
        "length": 16984
       },
       "index": {
-       "offset": 4671528,
+       "offset": 4673704,
        "length": 16380
       },
       "tangent": {
-       "offset": 4687908,
+       "offset": 4690084,
        "length": 8492
       }
      },
@@ -5455,23 +5514,23 @@
    "triangles": 1356,
    "geometry": {
     "position": {
-     "offset": 4696400,
+     "offset": 4698576,
      "length": 24132
     },
     "normal": {
-     "offset": 4720532,
+     "offset": 4722708,
      "length": 8044
     },
     "uv": {
-     "offset": 4728576,
+     "offset": 4730752,
      "length": 16088
     },
     "index": {
-     "offset": 4744664,
+     "offset": 4746840,
      "length": 16272
     },
     "tangent": {
-     "offset": 4760936,
+     "offset": 4763112,
      "length": 8044
     }
    },
@@ -5564,23 +5623,23 @@
    "triangles": 1297,
    "geometry": {
     "position": {
-     "offset": 4768980,
+     "offset": 4771156,
      "length": 19884
     },
     "normal": {
-     "offset": 4788864,
+     "offset": 4791040,
      "length": 6628
     },
     "uv": {
-     "offset": 4795492,
+     "offset": 4797668,
      "length": 13256
     },
     "index": {
-     "offset": 4808748,
+     "offset": 4810924,
      "length": 15564
     },
     "tangent": {
-     "offset": 4824312,
+     "offset": 4826488,
      "length": 6628
     }
    },
@@ -5803,7 +5862,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.9243,
@@ -5832,7 +5891,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.71851,
@@ -5861,7 +5920,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.78572,
@@ -5890,7 +5949,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.99904,
@@ -5908,7 +5967,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.32273,
@@ -5937,7 +5996,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.0204,
@@ -6201,7 +6260,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 27,
    "name": "xmodel/prop_chickencoop",
    "matrix": [
     -0.99996,
@@ -6230,7 +6289,7 @@
    ]
   },
   {
-   "model": 29,
+   "model": 30,
    "name": "xmodel/prop_woodstack1",
    "matrix": [
     -0.99964,
@@ -6610,7 +6669,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.06229,
@@ -6639,7 +6698,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.81568,
@@ -6726,7 +6785,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.63405,
@@ -6929,7 +6988,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     1.12814,
@@ -6958,7 +7017,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.76935,
@@ -6987,7 +7046,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.06103,
@@ -7016,7 +7075,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.16188,
@@ -7045,7 +7104,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.74417,
@@ -7074,7 +7133,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.67642,
@@ -7335,7 +7394,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.95234,
@@ -7364,7 +7423,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.87072,
@@ -7382,7 +7441,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.85377,
@@ -7411,7 +7470,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.87115,
@@ -7440,7 +7499,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.92943,
@@ -7469,7 +7528,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     1.12814,
@@ -7498,7 +7557,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.76935,
@@ -7585,7 +7644,7 @@
    ]
   },
   {
-   "model": 29,
+   "model": 30,
    "name": "xmodel/prop_woodstack1",
    "matrix": [
     -7e-05,
@@ -7759,7 +7818,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.35991,
@@ -7788,7 +7847,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.22294,
@@ -7817,7 +7876,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.50026,
@@ -7846,7 +7905,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -1.11471,
@@ -7875,7 +7934,7 @@
    ]
   },
   {
-   "model": 34,
+   "model": 35,
    "name": "xmodel/vehicle_tiger_woodland_brush_static",
    "matrix": [
     0.97717,
@@ -7904,7 +7963,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 34,
    "name": "xmodel/vehicle_opel_blitz_woodland_static",
    "matrix": [
     -0.93807,
@@ -7933,7 +7992,7 @@
    ]
   },
   {
-   "model": 32,
+   "model": 33,
    "name": "xmodel/vehicle_halftrack_mg_brush_static",
    "matrix": [
     0.33537,
@@ -8016,7 +8075,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.58763,
@@ -8045,7 +8104,7 @@
    ]
   },
   {
-   "model": 32,
+   "model": 33,
    "name": "xmodel/vehicle_halftrack_mg_brush_static",
    "matrix": [
     0.78858,
@@ -8074,7 +8133,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.81477,
@@ -8092,7 +8151,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.34891,
@@ -8121,7 +8180,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.90293,
@@ -8139,7 +8198,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.33857,
@@ -8222,7 +8281,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.34891,
@@ -8240,7 +8299,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.33857,
@@ -8258,7 +8317,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.97449,
@@ -8432,7 +8491,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/prop_wooden_barrel1",
    "matrix": [
     0.84087,
@@ -8461,7 +8520,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/prop_wooden_barrel1",
    "matrix": [
     -0.54927,
@@ -8490,7 +8549,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/prop_wooden_barrel1",
    "matrix": [
     0.94191,
@@ -8519,7 +8578,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.95534,
@@ -8606,7 +8665,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.76935,
@@ -8624,7 +8683,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.78672,
@@ -8653,7 +8712,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.61803,
@@ -8950,7 +9009,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -1.05899,
@@ -8979,7 +9038,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     1.04452,
@@ -9008,7 +9067,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.34286,
@@ -9026,7 +9085,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -1.01409,
@@ -9225,7 +9284,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.34891,
@@ -9243,7 +9302,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.34891,
@@ -9261,7 +9320,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.90293,
@@ -9279,7 +9338,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.76363,
@@ -9355,7 +9414,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.95534,
@@ -9384,7 +9443,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.78672,
@@ -9402,7 +9461,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -1.18195,
@@ -9431,7 +9490,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.64736,
@@ -9460,7 +9519,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.98053,
@@ -9478,7 +9537,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/prop_haybale",
    "matrix": [
     -0.01867,
@@ -9496,7 +9555,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.17083,
@@ -9532,7 +9591,7 @@
    ]
   },
   {
-   "model": 35,
+   "model": 36,
    "name": "xmodel/vehicle_tiger_woodland_d_brush_static",
    "matrix": [
     0.42701,
@@ -9561,7 +9620,7 @@
    ]
   },
   {
-   "model": 34,
+   "model": 35,
    "name": "xmodel/vehicle_tiger_woodland_brush_static",
    "matrix": [
     0.80305,
@@ -9677,7 +9736,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.91517,
@@ -9706,7 +9765,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 32,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     1.09227,
@@ -9735,7 +9794,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 31,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.868,
@@ -9858,7 +9917,7 @@
    ]
   },
   {
-   "model": 36,
+   "model": 37,
    "name": "xmodel/weapon_30cal",
    "matrix": [
     -0.70339,
@@ -10341,7 +10400,7 @@
    ]
   },
   {
-   "model": 34,
+   "model": 35,
    "name": "xmodel/vehicle_tiger_woodland_brush_static",
    "matrix": [
     -0.11957,
@@ -10359,7 +10418,7 @@
    ]
   },
   {
-   "model": 36,
+   "model": 37,
    "name": "xmodel/weapon_30cal",
    "matrix": [
     -0.70339,
@@ -10379,7 +10438,7 @@
    "turret": true
   },
   {
-   "model": 36,
+   "model": 37,
    "name": "xmodel/weapon_30cal",
    "matrix": [
     -0.70339,
@@ -10504,7 +10563,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/prop_haybale",
    "matrix": [
     -0.53443,
@@ -10522,7 +10581,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.84421,
@@ -10551,7 +10610,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.69831,
@@ -10580,7 +10639,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.6599,
@@ -10609,7 +10668,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.6599,
@@ -10638,7 +10697,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.6599,
@@ -10667,7 +10726,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.6599,
@@ -10696,7 +10755,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.56199,
@@ -10725,7 +10784,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.54015,
@@ -10743,7 +10802,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.94428,
@@ -11174,7 +11233,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 34,
    "name": "xmodel/vehicle_opel_blitz_woodland_static",
    "matrix": [
     0.94026,
@@ -49668,7 +49727,7 @@
    ]
   },
   {
-   "model": 37,
+   "model": 38,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     -0.0,
@@ -49688,7 +49747,7 @@
    "turret": true
   },
   {
-   "model": 37,
+   "model": 38,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     -0.0,
@@ -49708,7 +49767,7 @@
    "turret": true
   },
   {
-   "model": 37,
+   "model": 38,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     -0.0,
@@ -49728,7 +49787,7 @@
    "turret": true
   },
   {
-   "model": 37,
+   "model": 38,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     -0.0,
@@ -49746,6 +49805,386 @@
    ],
    "gameobject": "dm",
    "turret": true
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    210.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    215.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    220.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    225.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    230.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    235.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    240.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    245.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    250.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    255.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    260.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    265.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    270.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    275.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    280.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    285.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 26,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    202.5,
+    0.0,
+    0.0,
+    1.0,
+    2350.0,
+    -1.0,
+    0.0,
+    0.0,
+    290.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 10,
+   "name": "xmodel/caen_fence_post_1",
+   "matrix": [
+    -0.0,
+    0.98481,
+    -0.17365,
+    1800.0,
+    -0.0,
+    -0.17365,
+    -0.98481,
+    2310.0,
+    -1.0,
+    0.0,
+    0.0,
+    33.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 10,
+   "name": "xmodel/caen_fence_post_1",
+   "matrix": [
+    0.0,
+    -0.97815,
+    0.20791,
+    1790.0,
+    0.0,
+    0.20791,
+    0.97815,
+    2245.0,
+    -1.0,
+    0.0,
+    0.0,
+    33.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
+  },
+  {
+   "model": 10,
+   "name": "xmodel/caen_fence_post_1",
+   "matrix": [
+    0.0,
+    0.17365,
+    0.98481,
+    2015.0,
+    -0.0,
+    0.98481,
+    -0.17365,
+    2115.0,
+    -1.0,
+    0.0,
+    0.0,
+    -10.0
+   ],
+   "ifModel": "xmodel/military_flak88_boxlid"
   }
  ],
  "fallback": []

@@ -55,19 +55,11 @@
       el('span', { class: 'spacer' }),
       el('span', { class: 'muted' }, 'Click a kill or bomb event to open it on the map (2 s before).'));
     const list = el('div', { class: 'rounds' });
-    // Only the match rounds are numbered and counted. Rounds before the match (knife round,
-    // warm-up) and after the official match end (aftermatch) get their own marked section.
+    // Only the match rounds are numbered and counted. Rounds after the official match end (aftermatch) get
+    // their own marked section.
     const idx = d.rounds.map((r, i) => i);
-    const before = idx.filter(i => d.rounds[i].kind === 'knife' || d.rounds[i].kind === 'prematch');
     const match = idx.filter(i => d.rounds[i].kind === 'round');
     const after = idx.filter(i => d.rounds[i].kind === 'aftermatch');
-    if (before.length) {
-      list.append(el('div', { class: 'phase-section' }, 'Before the match — not counted',
-        el('small', null, 'knife round / warm-up rounds: no round number, not in the scoreboard')));
-      for (const i of before) list.append(roundCard(app, d.rounds[i], i, A, B));
-      if (match.length) list.append(el('div', { class: 'phase-section live' }, 'Match — ' + match.length + ' round' + (match.length === 1 ? '' : 's'),
-        el('small', null, 'official start ' + fmtTime(d.match.start))));
-    }
     // a recording that starts mid-match begins in a later half (d.halfInfo.offset halves not recorded)
     let lastHalf = match.length ? d.rounds[match[0]].half : 1;
     const halftimes = d.halftimes;
@@ -94,9 +86,8 @@
   function roundCard(app, r, i, A, B) {
     const d = app.data;
     const winner = r.winnerTeam ? app.team(r.winnerTeam) : null;
-    const title = r.kind === 'knife' ? 'Knife' : r.kind === 'prematch' ? 'Pre' : r.kind === 'aftermatch' ? 'After' : 'R' + r.label;
-    const sub = r.kind === 'knife' ? ['knife round', r.knifeHeuristic ? approx('no "Knife Round" status line: a round before the match in a knife ruleset with melee kills only') : null]
-      : r.kind === 'prematch' ? 'before the match' : r.kind === 'aftermatch' ? 'after the match end'
+    const title = r.kind === 'aftermatch' ? 'After' : 'R' + r.label;
+    const sub = r.kind === 'aftermatch' ? 'after the match end'
       : (d.halfInfo.unknown ? 'half ?' : 'half ' + r.half) + (r.end == null ? ' · unfinished' : '');
     const reason = r.reason ? [r.reason, r.reasonHeuristic ? approx(r.reasonSource) : null]
       : na(r.complete ? 'no reason detected' : (r.startedBeforeRecording ? 'round incomplete in the demo' : 'the demo ends before the round is decided'));

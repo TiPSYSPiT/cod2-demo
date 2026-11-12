@@ -76,6 +76,7 @@ export function loadTexture(url) {
   fetch(dataUrl(url), { priority: 'low' }).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.blob(); }).then(blob => {
     const o = { premultiplyAlpha: t.premultiplyAlpha ? 'premultiply' : 'none', colorSpaceConversion: 'none' };
     if (t.flipY) o.imageOrientation = 'flipY';
+    t.userData.src = url; t.userData.decode = o;           // (to decode it again after a lost WebGL context: reloadTextures)
     return createImageBitmap(blob, o).then(img => {
       t.image = img; t.flipY = false; t.premultiplyAlpha = false; t.needsUpdate = true;
       // (the decoded copy let go once the GPU has it - the browser keeps an <img>'s pixels as a cache it may drop,
@@ -104,6 +105,26 @@ export function dropImage(t) {
   if (!t.userData.uploaded || !img || typeof img.close !== 'function') return;
   t.image = { width: img.width, height: img.height };
   img.close();
+  if (t.userData.src) dropped.add(new WeakRef(t));
+}
+
+/* A lost WebGL context (a driver reset, the GPU process restarted, another GPU) takes every texture with it; three.js
+ * uploads them again from their images once the context is back - a released image is gone, so those textures are
+ * decoded again (the browser's cache has the files). Weak: a texture of a closed view goes as before. */
+const dropped = new Set();
+/** the released textures decoded and uploaded again (after webglcontextrestored) -> Promise */
+export function reloadTextures() {
+  const list = [];
+  for (const ref of dropped) {
+    const t = ref.deref();
+    dropped.delete(ref);
+    if (t && t.image && typeof t.image.close !== 'function' && !(t.image instanceof Element)) list.push(t);
+  }
+  return Promise.all(list.map(t => fetch(dataUrl(t.userData.src), { priority: 'low' }).then(r => r.blob())
+    .then(blob => createImageBitmap(blob, t.userData.decode)).then(img => {
+      t.image = img; t.userData.uploaded = false; t.needsUpdate = true;
+      t.onUpdate = () => { t.onUpdate = null; t.userData.uploaded = true; dropImage(t); };
+    }).catch(err => console.warn('texture not reloaded after the WebGL context came back:', t.userData.src, err))));
 }
 
 /* Until a texture has arrived three.js samples it black (whole lightmapped areas, every vehicle). The

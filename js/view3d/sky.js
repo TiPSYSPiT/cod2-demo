@@ -1,7 +1,7 @@
 /* The map's sky as the game draws it (its sky shader: colour = texCUBE(skyMap, world direction), unlit):
- * maps3d/<map>/sky.webp holds the six faces of the sky cube (tools/export/export_maps.py export_sky)
+ * maps3d/<map>/sky.webp holds the six faces of the sky cube (tools/export/export_maps.py sky / cube_strip)
  * side by side in the D3D order +X, -X, +Y, -Y, +Z, -Z; they are read with the D3D cube conventions
- * and the world direction (the same mapping as the reflection probes, lighting.js lgProbe). Drawn as a
+ * and the world direction. Drawn as a
  * box around the camera at the far plane, behind everything. */
 import * as THREE from 'three';
 import { dataUrl } from './data.js';

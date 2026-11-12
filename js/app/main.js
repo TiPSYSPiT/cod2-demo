@@ -102,7 +102,9 @@ async function load(file) {
   const loadId = ++state.loadId;
   let buffer;
   try { buffer = await file.arrayBuffer(); }
-  catch (err) { return fail('The file could not be read: ' + err.message); }
+  catch (err) { return loadId === state.loadId ? fail('The file could not be read: ' + err.message) : undefined; }
+  // (another file was opened while this one was read: that load goes on - this one must not take its worker)
+  if (loadId !== state.loadId) return;
   $('progress-label').textContent = 'Parsing ' + file.name + ' (' + (file.size / 1e6).toFixed(1) + ' MB) …';
   if (state.worker) { state.worker.terminate(); state.worker = null; }
   const worker = C2.createParserWorker();
@@ -118,16 +120,20 @@ async function load(file) {
   worker.onerror = e => {
     e.preventDefault();
     worker.terminate();
-    state.worker = null;
+    if (state.worker === worker) state.worker = null;
+    if (loadId !== state.loadId) return;
     console.warn('Worker failed, parsing on the main thread instead.', e.message);
-    parseMainThread(buffer, loadId);
+    // (the buffer went to the worker with the message: the file is read again)
+    file.arrayBuffer().then(b => parseMainThread(b, loadId), err => { if (loadId === state.loadId) fail('The file could not be read: ' + err.message); });
   };
   worker.postMessage({ buffer, fileInfo: state.fileInfo }, [buffer]);
 }
 
 function parseMainThread(buffer, loadId) {
+  if (loadId !== state.loadId) return;
   $('progress-label').textContent += ' (main thread - the page may freeze briefly)';
   setTimeout(() => {
+    if (loadId !== state.loadId) return;
     let data;
     try { data = C2.analyzeDemo(new Uint8Array(buffer), state.fileInfo, setProgress); }
     catch (err) { return failDemo(err.message, err instanceof C2.demo.DemoError, err.stack); }
@@ -224,6 +230,10 @@ async function load3d(R) {
     }
   }
   if (state.replay !== R) return null;
+  // (asked for a second time while the modules loaded - "3D" clicked or V pressed during the first demo's start:
+  // one 3D view per demo. A second one replaced the first in the replay's views, and the first was never closed:
+  // its map, its WebGL context and - through its window listener - the demo stayed in memory until the page went)
+  if (R.views['3d']) return null;
   try {
     R.addView(new view3dModule.View3D(R, $('viewport')));
   } catch (err) {
@@ -245,14 +255,17 @@ function warm3d(map, loadId) {
     .then(m => { if (loadId === state.loadId) return m.prefetch3d(map); })
     .catch(() => null);
 }
+let viewAsked = 0;            // counts the switches: one that waited for the 3D modules yields to a later one
 /** user: the viewer's own switch (remembered); the start, a deep link and the fallback to 2D are not */
 async function setView(key, user = false) {
   const R = state.replay;
   if (!R) return;
+  const asked = ++viewAsked;
   $('view-error').hidden = true;
   if (key === '3d' && !R.views['3d']) {
     const error = await load3d(R);
-    if (state.replay !== R) return;
+    // (another demo, or another switch since - the viewer chose 2D while 3D loaded: that choice stands)
+    if (state.replay !== R || asked !== viewAsked) return;
     if (error) {
       showViewError(error.replace(/([^.])$/, '$1.') + ' Details are in the browser console; the 2D view is shown instead.');
       key = '2d';

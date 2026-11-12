@@ -7465,6 +7465,74 @@
    ],
    "scale": 1.0,
    "script": false
+  },
+  {
+   "model": "xmodel/toujane_underA_bug",
+   "origin": [
+    1509.0,
+    2207.0,
+    120.0
+   ],
+   "angles": [
+    51.0,
+    328.0,
+    90.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/toujane_undera_bug",
+   "spawnedBy": "mp_toujane_fix"
+  },
+  {
+   "model": "xmodel/toujane_underA_bug",
+   "origin": [
+    1507.0,
+    2207.0,
+    127.0
+   ],
+   "angles": [
+    90.0,
+    270.0,
+    30.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/toujane_undera_bug",
+   "spawnedBy": "mp_toujane_fix"
+  },
+  {
+   "model": "xmodel/toujane_underA_bug",
+   "origin": [
+    1558.0,
+    2265.0,
+    103.0
+   ],
+   "angles": [
+    51.0,
+    328.0,
+    90.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/toujane_undera_bug",
+   "spawnedBy": "mp_toujane_fix"
+  },
+  {
+   "model": "xmodel/toujane_underA_bug",
+   "origin": [
+    1556.0,
+    2265.0,
+    110.0
+   ],
+   "angles": [
+    90.0,
+    270.0,
+    30.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/toujane_undera_bug",
+   "spawnedBy": "mp_toujane_fix"
   }
  ],
  "hurt": [

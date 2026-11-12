@@ -4,7 +4,7 @@
  * lighting, characters, effects and sound - see PLAN.md). */
 import * as THREE from 'three';
 import '../c2/ui/killfeed.js';
-import { loadWorld, groundPlane, resolveMap, textureArrivals, texturesIn, cullWorldGroups, releaseStandins, gameFog, setMaxAnisotropy } from './mapLoader.js';
+import { loadWorld, groundPlane, resolveMap, textureArrivals, texturesIn, cullWorldGroups, reloadTextures, releaseStandins, gameFog, setMaxAnisotropy } from './mapLoader.js';
 import { LightProbe } from './lightProbe.js';
 import { Actors, EYE, stanceOf } from './actors.js';
 import { Effects } from './effects.js';
@@ -24,7 +24,7 @@ import { prefetch } from './data.js';
 import { InfoHint, fadeHint, holdHint } from '../app/infoHint.js';
 import { CookieShadows, COOKIE_LAYER, WORLD_LAYER } from './shadows.js';
 import { LightGrid } from './lightGrid.js';
-import { gameObjectFilter, Exploders, ScriptedParts } from './gameObjects.js';
+import { gameObjectFilter, precachedRule, Exploders, ScriptedParts } from './gameObjects.js';
 import { XRay, XRAY_MODES } from './xray.js';
 import { ViewModel, FP_FOV } from './viewmodel.js';
 import { Hud, HUD_PARTS } from './hud.js';
@@ -204,6 +204,14 @@ export class View3D {
     };
     // (a decoded texture on the GPU as it arrives - its ImageBitmap closed then: mapLoader.js loadTexture)
     this.uploadTexture = textureArrivals.upload = t => { try { this.renderer.initTexture(t); } catch (err) { /* uploaded at its first draw */ } };
+    // a lost WebGL context: no frames until it is back and the released textures are decoded again (mapLoader.js)
+    const cv = this.renderer.domElement;
+    this.onContextLost = () => { this.contextHold = true; };
+    this.onContextRestored = () => {
+      reloadTextures().finally(() => { this.contextHold = false; this.shadows.invalidate(); this.R.invalidate(); this.needsRender = true; });
+    };
+    cv.addEventListener('webglcontextlost', this.onContextLost);
+    cv.addEventListener('webglcontextrestored', this.onContextRestored);
     this.cams = new Cameras(this.camera, this.renderer.domElement, () => { this.needsRender = true; });
     this.buildToolbar();
     this.setKillfeed(stored(KILLFEED_KEY) !== 'off');
@@ -254,13 +262,17 @@ export class View3D {
     const M = this.M, map = M.d.meta.map;
     let name = null;
     try { name = await resolveMap(map); } catch (err) { name = null; }
+    // (closed meanwhile - another demo was opened while this one's map loaded: nothing more is fetched or built for it)
+    if (this.destroyed) return;
     setMaxAnisotropy(this.renderer.capabilities.getMaxAnisotropy());
     if (name) {
       try {
         const w = await loadWorld(name, { onProgress: f => { this.info.set('Loading the 3D map ' + name + ' … ' + Math.round(f * 100) + ' %', { open: true }); } });
+        if (this.destroyed) return;
         this.world = w;
+        this.drawnWorld = null;                               // (its first frame waits only for the world's own compile: renderFrame)
         // the entities the game type deletes, the bomb sites' exploders (gameObjects.js)
-        const keep = gameObjectFilter(M.d.meta.gametype);
+        const keep = gameObjectFilter(M.d.meta.gametype), ran = precachedRule(M.d.meta);
         this.exploders = new Exploders();
         this.scripted = new ScriptedParts(M.d.meta);            // (the map script's parts: the aim trainer, posters)
         for (const m of w.mesh.material) {
@@ -268,6 +280,9 @@ export class View3D {
           if (!g) continue;
           if (!keep(g.gameobject)) m.visible = false;
           else if (g.scripted) this.scripted.add(g.scripted, v => { m.visible = v; });
+          // (an exploder only a level script links - ifModel - on a server that did not run it: the destroyed
+          // version stays hidden, the intact one as it is)
+          else if (g.exploder && !ran(g.exploder.ifModel)) { if (g.exploder.show) m.visible = false; }
           else if (g.exploder) this.exploders.add(g.exploder.site, g.exploder.show, v => { m.visible = v; });
         }
         this.scripted.set(C2.rounds.phaseAt(M.d.phases, this.t || 0));
@@ -276,7 +291,7 @@ export class View3D {
         this.shadows.invalidate();
         this.scene.background = new THREE.Color(0x8ea2b4);
         if (w.info.sky) Sky.load('maps3d/' + name + '/', w.info.sky).then(sky => {
-          if (!sky || this.world !== w) return;
+          if (!sky || this.world !== w || this.destroyed) return;
           this.sky = sky; this.scene.add(sky.mesh); this.needsRender = true;
         }).catch(err => console.warn('sky not loaded:', err));
         // the fog of the map's script (setExpFog / setCullFog, world.json; none on the competitive versions);
@@ -292,14 +307,16 @@ export class View3D {
         }
         if (sun.color) this.sun.color.setRGB(...sun.color);
         this.effects.setSites(w.sites || []);
-        this.compileAhead();
+        const first = this.compileAhead();
+        this.worldCompile = first ? { world: w, done: false } : null;
+        if (first) { const wc = this.worldCompile; first.finally(() => { wc.done = true; this.needsRender = true; }); }
         // the intermission camera and hurt triggers (Layers panel)
         if (this.mapMarks) this.mapMarks.dispose();
         this.mapMarks = new MapMarks(this.scene, w.entities);
         try { this.fx.probe = this.actors.probe = new LightProbe(w, w.lightScale); } catch (err) { console.warn('light probe:', err); }
         // the models' light: the map's light grid (lightGrid.js), when exported
         LightGrid.load('maps3d/' + name + '/', w.info).then(g => {
-          if (!g || this.world !== w) return;
+          if (!g || this.world !== w || this.destroyed) return;
           g.apply();
           this.actors.grid = g;
           this.viewmodel.setGrid(g);
@@ -312,6 +329,7 @@ export class View3D {
         // the map's static models (misc_model): props.js, when exported
         try {
           this.props = await Props.load('maps3d/' + name + '/', { gametype: M.d.meta.gametype, meta: M.d.meta });
+          if (this.destroyed) return;
           if (this.props && this.world === w) {
             for (const p of this.props.exploderParts) this.exploders.add(p.site, p.show, p.apply);
             // the mounted MGs' aim from the demo (DemoData.turrets), matched to the placements by their origin
@@ -336,7 +354,7 @@ export class View3D {
         // reads it as `view.sound` and renders the range's sound offline (sound.js render)
         if (new URLSearchParams(location.search).get('sound') !== 'off') {
           SoundSystem.load(name).then(snd => {
-            if (!snd || this.world !== w) return;
+            if (!snd || this.world !== w || this.destroyed) return;
             this.sounds = snd;
             snd.preloadAfter = () => texturesIn();
             snd.setDemo(this.M);
@@ -816,10 +834,25 @@ export class View3D {
     const run = () => Promise.all([this.renderer.compileAsync(this.scene, this.camera), this.viewmodel.compileAhead(this.renderer)]);
     const p = (this.compileHold || Promise.resolve()).then(run).catch(err => console.warn('shader compile:', err));
     const hold = this.compileHold = p.finally(() => { if (this.compileHold === hold) { this.compileHold = null; this.needsRender = true; } });
+    return p;
+  }
+
+  /** whether the frame waits for compiles: once the map has a first image, while any runs; its first image only for the
+   *  world's own (load) - not for the grid's, the props' and the players' that follow it (they are linked at that draw) */
+  compileWait(hold) {
+    if (!hold) return false;
+    if (this.drawnWorld === this.world) return !!this.compileHold;
+    const wc = this.worldCompile;
+    return !!(wc && wc.world === this.world && !wc.done);
   }
 
   renderFrame(dt, shadowDt, force = false) {
-    if (this.compileHold && !force) return false;
+    if (this.contextHold) return false;
+    // (held while programs compile: compileWait - before the map's first image only for the world's own compile; waiting
+    // for all, the view would show nothing for seconds while the grid's, the props' and the players' follow each other;
+    // waiting for none, its draw would block up to ~1.1 s linking them all)
+    const hold = !force;
+    if (this.compileWait(hold)) return false;
     const mode = this.cams.mode;
     let hideClient = null;
     if (mode === 'follow' || mode === 'fp') {
@@ -842,8 +875,9 @@ export class View3D {
     // (on a mounted MG: the turret weapon, whose crosshair the view draws)
     this.viewmodel.turretWeapon = this.fpClient != null && this.fpTurret && this.fpTurret.on ? this.fpTurret.weapon : null;
     this.viewmodel.update(this.fpClient != null ? this.fpClient : -1, this.t || 0, fpSample);
-    // (a view model just built: drawn once its programs are ready)
-    if (this.compileHold && !force) { this.needsRender = true; return false; }
+    // (a view model just built: drawn once its programs are ready; the same for a rig's lit materials - viewmodel.js)
+    if (this.compileWait(hold)) { this.needsRender = true; return false; }
+    if (this.fpClient != null && this.viewmodel.prepareLit(this.renderer, !hold || this.drawnWorld !== this.world)) { this.needsRender = true; return false; }
     if (mode === 'fp') {
       const fov = fpSample ? this.viewmodel.fov(FP_FOV) : FP_FOV;
       if (Math.abs(this.camera.fov - fov) > 1e-4) { this.camera.fov = fov; this.camera.updateProjectionMatrix(); }
@@ -877,6 +911,7 @@ export class View3D {
       this.effects.projectLabels(this.camera, this.w, this.h);
       this.drawHud(fpSample);
     }
+    if (this.world) this.drawnWorld = this.world;
     return { hideClient, fpSample };
   }
 
@@ -1033,6 +1068,7 @@ export class View3D {
   }
 
   destroy() {
+    this.destroyed = true;                  // (load() and its callbacks stop here)
     this.visible = false;
     this.offFocus();
     this.actors.dispose();
@@ -1061,6 +1097,8 @@ export class View3D {
     releaseStandins();
     this.scene.traverse(o => { if (o.geometry) o.geometry.dispose(); });
     this.renderer.dispose();
+    this.renderer.domElement.removeEventListener('webglcontextlost', this.onContextLost);
+    this.renderer.domElement.removeEventListener('webglcontextrestored', this.onContextRestored);
     this.renderer.forceContextLoss();
     this.stage.remove();
   }

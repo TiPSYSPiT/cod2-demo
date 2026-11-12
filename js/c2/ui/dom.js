@@ -54,7 +54,7 @@
     if (!r) return '';
     const base = r.start != null ? r.start : r.segStart;
     const d = t - base;
-    const label = r.kind === 'knife' ? 'Knife' : r.kind === 'prematch' ? 'Pre' : r.kind === 'aftermatch' ? 'After' : 'R' + r.label;
+    const label = r.kind === 'aftermatch' ? 'After' : 'R' + r.label;
     return label + ' · ' + (d < 0 ? '-' + fmtTime(-d) : fmtTime(d));
   }
 
@@ -62,7 +62,6 @@
   const PHASES = {
     live: { label: 'Live', title: 'regular match time - counted' },
     warmup: { label: 'Warmup', title: 'warm-up / ready-up before the match - not counted in the scoreboard' },
-    knife: { label: 'Knife', title: 'knife round - not counted in the scoreboard' },
     halftime: { label: 'Halftime', title: 'halftime break - not counted in the scoreboard' },
     timeout: { label: 'Timeout', title: 'timeout / break between rounds - not counted in the scoreboard' },
     aftermatch: { label: 'After', title: 'after the official match end - not counted in the scoreboard' }

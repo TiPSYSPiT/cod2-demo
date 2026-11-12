@@ -2,7 +2,7 @@
  "format": "cod2-demo3d-props/1",
  "map": "mp_toujane",
  "file": "props.bin",
- "byteLength": 4310692,
+ "byteLength": 5328740,
  "models": [
   {
    "name": "xmodel/awning_2x4_2",
@@ -5668,6 +5668,262 @@
    ]
   },
   {
+   "name": "xmodel/toujane_axis_roof",
+   "lod": "toujane_axis_roof0",
+   "flags": 0,
+   "mins": [
+    -36.587162017822266,
+    -36.587162017822266,
+    -36.587162017822266
+   ],
+   "maxs": [
+    36.587162017822266,
+    36.587162017822266,
+    36.587162017822266
+   ],
+   "vertices": 6,
+   "triangles": 2,
+   "geometry": {
+    "position": {
+     "offset": 1684236,
+     "length": 72
+    },
+    "normal": {
+     "offset": 1684308,
+     "length": 24
+    },
+    "uv": {
+     "offset": 1684332,
+     "length": 48
+    },
+    "index": {
+     "offset": 1684380,
+     "length": 24
+    },
+    "tangent": {
+     "offset": 1684404,
+     "length": 24
+    }
+   },
+   "groups": [
+    {
+     "material": "toujane_woodtrim1",
+     "technique": "phong_replace_spec_detail",
+     "start": 0,
+     "count": 6,
+     "texture": "_textures/woodtrim01.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_woodtrim1_n-gggr__woodtrim1_s-r-25g-25b-25l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_woodtrim1_s-r-25g-25b-25l-11.webp",
+     "detailMap": "_textures/wood_v_01.webp",
+     "detailScale": [
+      8.0,
+      16.0
+     ]
+    }
+   ],
+   "lodDistances": [
+    0.0
+   ]
+  },
+  {
+   "name": "xmodel/toujane_jump",
+   "lod": "toujane_jump0",
+   "flags": 0,
+   "mins": [
+    -431.4026184082031,
+    -431.4026184082031,
+    -431.4026184082031
+   ],
+   "maxs": [
+    431.4026184082031,
+    431.4026184082031,
+    431.4026184082031
+   ],
+   "vertices": 334,
+   "triangles": 170,
+   "geometry": {
+    "position": {
+     "offset": 1684428,
+     "length": 4008
+    },
+    "normal": {
+     "offset": 1688436,
+     "length": 1336
+    },
+    "uv": {
+     "offset": 1689772,
+     "length": 2672
+    },
+    "index": {
+     "offset": 1692444,
+     "length": 2040
+    },
+    "tangent": {
+     "offset": 1694484,
+     "length": 1336
+    }
+   },
+   "groups": [
+    {
+     "material": "toujane_roof",
+     "technique": "phong_replace_spec_detail",
+     "start": 0,
+     "count": 510,
+     "texture": "_textures/toujane_roof.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_toujane_roof_n-gggr__toujane_roof_s-r-25g-25b-25l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_toujane_roof_s-r-25g-25b-25l-11.webp",
+     "detailMap": "_textures/concrete_floor_01.webp",
+     "detailScale": [
+      8.0,
+      8.0
+     ]
+    }
+   ],
+   "lodDistances": [
+    0.0
+   ]
+  },
+  {
+   "name": "xmodel/toujane_underA_bug",
+   "lod": "toujane_underA_bug0",
+   "flags": 0,
+   "mins": [
+    -23.409399032592773,
+    -23.409399032592773,
+    -23.409399032592773
+   ],
+   "maxs": [
+    23.409399032592773,
+    23.409399032592773,
+    23.409399032592773
+   ],
+   "vertices": 4,
+   "triangles": 2,
+   "geometry": {
+    "position": {
+     "offset": 1695820,
+     "length": 48
+    },
+    "normal": {
+     "offset": 1695868,
+     "length": 16
+    },
+    "uv": {
+     "offset": 1695884,
+     "length": 32
+    },
+    "index": {
+     "offset": 1695916,
+     "length": 24
+    },
+    "tangent": {
+     "offset": 1695940,
+     "length": 16
+    }
+   },
+   "groups": [
+    {
+     "material": "toujane_plasterwall_white",
+     "technique": "phong_replace_spec_detail",
+     "start": 0,
+     "count": 6,
+     "texture": "_textures/white_wall.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_white_wall_n-gggr__white_wall_s-r-25g-25b-25l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_white_wall_s-r-25g-25b-25l-11.webp",
+     "detailMap": "_textures/concrete_wall_01.webp",
+     "detailScale": [
+      8.0,
+      8.0
+     ]
+    }
+   ],
+   "lodDistances": [
+    0.0
+   ]
+  },
+  {
+   "name": "xmodel/toujane_window",
+   "lod": "toujane_window0",
+   "flags": 0,
+   "mins": [
+    -36.013885498046875,
+    -36.013885498046875,
+    -36.013885498046875
+   ],
+   "maxs": [
+    36.013885498046875,
+    36.013885498046875,
+    36.013885498046875
+   ],
+   "vertices": 4,
+   "triangles": 2,
+   "geometry": {
+    "position": {
+     "offset": 1695956,
+     "length": 48
+    },
+    "normal": {
+     "offset": 1696004,
+     "length": 16
+    },
+    "uv": {
+     "offset": 1696020,
+     "length": 32
+    },
+    "index": {
+     "offset": 1696052,
+     "length": 24
+    },
+    "tangent": {
+     "offset": 1696076,
+     "length": 16
+    }
+   },
+   "groups": [
+    {
+     "material": "toujane_woodtrim1",
+     "technique": "phong_replace_spec_detail",
+     "start": 0,
+     "count": 6,
+     "texture": "_textures/woodtrim01.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_woodtrim1_n-gggr__woodtrim1_s-r-25g-25b-25l-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_woodtrim1_s-r-25g-25b-25l-11.webp",
+     "detailMap": "_textures/wood_v_01.webp",
+     "detailScale": [
+      8.0,
+      16.0
+     ]
+    }
+   ],
+   "lodDistances": [
+    0.0
+   ]
+  },
+  {
    "name": "xmodel/tree_desertbushy",
    "lod": "tree_desertbushy_high0",
    "flags": 0,
@@ -5685,19 +5941,19 @@
    "triangles": 535,
    "geometry": {
     "position": {
-     "offset": 1684236,
+     "offset": 1696092,
      "length": 9792
     },
     "normal": {
-     "offset": 1694028,
+     "offset": 1705884,
      "length": 3264
     },
     "uv": {
-     "offset": 1697292,
+     "offset": 1709148,
      "length": 6528
     },
     "index": {
-     "offset": 1703820,
+     "offset": 1715676,
      "length": 6420
     }
    },
@@ -5743,19 +5999,19 @@
      "triangles": 362,
      "geometry": {
       "position": {
-       "offset": 1710240,
+       "offset": 1722096,
        "length": 7284
       },
       "normal": {
-       "offset": 1717524,
+       "offset": 1729380,
        "length": 2428
       },
       "uv": {
-       "offset": 1719952,
+       "offset": 1731808,
        "length": 4856
       },
       "index": {
-       "offset": 1724808,
+       "offset": 1736664,
        "length": 4344
       }
      },
@@ -5796,19 +6052,19 @@
      "triangles": 246,
      "geometry": {
       "position": {
-       "offset": 1729152,
+       "offset": 1741008,
        "length": 5280
       },
       "normal": {
-       "offset": 1734432,
+       "offset": 1746288,
        "length": 1760
       },
       "uv": {
-       "offset": 1736192,
+       "offset": 1748048,
        "length": 3520
       },
       "index": {
-       "offset": 1739712,
+       "offset": 1751568,
        "length": 2952
       }
      },
@@ -5863,23 +6119,23 @@
    "triangles": 614,
    "geometry": {
     "position": {
-     "offset": 1742664,
+     "offset": 1754520,
      "length": 8964
     },
     "normal": {
-     "offset": 1751628,
+     "offset": 1763484,
      "length": 2988
     },
     "uv": {
-     "offset": 1754616,
+     "offset": 1766472,
      "length": 5976
     },
     "index": {
-     "offset": 1760592,
+     "offset": 1772448,
      "length": 7368
     },
     "tangent": {
-     "offset": 1767960,
+     "offset": 1779816,
      "length": 2988
     }
    },
@@ -5926,23 +6182,23 @@
      "triangles": 397,
      "geometry": {
       "position": {
-       "offset": 1770948,
+       "offset": 1782804,
        "length": 6000
       },
       "normal": {
-       "offset": 1776948,
+       "offset": 1788804,
        "length": 2000
       },
       "uv": {
-       "offset": 1778948,
+       "offset": 1790804,
        "length": 4000
       },
       "index": {
-       "offset": 1782948,
+       "offset": 1794804,
        "length": 4764
       },
       "tangent": {
-       "offset": 1787712,
+       "offset": 1799568,
        "length": 2000
       }
      },
@@ -5983,23 +6239,23 @@
      "triangles": 153,
      "geometry": {
       "position": {
-       "offset": 1789712,
+       "offset": 1801568,
        "length": 3000
       },
       "normal": {
-       "offset": 1792712,
+       "offset": 1804568,
        "length": 1000
       },
       "uv": {
-       "offset": 1793712,
+       "offset": 1805568,
        "length": 2000
       },
       "index": {
-       "offset": 1795712,
+       "offset": 1807568,
        "length": 1836
       },
       "tangent": {
-       "offset": 1797548,
+       "offset": 1809404,
        "length": 1000
       }
      },
@@ -6040,23 +6296,23 @@
      "triangles": 153,
      "geometry": {
       "position": {
-       "offset": 1798548,
+       "offset": 1810404,
        "length": 3000
       },
       "normal": {
-       "offset": 1801548,
+       "offset": 1813404,
        "length": 1000
       },
       "uv": {
-       "offset": 1802548,
+       "offset": 1814404,
        "length": 2000
       },
       "index": {
-       "offset": 1804548,
+       "offset": 1816404,
        "length": 1836
       },
       "tangent": {
-       "offset": 1806384,
+       "offset": 1818240,
        "length": 1000
       }
      },
@@ -6111,23 +6367,23 @@
    "triangles": 598,
    "geometry": {
     "position": {
-     "offset": 1807384,
+     "offset": 1819240,
      "length": 8604
     },
     "normal": {
-     "offset": 1815988,
+     "offset": 1827844,
      "length": 2868
     },
     "uv": {
-     "offset": 1818856,
+     "offset": 1830712,
      "length": 5736
     },
     "index": {
-     "offset": 1824592,
+     "offset": 1836448,
      "length": 7176
     },
     "tangent": {
-     "offset": 1831768,
+     "offset": 1843624,
      "length": 2868
     }
    },
@@ -6174,23 +6430,23 @@
      "triangles": 403,
      "geometry": {
       "position": {
-       "offset": 1834636,
+       "offset": 1846492,
        "length": 6000
       },
       "normal": {
-       "offset": 1840636,
+       "offset": 1852492,
        "length": 2000
       },
       "uv": {
-       "offset": 1842636,
+       "offset": 1854492,
        "length": 4000
       },
       "index": {
-       "offset": 1846636,
+       "offset": 1858492,
        "length": 4836
       },
       "tangent": {
-       "offset": 1851472,
+       "offset": 1863328,
        "length": 2000
       }
      },
@@ -6231,23 +6487,23 @@
      "triangles": 152,
      "geometry": {
       "position": {
-       "offset": 1853472,
+       "offset": 1865328,
        "length": 2892
       },
       "normal": {
-       "offset": 1856364,
+       "offset": 1868220,
        "length": 964
       },
       "uv": {
-       "offset": 1857328,
+       "offset": 1869184,
        "length": 1928
       },
       "index": {
-       "offset": 1859256,
+       "offset": 1871112,
        "length": 1824
       },
       "tangent": {
-       "offset": 1861080,
+       "offset": 1872936,
        "length": 964
       }
      },
@@ -6288,23 +6544,23 @@
      "triangles": 152,
      "geometry": {
       "position": {
-       "offset": 1862044,
+       "offset": 1873900,
        "length": 2892
       },
       "normal": {
-       "offset": 1864936,
+       "offset": 1876792,
        "length": 964
       },
       "uv": {
-       "offset": 1865900,
+       "offset": 1877756,
        "length": 1928
       },
       "index": {
-       "offset": 1867828,
+       "offset": 1879684,
        "length": 1824
       },
       "tangent": {
-       "offset": 1869652,
+       "offset": 1881508,
        "length": 964
       }
      },
@@ -6359,23 +6615,23 @@
    "triangles": 4935,
    "geometry": {
     "position": {
-     "offset": 1870616,
+     "offset": 1882472,
      "length": 63396
     },
     "normal": {
-     "offset": 1934012,
+     "offset": 1945868,
      "length": 21132
     },
     "uv": {
-     "offset": 1955144,
+     "offset": 1967000,
      "length": 42264
     },
     "index": {
-     "offset": 1997408,
+     "offset": 2009264,
      "length": 59220
     },
     "tangent": {
-     "offset": 2056628,
+     "offset": 2068484,
      "length": 21132
     }
    },
@@ -6429,23 +6685,23 @@
      "triangles": 2656,
      "geometry": {
       "position": {
-       "offset": 2077760,
+       "offset": 2089616,
        "length": 40476
       },
       "normal": {
-       "offset": 2118236,
+       "offset": 2130092,
        "length": 13492
       },
       "uv": {
-       "offset": 2131728,
+       "offset": 2143584,
        "length": 26984
       },
       "index": {
-       "offset": 2158712,
+       "offset": 2170568,
        "length": 31872
       },
       "tangent": {
-       "offset": 2190584,
+       "offset": 2202440,
        "length": 13492
       }
      },
@@ -6493,23 +6749,23 @@
      "triangles": 1204,
      "geometry": {
       "position": {
-       "offset": 2204076,
+       "offset": 2215932,
        "length": 19992
       },
       "normal": {
-       "offset": 2224068,
+       "offset": 2235924,
        "length": 6664
       },
       "uv": {
-       "offset": 2230732,
+       "offset": 2242588,
        "length": 13328
       },
       "index": {
-       "offset": 2244060,
+       "offset": 2255916,
        "length": 14448
       },
       "tangent": {
-       "offset": 2258508,
+       "offset": 2270364,
        "length": 6664
       }
      },
@@ -6557,23 +6813,23 @@
      "triangles": 593,
      "geometry": {
       "position": {
-       "offset": 2265172,
+       "offset": 2277028,
        "length": 10752
       },
       "normal": {
-       "offset": 2275924,
+       "offset": 2287780,
        "length": 3584
       },
       "uv": {
-       "offset": 2279508,
+       "offset": 2291364,
        "length": 7168
       },
       "index": {
-       "offset": 2286676,
+       "offset": 2298532,
        "length": 7116
       },
       "tangent": {
-       "offset": 2293792,
+       "offset": 2305648,
        "length": 3584
       }
      },
@@ -6618,6 +6874,232 @@
    ]
   },
   {
+   "name": "xmodel/vehicle_german_armored_car_d_static",
+   "lod": "vehicle_german_armored_car_d0",
+   "flags": 0,
+   "mins": [
+    -112.6394271850586,
+    -112.6394271850586,
+    -112.6394271850586
+   ],
+   "maxs": [
+    112.6394271850586,
+    112.6394271850586,
+    112.6394271850586
+   ],
+   "vertices": 6514,
+   "triangles": 4953,
+   "geometry": {
+    "position": {
+     "offset": 2309232,
+     "length": 78168
+    },
+    "normal": {
+     "offset": 2387400,
+     "length": 26056
+    },
+    "uv": {
+     "offset": 2413456,
+     "length": 52112
+    },
+    "index": {
+     "offset": 2465568,
+     "length": 59436
+    },
+    "tangent": {
+     "offset": 2525004,
+     "length": 26056
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_german_armored_car_mesh",
+     "technique": "phong_alphatest_spec",
+     "start": 0,
+     "count": 126,
+     "texture": "_textures/screen_color.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_screen_normals-gggr__screen_spec-rgbl30.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_screen_spec-rgbl30.webp"
+    },
+    {
+     "material": "mtl_german_armored_car_d",
+     "technique": "phong_replace_spec",
+     "start": 126,
+     "count": 12273,
+     "texture": "_textures/german_armored_car_color_d.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_german_armored_car_normals-gggr__german_armored_car_color_spec_d-rgbl30.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_german_armored_car_color_spec_d-rgbl30.webp"
+    },
+    {
+     "material": "mtl_german_armored_car_d",
+     "technique": "phong_replace_spec",
+     "start": 12399,
+     "count": 2460,
+     "texture": "_textures/german_armored_car_color_d.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_german_armored_car_normals-gggr__german_armored_car_color_spec_d-rgbl30.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_german_armored_car_color_spec_d-rgbl30.webp"
+    }
+   ],
+   "lodDistances": [
+    600.0,
+    900.0,
+    1400.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "vehicle_german_armored_car_lod1_d0",
+     "vertices": 3935,
+     "triangles": 2738,
+     "geometry": {
+      "position": {
+       "offset": 2551060,
+       "length": 47220
+      },
+      "normal": {
+       "offset": 2598280,
+       "length": 15740
+      },
+      "uv": {
+       "offset": 2614020,
+       "length": 31480
+      },
+      "index": {
+       "offset": 2645500,
+       "length": 32856
+      },
+      "tangent": {
+       "offset": 2678356,
+       "length": 15740
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_german_armored_car_d",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 8214,
+       "texture": "_textures/german_armored_car_color_d.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_german_armored_car_normals-gggr__german_armored_car_color_spec_d-rgbl30.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_german_armored_car_color_spec_d-rgbl30.webp"
+      }
+     ]
+    },
+    {
+     "lod": "vehicle_german_armored_car_lod2_d0",
+     "vertices": 1061,
+     "triangles": 708,
+     "geometry": {
+      "position": {
+       "offset": 2694096,
+       "length": 12732
+      },
+      "normal": {
+       "offset": 2706828,
+       "length": 4244
+      },
+      "uv": {
+       "offset": 2711072,
+       "length": 8488
+      },
+      "index": {
+       "offset": 2719560,
+       "length": 8496
+      },
+      "tangent": {
+       "offset": 2728056,
+       "length": 4244
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_german_armored_car_d",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 2124,
+       "texture": "_textures/german_armored_car_color_d.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_german_armored_car_normals-gggr__german_armored_car_color_spec_d-rgbl30.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_german_armored_car_color_spec_d-rgbl30.webp"
+      }
+     ]
+    },
+    {
+     "lod": "vehicle_german_armored_car_lod3_d0",
+     "vertices": 224,
+     "triangles": 148,
+     "geometry": {
+      "position": {
+       "offset": 2732300,
+       "length": 2688
+      },
+      "normal": {
+       "offset": 2734988,
+       "length": 896
+      },
+      "uv": {
+       "offset": 2735884,
+       "length": 1792
+      },
+      "index": {
+       "offset": 2737676,
+       "length": 1776
+      },
+      "tangent": {
+       "offset": 2739452,
+       "length": 896
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_german_armored_car_d",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 444,
+       "texture": "_textures/german_armored_car_color_d.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_german_armored_car_normals-gggr__german_armored_car_color_spec_d-rgbl30.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_german_armored_car_color_spec_d-rgbl30.webp"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "name": "xmodel/vehicle_german_armored_car_static",
    "lod": "vehicle_german_armored_car0",
    "flags": 0,
@@ -6635,23 +7117,23 @@
    "triangles": 5397,
    "geometry": {
     "position": {
-     "offset": 2297376,
+     "offset": 2740348,
      "length": 81984
     },
     "normal": {
-     "offset": 2379360,
+     "offset": 2822332,
      "length": 27328
     },
     "uv": {
-     "offset": 2406688,
+     "offset": 2849660,
      "length": 54656
     },
     "index": {
-     "offset": 2461344,
+     "offset": 2904316,
      "length": 64764
     },
     "tangent": {
-     "offset": 2526108,
+     "offset": 2969080,
      "length": 27328
     }
    },
@@ -6715,23 +7197,23 @@
      "triangles": 2977,
      "geometry": {
       "position": {
-       "offset": 2553436,
+       "offset": 2996408,
        "length": 52716
       },
       "normal": {
-       "offset": 2606152,
+       "offset": 3049124,
        "length": 17572
       },
       "uv": {
-       "offset": 2623724,
+       "offset": 3066696,
        "length": 35144
       },
       "index": {
-       "offset": 2658868,
+       "offset": 3101840,
        "length": 35724
       },
       "tangent": {
-       "offset": 2694592,
+       "offset": 3137564,
        "length": 17572
       }
      },
@@ -6759,23 +7241,23 @@
      "triangles": 1215,
      "geometry": {
       "position": {
-       "offset": 2712164,
+       "offset": 3155136,
        "length": 22428
       },
       "normal": {
-       "offset": 2734592,
+       "offset": 3177564,
        "length": 7476
       },
       "uv": {
-       "offset": 2742068,
+       "offset": 3185040,
        "length": 14952
       },
       "index": {
-       "offset": 2757020,
+       "offset": 3199992,
        "length": 14580
       },
       "tangent": {
-       "offset": 2771600,
+       "offset": 3214572,
        "length": 7476
       }
      },
@@ -6803,23 +7285,23 @@
      "triangles": 224,
      "geometry": {
       "position": {
-       "offset": 2779076,
+       "offset": 3222048,
        "length": 4476
       },
       "normal": {
-       "offset": 2783552,
+       "offset": 3226524,
        "length": 1492
       },
       "uv": {
-       "offset": 2785044,
+       "offset": 3228016,
        "length": 2984
       },
       "index": {
-       "offset": 2788028,
+       "offset": 3231000,
        "length": 2688
       },
       "tangent": {
-       "offset": 2790716,
+       "offset": 3233688,
        "length": 1492
       }
      },
@@ -6861,23 +7343,23 @@
    "triangles": 5225,
    "geometry": {
     "position": {
-     "offset": 2792208,
+     "offset": 3235180,
      "length": 65412
     },
     "normal": {
-     "offset": 2857620,
+     "offset": 3300592,
      "length": 21804
     },
     "uv": {
-     "offset": 2879424,
+     "offset": 3322396,
      "length": 43608
     },
     "index": {
-     "offset": 2923032,
+     "offset": 3366004,
      "length": 62700
     },
     "tangent": {
-     "offset": 2985732,
+     "offset": 3428704,
      "length": 21804
     }
    },
@@ -6931,23 +7413,23 @@
      "triangles": 2415,
      "geometry": {
       "position": {
-       "offset": 3007536,
+       "offset": 3450508,
        "length": 47028
       },
       "normal": {
-       "offset": 3054564,
+       "offset": 3497536,
        "length": 15676
       },
       "uv": {
-       "offset": 3070240,
+       "offset": 3513212,
        "length": 31352
       },
       "index": {
-       "offset": 3101592,
+       "offset": 3544564,
        "length": 28980
       },
       "tangent": {
-       "offset": 3130572,
+       "offset": 3573544,
        "length": 15676
       }
      },
@@ -6995,23 +7477,23 @@
      "triangles": 1227,
      "geometry": {
       "position": {
-       "offset": 3146248,
+       "offset": 3589220,
        "length": 26400
       },
       "normal": {
-       "offset": 3172648,
+       "offset": 3615620,
        "length": 8800
       },
       "uv": {
-       "offset": 3181448,
+       "offset": 3624420,
        "length": 17600
       },
       "index": {
-       "offset": 3199048,
+       "offset": 3642020,
        "length": 14724
       },
       "tangent": {
-       "offset": 3213772,
+       "offset": 3656744,
        "length": 8800
       }
      },
@@ -7059,23 +7541,23 @@
      "triangles": 642,
      "geometry": {
       "position": {
-       "offset": 3222572,
+       "offset": 3665544,
        "length": 14652
       },
       "normal": {
-       "offset": 3237224,
+       "offset": 3680196,
        "length": 4884
       },
       "uv": {
-       "offset": 3242108,
+       "offset": 3685080,
        "length": 9768
       },
       "index": {
-       "offset": 3251876,
+       "offset": 3694848,
        "length": 7704
       },
       "tangent": {
-       "offset": 3259580,
+       "offset": 3702552,
        "length": 4884
       }
      },
@@ -7137,23 +7619,23 @@
    "triangles": 5338,
    "geometry": {
     "position": {
-     "offset": 3264464,
+     "offset": 3707436,
      "length": 82836
     },
     "normal": {
-     "offset": 3347300,
+     "offset": 3790272,
      "length": 27612
     },
     "uv": {
-     "offset": 3374912,
+     "offset": 3817884,
      "length": 55224
     },
     "index": {
-     "offset": 3430136,
+     "offset": 3873108,
      "length": 64056
     },
     "tangent": {
-     "offset": 3494192,
+     "offset": 3937164,
      "length": 27612
     }
    },
@@ -7245,23 +7727,23 @@
      "triangles": 2454,
      "geometry": {
       "position": {
-       "offset": 3521804,
+       "offset": 3964776,
        "length": 42540
       },
       "normal": {
-       "offset": 3564344,
+       "offset": 4007316,
        "length": 14180
       },
       "uv": {
-       "offset": 3578524,
+       "offset": 4021496,
        "length": 28360
       },
       "index": {
-       "offset": 3606884,
+       "offset": 4049856,
        "length": 29448
       },
       "tangent": {
-       "offset": 3636332,
+       "offset": 4079304,
        "length": 14180
       }
      },
@@ -7303,23 +7785,23 @@
      "triangles": 1251,
      "geometry": {
       "position": {
-       "offset": 3650512,
+       "offset": 4093484,
        "length": 20856
       },
       "normal": {
-       "offset": 3671368,
+       "offset": 4114340,
        "length": 6952
       },
       "uv": {
-       "offset": 3678320,
+       "offset": 4121292,
        "length": 13904
       },
       "index": {
-       "offset": 3692224,
+       "offset": 4135196,
        "length": 15012
       },
       "tangent": {
-       "offset": 3707236,
+       "offset": 4150208,
        "length": 6952
       }
      },
@@ -7361,23 +7843,23 @@
      "triangles": 694,
      "geometry": {
       "position": {
-       "offset": 3714188,
+       "offset": 4157160,
        "length": 12528
       },
       "normal": {
-       "offset": 3726716,
+       "offset": 4169688,
        "length": 4176
       },
       "uv": {
-       "offset": 3730892,
+       "offset": 4173864,
        "length": 8352
       },
       "index": {
-       "offset": 3739244,
+       "offset": 4182216,
        "length": 8328
       },
       "tangent": {
-       "offset": 3747572,
+       "offset": 4190544,
        "length": 4176
       }
      },
@@ -7416,6 +7898,262 @@
    ]
   },
   {
+   "name": "xmodel/vehicle_panzer_ii_destroyed_static",
+   "lod": "vehicle_german_panzer_2_d0",
+   "flags": 0,
+   "mins": [
+    -137.26646423339844,
+    -137.26646423339844,
+    -137.26646423339844
+   ],
+   "maxs": [
+    137.26646423339844,
+    137.26646423339844,
+    137.26646423339844
+   ],
+   "vertices": 8390,
+   "triangles": 5662,
+   "geometry": {
+    "position": {
+     "offset": 4194720,
+     "length": 100680
+    },
+    "normal": {
+     "offset": 4295400,
+     "length": 33560
+    },
+    "uv": {
+     "offset": 4328960,
+     "length": 67120
+    },
+    "index": {
+     "offset": 4396080,
+     "length": 67944
+    },
+    "tangent": {
+     "offset": 4464024,
+     "length": 33560
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_panzer2_d",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 9636,
+     "texture": "_textures/panzer2_color_d.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec_d-r41g41b41l-64.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_panzer2_spec_d-r41g41b41l-64.webp"
+    },
+    {
+     "material": "mtl_panzer2_d",
+     "technique": "phong_replace_spec",
+     "start": 9636,
+     "count": 6090,
+     "texture": "_textures/panzer2_color_d.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec_d-r41g41b41l-64.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_panzer2_spec_d-r41g41b41l-64.webp"
+    },
+    {
+     "material": "mtl_panzer2_treads_d_static",
+     "technique": "phong_alphatest_spec",
+     "start": 15726,
+     "count": 1260,
+     "texture": "_textures/panzer2_treads_d.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_panzer2_tread_normals-gggr__panzer2_tread_spec-rgbl-13.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_panzer2_tread_spec-rgbl-13.webp"
+    }
+   ],
+   "lodDistances": [
+    600.0,
+    1000.0,
+    1900.0,
+    0.0
+   ],
+   "lods": [
+    {
+     "lod": "vehicle_german_panzer_2_d_lod10",
+     "vertices": 5290,
+     "triangles": 3311,
+     "geometry": {
+      "position": {
+       "offset": 4497584,
+       "length": 63480
+      },
+      "normal": {
+       "offset": 4561064,
+       "length": 21160
+      },
+      "uv": {
+       "offset": 4582224,
+       "length": 42320
+      },
+      "index": {
+       "offset": 4624544,
+       "length": 39732
+      },
+      "tangent": {
+       "offset": 4664276,
+       "length": 21160
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_panzer2_d",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 8889,
+       "texture": "_textures/panzer2_color_d.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec_d-r41g41b41l-64.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_panzer2_spec_d-r41g41b41l-64.webp"
+      },
+      {
+       "material": "mtl_panzer2_treads_d_static",
+       "technique": "phong_alphatest_spec",
+       "start": 8889,
+       "count": 1044,
+       "texture": "_textures/panzer2_treads_d.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_panzer2_tread_normals-gggr__panzer2_tread_spec-rgbl-13.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_panzer2_tread_spec-rgbl-13.webp"
+      }
+     ]
+    },
+    {
+     "lod": "vehicle_german_panzer_2_d_lod20",
+     "vertices": 2217,
+     "triangles": 1527,
+     "geometry": {
+      "position": {
+       "offset": 4685436,
+       "length": 26604
+      },
+      "normal": {
+       "offset": 4712040,
+       "length": 8868
+      },
+      "uv": {
+       "offset": 4720908,
+       "length": 17736
+      },
+      "index": {
+       "offset": 4738644,
+       "length": 18324
+      },
+      "tangent": {
+       "offset": 4756968,
+       "length": 8868
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_panzer2_d",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 3765,
+       "texture": "_textures/panzer2_color_d.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec_d-r41g41b41l-64.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_panzer2_spec_d-r41g41b41l-64.webp"
+      },
+      {
+       "material": "mtl_panzer2_treads_d_static",
+       "technique": "phong_alphatest_spec",
+       "start": 3765,
+       "count": 816,
+       "texture": "_textures/panzer2_treads_d.webp",
+       "textureAlpha": true,
+       "alphaTest": "ge128",
+       "blend": null,
+       "doubleSided": true,
+       "normalMap": "_textures/_panzer2_tread_normals-gggr__panzer2_tread_spec-rgbl-13.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_panzer2_tread_spec-rgbl-13.webp"
+      }
+     ]
+    },
+    {
+     "lod": "vehicle_german_panzer_2_d_lod40",
+     "vertices": 114,
+     "triangles": 64,
+     "geometry": {
+      "position": {
+       "offset": 4765836,
+       "length": 1368
+      },
+      "normal": {
+       "offset": 4767204,
+       "length": 456
+      },
+      "uv": {
+       "offset": 4767660,
+       "length": 912
+      },
+      "index": {
+       "offset": 4768572,
+       "length": 768
+      },
+      "tangent": {
+       "offset": 4769340,
+       "length": 456
+      }
+     },
+     "groups": [
+      {
+       "material": "mtl_panzer2_d",
+       "technique": "phong_replace_spec",
+       "start": 0,
+       "count": 192,
+       "texture": "_textures/panzer2_color_d.webp",
+       "textureAlpha": false,
+       "alphaTest": null,
+       "blend": null,
+       "doubleSided": false,
+       "normalMap": "_textures/_panzer2_normals-gggr__panzer2_spec_d-r41g41b41l-64.webp",
+       "sort": 3,
+       "polygonOffset": 0,
+       "specularMap": "_textures/_panzer2_spec_d-r41g41b41l-64.webp"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "name": "xmodel/vehicle_panzer_ii_static",
    "lod": "vehicle_german_panzer_20",
    "flags": 0,
@@ -7433,23 +8171,23 @@
    "triangles": 5869,
    "geometry": {
     "position": {
-     "offset": 3751748,
+     "offset": 4769796,
      "length": 102072
     },
     "normal": {
-     "offset": 3853820,
+     "offset": 4871868,
      "length": 34024
     },
     "uv": {
-     "offset": 3887844,
+     "offset": 4905892,
      "length": 68048
     },
     "index": {
-     "offset": 3955892,
+     "offset": 4973940,
      "length": 70428
     },
     "tangent": {
-     "offset": 4026320,
+     "offset": 5044368,
      "length": 34024
     }
    },
@@ -7513,23 +8251,23 @@
      "triangles": 3111,
      "geometry": {
       "position": {
-       "offset": 4060344,
+       "offset": 5078392,
        "length": 55068
       },
       "normal": {
-       "offset": 4115412,
+       "offset": 5133460,
        "length": 18356
       },
       "uv": {
-       "offset": 4133768,
+       "offset": 5151816,
        "length": 36712
       },
       "index": {
-       "offset": 4170480,
+       "offset": 5188528,
        "length": 37332
       },
       "tangent": {
-       "offset": 4207812,
+       "offset": 5225860,
        "length": 18356
       }
      },
@@ -7572,23 +8310,23 @@
      "triangles": 344,
      "geometry": {
       "position": {
-       "offset": 4226168,
+       "offset": 5244216,
        "length": 6204
       },
       "normal": {
-       "offset": 4232372,
+       "offset": 5250420,
        "length": 2068
       },
       "uv": {
-       "offset": 4234440,
+       "offset": 5252488,
        "length": 4136
       },
       "index": {
-       "offset": 4238576,
+       "offset": 5256624,
        "length": 4128
       },
       "tangent": {
-       "offset": 4242704,
+       "offset": 5260752,
        "length": 2068
       }
      },
@@ -7631,23 +8369,23 @@
      "triangles": 64,
      "geometry": {
       "position": {
-       "offset": 4244772,
+       "offset": 5262820,
        "length": 1368
       },
       "normal": {
-       "offset": 4246140,
+       "offset": 5264188,
        "length": 456
       },
       "uv": {
-       "offset": 4246596,
+       "offset": 5264644,
        "length": 912
       },
       "index": {
-       "offset": 4247508,
+       "offset": 5265556,
        "length": 768
       },
       "tangent": {
-       "offset": 4248276,
+       "offset": 5266324,
        "length": 456
       }
      },
@@ -7689,23 +8427,23 @@
    "triangles": 1297,
    "geometry": {
     "position": {
-     "offset": 4248732,
+     "offset": 5266780,
      "length": 19884
     },
     "normal": {
-     "offset": 4268616,
+     "offset": 5286664,
      "length": 6628
     },
     "uv": {
-     "offset": 4275244,
+     "offset": 5293292,
      "length": 13256
     },
     "index": {
-     "offset": 4288500,
+     "offset": 5306548,
      "length": 15564
     },
     "tangent": {
-     "offset": 4304064,
+     "offset": 5322112,
      "length": 6628
     }
    },
@@ -8786,7 +9524,7 @@
    ]
   },
   {
-   "model": 46,
+   "model": 50,
    "name": "xmodel/tree_desertbushy",
    "matrix": [
     -1.26705,
@@ -11965,7 +12703,7 @@
    ]
   },
   {
-   "model": 48,
+   "model": 52,
    "name": "xmodel/tree_desertpalm03",
    "matrix": [
     0.64531,
@@ -11994,7 +12732,7 @@
    ]
   },
   {
-   "model": 48,
+   "model": 52,
    "name": "xmodel/tree_desertpalm03",
    "matrix": [
     0.13704,
@@ -12023,7 +12761,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/tree_desertpalm02",
    "matrix": [
     -0.28778,
@@ -12204,7 +12942,7 @@
    ]
   },
   {
-   "model": 51,
+   "model": 56,
    "name": "xmodel/vehicle_german_kubel_static",
    "matrix": [
     0.81974,
@@ -13076,7 +13814,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/tree_desertpalm02",
    "matrix": [
     0.86869,
@@ -13105,7 +13843,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/tree_desertpalm02",
    "matrix": [
     0.96464,
@@ -13134,7 +13872,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 60,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     0.1236,
@@ -13154,7 +13892,7 @@
    "turret": true
   },
   {
-   "model": 54,
+   "model": 60,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     0.1236,
@@ -13174,7 +13912,7 @@
    "turret": true
   },
   {
-   "model": 54,
+   "model": 60,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     0.1236,
@@ -13194,7 +13932,7 @@
    "turret": true
   },
   {
-   "model": 54,
+   "model": 60,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     0.87207,
@@ -13214,7 +13952,7 @@
    "turret": true
   },
   {
-   "model": 54,
+   "model": 60,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     0.87207,
@@ -13234,7 +13972,7 @@
    "turret": true
   },
   {
-   "model": 54,
+   "model": 60,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     0.87207,
@@ -13708,7 +14446,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/tree_desertpalm02",
    "matrix": [
     -1.29839,
@@ -14225,7 +14963,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 57,
    "name": "xmodel/vehicle_opel_blitz_desert_static",
    "matrix": [
     0.66037,
@@ -14254,7 +14992,7 @@
    ]
   },
   {
-   "model": 53,
+   "model": 59,
    "name": "xmodel/vehicle_panzer_ii_static",
    "matrix": [
     0.583,
@@ -14283,7 +15021,7 @@
    ]
   },
   {
-   "model": 49,
+   "model": 53,
    "name": "xmodel/vehicle_africa_jeep_static",
    "matrix": [
     -0.97547,
@@ -14628,7 +15366,31 @@
    ]
   },
   {
-   "model": 53,
+   "model": 58,
+   "name": "xmodel/vehicle_panzer_ii_destroyed_static",
+   "matrix": [
+    -0.0,
+    1.0,
+    0.00131,
+    1047.0,
+    -0.99993,
+    2e-05,
+    -0.01163,
+    2751.0,
+    -0.01163,
+    -0.00131,
+    0.99993,
+    44.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "A",
+    "show": true,
+    "ifModel": "xmodel/toujane_jump"
+   }
+  },
+  {
+   "model": 59,
    "name": "xmodel/vehicle_panzer_ii_static",
    "matrix": [
     -0.0,
@@ -14644,10 +15406,39 @@
     0.99993,
     44.0
    ],
-   "gameobject": "bombzone"
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "A",
+    "show": false,
+    "ifModel": "xmodel/toujane_jump"
+   }
   },
   {
-   "model": 50,
+   "model": 54,
+   "name": "xmodel/vehicle_german_armored_car_d_static",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    2834.0,
+    0.0,
+    -1.0,
+    0.0,
+    1634.0,
+    -0.0,
+    0.0,
+    1.0,
+    44.0
+   ],
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": true,
+    "ifModel": "xmodel/toujane_jump"
+   }
+  },
+  {
+   "model": 55,
    "name": "xmodel/vehicle_german_armored_car_static",
    "matrix": [
     -1.0,
@@ -14663,7 +15454,12 @@
     1.0,
     44.0
    ],
-   "gameobject": "bombzone"
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false,
+    "ifModel": "xmodel/toujane_jump"
+   }
   },
   {
    "model": 28,
@@ -14761,7 +15557,7 @@
    "gameobject": "hq"
   },
   {
-   "model": 52,
+   "model": 57,
    "name": "xmodel/vehicle_opel_blitz_desert_static",
    "matrix": [
     -0.955,
@@ -14790,7 +15586,7 @@
    ]
   },
   {
-   "model": 53,
+   "model": 59,
    "name": "xmodel/vehicle_panzer_ii_static",
    "matrix": [
     -0.93121,
@@ -14819,7 +15615,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 60,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     -0.82413,
@@ -14839,7 +15635,7 @@
    "turret": true
   },
   {
-   "model": 54,
+   "model": 60,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     -0.82413,
@@ -14859,7 +15655,7 @@
    "turret": true
   },
   {
-   "model": 54,
+   "model": 60,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     -0.82413,
@@ -14879,7 +15675,7 @@
    "turret": true
   },
   {
-   "model": 54,
+   "model": 60,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     -0.82413,
@@ -14899,7 +15695,7 @@
    "turret": true
   },
   {
-   "model": 48,
+   "model": 52,
    "name": "xmodel/tree_desertpalm03",
    "matrix": [
     -0.9154,
@@ -17414,6 +18210,158 @@
     0.498,
     0.0
    ]
+  },
+  {
+   "model": 47,
+   "name": "xmodel/toujane_jump",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    2052.0,
+    0.0,
+    1.0,
+    0.0,
+    2107.0,
+    -0.0,
+    0.0,
+    1.0,
+    352.0
+   ],
+   "ifModel": "xmodel/toujane_jump"
+  },
+  {
+   "model": 46,
+   "name": "xmodel/toujane_axis_roof",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    2352.375,
+    0.0,
+    1.0,
+    0.0,
+    2088.278,
+    -0.0,
+    0.0,
+    1.0,
+    196.0
+   ],
+   "ifModel": "xmodel/toujane_jump"
+  },
+  {
+   "model": 46,
+   "name": "xmodel/toujane_axis_roof",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    1985.705,
+    0.0,
+    -1.0,
+    0.0,
+    2733.367,
+    -0.0,
+    0.0,
+    1.0,
+    196.0
+   ],
+   "ifModel": "xmodel/toujane_jump"
+  },
+  {
+   "model": 49,
+   "name": "xmodel/toujane_window",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    216.0,
+    0.0,
+    1.0,
+    0.0,
+    672.0,
+    -0.0,
+    0.0,
+    1.0,
+    43.0
+   ],
+   "ifModel": "xmodel/toujane_jump"
+  },
+  {
+   "model": 48,
+   "name": "xmodel/toujane_underA_bug",
+   "matrix": [
+    0.53369,
+    0.65906,
+    -0.52992,
+    1509.0,
+    -0.33349,
+    -0.41182,
+    -0.84805,
+    2207.0,
+    -0.77715,
+    0.62932,
+    0.0,
+    120.0
+   ],
+   "ifModel": "xmodel/toujane_jump"
+  },
+  {
+   "model": 48,
+   "name": "xmodel/toujane_underA_bug",
+   "matrix": [
+    -0.0,
+    0.86603,
+    -0.5,
+    1507.0,
+    -0.0,
+    -0.5,
+    -0.86603,
+    2207.0,
+    -1.0,
+    0.0,
+    0.0,
+    127.0
+   ],
+   "ifModel": "xmodel/toujane_jump"
+  },
+  {
+   "model": 48,
+   "name": "xmodel/toujane_underA_bug",
+   "matrix": [
+    0.53369,
+    0.65906,
+    -0.52992,
+    1558.0,
+    -0.33349,
+    -0.41182,
+    -0.84805,
+    2265.0,
+    -0.77715,
+    0.62932,
+    0.0,
+    103.0
+   ],
+   "ifModel": "xmodel/toujane_jump"
+  },
+  {
+   "model": 48,
+   "name": "xmodel/toujane_underA_bug",
+   "matrix": [
+    -0.0,
+    0.86603,
+    -0.5,
+    1556.0,
+    -0.0,
+    -0.5,
+    -0.86603,
+    2265.0,
+    -1.0,
+    0.0,
+    0.0,
+    110.0
+   ],
+   "ifModel": "xmodel/toujane_jump"
   }
  ],
  "fallback": []

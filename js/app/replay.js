@@ -99,7 +99,7 @@ export class Replay {
     const d = this.d, M = this.match;
     const scopeSel = el('select', { class: 'scope', title: 'Replay range', onchange: e => this.setScope(Number(e.target.value)) }, el('option', { value: '-1' }, 'Whole match'));
     d.rounds.forEach((r, i) => scopeSel.append(el('option', { value: String(i) },
-      (r.kind === 'knife' ? 'Knife round' : r.kind === 'prematch' ? 'Pre-match round' : r.kind === 'aftermatch' ? 'Aftermatch'
+      (r.kind === 'aftermatch' ? 'Aftermatch'
         : r.kind === 'interrupted' ? 'Round ' + r.label.replace('*', '') + ' (interrupted by a timeout)' : 'Round ' + r.label) + '  (' + fmtTime(M.live[i]) + ')')));
     this.scopeSel = scopeSel;
     const playBtn = el('button', { class: 'big', title: 'Play / pause (Space)', 'aria-label': 'Play / pause', onclick: () => this.pb.toggle() }, icon('play'));
@@ -177,7 +177,8 @@ export class Replay {
       if (e.type === 'bomb_defused') markers.push({ t: e.t, kind: 'defuse' });
     }
     if (i < 0) for (const t of d.halftimes || []) markers.push({ t, kind: 'half' });
-    this.timeline.set(range, markers, { skips: this.pb.skips, base: this.base, marks: this.timelineMarks(range) });
+    // (the clock's range: at least 1 ms long - the bar divides by its length)
+    this.timeline.set(this.pb.range.slice(), markers, { skips: this.pb.skips, base: this.base, marks: this.timelineMarks(range) });
     this.buildFeed(range);
     this.emit('scope');
     this.pb.invalidate();
@@ -195,13 +196,13 @@ export class Replay {
 
   /* ---------- kill & bomb feed (side panel) ---------- */
   /** the range's separators in time order, for the feed and the timeline's labels: each round (from the rounds the
-   *  timeline and the score pill use: knife / warm-up / after-match rounds by their kind), a warm-up phase outside
+   *  timeline and the score pill use: an after-match round by its kind), a warm-up phase outside
    *  every round, each halftime (the rounds' side swaps / zPAM's messages) */
   separators(range) {
     const d = this.d, seps = [];
     d.rounds.forEach((r, k) => {
       if (r.segEnd < range[0] || r.segStart > range[1]) return;
-      const label = r.kind === 'knife' ? 'Knife round' : r.kind === 'prematch' ? 'Warmup' : r.kind === 'aftermatch' ? 'After the match' : 'R' + r.label;
+      const label = r.kind === 'aftermatch' ? 'After the match' : 'R' + r.label;
       // (the jump: past the end of the round before - a round holds its last ms, and an interrupted one's successor starts there)
       seps.push({ t: Math.max(r.segStart, range[0]), label, round: k, jump: Math.max(this.match.live[k], k ? d.rounds[k - 1].segEnd + 1 : 0) });
     });
@@ -221,7 +222,7 @@ export class Replay {
       const r = s.round != null ? this.d.rounds[s.round] : null, at = at0(s);
       const numbered = !!r && (r.kind === 'round' || r.kind === 'interrupted');
       const score = this.scoreAt(at), when = fmtTime(at - this.base), scored = ', score ' + score.A + ':' + score.B;
-      const text = s.half ? 'HT' : numbered ? s.label : r && r.kind === 'knife' ? 'Knife' : r && r.kind === 'aftermatch' ? 'End' : 'Warmup';
+      const text = s.half ? 'HT' : numbered ? s.label : r && r.kind === 'aftermatch' ? 'End' : 'Warmup';
       return { t: Math.min(range[1], Math.max(range[0], at)), jump: at, round: s.round, half: !!s.half, text,
         short: numbered ? s.label.slice(1) : s.half ? 'HT' : text[0], n: numbered ? parseInt(r.label, 10) : null,
         title: s.half ? s.label + ', ' + when + scored : (numbered ? 'Round ' + r.label.replace('*', '') + (r.kind === 'interrupted' ? ' (interrupted)' : '') : s.label) + ' – ' + when + (numbered ? scored : '') };
@@ -336,7 +337,7 @@ export class Replay {
     const d = this.d, M = this.match;
     const r = M.roundAtOrBefore(t);
     const phase = C2.rounds.phaseAt(d.phases, t);
-    setText(this.rp.title, r ? (r.kind === 'round' ? 'Round ' + r.label : r.kind === 'knife' ? 'Knife round' : r.kind === 'prematch' ? 'Pre-match round'
+    setText(this.rp.title, r ? (r.kind === 'round' ? 'Round ' + r.label
       : r.kind === 'interrupted' ? 'Round ' + r.label.replace('*', '') + ' (interrupted)' : 'Aftermatch') : 'Before the first round');
     let st;
     if (phase === 'halftime') st = 'Halftime';
@@ -473,8 +474,7 @@ export class Replay {
   }
 
   destroy() {
-    this.pb.active = false;
-    this.pb.playing = false;
+    this.pb.stop();
     this.pb.onFrame = () => {};
     C2.mapStats.close();
     if (this.timeline && this.timeline.dispose) this.timeline.dispose();

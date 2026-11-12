@@ -46,11 +46,11 @@ C2.define('delta', function (C2) {
 
   /** |bits| bits: the remainder bits first, then whole bytes (MSG_ReadDeltaField); negative = signed */
   function readInt(msg, bits) {
-    const n = bits === -98 ? 32 : Math.abs(bits);
+    const n = Math.abs(bits);
     const rest = n & 7;
     let v = rest ? msg.readBits(rest) : 0;
     for (let i = rest; i < n; i += 8) v |= msg.readByte() << i;
-    if (bits < 0 && bits !== -98 && n < 32 && ((v >> (n - 1)) & 1)) v |= -1 << n;
+    if (bits < 0 && n < 32 && ((v >> (n - 1)) & 1)) v |= -1 << n;
     return v | 0;
   }
 

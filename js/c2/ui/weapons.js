@@ -5,7 +5,7 @@
  * weapon file; a rifle bullet through a player goes on at half damage. 1 m ≈ 39.37 units (the game's inches). */
 (function (C2) {
   'use strict';
-  const { el, clear, na, sortableTable, approx } = C2.ui;
+  const { el, clear, sortableTable, approx } = C2.ui;
   const W = C2.weapons;
   const M_PER_UNIT = 0.0254;
   const LOC = { head: 'locHead', helmet: 'locHelmet', neck: 'locNeck', torso_upper: 'locTorsoUpper', torso_lower: 'locTorsoLower',

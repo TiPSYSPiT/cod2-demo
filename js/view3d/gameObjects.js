@@ -11,7 +11,13 @@
  *   the aim trainer's targets and its "Map supports Training" sign) deleted unless zPAM's aim trainer set itself up
  *   (_aim_trainer.gsc, zPAM 4.09), which deletes them in turn unless the server is in ready-up - the map restarts
  *   into each ready-up (the warm-up before the match, the half-time) -; "poster" (poster_small, poster_big) deleted
- *   unless zPAM's scr_posters is on (default off; the demos do not carry it). */
+ *   unless zPAM's scr_posters is on (default off; the demos do not carry it).
+ * - ifModel (a placement, or its exploder): what only a level script brings about (export_maps.py script_models,
+ *   script_exploder_links) - the models the script spawns (mp_toujane_fix.gsc: the plaster under the A roof; zPAM's
+ *   maps/mp/_bug_fix.gsc, run by zPAM's versions of the stock maps' scripts: roof and window pieces on Toujane, box
+ *   lids, fence posts, shelves and stairs on Burgundy, Carentan, Dawnville, Harbor) and the exploder link zPAM gives
+ *   Toujane's bomb zones (the tank and the armoured car swapped for their wrecks). Kept only for a demo whose server
+ *   precached that model (DemoData.meta.precachedModels): the script ran - a server without zPAM has none of it. */
 const ALLOWED = {
   dm: ['dm'], tdm: ['sd', 'bombzone'], sd: ['sd', 'bombzone', 'blocker'], strat: ['sd', 'bombzone'],
   ctf: ['ctf'], hq: ['tdm'], htf: ['tdm'], re: ['re', 'retrieval']
@@ -21,6 +27,13 @@ const ALLOWED = {
 export function gameObjectFilter(gametype) {
   const allowed = ALLOWED[String(gametype || '').toLowerCase()];
   return name => !name || !allowed || allowed.includes(name);
+}
+
+/** the ifModel rule (above) for a demo: meta (DemoData.meta.precachedModels) -> (model | undefined) -> the level
+ *  script that needs it ran (no condition: true) */
+export function precachedRule(meta = {}) {
+  const have = new Set((meta.precachedModels || []).map(n => String(n).toLowerCase()));
+  return model => !model || have.has(String(model).toLowerCase());
 }
 
 /** the scripted parts' rule (above) for a demo: meta (DemoData.meta: zpamVersion, dvars) -> {visible(script,

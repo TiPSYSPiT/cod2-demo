@@ -377,18 +377,8 @@ export class ViewModel {
   light(camera, renderer) {
     const g = this.current, rig = g && g.userData.rig;
     if (!this.grid || !rig) return;
-    if (!rig.lit) {
-      if (rig.meshes.some(m => [].concat(m.material).some(x => !x.map || x.map.isDataTexture))) return;   // (still loading)
-      if (!this.gridU) this.gridU = gridUniforms();
-      rig.lit = 'compiling';
-      const lit = rig.meshes.map(m => { const l = [].concat(m.material).map(x => gridMaterial(cloneMaterial(x), this.gridU) || x); return l.length === 1 ? l[0] : l; });
-      const swap = () => { rig.lit = true; rig.meshes.forEach((m, i) => { m.material = lit[i]; }); this.changed(); };
-      if (renderer && renderer.compileAsync && renderer.extensions.has('KHR_parallel_shader_compile')) {
-        const tmp = new THREE.Scene();
-        rig.meshes.forEach((m, i) => { const c = m.clone(); c.material = lit[i]; tmp.add(c); });
-        renderer.compileAsync(tmp, camera, this.scene).then(swap, swap);
-      } else swap();
-    }
+    this.prepareLit(renderer);
+    if (!this.gridU) return;                        // (no rig lit yet: its textures still loading)
     const p = camera.position;
     if (!this.gridAt || Math.abs(this.gridAt.x - p.x) > 4 || Math.abs(this.gridAt.y - p.y) > 4 || Math.abs(this.gridAt.z - p.z) > 4) {
       this.gridSample = this.grid.sample(p.x, p.y, p.z - 4, this.gridSample || undefined);
@@ -422,6 +412,29 @@ export class ViewModel {
       renderer.autoClear = auto;
     }
     this.renderHud(renderer, camera);
+  }
+
+  /** the current rig's lit materials (the light grid's), their programs compiled in parallel first - View3D holds its
+   *  frame meanwhile (drawn unlit, the gun would flash bright for a frame or two in a dark room); sync (a video's
+   *  forced frame): swapped in at once, compiled at the draw. -> true while they compile */
+  prepareLit(renderer, sync = false) {
+    const g = this.current, rig = g && g.userData.rig;
+    if (!this.grid || !rig || rig.lit === true) return false;
+    if (rig.lit === 'compiling') { if (sync) rig.swap(); return !sync; }
+    if (rig.meshes.some(m => [].concat(m.material).some(x => !x.map || x.map.isDataTexture))) return false;   // (still loading)
+    if (!this.gridU) this.gridU = gridUniforms();
+    const lit = rig.meshes.map(m => { const l = [].concat(m.material).map(x => gridMaterial(cloneMaterial(x), this.gridU) || x); return l.length === 1 ? l[0] : l; });
+    rig.swap = () => { if (rig.lit === true) return; rig.lit = true; rig.swap = null; rig.meshes.forEach((m, i) => { m.material = lit[i]; }); this.changed(); };
+    if (!sync && renderer && renderer.compileAsync && renderer.extensions.has('KHR_parallel_shader_compile')) {
+      rig.lit = 'compiling';
+      const tmp = new THREE.Scene();
+      rig.meshes.forEach((m, i) => { const c = m.clone(); c.material = lit[i]; tmp.add(c); });
+      const swap = () => { if (rig.swap) rig.swap(); };
+      renderer.compileAsync(tmp, this.camera, this.scene).then(swap, swap);
+      return true;
+    }
+    rig.swap();
+    return false;
   }
 
   /** the view model's and its overlay's shader programs compiled in parallel (View3D.compileAhead) -> Promise */

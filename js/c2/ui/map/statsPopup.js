@@ -145,7 +145,7 @@
         el('span', { class: 'rp-dot', style: { '--tc': app.teamColor(p.team) } }),
         el('span', { class: 'stats-name', title: p.cleanName }, p.cleanName),
         el('button', { class: 'ib x-btn', title: 'close (Esc)', 'aria-label': 'Close', onclick: close }, C2.ui.icon('x', 's'))),
-      el('div', { class: 'stats-mode' }, seg, el('span', { class: 'muted' }, live ? '' : r ? (r.kind === 'round' ? 'Round ' + r.label : r.kind === 'knife' ? 'Knife round' : '') : '')));
+      el('div', { class: 'stats-mode' }, seg, el('span', { class: 'muted' }, live ? '' : r ? (r.kind === 'round' ? 'Round ' + r.label : '') : '')));
     if (!s) { P.box.append(el('div', { class: 'empty' }, 'No round at the playback time.')); }
     else {
       const kd = s.deaths ? s.kills / s.deaths : s.kills;

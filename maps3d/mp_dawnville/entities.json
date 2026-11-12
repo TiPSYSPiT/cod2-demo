@@ -11006,6 +11006,40 @@
    ],
    "scale": 1.5,
    "script": false
+  },
+  {
+   "model": "xmodel/furniture_bookshelveswide",
+   "origin": [
+    1410.0,
+    -15200.0,
+    -113.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/furniture_bookshelveswide",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    322.0,
+    -16117.0,
+    34.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    90.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/furniture_bookshelveswide",
+   "spawnedBy": "_bug_fix"
   }
  ],
  "hurt": [

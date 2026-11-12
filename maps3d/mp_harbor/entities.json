@@ -11037,6 +11037,108 @@
    ],
    "scale": 1.0,
    "script": false
+  },
+  {
+   "model": "xmodel/furniture_bookshelveswide",
+   "origin": [
+    -9706.0,
+    -6473.0,
+    64.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/furniture_bookshelveswide",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/furniture_bookshelveswide",
+   "origin": [
+    -9706.0,
+    -6473.0,
+    123.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/furniture_bookshelveswide",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/furniture_bookshelveswide",
+   "origin": [
+    -9706.0,
+    -5945.0,
+    64.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/furniture_bookshelveswide",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/furniture_bookshelveswide",
+   "origin": [
+    -9706.0,
+    -5945.0,
+    123.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/furniture_bookshelveswide",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/furniture_bookshelveswide",
+   "origin": [
+    -9706.0,
+    -5801.0,
+    64.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/furniture_bookshelveswide",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/furniture_bookshelveswide",
+   "origin": [
+    -9706.0,
+    -5801.0,
+    123.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/furniture_bookshelveswide",
+   "spawnedBy": "_bug_fix"
   }
  ],
  "hurt": [

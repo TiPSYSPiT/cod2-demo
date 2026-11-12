@@ -31,6 +31,7 @@ const MAX_VOICES = 48;
 export const MAX_SPEED = 2;      // faster: silent (every sound would play an octave up and pile up)
 const FADE = 0.04;               // s, the fade of a cut
 const FETCHES = 8;               // sound files downloaded at a time
+const NEAR_MS = 20000;           // the sounds of the next 20 s fetched at once (preloadNear)
 const WHIZ_RANGE = 140, WHIZ_MIN = 64, WHIZ_BACK = 16;
 let tablePromise = null;
 
@@ -264,7 +265,24 @@ export class SoundSystem {
     return out;
   }
   /** decode the files of every alias the demo plays */
-  preload() { for (const n of this.aliasNames()) for (const v of this.variants(n) || []) this.buffer(v.f); }
+  preload() { this.preloading = true; for (const n of this.aliasNames()) for (const v of this.variants(n) || []) this.buffer(v.f); }
+  /** decode the files of the aliases played from t on for NEAR_MS (both variants of a player's own sounds): the
+   *  first sounds after a load, before the full preload, which waits for the map's textures (a sound whose file is
+   *  not there yet is skipped - play) */
+  preloadNear(t) {
+    this.near = t;
+    const out = new Set(), add = n => {
+      if (!n || out.has(n)) return;
+      out.add(n);
+      for (const v of this.variants(n) || []) if (v.sec) add(v.sec);
+    };
+    const end = t + NEAR_MS;
+    for (let i = ub(this.times, t), n = ub(this.times, end); i < n; i++) { const e = this.events[i]; add(this.resolve(e[1], false)); add(this.resolve(e[1], true)); }
+    for (let i = ub(this.localTimes, t), n = ub(this.localTimes, end); i < n; i++) add(this.local[i].name);
+    for (const l of this.loops) if (l[0] < end && l[1] > t) add(l[2]);
+    if (ub(this.whizTimes, end) > ub(this.whizTimes, t)) add('whizby');
+    for (const n of out) for (const v of this.variants(n) || []) this.buffer(v.f);
+  }
 
   /** the channel volumes at t while client fp holds his breath (CG_AddPlayerWeapon: hold_breath.shock's
    *  cg_shock_volume_<channel>, faded in by DiffTrack at player_breath_snd_lerp 2 / s; back at once on letting go)
@@ -349,6 +367,8 @@ export class SoundSystem {
    *  watched in first person (his own sounds) */
   update(t, camera, pb, fp = null) {
     if (!this.enabled || !this.ctx) { this.lastT = t; return; }
+    // (until the full preload starts - after the map's textures: the sounds of the next seconds now, wherever playback is)
+    if (!this.preloading && (this.near == null || t < this.near || t > this.near + NEAR_MS - 5000)) this.preloadNear(t);
     const last = this.lastT, seeks = pb.seeks || 0;
     this.lastT = t;
     const cut = this.seeks != null && seeks !== this.seeks;

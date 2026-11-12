@@ -1,7 +1,7 @@
 /* Team identity, side swaps and clan tags.
  *
  * The client state says which side (axis / allies) a player is on. Teams swap
- * sides at halftime (and possibly after the knife round), so a team is defined
+ * sides at halftime (and at every overtime swap), so a team is defined
  * by its members: a "swap" is a moment when most playing clients change side
  * together; a player's team is his side normalised by the number of swaps
  * before that moment. Team A = the team on the axis side at the start. */

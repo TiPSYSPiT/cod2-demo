@@ -8,7 +8,6 @@ C2.define('msg', function (C2) {
   'use strict';
   const f32 = new Float32Array(1);
   const u32 = new Uint32Array(f32.buffer);
-  const i32 = new Int32Array(f32.buffer);
 
   /** Reinterpret a 32-bit pattern as float. */
   function u2f(u) { u32[0] = u; return f32[0]; }
@@ -102,10 +101,6 @@ C2.define('msg', function (C2) {
       else this.readcount = i + 1;
       return s;
     }
-
-    readAngle16() { return this.readShort() * (360 / 65536); }
-
-    get remaining() { return this.cursize - this.readcount; }
   }
 
   C2.msg = { Msg, u2f, f2u };

@@ -12,7 +12,7 @@ other servers: three.js r187 comes with the project in `vendor/`, the fonts (Int
 Font License) in `assets/fonts/`. The site is plain HTML, CSS and JavaScript with no build step and runs on
 GitHub Pages. The game data (3D maps, textures, 2D backgrounds, sounds, player models and animations,
 particle effects) is extracted once from your own game files with Python scripts (below) and committed
-with the site (the whole site without the sample demos: ~720 MB in ~3,900 files, the largest 14 MB).
+with the site (the whole site without the sample demos: ~750 MB in ~4,200 files, the largest 18 MB).
 
 ## Features
 
@@ -63,7 +63,10 @@ standing / crouched / prone), optionally a view line from the eyes using their r
 every name, with a badge for a player out of sight; remembered for the browser session), the mounted
 **MGs** turning with their user's aim (the user's own weapon hidden meanwhile), the S&D bomb-site targets
 swapped for their destroyed model when the bomb explodes, what the zPAM map pack's script removes left out (the aim
-trainer's targets and "Map supports Training" sign outside ready-up, the LAN posters), the game's own **particle effects**
+trainer's targets and "Map supports Training" sign outside ready-up, the LAN posters), the **models a map's level
+script spawns** (mp_toujane_fix: the plaster under the A roof; zPAM's fixes of the stock maps - roof and window pieces
+on Toujane, box lids, fence posts, shelves and stairs on Burgundy, Carentan, Dawnville and Harbor, and the wrecks of
+Toujane's tank and armoured car after the explosion - shown when the demo's server ran that script: it precached the model), the game's own **particle effects**
 (Display popover, *Effects*: *Game* = grenade explosions by the surface hit, smoke grenades, bullet impacts by
 bullet type and surface, scripted effects, the map's ambient smoke, dust and fires when the server ran
 them (stock servers; zPAM's rules switch them off), every shot's muzzle flash at the weapon's muzzle and the game's
@@ -276,12 +279,14 @@ sites, props), `topdown.webp` and `radar.webp`; shared textures in `maps3d/_text
 detail maps; normal maps with the specular power in blue, `<normal>+<specular>.webp`; the specular
 maps' colour), the index
 `maps3d/index.json`, the 2D registry `assets/maps/backgrounds.js` and the kill icons in `assets/killfeed/`.
-All 32 maps (15 stock + 17 zPAM map pack) take about 13 minutes with `--force` and ~610 MB (+ ~109 MB shared textures);
+All 32 maps (15 stock + 17 zPAM map pack) take about 13 minutes with `--force` and ~560 MB (+ ~119 MB shared textures);
 `world.json` also holds the map's fog (`setExpFog` / `setCullFog` of its level script) and each group's sort key and
 polygon offset level.
 `sound_export.py` writes
-`maps3d/_sound/` (746 aliases + zPAM's 3 redefinitions, ~28 MB, 22 kHz mono WAV, the volume falloff curves and
-hold_breath.shock's channel volumes; no map ambience / music). `characters_export.py` writes
+`maps3d/_sound/` (761 aliases + zPAM's 3 redefinitions, ~28 MB, 22 kHz mono WAV - also from zPAM's 48 kHz stereo
+WAVE_FORMAT_EXTENSIBLE files, its FG42 reload sounds -, the volume falloff curves and
+hold_breath.shock's channel volumes; no map ambience / music - but zPAM's own aliases in those folders: its aim
+trainer's piano notes and horse). `characters_export.py` writes
 `maps3d/_characters/` (116 body / head / helmet models skinned to their skeletons - with their coarser LODs and switch
 distances -, the 35 weapons' world models, the 7 grenade / rocket projectile models and the 58 models of the effects'
 model elements - shell casings, the burnt smoke grenade, debris -, each surface with its material's colour, normal +
@@ -289,7 +294,9 @@ specular and detail maps, tangents, alpha test or blend, sort key and polygon of
 sends, with their gun-hand notetracks, ~6 MB; textures into
 `maps3d/_textures/`). Without it the 3D view falls back to capsules. `fx_export.py` writes
 `maps3d/_fx/effects.json` (all 380 effects of `fx/` with their curves, the impact tables, the weapons'
-flash / explosion / shell eject effects and which are bolt-action, 102 effect materials; ~2.3 MB, textures into `maps3d/_textures/`); without it
+flash / explosion / shell eject effects and which are bolt-action, 102 effect materials; ~2.1 MB, textures into `maps3d/_textures/`
+at their own size up to `--tex-size` 1024 px; `--force` encodes the effect textures again, not the ones a map or a
+model wrote larger); without it
 the 3D view draws the marker clouds. `viewmodels_export.py` writes `maps3d/_characters/viewmodels.json + .bin`
 (the 44 weapons' gun models and the 9 hands models with their normal, specular and detail maps, ~3.7 MB, with each weapon file's view animation names, its
 numbers for the motion, the ADS and the crosshair, the reticle and scope overlay images) and `vanims.json + .bin`
@@ -428,10 +435,13 @@ The code is GPL-3.0 (see `LICENSE`). Projects it builds on or was checked agains
   does not change the demo format).
 - **[zPAM 3](https://github.com/eyza-cod2/zpam3)** by eyza-cod2: the competitive match logic of zPAM 3.34 /
   4.09 - rounds, halftimes, overtime, timeouts and scores from its server info and messages, its own assist
-  count and the scoreboard values it sends (`sd.gsc`, `_menu_scoreboard.gsc`). Last checked against zPAM 4.11
-  (2026-11-01; 4.10 / 4.11 add server-side match data - weapon-class kills, multi-kills, trades, leaver and
-  ready-up timeouts - and names the zPAM weapons in the round report; the game data the viewer exports stays
-  that of `zpam409.iwd` / `zpam_maps_v7.iwd`, whose files 4.11 left unchanged).
+  count and the scoreboard values it sends (`sd.gsc`, `_menu_scoreboard.gsc`). Last checked against zPAM 4.12
+  (2026-11-12; 4.10 / 4.11 add server-side match data - weapon-class kills, multi-kills, trades, leaver and
+  ready-up timeouts - and name the zPAM weapons in the round report; 4.12 adds an AFK kick, a longer server log and a
+  birthday event in ready-up with its own models, effects and sounds - those are in `zpam412.iwd`, not in the
+  exported game data: a 4.12 demo plays without them. The game data the viewer exports stays that of
+  `zpam409.iwd` / `zpam_maps_v7.iwd`; the map scripts read from it - `maps/mp/_bug_fix.gsc` and zPAM's versions of
+  the stock maps' scripts - are the same in 4.12).
 
 three.js is MIT (`vendor/three/LICENSE`); the fonts Inter and JetBrains Mono are under the SIL Open Font
 License 1.1 (`assets/fonts/*-OFL.txt`).

@@ -1,7 +1,7 @@
 /* Tab 1 - Scoreboard: per team, sortable, totals; spectators below. */
 (function (C2) {
   'use strict';
-  const { el, fmtTime, na, approx, sortableTable, teamClass } = C2.ui;
+  const { el, fmtTime, na, approx, sortableTable } = C2.ui;
 
   const kd = p => (p.kills == null || p.deaths == null ? null : p.deaths === 0 ? p.kills : p.kills / p.deaths);
   const fmtPct = v => Math.round(v) + ' %';
@@ -201,12 +201,12 @@
           class: 'tb', title: 'teams, players (by score) and team totals as JSON',
           onclick: () => app.download(C2.exportName.buildExportFileName(d), JSON.stringify(scoreJson(d), null, 2))
         }, C2.ui.icon('download', 's'), 'Download score (JSON)')),
-      el('p', { class: 'note' }, 'Only the regular match time counts: no warm-up, knife round, halftime, timeouts or aftermatch' +
+      el('p', { class: 'note' }, 'Only the regular match time counts: no warm-up, halftime, timeouts or aftermatch' +
         (d.match && d.match.end != null ? ' (official match end ' + fmtTime(d.match.end) + ')' : '') + '. ',
         'Values from the game’s scoreboard as it stood at the match end (reconnected players: sessions summed). ',
         'Click a column header to sort. ', el('span', { class: 'approx' }, '≈'), ' marks values completed from the kill feed. ',
         'HS %, TK, Nade K / D, Open, Trades, 3K+, Clutch, Plants and Defuses are not in the game’s scoreboard - they are counted from the kill feed and the bomb messages of this demo (only the recorded rounds; ',
-        'team kills only while a match round is live, not in warm-up, pauses or the knife round).',
+        'team kills only while a match round is live, not in warm-up or pauses).',
         columns.some(c => c.key === 'assists') ? ' A (assists) is zPAM’s own count from its scoreboard in the demo - CoD2 has no assists; ≈ there: an older zPAM scoreboard.' : '',
         columns.some(c => c.key === 'zpamDamage') ? ' zPAM pts and Dmg come from zPAM’s scoreboard too (Dmg: the damage to enemies who survived it).' : ''),
       sortableTable(columns, groups, { sortKey: 'score', asc: false, cls: 'scoreboard', rowClass: p => (p.isPov ? 'pov ' : '') })

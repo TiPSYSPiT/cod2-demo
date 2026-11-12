@@ -2,7 +2,7 @@
  "format": "cod2-demo3d-props/1",
  "map": "mp_dawnville",
  "file": "props.bin",
- "byteLength": 5138052,
+ "byteLength": 5144716,
  "models": [
   {
    "name": "xmodel/brush_grassflowerplants_squareclump",
@@ -1036,6 +1036,65 @@
    ]
   },
   {
+   "name": "xmodel/furniture_bookshelveswide",
+   "lod": "bookshelveswide0",
+   "flags": 0,
+   "mins": [
+    -95.22431182861328,
+    -95.22431182861328,
+    -95.22431182861328
+   ],
+   "maxs": [
+    95.22431182861328,
+    95.22431182861328,
+    95.22431182861328
+   ],
+   "vertices": 132,
+   "triangles": 66,
+   "geometry": {
+    "position": {
+     "offset": 53536,
+     "length": 1584
+    },
+    "normal": {
+     "offset": 55120,
+     "length": 528
+    },
+    "uv": {
+     "offset": 55648,
+     "length": 1056
+    },
+    "index": {
+     "offset": 56704,
+     "length": 792
+    },
+    "tangent": {
+     "offset": 57496,
+     "length": 528
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_furniture_piano01",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 198,
+     "texture": "_textures/furniture_piano01_c.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_furniture_piano01_n-gggr__furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_furniture_piano01_s-r-61g-61b-61_furniture_7634fb37.webp"
+    }
+   ],
+   "lodDistances": [
+    0.0
+   ]
+  },
+  {
    "name": "xmodel/furniture_cabinet",
    "lod": "dining_cabinet_lod10",
    "flags": 0,
@@ -1053,23 +1112,23 @@
    "triangles": 502,
    "geometry": {
     "position": {
-     "offset": 53536,
+     "offset": 58024,
      "length": 8736
     },
     "normal": {
-     "offset": 62272,
+     "offset": 66760,
      "length": 2912
     },
     "uv": {
-     "offset": 65184,
+     "offset": 69672,
      "length": 5824
     },
     "index": {
-     "offset": 71008,
+     "offset": 75496,
      "length": 6024
     },
     "tangent": {
-     "offset": 77032,
+     "offset": 81520,
      "length": 2912
     }
    },
@@ -1103,23 +1162,23 @@
      "triangles": 282,
      "geometry": {
       "position": {
-       "offset": 79944,
+       "offset": 84432,
        "length": 6048
       },
       "normal": {
-       "offset": 85992,
+       "offset": 90480,
        "length": 2016
       },
       "uv": {
-       "offset": 88008,
+       "offset": 92496,
        "length": 4032
       },
       "index": {
-       "offset": 92040,
+       "offset": 96528,
        "length": 3384
       },
       "tangent": {
-       "offset": 95424,
+       "offset": 99912,
        "length": 2016
       }
      },
@@ -1147,23 +1206,23 @@
      "triangles": 63,
      "geometry": {
       "position": {
-       "offset": 97440,
+       "offset": 101928,
        "length": 1428
       },
       "normal": {
-       "offset": 98868,
+       "offset": 103356,
        "length": 476
       },
       "uv": {
-       "offset": 99344,
+       "offset": 103832,
        "length": 952
       },
       "index": {
-       "offset": 100296,
+       "offset": 104784,
        "length": 756
       },
       "tangent": {
-       "offset": 101052,
+       "offset": 105540,
        "length": 476
       }
      },
@@ -1191,23 +1250,23 @@
      "triangles": 26,
      "geometry": {
       "position": {
-       "offset": 101528,
+       "offset": 106016,
        "length": 600
       },
       "normal": {
-       "offset": 102128,
+       "offset": 106616,
        "length": 200
       },
       "uv": {
-       "offset": 102328,
+       "offset": 106816,
        "length": 400
       },
       "index": {
-       "offset": 102728,
+       "offset": 107216,
        "length": 312
       },
       "tangent": {
-       "offset": 103040,
+       "offset": 107528,
        "length": 200
       }
      },
@@ -1249,23 +1308,23 @@
    "triangles": 128,
    "geometry": {
     "position": {
-     "offset": 103240,
+     "offset": 107728,
      "length": 2808
     },
     "normal": {
-     "offset": 106048,
+     "offset": 110536,
      "length": 936
     },
     "uv": {
-     "offset": 106984,
+     "offset": 111472,
      "length": 1872
     },
     "index": {
-     "offset": 108856,
+     "offset": 113344,
      "length": 1536
     },
     "tangent": {
-     "offset": 110392,
+     "offset": 114880,
      "length": 936
     }
    },
@@ -1308,23 +1367,23 @@
    "triangles": 128,
    "geometry": {
     "position": {
-     "offset": 111328,
+     "offset": 115816,
      "length": 2928
     },
     "normal": {
-     "offset": 114256,
+     "offset": 118744,
      "length": 976
     },
     "uv": {
-     "offset": 115232,
+     "offset": 119720,
      "length": 1952
     },
     "index": {
-     "offset": 117184,
+     "offset": 121672,
      "length": 1536
     },
     "tangent": {
-     "offset": 118720,
+     "offset": 123208,
      "length": 976
     }
    },
@@ -1367,23 +1426,23 @@
    "triangles": 887,
    "geometry": {
     "position": {
-     "offset": 119696,
+     "offset": 124184,
      "length": 15852
     },
     "normal": {
-     "offset": 135548,
+     "offset": 140036,
      "length": 5284
     },
     "uv": {
-     "offset": 140832,
+     "offset": 145320,
      "length": 10568
     },
     "index": {
-     "offset": 151400,
+     "offset": 155888,
      "length": 10644
     },
     "tangent": {
-     "offset": 162044,
+     "offset": 166532,
      "length": 5284
     }
    },
@@ -1416,23 +1475,23 @@
      "triangles": 263,
      "geometry": {
       "position": {
-       "offset": 167328,
+       "offset": 171816,
        "length": 6060
       },
       "normal": {
-       "offset": 173388,
+       "offset": 177876,
        "length": 2020
       },
       "uv": {
-       "offset": 175408,
+       "offset": 179896,
        "length": 4040
       },
       "index": {
-       "offset": 179448,
+       "offset": 183936,
        "length": 3156
       },
       "tangent": {
-       "offset": 182604,
+       "offset": 187092,
        "length": 2020
       }
      },
@@ -1460,23 +1519,23 @@
      "triangles": 114,
      "geometry": {
       "position": {
-       "offset": 184624,
+       "offset": 189112,
        "length": 2976
       },
       "normal": {
-       "offset": 187600,
+       "offset": 192088,
        "length": 992
       },
       "uv": {
-       "offset": 188592,
+       "offset": 193080,
        "length": 1984
       },
       "index": {
-       "offset": 190576,
+       "offset": 195064,
        "length": 1368
       },
       "tangent": {
-       "offset": 191944,
+       "offset": 196432,
        "length": 992
       }
      },
@@ -1518,23 +1577,23 @@
    "triangles": 491,
    "geometry": {
     "position": {
-     "offset": 192936,
+     "offset": 197424,
      "length": 4668
     },
     "normal": {
-     "offset": 197604,
+     "offset": 202092,
      "length": 1556
     },
     "uv": {
-     "offset": 199160,
+     "offset": 203648,
      "length": 3112
     },
     "index": {
-     "offset": 202272,
+     "offset": 206760,
      "length": 5892
     },
     "tangent": {
-     "offset": 208164,
+     "offset": 212652,
      "length": 1556
     }
    },
@@ -1567,23 +1626,23 @@
      "triangles": 164,
      "geometry": {
       "position": {
-       "offset": 209720,
+       "offset": 214208,
        "length": 2808
       },
       "normal": {
-       "offset": 212528,
+       "offset": 217016,
        "length": 936
       },
       "uv": {
-       "offset": 213464,
+       "offset": 217952,
        "length": 1872
       },
       "index": {
-       "offset": 215336,
+       "offset": 219824,
        "length": 1968
       },
       "tangent": {
-       "offset": 217304,
+       "offset": 221792,
        "length": 936
       }
      },
@@ -1611,23 +1670,23 @@
      "triangles": 64,
      "geometry": {
       "position": {
-       "offset": 218240,
+       "offset": 222728,
        "length": 1308
       },
       "normal": {
-       "offset": 219548,
+       "offset": 224036,
        "length": 436
       },
       "uv": {
-       "offset": 219984,
+       "offset": 224472,
        "length": 872
       },
       "index": {
-       "offset": 220856,
+       "offset": 225344,
        "length": 768
       },
       "tangent": {
-       "offset": 221624,
+       "offset": 226112,
        "length": 436
       }
      },
@@ -1669,23 +1728,23 @@
    "triangles": 420,
    "geometry": {
     "position": {
-     "offset": 222060,
+     "offset": 226548,
      "length": 7044
     },
     "normal": {
-     "offset": 229104,
+     "offset": 233592,
      "length": 2348
     },
     "uv": {
-     "offset": 231452,
+     "offset": 235940,
      "length": 4696
     },
     "index": {
-     "offset": 236148,
+     "offset": 240636,
      "length": 5040
     },
     "tangent": {
-     "offset": 241188,
+     "offset": 245676,
      "length": 2348
     }
    },
@@ -1728,23 +1787,23 @@
    "triangles": 206,
    "geometry": {
     "position": {
-     "offset": 243536,
+     "offset": 248024,
      "length": 2892
     },
     "normal": {
-     "offset": 246428,
+     "offset": 250916,
      "length": 964
     },
     "uv": {
-     "offset": 247392,
+     "offset": 251880,
      "length": 1928
     },
     "index": {
-     "offset": 249320,
+     "offset": 253808,
      "length": 2472
     },
     "tangent": {
-     "offset": 251792,
+     "offset": 256280,
      "length": 964
     }
    },
@@ -1776,23 +1835,23 @@
      "triangles": 96,
      "geometry": {
       "position": {
-       "offset": 252756,
+       "offset": 257244,
        "length": 1440
       },
       "normal": {
-       "offset": 254196,
+       "offset": 258684,
        "length": 480
       },
       "uv": {
-       "offset": 254676,
+       "offset": 259164,
        "length": 960
       },
       "index": {
-       "offset": 255636,
+       "offset": 260124,
        "length": 1152
       },
       "tangent": {
-       "offset": 256788,
+       "offset": 261276,
        "length": 480
       }
      },
@@ -1834,23 +1893,23 @@
    "triangles": 88,
    "geometry": {
     "position": {
-     "offset": 257268,
+     "offset": 261756,
      "length": 1512
     },
     "normal": {
-     "offset": 258780,
+     "offset": 263268,
      "length": 504
     },
     "uv": {
-     "offset": 259284,
+     "offset": 263772,
      "length": 1008
     },
     "index": {
-     "offset": 260292,
+     "offset": 264780,
      "length": 1056
     },
     "tangent": {
-     "offset": 261348,
+     "offset": 265836,
      "length": 504
     }
    },
@@ -1893,23 +1952,23 @@
    "triangles": 300,
    "geometry": {
     "position": {
-     "offset": 261852,
+     "offset": 266340,
      "length": 3564
     },
     "normal": {
-     "offset": 265416,
+     "offset": 269904,
      "length": 1188
     },
     "uv": {
-     "offset": 266604,
+     "offset": 271092,
      "length": 2376
     },
     "index": {
-     "offset": 268980,
+     "offset": 273468,
      "length": 3600
     },
     "tangent": {
-     "offset": 272580,
+     "offset": 277068,
      "length": 1188
     }
    },
@@ -1952,23 +2011,23 @@
    "triangles": 266,
    "geometry": {
     "position": {
-     "offset": 273768,
+     "offset": 278256,
      "length": 2964
     },
     "normal": {
-     "offset": 276732,
+     "offset": 281220,
      "length": 988
     },
     "uv": {
-     "offset": 277720,
+     "offset": 282208,
      "length": 1976
     },
     "index": {
-     "offset": 279696,
+     "offset": 284184,
      "length": 3192
     },
     "tangent": {
-     "offset": 282888,
+     "offset": 287376,
      "length": 988
     }
    },
@@ -2000,23 +2059,23 @@
      "triangles": 106,
      "geometry": {
       "position": {
-       "offset": 283876,
+       "offset": 288364,
        "length": 1512
       },
       "normal": {
-       "offset": 285388,
+       "offset": 289876,
        "length": 504
       },
       "uv": {
-       "offset": 285892,
+       "offset": 290380,
        "length": 1008
       },
       "index": {
-       "offset": 286900,
+       "offset": 291388,
        "length": 1272
       },
       "tangent": {
-       "offset": 288172,
+       "offset": 292660,
        "length": 504
       }
      },
@@ -2043,23 +2102,23 @@
      "triangles": 48,
      "geometry": {
       "position": {
-       "offset": 288676,
+       "offset": 293164,
        "length": 768
       },
       "normal": {
-       "offset": 289444,
+       "offset": 293932,
        "length": 256
       },
       "uv": {
-       "offset": 289700,
+       "offset": 294188,
        "length": 512
       },
       "index": {
-       "offset": 290212,
+       "offset": 294700,
        "length": 576
       },
       "tangent": {
-       "offset": 290788,
+       "offset": 295276,
        "length": 256
       }
      },
@@ -2100,23 +2159,23 @@
    "triangles": 144,
    "geometry": {
     "position": {
-     "offset": 291044,
+     "offset": 295532,
      "length": 3048
     },
     "normal": {
-     "offset": 294092,
+     "offset": 298580,
      "length": 1016
     },
     "uv": {
-     "offset": 295108,
+     "offset": 299596,
      "length": 2032
     },
     "index": {
-     "offset": 297140,
+     "offset": 301628,
      "length": 1728
     },
     "tangent": {
-     "offset": 298868,
+     "offset": 303356,
      "length": 1016
     }
    },
@@ -2159,23 +2218,23 @@
    "triangles": 4200,
    "geometry": {
     "position": {
-     "offset": 299884,
+     "offset": 304372,
      "length": 71016
     },
     "normal": {
-     "offset": 370900,
+     "offset": 375388,
      "length": 23672
     },
     "uv": {
-     "offset": 394572,
+     "offset": 399060,
      "length": 47344
     },
     "index": {
-     "offset": 441916,
+     "offset": 446404,
      "length": 50400
     },
     "tangent": {
-     "offset": 492316,
+     "offset": 496804,
      "length": 23672
     }
    },
@@ -2297,23 +2356,23 @@
    "triangles": 2333,
    "geometry": {
     "position": {
-     "offset": 515988,
+     "offset": 520476,
      "length": 45180
     },
     "normal": {
-     "offset": 561168,
+     "offset": 565656,
      "length": 15060
     },
     "uv": {
-     "offset": 576228,
+     "offset": 580716,
      "length": 30120
     },
     "index": {
-     "offset": 606348,
+     "offset": 610836,
      "length": 27996
     },
     "tangent": {
-     "offset": 634344,
+     "offset": 638832,
      "length": 15060
     }
    },
@@ -2404,19 +2463,19 @@
    "triangles": 106,
    "geometry": {
     "position": {
-     "offset": 709656,
+     "offset": 714144,
      "length": 1632
     },
     "normal": {
-     "offset": 711288,
+     "offset": 715776,
      "length": 544
     },
     "uv": {
-     "offset": 711832,
+     "offset": 716320,
      "length": 1088
     },
     "index": {
-     "offset": 712920,
+     "offset": 717408,
      "length": 1272
     }
    },
@@ -2458,23 +2517,23 @@
    "triangles": 580,
    "geometry": {
     "position": {
-     "offset": 714192,
+     "offset": 718680,
      "length": 6072
     },
     "normal": {
-     "offset": 720264,
+     "offset": 724752,
      "length": 2024
     },
     "uv": {
-     "offset": 722288,
+     "offset": 726776,
      "length": 4048
     },
     "index": {
-     "offset": 726336,
+     "offset": 730824,
      "length": 6960
     },
     "tangent": {
-     "offset": 733296,
+     "offset": 737784,
      "length": 2024
     }
    },
@@ -2520,23 +2579,23 @@
      "triangles": 252,
      "geometry": {
       "position": {
-       "offset": 735320,
+       "offset": 739808,
        "length": 3144
       },
       "normal": {
-       "offset": 738464,
+       "offset": 742952,
        "length": 1048
       },
       "uv": {
-       "offset": 739512,
+       "offset": 744000,
        "length": 2096
       },
       "index": {
-       "offset": 741608,
+       "offset": 746096,
        "length": 3024
       },
       "tangent": {
-       "offset": 744632,
+       "offset": 749120,
        "length": 1048
       }
      },
@@ -2577,23 +2636,23 @@
      "triangles": 140,
      "geometry": {
       "position": {
-       "offset": 745680,
+       "offset": 750168,
        "length": 2160
       },
       "normal": {
-       "offset": 747840,
+       "offset": 752328,
        "length": 720
       },
       "uv": {
-       "offset": 748560,
+       "offset": 753048,
        "length": 1440
       },
       "index": {
-       "offset": 750000,
+       "offset": 754488,
        "length": 1680
       },
       "tangent": {
-       "offset": 751680,
+       "offset": 756168,
        "length": 720
       }
      },
@@ -2648,23 +2707,23 @@
    "triangles": 294,
    "geometry": {
     "position": {
-     "offset": 752400,
+     "offset": 756888,
      "length": 3504
     },
     "normal": {
-     "offset": 755904,
+     "offset": 760392,
      "length": 1168
     },
     "uv": {
-     "offset": 757072,
+     "offset": 761560,
      "length": 2336
     },
     "index": {
-     "offset": 759408,
+     "offset": 763896,
      "length": 3528
     },
     "tangent": {
-     "offset": 762936,
+     "offset": 767424,
      "length": 1168
     }
    },
@@ -2720,23 +2779,23 @@
    "triangles": 130,
    "geometry": {
     "position": {
-     "offset": 764104,
+     "offset": 768592,
      "length": 1104
     },
     "normal": {
-     "offset": 765208,
+     "offset": 769696,
      "length": 368
     },
     "uv": {
-     "offset": 765576,
+     "offset": 770064,
      "length": 736
     },
     "index": {
-     "offset": 766312,
+     "offset": 770800,
      "length": 1560
     },
     "tangent": {
-     "offset": 767872,
+     "offset": 772360,
      "length": 368
     }
    },
@@ -2769,23 +2828,23 @@
      "triangles": 44,
      "geometry": {
       "position": {
-       "offset": 768240,
+       "offset": 772728,
        "length": 552
       },
       "normal": {
-       "offset": 768792,
+       "offset": 773280,
        "length": 184
       },
       "uv": {
-       "offset": 768976,
+       "offset": 773464,
        "length": 368
       },
       "index": {
-       "offset": 769344,
+       "offset": 773832,
        "length": 528
       },
       "tangent": {
-       "offset": 769872,
+       "offset": 774360,
        "length": 184
       }
      },
@@ -2813,23 +2872,23 @@
      "triangles": 10,
      "geometry": {
       "position": {
-       "offset": 770056,
+       "offset": 774544,
        "length": 192
       },
       "normal": {
-       "offset": 770248,
+       "offset": 774736,
        "length": 64
       },
       "uv": {
-       "offset": 770312,
+       "offset": 774800,
        "length": 128
       },
       "index": {
-       "offset": 770440,
+       "offset": 774928,
        "length": 120
       },
       "tangent": {
-       "offset": 770560,
+       "offset": 775048,
        "length": 64
       }
      },
@@ -2854,6 +2913,65 @@
    ]
   },
   {
+   "name": "xmodel/military_flak88_boxlid",
+   "lod": "flak88_boxlid0",
+   "flags": 0,
+   "mins": [
+    -20.133390426635742,
+    -20.133390426635742,
+    -20.133390426635742
+   ],
+   "maxs": [
+    20.133390426635742,
+    20.133390426635742,
+    20.133390426635742
+   ],
+   "vertices": 64,
+   "triangles": 32,
+   "geometry": {
+    "position": {
+     "offset": 775112,
+     "length": 768
+    },
+    "normal": {
+     "offset": 775880,
+     "length": 256
+    },
+    "uv": {
+     "offset": 776136,
+     "length": 512
+    },
+    "index": {
+     "offset": 776648,
+     "length": 384
+    },
+    "tangent": {
+     "offset": 777032,
+     "length": 256
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_flak88box",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 96,
+     "texture": "_textures/flak88_shell_local.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_flak88_shell_spec-rgbl-11.webp"
+    }
+   ],
+   "lodDistances": [
+    0.0
+   ]
+  },
+  {
    "name": "xmodel/military_sandbag_endsection_left",
    "lod": "sandbag_endsection_left0",
    "flags": 0,
@@ -2871,23 +2989,23 @@
    "triangles": 594,
    "geometry": {
     "position": {
-     "offset": 770624,
+     "offset": 777288,
      "length": 5736
     },
     "normal": {
-     "offset": 776360,
+     "offset": 783024,
      "length": 1912
     },
     "uv": {
-     "offset": 778272,
+     "offset": 784936,
      "length": 3824
     },
     "index": {
-     "offset": 782096,
+     "offset": 788760,
      "length": 7128
     },
     "tangent": {
-     "offset": 789224,
+     "offset": 795888,
      "length": 1912
     }
    },
@@ -2923,23 +3041,23 @@
      "triangles": 222,
      "geometry": {
       "position": {
-       "offset": 791136,
+       "offset": 797800,
        "length": 2652
       },
       "normal": {
-       "offset": 793788,
+       "offset": 800452,
        "length": 884
       },
       "uv": {
-       "offset": 794672,
+       "offset": 801336,
        "length": 1768
       },
       "index": {
-       "offset": 796440,
+       "offset": 803104,
        "length": 2664
       },
       "tangent": {
-       "offset": 799104,
+       "offset": 805768,
        "length": 884
       }
      },
@@ -2985,23 +3103,23 @@
    "triangles": 580,
    "geometry": {
     "position": {
-     "offset": 799988,
+     "offset": 806652,
      "length": 6204
     },
     "normal": {
-     "offset": 806192,
+     "offset": 812856,
      "length": 2068
     },
     "uv": {
-     "offset": 808260,
+     "offset": 814924,
      "length": 4136
     },
     "index": {
-     "offset": 812396,
+     "offset": 819060,
      "length": 6960
     },
     "tangent": {
-     "offset": 819356,
+     "offset": 826020,
      "length": 2068
     }
    },
@@ -3037,23 +3155,23 @@
      "triangles": 237,
      "geometry": {
       "position": {
-       "offset": 821424,
+       "offset": 828088,
        "length": 2568
       },
       "normal": {
-       "offset": 823992,
+       "offset": 830656,
        "length": 856
       },
       "uv": {
-       "offset": 824848,
+       "offset": 831512,
        "length": 1712
       },
       "index": {
-       "offset": 826560,
+       "offset": 833224,
        "length": 2844
       },
       "tangent": {
-       "offset": 829404,
+       "offset": 836068,
        "length": 856
       }
      },
@@ -3099,23 +3217,23 @@
    "triangles": 528,
    "geometry": {
     "position": {
-     "offset": 830260,
+     "offset": 836924,
      "length": 4476
     },
     "normal": {
-     "offset": 834736,
+     "offset": 841400,
      "length": 1492
     },
     "uv": {
-     "offset": 836228,
+     "offset": 842892,
      "length": 2984
     },
     "index": {
-     "offset": 839212,
+     "offset": 845876,
      "length": 6336
     },
     "tangent": {
-     "offset": 845548,
+     "offset": 852212,
      "length": 1492
     }
    },
@@ -3151,23 +3269,23 @@
      "triangles": 114,
      "geometry": {
       "position": {
-       "offset": 847040,
+       "offset": 853704,
        "length": 1476
       },
       "normal": {
-       "offset": 848516,
+       "offset": 855180,
        "length": 492
       },
       "uv": {
-       "offset": 849008,
+       "offset": 855672,
        "length": 984
       },
       "index": {
-       "offset": 849992,
+       "offset": 856656,
        "length": 1368
       },
       "tangent": {
-       "offset": 851360,
+       "offset": 858024,
        "length": 492
       }
      },
@@ -3213,23 +3331,23 @@
    "triangles": 354,
    "geometry": {
     "position": {
-     "offset": 851852,
+     "offset": 858516,
      "length": 2844
     },
     "normal": {
-     "offset": 854696,
+     "offset": 861360,
      "length": 948
     },
     "uv": {
-     "offset": 855644,
+     "offset": 862308,
      "length": 1896
     },
     "index": {
-     "offset": 857540,
+     "offset": 864204,
      "length": 4248
     },
     "tangent": {
-     "offset": 861788,
+     "offset": 868452,
      "length": 948
     }
    },
@@ -3266,23 +3384,23 @@
      "triangles": 108,
      "geometry": {
       "position": {
-       "offset": 862736,
+       "offset": 869400,
        "length": 1068
       },
       "normal": {
-       "offset": 863804,
+       "offset": 870468,
        "length": 356
       },
       "uv": {
-       "offset": 864160,
+       "offset": 870824,
        "length": 712
       },
       "index": {
-       "offset": 864872,
+       "offset": 871536,
        "length": 1296
       },
       "tangent": {
-       "offset": 866168,
+       "offset": 872832,
        "length": 356
       }
      },
@@ -3314,23 +3432,23 @@
      "triangles": 22,
      "geometry": {
       "position": {
-       "offset": 866524,
+       "offset": 873188,
        "length": 264
       },
       "normal": {
-       "offset": 866788,
+       "offset": 873452,
        "length": 88
       },
       "uv": {
-       "offset": 866876,
+       "offset": 873540,
        "length": 176
       },
       "index": {
-       "offset": 867052,
+       "offset": 873716,
        "length": 264
       },
       "tangent": {
-       "offset": 867316,
+       "offset": 873980,
        "length": 88
       }
      },
@@ -3376,23 +3494,23 @@
    "triangles": 236,
    "geometry": {
     "position": {
-     "offset": 867404,
+     "offset": 874068,
      "length": 1884
     },
     "normal": {
-     "offset": 869288,
+     "offset": 875952,
      "length": 628
     },
     "uv": {
-     "offset": 869916,
+     "offset": 876580,
      "length": 1256
     },
     "index": {
-     "offset": 871172,
+     "offset": 877836,
      "length": 2832
     },
     "tangent": {
-     "offset": 874004,
+     "offset": 880668,
      "length": 628
     }
    },
@@ -3429,23 +3547,23 @@
      "triangles": 84,
      "geometry": {
       "position": {
-       "offset": 874632,
+       "offset": 881296,
        "length": 864
       },
       "normal": {
-       "offset": 875496,
+       "offset": 882160,
        "length": 288
       },
       "uv": {
-       "offset": 875784,
+       "offset": 882448,
        "length": 576
       },
       "index": {
-       "offset": 876360,
+       "offset": 883024,
        "length": 1008
       },
       "tangent": {
-       "offset": 877368,
+       "offset": 884032,
        "length": 288
       }
      },
@@ -3477,23 +3595,23 @@
      "triangles": 14,
      "geometry": {
       "position": {
-       "offset": 877656,
+       "offset": 884320,
        "length": 168
       },
       "normal": {
-       "offset": 877824,
+       "offset": 884488,
        "length": 56
       },
       "uv": {
-       "offset": 877880,
+       "offset": 884544,
        "length": 112
       },
       "index": {
-       "offset": 877992,
+       "offset": 884656,
        "length": 168
       },
       "tangent": {
-       "offset": 878160,
+       "offset": 884824,
        "length": 56
       }
      },
@@ -3539,19 +3657,19 @@
    "triangles": 216,
    "geometry": {
     "position": {
-     "offset": 878216,
+     "offset": 884880,
      "length": 4452
     },
     "normal": {
-     "offset": 882668,
+     "offset": 889332,
      "length": 1484
     },
     "uv": {
-     "offset": 884152,
+     "offset": 890816,
      "length": 2968
     },
     "index": {
-     "offset": 887120,
+     "offset": 893784,
      "length": 2592
     }
    },
@@ -3607,23 +3725,23 @@
    "triangles": 164,
    "geometry": {
     "position": {
-     "offset": 889712,
+     "offset": 896376,
      "length": 3888
     },
     "normal": {
-     "offset": 893600,
+     "offset": 900264,
      "length": 1296
     },
     "uv": {
-     "offset": 894896,
+     "offset": 901560,
      "length": 2592
     },
     "index": {
-     "offset": 897488,
+     "offset": 904152,
      "length": 1968
     },
     "tangent": {
-     "offset": 899456,
+     "offset": 906120,
      "length": 1296
     }
    },
@@ -3656,23 +3774,23 @@
      "triangles": 82,
      "geometry": {
       "position": {
-       "offset": 900752,
+       "offset": 907416,
        "length": 2004
       },
       "normal": {
-       "offset": 902756,
+       "offset": 909420,
        "length": 668
       },
       "uv": {
-       "offset": 903424,
+       "offset": 910088,
        "length": 1336
       },
       "index": {
-       "offset": 904760,
+       "offset": 911424,
        "length": 984
       },
       "tangent": {
-       "offset": 905744,
+       "offset": 912408,
        "length": 668
       }
      },
@@ -3700,23 +3818,23 @@
      "triangles": 26,
      "geometry": {
       "position": {
-       "offset": 906412,
+       "offset": 913076,
        "length": 720
       },
       "normal": {
-       "offset": 907132,
+       "offset": 913796,
        "length": 240
       },
       "uv": {
-       "offset": 907372,
+       "offset": 914036,
        "length": 480
       },
       "index": {
-       "offset": 907852,
+       "offset": 914516,
        "length": 312
       },
       "tangent": {
-       "offset": 908164,
+       "offset": 914828,
        "length": 240
       }
      },
@@ -3758,23 +3876,23 @@
    "triangles": 104,
    "geometry": {
     "position": {
-     "offset": 908404,
+     "offset": 915068,
      "length": 2196
     },
     "normal": {
-     "offset": 910600,
+     "offset": 917264,
      "length": 732
     },
     "uv": {
-     "offset": 911332,
+     "offset": 917996,
      "length": 1464
     },
     "index": {
-     "offset": 912796,
+     "offset": 919460,
      "length": 1248
     },
     "tangent": {
-     "offset": 914044,
+     "offset": 920708,
      "length": 732
     }
    },
@@ -3817,23 +3935,23 @@
    "triangles": 72,
    "geometry": {
     "position": {
-     "offset": 914776,
+     "offset": 921440,
      "length": 1572
     },
     "normal": {
-     "offset": 916348,
+     "offset": 923012,
      "length": 524
     },
     "uv": {
-     "offset": 916872,
+     "offset": 923536,
      "length": 1048
     },
     "index": {
-     "offset": 917920,
+     "offset": 924584,
      "length": 864
     },
     "tangent": {
-     "offset": 918784,
+     "offset": 925448,
      "length": 524
     }
    },
@@ -3876,23 +3994,23 @@
    "triangles": 60,
    "geometry": {
     "position": {
-     "offset": 919308,
+     "offset": 925972,
      "length": 1392
     },
     "normal": {
-     "offset": 920700,
+     "offset": 927364,
      "length": 464
     },
     "uv": {
-     "offset": 921164,
+     "offset": 927828,
      "length": 928
     },
     "index": {
-     "offset": 922092,
+     "offset": 928756,
      "length": 720
     },
     "tangent": {
-     "offset": 922812,
+     "offset": 929476,
      "length": 464
     }
    },
@@ -3935,23 +4053,23 @@
    "triangles": 32,
    "geometry": {
     "position": {
-     "offset": 923276,
+     "offset": 929940,
      "length": 432
     },
     "normal": {
-     "offset": 923708,
+     "offset": 930372,
      "length": 144
     },
     "uv": {
-     "offset": 923852,
+     "offset": 930516,
      "length": 288
     },
     "index": {
-     "offset": 924140,
+     "offset": 930804,
      "length": 384
     },
     "tangent": {
-     "offset": 924524,
+     "offset": 931188,
      "length": 144
     }
    },
@@ -3983,23 +4101,23 @@
      "triangles": 8,
      "geometry": {
       "position": {
-       "offset": 924668,
+       "offset": 931332,
        "length": 108
       },
       "normal": {
-       "offset": 924776,
+       "offset": 931440,
        "length": 36
       },
       "uv": {
-       "offset": 924812,
+       "offset": 931476,
        "length": 72
       },
       "index": {
-       "offset": 924884,
+       "offset": 931548,
        "length": 96
       },
       "tangent": {
-       "offset": 924980,
+       "offset": 931644,
        "length": 36
       }
      },
@@ -4041,23 +4159,23 @@
    "triangles": 20,
    "geometry": {
     "position": {
-     "offset": 925016,
+     "offset": 931680,
      "length": 480
     },
     "normal": {
-     "offset": 925496,
+     "offset": 932160,
      "length": 160
     },
     "uv": {
-     "offset": 925656,
+     "offset": 932320,
      "length": 320
     },
     "index": {
-     "offset": 925976,
+     "offset": 932640,
      "length": 240
     },
     "tangent": {
-     "offset": 926216,
+     "offset": 932880,
      "length": 160
     }
    },
@@ -4090,23 +4208,23 @@
      "triangles": 12,
      "geometry": {
       "position": {
-       "offset": 926376,
+       "offset": 933040,
        "length": 288
       },
       "normal": {
-       "offset": 926664,
+       "offset": 933328,
        "length": 96
       },
       "uv": {
-       "offset": 926760,
+       "offset": 933424,
        "length": 192
       },
       "index": {
-       "offset": 926952,
+       "offset": 933616,
        "length": 144
       },
       "tangent": {
-       "offset": 927096,
+       "offset": 933760,
        "length": 96
       }
      },
@@ -4134,23 +4252,23 @@
      "triangles": 12,
      "geometry": {
       "position": {
-       "offset": 927192,
+       "offset": 933856,
        "length": 288
       },
       "normal": {
-       "offset": 927480,
+       "offset": 934144,
        "length": 96
       },
       "uv": {
-       "offset": 927576,
+       "offset": 934240,
        "length": 192
       },
       "index": {
-       "offset": 927768,
+       "offset": 934432,
        "length": 144
       },
       "tangent": {
-       "offset": 927912,
+       "offset": 934576,
        "length": 96
       }
      },
@@ -4192,23 +4310,23 @@
    "triangles": 96,
    "geometry": {
     "position": {
-     "offset": 928008,
+     "offset": 934672,
      "length": 1704
     },
     "normal": {
-     "offset": 929712,
+     "offset": 936376,
      "length": 568
     },
     "uv": {
-     "offset": 930280,
+     "offset": 936944,
      "length": 1136
     },
     "index": {
-     "offset": 931416,
+     "offset": 938080,
      "length": 1152
     },
     "tangent": {
-     "offset": 932568,
+     "offset": 939232,
      "length": 568
     }
    },
@@ -4240,23 +4358,23 @@
      "triangles": 72,
      "geometry": {
       "position": {
-       "offset": 933136,
+       "offset": 939800,
        "length": 1416
       },
       "normal": {
-       "offset": 934552,
+       "offset": 941216,
        "length": 472
       },
       "uv": {
-       "offset": 935024,
+       "offset": 941688,
        "length": 944
       },
       "index": {
-       "offset": 935968,
+       "offset": 942632,
        "length": 864
       },
       "tangent": {
-       "offset": 936832,
+       "offset": 943496,
        "length": 472
       }
      },
@@ -4283,23 +4401,23 @@
      "triangles": 48,
      "geometry": {
       "position": {
-       "offset": 937304,
+       "offset": 943968,
        "length": 840
       },
       "normal": {
-       "offset": 938144,
+       "offset": 944808,
        "length": 280
       },
       "uv": {
-       "offset": 938424,
+       "offset": 945088,
        "length": 560
       },
       "index": {
-       "offset": 938984,
+       "offset": 945648,
        "length": 576
       },
       "tangent": {
-       "offset": 939560,
+       "offset": 946224,
        "length": 280
       }
      },
@@ -4340,23 +4458,23 @@
    "triangles": 114,
    "geometry": {
     "position": {
-     "offset": 939840,
+     "offset": 946504,
      "length": 2016
     },
     "normal": {
-     "offset": 941856,
+     "offset": 948520,
      "length": 672
     },
     "uv": {
-     "offset": 942528,
+     "offset": 949192,
      "length": 1344
     },
     "index": {
-     "offset": 943872,
+     "offset": 950536,
      "length": 1368
     },
     "tangent": {
-     "offset": 945240,
+     "offset": 951904,
      "length": 672
     }
    },
@@ -4390,23 +4508,23 @@
      "triangles": 67,
      "geometry": {
       "position": {
-       "offset": 945912,
+       "offset": 952576,
        "length": 1608
       },
       "normal": {
-       "offset": 947520,
+       "offset": 954184,
        "length": 536
       },
       "uv": {
-       "offset": 948056,
+       "offset": 954720,
        "length": 1072
       },
       "index": {
-       "offset": 949128,
+       "offset": 955792,
        "length": 804
       },
       "tangent": {
-       "offset": 949932,
+       "offset": 956596,
        "length": 536
       }
      },
@@ -4434,23 +4552,23 @@
      "triangles": 55,
      "geometry": {
       "position": {
-       "offset": 950468,
+       "offset": 957132,
        "length": 1320
       },
       "normal": {
-       "offset": 951788,
+       "offset": 958452,
        "length": 440
       },
       "uv": {
-       "offset": 952228,
+       "offset": 958892,
        "length": 880
       },
       "index": {
-       "offset": 953108,
+       "offset": 959772,
        "length": 660
       },
       "tangent": {
-       "offset": 953768,
+       "offset": 960432,
        "length": 440
       }
      },
@@ -4478,23 +4596,23 @@
      "triangles": 23,
      "geometry": {
       "position": {
-       "offset": 954208,
+       "offset": 960872,
        "length": 588
       },
       "normal": {
-       "offset": 954796,
+       "offset": 961460,
        "length": 196
       },
       "uv": {
-       "offset": 954992,
+       "offset": 961656,
        "length": 392
       },
       "index": {
-       "offset": 955384,
+       "offset": 962048,
        "length": 276
       },
       "tangent": {
-       "offset": 955660,
+       "offset": 962324,
        "length": 196
       }
      },
@@ -4536,23 +4654,23 @@
    "triangles": 36,
    "geometry": {
     "position": {
-     "offset": 955856,
+     "offset": 962520,
      "length": 648
     },
     "normal": {
-     "offset": 956504,
+     "offset": 963168,
      "length": 216
     },
     "uv": {
-     "offset": 956720,
+     "offset": 963384,
      "length": 432
     },
     "index": {
-     "offset": 957152,
+     "offset": 963816,
      "length": 432
     },
     "tangent": {
-     "offset": 957584,
+     "offset": 964248,
      "length": 216
     }
    },
@@ -4595,23 +4713,23 @@
    "triangles": 108,
    "geometry": {
     "position": {
-     "offset": 957800,
+     "offset": 964464,
      "length": 1896
     },
     "normal": {
-     "offset": 959696,
+     "offset": 966360,
      "length": 632
     },
     "uv": {
-     "offset": 960328,
+     "offset": 966992,
      "length": 1264
     },
     "index": {
-     "offset": 961592,
+     "offset": 968256,
      "length": 1296
     },
     "tangent": {
-     "offset": 962888,
+     "offset": 969552,
      "length": 632
     }
    },
@@ -4654,23 +4772,23 @@
    "triangles": 120,
    "geometry": {
     "position": {
-     "offset": 963520,
+     "offset": 970184,
      "length": 2544
     },
     "normal": {
-     "offset": 966064,
+     "offset": 972728,
      "length": 848
     },
     "uv": {
-     "offset": 966912,
+     "offset": 973576,
      "length": 1696
     },
     "index": {
-     "offset": 968608,
+     "offset": 975272,
      "length": 1440
     },
     "tangent": {
-     "offset": 970048,
+     "offset": 976712,
      "length": 848
     }
    },
@@ -4713,23 +4831,23 @@
    "triangles": 90,
    "geometry": {
     "position": {
-     "offset": 970896,
+     "offset": 977560,
      "length": 1464
     },
     "normal": {
-     "offset": 972360,
+     "offset": 979024,
      "length": 488
     },
     "uv": {
-     "offset": 972848,
+     "offset": 979512,
      "length": 976
     },
     "index": {
-     "offset": 973824,
+     "offset": 980488,
      "length": 1080
     },
     "tangent": {
-     "offset": 974904,
+     "offset": 981568,
      "length": 488
     }
    },
@@ -4772,23 +4890,23 @@
    "triangles": 80,
    "geometry": {
     "position": {
-     "offset": 975392,
+     "offset": 982056,
      "length": 1272
     },
     "normal": {
-     "offset": 976664,
+     "offset": 983328,
      "length": 424
     },
     "uv": {
-     "offset": 977088,
+     "offset": 983752,
      "length": 848
     },
     "index": {
-     "offset": 977936,
+     "offset": 984600,
      "length": 960
     },
     "tangent": {
-     "offset": 978896,
+     "offset": 985560,
      "length": 424
     }
    },
@@ -4831,23 +4949,23 @@
    "triangles": 36,
    "geometry": {
     "position": {
-     "offset": 979320,
+     "offset": 985984,
      "length": 624
     },
     "normal": {
-     "offset": 979944,
+     "offset": 986608,
      "length": 208
     },
     "uv": {
-     "offset": 980152,
+     "offset": 986816,
      "length": 416
     },
     "index": {
-     "offset": 980568,
+     "offset": 987232,
      "length": 432
     },
     "tangent": {
-     "offset": 981000,
+     "offset": 987664,
      "length": 208
     }
    },
@@ -4890,23 +5008,23 @@
    "triangles": 104,
    "geometry": {
     "position": {
-     "offset": 981208,
+     "offset": 987872,
      "length": 1776
     },
     "normal": {
-     "offset": 982984,
+     "offset": 989648,
      "length": 592
     },
     "uv": {
-     "offset": 983576,
+     "offset": 990240,
      "length": 1184
     },
     "index": {
-     "offset": 984760,
+     "offset": 991424,
      "length": 1248
     },
     "tangent": {
-     "offset": 986008,
+     "offset": 992672,
      "length": 592
     }
    },
@@ -4949,23 +5067,23 @@
    "triangles": 3775,
    "geometry": {
     "position": {
-     "offset": 986600,
+     "offset": 993264,
      "length": 53460
     },
     "normal": {
-     "offset": 1040060,
+     "offset": 1046724,
      "length": 17820
     },
     "uv": {
-     "offset": 1057880,
+     "offset": 1064544,
      "length": 35640
     },
     "index": {
-     "offset": 1093520,
+     "offset": 1100184,
      "length": 45300
     },
     "tangent": {
-     "offset": 1138820,
+     "offset": 1145484,
      "length": 17820
     }
    },
@@ -4999,23 +5117,23 @@
      "triangles": 2133,
      "geometry": {
       "position": {
-       "offset": 1156640,
+       "offset": 1163304,
        "length": 32520
       },
       "normal": {
-       "offset": 1189160,
+       "offset": 1195824,
        "length": 10840
       },
       "uv": {
-       "offset": 1200000,
+       "offset": 1206664,
        "length": 21680
       },
       "index": {
-       "offset": 1221680,
+       "offset": 1228344,
        "length": 25596
       },
       "tangent": {
-       "offset": 1247276,
+       "offset": 1253940,
        "length": 10840
       }
      },
@@ -5043,23 +5161,23 @@
      "triangles": 512,
      "geometry": {
       "position": {
-       "offset": 1258116,
+       "offset": 1264780,
        "length": 9672
       },
       "normal": {
-       "offset": 1267788,
+       "offset": 1274452,
        "length": 3224
       },
       "uv": {
-       "offset": 1271012,
+       "offset": 1277676,
        "length": 6448
       },
       "index": {
-       "offset": 1277460,
+       "offset": 1284124,
        "length": 6144
       },
       "tangent": {
-       "offset": 1283604,
+       "offset": 1290268,
        "length": 3224
       }
      },
@@ -5087,23 +5205,23 @@
      "triangles": 256,
      "geometry": {
       "position": {
-       "offset": 1286828,
+       "offset": 1293492,
        "length": 5280
       },
       "normal": {
-       "offset": 1292108,
+       "offset": 1298772,
        "length": 1760
       },
       "uv": {
-       "offset": 1293868,
+       "offset": 1300532,
        "length": 3520
       },
       "index": {
-       "offset": 1297388,
+       "offset": 1304052,
        "length": 3072
       },
       "tangent": {
-       "offset": 1300460,
+       "offset": 1307124,
        "length": 1760
       }
      },
@@ -5145,23 +5263,23 @@
    "triangles": 1654,
    "geometry": {
     "position": {
-     "offset": 1302220,
+     "offset": 1308884,
      "length": 29772
     },
     "normal": {
-     "offset": 1331992,
+     "offset": 1338656,
      "length": 9924
     },
     "uv": {
-     "offset": 1341916,
+     "offset": 1348580,
      "length": 19848
     },
     "index": {
-     "offset": 1361764,
+     "offset": 1368428,
      "length": 19848
     },
     "tangent": {
-     "offset": 1381612,
+     "offset": 1388276,
      "length": 9924
     }
    },
@@ -5213,23 +5331,23 @@
      "triangles": 1122,
      "geometry": {
       "position": {
-       "offset": 1391536,
+       "offset": 1398200,
        "length": 22272
       },
       "normal": {
-       "offset": 1413808,
+       "offset": 1420472,
        "length": 7424
       },
       "uv": {
-       "offset": 1421232,
+       "offset": 1427896,
        "length": 14848
       },
       "index": {
-       "offset": 1436080,
+       "offset": 1442744,
        "length": 13464
       },
       "tangent": {
-       "offset": 1449544,
+       "offset": 1456208,
        "length": 7424
       }
      },
@@ -5275,23 +5393,23 @@
      "triangles": 808,
      "geometry": {
       "position": {
-       "offset": 1456968,
+       "offset": 1463632,
        "length": 17304
       },
       "normal": {
-       "offset": 1474272,
+       "offset": 1480936,
        "length": 5768
       },
       "uv": {
-       "offset": 1480040,
+       "offset": 1486704,
        "length": 11536
       },
       "index": {
-       "offset": 1491576,
+       "offset": 1498240,
        "length": 9696
       },
       "tangent": {
-       "offset": 1501272,
+       "offset": 1507936,
        "length": 5768
       }
      },
@@ -5337,23 +5455,23 @@
      "triangles": 534,
      "geometry": {
       "position": {
-       "offset": 1507040,
+       "offset": 1513704,
        "length": 11244
       },
       "normal": {
-       "offset": 1518284,
+       "offset": 1524948,
        "length": 3748
       },
       "uv": {
-       "offset": 1522032,
+       "offset": 1528696,
        "length": 7496
       },
       "index": {
-       "offset": 1529528,
+       "offset": 1536192,
        "length": 6408
       },
       "tangent": {
-       "offset": 1535936,
+       "offset": 1542600,
        "length": 3748
       }
      },
@@ -5413,23 +5531,23 @@
    "triangles": 1504,
    "geometry": {
     "position": {
-     "offset": 1539684,
+     "offset": 1546348,
      "length": 27780
     },
     "normal": {
-     "offset": 1567464,
+     "offset": 1574128,
      "length": 9260
     },
     "uv": {
-     "offset": 1576724,
+     "offset": 1583388,
      "length": 18520
     },
     "index": {
-     "offset": 1595244,
+     "offset": 1601908,
      "length": 18048
     },
     "tangent": {
-     "offset": 1613292,
+     "offset": 1619956,
      "length": 9260
     }
    },
@@ -5481,23 +5599,23 @@
      "triangles": 965,
      "geometry": {
       "position": {
-       "offset": 1622552,
+       "offset": 1629216,
        "length": 19512
       },
       "normal": {
-       "offset": 1642064,
+       "offset": 1648728,
        "length": 6504
       },
       "uv": {
-       "offset": 1648568,
+       "offset": 1655232,
        "length": 13008
       },
       "index": {
-       "offset": 1661576,
+       "offset": 1668240,
        "length": 11580
       },
       "tangent": {
-       "offset": 1673156,
+       "offset": 1679820,
        "length": 6504
       }
      },
@@ -5543,23 +5661,23 @@
      "triangles": 685,
      "geometry": {
       "position": {
-       "offset": 1679660,
+       "offset": 1686324,
        "length": 15108
       },
       "normal": {
-       "offset": 1694768,
+       "offset": 1701432,
        "length": 5036
       },
       "uv": {
-       "offset": 1699804,
+       "offset": 1706468,
        "length": 10072
       },
       "index": {
-       "offset": 1709876,
+       "offset": 1716540,
        "length": 8220
       },
       "tangent": {
-       "offset": 1718096,
+       "offset": 1724760,
        "length": 5036
       }
      },
@@ -5605,23 +5723,23 @@
      "triangles": 499,
      "geometry": {
       "position": {
-       "offset": 1723132,
+       "offset": 1729796,
        "length": 10608
       },
       "normal": {
-       "offset": 1733740,
+       "offset": 1740404,
        "length": 3536
       },
       "uv": {
-       "offset": 1737276,
+       "offset": 1743940,
        "length": 7072
       },
       "index": {
-       "offset": 1744348,
+       "offset": 1751012,
        "length": 5988
       },
       "tangent": {
-       "offset": 1750336,
+       "offset": 1757000,
        "length": 3536
       }
      },
@@ -5681,23 +5799,23 @@
    "triangles": 2251,
    "geometry": {
     "position": {
-     "offset": 1753872,
+     "offset": 1760536,
      "length": 42132
     },
     "normal": {
-     "offset": 1796004,
+     "offset": 1802668,
      "length": 14044
     },
     "uv": {
-     "offset": 1810048,
+     "offset": 1816712,
      "length": 28088
     },
     "index": {
-     "offset": 1838136,
+     "offset": 1844800,
      "length": 27012
     },
     "tangent": {
-     "offset": 1865148,
+     "offset": 1871812,
      "length": 14044
     }
    },
@@ -5749,23 +5867,23 @@
      "triangles": 1539,
      "geometry": {
       "position": {
-       "offset": 1879192,
+       "offset": 1885856,
        "length": 30132
       },
       "normal": {
-       "offset": 1909324,
+       "offset": 1915988,
        "length": 10044
       },
       "uv": {
-       "offset": 1919368,
+       "offset": 1926032,
        "length": 20088
       },
       "index": {
-       "offset": 1939456,
+       "offset": 1946120,
        "length": 18468
       },
       "tangent": {
-       "offset": 1957924,
+       "offset": 1964588,
        "length": 10044
       }
      },
@@ -5811,23 +5929,23 @@
      "triangles": 955,
      "geometry": {
       "position": {
-       "offset": 1967968,
+       "offset": 1974632,
        "length": 19632
       },
       "normal": {
-       "offset": 1987600,
+       "offset": 1994264,
        "length": 6544
       },
       "uv": {
-       "offset": 1994144,
+       "offset": 2000808,
        "length": 13088
       },
       "index": {
-       "offset": 2007232,
+       "offset": 2013896,
        "length": 11460
       },
       "tangent": {
-       "offset": 2018692,
+       "offset": 2025356,
        "length": 6544
       }
      },
@@ -5873,23 +5991,23 @@
      "triangles": 522,
      "geometry": {
       "position": {
-       "offset": 2025236,
+       "offset": 2031900,
        "length": 11928
       },
       "normal": {
-       "offset": 2037164,
+       "offset": 2043828,
        "length": 3976
       },
       "uv": {
-       "offset": 2041140,
+       "offset": 2047804,
        "length": 7952
       },
       "index": {
-       "offset": 2049092,
+       "offset": 2055756,
        "length": 6264
       },
       "tangent": {
-       "offset": 2055356,
+       "offset": 2062020,
        "length": 3976
       }
      },
@@ -5949,23 +6067,23 @@
    "triangles": 1765,
    "geometry": {
     "position": {
-     "offset": 2059332,
+     "offset": 2065996,
      "length": 32892
     },
     "normal": {
-     "offset": 2092224,
+     "offset": 2098888,
      "length": 10964
     },
     "uv": {
-     "offset": 2103188,
+     "offset": 2109852,
      "length": 21928
     },
     "index": {
-     "offset": 2125116,
+     "offset": 2131780,
      "length": 21180
     },
     "tangent": {
-     "offset": 2146296,
+     "offset": 2152960,
      "length": 10964
     }
    },
@@ -6017,23 +6135,23 @@
      "triangles": 702,
      "geometry": {
       "position": {
-       "offset": 2157260,
+       "offset": 2163924,
        "length": 16812
       },
       "normal": {
-       "offset": 2174072,
+       "offset": 2180736,
        "length": 5604
       },
       "uv": {
-       "offset": 2179676,
+       "offset": 2186340,
        "length": 11208
       },
       "index": {
-       "offset": 2190884,
+       "offset": 2197548,
        "length": 8424
       },
       "tangent": {
-       "offset": 2199308,
+       "offset": 2205972,
        "length": 5604
       }
      },
@@ -6079,23 +6197,23 @@
      "triangles": 416,
      "geometry": {
       "position": {
-       "offset": 2204912,
+       "offset": 2211576,
        "length": 9516
       },
       "normal": {
-       "offset": 2214428,
+       "offset": 2221092,
        "length": 3172
       },
       "uv": {
-       "offset": 2217600,
+       "offset": 2224264,
        "length": 6344
       },
       "index": {
-       "offset": 2223944,
+       "offset": 2230608,
        "length": 4992
       },
       "tangent": {
-       "offset": 2228936,
+       "offset": 2235600,
        "length": 3172
       }
      },
@@ -6141,23 +6259,23 @@
      "triangles": 288,
      "geometry": {
       "position": {
-       "offset": 2232108,
+       "offset": 2238772,
        "length": 5700
       },
       "normal": {
-       "offset": 2237808,
+       "offset": 2244472,
        "length": 1900
       },
       "uv": {
-       "offset": 2239708,
+       "offset": 2246372,
        "length": 3800
       },
       "index": {
-       "offset": 2243508,
+       "offset": 2250172,
        "length": 3456
       },
       "tangent": {
-       "offset": 2246964,
+       "offset": 2253628,
        "length": 1900
       }
      },
@@ -6217,23 +6335,23 @@
    "triangles": 7990,
    "geometry": {
     "position": {
-     "offset": 2248864,
+     "offset": 2255528,
      "length": 97356
     },
     "normal": {
-     "offset": 2346220,
+     "offset": 2352884,
      "length": 32452
     },
     "uv": {
-     "offset": 2378672,
+     "offset": 2385336,
      "length": 64904
     },
     "index": {
-     "offset": 2443576,
+     "offset": 2450240,
      "length": 95880
     },
     "tangent": {
-     "offset": 2539456,
+     "offset": 2546120,
      "length": 32452
     }
    },
@@ -6281,23 +6399,23 @@
      "triangles": 3034,
      "geometry": {
       "position": {
-       "offset": 2571908,
+       "offset": 2578572,
        "length": 50856
       },
       "normal": {
-       "offset": 2622764,
+       "offset": 2629428,
        "length": 16952
       },
       "uv": {
-       "offset": 2639716,
+       "offset": 2646380,
        "length": 33904
       },
       "index": {
-       "offset": 2673620,
+       "offset": 2680284,
        "length": 36408
       },
       "tangent": {
-       "offset": 2710028,
+       "offset": 2716692,
        "length": 16952
       }
      },
@@ -6325,23 +6443,23 @@
      "triangles": 573,
      "geometry": {
       "position": {
-       "offset": 2726980,
+       "offset": 2733644,
        "length": 9468
       },
       "normal": {
-       "offset": 2736448,
+       "offset": 2743112,
        "length": 3156
       },
       "uv": {
-       "offset": 2739604,
+       "offset": 2746268,
        "length": 6312
       },
       "index": {
-       "offset": 2745916,
+       "offset": 2752580,
        "length": 6876
       },
       "tangent": {
-       "offset": 2752792,
+       "offset": 2759456,
        "length": 3156
       }
      },
@@ -6383,23 +6501,23 @@
    "triangles": 5734,
    "geometry": {
     "position": {
-     "offset": 2755948,
+     "offset": 2762612,
      "length": 88800
     },
     "normal": {
-     "offset": 2844748,
+     "offset": 2851412,
      "length": 29600
     },
     "uv": {
-     "offset": 2874348,
+     "offset": 2881012,
      "length": 59200
     },
     "index": {
-     "offset": 2933548,
+     "offset": 2940212,
      "length": 68808
     },
     "tangent": {
-     "offset": 3002356,
+     "offset": 3009020,
      "length": 29600
     }
    },
@@ -6476,23 +6594,23 @@
      "triangles": 3234,
      "geometry": {
       "position": {
-       "offset": 3031956,
+       "offset": 3038620,
        "length": 54552
       },
       "normal": {
-       "offset": 3086508,
+       "offset": 3093172,
        "length": 18184
       },
       "uv": {
-       "offset": 3104692,
+       "offset": 3111356,
        "length": 36368
       },
       "index": {
-       "offset": 3141060,
+       "offset": 3147724,
        "length": 38808
       },
       "tangent": {
-       "offset": 3179868,
+       "offset": 3186532,
        "length": 18184
       }
      },
@@ -6534,23 +6652,23 @@
      "triangles": 1608,
      "geometry": {
       "position": {
-       "offset": 3198052,
+       "offset": 3204716,
        "length": 29616
       },
       "normal": {
-       "offset": 3227668,
+       "offset": 3234332,
        "length": 9872
       },
       "uv": {
-       "offset": 3237540,
+       "offset": 3244204,
        "length": 19744
       },
       "index": {
-       "offset": 3257284,
+       "offset": 3263948,
        "length": 19296
       },
       "tangent": {
-       "offset": 3276580,
+       "offset": 3283244,
        "length": 9872
       }
      },
@@ -6592,23 +6710,23 @@
      "triangles": 805,
      "geometry": {
       "position": {
-       "offset": 3286452,
+       "offset": 3293116,
        "length": 15804
       },
       "normal": {
-       "offset": 3302256,
+       "offset": 3308920,
        "length": 5268
       },
       "uv": {
-       "offset": 3307524,
+       "offset": 3314188,
        "length": 10536
       },
       "index": {
-       "offset": 3318060,
+       "offset": 3324724,
        "length": 9660
       },
       "tangent": {
-       "offset": 3327720,
+       "offset": 3334384,
        "length": 5268
       }
      },
@@ -6664,23 +6782,23 @@
    "triangles": 4806,
    "geometry": {
     "position": {
-     "offset": 3332988,
+     "offset": 3339652,
      "length": 74976
     },
     "normal": {
-     "offset": 3407964,
+     "offset": 3414628,
      "length": 24992
     },
     "uv": {
-     "offset": 3432956,
+     "offset": 3439620,
      "length": 49984
     },
     "index": {
-     "offset": 3482940,
+     "offset": 3489604,
      "length": 57672
     },
     "tangent": {
-     "offset": 3540612,
+     "offset": 3547276,
      "length": 24992
     }
    },
@@ -6743,23 +6861,23 @@
      "triangles": 2596,
      "geometry": {
       "position": {
-       "offset": 3565604,
+       "offset": 3572268,
        "length": 46428
       },
       "normal": {
-       "offset": 3612032,
+       "offset": 3618696,
        "length": 15476
       },
       "uv": {
-       "offset": 3627508,
+       "offset": 3634172,
        "length": 30952
       },
       "index": {
-       "offset": 3658460,
+       "offset": 3665124,
        "length": 31152
       },
       "tangent": {
-       "offset": 3689612,
+       "offset": 3696276,
        "length": 15476
       }
      },
@@ -6801,23 +6919,23 @@
      "triangles": 1388,
      "geometry": {
       "position": {
-       "offset": 3705088,
+       "offset": 3711752,
        "length": 26340
       },
       "normal": {
-       "offset": 3731428,
+       "offset": 3738092,
        "length": 8780
       },
       "uv": {
-       "offset": 3740208,
+       "offset": 3746872,
        "length": 17560
       },
       "index": {
-       "offset": 3757768,
+       "offset": 3764432,
        "length": 16656
       },
       "tangent": {
-       "offset": 3774424,
+       "offset": 3781088,
        "length": 8780
       }
      },
@@ -6859,23 +6977,23 @@
      "triangles": 951,
      "geometry": {
       "position": {
-       "offset": 3783204,
+       "offset": 3789868,
        "length": 20052
       },
       "normal": {
-       "offset": 3803256,
+       "offset": 3809920,
        "length": 6684
       },
       "uv": {
-       "offset": 3809940,
+       "offset": 3816604,
        "length": 13368
       },
       "index": {
-       "offset": 3823308,
+       "offset": 3829972,
        "length": 11412
       },
       "tangent": {
-       "offset": 3834720,
+       "offset": 3841384,
        "length": 6684
       }
      },
@@ -6931,23 +7049,23 @@
    "triangles": 5338,
    "geometry": {
     "position": {
-     "offset": 3841404,
+     "offset": 3848068,
      "length": 82836
     },
     "normal": {
-     "offset": 3924240,
+     "offset": 3930904,
      "length": 27612
     },
     "uv": {
-     "offset": 3951852,
+     "offset": 3958516,
      "length": 55224
     },
     "index": {
-     "offset": 4007076,
+     "offset": 4013740,
      "length": 64056
     },
     "tangent": {
-     "offset": 4071132,
+     "offset": 4077796,
      "length": 27612
     }
    },
@@ -7039,23 +7157,23 @@
      "triangles": 2454,
      "geometry": {
       "position": {
-       "offset": 4098744,
+       "offset": 4105408,
        "length": 42540
       },
       "normal": {
-       "offset": 4141284,
+       "offset": 4147948,
        "length": 14180
       },
       "uv": {
-       "offset": 4155464,
+       "offset": 4162128,
        "length": 28360
       },
       "index": {
-       "offset": 4183824,
+       "offset": 4190488,
        "length": 29448
       },
       "tangent": {
-       "offset": 4213272,
+       "offset": 4219936,
        "length": 14180
       }
      },
@@ -7097,23 +7215,23 @@
      "triangles": 1251,
      "geometry": {
       "position": {
-       "offset": 4227452,
+       "offset": 4234116,
        "length": 20856
       },
       "normal": {
-       "offset": 4248308,
+       "offset": 4254972,
        "length": 6952
       },
       "uv": {
-       "offset": 4255260,
+       "offset": 4261924,
        "length": 13904
       },
       "index": {
-       "offset": 4269164,
+       "offset": 4275828,
        "length": 15012
       },
       "tangent": {
-       "offset": 4284176,
+       "offset": 4290840,
        "length": 6952
       }
      },
@@ -7155,23 +7273,23 @@
      "triangles": 694,
      "geometry": {
       "position": {
-       "offset": 4291128,
+       "offset": 4297792,
        "length": 12528
       },
       "normal": {
-       "offset": 4303656,
+       "offset": 4310320,
        "length": 4176
       },
       "uv": {
-       "offset": 4307832,
+       "offset": 4314496,
        "length": 8352
       },
       "index": {
-       "offset": 4316184,
+       "offset": 4322848,
        "length": 8328
       },
       "tangent": {
-       "offset": 4324512,
+       "offset": 4331176,
        "length": 4176
       }
      },
@@ -7227,23 +7345,23 @@
    "triangles": 7086,
    "geometry": {
     "position": {
-     "offset": 4328688,
+     "offset": 4335352,
      "length": 103956
     },
     "normal": {
-     "offset": 4432644,
+     "offset": 4439308,
      "length": 34652
     },
     "uv": {
-     "offset": 4467296,
+     "offset": 4473960,
      "length": 69304
     },
     "index": {
-     "offset": 4536600,
+     "offset": 4543264,
      "length": 85032
     },
     "tangent": {
-     "offset": 4621632,
+     "offset": 4628296,
      "length": 34652
     }
    },
@@ -7337,23 +7455,23 @@
      "triangles": 4010,
      "geometry": {
       "position": {
-       "offset": 4656284,
+       "offset": 4662948,
        "length": 64116
       },
       "normal": {
-       "offset": 4720400,
+       "offset": 4727064,
        "length": 21372
       },
       "uv": {
-       "offset": 4741772,
+       "offset": 4748436,
        "length": 42744
       },
       "index": {
-       "offset": 4784516,
+       "offset": 4791180,
        "length": 48120
       },
       "tangent": {
-       "offset": 4832636,
+       "offset": 4839300,
        "length": 21372
       }
      },
@@ -7411,23 +7529,23 @@
      "triangles": 1928,
      "geometry": {
       "position": {
-       "offset": 4854008,
+       "offset": 4860672,
        "length": 32736
       },
       "normal": {
-       "offset": 4886744,
+       "offset": 4893408,
        "length": 10912
       },
       "uv": {
-       "offset": 4897656,
+       "offset": 4904320,
        "length": 21824
       },
       "index": {
-       "offset": 4919480,
+       "offset": 4926144,
        "length": 23136
       },
       "tangent": {
-       "offset": 4942616,
+       "offset": 4949280,
        "length": 10912
       }
      },
@@ -7485,23 +7603,23 @@
      "triangles": 985,
      "geometry": {
       "position": {
-       "offset": 4953528,
+       "offset": 4960192,
        "length": 16356
       },
       "normal": {
-       "offset": 4969884,
+       "offset": 4976548,
        "length": 5452
       },
       "uv": {
-       "offset": 4975336,
+       "offset": 4982000,
        "length": 10904
       },
       "index": {
-       "offset": 4986240,
+       "offset": 4992904,
        "length": 11820
       },
       "tangent": {
-       "offset": 4998060,
+       "offset": 5004724,
        "length": 5452
       }
      },
@@ -7573,23 +7691,23 @@
    "triangles": 1356,
    "geometry": {
     "position": {
-     "offset": 5003512,
+     "offset": 5010176,
      "length": 24132
     },
     "normal": {
-     "offset": 5027644,
+     "offset": 5034308,
      "length": 8044
     },
     "uv": {
-     "offset": 5035688,
+     "offset": 5042352,
      "length": 16088
     },
     "index": {
-     "offset": 5051776,
+     "offset": 5058440,
      "length": 16272
     },
     "tangent": {
-     "offset": 5068048,
+     "offset": 5074712,
      "length": 8044
     }
    },
@@ -7682,23 +7800,23 @@
    "triangles": 1297,
    "geometry": {
     "position": {
-     "offset": 5076092,
+     "offset": 5082756,
      "length": 19884
     },
     "normal": {
-     "offset": 5095976,
+     "offset": 5102640,
      "length": 6628
     },
     "uv": {
-     "offset": 5102604,
+     "offset": 5109268,
      "length": 13256
     },
     "index": {
-     "offset": 5115860,
+     "offset": 5122524,
      "length": 15564
     },
     "tangent": {
-     "offset": 5131424,
+     "offset": 5138088,
      "length": 6628
     }
    },
@@ -7776,7 +7894,7 @@
  ],
  "instances": [
   {
-   "model": 59,
+   "model": 61,
    "name": "xmodel/vehicle_tiger_woodland_d_static",
    "matrix": [
     -0.85296,
@@ -7805,7 +7923,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -0.69738,
@@ -7823,7 +7941,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -0.49436,
@@ -7841,7 +7959,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 54,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.35889,
@@ -7870,7 +7988,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -1.0,
@@ -7888,7 +8006,7 @@
    ]
   },
   {
-   "model": 55,
+   "model": 57,
    "name": "xmodel/vehicle_civilian_car_d",
    "matrix": [
     -0.97437,
@@ -7917,7 +8035,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     1.0,
@@ -7935,7 +8053,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     1.0,
@@ -7953,7 +8071,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -0.69489,
@@ -7971,7 +8089,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 54,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.69206,
@@ -7989,7 +8107,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 54,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     1.0,
@@ -8007,7 +8125,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.86623,
@@ -8025,7 +8143,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.96572,
@@ -8043,7 +8161,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 54,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.91924,
@@ -8061,7 +8179,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -0.70711,
@@ -8079,7 +8197,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -0.78776,
@@ -8097,7 +8215,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -1.4,
@@ -8115,7 +8233,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.49964,
@@ -8133,7 +8251,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.96572,
@@ -8151,7 +8269,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -0.00086,
@@ -8169,7 +8287,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.49964,
@@ -8187,7 +8305,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.96572,
@@ -8205,7 +8323,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -0.00086,
@@ -8223,7 +8341,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.70711,
@@ -8241,7 +8359,7 @@
    ]
   },
   {
-   "model": 56,
+   "model": 58,
    "name": "xmodel/vehicle_halftrack_mg_woodland_d_static",
    "matrix": [
     -0.67482,
@@ -8270,7 +8388,7 @@
    ]
   },
   {
-   "model": 49,
+   "model": 51,
    "name": "xmodel/prop_tombstone7",
    "matrix": [
     0.9913,
@@ -8299,7 +8417,7 @@
    ]
   },
   {
-   "model": 48,
+   "model": 50,
    "name": "xmodel/prop_tombstone6",
    "matrix": [
     0.97815,
@@ -8328,7 +8446,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 49,
    "name": "xmodel/prop_tombstone5",
    "matrix": [
     1.0,
@@ -8357,7 +8475,7 @@
    ]
   },
   {
-   "model": 46,
+   "model": 48,
    "name": "xmodel/prop_tombstone4",
    "matrix": [
     0.96126,
@@ -8386,7 +8504,7 @@
    ]
   },
   {
-   "model": 45,
+   "model": 47,
    "name": "xmodel/prop_tombstone3",
    "matrix": [
     1.0,
@@ -8415,7 +8533,7 @@
    ]
   },
   {
-   "model": 44,
+   "model": 46,
    "name": "xmodel/prop_tombstone2",
    "matrix": [
     -0.0,
@@ -8433,7 +8551,7 @@
    ]
   },
   {
-   "model": 43,
+   "model": 45,
    "name": "xmodel/prop_tombstone1",
    "matrix": [
     0.98229,
@@ -8462,7 +8580,7 @@
    ]
   },
   {
-   "model": 37,
+   "model": 39,
    "name": "xmodel/prop_crypt2",
    "matrix": [
     0.00388,
@@ -8491,7 +8609,7 @@
    ]
   },
   {
-   "model": 36,
+   "model": 38,
    "name": "xmodel/prop_crypt1",
    "matrix": [
     0.99897,
@@ -8520,7 +8638,7 @@
    ]
   },
   {
-   "model": 36,
+   "model": 38,
    "name": "xmodel/prop_crypt1",
    "matrix": [
     0.00913,
@@ -8549,7 +8667,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 14,
    "name": "xmodel/furniture_dresser",
    "matrix": [
     0.25974,
@@ -8578,7 +8696,7 @@
    ]
   },
   {
-   "model": 16,
+   "model": 17,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     0.00852,
@@ -8596,7 +8714,7 @@
    ]
   },
   {
-   "model": 21,
+   "model": 22,
    "name": "xmodel/furniture_victoriancouch_d",
    "matrix": [
     0.4596,
@@ -8625,7 +8743,7 @@
    ]
   },
   {
-   "model": 53,
+   "model": 55,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     1.0,
@@ -8643,7 +8761,7 @@
    ]
   },
   {
-   "model": 35,
+   "model": 37,
    "name": "xmodel/prop_chickencoop",
    "matrix": [
     -0.00058,
@@ -8672,7 +8790,7 @@
    ]
   },
   {
-   "model": 35,
+   "model": 37,
    "name": "xmodel/prop_chickencoop",
    "matrix": [
     -0.99889,
@@ -8701,7 +8819,7 @@
    ]
   },
   {
-   "model": 38,
+   "model": 40,
    "name": "xmodel/prop_doghouse1",
    "matrix": [
     0.98754,
@@ -8759,7 +8877,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 54,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     1.0,
@@ -8788,7 +8906,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 54,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     1.0,
@@ -8817,7 +8935,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 54,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     1.0,
@@ -8904,7 +9022,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 18,
    "name": "xmodel/furniture_rolltopdesk",
    "matrix": [
     1.0,
@@ -8933,7 +9051,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 20,
    "name": "xmodel/furniture_tableclock1",
    "matrix": [
     0.0,
@@ -8951,7 +9069,7 @@
    ]
   },
   {
-   "model": 20,
+   "model": 21,
    "name": "xmodel/furniture_victoriancouch",
    "matrix": [
     -0.0,
@@ -8980,7 +9098,7 @@
    ]
   },
   {
-   "model": 25,
+   "model": 26,
    "name": "xmodel/light_lampplainmetalbase_off",
    "matrix": [
     1.0,
@@ -8998,7 +9116,7 @@
    ]
   },
   {
-   "model": 22,
+   "model": 23,
    "name": "xmodel/furniture_walltable1",
    "matrix": [
     0.0,
@@ -9027,7 +9145,7 @@
    ]
   },
   {
-   "model": 18,
+   "model": 19,
    "name": "xmodel/furniture_smallcoffeetable",
    "matrix": [
     1.0,
@@ -9056,7 +9174,7 @@
    ]
   },
   {
-   "model": 14,
+   "model": 15,
    "name": "xmodel/furniture_dresser_d",
    "matrix": [
     -0.92718,
@@ -9114,7 +9232,7 @@
    ]
   },
   {
-   "model": 14,
+   "model": 15,
    "name": "xmodel/furniture_dresser_d",
    "matrix": [
     0.0349,
@@ -9143,7 +9261,7 @@
    ]
   },
   {
-   "model": 25,
+   "model": 26,
    "name": "xmodel/light_lampplainmetalbase_off",
    "matrix": [
     1.0,
@@ -9161,7 +9279,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/light_walllight_on",
    "matrix": [
     -0.0,
@@ -9179,7 +9297,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 28,
    "name": "xmodel/light_walllight_on",
    "matrix": [
     0.0,
@@ -9197,7 +9315,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 63,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     -1.0,
@@ -9216,7 +9334,7 @@
    "turret": true
   },
   {
-   "model": 32,
+   "model": 34,
    "name": "xmodel/military_sandbag_single_bent",
    "matrix": [
     1.0,
@@ -9234,7 +9352,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 35,
    "name": "xmodel/military_sandbag_single_flat",
    "matrix": [
     0.00698,
@@ -9252,7 +9370,7 @@
    ]
   },
   {
-   "model": 32,
+   "model": 34,
    "name": "xmodel/military_sandbag_single_bent",
    "matrix": [
     -0.08716,
@@ -9281,7 +9399,7 @@
    ]
   },
   {
-   "model": 32,
+   "model": 34,
    "name": "xmodel/military_sandbag_single_bent",
    "matrix": [
     0.99588,
@@ -9310,7 +9428,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 16,
    "name": "xmodel/furniture_piano_d",
    "matrix": [
     -0.61566,
@@ -9491,7 +9609,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.49964,
@@ -9509,7 +9627,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.70711,
@@ -9527,7 +9645,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -0.00086,
@@ -9545,7 +9663,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -1.0,
@@ -9563,7 +9681,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.25782,
@@ -9581,7 +9699,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.70711,
@@ -9599,7 +9717,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -1.0,
@@ -9617,7 +9735,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     1.0,
@@ -9635,7 +9753,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.96572,
@@ -9653,7 +9771,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.70711,
@@ -9671,7 +9789,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -0.0,
@@ -9689,7 +9807,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.70711,
@@ -9707,7 +9825,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     0.49964,
@@ -9736,7 +9854,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -0.00086,
@@ -9754,7 +9872,7 @@
    ]
   },
   {
-   "model": 39,
+   "model": 41,
    "name": "xmodel/prop_doorknob1",
    "matrix": [
     -0.0,
@@ -9772,7 +9890,7 @@
    ]
   },
   {
-   "model": 39,
+   "model": 41,
    "name": "xmodel/prop_doorknob1",
    "matrix": [
     -0.0,
@@ -9953,7 +10071,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 35,
    "name": "xmodel/military_sandbag_single_flat",
    "matrix": [
     0.59482,
@@ -9971,7 +10089,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 35,
    "name": "xmodel/military_sandbag_single_flat",
    "matrix": [
     0.59482,
@@ -9989,7 +10107,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 35,
    "name": "xmodel/military_sandbag_single_flat",
    "matrix": [
     0.59482,
@@ -10007,7 +10125,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 35,
    "name": "xmodel/military_sandbag_single_flat",
    "matrix": [
     0.59482,
@@ -10025,7 +10143,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 35,
    "name": "xmodel/military_sandbag_single_flat",
    "matrix": [
     0.59482,
@@ -10043,7 +10161,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 35,
    "name": "xmodel/military_sandbag_single_flat",
    "matrix": [
     0.59482,
@@ -10061,7 +10179,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 35,
    "name": "xmodel/military_sandbag_single_flat",
    "matrix": [
     -0.44307,
@@ -10079,7 +10197,7 @@
    ]
   },
   {
-   "model": 32,
+   "model": 34,
    "name": "xmodel/military_sandbag_single_bent",
    "matrix": [
     0.10124,
@@ -10097,7 +10215,7 @@
    ]
   },
   {
-   "model": 32,
+   "model": 34,
    "name": "xmodel/military_sandbag_single_bent",
    "matrix": [
     0.79864,
@@ -10115,7 +10233,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 35,
    "name": "xmodel/military_sandbag_single_flat",
    "matrix": [
     0.90183,
@@ -10133,7 +10251,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 35,
    "name": "xmodel/military_sandbag_single_flat",
    "matrix": [
     -0.85627,
@@ -10151,7 +10269,7 @@
    ]
   },
   {
-   "model": 35,
+   "model": 37,
    "name": "xmodel/prop_chickencoop",
    "matrix": [
     -0.00035,
@@ -10267,7 +10385,7 @@
    ]
   },
   {
-   "model": 50,
+   "model": 52,
    "name": "xmodel/prop_tractor",
    "matrix": [
     -0.99792,
@@ -10430,7 +10548,7 @@
    ]
   },
   {
-   "model": 51,
+   "model": 53,
    "name": "xmodel/tree_grey_oak_lg_a",
    "matrix": [
     1.0,
@@ -10448,7 +10566,7 @@
    ]
   },
   {
-   "model": 51,
+   "model": 53,
    "name": "xmodel/tree_grey_oak_lg_a",
    "matrix": [
     1.3,
@@ -10466,7 +10584,7 @@
    ]
   },
   {
-   "model": 51,
+   "model": 53,
    "name": "xmodel/tree_grey_oak_lg_a",
    "matrix": [
     1.0,
@@ -10484,7 +10602,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -1.0,
@@ -10502,7 +10620,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -1.0,
@@ -10614,7 +10732,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 56,
    "name": "xmodel/tree_river_birch_lg_a",
    "matrix": [
     -0.00086,
@@ -10650,7 +10768,7 @@
    ]
   },
   {
-   "model": 53,
+   "model": 55,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     1.29747,
@@ -10842,7 +10960,7 @@
    ]
   },
   {
-   "model": 57,
+   "model": 59,
    "name": "xmodel/vehicle_opel_blitz_woodland_d_static",
    "matrix": [
     0.90631,
@@ -10871,7 +10989,7 @@
    ]
   },
   {
-   "model": 21,
+   "model": 22,
    "name": "xmodel/furniture_victoriancouch_d",
    "matrix": [
     -0.06976,
@@ -10900,7 +11018,7 @@
    ]
   },
   {
-   "model": 12,
+   "model": 13,
    "name": "xmodel/furniture_cabinet",
    "matrix": [
     -0.0,
@@ -10929,7 +11047,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 42,
    "name": "xmodel/prop_pictureframe01",
    "matrix": [
     1.98243,
@@ -10947,7 +11065,7 @@
    ]
   },
   {
-   "model": 41,
+   "model": 43,
    "name": "xmodel/prop_pictureframe02",
    "matrix": [
     -2.0,
@@ -11052,7 +11170,7 @@
    ]
   },
   {
-   "model": 59,
+   "model": 61,
    "name": "xmodel/vehicle_tiger_woodland_d_static",
    "matrix": [
     0.91509,
@@ -11110,7 +11228,7 @@
    ]
   },
   {
-   "model": 58,
+   "model": 60,
    "name": "xmodel/vehicle_opel_blitz_woodland_static",
    "matrix": [
     0.93187,
@@ -11233,7 +11351,7 @@
    ]
   },
   {
-   "model": 53,
+   "model": 55,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.59892,
@@ -11262,7 +11380,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 54,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.56978,
@@ -11291,7 +11409,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 54,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.56978,
@@ -11309,7 +11427,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 54,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.67338,
@@ -11700,7 +11818,7 @@
    ]
   },
   {
-   "model": 34,
+   "model": 36,
    "name": "xmodel/moscow_boards_1a",
    "matrix": [
     0.30028,
@@ -12131,7 +12249,7 @@
    ]
   },
   {
-   "model": 60,
+   "model": 62,
    "name": "xmodel/weapon_30cal",
    "matrix": [
     0.82511,
@@ -12151,7 +12269,7 @@
    "turret": true
   },
   {
-   "model": 60,
+   "model": 62,
    "name": "xmodel/weapon_30cal",
    "matrix": [
     0.82511,
@@ -12171,7 +12289,7 @@
    "turret": true
   },
   {
-   "model": 60,
+   "model": 62,
    "name": "xmodel/weapon_30cal",
    "matrix": [
     0.82511,
@@ -12191,7 +12309,7 @@
    "turret": true
   },
   {
-   "model": 31,
+   "model": 33,
    "name": "xmodel/military_sandbag_shortsection",
    "matrix": [
     1.0,
@@ -12220,7 +12338,7 @@
    ]
   },
   {
-   "model": 29,
+   "model": 31,
    "name": "xmodel/military_sandbag_endsection_left",
    "matrix": [
     0.99556,
@@ -12249,7 +12367,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 32,
    "name": "xmodel/military_sandbag_endsection_right",
    "matrix": [
     1.0,
@@ -12325,7 +12443,7 @@
    ]
   },
   {
-   "model": 24,
+   "model": 25,
    "name": "xmodel/german_artillery_flakveirling_d",
    "matrix": [
     1.0,
@@ -12348,7 +12466,7 @@
    }
   },
   {
-   "model": 23,
+   "model": 24,
    "name": "xmodel/german_artillery_flakveirling",
    "matrix": [
     1.0,
@@ -12371,7 +12489,7 @@
    }
   },
   {
-   "model": 24,
+   "model": 25,
    "name": "xmodel/german_artillery_flakveirling_d",
    "matrix": [
     0.0,
@@ -12394,7 +12512,7 @@
    }
   },
   {
-   "model": 23,
+   "model": 24,
    "name": "xmodel/german_artillery_flakveirling",
    "matrix": [
     0.0,
@@ -23205,7 +23323,7 @@
    ]
   },
   {
-   "model": 58,
+   "model": 60,
    "name": "xmodel/vehicle_opel_blitz_woodland_static",
    "matrix": [
     0.43931,
@@ -23234,7 +23352,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.10254,
@@ -23263,7 +23381,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.21834,
@@ -23292,7 +23410,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.22929,
@@ -23321,7 +23439,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.22703,
@@ -23350,7 +23468,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.53095,
@@ -23379,7 +23497,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.59943,
@@ -23408,7 +23526,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.5322,
@@ -23437,7 +23555,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.40535,
@@ -23466,7 +23584,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.55432,
@@ -23495,7 +23613,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.55432,
@@ -23524,7 +23642,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.56053,
@@ -23553,7 +23671,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.1934,
@@ -23582,7 +23700,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.08316,
@@ -23611,7 +23729,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.46917,
@@ -23640,7 +23758,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.00011,
@@ -23669,7 +23787,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.25245,
@@ -23698,7 +23816,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.10497,
@@ -23727,7 +23845,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 29,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.20321,
@@ -23756,7 +23874,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     0.99756,
@@ -23785,7 +23903,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     1.0,
@@ -23814,7 +23932,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     1.0,
@@ -23843,7 +23961,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     0.88779,
@@ -23872,7 +23990,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     1.0,
@@ -23901,7 +24019,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     0.99939,
@@ -23930,7 +24048,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     -0.00244,
@@ -23959,7 +24077,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     0.99756,
@@ -23988,7 +24106,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     -0.97838,
@@ -24017,7 +24135,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     0.97838,
@@ -24046,7 +24164,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     0.97469,
@@ -24075,7 +24193,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     0.97838,
@@ -24104,7 +24222,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     0.97838,
@@ -24133,7 +24251,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     -0.20252,
@@ -24162,7 +24280,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     0.99756,
@@ -24191,7 +24309,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     0.97815,
@@ -24220,7 +24338,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 44,
    "name": "xmodel/prop_streetlamp_off",
    "matrix": [
     0.00244,
@@ -24249,7 +24367,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 27,
    "name": "xmodel/light_lantern_on",
    "matrix": [
     1.0,
@@ -24267,7 +24385,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 63,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     -0.01745,
@@ -24287,7 +24405,7 @@
    "turret": true
   },
   {
-   "model": 61,
+   "model": 63,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     -0.01745,
@@ -24307,7 +24425,7 @@
    "turret": true
   },
   {
-   "model": 61,
+   "model": 63,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     -0.01745,
@@ -24327,7 +24445,7 @@
    "turret": true
   },
   {
-   "model": 26,
+   "model": 27,
    "name": "xmodel/light_lantern_on",
    "matrix": [
     1.0,
@@ -24345,7 +24463,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 27,
    "name": "xmodel/light_lantern_on",
    "matrix": [
     1.0,
@@ -24522,7 +24640,7 @@
    ]
   },
   {
-   "model": 53,
+   "model": 55,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.0,
@@ -24540,7 +24658,7 @@
    ]
   },
   {
-   "model": 53,
+   "model": 55,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.29905,
@@ -24558,7 +24676,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 54,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.56978,
@@ -24594,7 +24712,7 @@
    ]
   },
   {
-   "model": 53,
+   "model": 55,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     1.40774,
@@ -24610,6 +24728,44 @@
     1.5,
     -47.0
    ]
+  },
+  {
+   "model": 12,
+   "name": "xmodel/furniture_bookshelveswide",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    1410.0,
+    0.0,
+    1.0,
+    0.0,
+    -15200.0,
+    -0.0,
+    0.0,
+    1.0,
+    -113.0
+   ],
+   "ifModel": "xmodel/furniture_bookshelveswide"
+  },
+  {
+   "model": 30,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    1.0,
+    -0.0,
+    0.0,
+    322.0,
+    0.0,
+    0.0,
+    -1.0,
+    -16117.0,
+    -0.0,
+    1.0,
+    0.0,
+    34.0
+   ],
+   "ifModel": "xmodel/furniture_bookshelveswide"
   }
  ],
  "fallback": []

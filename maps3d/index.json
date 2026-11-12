@@ -161,15 +161,15 @@
     ]
    },
    "bytes": 3930184,
-   "exported": "2026-11-03",
+   "exported": "2026-11-12",
    "playRect": [
     -1977,
     -1592,
     3665,
     4050
    ],
-   "propModels": 38,
-   "props": 1548,
+   "propModels": 39,
+   "props": 1568,
    "radar": {
     "image": "mp_burgundy/radar.webp",
     "radarImage": "radar_mp_burgundy",
@@ -273,15 +273,15 @@
     ]
    },
    "bytes": 8521944,
-   "exported": "2026-11-03",
+   "exported": "2026-11-12",
    "playRect": [
     -3067,
     -2256,
     4033,
     4845
    ],
-   "propModels": 71,
-   "props": 1546,
+   "propModels": 75,
+   "props": 1554,
    "radar": {
     "image": "mp_carentan/radar.webp",
     "radarImage": "radar_mp_carentan",
@@ -520,15 +520,15 @@
     ]
    },
    "bytes": 7097060,
-   "exported": "2026-11-03",
+   "exported": "2026-11-12",
    "playRect": [
     -2678,
     -19419,
     3776,
     -12965
    ],
-   "propModels": 62,
-   "props": 620,
+   "propModels": 64,
+   "props": 622,
    "radar": {
     "image": "mp_dawnville/radar.webp",
     "radarImage": "radar_mp_dawnville",
@@ -812,15 +812,15 @@
     ]
    },
    "bytes": 11228768,
-   "exported": "2026-11-03",
+   "exported": "2026-11-12",
    "playRect": [
     -12611,
     -11248,
     -5036,
     -3674
    ],
-   "propModels": 87,
-   "props": 617,
+   "propModels": 88,
+   "props": 623,
    "radar": null,
    "sites": [
     {
@@ -1261,15 +1261,15 @@
     ]
    },
    "bytes": 4150280,
-   "exported": "2026-11-03",
+   "exported": "2026-11-12",
    "playRect": [
     -1520,
     -1225,
     4524,
     4819
    ],
-   "propModels": 55,
-   "props": 379,
+   "propModels": 61,
+   "props": 389,
    "radar": {
     "image": "mp_toujane/radar.webp",
     "radarImage": "radar_mp_toujane",
@@ -1317,15 +1317,15 @@
     ]
    },
    "bytes": 4246084,
-   "exported": "2026-11-03",
+   "exported": "2026-11-12",
    "playRect": [
     -1520,
     -1225,
     4524,
     4819
    ],
-   "propModels": 55,
-   "props": 379,
+   "propModels": 56,
+   "props": 383,
    "radar": {
     "image": "mp_toujane_fix/radar.webp",
     "radarImage": "radar_mp_toujane",
@@ -1530,7 +1530,7 @@
     ]
    },
    "bytes": 7655080,
-   "exported": "2026-11-03",
+   "exported": "2026-11-12",
    "playRect": [
     -3580,
     -2978,

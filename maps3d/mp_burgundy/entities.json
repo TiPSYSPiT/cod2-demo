@@ -24998,6 +24998,346 @@
    "script": false,
    "gameobject": "dm",
    "turret": true
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    210.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    215.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    220.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    225.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    230.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    235.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    240.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    245.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    250.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    255.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    260.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    265.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    270.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    275.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    280.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    285.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    202.5,
+    2350.0,
+    290.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/caen_fence_post_1",
+   "origin": [
+    1800.0,
+    2310.0,
+    33.0
+   ],
+   "angles": [
+    90.0,
+    260.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/caen_fence_post_1",
+   "origin": [
+    1790.0,
+    2245.0,
+    33.0
+   ],
+   "angles": [
+    90.0,
+    78.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/caen_fence_post_1",
+   "origin": [
+    2015.0,
+    2115.0,
+    -10.0
+   ],
+   "angles": [
+    90.0,
+    350.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/military_flak88_boxlid",
+   "spawnedBy": "_bug_fix"
   }
  ],
  "hurt": [

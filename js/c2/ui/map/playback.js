@@ -40,7 +40,10 @@
       this.dirty = true;
     }
     invalidate() { this.dirty = true; }
+    /** the closed replay's clock: its frame loop ends (a loop per opened demo would otherwise run on) */
+    stop() { this.stopped = true; this.playing = false; this.active = false; }
     loop(now) {
+      if (this.stopped) return;
       // schedule first: an error in one frame must never stop the playback loop
       requestAnimationFrame(this.loop);
       try { this.step(now); } catch (err) { console.error('Map frame failed:', err); }
@@ -111,7 +114,9 @@
         if (down) { this.onSeek(t, Math.sign(t - lastAt)); lastAt = t; }
         this.canvas.title = C2.ui.fmtTime(t - this.base);
       });
-      this.canvas.addEventListener('pointerup', () => { down = false; });
+      // (a drag the browser ends itself - a touch taken over by scrolling, the window losing the pointer - is over too:
+      // the timeline would otherwise seek on every later move over it)
+      for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) this.canvas.addEventListener(type, () => { down = false; });
       this.lane.addEventListener('pointermove', e => this.showMarkTip(e));
       this.lane.addEventListener('pointerleave', () => { this.markTip.hidden = true; });
       this.lane.addEventListener('click', e => { const m = this.markAt(e); if (m) this.onSeek(m.jump, 1); });

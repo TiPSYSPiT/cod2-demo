@@ -308,7 +308,7 @@
     const shown = d.teams.filter(tm => d.players.some(p => p.team === tm.key));
     const font = (w, s) => w + ' ' + s + 'px Inter, "Segoe UI", system-ui, sans-serif';
     // top left: round / round time, score
-    const line1 = r ? (r.kind === 'round' ? 'Round ' + r.label : r.kind === 'knife' ? 'Knife round' : '') + '  ·  ' + C2.ui.fmtRoundTime(d, ri, t) : fmtTime(t);
+    const line1 = r ? (r.kind === 'round' ? 'Round ' + r.label : '') + '  ·  ' + C2.ui.fmtRoundTime(d, ri, t) : fmtTime(t);
     const parts = [];
     shown.forEach((tm, i) => { if (i) parts.push([' : ', '#c8c8ce']); parts.push([tm.name + ' ' + (score[tm.key] != null ? score[tm.key] : 0), app.teamColor(tm.key)]); });
     g.font = font('700', 13);

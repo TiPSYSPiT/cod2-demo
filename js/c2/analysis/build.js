@@ -248,9 +248,13 @@ C2.define('build', function (C2) {
       const keep = [];
       for (let i = 0; i < tr.t.length; i++) { const t = tr.t[i] - t0; if (t >= mapWindow.start && t < mapWindow.end) keep.push(i); }
       if (!keep.length) continue;
-      const pick = (arr, Type) => Type.from(keep, i => arr[i]);
+      // (plain loops: TypedArray.from with a map function was a seventh of the whole parse)
+      const n = keep.length;
+      const pick = (arr, Type) => { const out = new Type(n); for (let k = 0; k < n; k++) out[k] = arr[keep[k]]; return out; };
+      const times = new Int32Array(n);
+      for (let k = 0; k < n; k++) times[k] = tr.t[keep[k]] - t0;
       positions[cl] = {
-        t: Int32Array.from(keep, i => tr.t[i] - t0),
+        t: times,
         x: pick(tr.x, Float32Array), y: pick(tr.y, Float32Array), z: pick(tr.z, Float32Array),
         yaw: pick(tr.yaw, Float32Array), pitch: pick(tr.pitch, Float32Array),
         flags: pick(tr.flags, Uint8Array), weapon: pick(tr.weapon, Uint8Array),
@@ -595,6 +599,10 @@ C2.define('build', function (C2) {
           stamp: localStamp(new Date(fileInfo.lastModified)) }
       : null;
     const sideName = v => SIDE_NAMES[String(v || '').toUpperCase()] || null;
+    // the models the server precached (config strings 334..): what the map's entities and the scripts use - a model
+    // only a level script spawns tells that the script ran (zPAM's fixes of the stock maps: js/view3d/gameObjects.js)
+    const precachedModels = [];
+    for (let i = 1; i < K.CS.SOUNDS - K.CS.MODELS; i++) { const n = cs.get(K.CS.MODELS + i); if (n) precachedModels.push(n.toLowerCase()); }
 
     const meta = {
       fileName: fileInfo.name || null, fileSize: fileInfo.size || null,
@@ -611,7 +619,7 @@ C2.define('build', function (C2) {
       durationMs: endTime, firstServerTime: t0, recordDate,
       mapWindow: { start: mapWindow.start, end: Math.min(mapWindow.end, endTime) }, mapChanges,
       minimap: null, fog: null, northYaw: 0,
-      weapons, dvars, attackSide, attackSideHeuristic,
+      weapons, dvars, precachedModels, attackSide, attackSideHeuristic,
       sideNames: { axis: sideName(dvars.g_TeamName_Axis) || 'Axis', allies: sideName(dvars.g_TeamName_Allies) || 'Allies' },
       scorelimit: null, timelimit: null,
       isSearchAndDestroy: isSD

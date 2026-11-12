@@ -5847,6 +5847,27 @@
    "script": false
   },
   {
+   "model": "xmodel/vehicle_panzer_ii_destroyed_static",
+   "origin": [
+    1047.0,
+    2751.0,
+    44.0
+   ],
+   "angles": [
+    0.666642,
+    270.0,
+    -0.0750181
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "A",
+    "show": true,
+    "ifModel": "xmodel/toujane_jump"
+   }
+  },
+  {
    "model": "xmodel/vehicle_panzer_ii_static",
    "origin": [
     1047.0,
@@ -5860,7 +5881,33 @@
    ],
    "scale": 1.0,
    "script": true,
-   "gameobject": "bombzone"
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "A",
+    "show": false,
+    "ifModel": "xmodel/toujane_jump"
+   }
+  },
+  {
+   "model": "xmodel/vehicle_german_armored_car_d_static",
+   "origin": [
+    2834.0,
+    1634.0,
+    44.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": true,
+    "ifModel": "xmodel/toujane_jump"
+   }
   },
   {
    "model": "xmodel/vehicle_german_armored_car_static",
@@ -5876,7 +5923,12 @@
    ],
    "scale": 1.0,
    "script": true,
-   "gameobject": "bombzone"
+   "gameobject": "bombzone",
+   "exploder": {
+    "site": "B",
+    "show": false,
+    "ifModel": "xmodel/toujane_jump"
+   }
   },
   {
    "model": "xmodel/german_artillery_flak88_destroy",
@@ -7465,6 +7517,142 @@
    ],
    "scale": 1.0,
    "script": false
+  },
+  {
+   "model": "xmodel/toujane_jump",
+   "origin": [
+    2052.0,
+    2107.0,
+    352.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/toujane_jump",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/toujane_axis_roof",
+   "origin": [
+    2352.375,
+    2088.278,
+    196.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/toujane_jump",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/toujane_axis_roof",
+   "origin": [
+    1985.705,
+    2733.367,
+    196.0
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/toujane_jump",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/toujane_window",
+   "origin": [
+    216.0,
+    672.0,
+    43.0
+   ],
+   "angles": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/toujane_jump",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/toujane_underA_bug",
+   "origin": [
+    1509.0,
+    2207.0,
+    120.0
+   ],
+   "angles": [
+    51.0,
+    328.0,
+    90.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/toujane_jump",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/toujane_underA_bug",
+   "origin": [
+    1507.0,
+    2207.0,
+    127.0
+   ],
+   "angles": [
+    90.0,
+    270.0,
+    30.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/toujane_jump",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/toujane_underA_bug",
+   "origin": [
+    1558.0,
+    2265.0,
+    103.0
+   ],
+   "angles": [
+    51.0,
+    328.0,
+    90.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/toujane_jump",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/toujane_underA_bug",
+   "origin": [
+    1556.0,
+    2265.0,
+    110.0
+   ],
+   "angles": [
+    90.0,
+    270.0,
+    30.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/toujane_jump",
+   "spawnedBy": "_bug_fix"
   }
  ],
  "hurt": [

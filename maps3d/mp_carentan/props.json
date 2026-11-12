@@ -2,7 +2,7 @@
  "format": "cod2-demo3d-props/1",
  "map": "mp_carentan",
  "file": "props.bin",
- "byteLength": 5935968,
+ "byteLength": 5941048,
  "models": [
   {
    "name": "xmodel/brush_grassflowerplants_squareclump",
@@ -441,6 +441,64 @@
    ]
   },
   {
+   "name": "xmodel/caen_fence_post_1",
+   "lod": "prop_oldwoodfencepost0",
+   "flags": 0,
+   "mins": [
+    -51.753841400146484,
+    -51.753841400146484,
+    -51.753841400146484
+   ],
+   "maxs": [
+    51.753841400146484,
+    51.753841400146484,
+    51.753841400146484
+   ],
+   "vertices": 48,
+   "triangles": 38,
+   "geometry": {
+    "position": {
+     "offset": 15768,
+     "length": 576
+    },
+    "normal": {
+     "offset": 16344,
+     "length": 192
+    },
+    "uv": {
+     "offset": 16536,
+     "length": 384
+    },
+    "index": {
+     "offset": 16920,
+     "length": 456
+    },
+    "tangent": {
+     "offset": 17376,
+     "length": 192
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_fence_wood",
+     "technique": "phong_alphatest",
+     "start": 0,
+     "count": 114,
+     "texture": "_textures/fence_wood.webp",
+     "textureAlpha": true,
+     "alphaTest": "ge128",
+     "blend": null,
+     "doubleSided": true,
+     "normalMap": "_textures/_fence_wood_normal-gggr.webp",
+     "sort": 11,
+     "polygonOffset": 1
+    }
+   ],
+   "lodDistances": [
+    0.0
+   ]
+  },
+  {
    "name": "xmodel/caen_grasstuft_5",
    "lod": "normandygrasstuft_lod10",
    "flags": 0,
@@ -458,19 +516,19 @@
    "triangles": 6,
    "geometry": {
     "position": {
-     "offset": 15768,
+     "offset": 17568,
      "length": 216
     },
     "normal": {
-     "offset": 15984,
+     "offset": 17784,
      "length": 72
     },
     "uv": {
-     "offset": 16056,
+     "offset": 17856,
      "length": 144
     },
     "index": {
-     "offset": 16200,
+     "offset": 18000,
      "length": 72
     }
    },
@@ -512,19 +570,19 @@
    "triangles": 45,
    "geometry": {
     "position": {
-     "offset": 16272,
+     "offset": 18072,
      "length": 1452
     },
     "normal": {
-     "offset": 17724,
+     "offset": 19524,
      "length": 484
     },
     "uv": {
-     "offset": 18208,
+     "offset": 20008,
      "length": 968
     },
     "index": {
-     "offset": 19176,
+     "offset": 20976,
      "length": 540
     }
    },
@@ -556,19 +614,19 @@
      "triangles": 26,
      "geometry": {
       "position": {
-       "offset": 19716,
+       "offset": 21516,
        "length": 768
       },
       "normal": {
-       "offset": 20484,
+       "offset": 22284,
        "length": 256
       },
       "uv": {
-       "offset": 20740,
+       "offset": 22540,
        "length": 512
       },
       "index": {
-       "offset": 21252,
+       "offset": 23052,
        "length": 312
       }
      },
@@ -595,19 +653,19 @@
      "triangles": 6,
      "geometry": {
       "position": {
-       "offset": 21564,
+       "offset": 23364,
        "length": 96
       },
       "normal": {
-       "offset": 21660,
+       "offset": 23460,
        "length": 32
       },
       "uv": {
-       "offset": 21692,
+       "offset": 23492,
        "length": 64
       },
       "index": {
-       "offset": 21756,
+       "offset": 23556,
        "length": 72
       }
      },
@@ -648,19 +706,19 @@
    "triangles": 48,
    "geometry": {
     "position": {
-     "offset": 21828,
+     "offset": 23628,
      "length": 1512
     },
     "normal": {
-     "offset": 23340,
+     "offset": 25140,
      "length": 504
     },
     "uv": {
-     "offset": 23844,
+     "offset": 25644,
      "length": 1008
     },
     "index": {
-     "offset": 24852,
+     "offset": 26652,
      "length": 576
     }
    },
@@ -692,19 +750,19 @@
      "triangles": 27,
      "geometry": {
       "position": {
-       "offset": 25428,
+       "offset": 27228,
        "length": 756
       },
       "normal": {
-       "offset": 26184,
+       "offset": 27984,
        "length": 252
       },
       "uv": {
-       "offset": 26436,
+       "offset": 28236,
        "length": 504
       },
       "index": {
-       "offset": 26940,
+       "offset": 28740,
        "length": 324
       }
      },
@@ -731,19 +789,19 @@
      "triangles": 6,
      "geometry": {
       "position": {
-       "offset": 27264,
+       "offset": 29064,
        "length": 96
       },
       "normal": {
-       "offset": 27360,
+       "offset": 29160,
        "length": 32
       },
       "uv": {
-       "offset": 27392,
+       "offset": 29192,
        "length": 64
       },
       "index": {
-       "offset": 27456,
+       "offset": 29256,
        "length": 72
       }
      },
@@ -784,19 +842,19 @@
    "triangles": 38,
    "geometry": {
     "position": {
-     "offset": 27528,
+     "offset": 29328,
      "length": 1200
     },
     "normal": {
-     "offset": 28728,
+     "offset": 30528,
      "length": 400
     },
     "uv": {
-     "offset": 29128,
+     "offset": 30928,
      "length": 800
     },
     "index": {
-     "offset": 29928,
+     "offset": 31728,
      "length": 456
     }
    },
@@ -828,19 +886,19 @@
      "triangles": 24,
      "geometry": {
       "position": {
-       "offset": 30384,
+       "offset": 32184,
        "length": 744
       },
       "normal": {
-       "offset": 31128,
+       "offset": 32928,
        "length": 248
       },
       "uv": {
-       "offset": 31376,
+       "offset": 33176,
        "length": 496
       },
       "index": {
-       "offset": 31872,
+       "offset": 33672,
        "length": 288
       }
      },
@@ -867,19 +925,19 @@
      "triangles": 5,
      "geometry": {
       "position": {
-       "offset": 32160,
+       "offset": 33960,
        "length": 84
       },
       "normal": {
-       "offset": 32244,
+       "offset": 34044,
        "length": 28
       },
       "uv": {
-       "offset": 32272,
+       "offset": 34072,
        "length": 56
       },
       "index": {
-       "offset": 32328,
+       "offset": 34128,
        "length": 60
       }
      },
@@ -920,19 +978,19 @@
    "triangles": 70,
    "geometry": {
     "position": {
-     "offset": 32388,
+     "offset": 34188,
      "length": 1632
     },
     "normal": {
-     "offset": 34020,
+     "offset": 35820,
      "length": 544
     },
     "uv": {
-     "offset": 34564,
+     "offset": 36364,
      "length": 1088
     },
     "index": {
-     "offset": 35652,
+     "offset": 37452,
      "length": 840
     }
    },
@@ -964,19 +1022,19 @@
      "triangles": 56,
      "geometry": {
       "position": {
-       "offset": 36492,
+       "offset": 38292,
        "length": 1296
       },
       "normal": {
-       "offset": 37788,
+       "offset": 39588,
        "length": 432
       },
       "uv": {
-       "offset": 38220,
+       "offset": 40020,
        "length": 864
       },
       "index": {
-       "offset": 39084,
+       "offset": 40884,
        "length": 672
       }
      },
@@ -1003,19 +1061,19 @@
      "triangles": 32,
      "geometry": {
       "position": {
-       "offset": 39756,
+       "offset": 41556,
        "length": 720
       },
       "normal": {
-       "offset": 40476,
+       "offset": 42276,
        "length": 240
       },
       "uv": {
-       "offset": 40716,
+       "offset": 42516,
        "length": 480
       },
       "index": {
-       "offset": 41196,
+       "offset": 42996,
        "length": 384
       }
      },
@@ -1056,19 +1114,19 @@
    "triangles": 16,
    "geometry": {
     "position": {
-     "offset": 41580,
+     "offset": 43380,
      "length": 384
     },
     "normal": {
-     "offset": 41964,
+     "offset": 43764,
      "length": 128
     },
     "uv": {
-     "offset": 42092,
+     "offset": 43892,
      "length": 256
     },
     "index": {
-     "offset": 42348,
+     "offset": 44148,
      "length": 192
     }
    },
@@ -1110,19 +1168,19 @@
    "triangles": 262,
    "geometry": {
     "position": {
-     "offset": 42540,
+     "offset": 44340,
      "length": 3720
     },
     "normal": {
-     "offset": 46260,
+     "offset": 48060,
      "length": 1240
     },
     "uv": {
-     "offset": 47500,
+     "offset": 49300,
      "length": 2480
     },
     "index": {
-     "offset": 49980,
+     "offset": 51780,
      "length": 3144
     }
    },
@@ -1154,19 +1212,19 @@
      "triangles": 26,
      "geometry": {
       "position": {
-       "offset": 53124,
+       "offset": 54924,
        "length": 456
       },
       "normal": {
-       "offset": 53580,
+       "offset": 55380,
        "length": 152
       },
       "uv": {
-       "offset": 53732,
+       "offset": 55532,
        "length": 304
       },
       "index": {
-       "offset": 54036,
+       "offset": 55836,
        "length": 312
       }
      },
@@ -1207,19 +1265,19 @@
      "triangles": 12,
      "geometry": {
       "position": {
-       "offset": 54348,
+       "offset": 56148,
        "length": 120
       },
       "normal": {
-       "offset": 54468,
+       "offset": 56268,
        "length": 40
       },
       "uv": {
-       "offset": 54508,
+       "offset": 56308,
        "length": 80
       },
       "index": {
-       "offset": 54588,
+       "offset": 56388,
        "length": 144
       }
      },
@@ -1243,6 +1301,114 @@
    ]
   },
   {
+   "name": "xmodel/carentan_stairs",
+   "lod": "carentan_stairs0",
+   "flags": 0,
+   "mins": [
+    -152.30162048339844,
+    -152.30162048339844,
+    -152.30162048339844
+   ],
+   "maxs": [
+    152.30162048339844,
+    152.30162048339844,
+    152.30162048339844
+   ],
+   "vertices": 19,
+   "triangles": 8,
+   "geometry": {
+    "position": {
+     "offset": 56532,
+     "length": 228
+    },
+    "normal": {
+     "offset": 56760,
+     "length": 76
+    },
+    "uv": {
+     "offset": 56836,
+     "length": 152
+    },
+    "index": {
+     "offset": 56988,
+     "length": 96
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_wood_floor2",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 24,
+     "texture": "_textures/wood_floor2.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    0.0
+   ]
+  },
+  {
+   "name": "xmodel/carentan_stairs2",
+   "lod": "carentan_stairs20",
+   "flags": 0,
+   "mins": [
+    -115.90919494628906,
+    -115.90919494628906,
+    -115.90919494628906
+   ],
+   "maxs": [
+    115.90919494628906,
+    115.90919494628906,
+    115.90919494628906
+   ],
+   "vertices": 19,
+   "triangles": 8,
+   "geometry": {
+    "position": {
+     "offset": 57084,
+     "length": 228
+    },
+    "normal": {
+     "offset": 57312,
+     "length": 76
+    },
+    "uv": {
+     "offset": 57388,
+     "length": 152
+    },
+    "index": {
+     "offset": 57540,
+     "length": 96
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_wood_floor2",
+     "technique": "phong_replace",
+     "start": 0,
+     "count": 24,
+     "texture": "_textures/wood_floor2.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": null,
+     "sort": 3,
+     "polygonOffset": 0
+    }
+   ],
+   "lodDistances": [
+    0.0
+   ]
+  },
+  {
    "name": "xmodel/crate01",
    "lod": "crate010",
    "flags": 0,
@@ -1260,23 +1426,23 @@
    "triangles": 136,
    "geometry": {
     "position": {
-     "offset": 54732,
+     "offset": 57636,
      "length": 3264
     },
     "normal": {
-     "offset": 57996,
+     "offset": 60900,
      "length": 1088
     },
     "uv": {
-     "offset": 59084,
+     "offset": 61988,
      "length": 2176
     },
     "index": {
-     "offset": 61260,
+     "offset": 64164,
      "length": 1632
     },
     "tangent": {
-     "offset": 62892,
+     "offset": 65796,
      "length": 1088
     }
    },
@@ -1309,23 +1475,23 @@
      "triangles": 36,
      "geometry": {
       "position": {
-       "offset": 63980,
+       "offset": 66884,
        "length": 864
       },
       "normal": {
-       "offset": 64844,
+       "offset": 67748,
        "length": 288
       },
       "uv": {
-       "offset": 65132,
+       "offset": 68036,
        "length": 576
       },
       "index": {
-       "offset": 65708,
+       "offset": 68612,
        "length": 432
       },
       "tangent": {
-       "offset": 66140,
+       "offset": 69044,
        "length": 288
       }
      },
@@ -1353,23 +1519,23 @@
      "triangles": 12,
      "geometry": {
       "position": {
-       "offset": 66428,
+       "offset": 69332,
        "length": 288
       },
       "normal": {
-       "offset": 66716,
+       "offset": 69620,
        "length": 96
       },
       "uv": {
-       "offset": 66812,
+       "offset": 69716,
        "length": 192
       },
       "index": {
-       "offset": 67004,
+       "offset": 69908,
        "length": 144
       },
       "tangent": {
-       "offset": 67148,
+       "offset": 70052,
        "length": 96
       }
      },
@@ -1411,23 +1577,23 @@
    "triangles": 156,
    "geometry": {
     "position": {
-     "offset": 67244,
+     "offset": 70148,
      "length": 3744
     },
     "normal": {
-     "offset": 70988,
+     "offset": 73892,
      "length": 1248
     },
     "uv": {
-     "offset": 72236,
+     "offset": 75140,
      "length": 2496
     },
     "index": {
-     "offset": 74732,
+     "offset": 77636,
      "length": 1872
     },
     "tangent": {
-     "offset": 76604,
+     "offset": 79508,
      "length": 1248
     }
    },
@@ -1460,23 +1626,23 @@
      "triangles": 88,
      "geometry": {
       "position": {
-       "offset": 77852,
+       "offset": 80756,
        "length": 2016
       },
       "normal": {
-       "offset": 79868,
+       "offset": 82772,
        "length": 672
       },
       "uv": {
-       "offset": 80540,
+       "offset": 83444,
        "length": 1344
       },
       "index": {
-       "offset": 81884,
+       "offset": 84788,
        "length": 1056
       },
       "tangent": {
-       "offset": 82940,
+       "offset": 85844,
        "length": 672
       }
      },
@@ -1504,23 +1670,23 @@
      "triangles": 20,
      "geometry": {
       "position": {
-       "offset": 83612,
+       "offset": 86516,
        "length": 480
       },
       "normal": {
-       "offset": 84092,
+       "offset": 86996,
        "length": 160
       },
       "uv": {
-       "offset": 84252,
+       "offset": 87156,
        "length": 320
       },
       "index": {
-       "offset": 84572,
+       "offset": 87476,
        "length": 240
       },
       "tangent": {
-       "offset": 84812,
+       "offset": 87716,
        "length": 160
       }
      },
@@ -1562,19 +1728,19 @@
    "triangles": 248,
    "geometry": {
     "position": {
-     "offset": 84972,
+     "offset": 87876,
      "length": 2304
     },
     "normal": {
-     "offset": 87276,
+     "offset": 90180,
      "length": 768
     },
     "uv": {
-     "offset": 88044,
+     "offset": 90948,
      "length": 1536
     },
     "index": {
-     "offset": 89580,
+     "offset": 92484,
      "length": 2976
     }
    },
@@ -1630,23 +1796,23 @@
    "triangles": 182,
    "geometry": {
     "position": {
-     "offset": 92556,
+     "offset": 95460,
      "length": 5112
     },
     "normal": {
-     "offset": 97668,
+     "offset": 100572,
      "length": 1704
     },
     "uv": {
-     "offset": 99372,
+     "offset": 102276,
      "length": 3408
     },
     "index": {
-     "offset": 102780,
+     "offset": 105684,
      "length": 2184
     },
     "tangent": {
-     "offset": 104964,
+     "offset": 107868,
      "length": 1704
     }
    },
@@ -1689,23 +1855,23 @@
    "triangles": 76,
    "geometry": {
     "position": {
-     "offset": 106668,
+     "offset": 109572,
      "length": 1836
     },
     "normal": {
-     "offset": 108504,
+     "offset": 111408,
      "length": 612
     },
     "uv": {
-     "offset": 109116,
+     "offset": 112020,
      "length": 1224
     },
     "index": {
-     "offset": 110340,
+     "offset": 113244,
      "length": 912
     },
     "tangent": {
-     "offset": 111252,
+     "offset": 114156,
      "length": 612
     }
    },
@@ -1748,23 +1914,23 @@
    "triangles": 66,
    "geometry": {
     "position": {
-     "offset": 111864,
+     "offset": 114768,
      "length": 1536
     },
     "normal": {
-     "offset": 113400,
+     "offset": 116304,
      "length": 512
     },
     "uv": {
-     "offset": 113912,
+     "offset": 116816,
      "length": 1024
     },
     "index": {
-     "offset": 114936,
+     "offset": 117840,
      "length": 792
     },
     "tangent": {
-     "offset": 115728,
+     "offset": 118632,
      "length": 512
     }
    },
@@ -1807,23 +1973,23 @@
    "triangles": 66,
    "geometry": {
     "position": {
-     "offset": 116240,
+     "offset": 119144,
      "length": 1584
     },
     "normal": {
-     "offset": 117824,
+     "offset": 120728,
      "length": 528
     },
     "uv": {
-     "offset": 118352,
+     "offset": 121256,
      "length": 1056
     },
     "index": {
-     "offset": 119408,
+     "offset": 122312,
      "length": 792
     },
     "tangent": {
-     "offset": 120200,
+     "offset": 123104,
      "length": 528
     }
    },
@@ -1866,23 +2032,23 @@
    "triangles": 502,
    "geometry": {
     "position": {
-     "offset": 120728,
+     "offset": 123632,
      "length": 8736
     },
     "normal": {
-     "offset": 129464,
+     "offset": 132368,
      "length": 2912
     },
     "uv": {
-     "offset": 132376,
+     "offset": 135280,
      "length": 5824
     },
     "index": {
-     "offset": 138200,
+     "offset": 141104,
      "length": 6024
     },
     "tangent": {
-     "offset": 144224,
+     "offset": 147128,
      "length": 2912
     }
    },
@@ -1916,23 +2082,23 @@
      "triangles": 282,
      "geometry": {
       "position": {
-       "offset": 147136,
+       "offset": 150040,
        "length": 6048
       },
       "normal": {
-       "offset": 153184,
+       "offset": 156088,
        "length": 2016
       },
       "uv": {
-       "offset": 155200,
+       "offset": 158104,
        "length": 4032
       },
       "index": {
-       "offset": 159232,
+       "offset": 162136,
        "length": 3384
       },
       "tangent": {
-       "offset": 162616,
+       "offset": 165520,
        "length": 2016
       }
      },
@@ -1960,23 +2126,23 @@
      "triangles": 63,
      "geometry": {
       "position": {
-       "offset": 164632,
+       "offset": 167536,
        "length": 1428
       },
       "normal": {
-       "offset": 166060,
+       "offset": 168964,
        "length": 476
       },
       "uv": {
-       "offset": 166536,
+       "offset": 169440,
        "length": 952
       },
       "index": {
-       "offset": 167488,
+       "offset": 170392,
        "length": 756
       },
       "tangent": {
-       "offset": 168244,
+       "offset": 171148,
        "length": 476
       }
      },
@@ -2004,23 +2170,23 @@
      "triangles": 26,
      "geometry": {
       "position": {
-       "offset": 168720,
+       "offset": 171624,
        "length": 600
       },
       "normal": {
-       "offset": 169320,
+       "offset": 172224,
        "length": 200
       },
       "uv": {
-       "offset": 169520,
+       "offset": 172424,
        "length": 400
       },
       "index": {
-       "offset": 169920,
+       "offset": 172824,
        "length": 312
       },
       "tangent": {
-       "offset": 170232,
+       "offset": 173136,
        "length": 200
       }
      },
@@ -2062,23 +2228,23 @@
    "triangles": 128,
    "geometry": {
     "position": {
-     "offset": 170432,
+     "offset": 173336,
      "length": 2928
     },
     "normal": {
-     "offset": 173360,
+     "offset": 176264,
      "length": 976
     },
     "uv": {
-     "offset": 174336,
+     "offset": 177240,
      "length": 1952
     },
     "index": {
-     "offset": 176288,
+     "offset": 179192,
      "length": 1536
     },
     "tangent": {
-     "offset": 177824,
+     "offset": 180728,
      "length": 976
     }
    },
@@ -2121,23 +2287,23 @@
    "triangles": 334,
    "geometry": {
     "position": {
-     "offset": 178800,
+     "offset": 181704,
      "length": 4284
     },
     "normal": {
-     "offset": 183084,
+     "offset": 185988,
      "length": 1428
     },
     "uv": {
-     "offset": 184512,
+     "offset": 187416,
      "length": 2856
     },
     "index": {
-     "offset": 187368,
+     "offset": 190272,
      "length": 4008
     },
     "tangent": {
-     "offset": 191376,
+     "offset": 194280,
      "length": 1428
     }
    },
@@ -2195,23 +2361,23 @@
    "triangles": 158,
    "geometry": {
     "position": {
-     "offset": 192804,
+     "offset": 195708,
      "length": 2688
     },
     "normal": {
-     "offset": 195492,
+     "offset": 198396,
      "length": 896
     },
     "uv": {
-     "offset": 196388,
+     "offset": 199292,
      "length": 1792
     },
     "index": {
-     "offset": 198180,
+     "offset": 201084,
      "length": 1896
     },
     "tangent": {
-     "offset": 200076,
+     "offset": 202980,
      "length": 896
     }
    },
@@ -2243,23 +2409,23 @@
      "triangles": 78,
      "geometry": {
       "position": {
-       "offset": 200972,
+       "offset": 203876,
        "length": 1392
       },
       "normal": {
-       "offset": 202364,
+       "offset": 205268,
        "length": 464
       },
       "uv": {
-       "offset": 202828,
+       "offset": 205732,
        "length": 928
       },
       "index": {
-       "offset": 203756,
+       "offset": 206660,
        "length": 936
       },
       "tangent": {
-       "offset": 204692,
+       "offset": 207596,
        "length": 464
       }
      },
@@ -2301,23 +2467,23 @@
    "triangles": 236,
    "geometry": {
     "position": {
-     "offset": 205156,
+     "offset": 208060,
      "length": 3852
     },
     "normal": {
-     "offset": 209008,
+     "offset": 211912,
      "length": 1284
     },
     "uv": {
-     "offset": 210292,
+     "offset": 213196,
      "length": 2568
     },
     "index": {
-     "offset": 212860,
+     "offset": 215764,
      "length": 2832
     },
     "tangent": {
-     "offset": 215692,
+     "offset": 218596,
      "length": 1284
     }
    },
@@ -2349,23 +2515,23 @@
      "triangles": 180,
      "geometry": {
       "position": {
-       "offset": 216976,
+       "offset": 219880,
        "length": 2988
       },
       "normal": {
-       "offset": 219964,
+       "offset": 222868,
        "length": 996
       },
       "uv": {
-       "offset": 220960,
+       "offset": 223864,
        "length": 1992
       },
       "index": {
-       "offset": 222952,
+       "offset": 225856,
        "length": 2160
       },
       "tangent": {
-       "offset": 225112,
+       "offset": 228016,
        "length": 996
       }
      },
@@ -2407,23 +2573,23 @@
    "triangles": 887,
    "geometry": {
     "position": {
-     "offset": 226108,
+     "offset": 229012,
      "length": 15852
     },
     "normal": {
-     "offset": 241960,
+     "offset": 244864,
      "length": 5284
     },
     "uv": {
-     "offset": 247244,
+     "offset": 250148,
      "length": 10568
     },
     "index": {
-     "offset": 257812,
+     "offset": 260716,
      "length": 10644
     },
     "tangent": {
-     "offset": 268456,
+     "offset": 271360,
      "length": 5284
     }
    },
@@ -2456,23 +2622,23 @@
      "triangles": 263,
      "geometry": {
       "position": {
-       "offset": 273740,
+       "offset": 276644,
        "length": 6060
       },
       "normal": {
-       "offset": 279800,
+       "offset": 282704,
        "length": 2020
       },
       "uv": {
-       "offset": 281820,
+       "offset": 284724,
        "length": 4040
       },
       "index": {
-       "offset": 285860,
+       "offset": 288764,
        "length": 3156
       },
       "tangent": {
-       "offset": 289016,
+       "offset": 291920,
        "length": 2020
       }
      },
@@ -2500,23 +2666,23 @@
      "triangles": 114,
      "geometry": {
       "position": {
-       "offset": 291036,
+       "offset": 293940,
        "length": 2976
       },
       "normal": {
-       "offset": 294012,
+       "offset": 296916,
        "length": 992
       },
       "uv": {
-       "offset": 295004,
+       "offset": 297908,
        "length": 1984
       },
       "index": {
-       "offset": 296988,
+       "offset": 299892,
        "length": 1368
       },
       "tangent": {
-       "offset": 298356,
+       "offset": 301260,
        "length": 992
       }
      },
@@ -2558,23 +2724,23 @@
    "triangles": 491,
    "geometry": {
     "position": {
-     "offset": 299348,
+     "offset": 302252,
      "length": 4668
     },
     "normal": {
-     "offset": 304016,
+     "offset": 306920,
      "length": 1556
     },
     "uv": {
-     "offset": 305572,
+     "offset": 308476,
      "length": 3112
     },
     "index": {
-     "offset": 308684,
+     "offset": 311588,
      "length": 5892
     },
     "tangent": {
-     "offset": 314576,
+     "offset": 317480,
      "length": 1556
     }
    },
@@ -2607,23 +2773,23 @@
      "triangles": 164,
      "geometry": {
       "position": {
-       "offset": 316132,
+       "offset": 319036,
        "length": 2808
       },
       "normal": {
-       "offset": 318940,
+       "offset": 321844,
        "length": 936
       },
       "uv": {
-       "offset": 319876,
+       "offset": 322780,
        "length": 1872
       },
       "index": {
-       "offset": 321748,
+       "offset": 324652,
        "length": 1968
       },
       "tangent": {
-       "offset": 323716,
+       "offset": 326620,
        "length": 936
       }
      },
@@ -2651,23 +2817,23 @@
      "triangles": 64,
      "geometry": {
       "position": {
-       "offset": 324652,
+       "offset": 327556,
        "length": 1308
       },
       "normal": {
-       "offset": 325960,
+       "offset": 328864,
        "length": 436
       },
       "uv": {
-       "offset": 326396,
+       "offset": 329300,
        "length": 872
       },
       "index": {
-       "offset": 327268,
+       "offset": 330172,
        "length": 768
       },
       "tangent": {
-       "offset": 328036,
+       "offset": 330940,
        "length": 436
       }
      },
@@ -2709,23 +2875,23 @@
    "triangles": 420,
    "geometry": {
     "position": {
-     "offset": 328472,
+     "offset": 331376,
      "length": 7044
     },
     "normal": {
-     "offset": 335516,
+     "offset": 338420,
      "length": 2348
     },
     "uv": {
-     "offset": 337864,
+     "offset": 340768,
      "length": 4696
     },
     "index": {
-     "offset": 342560,
+     "offset": 345464,
      "length": 5040
     },
     "tangent": {
-     "offset": 347600,
+     "offset": 350504,
      "length": 2348
     }
    },
@@ -2768,23 +2934,23 @@
    "triangles": 297,
    "geometry": {
     "position": {
-     "offset": 349948,
+     "offset": 352852,
      "length": 5196
     },
     "normal": {
-     "offset": 355144,
+     "offset": 358048,
      "length": 1732
     },
     "uv": {
-     "offset": 356876,
+     "offset": 359780,
      "length": 3464
     },
     "index": {
-     "offset": 360340,
+     "offset": 363244,
      "length": 3564
     },
     "tangent": {
-     "offset": 363904,
+     "offset": 366808,
      "length": 1732
     }
    },
@@ -2827,23 +2993,23 @@
    "triangles": 206,
    "geometry": {
     "position": {
-     "offset": 365636,
+     "offset": 368540,
      "length": 2892
     },
     "normal": {
-     "offset": 368528,
+     "offset": 371432,
      "length": 964
     },
     "uv": {
-     "offset": 369492,
+     "offset": 372396,
      "length": 1928
     },
     "index": {
-     "offset": 371420,
+     "offset": 374324,
      "length": 2472
     },
     "tangent": {
-     "offset": 373892,
+     "offset": 376796,
      "length": 964
     }
    },
@@ -2875,23 +3041,23 @@
      "triangles": 96,
      "geometry": {
       "position": {
-       "offset": 374856,
+       "offset": 377760,
        "length": 1440
       },
       "normal": {
-       "offset": 376296,
+       "offset": 379200,
        "length": 480
       },
       "uv": {
-       "offset": 376776,
+       "offset": 379680,
        "length": 960
       },
       "index": {
-       "offset": 377736,
+       "offset": 380640,
        "length": 1152
       },
       "tangent": {
-       "offset": 378888,
+       "offset": 381792,
        "length": 480
       }
      },
@@ -2933,23 +3099,23 @@
    "triangles": 56,
    "geometry": {
     "position": {
-     "offset": 379368,
+     "offset": 382272,
      "length": 1044
     },
     "normal": {
-     "offset": 380412,
+     "offset": 383316,
      "length": 348
     },
     "uv": {
-     "offset": 380760,
+     "offset": 383664,
      "length": 696
     },
     "index": {
-     "offset": 381456,
+     "offset": 384360,
      "length": 672
     },
     "tangent": {
-     "offset": 382128,
+     "offset": 385032,
      "length": 348
     }
    },
@@ -2992,23 +3158,23 @@
    "triangles": 300,
    "geometry": {
     "position": {
-     "offset": 382476,
+     "offset": 385380,
      "length": 3564
     },
     "normal": {
-     "offset": 386040,
+     "offset": 388944,
      "length": 1188
     },
     "uv": {
-     "offset": 387228,
+     "offset": 390132,
      "length": 2376
     },
     "index": {
-     "offset": 389604,
+     "offset": 392508,
      "length": 3600
     },
     "tangent": {
-     "offset": 393204,
+     "offset": 396108,
      "length": 1188
     }
    },
@@ -3051,23 +3217,23 @@
    "triangles": 144,
    "geometry": {
     "position": {
-     "offset": 394392,
+     "offset": 397296,
      "length": 3048
     },
     "normal": {
-     "offset": 397440,
+     "offset": 400344,
      "length": 1016
     },
     "uv": {
-     "offset": 398456,
+     "offset": 401360,
      "length": 2032
     },
     "index": {
-     "offset": 400488,
+     "offset": 403392,
      "length": 1728
     },
     "tangent": {
-     "offset": 402216,
+     "offset": 405120,
      "length": 1016
     }
    },
@@ -3110,23 +3276,23 @@
    "triangles": 112,
    "geometry": {
     "position": {
-     "offset": 403232,
+     "offset": 406136,
      "length": 2400
     },
     "normal": {
-     "offset": 405632,
+     "offset": 408536,
      "length": 800
     },
     "uv": {
-     "offset": 406432,
+     "offset": 409336,
      "length": 1600
     },
     "index": {
-     "offset": 408032,
+     "offset": 410936,
      "length": 1344
     },
     "tangent": {
-     "offset": 409376,
+     "offset": 412280,
      "length": 800
     }
    },
@@ -3169,23 +3335,23 @@
    "triangles": 3044,
    "geometry": {
     "position": {
-     "offset": 410176,
+     "offset": 413080,
      "length": 42360
     },
     "normal": {
-     "offset": 452536,
+     "offset": 455440,
      "length": 14120
     },
     "uv": {
-     "offset": 466656,
+     "offset": 469560,
      "length": 28240
     },
     "index": {
-     "offset": 494896,
+     "offset": 497800,
      "length": 36528
     },
     "tangent": {
-     "offset": 531424,
+     "offset": 534328,
      "length": 14120
     }
    },
@@ -3218,23 +3384,23 @@
      "triangles": 2040,
      "geometry": {
       "position": {
-       "offset": 545544,
+       "offset": 548448,
        "length": 32712
       },
       "normal": {
-       "offset": 578256,
+       "offset": 581160,
        "length": 10904
       },
       "uv": {
-       "offset": 589160,
+       "offset": 592064,
        "length": 21808
       },
       "index": {
-       "offset": 610968,
+       "offset": 613872,
        "length": 24480
       },
       "tangent": {
-       "offset": 635448,
+       "offset": 638352,
        "length": 10904
       }
      },
@@ -3262,23 +3428,23 @@
      "triangles": 878,
      "geometry": {
       "position": {
-       "offset": 646352,
+       "offset": 649256,
        "length": 16428
       },
       "normal": {
-       "offset": 662780,
+       "offset": 665684,
        "length": 5476
       },
       "uv": {
-       "offset": 668256,
+       "offset": 671160,
        "length": 10952
       },
       "index": {
-       "offset": 679208,
+       "offset": 682112,
        "length": 10536
       },
       "tangent": {
-       "offset": 689744,
+       "offset": 692648,
        "length": 5476
       }
      },
@@ -3320,23 +3486,23 @@
    "triangles": 2988,
    "geometry": {
     "position": {
-     "offset": 695220,
+     "offset": 698124,
      "length": 42876
     },
     "normal": {
-     "offset": 738096,
+     "offset": 741000,
      "length": 14292
     },
     "uv": {
-     "offset": 752388,
+     "offset": 755292,
      "length": 28584
     },
     "index": {
-     "offset": 780972,
+     "offset": 783876,
      "length": 35856
     },
     "tangent": {
-     "offset": 816828,
+     "offset": 819732,
      "length": 14292
     }
    },
@@ -3369,23 +3535,23 @@
      "triangles": 714,
      "geometry": {
       "position": {
-       "offset": 831120,
+       "offset": 834024,
        "length": 12840
       },
       "normal": {
-       "offset": 843960,
+       "offset": 846864,
        "length": 4280
       },
       "uv": {
-       "offset": 848240,
+       "offset": 851144,
        "length": 8560
       },
       "index": {
-       "offset": 856800,
+       "offset": 859704,
        "length": 8568
       },
       "tangent": {
-       "offset": 865368,
+       "offset": 868272,
        "length": 4280
       }
      },
@@ -3413,23 +3579,23 @@
      "triangles": 176,
      "geometry": {
       "position": {
-       "offset": 869648,
+       "offset": 872552,
        "length": 3672
       },
       "normal": {
-       "offset": 873320,
+       "offset": 876224,
        "length": 1224
       },
       "uv": {
-       "offset": 874544,
+       "offset": 877448,
        "length": 2448
       },
       "index": {
-       "offset": 876992,
+       "offset": 879896,
        "length": 2112
       },
       "tangent": {
-       "offset": 879104,
+       "offset": 882008,
        "length": 1224
       }
      },
@@ -3471,23 +3637,23 @@
    "triangles": 250,
    "geometry": {
     "position": {
-     "offset": 880328,
+     "offset": 883232,
      "length": 3672
     },
     "normal": {
-     "offset": 884000,
+     "offset": 886904,
      "length": 1224
     },
     "uv": {
-     "offset": 885224,
+     "offset": 888128,
      "length": 2448
     },
     "index": {
-     "offset": 887672,
+     "offset": 890576,
      "length": 3000
     },
     "tangent": {
-     "offset": 890672,
+     "offset": 893576,
      "length": 1224
     }
    },
@@ -3529,19 +3695,19 @@
    "triangles": 144,
    "geometry": {
     "position": {
-     "offset": 891896,
+     "offset": 894800,
      "length": 2052
     },
     "normal": {
-     "offset": 893948,
+     "offset": 896852,
      "length": 684
     },
     "uv": {
-     "offset": 894632,
+     "offset": 897536,
      "length": 1368
     },
     "index": {
-     "offset": 896000,
+     "offset": 898904,
      "length": 1728
     }
    },
@@ -3611,23 +3777,23 @@
    "triangles": 580,
    "geometry": {
     "position": {
-     "offset": 897728,
+     "offset": 900632,
      "length": 6072
     },
     "normal": {
-     "offset": 903800,
+     "offset": 906704,
      "length": 2024
     },
     "uv": {
-     "offset": 905824,
+     "offset": 908728,
      "length": 4048
     },
     "index": {
-     "offset": 909872,
+     "offset": 912776,
      "length": 6960
     },
     "tangent": {
-     "offset": 916832,
+     "offset": 919736,
      "length": 2024
     }
    },
@@ -3673,23 +3839,23 @@
      "triangles": 252,
      "geometry": {
       "position": {
-       "offset": 918856,
+       "offset": 921760,
        "length": 3144
       },
       "normal": {
-       "offset": 922000,
+       "offset": 924904,
        "length": 1048
       },
       "uv": {
-       "offset": 923048,
+       "offset": 925952,
        "length": 2096
       },
       "index": {
-       "offset": 925144,
+       "offset": 928048,
        "length": 3024
       },
       "tangent": {
-       "offset": 928168,
+       "offset": 931072,
        "length": 1048
       }
      },
@@ -3730,23 +3896,23 @@
      "triangles": 140,
      "geometry": {
       "position": {
-       "offset": 929216,
+       "offset": 932120,
        "length": 2160
       },
       "normal": {
-       "offset": 931376,
+       "offset": 934280,
        "length": 720
       },
       "uv": {
-       "offset": 932096,
+       "offset": 935000,
        "length": 1440
       },
       "index": {
-       "offset": 933536,
+       "offset": 936440,
        "length": 1680
       },
       "tangent": {
-       "offset": 935216,
+       "offset": 938120,
        "length": 720
       }
      },
@@ -3801,23 +3967,23 @@
    "triangles": 294,
    "geometry": {
     "position": {
-     "offset": 935936,
+     "offset": 938840,
      "length": 3504
     },
     "normal": {
-     "offset": 939440,
+     "offset": 942344,
      "length": 1168
     },
     "uv": {
-     "offset": 940608,
+     "offset": 943512,
      "length": 2336
     },
     "index": {
-     "offset": 942944,
+     "offset": 945848,
      "length": 3528
     },
     "tangent": {
-     "offset": 946472,
+     "offset": 949376,
      "length": 1168
     }
    },
@@ -3873,23 +4039,23 @@
    "triangles": 130,
    "geometry": {
     "position": {
-     "offset": 947640,
+     "offset": 950544,
      "length": 1104
     },
     "normal": {
-     "offset": 948744,
+     "offset": 951648,
      "length": 368
     },
     "uv": {
-     "offset": 949112,
+     "offset": 952016,
      "length": 736
     },
     "index": {
-     "offset": 949848,
+     "offset": 952752,
      "length": 1560
     },
     "tangent": {
-     "offset": 951408,
+     "offset": 954312,
      "length": 368
     }
    },
@@ -3922,23 +4088,23 @@
      "triangles": 44,
      "geometry": {
       "position": {
-       "offset": 951776,
+       "offset": 954680,
        "length": 552
       },
       "normal": {
-       "offset": 952328,
+       "offset": 955232,
        "length": 184
       },
       "uv": {
-       "offset": 952512,
+       "offset": 955416,
        "length": 368
       },
       "index": {
-       "offset": 952880,
+       "offset": 955784,
        "length": 528
       },
       "tangent": {
-       "offset": 953408,
+       "offset": 956312,
        "length": 184
       }
      },
@@ -3966,23 +4132,23 @@
      "triangles": 10,
      "geometry": {
       "position": {
-       "offset": 953592,
+       "offset": 956496,
        "length": 192
       },
       "normal": {
-       "offset": 953784,
+       "offset": 956688,
        "length": 64
       },
       "uv": {
-       "offset": 953848,
+       "offset": 956752,
        "length": 128
       },
       "index": {
-       "offset": 953976,
+       "offset": 956880,
        "length": 120
       },
       "tangent": {
-       "offset": 954096,
+       "offset": 957000,
        "length": 64
       }
      },
@@ -4007,6 +4173,65 @@
    ]
   },
   {
+   "name": "xmodel/military_flak88_boxlid",
+   "lod": "flak88_boxlid0",
+   "flags": 0,
+   "mins": [
+    -20.133390426635742,
+    -20.133390426635742,
+    -20.133390426635742
+   ],
+   "maxs": [
+    20.133390426635742,
+    20.133390426635742,
+    20.133390426635742
+   ],
+   "vertices": 64,
+   "triangles": 32,
+   "geometry": {
+    "position": {
+     "offset": 957064,
+     "length": 768
+    },
+    "normal": {
+     "offset": 957832,
+     "length": 256
+    },
+    "uv": {
+     "offset": 958088,
+     "length": 512
+    },
+    "index": {
+     "offset": 958600,
+     "length": 384
+    },
+    "tangent": {
+     "offset": 958984,
+     "length": 256
+    }
+   },
+   "groups": [
+    {
+     "material": "mtl_flak88box",
+     "technique": "phong_replace_spec",
+     "start": 0,
+     "count": 96,
+     "texture": "_textures/flak88_shell_local.webp",
+     "textureAlpha": false,
+     "alphaTest": null,
+     "blend": null,
+     "doubleSided": false,
+     "normalMap": "_textures/_flak88_shell_bump-gggr__flak88_shell_spec-rgbl-11.webp",
+     "sort": 3,
+     "polygonOffset": 0,
+     "specularMap": "_textures/_flak88_shell_spec-rgbl-11.webp"
+    }
+   ],
+   "lodDistances": [
+    0.0
+   ]
+  },
+  {
    "name": "xmodel/military_sandbag_curvedsection",
    "lod": "sandbag_curvedsection0",
    "flags": 0,
@@ -4024,23 +4249,23 @@
    "triangles": 1702,
    "geometry": {
     "position": {
-     "offset": 954160,
+     "offset": 959240,
      "length": 16488
     },
     "normal": {
-     "offset": 970648,
+     "offset": 975728,
      "length": 5496
     },
     "uv": {
-     "offset": 976144,
+     "offset": 981224,
      "length": 10992
     },
     "index": {
-     "offset": 987136,
+     "offset": 992216,
      "length": 20424
     },
     "tangent": {
-     "offset": 1007560,
+     "offset": 1012640,
      "length": 5496
     }
    },
@@ -4076,23 +4301,23 @@
      "triangles": 524,
      "geometry": {
       "position": {
-       "offset": 1013056,
+       "offset": 1018136,
        "length": 6036
       },
       "normal": {
-       "offset": 1019092,
+       "offset": 1024172,
        "length": 2012
       },
       "uv": {
-       "offset": 1021104,
+       "offset": 1026184,
        "length": 4024
       },
       "index": {
-       "offset": 1025128,
+       "offset": 1030208,
        "length": 6288
       },
       "tangent": {
-       "offset": 1031416,
+       "offset": 1036496,
        "length": 2012
       }
      },
@@ -4138,23 +4363,23 @@
    "triangles": 594,
    "geometry": {
     "position": {
-     "offset": 1033428,
+     "offset": 1038508,
      "length": 5736
     },
     "normal": {
-     "offset": 1039164,
+     "offset": 1044244,
      "length": 1912
     },
     "uv": {
-     "offset": 1041076,
+     "offset": 1046156,
      "length": 3824
     },
     "index": {
-     "offset": 1044900,
+     "offset": 1049980,
      "length": 7128
     },
     "tangent": {
-     "offset": 1052028,
+     "offset": 1057108,
      "length": 1912
     }
    },
@@ -4190,23 +4415,23 @@
      "triangles": 222,
      "geometry": {
       "position": {
-       "offset": 1053940,
+       "offset": 1059020,
        "length": 2652
       },
       "normal": {
-       "offset": 1056592,
+       "offset": 1061672,
        "length": 884
       },
       "uv": {
-       "offset": 1057476,
+       "offset": 1062556,
        "length": 1768
       },
       "index": {
-       "offset": 1059244,
+       "offset": 1064324,
        "length": 2664
       },
       "tangent": {
-       "offset": 1061908,
+       "offset": 1066988,
        "length": 884
       }
      },
@@ -4252,23 +4477,23 @@
    "triangles": 580,
    "geometry": {
     "position": {
-     "offset": 1062792,
+     "offset": 1067872,
      "length": 6204
     },
     "normal": {
-     "offset": 1068996,
+     "offset": 1074076,
      "length": 2068
     },
     "uv": {
-     "offset": 1071064,
+     "offset": 1076144,
      "length": 4136
     },
     "index": {
-     "offset": 1075200,
+     "offset": 1080280,
      "length": 6960
     },
     "tangent": {
-     "offset": 1082160,
+     "offset": 1087240,
      "length": 2068
     }
    },
@@ -4304,23 +4529,23 @@
      "triangles": 237,
      "geometry": {
       "position": {
-       "offset": 1084228,
+       "offset": 1089308,
        "length": 2568
       },
       "normal": {
-       "offset": 1086796,
+       "offset": 1091876,
        "length": 856
       },
       "uv": {
-       "offset": 1087652,
+       "offset": 1092732,
        "length": 1712
       },
       "index": {
-       "offset": 1089364,
+       "offset": 1094444,
        "length": 2844
       },
       "tangent": {
-       "offset": 1092208,
+       "offset": 1097288,
        "length": 856
       }
      },
@@ -4366,23 +4591,23 @@
    "triangles": 528,
    "geometry": {
     "position": {
-     "offset": 1093064,
+     "offset": 1098144,
      "length": 4476
     },
     "normal": {
-     "offset": 1097540,
+     "offset": 1102620,
      "length": 1492
     },
     "uv": {
-     "offset": 1099032,
+     "offset": 1104112,
      "length": 2984
     },
     "index": {
-     "offset": 1102016,
+     "offset": 1107096,
      "length": 6336
     },
     "tangent": {
-     "offset": 1108352,
+     "offset": 1113432,
      "length": 1492
     }
    },
@@ -4418,23 +4643,23 @@
      "triangles": 114,
      "geometry": {
       "position": {
-       "offset": 1109844,
+       "offset": 1114924,
        "length": 1476
       },
       "normal": {
-       "offset": 1111320,
+       "offset": 1116400,
        "length": 492
       },
       "uv": {
-       "offset": 1111812,
+       "offset": 1116892,
        "length": 984
       },
       "index": {
-       "offset": 1112796,
+       "offset": 1117876,
        "length": 1368
       },
       "tangent": {
-       "offset": 1114164,
+       "offset": 1119244,
        "length": 492
       }
      },
@@ -4480,19 +4705,19 @@
    "triangles": 372,
    "geometry": {
     "position": {
-     "offset": 1114656,
+     "offset": 1119736,
      "length": 4728
     },
     "normal": {
-     "offset": 1119384,
+     "offset": 1124464,
      "length": 1576
     },
     "uv": {
-     "offset": 1120960,
+     "offset": 1126040,
      "length": 3152
     },
     "index": {
-     "offset": 1124112,
+     "offset": 1129192,
      "length": 4464
     }
    },
@@ -4529,19 +4754,19 @@
      "triangles": 180,
      "geometry": {
       "position": {
-       "offset": 1128576,
+       "offset": 1133656,
        "length": 2436
       },
       "normal": {
-       "offset": 1131012,
+       "offset": 1136092,
        "length": 812
       },
       "uv": {
-       "offset": 1131824,
+       "offset": 1136904,
        "length": 1624
       },
       "index": {
-       "offset": 1133448,
+       "offset": 1138528,
        "length": 2160
       }
      },
@@ -4573,19 +4798,19 @@
      "triangles": 28,
      "geometry": {
       "position": {
-       "offset": 1135608,
+       "offset": 1140688,
        "length": 408
       },
       "normal": {
-       "offset": 1136016,
+       "offset": 1141096,
        "length": 136
       },
       "uv": {
-       "offset": 1136152,
+       "offset": 1141232,
        "length": 272
       },
       "index": {
-       "offset": 1136424,
+       "offset": 1141504,
        "length": 336
       }
      },
@@ -4631,19 +4856,19 @@
    "triangles": 160,
    "geometry": {
     "position": {
-     "offset": 1136760,
+     "offset": 1141840,
      "length": 1968
     },
     "normal": {
-     "offset": 1138728,
+     "offset": 1143808,
      "length": 656
     },
     "uv": {
-     "offset": 1139384,
+     "offset": 1144464,
      "length": 1312
     },
     "index": {
-     "offset": 1140696,
+     "offset": 1145776,
      "length": 1920
     }
    },
@@ -4702,19 +4927,19 @@
      "triangles": 66,
      "geometry": {
       "position": {
-       "offset": 1142616,
+       "offset": 1147696,
        "length": 1320
       },
       "normal": {
-       "offset": 1143936,
+       "offset": 1149016,
        "length": 440
       },
       "uv": {
-       "offset": 1144376,
+       "offset": 1149456,
        "length": 880
       },
       "index": {
-       "offset": 1145256,
+       "offset": 1150336,
        "length": 792
       }
      },
@@ -4783,23 +5008,23 @@
    "triangles": 320,
    "geometry": {
     "position": {
-     "offset": 1146048,
+     "offset": 1151128,
      "length": 3576
     },
     "normal": {
-     "offset": 1149624,
+     "offset": 1154704,
      "length": 1192
     },
     "uv": {
-     "offset": 1150816,
+     "offset": 1155896,
      "length": 2384
     },
     "index": {
-     "offset": 1153200,
+     "offset": 1158280,
      "length": 3840
     },
     "tangent": {
-     "offset": 1157040,
+     "offset": 1162120,
      "length": 1192
     }
    },
@@ -4832,23 +5057,23 @@
      "triangles": 96,
      "geometry": {
       "position": {
-       "offset": 1158232,
+       "offset": 1163312,
        "length": 1368
       },
       "normal": {
-       "offset": 1159600,
+       "offset": 1164680,
        "length": 456
       },
       "uv": {
-       "offset": 1160056,
+       "offset": 1165136,
        "length": 912
       },
       "index": {
-       "offset": 1160968,
+       "offset": 1166048,
        "length": 1152
       },
       "tangent": {
-       "offset": 1162120,
+       "offset": 1167200,
        "length": 456
       }
      },
@@ -4875,23 +5100,23 @@
      "triangles": 12,
      "geometry": {
       "position": {
-       "offset": 1162576,
+       "offset": 1167656,
        "length": 288
       },
       "normal": {
-       "offset": 1162864,
+       "offset": 1167944,
        "length": 96
       },
       "uv": {
-       "offset": 1162960,
+       "offset": 1168040,
        "length": 192
       },
       "index": {
-       "offset": 1163152,
+       "offset": 1168232,
        "length": 144
       },
       "tangent": {
-       "offset": 1163296,
+       "offset": 1168376,
        "length": 96
       }
      },
@@ -4918,23 +5143,23 @@
      "triangles": 12,
      "geometry": {
       "position": {
-       "offset": 1163392,
+       "offset": 1168472,
        "length": 288
       },
       "normal": {
-       "offset": 1163680,
+       "offset": 1168760,
        "length": 96
       },
       "uv": {
-       "offset": 1163776,
+       "offset": 1168856,
        "length": 192
       },
       "index": {
-       "offset": 1163968,
+       "offset": 1169048,
        "length": 144
       },
       "tangent": {
-       "offset": 1164112,
+       "offset": 1169192,
        "length": 96
       }
      },
@@ -4975,19 +5200,19 @@
    "triangles": 147,
    "geometry": {
     "position": {
-     "offset": 1164208,
+     "offset": 1169288,
      "length": 4308
     },
     "normal": {
-     "offset": 1168516,
+     "offset": 1173596,
      "length": 1436
     },
     "uv": {
-     "offset": 1169952,
+     "offset": 1175032,
      "length": 2872
     },
     "index": {
-     "offset": 1172824,
+     "offset": 1177904,
      "length": 1764
     }
    },
@@ -5018,19 +5243,19 @@
      "triangles": 33,
      "geometry": {
       "position": {
-       "offset": 1174588,
+       "offset": 1179668,
        "length": 660
       },
       "normal": {
-       "offset": 1175248,
+       "offset": 1180328,
        "length": 220
       },
       "uv": {
-       "offset": 1175468,
+       "offset": 1180548,
        "length": 440
       },
       "index": {
-       "offset": 1175908,
+       "offset": 1180988,
        "length": 396
       }
      },
@@ -5071,19 +5296,19 @@
    "triangles": 9,
    "geometry": {
     "position": {
-     "offset": 1176304,
+     "offset": 1181384,
      "length": 156
     },
     "normal": {
-     "offset": 1176460,
+     "offset": 1181540,
      "length": 52
     },
     "uv": {
-     "offset": 1176512,
+     "offset": 1181592,
      "length": 104
     },
     "index": {
-     "offset": 1176616,
+     "offset": 1181696,
      "length": 108
     }
    },
@@ -5125,19 +5350,19 @@
    "triangles": 1,
    "geometry": {
     "position": {
-     "offset": 1176724,
+     "offset": 1181804,
      "length": 36
     },
     "normal": {
-     "offset": 1176760,
+     "offset": 1181840,
      "length": 12
     },
     "uv": {
-     "offset": 1176772,
+     "offset": 1181852,
      "length": 24
     },
     "index": {
-     "offset": 1176796,
+     "offset": 1181876,
      "length": 12
     }
    },
@@ -5179,19 +5404,19 @@
    "triangles": 1,
    "geometry": {
     "position": {
-     "offset": 1176808,
+     "offset": 1181888,
      "length": 36
     },
     "normal": {
-     "offset": 1176844,
+     "offset": 1181924,
      "length": 12
     },
     "uv": {
-     "offset": 1176856,
+     "offset": 1181936,
      "length": 24
     },
     "index": {
-     "offset": 1176880,
+     "offset": 1181960,
      "length": 12
     }
    },
@@ -5233,19 +5458,19 @@
    "triangles": 2,
    "geometry": {
     "position": {
-     "offset": 1176892,
+     "offset": 1181972,
      "length": 48
     },
     "normal": {
-     "offset": 1176940,
+     "offset": 1182020,
      "length": 16
     },
     "uv": {
-     "offset": 1176956,
+     "offset": 1182036,
      "length": 32
     },
     "index": {
-     "offset": 1176988,
+     "offset": 1182068,
      "length": 24
     }
    },
@@ -5287,19 +5512,19 @@
    "triangles": 2,
    "geometry": {
     "position": {
-     "offset": 1177012,
+     "offset": 1182092,
      "length": 48
     },
     "normal": {
-     "offset": 1177060,
+     "offset": 1182140,
      "length": 16
     },
     "uv": {
-     "offset": 1177076,
+     "offset": 1182156,
      "length": 32
     },
     "index": {
-     "offset": 1177108,
+     "offset": 1182188,
      "length": 24
     }
    },
@@ -5341,19 +5566,19 @@
    "triangles": 8,
    "geometry": {
     "position": {
-     "offset": 1177132,
+     "offset": 1182212,
      "length": 192
     },
     "normal": {
-     "offset": 1177324,
+     "offset": 1182404,
      "length": 64
     },
     "uv": {
-     "offset": 1177388,
+     "offset": 1182468,
      "length": 128
     },
     "index": {
-     "offset": 1177516,
+     "offset": 1182596,
      "length": 96
     }
    },
@@ -5395,19 +5620,19 @@
    "triangles": 2,
    "geometry": {
     "position": {
-     "offset": 1177612,
+     "offset": 1182692,
      "length": 48
     },
     "normal": {
-     "offset": 1177660,
+     "offset": 1182740,
      "length": 16
     },
     "uv": {
-     "offset": 1177676,
+     "offset": 1182756,
      "length": 32
     },
     "index": {
-     "offset": 1177708,
+     "offset": 1182788,
      "length": 24
     }
    },
@@ -5449,19 +5674,19 @@
    "triangles": 18,
    "geometry": {
     "position": {
-     "offset": 1177732,
+     "offset": 1182812,
      "length": 336
     },
     "normal": {
-     "offset": 1178068,
+     "offset": 1183148,
      "length": 112
     },
     "uv": {
-     "offset": 1178180,
+     "offset": 1183260,
      "length": 224
     },
     "index": {
-     "offset": 1178404,
+     "offset": 1183484,
      "length": 216
     }
    },
@@ -5503,23 +5728,23 @@
    "triangles": 439,
    "geometry": {
     "position": {
-     "offset": 1178620,
+     "offset": 1183700,
      "length": 5124
     },
     "normal": {
-     "offset": 1183744,
+     "offset": 1188824,
      "length": 1708
     },
     "uv": {
-     "offset": 1185452,
+     "offset": 1190532,
      "length": 3416
     },
     "index": {
-     "offset": 1188868,
+     "offset": 1193948,
      "length": 5268
     },
     "tangent": {
-     "offset": 1194136,
+     "offset": 1199216,
      "length": 1708
     }
    },
@@ -5567,23 +5792,23 @@
      "triangles": 155,
      "geometry": {
       "position": {
-       "offset": 1195844,
+       "offset": 1200924,
        "length": 2076
       },
       "normal": {
-       "offset": 1197920,
+       "offset": 1203000,
        "length": 692
       },
       "uv": {
-       "offset": 1198612,
+       "offset": 1203692,
        "length": 1384
       },
       "index": {
-       "offset": 1199996,
+       "offset": 1205076,
        "length": 1860
       },
       "tangent": {
-       "offset": 1201856,
+       "offset": 1206936,
        "length": 692
       }
      },
@@ -5626,23 +5851,23 @@
      "triangles": 51,
      "geometry": {
       "position": {
-       "offset": 1202548,
+       "offset": 1207628,
        "length": 984
       },
       "normal": {
-       "offset": 1203532,
+       "offset": 1208612,
        "length": 328
       },
       "uv": {
-       "offset": 1203860,
+       "offset": 1208940,
        "length": 656
       },
       "index": {
-       "offset": 1204516,
+       "offset": 1209596,
        "length": 612
       },
       "tangent": {
-       "offset": 1205128,
+       "offset": 1210208,
        "length": 328
       }
      },
@@ -5699,23 +5924,23 @@
    "triangles": 344,
    "geometry": {
     "position": {
-     "offset": 1205456,
+     "offset": 1210536,
      "length": 5016
     },
     "normal": {
-     "offset": 1210472,
+     "offset": 1215552,
      "length": 1672
     },
     "uv": {
-     "offset": 1212144,
+     "offset": 1217224,
      "length": 3344
     },
     "index": {
-     "offset": 1215488,
+     "offset": 1220568,
      "length": 4128
     },
     "tangent": {
-     "offset": 1219616,
+     "offset": 1224696,
      "length": 1672
     }
    },
@@ -5748,23 +5973,23 @@
      "triangles": 128,
      "geometry": {
       "position": {
-       "offset": 1221288,
+       "offset": 1226368,
        "length": 1620
       },
       "normal": {
-       "offset": 1222908,
+       "offset": 1227988,
        "length": 540
       },
       "uv": {
-       "offset": 1223448,
+       "offset": 1228528,
        "length": 1080
       },
       "index": {
-       "offset": 1224528,
+       "offset": 1229608,
        "length": 1536
       },
       "tangent": {
-       "offset": 1226064,
+       "offset": 1231144,
        "length": 540
       }
      },
@@ -5792,23 +6017,23 @@
      "triangles": 30,
      "geometry": {
       "position": {
-       "offset": 1226604,
+       "offset": 1231684,
        "length": 516
       },
       "normal": {
-       "offset": 1227120,
+       "offset": 1232200,
        "length": 172
       },
       "uv": {
-       "offset": 1227292,
+       "offset": 1232372,
        "length": 344
       },
       "index": {
-       "offset": 1227636,
+       "offset": 1232716,
        "length": 360
       },
       "tangent": {
-       "offset": 1227996,
+       "offset": 1233076,
        "length": 172
       }
      },
@@ -5850,19 +6075,19 @@
    "triangles": 64,
    "geometry": {
     "position": {
-     "offset": 1228168,
+     "offset": 1233248,
      "length": 780
     },
     "normal": {
-     "offset": 1228948,
+     "offset": 1234028,
      "length": 260
     },
     "uv": {
-     "offset": 1229208,
+     "offset": 1234288,
      "length": 520
     },
     "index": {
-     "offset": 1229728,
+     "offset": 1234808,
      "length": 768
     }
    },
@@ -5932,23 +6157,23 @@
    "triangles": 252,
    "geometry": {
     "position": {
-     "offset": 1230496,
+     "offset": 1235576,
      "length": 2604
     },
     "normal": {
-     "offset": 1233100,
+     "offset": 1238180,
      "length": 868
     },
     "uv": {
-     "offset": 1233968,
+     "offset": 1239048,
      "length": 1736
     },
     "index": {
-     "offset": 1235704,
+     "offset": 1240784,
      "length": 3024
     },
     "tangent": {
-     "offset": 1238728,
+     "offset": 1243808,
      "length": 868
     }
    },
@@ -5981,23 +6206,23 @@
      "triangles": 124,
      "geometry": {
       "position": {
-       "offset": 1239596,
+       "offset": 1244676,
        "length": 1272
       },
       "normal": {
-       "offset": 1240868,
+       "offset": 1245948,
        "length": 424
       },
       "uv": {
-       "offset": 1241292,
+       "offset": 1246372,
        "length": 848
       },
       "index": {
-       "offset": 1242140,
+       "offset": 1247220,
        "length": 1488
       },
       "tangent": {
-       "offset": 1243628,
+       "offset": 1248708,
        "length": 424
       }
      },
@@ -6025,23 +6250,23 @@
      "triangles": 12,
      "geometry": {
       "position": {
-       "offset": 1244052,
+       "offset": 1249132,
        "length": 288
       },
       "normal": {
-       "offset": 1244340,
+       "offset": 1249420,
        "length": 96
       },
       "uv": {
-       "offset": 1244436,
+       "offset": 1249516,
        "length": 192
       },
       "index": {
-       "offset": 1244628,
+       "offset": 1249708,
        "length": 144
       },
       "tangent": {
-       "offset": 1244772,
+       "offset": 1249852,
        "length": 96
       }
      },
@@ -6083,23 +6308,23 @@
    "triangles": 1504,
    "geometry": {
     "position": {
-     "offset": 1244868,
+     "offset": 1249948,
      "length": 27780
     },
     "normal": {
-     "offset": 1272648,
+     "offset": 1277728,
      "length": 9260
     },
     "uv": {
-     "offset": 1281908,
+     "offset": 1286988,
      "length": 18520
     },
     "index": {
-     "offset": 1300428,
+     "offset": 1305508,
      "length": 18048
     },
     "tangent": {
-     "offset": 1318476,
+     "offset": 1323556,
      "length": 9260
     }
    },
@@ -6151,23 +6376,23 @@
      "triangles": 965,
      "geometry": {
       "position": {
-       "offset": 1327736,
+       "offset": 1332816,
        "length": 19512
       },
       "normal": {
-       "offset": 1347248,
+       "offset": 1352328,
        "length": 6504
       },
       "uv": {
-       "offset": 1353752,
+       "offset": 1358832,
        "length": 13008
       },
       "index": {
-       "offset": 1366760,
+       "offset": 1371840,
        "length": 11580
       },
       "tangent": {
-       "offset": 1378340,
+       "offset": 1383420,
        "length": 6504
       }
      },
@@ -6213,23 +6438,23 @@
      "triangles": 685,
      "geometry": {
       "position": {
-       "offset": 1384844,
+       "offset": 1389924,
        "length": 15108
       },
       "normal": {
-       "offset": 1399952,
+       "offset": 1405032,
        "length": 5036
       },
       "uv": {
-       "offset": 1404988,
+       "offset": 1410068,
        "length": 10072
       },
       "index": {
-       "offset": 1415060,
+       "offset": 1420140,
        "length": 8220
       },
       "tangent": {
-       "offset": 1423280,
+       "offset": 1428360,
        "length": 5036
       }
      },
@@ -6275,23 +6500,23 @@
      "triangles": 499,
      "geometry": {
       "position": {
-       "offset": 1428316,
+       "offset": 1433396,
        "length": 10608
       },
       "normal": {
-       "offset": 1438924,
+       "offset": 1444004,
        "length": 3536
       },
       "uv": {
-       "offset": 1442460,
+       "offset": 1447540,
        "length": 7072
       },
       "index": {
-       "offset": 1449532,
+       "offset": 1454612,
        "length": 5988
       },
       "tangent": {
-       "offset": 1455520,
+       "offset": 1460600,
        "length": 3536
       }
      },
@@ -6351,23 +6576,23 @@
    "triangles": 2251,
    "geometry": {
     "position": {
-     "offset": 1459056,
+     "offset": 1464136,
      "length": 42132
     },
     "normal": {
-     "offset": 1501188,
+     "offset": 1506268,
      "length": 14044
     },
     "uv": {
-     "offset": 1515232,
+     "offset": 1520312,
      "length": 28088
     },
     "index": {
-     "offset": 1543320,
+     "offset": 1548400,
      "length": 27012
     },
     "tangent": {
-     "offset": 1570332,
+     "offset": 1575412,
      "length": 14044
     }
    },
@@ -6419,23 +6644,23 @@
      "triangles": 1539,
      "geometry": {
       "position": {
-       "offset": 1584376,
+       "offset": 1589456,
        "length": 30132
       },
       "normal": {
-       "offset": 1614508,
+       "offset": 1619588,
        "length": 10044
       },
       "uv": {
-       "offset": 1624552,
+       "offset": 1629632,
        "length": 20088
       },
       "index": {
-       "offset": 1644640,
+       "offset": 1649720,
        "length": 18468
       },
       "tangent": {
-       "offset": 1663108,
+       "offset": 1668188,
        "length": 10044
       }
      },
@@ -6481,23 +6706,23 @@
      "triangles": 955,
      "geometry": {
       "position": {
-       "offset": 1673152,
+       "offset": 1678232,
        "length": 19632
       },
       "normal": {
-       "offset": 1692784,
+       "offset": 1697864,
        "length": 6544
       },
       "uv": {
-       "offset": 1699328,
+       "offset": 1704408,
        "length": 13088
       },
       "index": {
-       "offset": 1712416,
+       "offset": 1717496,
        "length": 11460
       },
       "tangent": {
-       "offset": 1723876,
+       "offset": 1728956,
        "length": 6544
       }
      },
@@ -6543,23 +6768,23 @@
      "triangles": 522,
      "geometry": {
       "position": {
-       "offset": 1730420,
+       "offset": 1735500,
        "length": 11928
       },
       "normal": {
-       "offset": 1742348,
+       "offset": 1747428,
        "length": 3976
       },
       "uv": {
-       "offset": 1746324,
+       "offset": 1751404,
        "length": 7952
       },
       "index": {
-       "offset": 1754276,
+       "offset": 1759356,
        "length": 6264
       },
       "tangent": {
-       "offset": 1760540,
+       "offset": 1765620,
        "length": 3976
       }
      },
@@ -6619,23 +6844,23 @@
    "triangles": 7990,
    "geometry": {
     "position": {
-     "offset": 1764516,
+     "offset": 1769596,
      "length": 97356
     },
     "normal": {
-     "offset": 1861872,
+     "offset": 1866952,
      "length": 32452
     },
     "uv": {
-     "offset": 1894324,
+     "offset": 1899404,
      "length": 64904
     },
     "index": {
-     "offset": 1959228,
+     "offset": 1964308,
      "length": 95880
     },
     "tangent": {
-     "offset": 2055108,
+     "offset": 2060188,
      "length": 32452
     }
    },
@@ -6683,23 +6908,23 @@
      "triangles": 3034,
      "geometry": {
       "position": {
-       "offset": 2087560,
+       "offset": 2092640,
        "length": 50856
       },
       "normal": {
-       "offset": 2138416,
+       "offset": 2143496,
        "length": 16952
       },
       "uv": {
-       "offset": 2155368,
+       "offset": 2160448,
        "length": 33904
       },
       "index": {
-       "offset": 2189272,
+       "offset": 2194352,
        "length": 36408
       },
       "tangent": {
-       "offset": 2225680,
+       "offset": 2230760,
        "length": 16952
       }
      },
@@ -6727,23 +6952,23 @@
      "triangles": 573,
      "geometry": {
       "position": {
-       "offset": 2242632,
+       "offset": 2247712,
        "length": 9468
       },
       "normal": {
-       "offset": 2252100,
+       "offset": 2257180,
        "length": 3156
       },
       "uv": {
-       "offset": 2255256,
+       "offset": 2260336,
        "length": 6312
       },
       "index": {
-       "offset": 2261568,
+       "offset": 2266648,
        "length": 6876
       },
       "tangent": {
-       "offset": 2268444,
+       "offset": 2273524,
        "length": 3156
       }
      },
@@ -6785,23 +7010,23 @@
    "triangles": 7190,
    "geometry": {
     "position": {
-     "offset": 2271600,
+     "offset": 2276680,
      "length": 127572
     },
     "normal": {
-     "offset": 2399172,
+     "offset": 2404252,
      "length": 42524
     },
     "uv": {
-     "offset": 2441696,
+     "offset": 2446776,
      "length": 85048
     },
     "index": {
-     "offset": 2526744,
+     "offset": 2531824,
      "length": 86280
     },
     "tangent": {
-     "offset": 2613024,
+     "offset": 2618104,
      "length": 42524
     }
    },
@@ -6878,23 +7103,23 @@
      "triangles": 2167,
      "geometry": {
       "position": {
-       "offset": 2655548,
+       "offset": 2660628,
        "length": 39204
       },
       "normal": {
-       "offset": 2694752,
+       "offset": 2699832,
        "length": 13068
       },
       "uv": {
-       "offset": 2707820,
+       "offset": 2712900,
        "length": 26136
       },
       "index": {
-       "offset": 2733956,
+       "offset": 2739036,
        "length": 26004
       },
       "tangent": {
-       "offset": 2759960,
+       "offset": 2765040,
        "length": 13068
       }
      },
@@ -6936,23 +7161,23 @@
      "triangles": 2167,
      "geometry": {
       "position": {
-       "offset": 2773028,
+       "offset": 2778108,
        "length": 39204
       },
       "normal": {
-       "offset": 2812232,
+       "offset": 2817312,
        "length": 13068
       },
       "uv": {
-       "offset": 2825300,
+       "offset": 2830380,
        "length": 26136
       },
       "index": {
-       "offset": 2851436,
+       "offset": 2856516,
        "length": 26004
       },
       "tangent": {
-       "offset": 2877440,
+       "offset": 2882520,
        "length": 13068
       }
      },
@@ -6994,23 +7219,23 @@
      "triangles": 789,
      "geometry": {
       "position": {
-       "offset": 2890508,
+       "offset": 2895588,
        "length": 15480
       },
       "normal": {
-       "offset": 2905988,
+       "offset": 2911068,
        "length": 5160
       },
       "uv": {
-       "offset": 2911148,
+       "offset": 2916228,
        "length": 10320
       },
       "index": {
-       "offset": 2921468,
+       "offset": 2926548,
        "length": 9468
       },
       "tangent": {
-       "offset": 2930936,
+       "offset": 2936016,
        "length": 5160
       }
      },
@@ -7066,23 +7291,23 @@
    "triangles": 7186,
    "geometry": {
     "position": {
-     "offset": 2936096,
+     "offset": 2941176,
      "length": 126024
     },
     "normal": {
-     "offset": 3062120,
+     "offset": 3067200,
      "length": 42008
     },
     "uv": {
-     "offset": 3104128,
+     "offset": 3109208,
      "length": 84016
     },
     "index": {
-     "offset": 3188144,
+     "offset": 3193224,
      "length": 86232
     },
     "tangent": {
-     "offset": 3274376,
+     "offset": 3279456,
      "length": 42008
     }
    },
@@ -7159,23 +7384,23 @@
      "triangles": 4114,
      "geometry": {
       "position": {
-       "offset": 3316384,
+       "offset": 3321464,
        "length": 71124
       },
       "normal": {
-       "offset": 3387508,
+       "offset": 3392588,
        "length": 23708
       },
       "uv": {
-       "offset": 3411216,
+       "offset": 3416296,
        "length": 47416
       },
       "index": {
-       "offset": 3458632,
+       "offset": 3463712,
        "length": 49368
       },
       "tangent": {
-       "offset": 3508000,
+       "offset": 3513080,
        "length": 23708
       }
      },
@@ -7246,23 +7471,23 @@
      "triangles": 2167,
      "geometry": {
       "position": {
-       "offset": 3531708,
+       "offset": 3536788,
        "length": 38832
       },
       "normal": {
-       "offset": 3570540,
+       "offset": 3575620,
        "length": 12944
       },
       "uv": {
-       "offset": 3583484,
+       "offset": 3588564,
        "length": 25888
       },
       "index": {
-       "offset": 3609372,
+       "offset": 3614452,
        "length": 26004
       },
       "tangent": {
-       "offset": 3635376,
+       "offset": 3640456,
        "length": 12944
       }
      },
@@ -7304,23 +7529,23 @@
      "triangles": 789,
      "geometry": {
       "position": {
-       "offset": 3648320,
+       "offset": 3653400,
        "length": 15336
       },
       "normal": {
-       "offset": 3663656,
+       "offset": 3668736,
        "length": 5112
       },
       "uv": {
-       "offset": 3668768,
+       "offset": 3673848,
        "length": 10224
       },
       "index": {
-       "offset": 3678992,
+       "offset": 3684072,
        "length": 9468
       },
       "tangent": {
-       "offset": 3688460,
+       "offset": 3693540,
        "length": 5112
       }
      },
@@ -7376,23 +7601,23 @@
    "triangles": 5338,
    "geometry": {
     "position": {
-     "offset": 3693572,
+     "offset": 3698652,
      "length": 82836
     },
     "normal": {
-     "offset": 3776408,
+     "offset": 3781488,
      "length": 27612
     },
     "uv": {
-     "offset": 3804020,
+     "offset": 3809100,
      "length": 55224
     },
     "index": {
-     "offset": 3859244,
+     "offset": 3864324,
      "length": 64056
     },
     "tangent": {
-     "offset": 3923300,
+     "offset": 3928380,
      "length": 27612
     }
    },
@@ -7484,23 +7709,23 @@
      "triangles": 2454,
      "geometry": {
       "position": {
-       "offset": 3950912,
+       "offset": 3955992,
        "length": 42540
       },
       "normal": {
-       "offset": 3993452,
+       "offset": 3998532,
        "length": 14180
       },
       "uv": {
-       "offset": 4007632,
+       "offset": 4012712,
        "length": 28360
       },
       "index": {
-       "offset": 4035992,
+       "offset": 4041072,
        "length": 29448
       },
       "tangent": {
-       "offset": 4065440,
+       "offset": 4070520,
        "length": 14180
       }
      },
@@ -7542,23 +7767,23 @@
      "triangles": 1251,
      "geometry": {
       "position": {
-       "offset": 4079620,
+       "offset": 4084700,
        "length": 20856
       },
       "normal": {
-       "offset": 4100476,
+       "offset": 4105556,
        "length": 6952
       },
       "uv": {
-       "offset": 4107428,
+       "offset": 4112508,
        "length": 13904
       },
       "index": {
-       "offset": 4121332,
+       "offset": 4126412,
        "length": 15012
       },
       "tangent": {
-       "offset": 4136344,
+       "offset": 4141424,
        "length": 6952
       }
      },
@@ -7600,23 +7825,23 @@
      "triangles": 694,
      "geometry": {
       "position": {
-       "offset": 4143296,
+       "offset": 4148376,
        "length": 12528
       },
       "normal": {
-       "offset": 4155824,
+       "offset": 4160904,
        "length": 4176
       },
       "uv": {
-       "offset": 4160000,
+       "offset": 4165080,
        "length": 8352
       },
       "index": {
-       "offset": 4168352,
+       "offset": 4173432,
        "length": 8328
       },
       "tangent": {
-       "offset": 4176680,
+       "offset": 4181760,
        "length": 4176
       }
      },
@@ -7672,23 +7897,23 @@
    "triangles": 7840,
    "geometry": {
     "position": {
-     "offset": 4180856,
+     "offset": 4185936,
      "length": 120900
     },
     "normal": {
-     "offset": 4301756,
+     "offset": 4306836,
      "length": 40300
     },
     "uv": {
-     "offset": 4342056,
+     "offset": 4347136,
      "length": 80600
     },
     "index": {
-     "offset": 4422656,
+     "offset": 4427736,
      "length": 94080
     },
     "tangent": {
-     "offset": 4516736,
+     "offset": 4521816,
      "length": 40300
     }
    },
@@ -7781,23 +8006,23 @@
      "triangles": 4466,
      "geometry": {
       "position": {
-       "offset": 4557036,
+       "offset": 4562116,
        "length": 74136
       },
       "normal": {
-       "offset": 4631172,
+       "offset": 4636252,
        "length": 24712
       },
       "uv": {
-       "offset": 4655884,
+       "offset": 4660964,
        "length": 49424
       },
       "index": {
-       "offset": 4705308,
+       "offset": 4710388,
        "length": 53592
       },
       "tangent": {
-       "offset": 4758900,
+       "offset": 4763980,
        "length": 24712
       }
      },
@@ -7869,23 +8094,23 @@
      "triangles": 2442,
      "geometry": {
       "position": {
-       "offset": 4783612,
+       "offset": 4788692,
        "length": 44460
       },
       "normal": {
-       "offset": 4828072,
+       "offset": 4833152,
        "length": 14820
       },
       "uv": {
-       "offset": 4842892,
+       "offset": 4847972,
        "length": 29640
       },
       "index": {
-       "offset": 4872532,
+       "offset": 4877612,
        "length": 29304
       },
       "tangent": {
-       "offset": 4901836,
+       "offset": 4906916,
        "length": 14820
       }
      },
@@ -7957,23 +8182,23 @@
      "triangles": 1382,
      "geometry": {
       "position": {
-       "offset": 4916656,
+       "offset": 4921736,
        "length": 25284
       },
       "normal": {
-       "offset": 4941940,
+       "offset": 4947020,
        "length": 8428
       },
       "uv": {
-       "offset": 4950368,
+       "offset": 4955448,
        "length": 16856
       },
       "index": {
-       "offset": 4967224,
+       "offset": 4972304,
        "length": 16584
       },
       "tangent": {
-       "offset": 4983808,
+       "offset": 4988888,
        "length": 8428
       }
      },
@@ -8059,23 +8284,23 @@
    "triangles": 7694,
    "geometry": {
     "position": {
-     "offset": 4992236,
+     "offset": 4997316,
      "length": 118548
     },
     "normal": {
-     "offset": 5110784,
+     "offset": 5115864,
      "length": 39516
     },
     "uv": {
-     "offset": 5150300,
+     "offset": 5155380,
      "length": 79032
     },
     "index": {
-     "offset": 5229332,
+     "offset": 5234412,
      "length": 92328
     },
     "tangent": {
-     "offset": 5321660,
+     "offset": 5326740,
      "length": 39516
     }
    },
@@ -8183,23 +8408,23 @@
      "triangles": 4542,
      "geometry": {
       "position": {
-       "offset": 5361176,
+       "offset": 5366256,
        "length": 76884
       },
       "normal": {
-       "offset": 5438060,
+       "offset": 5443140,
        "length": 25628
       },
       "uv": {
-       "offset": 5463688,
+       "offset": 5468768,
        "length": 51256
       },
       "index": {
-       "offset": 5514944,
+       "offset": 5520024,
        "length": 54504
       },
       "tangent": {
-       "offset": 5569448,
+       "offset": 5574528,
        "length": 25628
       }
      },
@@ -8271,23 +8496,23 @@
      "triangles": 2384,
      "geometry": {
       "position": {
-       "offset": 5595076,
+       "offset": 5600156,
        "length": 43680
       },
       "normal": {
-       "offset": 5638756,
+       "offset": 5643836,
        "length": 14560
       },
       "uv": {
-       "offset": 5653316,
+       "offset": 5658396,
        "length": 29120
       },
       "index": {
-       "offset": 5682436,
+       "offset": 5687516,
        "length": 28608
       },
       "tangent": {
-       "offset": 5711044,
+       "offset": 5716124,
        "length": 14560
       }
      },
@@ -8359,23 +8584,23 @@
      "triangles": 1365,
      "geometry": {
       "position": {
-       "offset": 5725604,
+       "offset": 5730684,
        "length": 25476
       },
       "normal": {
-       "offset": 5751080,
+       "offset": 5756160,
        "length": 8492
       },
       "uv": {
-       "offset": 5759572,
+       "offset": 5764652,
        "length": 16984
       },
       "index": {
-       "offset": 5776556,
+       "offset": 5781636,
        "length": 16380
       },
       "tangent": {
-       "offset": 5792936,
+       "offset": 5798016,
        "length": 8492
       }
      },
@@ -8461,23 +8686,23 @@
    "triangles": 1356,
    "geometry": {
     "position": {
-     "offset": 5801428,
+     "offset": 5806508,
      "length": 24132
     },
     "normal": {
-     "offset": 5825560,
+     "offset": 5830640,
      "length": 8044
     },
     "uv": {
-     "offset": 5833604,
+     "offset": 5838684,
      "length": 16088
     },
     "index": {
-     "offset": 5849692,
+     "offset": 5854772,
      "length": 16272
     },
     "tangent": {
-     "offset": 5865964,
+     "offset": 5871044,
      "length": 8044
     }
    },
@@ -8570,23 +8795,23 @@
    "triangles": 1297,
    "geometry": {
     "position": {
-     "offset": 5874008,
+     "offset": 5879088,
      "length": 19884
     },
     "normal": {
-     "offset": 5893892,
+     "offset": 5898972,
      "length": 6628
     },
     "uv": {
-     "offset": 5900520,
+     "offset": 5905600,
      "length": 13256
     },
     "index": {
-     "offset": 5913776,
+     "offset": 5918856,
      "length": 15564
     },
     "tangent": {
-     "offset": 5929340,
+     "offset": 5934420,
      "length": 6628
     }
    },
@@ -8664,7 +8889,7 @@
  ],
  "instances": [
   {
-   "model": 66,
+   "model": 70,
    "name": "xmodel/vehicle_opel_blitz_woodland_static",
    "matrix": [
     -0.05963,
@@ -8693,7 +8918,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -1.5,
@@ -8722,7 +8947,7 @@
    ]
   },
   {
-   "model": 41,
+   "model": 45,
    "name": "xmodel/military_sandbag_curvedsection",
    "matrix": [
     1.0,
@@ -8751,7 +8976,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     0.682,
@@ -8780,7 +9005,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.9563,
@@ -8809,7 +9034,7 @@
    ]
   },
   {
-   "model": 63,
+   "model": 67,
    "name": "xmodel/vehicle_civilian_car_d",
    "matrix": [
     0.60182,
@@ -8838,7 +9063,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.43837,
@@ -8867,7 +9092,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.43837,
@@ -8896,7 +9121,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.43837,
@@ -8914,7 +9139,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.43837,
@@ -8943,7 +9168,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.89571,
@@ -8961,7 +9186,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.20791,
@@ -8990,7 +9215,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.20791,
@@ -9019,7 +9244,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.682,
@@ -9048,7 +9273,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.43837,
@@ -9066,7 +9291,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.88294,
@@ -9084,7 +9309,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.74314,
@@ -9102,7 +9327,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.53583,
@@ -9131,7 +9356,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.96987,
@@ -9160,7 +9385,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.23853,
@@ -9189,7 +9414,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.96987,
@@ -9218,7 +9443,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.23853,
@@ -9247,7 +9472,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.98129,
@@ -9276,7 +9501,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.98129,
@@ -9305,7 +9530,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.13053,
@@ -9334,7 +9559,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.41469,
@@ -9363,7 +9588,7 @@
    ]
   },
   {
-   "model": 32,
+   "model": 35,
    "name": "xmodel/furniture_walltable1",
    "matrix": [
     0.27564,
@@ -9392,7 +9617,7 @@
    ]
   },
   {
-   "model": 29,
+   "model": 32,
    "name": "xmodel/furniture_smallcoffeetable",
    "matrix": [
     -0.62186,
@@ -9421,7 +9646,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     0.64658,
@@ -9450,7 +9675,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     1.0,
@@ -9479,7 +9704,7 @@
    ]
   },
   {
-   "model": 18,
+   "model": 21,
    "name": "xmodel/furniture_bookshelvestall",
    "matrix": [
     -1.0,
@@ -9508,7 +9733,7 @@
    ]
   },
   {
-   "model": 32,
+   "model": 35,
    "name": "xmodel/furniture_walltable1",
    "matrix": [
     1.0,
@@ -9537,7 +9762,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 20,
    "name": "xmodel/furniture_bookshelves1",
    "matrix": [
     -0.0,
@@ -9566,7 +9791,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     1.0,
@@ -9595,7 +9820,7 @@
    ]
   },
   {
-   "model": 32,
+   "model": 35,
    "name": "xmodel/furniture_walltable1",
    "matrix": [
     1.0,
@@ -9624,7 +9849,7 @@
    ]
   },
   {
-   "model": 36,
+   "model": 39,
    "name": "xmodel/light_lampornate_off",
    "matrix": [
     -0.60966,
@@ -9653,7 +9878,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 20,
    "name": "xmodel/furniture_bookshelves1",
    "matrix": [
     1.0,
@@ -9682,7 +9907,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 20,
    "name": "xmodel/furniture_bookshelves1",
    "matrix": [
     0.99027,
@@ -9700,7 +9925,7 @@
    ]
   },
   {
-   "model": 45,
+   "model": 49,
    "name": "xmodel/prop_barrel_white",
    "matrix": [
     -0.25882,
@@ -9718,7 +9943,7 @@
    ]
   },
   {
-   "model": 45,
+   "model": 49,
    "name": "xmodel/prop_barrel_white",
    "matrix": [
     -0.25882,
@@ -9736,7 +9961,7 @@
    ]
   },
   {
-   "model": 45,
+   "model": 49,
    "name": "xmodel/prop_barrel_white",
    "matrix": [
     1.0,
@@ -9765,7 +9990,7 @@
    ]
   },
   {
-   "model": 45,
+   "model": 49,
    "name": "xmodel/prop_barrel_white",
    "matrix": [
     0.0,
@@ -9794,7 +10019,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.06976,
@@ -9823,7 +10048,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.06976,
@@ -9852,7 +10077,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.06976,
@@ -9870,7 +10095,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.06976,
@@ -9888,7 +10113,7 @@
    ]
   },
   {
-   "model": 14,
+   "model": 17,
    "name": "xmodel/crate02",
    "matrix": [
     0.0003,
@@ -9906,7 +10131,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.30902,
@@ -9935,7 +10160,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.30902,
@@ -9964,7 +10189,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.56208,
@@ -9993,7 +10218,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.29571,
@@ -10022,7 +10247,7 @@
    ]
   },
   {
-   "model": 14,
+   "model": 17,
    "name": "xmodel/crate02",
    "matrix": [
     -0.71325,
@@ -10040,7 +10265,7 @@
    ]
   },
   {
-   "model": 14,
+   "model": 17,
    "name": "xmodel/crate02",
    "matrix": [
     -0.05234,
@@ -10058,7 +10283,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99756,
@@ -10087,7 +10312,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99756,
@@ -10116,7 +10341,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99756,
@@ -10134,7 +10359,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99756,
@@ -10152,7 +10377,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.17365,
@@ -10170,7 +10395,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99966,
@@ -10199,7 +10424,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99966,
@@ -10217,7 +10442,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.97437,
@@ -10246,7 +10471,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99756,
@@ -10264,7 +10489,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99889,
@@ -10282,7 +10507,7 @@
    ]
   },
   {
-   "model": 45,
+   "model": 49,
    "name": "xmodel/prop_barrel_white",
    "matrix": [
     0.93358,
@@ -10300,7 +10525,7 @@
    ]
   },
   {
-   "model": 45,
+   "model": 49,
    "name": "xmodel/prop_barrel_white",
    "matrix": [
     -0.86603,
@@ -10329,7 +10554,7 @@
    ]
   },
   {
-   "model": 23,
+   "model": 26,
    "name": "xmodel/furniture_longdiningtable",
    "matrix": [
     0.99619,
@@ -10358,7 +10583,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     0.17365,
@@ -10387,7 +10612,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     -0.34202,
@@ -10416,7 +10641,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     0.12187,
@@ -10445,7 +10670,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     -0.79864,
@@ -10474,7 +10699,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 34,
    "name": "xmodel/furniture_victoriancouch",
    "matrix": [
     -0.01745,
@@ -10503,7 +10728,7 @@
    ]
   },
   {
-   "model": 32,
+   "model": 35,
    "name": "xmodel/furniture_walltable1",
    "matrix": [
     0.0,
@@ -10532,7 +10757,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     1.0,
@@ -10561,7 +10786,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     -1.0,
@@ -10590,7 +10815,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 36,
    "name": "xmodel/furniture_walltable2",
    "matrix": [
     0.0,
@@ -10619,7 +10844,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     1.0,
@@ -10648,7 +10873,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 20,
    "name": "xmodel/furniture_bookshelves1",
    "matrix": [
     1.0,
@@ -10677,7 +10902,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 20,
    "name": "xmodel/furniture_bookshelves1",
    "matrix": [
     1.0,
@@ -10706,7 +10931,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 30,
    "name": "xmodel/furniture_rolltopdesk",
    "matrix": [
     1.0,
@@ -10735,7 +10960,7 @@
    ]
   },
   {
-   "model": 24,
+   "model": 27,
    "name": "xmodel/furniture_ovaldiningtable",
    "matrix": [
     -0.91355,
@@ -10764,7 +10989,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 34,
    "name": "xmodel/furniture_victoriancouch",
    "matrix": [
     1.0,
@@ -10793,7 +11018,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     0.93358,
@@ -10822,7 +11047,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     0.27564,
@@ -10851,7 +11076,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     0.682,
@@ -10880,7 +11105,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 34,
    "name": "xmodel/furniture_victoriancouch",
    "matrix": [
     -1.0,
@@ -10909,7 +11134,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     1.0,
@@ -10938,7 +11163,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 36,
    "name": "xmodel/furniture_walltable2",
    "matrix": [
     1.0,
@@ -10967,7 +11192,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     -1.0,
@@ -10996,7 +11221,7 @@
    ]
   },
   {
-   "model": 31,
+   "model": 34,
    "name": "xmodel/furniture_victoriancouch",
    "matrix": [
     0.0,
@@ -11025,7 +11250,7 @@
    ]
   },
   {
-   "model": 29,
+   "model": 32,
    "name": "xmodel/furniture_smallcoffeetable",
    "matrix": [
     -0.62186,
@@ -11054,7 +11279,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     0.74314,
@@ -11083,7 +11308,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 20,
    "name": "xmodel/furniture_bookshelves1",
    "matrix": [
     1.0,
@@ -11112,7 +11337,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 36,
    "name": "xmodel/furniture_walltable2",
    "matrix": [
     1.0,
@@ -11141,7 +11366,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     -1.0,
@@ -11170,7 +11395,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     1.0,
@@ -11199,7 +11424,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.99985,
@@ -11228,7 +11453,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.1409,
@@ -11257,7 +11482,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.1409,
@@ -11275,7 +11500,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.99985,
@@ -11293,7 +11518,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.01047,
@@ -11311,7 +11536,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.97437,
@@ -11340,7 +11565,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.97437,
@@ -11369,7 +11594,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.95106,
@@ -11398,7 +11623,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.95372,
@@ -11427,7 +11652,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.22495,
@@ -11445,7 +11670,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 36,
    "name": "xmodel/furniture_walltable2",
    "matrix": [
     1.0,
@@ -11474,7 +11699,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     -0.86603,
@@ -11503,7 +11728,7 @@
    ]
   },
   {
-   "model": 41,
+   "model": 45,
    "name": "xmodel/military_sandbag_curvedsection",
    "matrix": [
     0.82904,
@@ -11532,7 +11757,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.3913,
@@ -11561,7 +11786,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -1.99435,
@@ -11590,7 +11815,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.30246,
@@ -11619,7 +11844,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.17206,
@@ -11648,7 +11873,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.39503,
@@ -11677,7 +11902,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.90866,
@@ -11706,7 +11931,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.66916,
@@ -11735,7 +11960,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.928,
@@ -11764,7 +11989,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.26437,
@@ -11793,7 +12018,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.4316,
@@ -11822,7 +12047,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.81197,
@@ -11851,7 +12076,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.33406,
@@ -11880,7 +12105,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.77428,
@@ -11909,7 +12134,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     1.0,
@@ -11927,7 +12152,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.40674,
@@ -11945,7 +12170,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.99027,
@@ -11963,7 +12188,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.85163,
@@ -11992,7 +12217,7 @@
    ]
   },
   {
-   "model": 8,
+   "model": 9,
    "name": "xmodel/caen_hedge_wall_2",
    "matrix": [
     -0.52992,
@@ -12021,7 +12246,7 @@
    ]
   },
   {
-   "model": 8,
+   "model": 9,
    "name": "xmodel/caen_hedge_wall_2",
    "matrix": [
     -0.0349,
@@ -12050,7 +12275,7 @@
    ]
   },
   {
-   "model": 8,
+   "model": 9,
    "name": "xmodel/caen_hedge_wall_2",
    "matrix": [
     1.0,
@@ -12079,7 +12304,7 @@
    ]
   },
   {
-   "model": 41,
+   "model": 45,
    "name": "xmodel/military_sandbag_curvedsection",
    "matrix": [
     0.81915,
@@ -12108,7 +12333,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 30,
    "name": "xmodel/furniture_rolltopdesk",
    "matrix": [
     1.0,
@@ -12137,7 +12362,7 @@
    ]
   },
   {
-   "model": 70,
+   "model": 74,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     -0.60042,
@@ -12156,7 +12381,7 @@
    "turret": true
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     1.0,
@@ -12185,7 +12410,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.73491,
@@ -12214,7 +12439,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     0.79229,
@@ -12243,7 +12468,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.70711,
@@ -12272,7 +12497,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     1.2,
@@ -12301,7 +12526,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     0.8,
@@ -12330,7 +12555,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.17021,
@@ -12359,7 +12584,7 @@
    ]
   },
   {
-   "model": 44,
+   "model": 48,
    "name": "xmodel/military_sandbag_shortsection",
    "matrix": [
     1.0,
@@ -12388,7 +12613,7 @@
    ]
   },
   {
-   "model": 43,
+   "model": 47,
    "name": "xmodel/military_sandbag_endsection_right",
    "matrix": [
     1.0,
@@ -12417,7 +12642,7 @@
    ]
   },
   {
-   "model": 42,
+   "model": 46,
    "name": "xmodel/military_sandbag_endsection_left",
    "matrix": [
     1.0,
@@ -12446,7 +12671,7 @@
    ]
   },
   {
-   "model": 60,
+   "model": 64,
    "name": "xmodel/prop_wooden_barrel1",
    "matrix": [
     -0.0,
@@ -12475,7 +12700,7 @@
    ]
   },
   {
-   "model": 60,
+   "model": 64,
    "name": "xmodel/prop_wooden_barrel1",
    "matrix": [
     0.74396,
@@ -12493,7 +12718,7 @@
    ]
   },
   {
-   "model": 60,
+   "model": 64,
    "name": "xmodel/prop_wooden_barrel1",
    "matrix": [
     -0.72644,
@@ -12522,7 +12747,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     1.0,
@@ -12551,7 +12776,7 @@
    ]
   },
   {
-   "model": 6,
+   "model": 7,
    "name": "xmodel/caen_grasstuft_5",
    "matrix": [
     1.5,
@@ -12580,7 +12805,7 @@
    ]
   },
   {
-   "model": 6,
+   "model": 7,
    "name": "xmodel/caen_grasstuft_5",
    "matrix": [
     1.5,
@@ -12609,7 +12834,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     -0.98481,
@@ -12638,7 +12863,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     -0.42262,
@@ -12667,7 +12892,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     -0.73135,
@@ -12696,7 +12921,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.89101,
@@ -12725,7 +12950,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.9563,
@@ -12754,7 +12979,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.99863,
@@ -12783,7 +13008,7 @@
    ]
   },
   {
-   "model": 8,
+   "model": 9,
    "name": "xmodel/caen_hedge_wall_2",
    "matrix": [
     0.82758,
@@ -12812,7 +13037,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     0.44776,
@@ -12841,7 +13066,7 @@
    ]
   },
   {
-   "model": 8,
+   "model": 9,
    "name": "xmodel/caen_hedge_wall_2",
    "matrix": [
     0.38591,
@@ -12870,7 +13095,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.97437,
@@ -12899,7 +13124,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.73135,
@@ -12928,7 +13153,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.52992,
@@ -12957,7 +13182,7 @@
    ]
   },
   {
-   "model": 8,
+   "model": 9,
    "name": "xmodel/caen_hedge_wall_2",
    "matrix": [
     -0.0349,
@@ -12986,7 +13211,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.0349,
@@ -13015,7 +13240,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     0.22495,
@@ -13044,7 +13269,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.22495,
@@ -13073,7 +13298,7 @@
    ]
   },
   {
-   "model": 8,
+   "model": 9,
    "name": "xmodel/caen_hedge_wall_2",
    "matrix": [
     0.22495,
@@ -13102,7 +13327,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.84805,
@@ -13131,7 +13356,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.29237,
@@ -13160,7 +13385,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     0.99985,
@@ -13178,7 +13403,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     1.19982,
@@ -13207,7 +13432,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     0.99985,
@@ -13236,7 +13461,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     0.97437,
@@ -13265,7 +13490,7 @@
    ]
   },
   {
-   "model": 8,
+   "model": 9,
    "name": "xmodel/caen_hedge_wall_2",
    "matrix": [
     0.29237,
@@ -13294,7 +13519,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.73135,
@@ -13323,7 +13548,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     -0.57358,
@@ -13352,7 +13577,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.9703,
@@ -13381,7 +13606,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     0.96593,
@@ -13410,7 +13635,7 @@
    ]
   },
   {
-   "model": 8,
+   "model": 9,
    "name": "xmodel/caen_hedge_wall_2",
    "matrix": [
     0.89101,
@@ -13439,7 +13664,7 @@
    ]
   },
   {
-   "model": 8,
+   "model": 9,
    "name": "xmodel/caen_hedge_wall_2",
    "matrix": [
     -0.98481,
@@ -13468,7 +13693,7 @@
    ]
   },
   {
-   "model": 8,
+   "model": 9,
    "name": "xmodel/caen_hedge_wall_2",
    "matrix": [
     0.682,
@@ -13497,7 +13722,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.682,
@@ -13526,7 +13751,7 @@
    ]
   },
   {
-   "model": 60,
+   "model": 64,
    "name": "xmodel/prop_wooden_barrel1",
    "matrix": [
     -0.0,
@@ -13555,7 +13780,7 @@
    ]
   },
   {
-   "model": 60,
+   "model": 64,
    "name": "xmodel/prop_wooden_barrel1",
    "matrix": [
     0.74396,
@@ -13584,7 +13809,7 @@
    ]
   },
   {
-   "model": 60,
+   "model": 64,
    "name": "xmodel/prop_wooden_barrel1",
    "matrix": [
     -0.72644,
@@ -13613,7 +13838,7 @@
    ]
   },
   {
-   "model": 60,
+   "model": 64,
    "name": "xmodel/prop_wooden_barrel1",
    "matrix": [
     -0.0,
@@ -13642,7 +13867,7 @@
    ]
   },
   {
-   "model": 60,
+   "model": 64,
    "name": "xmodel/prop_wooden_barrel1",
    "matrix": [
     0.74396,
@@ -13671,7 +13896,7 @@
    ]
   },
   {
-   "model": 60,
+   "model": 64,
    "name": "xmodel/prop_wooden_barrel1",
    "matrix": [
     -0.72644,
@@ -13700,7 +13925,7 @@
    ]
   },
   {
-   "model": 59,
+   "model": 63,
    "name": "xmodel/prop_wood_debris_big_burnt_01",
    "matrix": [
     -0.0,
@@ -13718,7 +13943,7 @@
    ]
   },
   {
-   "model": 59,
+   "model": 63,
    "name": "xmodel/prop_wood_debris_big_burnt_01",
    "matrix": [
     0.90704,
@@ -13736,7 +13961,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     1.0,
@@ -13765,7 +13990,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     1.0,
@@ -13794,7 +14019,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     1.0,
@@ -13823,7 +14048,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     1.0,
@@ -13841,7 +14066,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     1.0,
@@ -13870,7 +14095,7 @@
    ]
   },
   {
-   "model": 58,
+   "model": 62,
    "name": "xmodel/prop_metal_pail1",
    "matrix": [
     1.0,
@@ -13899,7 +14124,7 @@
    ]
   },
   {
-   "model": 25,
+   "model": 28,
    "name": "xmodel/furniture_piano_d",
    "matrix": [
     0.25882,
@@ -14131,7 +14356,7 @@
    ]
   },
   {
-   "model": 35,
+   "model": 38,
    "name": "xmodel/haycart_destroyed",
    "matrix": [
     0.5,
@@ -14160,7 +14385,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 20,
    "name": "xmodel/furniture_bookshelves1",
    "matrix": [
     -0.0,
@@ -14189,7 +14414,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 20,
    "name": "xmodel/furniture_bookshelves1",
    "matrix": [
     -0.0,
@@ -14218,7 +14443,7 @@
    ]
   },
   {
-   "model": 24,
+   "model": 27,
    "name": "xmodel/furniture_ovaldiningtable",
    "matrix": [
     0.0,
@@ -14247,7 +14472,7 @@
    ]
   },
   {
-   "model": 32,
+   "model": 35,
    "name": "xmodel/furniture_walltable1",
    "matrix": [
     -1.0,
@@ -14276,7 +14501,7 @@
    ]
   },
   {
-   "model": 21,
+   "model": 24,
    "name": "xmodel/furniture_dresser_d",
    "matrix": [
     -1.0,
@@ -14305,7 +14530,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 30,
    "name": "xmodel/furniture_rolltopdesk",
    "matrix": [
     -0.0,
@@ -14334,7 +14559,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     0.70711,
@@ -14363,7 +14588,7 @@
    ]
   },
   {
-   "model": 23,
+   "model": 26,
    "name": "xmodel/furniture_longdiningtable",
    "matrix": [
     -1.0,
@@ -14392,7 +14617,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     -1.0,
@@ -14421,7 +14646,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     -0.0,
@@ -14450,7 +14675,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     -0.70711,
@@ -14479,7 +14704,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     -0.0,
@@ -14508,7 +14733,7 @@
    ]
   },
   {
-   "model": 23,
+   "model": 26,
    "name": "xmodel/furniture_longdiningtable",
    "matrix": [
     0.44411,
@@ -14526,7 +14751,7 @@
    ]
   },
   {
-   "model": 20,
+   "model": 23,
    "name": "xmodel/furniture_cabinet",
    "matrix": [
     -1.0,
@@ -14555,7 +14780,7 @@
    ]
   },
   {
-   "model": 28,
+   "model": 31,
    "name": "xmodel/furniture_sidetable1_d",
    "matrix": [
     -1.0,
@@ -14584,7 +14809,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 30,
    "name": "xmodel/furniture_rolltopdesk",
    "matrix": [
     -0.70711,
@@ -14613,7 +14838,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 20,
    "name": "xmodel/furniture_bookshelves1",
    "matrix": [
     0.70711,
@@ -14642,7 +14867,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 20,
    "name": "xmodel/furniture_bookshelves1",
    "matrix": [
     0.70711,
@@ -14671,7 +14896,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     -0.78801,
@@ -14700,7 +14925,7 @@
    ]
   },
   {
-   "model": 32,
+   "model": 35,
    "name": "xmodel/furniture_walltable1",
    "matrix": [
     0.70711,
@@ -14729,7 +14954,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 20,
    "name": "xmodel/furniture_bookshelves1",
    "matrix": [
     0.70711,
@@ -14758,7 +14983,7 @@
    ]
   },
   {
-   "model": 23,
+   "model": 26,
    "name": "xmodel/furniture_longdiningtable",
    "matrix": [
     -0.40674,
@@ -14787,7 +15012,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     0.87462,
@@ -14816,7 +15041,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     0.68962,
@@ -14845,7 +15070,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     -1.0,
@@ -14874,7 +15099,7 @@
    ]
   },
   {
-   "model": 27,
+   "model": 30,
    "name": "xmodel/furniture_rolltopdesk",
    "matrix": [
     -0.70711,
@@ -14903,7 +15128,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     -0.22155,
@@ -14932,7 +15157,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     -0.70711,
@@ -14961,7 +15186,7 @@
    ]
   },
   {
-   "model": 24,
+   "model": 27,
    "name": "xmodel/furniture_ovaldiningtable",
    "matrix": [
     0.0,
@@ -14990,7 +15215,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 20,
    "name": "xmodel/furniture_bookshelves1",
    "matrix": [
     0.70711,
@@ -15019,7 +15244,7 @@
    ]
   },
   {
-   "model": 70,
+   "model": 74,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     0.68962,
@@ -15039,7 +15264,7 @@
    "turret": true
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     -0.70711,
@@ -15068,7 +15293,7 @@
    ]
   },
   {
-   "model": 16,
+   "model": 19,
    "name": "xmodel/furniture_armoire",
    "matrix": [
     -0.70711,
@@ -15097,7 +15322,7 @@
    ]
   },
   {
-   "model": 20,
+   "model": 23,
    "name": "xmodel/furniture_cabinet",
    "matrix": [
     0.70711,
@@ -15126,7 +15351,7 @@
    ]
   },
   {
-   "model": 70,
+   "model": 74,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     0.67816,
@@ -15146,7 +15371,7 @@
    "turret": true
   },
   {
-   "model": 70,
+   "model": 74,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     0.67816,
@@ -15166,7 +15391,7 @@
    "turret": true
   },
   {
-   "model": 70,
+   "model": 74,
    "name": "xmodel/weapon_mg42",
    "matrix": [
     0.68962,
@@ -15186,7 +15411,7 @@
    "turret": true
   },
   {
-   "model": 22,
+   "model": 25,
    "name": "xmodel/furniture_fullbed",
    "matrix": [
     -1.0,
@@ -15204,7 +15429,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15233,7 +15458,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15262,7 +15487,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15291,7 +15516,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15320,7 +15545,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15349,7 +15574,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15378,7 +15603,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15407,7 +15632,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15436,7 +15661,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15465,7 +15690,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15494,7 +15719,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15523,7 +15748,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15552,7 +15777,7 @@
    ]
   },
   {
-   "model": 32,
+   "model": 35,
    "name": "xmodel/furniture_walltable1",
    "matrix": [
     -0.49538,
@@ -15570,7 +15795,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     0.0,
@@ -15599,7 +15824,7 @@
    ]
   },
   {
-   "model": 33,
+   "model": 36,
    "name": "xmodel/furniture_walltable2",
    "matrix": [
     -0.05539,
@@ -15617,7 +15842,7 @@
    ]
   },
   {
-   "model": 26,
+   "model": 29,
    "name": "xmodel/furniture_plainchair",
    "matrix": [
     -0.09131,
@@ -15635,7 +15860,7 @@
    ]
   },
   {
-   "model": 30,
+   "model": 33,
    "name": "xmodel/furniture_tableclock2",
    "matrix": [
     -0.62389,
@@ -15664,7 +15889,7 @@
    ]
   },
   {
-   "model": 36,
+   "model": 39,
    "name": "xmodel/light_lampornate_off",
    "matrix": [
     0.18526,
@@ -15682,7 +15907,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15711,7 +15936,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15740,7 +15965,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15769,7 +15994,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15798,7 +16023,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15827,7 +16052,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15856,7 +16081,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15885,7 +16110,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15914,7 +16139,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -15943,7 +16168,7 @@
    ]
   },
   {
-   "model": 19,
+   "model": 22,
    "name": "xmodel/furniture_bookshelveswide",
    "matrix": [
     0.06976,
@@ -15972,7 +16197,7 @@
    ]
   },
   {
-   "model": 57,
+   "model": 61,
    "name": "xmodel/prop_lamp01",
    "matrix": [
     1.0,
@@ -15990,7 +16215,7 @@
    ]
   },
   {
-   "model": 57,
+   "model": 61,
    "name": "xmodel/prop_lamp01",
    "matrix": [
     1.0,
@@ -16008,7 +16233,7 @@
    ]
   },
   {
-   "model": 57,
+   "model": 61,
    "name": "xmodel/prop_lamp01",
    "matrix": [
     1.0,
@@ -16026,7 +16251,7 @@
    ]
   },
   {
-   "model": 57,
+   "model": 61,
    "name": "xmodel/prop_lamp01",
    "matrix": [
     1.0,
@@ -16044,7 +16269,7 @@
    ]
   },
   {
-   "model": 57,
+   "model": 61,
    "name": "xmodel/prop_lamp01",
    "matrix": [
     1.0,
@@ -16062,7 +16287,7 @@
    ]
   },
   {
-   "model": 57,
+   "model": 61,
    "name": "xmodel/prop_lamp01",
    "matrix": [
     1.0,
@@ -16080,7 +16305,7 @@
    ]
   },
   {
-   "model": 12,
+   "model": 13,
    "name": "xmodel/caen_windowpulleyhook",
    "matrix": [
     1.0,
@@ -16098,7 +16323,7 @@
    ]
   },
   {
-   "model": 48,
+   "model": 52,
    "name": "xmodel/prop_ivy_corner_1",
    "matrix": [
     -0.0,
@@ -16127,7 +16352,7 @@
    ]
   },
   {
-   "model": 46,
+   "model": 50,
    "name": "xmodel/prop_geraniums_1",
    "matrix": [
     1.1,
@@ -16145,7 +16370,7 @@
    ]
   },
   {
-   "model": 46,
+   "model": 50,
    "name": "xmodel/prop_geraniums_1",
    "matrix": [
     -0.0,
@@ -16163,7 +16388,7 @@
    ]
   },
   {
-   "model": 46,
+   "model": 50,
    "name": "xmodel/prop_geraniums_1",
    "matrix": [
     -0.0,
@@ -16181,7 +16406,7 @@
    ]
   },
   {
-   "model": 46,
+   "model": 50,
    "name": "xmodel/prop_geraniums_1",
    "matrix": [
     -0.0,
@@ -16199,7 +16424,7 @@
    ]
   },
   {
-   "model": 12,
+   "model": 13,
    "name": "xmodel/caen_windowpulleyhook",
    "matrix": [
     -0.0,
@@ -16228,7 +16453,7 @@
    ]
   },
   {
-   "model": 12,
+   "model": 13,
    "name": "xmodel/caen_windowpulleyhook",
    "matrix": [
     -0.0,
@@ -16257,7 +16482,7 @@
    ]
   },
   {
-   "model": 46,
+   "model": 50,
    "name": "xmodel/prop_geraniums_1",
    "matrix": [
     -0.0,
@@ -16275,7 +16500,7 @@
    ]
   },
   {
-   "model": 46,
+   "model": 50,
    "name": "xmodel/prop_geraniums_1",
    "matrix": [
     -0.0,
@@ -16293,7 +16518,7 @@
    ]
   },
   {
-   "model": 46,
+   "model": 50,
    "name": "xmodel/prop_geraniums_1",
    "matrix": [
     -0.0,
@@ -16311,7 +16536,7 @@
    ]
   },
   {
-   "model": 12,
+   "model": 13,
    "name": "xmodel/caen_windowpulleyhook",
    "matrix": [
     -0.0,
@@ -16329,7 +16554,7 @@
    ]
   },
   {
-   "model": 12,
+   "model": 13,
    "name": "xmodel/caen_windowpulleyhook",
    "matrix": [
     -0.0,
@@ -16347,7 +16572,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.99989,
@@ -16376,7 +16601,7 @@
    ]
   },
   {
-   "model": 34,
+   "model": 37,
    "name": "xmodel/haycart",
    "matrix": [
     -0.25659,
@@ -16405,7 +16630,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.99781,
@@ -16423,7 +16648,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.93778,
@@ -16452,7 +16677,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.95764,
@@ -16470,7 +16695,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.98285,
@@ -16499,7 +16724,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.9698,
@@ -16528,7 +16753,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.96991,
@@ -16557,7 +16782,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.96993,
@@ -16586,7 +16811,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.96991,
@@ -16615,7 +16840,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.46147,
@@ -16644,7 +16869,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.84918,
@@ -16673,7 +16898,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.43212,
@@ -16691,7 +16916,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.99989,
@@ -16720,7 +16945,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.99989,
@@ -16749,7 +16974,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.99989,
@@ -16778,7 +17003,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.63438,
@@ -16807,7 +17032,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.98504,
@@ -16836,7 +17061,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.46346,
@@ -16865,7 +17090,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.46346,
@@ -16894,7 +17119,7 @@
    ]
   },
   {
-   "model": 49,
+   "model": 53,
    "name": "xmodel/prop_ivycornersingle02",
    "matrix": [
     1.0,
@@ -16923,7 +17148,7 @@
    ]
   },
   {
-   "model": 50,
+   "model": 54,
    "name": "xmodel/prop_ivyedgehorizontal01",
    "matrix": [
     1.0,
@@ -16952,7 +17177,7 @@
    ]
   },
   {
-   "model": 51,
+   "model": 55,
    "name": "xmodel/prop_ivyedgehorizontal02",
    "matrix": [
     -0.0,
@@ -16970,7 +17195,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 56,
    "name": "xmodel/prop_ivyedgeverticle01",
    "matrix": [
     -0.0,
@@ -16999,7 +17224,7 @@
    ]
   },
   {
-   "model": 53,
+   "model": 57,
    "name": "xmodel/prop_ivysmallclump02",
    "matrix": [
     -1.0,
@@ -17017,7 +17242,7 @@
    ]
   },
   {
-   "model": 55,
+   "model": 59,
    "name": "xmodel/prop_ivysmallverticle01",
    "matrix": [
     -0.0,
@@ -17046,7 +17271,7 @@
    ]
   },
   {
-   "model": 54,
+   "model": 58,
    "name": "xmodel/prop_ivysmallclump03",
    "matrix": [
     -0.0,
@@ -17064,7 +17289,7 @@
    ]
   },
   {
-   "model": 49,
+   "model": 53,
    "name": "xmodel/prop_ivycornersingle02",
    "matrix": [
     -0.0,
@@ -17093,7 +17318,7 @@
    ]
   },
   {
-   "model": 50,
+   "model": 54,
    "name": "xmodel/prop_ivyedgehorizontal01",
    "matrix": [
     -1.0,
@@ -17122,7 +17347,7 @@
    ]
   },
   {
-   "model": 49,
+   "model": 53,
    "name": "xmodel/prop_ivycornersingle02",
    "matrix": [
     -0.0,
@@ -17151,7 +17376,7 @@
    ]
   },
   {
-   "model": 56,
+   "model": 60,
    "name": "xmodel/prop_ivywindowcornertop01",
    "matrix": [
     0.0,
@@ -17180,7 +17405,7 @@
    ]
   },
   {
-   "model": 53,
+   "model": 57,
    "name": "xmodel/prop_ivysmallclump02",
    "matrix": [
     0.0,
@@ -17198,7 +17423,7 @@
    ]
   },
   {
-   "model": 55,
+   "model": 59,
    "name": "xmodel/prop_ivysmallverticle01",
    "matrix": [
     0.0,
@@ -17227,7 +17452,7 @@
    ]
   },
   {
-   "model": 49,
+   "model": 53,
    "name": "xmodel/prop_ivycornersingle02",
    "matrix": [
     -0.0,
@@ -17256,7 +17481,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 56,
    "name": "xmodel/prop_ivyedgeverticle01",
    "matrix": [
     -1.0,
@@ -17285,7 +17510,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 56,
    "name": "xmodel/prop_ivyedgeverticle01",
    "matrix": [
     -1.0,
@@ -17314,7 +17539,7 @@
    ]
   },
   {
-   "model": 52,
+   "model": 56,
    "name": "xmodel/prop_ivyedgeverticle01",
    "matrix": [
     -1.0,
@@ -17343,7 +17568,7 @@
    ]
   },
   {
-   "model": 50,
+   "model": 54,
    "name": "xmodel/prop_ivyedgehorizontal01",
    "matrix": [
     0.0,
@@ -17372,7 +17597,7 @@
    ]
   },
   {
-   "model": 46,
+   "model": 50,
    "name": "xmodel/prop_geraniums_1",
    "matrix": [
     -0.0,
@@ -17390,7 +17615,7 @@
    ]
   },
   {
-   "model": 46,
+   "model": 50,
    "name": "xmodel/prop_geraniums_1",
    "matrix": [
     -0.0,
@@ -17408,7 +17633,7 @@
    ]
   },
   {
-   "model": 55,
+   "model": 59,
    "name": "xmodel/prop_ivysmallverticle01",
    "matrix": [
     0.0,
@@ -17437,7 +17662,7 @@
    ]
   },
   {
-   "model": 55,
+   "model": 59,
    "name": "xmodel/prop_ivysmallverticle01",
    "matrix": [
     0.0,
@@ -17466,7 +17691,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.99002,
@@ -17484,7 +17709,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.55948,
@@ -17513,7 +17738,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -0.99276,
@@ -17542,7 +17767,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.37622,
@@ -17571,7 +17796,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.39658,
@@ -17600,7 +17825,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -1.64679,
@@ -17629,7 +17854,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -1.47516,
@@ -17658,7 +17883,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     1.93233,
@@ -17687,7 +17912,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.36374,
@@ -17716,7 +17941,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.88367,
@@ -17745,7 +17970,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.85163,
@@ -17774,7 +17999,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.45721,
@@ -17803,7 +18028,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     0.3913,
@@ -17832,7 +18057,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     1.08594,
@@ -17850,7 +18075,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.93828,
@@ -17879,7 +18104,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     1.12562,
@@ -17908,7 +18133,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     -1.16574,
@@ -17937,7 +18162,7 @@
    ]
   },
   {
-   "model": 61,
+   "model": 65,
    "name": "xmodel/tree_grey_oak_med_a",
    "matrix": [
     1.07077,
@@ -17966,7 +18191,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -1.64679,
@@ -17995,7 +18220,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -1.64679,
@@ -18024,7 +18249,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.78348,
@@ -18053,7 +18278,7 @@
    ]
   },
   {
-   "model": 57,
+   "model": 61,
    "name": "xmodel/prop_lamp01",
    "matrix": [
     1.0,
@@ -18071,7 +18296,7 @@
    ]
   },
   {
-   "model": 6,
+   "model": 7,
    "name": "xmodel/caen_grasstuft_5",
    "matrix": [
     0.8,
@@ -18100,7 +18325,7 @@
    ]
   },
   {
-   "model": 6,
+   "model": 7,
    "name": "xmodel/caen_grasstuft_5",
    "matrix": [
     0.8,
@@ -18129,7 +18354,7 @@
    ]
   },
   {
-   "model": 6,
+   "model": 7,
    "name": "xmodel/caen_grasstuft_5",
    "matrix": [
     0.8,
@@ -18158,7 +18383,7 @@
    ]
   },
   {
-   "model": 6,
+   "model": 7,
    "name": "xmodel/caen_grasstuft_5",
    "matrix": [
     0.8,
@@ -18187,7 +18412,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     0.96593,
@@ -18216,7 +18441,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     0.79864,
@@ -18234,7 +18459,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.51504,
@@ -18263,7 +18488,7 @@
    ]
   },
   {
-   "model": 9,
+   "model": 10,
    "name": "xmodel/caen_hedge_wall_3",
    "matrix": [
     0.73135,
@@ -18292,7 +18517,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     1.3,
@@ -18321,7 +18546,7 @@
    ]
   },
   {
-   "model": 47,
+   "model": 51,
    "name": "xmodel/prop_haybale",
    "matrix": [
     0.7806,
@@ -18350,7 +18575,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     0.70711,
@@ -18379,7 +18604,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.70711,
@@ -18408,7 +18633,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     0.70711,
@@ -18437,7 +18662,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     0.06533,
@@ -18466,7 +18691,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.02233,
@@ -18495,7 +18720,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.19918,
@@ -18524,7 +18749,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.75585,
@@ -18553,7 +18778,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     0.70711,
@@ -18582,7 +18807,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.70711,
@@ -18611,7 +18836,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     0.70711,
@@ -18640,7 +18865,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.48925,
@@ -18669,7 +18894,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     0.87882,
@@ -18698,7 +18923,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     0.32766,
@@ -18727,7 +18952,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     0.54934,
@@ -18756,7 +18981,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.62916,
@@ -18785,7 +19010,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.04848,
@@ -18814,7 +19039,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     0.29795,
@@ -18843,7 +19068,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -18872,7 +19097,7 @@
    ]
   },
   {
-   "model": 45,
+   "model": 49,
    "name": "xmodel/prop_barrel_white",
    "matrix": [
     -0.25882,
@@ -18890,7 +19115,7 @@
    ]
   },
   {
-   "model": 14,
+   "model": 17,
    "name": "xmodel/crate02",
    "matrix": [
     -0.99813,
@@ -18919,7 +19144,7 @@
    ]
   },
   {
-   "model": 14,
+   "model": 17,
    "name": "xmodel/crate02",
    "matrix": [
     0.94322,
@@ -18937,7 +19162,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.1184,
@@ -18955,7 +19180,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -18984,7 +19209,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -19013,7 +19238,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -19042,7 +19267,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -19071,7 +19296,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -19100,7 +19325,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -19129,7 +19354,7 @@
    ]
   },
   {
-   "model": 15,
+   "model": 18,
    "name": "xmodel/egypt_prop_woodrail",
    "matrix": [
     1.0,
@@ -19158,7 +19383,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99912,
@@ -19187,7 +19412,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99912,
@@ -19205,7 +19430,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.73491,
@@ -19234,7 +19459,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     0.79229,
@@ -19263,7 +19488,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     -0.48925,
@@ -19292,7 +19517,7 @@
    ]
   },
   {
-   "model": 10,
+   "model": 11,
    "name": "xmodel/caen_spikeybush_01",
    "matrix": [
     0.45167,
@@ -19321,7 +19546,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.46175,
@@ -19350,7 +19575,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.46175,
@@ -19379,7 +19604,7 @@
    ]
   },
   {
-   "model": 14,
+   "model": 17,
    "name": "xmodel/crate02",
    "matrix": [
     -0.57358,
@@ -19408,7 +19633,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99664,
@@ -19437,7 +19662,7 @@
    ]
   },
   {
-   "model": 41,
+   "model": 45,
    "name": "xmodel/military_sandbag_curvedsection",
    "matrix": [
     -1.0,
@@ -19466,7 +19691,7 @@
    ]
   },
   {
-   "model": 69,
+   "model": 73,
    "name": "xmodel/weapon_30cal",
    "matrix": [
     -0.03316,
@@ -19486,7 +19711,7 @@
    "turret": true
   },
   {
-   "model": 69,
+   "model": 73,
    "name": "xmodel/weapon_30cal",
    "matrix": [
     -0.03316,
@@ -19506,7 +19731,7 @@
    "turret": true
   },
   {
-   "model": 69,
+   "model": 73,
    "name": "xmodel/weapon_30cal",
    "matrix": [
     -0.03316,
@@ -19526,7 +19751,7 @@
    "turret": true
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.69214,
@@ -19555,7 +19780,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.69214,
@@ -19584,7 +19809,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.96987,
@@ -19613,7 +19838,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.23853,
@@ -19642,7 +19867,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.96987,
@@ -19671,7 +19896,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.23853,
@@ -19700,7 +19925,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.98129,
@@ -19729,7 +19954,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.98129,
@@ -19758,7 +19983,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.13053,
@@ -19787,7 +20012,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.41469,
@@ -19816,7 +20041,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99912,
@@ -19845,7 +20070,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99912,
@@ -19863,7 +20088,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99664,
@@ -19892,7 +20117,7 @@
    ]
   },
   {
-   "model": 68,
+   "model": 72,
    "name": "xmodel/vehicle_tiger_woodland_d_brush_static",
    "matrix": [
     -0.66913,
@@ -19915,7 +20140,7 @@
    }
   },
   {
-   "model": 67,
+   "model": 71,
    "name": "xmodel/vehicle_tiger_woodland_brush_static",
    "matrix": [
     -0.66913,
@@ -19938,7 +20163,7 @@
    }
   },
   {
-   "model": 64,
+   "model": 68,
    "name": "xmodel/vehicle_halftrack_rockets_woodland_d_stat",
    "matrix": [
     -0.97815,
@@ -19961,7 +20186,7 @@
    }
   },
   {
-   "model": 65,
+   "model": 69,
    "name": "xmodel/vehicle_halftrack_rockets_woodland_static",
    "matrix": [
     -0.97815,
@@ -19984,7 +20209,7 @@
    }
   },
   {
-   "model": 37,
+   "model": 40,
    "name": "xmodel/light_lampplain_on",
    "matrix": [
     0.0,
@@ -20002,7 +20227,7 @@
    ]
   },
   {
-   "model": 37,
+   "model": 40,
    "name": "xmodel/light_lampplain_on",
    "matrix": [
     0.0,
@@ -20020,7 +20245,7 @@
    ]
   },
   {
-   "model": 37,
+   "model": 40,
    "name": "xmodel/light_lampplain_on",
    "matrix": [
     0.0,
@@ -20038,7 +20263,7 @@
    ]
   },
   {
-   "model": 37,
+   "model": 40,
    "name": "xmodel/light_lampplain_on",
    "matrix": [
     0.0,
@@ -20056,7 +20281,7 @@
    ]
   },
   {
-   "model": 37,
+   "model": 40,
    "name": "xmodel/light_lampplain_on",
    "matrix": [
     -0.75927,
@@ -20074,7 +20299,7 @@
    ]
   },
   {
-   "model": 37,
+   "model": 40,
    "name": "xmodel/light_lampplain_on",
    "matrix": [
     0.0,
@@ -20092,7 +20317,7 @@
    ]
   },
   {
-   "model": 39,
+   "model": 42,
    "name": "xmodel/light_walllight_on",
    "matrix": [
     -0.9,
@@ -20110,7 +20335,7 @@
    ]
   },
   {
-   "model": 39,
+   "model": 42,
    "name": "xmodel/light_walllight_on",
    "matrix": [
     0.9,
@@ -20128,7 +20353,7 @@
    ]
   },
   {
-   "model": 39,
+   "model": 42,
    "name": "xmodel/light_walllight_on",
    "matrix": [
     -0.0,
@@ -48392,7 +48617,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     1.0,
@@ -48410,7 +48635,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     -0.43217,
@@ -48439,7 +48664,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.41647,
@@ -48468,7 +48693,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     1.14315,
@@ -48497,7 +48722,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.44616,
@@ -48526,7 +48751,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.0517,
@@ -48555,7 +48780,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.50857,
@@ -48584,7 +48809,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.85508,
@@ -48613,7 +48838,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.64154,
@@ -48642,7 +48867,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.87634,
@@ -48671,7 +48896,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.72111,
@@ -48700,7 +48925,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     -0.95349,
@@ -48729,7 +48954,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.62725,
@@ -48758,7 +48983,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.02711,
@@ -48787,7 +49012,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     -0.45327,
@@ -48816,7 +49041,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     -0.1344,
@@ -48845,7 +49070,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     1.00565,
@@ -48874,7 +49099,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.23369,
@@ -48903,7 +49128,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.97621,
@@ -48932,7 +49157,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     -0.49861,
@@ -48961,7 +49186,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.48333,
@@ -48990,7 +49215,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.63104,
@@ -49019,7 +49244,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.86663,
@@ -49048,7 +49273,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.70628,
@@ -49077,7 +49302,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     -0.09324,
@@ -49106,7 +49331,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.31342,
@@ -49135,7 +49360,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     -0.80876,
@@ -49164,7 +49389,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.98739,
@@ -49193,7 +49418,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.2236,
@@ -49222,7 +49447,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.00704,
@@ -49251,7 +49476,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     -0.90788,
@@ -49280,7 +49505,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.07414,
@@ -49309,7 +49534,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.40991,
@@ -49338,7 +49563,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.40713,
@@ -49367,7 +49592,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     0.75197,
@@ -49396,7 +49621,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     -0.92561,
@@ -49425,7 +49650,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     -0.24804,
@@ -49454,7 +49679,7 @@
    ]
   },
   {
-   "model": 11,
+   "model": 12,
    "name": "xmodel/caen_weeds_01",
    "matrix": [
     -0.01507,
@@ -49483,7 +49708,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.99985,
@@ -49512,7 +49737,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.99985,
@@ -49530,7 +49755,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.99985,
@@ -49559,7 +49784,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.98714,
@@ -49588,7 +49813,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.31399,
@@ -49617,7 +49842,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.31399,
@@ -49646,7 +49871,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.98714,
@@ -49675,7 +49900,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.18738,
@@ -49693,7 +49918,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.91914,
@@ -49722,7 +49947,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.91914,
@@ -49751,7 +49976,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.99075,
@@ -49780,7 +50005,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.98714,
@@ -49798,7 +50023,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.04885,
@@ -49816,7 +50041,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.18224,
@@ -49834,7 +50059,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.98714,
@@ -49863,7 +50088,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.98714,
@@ -49892,7 +50117,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 43,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.00331,
@@ -49921,7 +50146,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 43,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     2e-05,
@@ -49950,7 +50175,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 43,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.00328,
@@ -49979,7 +50204,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 43,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.08668,
@@ -50008,7 +50233,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 43,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.59864,
@@ -50037,7 +50262,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 43,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.59982,
@@ -50066,7 +50291,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 43,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.01544,
@@ -50095,7 +50320,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 43,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.5958,
@@ -50124,7 +50349,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 43,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     -0.59966,
@@ -50153,7 +50378,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 43,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.5963,
@@ -50182,7 +50407,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 43,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.5896,
@@ -50211,7 +50436,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 43,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.59378,
@@ -50240,7 +50465,7 @@
    ]
   },
   {
-   "model": 40,
+   "model": 43,
    "name": "xmodel/military_dragonstooth",
    "matrix": [
     0.5919,
@@ -50269,7 +50494,7 @@
    ]
   },
   {
-   "model": 37,
+   "model": 40,
    "name": "xmodel/light_lampplain_on",
    "matrix": [
     0.0,
@@ -50287,7 +50512,7 @@
    ]
   },
   {
-   "model": 17,
+   "model": 20,
    "name": "xmodel/furniture_bookshelves1",
    "matrix": [
     -0.0,
@@ -50932,7 +51157,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.24489,
@@ -50961,7 +51186,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.01014,
@@ -50990,7 +51215,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.00995,
@@ -51019,7 +51244,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.26278,
@@ -51048,7 +51273,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.26278,
@@ -51066,7 +51291,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.49771,
@@ -51084,7 +51309,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.69873,
@@ -51102,7 +51327,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.24489,
@@ -51120,7 +51345,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.24489,
@@ -51138,7 +51363,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.69873,
@@ -51167,7 +51392,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.69873,
@@ -51196,7 +51421,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     -0.69873,
@@ -51225,7 +51450,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.34365,
@@ -51254,7 +51479,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.34363,
@@ -51283,7 +51508,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -1.16712,
@@ -51312,7 +51537,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     1.16619,
@@ -51341,7 +51566,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     1.16606,
@@ -51370,7 +51595,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     1.16581,
@@ -51399,7 +51624,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     0.23034,
@@ -51428,7 +51653,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.97014,
@@ -51457,7 +51682,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.96693,
@@ -51486,7 +51711,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.97737,
@@ -51515,7 +51740,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.20684,
@@ -51544,7 +51769,7 @@
    ]
   },
   {
-   "model": 62,
+   "model": 66,
    "name": "xmodel/tree_grey_oak_xl_a",
    "matrix": [
     -0.20928,
@@ -51562,7 +51787,7 @@
    ]
   },
   {
-   "model": 38,
+   "model": 41,
    "name": "xmodel/light_lantern_on",
    "matrix": [
     1.0,
@@ -51580,7 +51805,7 @@
    ]
   },
   {
-   "model": 38,
+   "model": 41,
    "name": "xmodel/light_lantern_on",
    "matrix": [
     1.0,
@@ -51598,7 +51823,7 @@
    ]
   },
   {
-   "model": 38,
+   "model": 41,
    "name": "xmodel/light_lantern_on",
    "matrix": [
     -1.0,
@@ -51616,7 +51841,7 @@
    ]
   },
   {
-   "model": 38,
+   "model": 41,
    "name": "xmodel/light_lantern_on",
    "matrix": [
     -1.0,
@@ -51634,7 +51859,7 @@
    ]
   },
   {
-   "model": 38,
+   "model": 41,
    "name": "xmodel/light_lantern_on",
    "matrix": [
     -0.37784,
@@ -51652,7 +51877,7 @@
    ]
   },
   {
-   "model": 38,
+   "model": 41,
    "name": "xmodel/light_lantern_on",
    "matrix": [
     -0.70711,
@@ -51670,7 +51895,7 @@
    ]
   },
   {
-   "model": 38,
+   "model": 41,
    "name": "xmodel/light_lantern_on",
    "matrix": [
     -0.70711,
@@ -51688,7 +51913,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.72777,
@@ -51717,7 +51942,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.72777,
@@ -51746,7 +51971,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     1.10119,
@@ -51775,7 +52000,7 @@
    ]
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.62189,
@@ -51804,7 +52029,7 @@
    ]
   },
   {
-   "model": 38,
+   "model": 41,
    "name": "xmodel/light_lantern_on",
    "matrix": [
     -0.70711,
@@ -51822,7 +52047,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.77051,
@@ -51851,7 +52076,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.77051,
@@ -51880,7 +52105,7 @@
    ]
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     -0.77051,
@@ -52141,7 +52366,7 @@
    ]
   },
   {
-   "model": 69,
+   "model": 73,
    "name": "xmodel/weapon_30cal",
    "matrix": [
     -0.03316,
@@ -52161,7 +52386,7 @@
    "turret": true
   },
   {
-   "model": 13,
+   "model": 16,
    "name": "xmodel/crate01",
    "matrix": [
     0.13226,
@@ -52179,7 +52404,7 @@
    ]
   },
   {
-   "model": 69,
+   "model": 73,
    "name": "xmodel/weapon_30cal",
    "matrix": [
     -0.03316,
@@ -52199,7 +52424,7 @@
    "turret": true
   },
   {
-   "model": 7,
+   "model": 8,
    "name": "xmodel/caen_hedge_wall_1",
    "matrix": [
     0.83688,
@@ -52226,6 +52451,158 @@
     0.914,
     0.0
    ]
+  },
+  {
+   "model": 14,
+   "name": "xmodel/carentan_stairs",
+   "matrix": [
+    -1.0,
+    -0.0,
+    0.0,
+    1062.0,
+    0.0,
+    -1.0,
+    0.0,
+    1443.0,
+    -0.0,
+    0.0,
+    1.0,
+    -2.25
+   ],
+   "ifModel": "xmodel/carentan_stairs"
+  },
+  {
+   "model": 15,
+   "name": "xmodel/carentan_stairs2",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    634.0,
+    1.0,
+    0.0,
+    0.0,
+    1706.0,
+    -0.0,
+    0.0,
+    1.0,
+    14.3
+   ],
+   "ifModel": "xmodel/carentan_stairs"
+  },
+  {
+   "model": 44,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -1.0,
+    0.0,
+    720.144,
+    0.0,
+    0.0,
+    1.0,
+    1091.0,
+    -1.0,
+    0.0,
+    0.0,
+    28.0
+   ],
+   "ifModel": "xmodel/carentan_stairs"
+  },
+  {
+   "model": 6,
+   "name": "xmodel/caen_fence_post_1",
+   "matrix": [
+    -0.0,
+    -0.0,
+    1.0,
+    1667.0,
+    -0.0,
+    -1.0,
+    -0.0,
+    2240.0,
+    1.0,
+    -0.0,
+    -0.0,
+    17.9
+   ],
+   "ifModel": "xmodel/carentan_stairs"
+  },
+  {
+   "model": 44,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -0.25882,
+    0.96593,
+    1685.0,
+    0.0,
+    0.96593,
+    0.25882,
+    1870.0,
+    -1.0,
+    0.0,
+    0.0,
+    -20.0
+   ],
+   "ifModel": "xmodel/carentan_stairs"
+  },
+  {
+   "model": 44,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -0.25882,
+    0.96593,
+    1685.0,
+    0.0,
+    0.96593,
+    0.25882,
+    1870.0,
+    -1.0,
+    0.0,
+    0.0,
+    -15.0
+   ],
+   "ifModel": "xmodel/carentan_stairs"
+  },
+  {
+   "model": 44,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -0.25882,
+    0.96593,
+    1685.0,
+    0.0,
+    0.96593,
+    0.25882,
+    1870.0,
+    -1.0,
+    0.0,
+    0.0,
+    -10.0
+   ],
+   "ifModel": "xmodel/carentan_stairs"
+  },
+  {
+   "model": 44,
+   "name": "xmodel/military_flak88_boxlid",
+   "matrix": [
+    0.0,
+    -0.25882,
+    0.96593,
+    1685.0,
+    0.0,
+    0.96593,
+    0.25882,
+    1870.0,
+    -1.0,
+    0.0,
+    0.0,
+    -7.0
+   ],
+   "ifModel": "xmodel/carentan_stairs"
   }
  ],
  "fallback": []

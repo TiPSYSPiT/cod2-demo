@@ -24725,6 +24725,142 @@
    ],
    "scale": 1.2,
    "script": false
+  },
+  {
+   "model": "xmodel/carentan_stairs",
+   "origin": [
+    1062.0,
+    1443.0,
+    -2.25
+   ],
+   "angles": [
+    0.0,
+    180.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/carentan_stairs",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/carentan_stairs2",
+   "origin": [
+    634.0,
+    1706.0,
+    14.3
+   ],
+   "angles": [
+    0.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/carentan_stairs",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    720.144,
+    1091.0,
+    28.0
+   ],
+   "angles": [
+    90.0,
+    90.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/carentan_stairs",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/caen_fence_post_1",
+   "origin": [
+    1667.0,
+    2240.0,
+    17.9
+   ],
+   "angles": [
+    270.0,
+    90.0,
+    90.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/carentan_stairs",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    1685.0,
+    1870.0,
+    -20.0
+   ],
+   "angles": [
+    90.0,
+    15.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/carentan_stairs",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    1685.0,
+    1870.0,
+    -15.0
+   ],
+   "angles": [
+    90.0,
+    15.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/carentan_stairs",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    1685.0,
+    1870.0,
+    -10.0
+   ],
+   "angles": [
+    90.0,
+    15.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/carentan_stairs",
+   "spawnedBy": "_bug_fix"
+  },
+  {
+   "model": "xmodel/military_flak88_boxlid",
+   "origin": [
+    1685.0,
+    1870.0,
+    -7.0
+   ],
+   "angles": [
+    90.0,
+    15.0,
+    0.0
+   ],
+   "scale": 1.0,
+   "script": true,
+   "ifModel": "xmodel/carentan_stairs",
+   "spawnedBy": "_bug_fix"
   }
  ],
  "hurt": [

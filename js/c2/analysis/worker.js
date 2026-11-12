@@ -1,5 +1,5 @@
 /* Worker entry point. The worker is created from a Blob that contains all
- * registered modules (see core/c4.js) and then calls C2.workerMain(self). */
+ * registered modules (see core/c2.js) and then calls C2.workerMain(self). */
 C2.define('workerMain', function (C2) {
   'use strict';
 

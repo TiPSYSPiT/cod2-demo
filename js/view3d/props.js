@@ -23,7 +23,7 @@ import { fetchJSON, fetchBinary, checkedView } from './data.js';
 import { loadTexture, setMap, uniformMap, detailMap, multiplyMaterial, polygonOffset, anisotropy } from './mapLoader.js';
 import { receiveCookie } from './shadows.js';
 import { propGridMaterial } from './lightGrid.js';
-import { gameObjectFilter, scriptedRule } from './gameObjects.js';
+import { gameObjectFilter, scriptedRule, precachedRule } from './gameObjects.js';
 
 // gndLt (0..1) -> instance colour: stored 2x overbright like the light maps; the lit materials divide it
 // by the ~0.75 the scene lights add on average (the tint already is the light at the model)
@@ -48,9 +48,14 @@ export class Props {
     this.boxes = new THREE.Group();
     this.group.add(this.models, this.boxes);
     this.mode = 'high';
-    const keep = gameObjectFilter(opts.gametype), scripted = scriptedRule(opts.meta);
-    // (a scripted placement - none of the maps has one - is kept when its script shows it at some phase)
-    const instances = info.instances.filter(inst => keep(inst.gameobject) && (!inst.scripted || scripted.ever(inst.scripted)));
+    const keep = gameObjectFilter(opts.gametype), scripted = scriptedRule(opts.meta), ran = precachedRule(opts.meta);
+    // an exploder a level script links (ifModel) on a server that did not run the script: no exploder - the wreck
+    // stays hidden for good, the intact model is an ordinary placement
+    const linked = inst => !!inst.exploder && ran(inst.exploder.ifModel);
+    // (a scripted placement - none of the maps has one - is kept when its script shows it at some phase; a model a
+    // level script spawns when the demo's server ran that script)
+    const instances = info.instances.filter(inst => keep(inst.gameobject) && (!inst.scripted || scripted.ever(inst.scripted))
+      && ran(inst.ifModel) && !(inst.exploder && inst.exploder.show && !linked(inst)));
     this.instanceCount = instances.length;
     this.exploderParts = [];          // [{site, show, apply(visible)}] (gameObjects.js)
     this.turrets = [];                // [{origin, aim(pitch, yaw)}]: the mounted MGs' guns (degrees, relative to the stand)
@@ -188,7 +193,7 @@ export class Props {
       meshes.push(box);
       // the exploder placements: a zero-scale matrix while the game has the entity hidden or deleted
       list.forEach((inst, i) => {
-        if (!inst.exploder) return;
+        if (!linked(inst)) return;
         this.exploderParts.push({ site: inst.exploder.site, show: inst.exploder.show, apply: visible => {
           const M = visible ? matrixOf(inst.matrix) : hidden;
           if (L) {

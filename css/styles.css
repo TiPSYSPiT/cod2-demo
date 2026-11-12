@@ -541,7 +541,6 @@ table.data.scoreboard tbody tr.team-head ~ tr.team-head td { border-top: 14px so
 /* game phases other than "live" (not counted in the scoreboard) */
 .badge.phase { padding: 0 5px; cursor: help; }
 .badge.phase-aftermatch, .badge.phase-warmup { color: #cdbdff; border-color: rgba(180, 140, 255, .4); }
-.badge.phase-knife { color: #ffc27a; border-color: var(--accent-line); }
 .na { color: var(--dim); cursor: help; border-bottom: 1px dotted var(--dim); }
 .approx { color: var(--warn); cursor: help; margin-left: 2px; font-weight: 600; }
 .team-a { color: var(--team-a); }
@@ -609,7 +608,6 @@ table.data.scoreboard tbody tr.team-head ~ tr.team-head td { border-top: 14px so
 .phase-section { margin: 14px 0 6px; padding: 6px 12px; border-left: 2px solid #b48cff; background: rgba(180, 140, 255, .06); color: #cdbdff;
   font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: var(--fs-cap); border-radius: 0 var(--r-xs) var(--r-xs) 0; }
 .phase-section small { display: block; margin-top: 2px; color: var(--muted); font-weight: 400; letter-spacing: 0; text-transform: none; font-size: var(--fs-s); }
-.phase-section.live { border-left-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
 .halftime { text-align: center; color: var(--accent); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; padding: 8px; margin: 6px 0;
   border-top: 1px dashed var(--line-2); border-bottom: 1px dashed var(--line-2); font-size: var(--fs-cap); }
 /* kill lines: "Killer [weapon icon] [headshot icon] Victim" on one line (feed, rounds, events) */
