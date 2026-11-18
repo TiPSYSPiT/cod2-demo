@@ -96,9 +96,13 @@ C2.define('build', function (C2) {
     const serverinfoStart = parseInfostring(csInit.get(K.CS.SERVERINFO) || '');
     const systeminfo = parseInfostring(cs.get(K.CS.SYSTEMINFO) || '');
     const splitList = s => String(s || '').split(/\s+/).filter(Boolean);
-    const weapons = splitList(cs.get(K.CS.WEAPONS));
-    const weaponLists = sections.map(s => ({ t: s.start, list: splitList(s.configstrings.get(K.CS.WEAPONS)) }));
-    for (const ch of col.csChanges) if (ch.index === K.CS.WEAPONS) weaponLists.push({ t: rel(ch.t || col.firstTime), list: splitList(ch.value) });
+    // the weapon list (CS 7) in lower case: the game opens weapons/mp/<name> through its case-insensitive file system,
+    // and a server may list "PPS42_mp" - the HUD's slots, the weapon panel and the labels look the files up by name
+    const weaponList = s => splitList(s).map(n => n.toLowerCase());
+    const weapons = weaponList(cs.get(K.CS.WEAPONS));
+    // (a later gamestate - a map change - carries the time of the last snapshot before it: its list holds after that)
+    const weaponLists = sections.map((s, i) => ({ t: i ? s.start + 1 : s.start, list: weaponList(s.configstrings.get(K.CS.WEAPONS)) }));
+    for (const ch of col.csChanges) if (ch.index === K.CS.WEAPONS) weaponLists.push({ t: rel(ch.t || col.firstTime), list: weaponList(ch.value) });
     weaponLists.sort((a, b) => a.t - b.t);
     const weaponName = (i, t) => {
       if (i === 0) return 'none';

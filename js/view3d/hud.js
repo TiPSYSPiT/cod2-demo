@@ -38,6 +38,8 @@ const BASE_COLORS = [[0, 0, 0], [1, 0, 0], [0, 1, 0], [1, 1, 0], [0, 0, 1], [0, 
 const dvarColor = (v, def) => { const a = String(v || '').trim().split(/\s+/).slice(0, 3).map(Number); return a.length === 3 && a.every(Number.isFinite) ? a : def; };
 const WHITE = [1, 1, 1];
 const LOW = [0.89, 0.18, 0.01];             // the low ammo colour of the client code
+const PMF_PLAYING = 0x800000;               // pm_flags: a playing client (SpectatorClientEndFrame clears it): the HUD shows weaponSelect
+const WS_DROPPING = 2;                      // weaponstate: the weapon being put away for another
 const FONT_SMALL = 0.25, FONT_BIG = 0.4, FONT_EXTRABIG = 0.55;
 // the client's defaults (setMatch: the server's values from the demo replace them)
 const COMPASS = { size: 1, maxRange: 1500, minRange: 0, minRadius: 0, ping: 2000, objMaxRange: 2048, objMinAlpha: 1 };
@@ -239,14 +241,18 @@ export class Hud {
     this.layout = (d.meta.zpamVersion && D.layouts.zpam) || D.layouts.stock;
     this.H = d.psHud || null;
     this.W = d.psWeapon || null;
-    // weapon lists -> per weapon index its HUD entry and ammo / clip slot (BG_SetupAmmoIndexes / ClipIndexes:
-    // numbered by the ammo / clip names in the order the weapons were registered, the empty weapon 0 first)
+    // weapon lists -> per weapon index its HUD entry and ammo / clip slot (BG_SetupWeaponIndex: numbered by the
+    // ammo / clip names, exact, in the order the weapons were registered, the empty weapon 0 first). The weapon file
+    // by its name in any case (the game's file system); one the export lacks (a mod's own weapon) gets a slot of its
+    // own - the game gives it one by its ammo / clip name - so the weapons after it keep theirs (no counter for it)
     this.lists = (d.weaponLists || []).map(l => {
       const an = [''], cn = [''], out = [null];
       for (const name of l.list) {
-        const w = D.weapons[name] || {};
-        let ai = an.indexOf(w.ammoName || ''); if (ai < 0) { ai = an.length; an.push(w.ammoName || ''); }
-        let ci = cn.indexOf(w.clipName || ''); if (ci < 0) { ci = cn.length; cn.push(w.clipName || ''); }
+        const known = D.weapons[String(name).toLowerCase()];
+        const w = known || {};
+        const aName = known ? w.ammoName || '' : '\u0000' + name, cName = known ? w.clipName || '' : '\u0000' + name;
+        let ai = an.indexOf(aName); if (ai < 0) { ai = an.length; an.push(aName); }
+        let ci = cn.indexOf(cName); if (ci < 0) { ci = cn.length; cn.push(cName); }
         out.push({ name, w, ammo: ai, clip: ci });
       }
       return { t: l.t, weapons: out };
@@ -985,7 +991,7 @@ export class Hud {
   reserve(wi, A, t) {
     const e = this.weaponAt(wi, t);
     if (!e) return 0;
-    const cap = e.w.sharedAmmoCapName;
+    const cap = e.w.sharedAmmoCapName && e.w.sharedAmmoCapName.toLowerCase();     // (the caps by name, any case)
     if (!cap) return e.w.clipOnly ? A.clip(e.clip) : A.ammo(e.ammo);
     let l = null;
     for (const x of this.lists) { if (x.t <= t) l = x; else break; }
@@ -993,32 +999,52 @@ export class Hud {
     let sum = 0;
     for (let i = 1; l && i < l.weapons.length; i++) {
       const o = l.weapons[i];
-      if (!A.owned(i) || o.w.sharedAmmoCapName !== cap) continue;
+      if (!A.owned(i) || String(o.w.sharedAmmoCapName || '').toLowerCase() !== cap) continue;
       if (o.w.clipOnly) { if (!seenC.has(o.clip)) { seenC.add(o.clip); sum += A.clip(o.clip); } }
       else if (!seenA.has(o.ammo)) { seenA.add(o.ammo); sum += A.ammo(o.ammo); }
     }
     return sum;
   }
-  ammo(it, R, st, col, alpha) {
-    const W = this.W, t = st.t, wi = W.weapon[st.ri];
-    if (!wi) return;
+  /** the weapon the counter and the weapon name show for row ri (CG_DrawPlayerAmmoValue): while the player plays
+   *  (pm_flags 0x800000) the client's selected weapon (cg.weaponSelect), else (spectating, following) the player's
+   *  weapon. The selection is not in a demo; it differs from ps.weapon while a switch puts the old weapon away
+   *  (weapon state 2, dropping: the new one is selected from the key press on, ps.weapon follows when the drop ends) -
+   *  then the weapon the drop ends in */
+  hudWeapon(ri) {
+    const W = this.W, wi = W.weapon[ri];
+    if (!(W.pmf[ri] & PMF_PLAYING) || W.state[ri] !== WS_DROPPING) return wi;
+    let k = ri;
+    while (k + 1 < W.t.length && W.client[k + 1] === W.client[ri] && W.state[k + 1] === WS_DROPPING && W.weapon[k + 1] === wi && W.t[k + 1] - W.t[k] < 1000) k++;
+    const n = k + 1;
+    return n < W.t.length && W.client[n] === W.client[ri] && W.weapon[n] && W.weapon[n] !== wi && W.t[n] - W.t[k] < 1000 ? W.weapon[n] : wi;
+  }
+  /** the ammo counter's values at st (CG_DrawPlayerAmmoValue): {wi, e, clip (-1: clip-only), reserve} or null when no
+   *  counter is drawn - the one place the HUD and tools/audit/ammo_audit.mjs read them */
+  ammoValues(st) {
+    const W = this.W, t = st.t, wi = this.hudWeapon(st.ri);
+    if (!wi) return null;
     const e = this.weaponAt(wi, t);
     // (a weapon without ammo - a mounted MG, binoculars - shows no counter)
-    if (!e || (!e.w.ammoName && !e.w.clipName)) return;
+    if (!e || (!e.w.ammoName && !e.w.clipName)) return null;
     const A = this.ammoState(st);
-    const reserve = this.reserve(wi, A, t);
-    const clip = e.w.clipOnly ? -1 : A.clip(e.clip);
+    return { wi, e, clip: e.w.clipOnly ? -1 : A.clip(e.clip), reserve: this.reserve(wi, A, t) };
+  }
+  ammo(it, R, st, col, alpha) {
+    const W = this.W, t = st.t;
+    const v = this.ammoValues(st);
+    if (!v) return;
+    const { wi, e, clip, reserve } = v;
     const maxA = Math.min(e.w.maxAmmo || 0, 999), size = Math.min(e.w.clipSize || 0, 999);
     const lowAmmo = maxA >= 0 && maxA * 0.2 >= Math.min(reserve, 999);
     const lowClip = clip >= 0 && size > 0 && size * 0.33 >= Math.min(clip, 999);
     if (it.ownerdraw === 6) { this.pic(it.background, this.place(R.x, R.y, R.w, R.h, R.ha, R.va), lowAmmo ? LOW : col, alpha); return; }
     const scale = it.textscale || 0.5, kind = it.textfont || 0, style = it.textstyle || 0;
     if (it.ownerdraw === 81) {
-      // the weapon name: 1.8 s after the weapon changed, the last 0.7 s fading
+      // the weapon name: 1.8 s after the selected weapon changed (CG_MenuShowNotify), the last 0.7 s fading
       let k = st.ri;
-      while (k > 0 && W.client[k - 1] === st.cl && W.weapon[k - 1] === wi && t - W.t[k - 1] < 2600) k--;
+      while (k > 0 && W.client[k - 1] === st.cl && this.hudWeapon(k - 1) === wi && t - W.t[k - 1] < 2600) k--;
       const since = t - W.t[k];
-      if (since >= 1800 || (k > 0 && W.weapon[k - 1] === wi)) return;
+      if (since >= 1800 || (k > 0 && this.hudWeapon(k - 1) === wi)) return;
       const a = since > 1100 ? (1800 - since) / 700 : 1;
       const name = this.localize(e.w.displayName || e.name);
       const p = this.place(R.x + R.w - this.textWidth(name, scale, kind) - 28, R.y, 0, 0, R.ha, R.va);

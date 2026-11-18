@@ -4,7 +4,8 @@
  *      and hints HUD parts default to off (trails were never remembered: their new default needs nothing)
  *   3: the zPAM match info HUD part and the shell casings default to off
  *   4: the view lines and the player rings (new switches, off by default; their keys never held anything before)
- *   5: the server HUD and the kill feed HUD parts default to on */
+ *   5: the server HUD and the kill feed HUD parts default to on
+ *   6: the 3D view's kill feed overlay (Display, Kill feed) defaults to off */
 const VERSION_KEY = 'cod2demo.settingsVersion';
 const STEPS = [
   { version: 2,
@@ -18,7 +19,10 @@ const STEPS = [
     session: ['cod2demo3d.viewLines', 'cod2demo3d.rings'] },
   { version: 5,
     local: [],
-    session: ['cod2demo3d.hud.server', 'cod2demo3d.hud.killfeed'] }
+    session: ['cod2demo3d.hud.server', 'cod2demo3d.hud.killfeed'] },
+  { version: 6,
+    local: ['cod2demo3d.killfeed'],
+    session: [] }
 ];
 export const SETTINGS_VERSION = STEPS[STEPS.length - 1].version;
 

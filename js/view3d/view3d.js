@@ -36,7 +36,7 @@ const { el, icon, switchRow, selectRow } = C2.ui;
 const CFG = C2.mapConfig;
 const CAM_KEY = 'cod2demo3d.camera2';           // the camera (default fp: the demo's own view): written only by the user's choice
 const PROPS_KEY = 'cod2demo3d.props';
-const KILLFEED_KEY = 'cod2demo3d.killfeed';      // 'on' / 'off' (default on)
+const KILLFEED_KEY = 'cod2demo3d.killfeed';      // 'on' / 'off' (default off - settings version 6)
 const HEAD_ICONS_KEY = 'cod2demo3d.headIcons';    // 'on' / 'off' (default on): the game's head icons and talk balloons (session)
 const TRACERS_KEY = 'cod2demo3d.tracers';         // 'on' / 'off' (default off): the bullet tracers (session)
 const ENEMY_NAMES_KEY = 'cod2demo3d.enemyNames';  // 'on' / 'off' (default off): the names over enemies (session)
@@ -214,7 +214,7 @@ export class View3D {
     cv.addEventListener('webglcontextrestored', this.onContextRestored);
     this.cams = new Cameras(this.camera, this.renderer.domElement, () => { this.needsRender = true; });
     this.buildToolbar();
-    this.setKillfeed(stored(KILLFEED_KEY) !== 'off');
+    this.setKillfeed(stored(KILLFEED_KEY) === 'on');
     this.setHeadIcons(sessionGet(HEAD_ICONS_KEY) !== 'off');
     this.setTracers(sessionGet(TRACERS_KEY) === 'on');
     this.setEnemyNames(sessionGet(ENEMY_NAMES_KEY) === 'on');

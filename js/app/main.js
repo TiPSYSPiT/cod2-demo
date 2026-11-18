@@ -233,6 +233,18 @@ function deepParams() {
 }
 
 /** a toast under the score pill (text only); ms: it goes by itself */
+const MAP_CHANGE_MS = 5000;        // the map change note's time on screen, then a short fade (.toast-out, styles.css)
+/** removes a toast after ms with a short fade (at once with reduced motion; a toast dismissed before is left alone) */
+function fadeOut(t, ms) {
+  setTimeout(() => {
+    if (!t.isConnected) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { t.remove(); return; }
+    t.addEventListener('transitionend', () => t.remove(), { once: true });
+    setTimeout(() => t.remove(), 1000);                    // (no transitionend: hidden page, styles off)
+    t.classList.add('toast-out');
+  }, ms);
+}
+
 function toast(content, ms = 0, kind = 'banner-warn') {
   const t = el('div', { class: 'toast ' + kind }, typeof content === 'string' ? el('span', null, content) : content);
   t.append(el('button', { class: 'ib x-btn', title: 'Dismiss', 'aria-label': 'Dismiss', onclick: () => t.remove() }, icon('x', 's')));
@@ -328,12 +340,15 @@ function show(data) {
   $('progress').hidden = true;
   $('dropzone').hidden = false;
   document.body.classList.add('loaded');
-  // the warnings as toasts under the score pill, each one dismissible
+  // the warnings as toasts under the score pill, each one dismissible; a map change in the recording (build.js: "Map
+  // change at ...") is a note, not a problem: it fades out after MAP_CHANGE_MS (on the page's clock - not the replay's)
   const warn = $('warnings');
+  const mapChange = w => !!(data.meta.mapChanges && data.meta.mapChanges.length) && w.startsWith('Map change at ');
   for (const w of data.warnings) {
     const toast = el('div', { class: 'toast banner-warn' }, el('span', null, w));
     toast.append(el('button', { class: 'ib x-btn', title: 'Dismiss', 'aria-label': 'Dismiss', onclick: () => toast.remove() }, icon('x', 's')));
     warn.append(toast);
+    if (mapChange(w)) fadeOut(toast, MAP_CHANGE_MS);
   }
   if (state.source) $('share-btn').hidden = false;
   state.info = el('div', { class: 'ov-info' });
