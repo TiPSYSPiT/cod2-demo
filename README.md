@@ -52,8 +52,11 @@ crates, sandbags, trees, vehicles, and the bomb-site objects; lit as the game li
 or the compiler's ground light for the models made for it - with their normal, specular and detail maps; with the
 game's **LODs**: the coarser meshes by distance and field of view, bushes gone past the game's cull distance), the **players** (Display popover, *Players*: *Models* = the game's own
 character models - body, head and helmet or hat (on the head's `j_helmet` bone, as the game attaches it) from the demo's client state, the weapon in hand in their
-right hand - animated with the legs / torso animations the demo sends (crossfaded; runs, walks and
-crawls advance by the distance the player covers, so the feet keep step), turned like in the game (the
+right hand - animated with the legs / torso animations the demo sends (crossfaded from the pose on screen, also when a
+change comes in the middle of the previous crossfade - no pops; runs, walks and
+crawls advance by the distance the player covers, so the feet keep step; a player on a **mounted MG** takes the game's
+gunner pose - its 21 standing or 15 prone gunner animations blended by the gun's aim and height, as the game's
+`turret_think` - and the gun shakes with its own fire animation while it fires), turned like in the game (the
 legs follow diagonal movement while the upper body and head aim with the view's yaw and pitch, lean
 rolls and shifts the upper body, prone players tilt with the slope), lit as the game lights its models -
 from the map's light grid (the baked light from 8 directions at their position, plus the sun where it
@@ -104,7 +107,7 @@ the camera; pausing or seeking cuts the sounds, the pitch follows the speed up t
 | Orbit | Left drag rotates, right drag pans, wheel zooms. Click a player to select them |
 | Free fly | Drag to look, `W A S D` to move, `R` / `F` for up / down, `Shift` for fast, wheel sets the speed |
 | Follow player | Travels with the selected player (or the POV's followed player). Drag to turn around them |
-| First person | The selected player's eyes (none selected: the demo's own view - the recording player, or whom he spectated) with their view angles, the **weapon in their hands**, the game's **crosshair** and the game's **HUD** (Camera popover: *Weapon*, *First person HUD*), the game's **camera shake** (near the bomb's explosion, on a firing MG42; Camera popover) and the flinch when hit; hold `Tab` for the game's **scoreboard** |
+| First person | The selected player's eyes (none selected: the demo's own view - the recording player, or whom he spectated) with their view angles (another player's arrive in whole degrees and units: smoothed, within half a degree / unit of the recording, so slow turns do not step), the **weapon in their hands**, the game's **crosshair** and the game's **HUD** (Camera popover: *Weapon*, *First person HUD*), the game's **camera shake** (near the bomb's explosion, on a firing MG42; Camera popover) and the flinch when hit; hold `Tab` for the game's **scoreboard** |
 
 **First-person weapon**: the game's own view models - the gun of the weapon file in the hands the server
 gave the player (American, British, Russian, German sleeves) - animated with the weapon's own view animations
@@ -257,8 +260,9 @@ CoD2's obituary names the means of death instead of the weapon for headshots and
 then comes from the killer's bullet hit on the victim (exact) or the weapon in the killer's hands (≈). The bomb
 messages (`MP_EXPLOSIVESPLANTED` / `DEFUSED`) name nobody, but the game holds the planter / defuser at the
 site without a weapon for the plant / defuse time - that player is named (exact; only when they were not in
-the POV's snapshots: the player of the side who stood still at the site, ≈). The planted bomb is drawn at
-its own model's position (else where the game puts it, 11 units in front of the planter) and labelled
+the POV's snapshots: the player of the side who stood still at the site, ≈). The planted bomb is drawn as the
+game's own model (`xmodel/mp_tntbomb` with its pulsing objective glow while it ticks, the glow gone at the defuse)
+at its model's position and angles (else where the game puts it, 11 units in front of the planter) and labelled
 with the nearest site. Values marked `≈` are heuristics
 (hover for how they were derived).
 
@@ -285,7 +289,7 @@ py tools/serve.py
 
 Open <http://127.0.0.1:8765/> and drop a `.dm_1` file on the page (or use **Open demo**).
 `tools/serve.py` is `python -m http.server` without browser caching (plain `py -m http.server 8765`
-works too, but may keep old files after an update: reload with `Ctrl+F5`). Tested with Chrome 156, Edge 156 and Firefox 159 (Safari not yet); any
+works too, but may keep old files after an update: reload with `Ctrl+F5`). Tested with Chrome 157 and Firefox 160 (Safari not yet); any
 browser with WebGL 2 and ES modules should work. `py tools/serve.py 8790 --pages` serves the site as GitHub Pages
 does (under `/cod2-demo/`, `Cache-Control: max-age=600`, ETag / 304, gzip for text files): open
 <http://127.0.0.1:8790/cod2-demo/>.
@@ -358,19 +362,28 @@ colours, UVs, lightmap UVs, indices; one draw group per material + lightmap with
 surface without normal map), `lmc<N>_<k>.webp` (the 4 coefficients, weighted per pixel by the normal maps)
 and `sun<N>.webp` (the sun's visibility, 1024 × 1024), `lightgrid.bin` (the models' light grid: the BSP's grid points and colours as
 stored), `collision.bin` (the world's solid brushes and terrain triangles: the grid's visibility traces),
-`sky.webp` (the six cube faces), `props.bin/json` (each misc_model's LODs from its
+`sky.webp` (the six cube faces at the game's own size - 512 / 1024 px - lossless, 3 × 2), `props.bin/json` (each misc_model's LODs from its
 XModel - their switch distances, the coarser ones' meshes - with its flags and, for normal-mapped models, the tangents; placements as 3 × 4 matrices with the compiler's ground light and the entity's
 light scales), `entities.json` (spawns, bomb
-sites, props), `topdown.webp` and `radar.webp`; shared textures in `maps3d/_textures/` (colour and
-detail maps; normal maps with the specular power in blue, `<normal>+<specular>.webp`; the specular
-maps' colour), the index
+sites, props), `topdown.webp` and `radar.webp`; shared textures in `maps3d/_textures/` - the game's own data:
+the colour and detail maps (up to `--tex-size`), the normal maps (x in alpha, y in green, as the game) and the
+specular maps (colour + the cosine power in alpha; both up to 512 px) as their DXT blocks and mipmaps,
+`<image>.dds.gz` (`texfile.py`: uploaded to the GPU as they are; the few images that are not DXT stay WebP, the normal
+and specular ones lossless), the index
 `maps3d/index.json`, the 2D registry `assets/maps/backgrounds.js` and the kill icons in `assets/killfeed/`.
-All 32 maps (15 stock + 17 zPAM map pack) take about 13 minutes with `--force` and ~560 MB (+ ~119 MB shared textures);
+The lightmaps, their coefficient images and the sun masks are lossless WebP. The binaries (`world.bin`,
+`props.bin`, `lightgrid.bin`, `collision.bin`, the characters' and view models' `.bin`) are stored gzipped,
+`<name>.bin.gz` (`tools/export/datafile.py`; the JSON headers keep the plain names, the 3D view unpacks them with the
+browser's `DecompressionStream`); map versions with the same props share one `props.bin` (`datafile.py share`, run
+at the end of an export). `py tools/export/datafile.py check` verifies every packed file, `pack` / `unpack` convert a
+tree. All 32 maps (15 stock + 17 zPAM map pack) take about 18 minutes; the site's data is ~690 MB;
 `world.json` also holds the map's fog (`setExpFog` / `setCullFog` of its level script) and each group's sort key and
 polygon offset level.
 `sound_export.py` writes
-`maps3d/_sound/` (761 aliases + zPAM's 3 redefinitions, ~28 MB, 22 kHz mono WAV - also from zPAM's 48 kHz stereo
-WAVE_FORMAT_EXTENSIBLE files, its FG42 reload sounds -, the volume falloff curves and
+`maps3d/_sound/` (762 aliases + zPAM's 3 redefinitions, ~28 MB, lossless FLAC at each file's own rate and channels -
+22.05 / 44.1 / 48 kHz, mono / stereo, as the game plays them; every file decoded again and compared bit for bit with
+its source by `flac_check.py` - also zPAM's 48 kHz stereo WAVE_FORMAT_EXTENSIBLE files, its FG42 reload sounds -,
+the volume falloff curves and
 hold_breath.shock's channel volumes; no map ambience / music - but zPAM's own aliases in those folders: its aim
 trainer's piano notes and horse). `characters_export.py` writes
 `maps3d/_characters/` (116 body / head / helmet models skinned to their skeletons - with their coarser LODs and switch
@@ -443,12 +456,16 @@ git-ignored):
 | `py tools/audit/map_quality.py --game DIR [--decode]` | per map the materials' layers, alpha modes, sort keys and polygon offsets against the export, every source image decoded, lightmap pages, sun, fog, the props' LODs and heaviest models |
 | `node tools/audit/demo_audit.mjs` | every demo in `demos/`: players, teams, kills, scores, rounds, bomb events, MG tracks |
 | `py tools/audit/leftovers.py` | flash / stun grenades (CoD4 template, not in CoD2) left in the code, styles or exported data |
+| `node tools/audit/browser/run.mjs smooth [--demos a,b] [--windows n]` | animation smoothness (Chrome, Firefox): pose pops at every sample time, the other players' slow turns against the raw samples (and the drawn values within half a unit / degree of them), the mounted-MG gunners' pose, hands on the grip and the gun's fire shake |
+| `py tools/audit/lang_audit.py --game DIR` | everything in English: no file from another language's archives but the censored materials, every exported sound's source, no broken characters in the exported JSON, the viewer's own text |
 | `node tools/audit/looks_compare.mjs <tagA> <tagB>` | two `looks` runs compared: per map and view the pixels that changed (> 8 / 255), the mean difference, the brightness before / after, difference images in `out/looks/` |
 | `py tools/serve.py 8778 --three <folder>` | the site with `vendor/three/` from another folder (an npm package of three.js): the old and the new version side by side for a before / after |
 | `node tools/audit/turret_scan.mjs [demo ...]` | every use of a mounted MG: per demo the turrets (entity, model, weapon) and the ranges each player is on one - the recording player's with its turret entity and arc - (`--dump a b`: the player state's raw turret fields between a and b s); `out/turrets.json` |
 | `node tools/audit/demo_detail.mjs <demo> [client]` | the details behind a demo-audit finding: kill records, deaths against the scoreboard by phase, the positions around a jump |
 | `ui_audit.js`, `xray_audit.js` | pasted into the DevTools console on a loaded demo (the console is not bound by the page's CSP - `eval` from the page is): every control of both views, the X-Ray rules |
-| `node tools/audit/browser/run.mjs [suite ...] [--browsers chrome,edge,firefox]` | the browser checks, headless, against the dev server (`py tools/serve.py 8776`): `ui` (the UI audit, a 3D MP4, a 2D GIF), `xray`, `start` (the start state, remembered settings), `features` (tracers, enemy names, camera shake, low-health overlay, Tab, a first-person MP4), `scores` (the defaults fresh and after the settings migration, Kill icons gone, the scoreboard only while Tab is held - all views, form fields, the export), `hit` (the hit marker on every demo), `sweep` (every demo in a row: 2D, 3D, follow, first person, seek, X-Ray), `badfiles` (broken / non-demo files), `layout` (five window sizes), `bump` (the players' normal maps), `alpha` (the 3D canvas opaque in every frame: images and videos as the page shows them), `baseline` (load and playback per mode and speed, seeks - the performance figures), `profile` (time and allocations per frame step, the sampling heap profiler, shader programs derived again, seeks), `fxhash` (the effects' output hashed), `closeup` (a player close-up PNG, `--pick x,y` the surface at a pixel), `spot` (camera shots of a map spot as PNGs, `--spot '{"shots":[...]}'`, with the map script's parts shown or hidden), `info` (the demos' zPAM version, server variables, phases), `feed` (the kill feed's clicks and round separators), `vmscan` (the first-person weapon's motion on every demo and player: zig-zags of its offsets), `timebar` (the round labels at three window sizes, matching the feed and the score banner, no overlaps, tooltips, clicks, the ranges, none in the export; the fullscreen player bar by real mouse and key input - real fullscreen in Chrome and Edge, emulated in headless Firefox, `--headed` for a real window), `looks` (the 3D view as PNGs per map from fixed views - overview, eye, first person, X-Ray, a player close up, an effect, ADS -; `--tag x`, `--base` another server: a before / after, compared by `looks_compare.mjs`), `turretscan` (every turret use of every demo in first person: the eye on tag_player, the gun aimed by the view, the MG crosshair, no view model, smooth mounting / leaving, a video), `turret` (one demo frame by frame on a turret, `--probe '{"demo":...,"times":[...]}'`), `hudon` (the Server HUD and Kill feed HUD parts on by default, fresh and migrated; on every demo and the stock clips inside the safe area, the kill feed's pixels clear of the other parts, in the export), `vmprobe` / `samples` (a client's first-person weapon frame by frame, the raw samples), `decals` (decal flicker), `perf` (load and frame time per map, `--maps`), `leak` (memory on demo changes); a line per run, details in `tools/audit/out/browser/`, exit code 1 on a failure or any console error / warning / failed request |
+| `node tools/audit/browser/run.mjs [suite ...] [--browsers chrome,firefox]` | the browser checks, headless, against the dev server (`py tools/serve.py 8776`): `ui` (the UI audit, a 3D MP4, a 2D GIF), `xray`, `start` (the start state, remembered settings), `features` (tracers, enemy names, camera shake, low-health overlay, Tab, a first-person MP4), `scores` (the defaults fresh and after the settings migration, Kill icons gone, the scoreboard only while Tab is held - all views, form fields, the export), `hit` (the hit marker on every demo), `sweep` (every demo in a row: 2D, 3D, follow, first person, seek, X-Ray), `badfiles` (broken / non-demo files), `layout` (five window sizes), `bump` (the players' normal maps), `alpha` (the 3D canvas opaque in every frame: images and videos as the page shows them), `baseline` (load and playback per mode and speed, seeks - the performance figures), `profile` (time and allocations per frame step, the sampling heap profiler, shader programs derived again, seeks), `fxhash` (the effects' output hashed), `closeup` (a player close-up PNG, `--pick x,y` the surface at a pixel), `spot` (camera shots of a map spot as PNGs, `--spot '{"shots":[...]}'`, with the map script's parts shown or hidden), `info` (the demos' zPAM version, server variables, phases), `feed` (the kill feed's clicks and round separators), `vmscan` (the first-person weapon's motion on every demo and player: zig-zags of its offsets), `timebar` (the round labels at three window sizes, matching the feed and the score banner, no overlaps, tooltips, clicks, the ranges, none in the export; the fullscreen player bar by real mouse and key input - real fullscreen in Chrome and Edge, emulated in headless Firefox, `--headed` for a real window), `looks` (the 3D view as PNGs per map from fixed views - overview, eye, first person, X-Ray, a player close up, an effect, ADS -; `--tag x`, `--base` another server: a before / after, compared by `looks_compare.mjs`), `turretscan` (every turret use of every demo in first person: the eye on tag_player, the gun aimed by the view, the MG crosshair, no view model, smooth mounting / leaving, a video), `turret` (one demo frame by frame on a turret, `--probe '{"demo":...,"times":[...]}'`), `hudon` (the Server HUD and Kill feed HUD parts on by default, fresh and migrated; on every demo and the stock clips inside the safe area, the kill feed's pixels clear of the other parts, in the export), `vmprobe` / `samples` (a client's first-person weapon frame by frame, the raw samples), `decals` (decal flicker), `perf` (load and frame time per map, `--maps`), `leak` (memory on demo changes), `assets`
+(Chrome and Firefox: every sound file decodes - FLAC at its own rate -, the 3 × 2 sky at the game's size, the planted
+bomb as the game's model with its glow; `--shots` adds a bomb close-up and a sky view as PNGs); a line per run, details in `tools/audit/out/browser/`, exit code 1 on a failure or any console error / warning / failed request |
 
 `tools/perf/` measures speed and memory (Chrome headless over the DevTools protocol, against `py tools/serve.py 8790
 --pages`; results in `tools/perf/results/`):
@@ -461,7 +478,9 @@ git-ignored):
 
 ## Deploy to GitHub Pages
 
-1. Run `py tools/audit/site_audit.py` (0 problems expected but the `?debug` picker's `console.log`).
+1. Run `py tools/audit/site_audit.py` (0 problems expected but the `?debug` picker's `console.log`) and
+   `py tools/export/datafile.py check`. The site leaves three.js's shader error checks off (they block the main
+   thread while the programs link); `?debug` or `?shadercheck` in the URL turns them on (the browser suites do).
    Create a repository and push the project (`maps3d/` included - it is the site's data; the `demos/`
    folder is git-ignored). Binary files are marked in `.gitattributes`; no Git LFS (Pages would serve
    the pointer files).

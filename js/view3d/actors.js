@@ -27,12 +27,13 @@ export function forward(yaw, pitch, out = new THREE.Vector3()) {
 }
 export function stanceOf(s) { return s.prone ? 'prone' : s.crouch ? 'crouch' : 'stand'; }
 const LEGS_BLEND = 200, TORSO_BLEND = 120;     // ms: crossfade of the models' animations
+const CHAIN_MAX = 6;                           // crossfades still running at once, at most (33 ms samples: 200 ms)
 const CORPSE_POOL = 24;                        // corpses kept hidden for reuse
 const smooth = x => (x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x));
 /** the index of the first sample at or after time t (times ascending) */
 function lowerIndex(T, t) { let lo = 0, hi = T.length; while (lo < hi) { const m = (lo + hi) >> 1; if (T[m] < t) lo = m + 1; else hi = m; } return Math.min(lo, T.length - 1); }
 
-const _bm = new THREE.Matrix4(), _bo = new THREE.Matrix4();
+const _bm = new THREE.Matrix4(), _bo = new THREE.Matrix4(), _tw = new THREE.Vector3();
 /** a world matrix -> {pos, axis: {f, l, u}} (its x / y / z axes, unit length) */
 export function frameOf(m) {
   const e = m.elements, n = (a, b, c) => { const l = Math.hypot(a, b, c) || 1; return [a / l, b / l, c / l]; };
@@ -125,23 +126,26 @@ export class Actors {
     const n = P ? P.t.length : 0;
     // per sample: when its animation started, and the one it replaced (value, start; -1: none) for the
     // crossfade
+    // (+ <k>From: the sample the value started at - the chain of crossfades walks back from it; <k>Fresh: 1 when
+    // nothing came before it: the first sample, after a gap)
     s = {};
     for (const k of ['legs', 'torso']) {
       const start = new Int32Array(n), prev = new Int32Array(n).fill(-1), prevStart = new Int32Array(n), V = P ? P[k] : null;
+      const from = new Int32Array(n), fresh = new Uint8Array(n);
       for (let i = 0; i < n; i++) {
         const gap = i === 0 || P.t[i] - P.t[i - 1] > 1000 || !V;        // (no animation field: nothing to fade)
-        if (gap) { start[i] = P.t[i]; continue; }
-        if (V[i] !== V[i - 1]) { start[i] = P.t[i]; prev[i] = V[i - 1]; prevStart[i] = start[i - 1]; }
-        else { start[i] = start[i - 1]; prev[i] = prev[i - 1]; prevStart[i] = prevStart[i - 1]; }
+        if (gap) { start[i] = P.t[i]; from[i] = i; fresh[i] = 1; continue; }
+        if (V[i] !== V[i - 1]) { start[i] = P.t[i]; prev[i] = V[i - 1]; prevStart[i] = start[i - 1]; from[i] = i; }
+        else { start[i] = start[i - 1]; prev[i] = prev[i - 1]; prevStart[i] = prevStart[i - 1]; from[i] = from[i - 1]; fresh[i] = fresh[i - 1]; }
       }
-      s[k] = start; s[k + 'Prev'] = prev; s[k + 'PrevStart'] = prevStart;
+      s[k] = start; s[k + 'Prev'] = prev; s[k + 'PrevStart'] = prevStart; s[k + 'From'] = from; s[k + 'Fresh'] = fresh;
     }
     // the distance walked up to each sample (horizontal; a gap in the samples adds nothing): moving
-    // animations advance by it (animSec)
-    const dist = new Float64Array(n);
+    // animations advance by it (animSec) - along the positions as drawn (Match.drawn)
+    const dist = new Float64Array(n), Q = n ? this.M.drawn(cl) : null;
     for (let i = 1; i < n; i++) {
       const gap = P.t[i] - P.t[i - 1] > 1000;
-      dist[i] = dist[i - 1] + (gap ? 0 : Math.hypot(P.x[i] - P.x[i - 1], P.y[i] - P.y[i - 1]));
+      dist[i] = dist[i - 1] + (gap ? 0 : Math.hypot(Q.x[i] - Q.x[i - 1], Q.y[i] - Q.y[i - 1]));
     }
     s.dist = dist;
     this.starts.set(cl, s);
@@ -197,11 +201,10 @@ export class Actors {
     const L = this.library;
     const st = this.startsOf(cl), i = s.i;
     const stance = L.clip(L.indexOf(s.prone ? 'pb_prone_aim' : s.crouch ? 'pb_crouch_alert' : 'pb_stand_alert'));
-    const legs = L.clip(s.legs) || stance;
     // a looping moving animation (run, walk, crawl) advances by the distance covered since it started over
     // its own speed - the feet keep step with the ground - within 0.4 - 2x the real time; others by time
     const P = this.M.d.positions[cl];
-    const distNow = st.dist[i] + Math.hypot(s.x - P.x[i], s.y - P.y[i]);
+    const Q = this.M.drawn(cl), distNow = st.dist[i] + Math.hypot(s.x - Q.x[i], s.y - Q.y[i]);
     const animSec = (clip, startT) => {
       const real = (t - startT) / 1000;
       if (!clip || !clip.loop || !clip.speed) return real;
@@ -209,28 +212,53 @@ export class Actors {
       const d = (distNow - st.dist[j]) / clip.speed;
       return Math.min(2 * real, Math.max(0.4 * real, d));
     };
-    // a new legs animation fades in over LEGS_BLEND ms while the old one keeps playing
-    const opts = {};
-    const sinceLegs = t - st.legs[i];
-    if (st.legsPrev[i] >= 0 && sinceLegs < LEGS_BLEND) {
-      opts.prevLegs = L.clip(st.legsPrev[i]) || stance;
-      opts.prevLegsSec = animSec(opts.prevLegs, st.legsPrevStart[i]);
-      opts.legsW = smooth(sinceLegs / LEGS_BLEND);
+    // a new legs animation fades in over LEGS_BLEND ms while the old one keeps playing; a torso animation (fire,
+    // reload, throw) fades in / out over TORSO_BLEND ms over the legs, or from the torso animation it replaces. A
+    // change while the one before is still fading fades from that mix (the chain, oldest first: chainOf)
+    // On a mounted MG the demo sends the gunner's blend block (standMG42_aim / _fire, prone...): the gunner clips
+    // nearest the gun's aim (CharacterLibrary.gunnerBlend); their root faces the gun's yaw turned by the clips' own
+    // root turn (dyaw) and they aim the body themselves - no angle controllers (both by the gunner pose's share)
+    const tu = s.turret && this.turretAim ? this.turretAim(cl, t, s) : null;
+    const tw = tu && tu.a.prop.tag ? tu.a.prop.tag('tag_weapon', tu.pitch, tu.yaw, _tw) : null;
+    const legsChain = this.chainOf(P, st, 'legs', i, t, LEGS_BLEND, v => {
+      const def = L.blendDef(v), g = def && tw ? L.gunnerBlend(def, s.z - tw.z, tu.yaw) : null;
+      return g ? { clip: g.clip, dyaw: g.dyaw } : { clip: L.clip(v) || stance };
+    });
+    for (const x of legsChain) x.sec = animSec(x.clip, x.start);
+    const torsoChain = this.chainOf(P, st, 'torso', i, t, TORSO_BLEND, v => ({ clip: (v & 0x1ff) ? L.clip(v) : null }));
+    for (const x of torsoChain) x.sec = (t - x.start) / 1000;
+    ch.poseLayers(legsChain, torsoChain);
+    let gw = 0, dyaw = 0;
+    for (let k = 0; k < legsChain.length; k++) {
+      if (legsChain[k].dyaw == null) continue;
+      let e = k === 0 ? 1 : legsChain[k].w;                 // (the layer's share of the result)
+      for (let j = k + 1; j < legsChain.length; j++) e *= 1 - legsChain[j].w;
+      gw += e; dyaw += e * legsChain[k].dyaw;
     }
-    // a torso animation (fire, reload, throw) fades in / out over TORSO_BLEND ms over the legs
-    const sinceTorso = t - st.torso[i];
-    let torso = (s.torso & 0x1ff) ? L.clip(s.torso) : null, torsoSec = sinceTorso / 1000;
-    opts.torsoW = torso ? smooth(sinceTorso / TORSO_BLEND) : 1;
-    if (!torso && st.torsoPrev[i] > 0 && (st.torsoPrev[i] & 0x1ff) && sinceTorso < TORSO_BLEND) {
-      torso = L.clip(st.torsoPrev[i]);
-      torsoSec = (t - st.torsoPrevStart[i]) / 1000;
-      opts.torsoW = 1 - smooth(sinceTorso / TORSO_BLEND);
-    }
-    ch.pose(legs, animSec(legs, st.legs[i]), torso, torsoSec, opts);
+    // (turret_think: the root's yaw = the gun's + the clips' root turn; measured on 69 turret moments of 3 maps - the
+    // hands 3 - 6 units from the gun's tag_weapon, the other sign or none 4 - 8)
+    if (gw > 0) ch.group.rotation.z = (s.yaw + dyaw) * D2R;
     const c = this.controllers && this.controllers.at(cl, t);
-    if (c) ch.applyControllers(c);
+    if (c) ch.applyControllers(c, 1 - gw);
     // (on a mounted MG the gun is the turret's: no weapon in the hand)
     ch.setWeapon(s.turret ? null : L.weaponModel(s.weapon ? this.M.weaponName(s.weapon, t) : null), this.gunLeft(cl, t));
+  }
+
+  /** the crossfade chain of a legs / torso animation at sample i, time t, oldest first: [{...make(value), start, w}] -
+   *  the current value, and while it is still fading in (t - its start < blend ms) the value before it, and so on
+   *  (at most CHAIN_MAX deep; a layer that has finished fading hides everything before it, so the walk stops there) */
+  chainOf(P, st, k, i, t, blend, make) {
+    const V = P[k], from = st[k + 'From'], fresh = st[k + 'Fresh'], out = [];
+    let j = i;
+    for (let d = 0; d < CHAIN_MAX; d++) {
+      const a = from[j], start = P.t[a];
+      const x = make(V ? V[j] : 0);
+      x.start = start; x.w = smooth((t - start) / blend);
+      out.unshift(x);
+      if (x.w >= 1 || fresh[a] || a === 0) break;
+      j = a - 1;
+    }
+    return out;
   }
 
   /** is a client's gun in the left hand at t? CG_ProcessClientNoteTracks: an anim_gunhand = "left" / "right"
@@ -434,7 +462,7 @@ export class Actors {
         if (!h.ch) continue;
         h.ch.group.visible = true;
         const clip = this.library.clip(c.legs) || this.library.clip(this.library.indexOf('pb_stand_death_chest_blowback'));
-        h.ch.pose(clip, (t - c.t0) / 1000, null, 0);
+        h.ch.pose(clip, (t - c.t0) / 1000);
         if (this.grid) h.ch.setGrid(this.gridAt(h, c.x, c.y, c.z));
         if (this.probe) h.ch.setLight(this.lightAt(h, c.x, c.y, c.z));
       }

@@ -206,17 +206,19 @@ export class Controllers {
   /** controller state of client cl at time t: {angles: 6 × [pitch, yaw, roll], tag: [pitch, yaw,
    *  roll] of the root relative to the view yaw, offset: [forward, left]} or null */
   at(cl, t) {
-    const P = this.M.d.positions[cl];
-    if (!P || !P.legs || !this.lib.animsInfo) return null;
-    const i = upperBound(P.t, t) - 1;
-    if (i < 0 || (P.flags[i] & PF.DEAD)) return null;
+    const P0 = this.M.d.positions[cl];
+    if (!P0 || !P0.legs || !this.lib.animsInfo) return null;
+    const i = upperBound(P0.t, t) - 1;
+    if (i < 0 || (P0.flags[i] & PF.DEAD)) return null;
     let C = this.cache.get(cl);
+    // (the samples with the positions and view angles as drawn: Match.drawn)
+    const P = C ? C.P : (() => { const Q = this.M.drawn(cl); return Object.assign({}, P0, { x: Q.x, y: Q.y, yaw: Q.yaw, pitch: Q.pitch }); })();
     if (!C) {
       // per sample the latest restart at or before it; checkpoint sample index -> state at that sample
       const R = new Int32Array(P.t.length);
       for (let j = 1; j < R.length; j++) R[j] = this.restartsAt(P, j) ? j : R[j - 1];
       // (work: the state run from a checkpoint, out: the result - both reused frame after frame)
-      this.cache.set(cl, C = { restart: R, states: new Map(), work: fresh(), out: { angles: null, tag: null, offset: null } });
+      this.cache.set(cl, C = { P, restart: R, states: new Map(), work: fresh(), out: { angles: null, tag: null, offset: null } });
     }
     const r = C.restart[i], S = C.states;
     let k = i - ((i - r) % CHECK), st;

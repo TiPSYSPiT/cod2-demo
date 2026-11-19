@@ -8,7 +8,9 @@
  *    status, type, size and SHA-256 to the console.
  *  - Binaries are read as a stream into chunks: Content-Length is the size on the wire, and GitHub
  *    Pages gzips (Content-Encoding) - a buffer sized from it cut world.bin short ("Invalid typed array
- *    length"). The progress uses the expected size from the manifest or the caller. */
+ *    length"). The progress uses the expected size from the manifest or the caller.
+ *  - The binaries are stored gzipped (world.bin.gz ...) and unpacked here (fetchBinary): the JSON headers and the
+ *    callers keep the plain names. */
 
 const BASE = 'maps3d/';
 let manifest = null, manifestLoading = null;
@@ -33,11 +35,19 @@ function entryOf(url) {
 
 /** a maps3d URL with its version (?v=hash), for fetches and texture loaders */
 export function dataUrl(url) {
+  url = norm(url);
   const e = entryOf(url);
   return e ? url + (url.includes('?') ? '&' : '?') + 'v=' + e[1] : url;
 }
 
 const name = url => url.split('?')[0];
+/** '..' and '.' segments resolved (a map version's props.json names another version's props.bin: "../<map>/props.bin",
+ *  tools/export/datafile.py share_tree) - the manifest's keys are plain paths */
+const norm = url => {
+  const i = url.indexOf('?'), path = i < 0 ? url : url.slice(0, i), out = [];
+  for (const s of path.split('/')) { if (s === '..' && out.length && out[out.length - 1] !== '..') out.pop(); else if (s !== '.') out.push(s); }
+  return out.join('/') + (i < 0 ? '' : url.slice(i));
+};
 const isText = url => /\.(json|md|txt)$/i.test(name(url));
 
 /** what came instead of the data: 'an HTML page' / 'a Git LFS pointer' / null */
@@ -71,7 +81,7 @@ const AHEAD_MS = 120000;
  *  copy of it (to find the files it names) -> Promise<object or null> */
 export function prefetch(url, { json = false } = {}) {
   return loadDataManifest().then(() => {
-    const u = dataUrl(url);
+    const u = dataUrl(storedUrl(url));            // (a binary: its .gz - what fetchBinary asks for)
     if (ahead.has(u)) return null;
     const p = fetch(u);
     // (the copy is made before anyone can take the response and read its body)
@@ -85,11 +95,13 @@ export function prefetch(url, { json = false } = {}) {
 
 /** fetch a maps3d file (versioned URL, status checked) -> Response */
 export async function fetchData(url, opts) {
+  url = norm(url);
   await loadDataManifest();
   let r;
   const u = dataUrl(url), held = !opts && ahead.get(u);
   if (held) ahead.delete(u);
-  try { r = await (held || fetch(u, opts)); } catch (err) { return fail(url, null, null, name(url) + ': ' + err.message); }
+  // (a download the browser cancelled - the page left mid-load: AbortError - goes on as it is, not logged)
+  try { r = await (held || fetch(u, opts)); } catch (err) { if (err && err.name === 'AbortError') throw err; return fail(url, null, null, name(url) + ': ' + err.message); }
   if (!r.ok) return fail(url, r, null, name(url) + ': HTTP ' + r.status + (r.status === 404 ? ' (not found - not deployed?)' : ''));
   return r;
 }
@@ -104,12 +116,43 @@ export async function fetchJSON(url, opts) {
   catch (err) { return fail(url, r, bytes, name(url) + ': not valid JSON (' + bytes.byteLength + ' bytes: ' + err.message + ')'); }
 }
 
-/** a binary file -> ArrayBuffer, its length checked against `expected` (the caller's, from a header)
- *  or the manifest's size; onProgress(0..1) while it streams */
+/* The binaries are stored gzipped (<file>.gz, tools/export/datafile.py: 38 % of the space and the download - GitHub
+ * Pages does not compress binaries on the way; PLAN.md step 96, as cod4-demo) - also the textures as the game's DXT data
+ * (<name>.dds.gz: tools/export/texfile.py). Their JSON headers name the plain file;
+ * the manifest lists the .gz. */
+const PACKED = '.gz';
+/** the URL a binary is fetched from: its .gz when the manifest lists that and not the plain file; without a manifest
+ *  the .gz as well (what the export writes; fetchBinary falls back to the plain file) */
+function storedUrl(url) {
+  url = norm(url);
+  if (!url.startsWith(BASE) || !/\.(bin|dds)$/i.test(name(url))) return url;
+  if (!manifest) return url + PACKED;
+  const key = url.slice(BASE.length).split('?')[0];
+  return !manifest.files[key] && manifest.files[key + PACKED] ? url + PACKED : url;
+}
+/** gzip data -> the unpacked bytes (the browser's own inflate, off the main thread) */
+async function gunzip(bytes) {
+  if (typeof DecompressionStream === 'undefined') throw new Error('this browser cannot unpack gzip data (no DecompressionStream)');
+  const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+  return new Uint8Array(await new Response(stream).arrayBuffer());
+}
+
+/** a binary file -> ArrayBuffer. Its length as stored is checked against the manifest's size, the data's length (after
+ *  unpacking a .gz) against `expected` (the caller's, from a header); onProgress(0..1) while it streams */
 export async function fetchBinary(url, { expected = 0, onProgress = null } = {}) {
-  const r = await fetchData(url);
-  const e = entryOf(url);
-  const want = expected || (e && !isText(url) ? e[0] : 0);
+  url = norm(url);
+  await loadDataManifest();
+  let src = storedUrl(url), r;
+  try { r = await fetchData(src); }
+  catch (err) {
+    // (no manifest and no .gz: the plain file of an older export)
+    if (manifest || src === url || !/HTTP 404/.test(err.message)) throw err;
+    src = url;
+    r = await fetchData(src);
+  }
+  const packed = src !== url;
+  const e = entryOf(src);
+  const want = e && !isText(src) ? e[0] : packed ? 0 : expected;
   let bytes;
   if (r.body && onProgress) {
     const reader = r.body.getReader(), parts = [];
@@ -126,11 +169,19 @@ export async function fetchBinary(url, { expected = 0, onProgress = null } = {})
     for (const p of parts) { bytes.set(p, o); o += p.length; }
   } else bytes = new Uint8Array(await r.arrayBuffer());
   const what = sniff(bytes);
-  if (what && (!want || bytes.byteLength !== want)) return fail(url, r, bytes, name(url) + ': received ' + what + ' (' + bytes.byteLength + ' bytes) instead of the data');
-  if (want && bytes.byteLength !== want) {
-    return fail(url, r, bytes, name(url) + ': expected ' + want.toLocaleString('en') + ' bytes, received ' + bytes.byteLength.toLocaleString('en') +
-      (bytes.byteLength < want ? ' (cut short or an old version)' : ' (another version)'));
+  if (what && (!want || bytes.byteLength !== want)) return fail(src, r, bytes, name(src) + ': received ' + what + ' (' + bytes.byteLength + ' bytes) instead of the data');
+  const wrong = (n, size) => name(src) + ': expected ' + size.toLocaleString('en') + ' bytes, received ' + n.toLocaleString('en') +
+    (n < size ? ' (cut short or an old version)' : ' (another version)');
+  // (the gzip header 1f 8b: a server that unpacked the .gz on the way - Content-Encoding - sends the data itself, which
+  // is checked against `expected` alone)
+  const gz = packed && bytes[0] === 0x1f && bytes[1] === 0x8b;
+  if (want && bytes.byteLength !== want && (gz || !packed)) return fail(src, r, bytes, wrong(bytes.byteLength, want));
+  if (gz) {
+    const stored = bytes;
+    try { bytes = await gunzip(stored); }
+    catch (err) { return fail(src, r, stored, name(src) + ': does not unpack (' + err.message + ')'); }
   }
+  if (expected && bytes.byteLength !== expected) return fail(src, r, bytes, wrong(bytes.byteLength, expected) + (packed ? ' after unpacking' : ''));
   return bytes.buffer;
 }
 

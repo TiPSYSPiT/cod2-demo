@@ -10,7 +10,6 @@ export const lowerBound = (arr, v) => { let lo = 0, hi = arr.length; while (lo <
 
 /** shortest signed angle difference b - a in degrees */
 const dAngle = (a, b) => ((b - a + 540) % 360) - 180;
-
 export class Match {
   constructor(data, app) {
     const d = data, m = d.meta;
@@ -85,6 +84,14 @@ export class Match {
     else { e.t1 = e.t0; e.s1 = e.s0; e.t0 = t; e.s0 = s; }
     return s;
   }
+  /** the samples of client cl as drawn: the other players' rounded positions and view angles smoothed within half a
+   *  unit / degree of the data (built by the analysis: build.js drawnTrack, PLAN.md steps 95 / 96) -> {x, y, z, yaw,
+   *  pitch} (the raw arrays where nothing is smoothed) or null */
+  drawn(cl) {
+    const P = this.d.positions[cl];
+    return P ? P.drawn || P : null;
+  }
+
   sampleNow(cl, t) {
     const P = this.d.positions[cl];
     if (!P || !P.t.length) return null;
@@ -95,15 +102,16 @@ export class Match {
     const dl = this.deaths.get(cl);
     if (dl) for (const k of dl) if (k.t > t0 && k.t <= t) return null;
     if (t0 < this.epochStart(t)) return null;
-    let x = P.x[i], y = P.y[i], z = P.z[i], yaw = P.yaw[i], pitch = P.pitch[i], age = t - t0, lean = P.lean ? P.lean[i] : 0;
+    const Q = this.drawn(cl);
+    let x = Q.x[i], y = Q.y[i], z = Q.z[i], yaw = Q.yaw[i], pitch = Q.pitch[i], age = t - t0, lean = P.lean ? P.lean[i] : 0;
     if (i + 1 < P.t.length && this.epochStart(P.t[i + 1]) <= t0) {
       const t1 = P.t[i + 1];
-      const dx = P.x[i + 1] - x, dy = P.y[i + 1] - y;
+      const dx = P.x[i + 1] - P.x[i], dy = P.y[i + 1] - P.y[i];
       if (t1 - t0 <= CFG.GAP_MS && Math.hypot(dx, dy) <= CFG.JUMP_UNITS && !(P.flags[i + 1] & PF.DEAD)) {
         const f = (t - t0) / (t1 - t0);
-        x += dx * f; y += dy * f; z += (P.z[i + 1] - z) * f;
-        yaw += dAngle(yaw, P.yaw[i + 1]) * f;
-        pitch += dAngle(pitch, P.pitch[i + 1]) * f;
+        x += (Q.x[i + 1] - x) * f; y += (Q.y[i + 1] - y) * f; z += (Q.z[i + 1] - z) * f;
+        yaw += dAngle(yaw, Q.yaw[i + 1]) * f;
+        pitch += dAngle(pitch, Q.pitch[i + 1]) * f;
         if (P.lean) lean += (P.lean[i + 1] - lean) * f;
         age = 0;
       }

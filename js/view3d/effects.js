@@ -186,7 +186,8 @@ export class Effects {
       this.blast.material.opacity = 0.6 * (1 - age / B.explodedMs);
       return;
     }
-    this.bomb.visible = true;
+    // (the planted / defused bomb's own model, items.js, replaces the box; the ring stays a marker)
+    this.bomb.visible = !this.modelBomb;
     this.bomb.position.set(x, y, z);
     this.bomb.material.color.set(e.state === 'defused' ? B.defusedColor : B.color);
     this.bomb.material.transparent = e.state === 'unknown';

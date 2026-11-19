@@ -482,6 +482,7 @@ kbd { font: 500 var(--fs-xs) var(--mono); padding: 1px 6px; border-radius: 5px; 
 .play .big .i { width: 16px; height: 16px; fill: currentColor; stroke: none; }
 .play .big .i path[d^='M6 4'] { transform: translateX(1px); }
 .clock { font: 500 15px var(--mono); white-space: nowrap; min-width: 118px; }
+.clock-now { display: inline-block; text-align: right; }   /* (min-width: the range's longest time, replay.js frame) */
 .clock small { color: var(--muted); font-size: var(--fs); }
 .clock-sub { font: 400 var(--fs-xs) var(--sans); color: var(--muted); margin-top: 2px; }
 .timeline { position: relative; height: 40px; min-width: 0; cursor: pointer; }

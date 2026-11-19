@@ -9,8 +9,9 @@
  *   (legsAnim / torsoAnim, bit 0x200 = restart toggle): per bone rotation keys (replace the bind
  *   rotation) and translation keys (added to the bind translation), at the animation's frame rate.
  * A player plays the legs animation on the whole body and the torso animation (shooting, reloading,
- * throwing) on top for the bones it has keys for, from the time the demo switched to it; a new legs
- * animation crossfades from the old one, a torso animation fades in and out (actors.js).
+ * throwing) on top for the bones it has keys for, from the time the demo switched to it; a new legs or torso
+ * animation crossfades from the pose shown (also mid-way through the previous crossfade), a torso animation fades in
+ * and out over the legs (actors.js animate, poseLayers).
  * Materials: the colour map, the normal map + specular map lit per pixel from the light grid (lightGrid.js), the
  * view models' detail maps; alpha test (soft edges: alpha to coverage) or blend - the uniforms' markings are
  * blended decals with the material's polygon offset. LODs: each body / head / helmet's coarser meshes by the
@@ -102,7 +103,7 @@ export class CharacterLibrary {
       setMap(mat, 'map', tex, cut ? 'clear' : 'grey');
       setMap(mat, 'emissiveMap', tex, cut ? 'clear' : 'grey');
       if (tex && g.normalMap && G.tangent) {
-        mat.userData.bump = { normalMap: uniformMap(this.texture(g.normalMap), 'flat'), specMap: g.specularMap ? uniformMap(this.texture(g.specularMap), 'black') : null };
+        mat.userData.bump = { normalMap: uniformMap(this.texture(g.normalMap), 'normal'), specMap: g.specularMap ? uniformMap(this.texture(g.specularMap), 'black') : null };
       }
       if (tex && g.detailMap) detailMap(mat, this.texture(g.detailMap), g.detailScale);
       materials.push(mat);
@@ -147,6 +148,50 @@ export class CharacterLibrary {
   }
   /** the tree index of an animation name (fallback poses) */
   indexOf(name) { return this.animsInfo ? this.animsInfo.table.indexOf(name) : -1; }
+
+  /** a mounted MG's gunner blend block (legsAnim 52 - 55: anims.json "blends") or null */
+  blendDef(index) {
+    const B = this.animsInfo && this.animsInfo.blends;
+    return B && index != null ? B[index & 0x1ff] || null : null;
+  }
+
+  /** the gunner's pose at the gun's aim - the game's turret_think: the two rows whose root height below the gun's
+   *  tag_weapon (dz) brackets the player's own (feet z - tag_weapon z), in each the two columns on either side of the
+   *  gun's yaw relative to its stand (> 0 left; clamped at the outermost) -> {clip: {blend: [[clip, weight], ...]},
+   *  dyaw: the blend of the clips' root turns} */
+  gunnerBlend(def, dz, yaw) {
+    const pair = (list, v, key) => {
+      if (v <= list[0][key]) return [0, 0, 0];
+      const n = list.length;
+      if (v >= list[n - 1][key]) return [n - 1, n - 1, 0];
+      let i = 0;
+      while (i < n - 2 && list[i + 1][key] <= v) i++;
+      return [i, i + 1, (v - list[i][key]) / (list[i + 1][key] - list[i][key])];
+    };
+    if (!def.byDz) def.byDz = def.rows.slice().sort((a, b) => a.dz - b.dz);
+    const rows = def.byDz, [r0, r1, fr] = pair(rows, dz, 'dz');
+    const blend = [];
+    let dyaw = 0;
+    for (const [r, wr] of [[r0, 1 - fr], [r1, fr]]) {
+      if (wr <= 0) continue;
+      const cols = rows[r].cols, [c0, c1, fc] = pair(cols, yaw, 'yaw');
+      for (const [c, wc] of [[c0, 1 - fc], [c1, fc]]) {
+        const w = wr * wc, clip = w > 0 ? this.clip(this.indexOf(cols[c].anim)) : null;
+        if (clip) { blend.push([clip, w]); dyaw += w * cols[c].dyaw; }
+      }
+    }
+    return blend.length ? { clip: { blend }, dyaw } : null;
+  }
+
+  /** a turret weapon's gun shake while firing (anims.json "turretGuns": its fire animation) -> [roll, pitch, yaw] in
+   *  degrees at t ms into the loop, or null */
+  gunShake(weapon, t) {
+    const g = this.animsInfo && this.animsInfo.turretGuns && this.animsInfo.turretGuns[weapon];
+    if (!g || g.keys.length < 2) return null;
+    const n = g.keys.length - 1, f = ((t / 1000 * g.rate) % n + n) % n, i = Math.floor(f), u = f - i;
+    const a = g.keys[i], b = g.keys[i + 1];
+    return [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u, a[2] + (b[2] - a[2]) * u];
+  }
 }
 
 const qa = new THREE.Quaternion(), qb = new THREE.Quaternion();
@@ -306,41 +351,77 @@ export class Character {
     }
   }
 
-  /** pose: legs clip + torso clip (each with its seconds since start); opts: prevLegs / prevLegsSec /
-   *  legsW (the legs animation it replaces, faded out: w = 0 old .. 1 new), torsoW (the torso clip's
-   *  weight over the legs) */
-  pose(legs, legsSec, torso, torsoSec, opts = {}) {
+  /** one clip at `sec` on the whole body (a corpse's death animation) */
+  pose(clip, sec) {
     this.rest();
-    if (opts.prevLegs && opts.legsW < 1) {
-      this.apply(opts.prevLegs, opts.prevLegsSec);
-      this.snapshot();
-      this.rest();
-      this.apply(legs, legsSec);
-      this.mixFromSnapshot(opts.legsW);
-    } else this.apply(legs, legsSec);
-    if (torso) {
-      const w = opts.torsoW == null ? 1 : opts.torsoW;
-      if (w <= 0) return;
-      if (w < 1) this.snapshot();
-      this.apply(torso, torsoSec);
-      if (w < 1) this.mixFromSnapshot(w);
+    this.apply(clip, sec);
+  }
+
+  /** the pose from two chains of layers, each oldest first ({clip, sec, w}; actors.js animate): every layer fades in
+   *  over the result of the ones before it by its weight w (0 .. 1; the first layer's is ignored), so a change that
+   *  comes while the one before is still fading starts from the pose on screen - the game's animation weights ramp
+   *  from where they are, too.
+   *    legs   whole-body clips (a layer's bones without keys stay at the bind pose)
+   *    torso  over the legs' result: a clip replaces the bones it has keys for; clip null = the legs alone (a torso
+   *           animation fading in starts from it, one ending fades back to it)
+   *  A layer's clip may also be {blend: [[clip, weight], ...]} (the mounted MG's gunner, by the gun's aim). */
+  poseLayers(legs, torso) {
+    this.rest();
+    for (let k = 0; k < legs.length; k++) {
+      const L = legs[k];
+      if (k > 0) {
+        if (L.w <= 0) continue;
+        if (L.w < 1) this.snapshot(0);
+        this.rest();
+      }
+      this.layer(L.clip, L.sec);
+      if (k > 0 && L.w < 1) this.mixFrom(0, L.w);
+    }
+    if (!torso.length || (torso.length === 1 && !torso[0].clip)) return;
+    this.snapshot(1);                                 // (the legs' pose: each torso layer starts from it)
+    for (let k = 0; k < torso.length; k++) {
+      const T = torso[k];
+      if (k > 0) {
+        if (T.w <= 0) continue;
+        if (T.w < 1) this.snapshot(0);
+        this.restore(1);
+      }
+      if (T.clip) this.layer(T.clip, T.sec);
+      if (k > 0 && T.w < 1) this.mixFrom(0, T.w);
+    }
+  }
+
+  /** a clip, or a weighted blend of clips ({blend}: the first applied, each further one mixed in by its share of the
+   *  weight so far - a normalised weighted average) */
+  layer(clip, sec) {
+    if (!clip || !clip.blend) { this.apply(clip, sec); return; }
+    let sum = 0;
+    for (const [c, w] of clip.blend) {
+      if (w <= 0) continue;
+      sum += w;
+      if (sum === w) { this.apply(c, sec); continue; }
+      this.snapshot(2);
+      this.apply(c, sec);
+      this.mixFrom(2, w / sum);
     }
   }
 
   /** the game's angle controllers (controllers.js) on top of the animation: the root (tag_origin)
    *  gets its yaw / pitch / roll and offset, the controller bones (back_low, back_mid, back_up, neck,
-   *  head, pelvis) turn about the root's axes at their own position, parents first (from cod4-demo3d) */
-  applyControllers(c) {
+   *  head, pelvis) turn about the root's axes at their own position, parents first (from cod4-demo3d); f: their share
+   *  (1; less while the mounted MG's gunner pose fades in - the gunner animations aim the body themselves) */
+  applyControllers(c, f = 1) {
     if (!this.ctrl) {
       const bones = CONTROLLER_BONES.map((n, k) => ({ bone: this.byName.get(n), k })).filter(x => x.bone)
         .sort((x, y) => this.bones.indexOf(x.bone) - this.bones.indexOf(y.bone));
       this.ctrl = { root: this.byName.get('tag_origin'), bones, q: new THREE.Quaternion(), W: new THREE.Quaternion(), Wi: new THREE.Quaternion(), e: new THREE.Euler(0, 0, 0, 'ZYX') };
     }
+    if (f <= 0) return;
     const { root, bones, q, W, Wi, e } = this.ctrl;
-    const angles = (a, k) => q.setFromEuler(e.set(a[k + 2] * D2R, a[k] * D2R, a[k + 1] * D2R, 'ZYX'));   // yaw · pitch · roll
+    const angles = (a, k) => q.setFromEuler(e.set(a[k + 2] * D2R * f, a[k] * D2R * f, a[k + 1] * D2R * f, 'ZYX'));   // yaw · pitch · roll
     if (root) {
       root.quaternion.premultiply(angles(c.tag, 0));
-      root.position.x += c.offset[0]; root.position.y += c.offset[1];
+      root.position.x += c.offset[0] * f; root.position.y += c.offset[1] * f;
     }
     for (const { bone, k } of bones) {
       const a = c.angles;
@@ -353,23 +434,31 @@ export class Character {
     }
   }
 
-  /** remember the body bones' pose */
-  snapshot() {
-    const n = this.bones.length;
-    if (!this.snap || this.snap.length < n * 7) this.snap = new Float32Array(n * 7);
-    this.bones.forEach((o, i) => { o.quaternion.toArray(this.snap, i * 7); o.position.toArray(this.snap, i * 7 + 4); });
+  /** remember the body bones' pose in buffer b (0: the running blend, 1: the legs' pose, 2: a clip blend) */
+  snapshot(b) {
+    const n = this.bones.length, S = this.snaps || (this.snaps = []);
+    if (!S[b] || S[b].length < n * 7) S[b] = new Float32Array(n * 7);
+    const A = S[b], B = this.bones;
+    for (let i = 0; i < n; i++) { B[i].quaternion.toArray(A, i * 7); B[i].position.toArray(A, i * 7 + 4); }
   }
 
-  /** the pose = snapshot -> current by w (slerp / lerp per bone) */
-  mixFromSnapshot(w) {
-    const S = this.snap;
-    this.bones.forEach((o, i) => {
+  /** the body bones back to the pose in buffer b */
+  restore(b) {
+    const A = this.snaps[b], B = this.bones;
+    for (let i = 0; i < B.length; i++) { B[i].quaternion.fromArray(A, i * 7); B[i].position.fromArray(A, i * 7 + 4); }
+  }
+
+  /** the pose = buffer b -> current by w (slerp / lerp per bone) */
+  mixFrom(b, w) {
+    const S = this.snaps[b], B = this.bones;
+    for (let i = 0; i < B.length; i++) {
+      const o = B[i];
       qa.fromArray(S, i * 7);
       qa.slerp(o.quaternion, w);
       o.quaternion.copy(qa);
       const k = i * 7 + 4;
       o.position.set(S[k] + (o.position.x - S[k]) * w, S[k + 1] + (o.position.y - S[k + 1]) * w, S[k + 2] + (o.position.z - S[k + 2]) * w);
-    });
+    }
   }
 
   /** the map's light at the player ([r, g, b], 1 = the texture's own colour; lightProbe.js): tints the

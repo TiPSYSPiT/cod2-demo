@@ -64,7 +64,7 @@
    "start": 0,
    "count": 237,
    "lightmap": -1,
-   "texture": "_textures/concrete_floor01.webp",
+   "texture": "_textures/concrete_floor01.dds",
    "textureAlpha": false,
    "normalMap": null,
    "alphaTest": null,
@@ -77,7 +77,7 @@
    "doubleSided": false,
    "surface": 5242880,
    "contents": 1,
-   "detailMap": "_textures/concrete_floor_01.webp",
+   "detailMap": "_textures/concrete_floor_01.dds",
    "detailScale": [
     8.0,
     8.0
@@ -89,9 +89,9 @@
    "start": 237,
    "count": 237,
    "lightmap": -1,
-   "texture": "_textures/caen_wall_brickred_02.webp",
+   "texture": "_textures/caen_wall_brickred_02.dds",
    "textureAlpha": false,
-   "normalMap": "_textures/_caen_wall_brickred_02_normal-gggr.webp",
+   "normalMap": "_textures/_caen_wall_brickred_02_normal-gggr.dds",
    "alphaTest": null,
    "blend": null,
    "vertexAlpha": false,
@@ -102,7 +102,7 @@
    "doubleSided": false,
    "surface": 2097152,
    "contents": 1,
-   "detailMap": "_textures/brick_01.webp",
+   "detailMap": "_textures/brick_01.dds",
    "detailScale": [
     2.0,
     2.0
@@ -114,7 +114,7 @@
    "start": 474,
    "count": 144,
    "lightmap": -1,
-   "texture": "_textures/caen_wall_woodplanks_01.webp",
+   "texture": "_textures/caen_wall_woodplanks_01.dds",
    "textureAlpha": false,
    "normalMap": null,
    "alphaTest": null,
@@ -127,7 +127,7 @@
    "doubleSided": false,
    "surface": 22020096,
    "contents": 1,
-   "detailMap": "_textures/wood_v_01.webp",
+   "detailMap": "_textures/wood_v_01.dds",
    "detailScale": [
     16.0,
     16.0
@@ -160,9 +160,9 @@
    "start": 1092,
    "count": 30,
    "lightmap": -1,
-   "texture": "_textures/v_wood_floor1.webp",
+   "texture": "_textures/v_wood_floor1.dds",
    "textureAlpha": false,
-   "normalMap": "_textures/_v_wood_floor1_n-gggr__v_wood_floor1_s-r-25g-25b-25l73.webp",
+   "normalMap": "_textures/_v_wood_floor1_n-gggr.dds",
    "alphaTest": null,
    "blend": null,
    "vertexAlpha": false,
@@ -173,8 +173,8 @@
    "doubleSided": false,
    "surface": 22020096,
    "contents": 1,
-   "specularMap": "_textures/_v_wood_floor1_s-r-25g-25b-25l73.webp",
-   "detailMap": "_textures/wood_h_01.webp",
+   "specularMap": "_textures/_v_wood_floor1_s-r-25g-25b-25l73.dds",
+   "detailMap": "_textures/wood_h_01.dds",
    "detailScale": [
     16.0,
     16.0
@@ -186,9 +186,9 @@
    "start": 1122,
    "count": 366,
    "lightmap": -1,
-   "texture": "_textures/v_wood_floor2.webp",
+   "texture": "_textures/v_wood_floor2.dds",
    "textureAlpha": false,
-   "normalMap": "_textures/_v_wood_floor2_n-gggr__v_wood_floor2s-r29g29b29l-73.webp",
+   "normalMap": "_textures/_v_wood_floor2_n-gggr.dds",
    "alphaTest": null,
    "blend": null,
    "vertexAlpha": false,
@@ -199,8 +199,8 @@
    "doubleSided": false,
    "surface": 22020096,
    "contents": 1,
-   "specularMap": "_textures/_v_wood_floor2s-r29g29b29l-73.webp",
-   "detailMap": "_textures/wood_h_01.webp",
+   "specularMap": "_textures/_v_wood_floor2s-r29g29b29l-73.dds",
+   "detailMap": "_textures/wood_h_01.dds",
    "detailScale": [
     16.0,
     16.0
@@ -233,7 +233,8 @@
   "file": "sky.webp",
   "image": "mpcarentan_ft",
   "faces": 6,
-  "size": 256
+  "size": 512,
+  "layout": "3x2"
  },
  "sun": {
   "direction": null,

@@ -6,7 +6,10 @@ C2.define('workerMain', function (C2) {
   /** typed arrays of the positions can be transferred instead of copied */
   function transferList(data) {
     const list = [];
-    for (const p of Object.values(data.positions)) for (const a of Object.values(p)) list.push(a.buffer);
+    for (const p of Object.values(data.positions)) {
+      for (const [k, a] of Object.entries(p)) if (k !== 'drawn') list.push(a.buffer);
+      if (p.drawn) for (const a of Object.values(p.drawn)) list.push(a.buffer);      // (build.js drawnTrack)
+    }
     if (data.sightJob) for (const j of data.sightJob.kills) list.push(j.segs.buffer);
     if (data.psWeapon) for (const a of Object.values(data.psWeapon)) list.push(a.buffer);
     if (data.psHud) for (const k of ['ammo', 'obj', 'hud']) list.push(data.psHud[k].start.buffer, data.psHud[k].data.buffer);

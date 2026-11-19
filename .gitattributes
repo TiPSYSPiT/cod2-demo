@@ -22,3 +22,6 @@
 *.ff binary
 *.iwi binary
 *.zip binary
+*.gz binary
+*.dds binary
+*.flac binary

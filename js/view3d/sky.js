@@ -1,8 +1,9 @@
 /* The map's sky as the game draws it (its sky shader: colour = texCUBE(skyMap, world direction), unlit):
  * maps3d/<map>/sky.webp holds the six faces of the sky cube (tools/export/export_maps.py sky / cube_strip)
- * side by side in the D3D order +X, -X, +Y, -Y, +Z, -Z; they are read with the D3D cube conventions
- * and the world direction. Drawn as a
- * box around the camera at the far plane, behind everything. */
+ * in the D3D order +X, -X, +Y, -Y, +Z, -Z - layout "3x2": face k at column k % 3, row k / 3 (the game's
+ * face size, lossless); without a layout (an older export) side by side in one row. They are read with the
+ * D3D cube conventions and the world direction. Drawn as a box around the camera at the far plane, behind
+ * everything. */
 import * as THREE from 'three';
 import { dataUrl } from './data.js';
 
@@ -22,7 +23,7 @@ export class Sky {
   constructor(tex, meta) {
     this.texture = tex;
     const mat = new THREE.ShaderMaterial({
-      uniforms: { uSky: { value: tex }, uFace: { value: meta.size || 256 } },
+      uniforms: { uSky: { value: tex }, uFace: { value: meta.size || 256 }, uGrid: { value: meta.layout === '3x2' ? 1 : 0 } },
       vertexShader: `
 varying vec3 vDir;
 void main() {
@@ -33,6 +34,7 @@ void main() {
       fragmentShader: `
 uniform sampler2D uSky;
 uniform float uFace;
+uniform int uGrid;
 varying vec3 vDir;
 void main() {
   vec3 c = vDir, a = abs(c);
@@ -42,7 +44,8 @@ void main() {
   else { ma = a.z; if (c.z > 0.0) { f = 4.0; sc = c.x; tc = -c.y; } else { f = 5.0; sc = -c.x; tc = -c.y; } }
   float m = 0.5 / uFace;
   vec2 uv = clamp(vec2(sc, tc) / ma * 0.5 + 0.5, m, 1.0 - m);
-  gl_FragColor = vec4(textureLod(uSky, vec2((f + uv.x) / 6.0, uv.y), 0.0).rgb, 1.0);
+  vec2 st = uGrid == 1 ? vec2((mod(f, 3.0) + uv.x) / 3.0, (floor(f / 3.0) + uv.y) / 2.0) : vec2((f + uv.x) / 6.0, uv.y);
+  gl_FragColor = vec4(textureLod(uSky, st, 0.0).rgb, 1.0);
 }`,
       side: THREE.BackSide, depthWrite: false, depthTest: true, fog: false,
     });

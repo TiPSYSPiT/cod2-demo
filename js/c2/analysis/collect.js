@@ -141,7 +141,7 @@ C2.define('collect', function (C2) {
       levelStarts: [],              // {t, value} of config string 13 (the round's start time)
       hudTimers: [],                // {t, type, end} HUD countdowns seen by the POV (round clock, strat time)
       hudClocks: [],                // {t, end} HUD clocks counting down (type 11 / 12, setClock: the bomb timer)
-      bombModels: [],               // {t, x, y, z} the planted bomb (script model xmodel/mp_tntbomb) when it appears
+      bombModels: [],               // {t, x, y, z, pitch, yaw, roll} the planted bomb (script model xmodel/mp_tntbomb) when it appears
       issues: [],
       firstTime: null, lastTime: null,
       snapshots: 0,
@@ -446,7 +446,8 @@ C2.define('collect', function (C2) {
         else if (et === K.ET.MISSILE) doMissile(e, num, t, prev);
         else if (et === K.ET.ITEM) doItem(e, num, t);
         else if (et === K.ET.SCRIPTMOVER && !prev && /\/mp_tntbomb$/i.test(c.cs.get(K.CS.MODELS + e[E.index]) || '')) {
-          c.bombModels.push({ t, x: u2f(e[E.px]), y: u2f(e[E.py]), z: u2f(e[E.pz]) });
+          c.bombModels.push({ t, x: u2f(e[E.px]), y: u2f(e[E.py]), z: u2f(e[E.pz]),
+            pitch: u2f(e[E.pitch]), yaw: u2f(e[E.yaw]), roll: u2f(e[E.roll]) });   // (sd.gsc: plant.angles, the ground's normal)
         }
         else if (et === K.ET.TURRET) doTurret(e, num, t);
         else if (et === K.ET.LOOP_FX) {

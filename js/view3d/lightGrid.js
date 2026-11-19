@@ -216,7 +216,7 @@ const PROP_VERT_BODY = `
 
 /* the normal-mapped props, per pixel as lightprobe.hlsl: the placement's grid light (instance attributes,
    passed on) weighted for the bumped normal N + (2x - 1) T + (2y - 1) B, the sun x N.L, and with a specular
-   map the sun's highlight (the power in the normal map's blue channel, as the world's) */
+   map the sun's highlight (the power in the specular map's alpha, the normal's x / y in the normal map's alpha / green - the game's layout, as the world's) */
 const BUMP_VERT_HEAD = `attribute vec4 gridC0, gridC1, gridC2, gridC3, gridC4, gridC5;
 attribute float gridSun;
 attribute vec4 cTangent;
@@ -246,7 +246,13 @@ const BUMP_FRAG_BODY = `float gSun = vGSun;
 #ifdef COOKIE_RECEIVER
   gSun *= 1.0 - cookieCover();
 #endif
-vec3 nsp = texture2D( uNormalMap, vMapUv ).xyz;
+vec4 nTex = texture2D( uNormalMap, vMapUv );
+#ifdef GRID_SPECULAR
+vec4 sTex = texture2D( uSpecMap, vMapUv );
+vec3 nsp = vec3( nTex.a, nTex.g, sTex.a );
+#else
+vec3 nsp = vec3( nTex.a, nTex.g, 0.5 );
+#endif
 vec3 gn = normalize( vGridN + ( nsp.x * 2.0 - 1.0 ) * vGridT + ( nsp.y * 2.0 - 1.0 ) * vGridB );
 vec3 gu = gn * mat3( ${AXIS.map(r => 'vec3(' + r.map(v => v.toFixed(4)).join(', ') + ')').join(', ')} );
 gu /= max( max( abs( gu.x ), abs( gu.y ) ), abs( gu.z ) );
@@ -258,7 +264,7 @@ vec3 gridLight = vec3( dot( gw0, vGC0 ) + dot( gw1, vGC1 ), dot( gw0, vGC2 ) + d
 vec3 gridSpec = vec3( 0.0 );
 #ifdef GRID_SPECULAR
   vec3 gh = normalize( normalize( cameraPosition - vGridW ) + uSunDir );
-  gridSpec = uSunColor * texture2D( uSpecMap, vMapUv ).rgb * specularity( nsp.z, dot( gh, gn ) ) * mix( 0.3, 1.0, clamp( gSun, 0.0, 1.0 ) );
+  gridSpec = uSunColor * sTex.rgb * specularity( nsp.z, dot( gh, gn ) ) * mix( 0.3, 1.0, clamp( gSun, 0.0, 1.0 ) );
 #endif
 outgoingLight = diffuseColor.rgb * gridLight + gridSpec;
 `;
@@ -315,7 +321,7 @@ export function setGridUniforms(u, s) {
 
 /* the normal-mapped players / weapons / view models, per pixel as lightprobe.hlsl (as the props): the tangent
    (cTangent: xyz + the binormal's sign) skinned like the normal, the grid light for N + (2x - 1) T + (2y - 1) B,
-   the sun x N.L, with a specular map the sun's highlight (the power in the normal map's blue channel) */
+   the sun x N.L, with a specular map the sun's highlight (the power in the specular map's alpha) */
 const SKIN_BUMP_VERT_HEAD = 'attribute vec4 cTangent;\nvarying vec3 vGridT, vGridB, vGridW;\n';
 const SKIN_BUMP_VERT_BODY = `
 {
@@ -333,12 +339,18 @@ uniform sampler2D uSpecMap;
 ${SPECULARITY_GLSL}
 #endif
 `;
-const SKIN_BUMP_FRAG_BODY = `vec3 nsp = texture2D( uNormalMap, vMapUv ).xyz;
+const SKIN_BUMP_FRAG_BODY = `vec4 nTex = texture2D( uNormalMap, vMapUv );
+#ifdef GRID_SPECULAR
+vec4 sTex = texture2D( uSpecMap, vMapUv );
+vec3 nsp = vec3( nTex.a, nTex.g, sTex.a );
+#else
+vec3 nsp = vec3( nTex.a, nTex.g, 0.5 );
+#endif
 vec3 gn = normalize( normalize( vGridN ) + ( nsp.x * 2.0 - 1.0 ) * vGridT + ( nsp.y * 2.0 - 1.0 ) * vGridB );
 vec3 gridSpec = vec3( 0.0 );
 #ifdef GRID_SPECULAR
   vec3 gh = normalize( normalize( cameraPosition - vGridW ) + uSunDir );
-  gridSpec = uSunColor * texture2D( uSpecMap, vMapUv ).rgb * specularity( nsp.z, dot( gh, gn ) ) * mix( 0.3, 1.0, clamp( uGridSun, 0.0, 1.0 ) );
+  gridSpec = uSunColor * sTex.rgb * specularity( nsp.z, dot( gh, gn ) ) * mix( 0.3, 1.0, clamp( uGridSun, 0.0, 1.0 ) );
 #endif
 outgoingLight = diffuseColor.rgb * gridLight( gn ) + gridSpec;
 `;

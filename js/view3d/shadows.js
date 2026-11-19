@@ -197,6 +197,34 @@ export class CookieShadows {
     scene.overrideMaterial = keep.override; scene.background = keep.background; scene.fog = keep.fog;
   }
 
+  /** the two passes' shader programs compiled in parallel ahead of their first use (View3D.compileAhead; PLAN.md step
+   *  96: the first passes linked them on the main thread, up to ~0.4 s): three.js's compile walks every mesh with its
+   *  own material, so the passes' materials are swapped in as the passes do (the occluders' depth materials, the
+   *  casters' depth material), the walk started (it runs at once) and the materials put back -> Promise */
+  compileAhead(renderer, scene, actorRoots, worldRoots) {
+    if (!this.enabled) return Promise.resolve();
+    const jobs = [];
+    const swapped = [];
+    const swap = (roots, pick) => {
+      for (const root of roots) root.traverse(o => {
+        if (!o.isMesh || (pick === this.depth && o.userData.noCookie)) return;
+        swapped.push([o, o.material]);
+        o.material = Array.isArray(o.material) ? o.material.map(m => (pick === this.depth ? this.depth : this.worldDepth.get(m))) : pick === this.depth ? this.depth : this.worldDepth.get(o.material);
+      });
+    };
+    const restore = () => { for (const [o, m] of swapped) o.material = m; swapped.length = 0; };
+    for (const [roots, pick, cam] of [[worldRoots, this.worldDepth, this.worldCamera], [actorRoots, this.depth, this.camera]]) {
+      if (!roots.length) continue;
+      const group = new THREE.Group();          // (the passes' meshes only: the walk's own scene)
+      try {
+        swap(roots, pick);
+        for (const root of roots) group.children.push(root);      // (not reparented: only walked)
+        jobs.push(renderer.compileAsync(group, cam, scene));
+      } finally { group.children.length = 0; restore(); }
+    }
+    return Promise.all(jobs);
+  }
+
   /** casters: the meshes under actorRoots; occluders: the meshes under worldRoots; toSun: unit vector
    *  towards the sun; center: the point the shadows are wanted around */
   update(renderer, scene, actorRoots, worldRoots, center, toSun) {

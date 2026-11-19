@@ -140,7 +140,7 @@ export class Props {
         receiveCookie(mat);                  // the players' shadows (shadows.js)
         // the normal / specular maps, used once the grid lights the props (applyGrid)
         const bump = tex && g.normalMap && G.tangent && !unlit          // (sampled with the colour map's vMapUv)
-          ? { normalMap: uniformMap(texture(g.normalMap), 'flat'), specMap: g.specularMap ? uniformMap(texture(g.specularMap), 'black') : null }
+          ? { normalMap: uniformMap(texture(g.normalMap), 'normal'), specMap: g.specularMap ? uniformMap(texture(g.specularMap), 'black') : null }
           : null;
         const mesh = new THREE.InstancedMesh(sub, mat, list.length);
         list.forEach((inst, i) => {
@@ -219,8 +219,12 @@ export class Props {
             .multiply(new THREE.Matrix4().makeTranslation(-pivot[0], -pivot[1], -pivot[2]));
         };
         const tags = m.tags || {}, tm = new THREE.Matrix4();
-        this.turrets.push({ origin: [inst.matrix[3], inst.matrix[7], inst.matrix[11]], model: m.name, tags, aim: (pitch, yaw) => {
+        // (aim's shake: [roll, pitch, yaw] degrees - the gun's own fire animation while firing (view3d.js gunShakeAt): mg01,
+        // the gun's bone between the stand and tag_aim_animated, at the same pivot; the eye's tag_aim does not shake)
+        const S = new THREE.Matrix4(), E = new THREE.Euler();
+        this.turrets.push({ origin: [inst.matrix[3], inst.matrix[7], inst.matrix[11]], model: m.name, tags, aim: (pitch, yaw, shake) => {
           R.makeRotationZ(yaw * DEG).multiply(Ry.makeRotationY(pitch * DEG));
+          if (shake) R.premultiply(S.makeRotationFromEuler(E.set(shake[0] * DEG, shake[1] * DEG, shake[2] * DEG, 'ZYX')));
           out.copy(base).multiply(toPivot).multiply(R).multiply(fromPivot);
           for (const mesh of aimMeshes) { mesh.setMatrixAt(i, out); mesh.instanceMatrix.needsUpdate = true; }
         }, tag: (name, pitch, yaw, v) => {

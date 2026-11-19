@@ -414,7 +414,12 @@ export class Replay {
     const rl = r >= 0 ? C2.ui.fmtRoundTime(this.d, r, t) : '';
     // the clock: the time in the range / its length, under it the round time (round range: also the match time)
     setText(this.timeNow, fmtTime(t - this.base));
-    setText(this.timeTotal, '/ ' + fmtTime(this.pb.range[1] - this.base));
+    const total = fmtTime(this.pb.range[1] - this.base);
+    setText(this.timeTotal, '/ ' + total);
+    // (the time as wide as the range's longest one from the start - monospaced: one ch per character -, so the bar
+    // beside it keeps its width when the clock reaches an hour and its labels do not move; PLAN.md step 99)
+    const w = total.length + 'ch';
+    if (this.timeNow.style.minWidth !== w) this.timeNow.style.minWidth = w;
     setText(this.clockSub, this.scope >= 0 ? (rl ? rl + ' · ' : '') + 'match ' + fmtTime(t) : (rl || 'match ' + fmtTime(t)));
     if (this.playing !== this.pb.playing) {
       this.playing = this.pb.playing;

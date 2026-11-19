@@ -61,11 +61,15 @@ function view(buf, a, what = 'world.bin') { const T = ARRAYS[a.type]; return che
  *  of createImageBitmap, the <img> as before. A texture that fails to load is drawn neutral grey (and warned about) */
 let grey = null;
 let bitmaps = typeof createImageBitmap === 'function';
+/** a download the browser cancelled (the page navigated away or closed mid-load: AbortError) - not worth a warning,
+ *  nothing is left to draw it on (PLAN.md step 99) */
+const cancelled = err => !!err && err.name === 'AbortError';
 export function loadTexture(url) {
+  if (/\.dds$/i.test(url)) return loadDds(url);
   const t = new THREE.Texture();
   t.userData.inflight = true; inflight++;
-  const failed = () => {
-    console.warn('texture not loaded - drawn neutral grey:', url);
+  const failed = err => {
+    if (!cancelled(err)) console.warn('texture not loaded - drawn neutral grey:', url);
     if (!grey) { grey = document.createElement('canvas'); grey.width = grey.height = 1; const g = grey.getContext('2d'); g.fillStyle = '#808080'; g.fillRect(0, 0, 1, 1); }
     t.image = grey; t.needsUpdate = true;
     arrived(t);
@@ -97,6 +101,106 @@ export function loadTexture(url) {
   return t;
 }
 
+/* The game's own texture data (PLAN.md step 96): the colour, normal, specular and detail maps as the game stores them -
+ * DXT1 / DXT3 / DXT5 blocks with their mipmaps (_textures/<name>.dds, stored gzipped: tools/export/texfile.py), uploaded
+ * as they are (WEBGL_compressed_texture_s3tc: 4 - 8x less GPU memory than a decoded image, no decode, no mipmaps made);
+ * a browser without S3TC gets the blocks decoded here - the same pixels. DXT1 as RGBA: the game's cut-outs (its
+ * 1-bit alpha). The blocks are let go once uploaded (fetched again after a lost WebGL context: reloadTextures). */
+let s3tc = true;
+/** whether the renderer takes S3TC blocks (View3D, at its renderer's creation) */
+export function setCompressedSupport(on) { s3tc = !!on; }
+const DXT_FORMATS = { DXT1: THREE.RGBA_S3TC_DXT1_Format, DXT3: THREE.RGBA_S3TC_DXT3_Format, DXT5: THREE.RGBA_S3TC_DXT5_Format };
+
+/** a DDS file (texfile.py dds_bytes: DXT, mipmaps largest first) -> {fourcc, width, height, levels: [{width, height, data}]} */
+function parseDds(buf) {
+  const h = new Uint32Array(buf, 0, 32);
+  if (h[0] !== 0x20534444) throw new Error('not a DDS file');
+  const height = h[3], width = h[4], mips = Math.max(1, h[7]);
+  const fourcc = String.fromCharCode(h[21] & 255, (h[21] >> 8) & 255, (h[21] >> 16) & 255, h[21] >>> 24);
+  if (!DXT_FORMATS[fourcc]) throw new Error('DDS format ' + fourcc);
+  const block = fourcc === 'DXT1' ? 8 : 16, levels = [];
+  let o = 128, w = width, hh = height;
+  for (let i = 0; i < mips; i++) {
+    const n = Math.max(1, (w + 3) >> 2) * Math.max(1, (hh + 3) >> 2) * block;
+    if (o + n > buf.byteLength) throw new Error('DDS file cut short');
+    levels.push({ width: w, height: hh, data: new Uint8Array(buf, o, n) });
+    o += n; w = Math.max(1, w >> 1); hh = Math.max(1, hh >> 1);
+  }
+  return { fourcc, width, height, levels };
+}
+
+/** DXT blocks -> RGBA8 (the browsers without S3TC; D3D's decoding: DXT1's 3-colour blocks with transparent black) */
+function decodeDxt(fourcc, w, h, src) {
+  const out = new Uint8Array(w * h * 4), block = fourcc === 'DXT1' ? 8 : 16, c = new Uint8Array(16), a = new Uint8Array(16);
+  const bw = Math.max(1, (w + 3) >> 2), bh = Math.max(1, (h + 3) >> 2);
+  for (let by = 0; by < bh; by++) for (let bx = 0; bx < bw; bx++) {
+    const o = (by * bw + bx) * block, co = fourcc === 'DXT1' ? o : o + 8;
+    const c0 = src[co] | (src[co + 1] << 8), c1 = src[co + 2] | (src[co + 3] << 8);
+    const rgb = v => [((v >> 11) & 31) * 255 / 31, ((v >> 5) & 63) * 255 / 63, (v & 31) * 255 / 31];
+    const p0 = rgb(c0), p1 = rgb(c1), three = fourcc === 'DXT1' && c0 <= c1;
+    for (let k = 0; k < 3; k++) {
+      c[k] = p0[k]; c[4 + k] = p1[k];
+      c[8 + k] = three ? (p0[k] + p1[k]) / 2 : (2 * p0[k] + p1[k]) / 3;
+      c[12 + k] = three ? 0 : (p0[k] + 2 * p1[k]) / 3;
+    }
+    c[3] = c[7] = c[11] = 255; c[15] = three ? 0 : 255;
+    if (fourcc === 'DXT3') for (let i = 0; i < 16; i++) a[i] = ((src[o + (i >> 1)] >> ((i & 1) * 4)) & 15) * 17;
+    else if (fourcc === 'DXT5') {
+      const a0 = src[o], a1 = src[o + 1], pal = [a0, a1];
+      for (let k = 1; k < 7; k++) pal.push(a0 > a1 ? ((7 - k) * a0 + k * a1) / 7 : k < 5 ? ((5 - k) * a0 + k * a1) / 5 : k === 5 ? 0 : 255);
+      let bits = 0, nb = 0, p = o + 2;
+      for (let i = 0; i < 16; i++) {
+        while (nb < 3) { bits |= src[p++] << nb; nb += 8; }
+        a[i] = pal[bits & 7]; bits >>= 3; nb -= 3;
+      }
+    }
+    const idx = src[co + 4] | (src[co + 5] << 8) | (src[co + 6] << 16) | (src[co + 7] << 24);
+    for (let i = 0; i < 16; i++) {
+      const x = bx * 4 + (i & 3), y = by * 4 + (i >> 2);
+      if (x >= w || y >= h) continue;
+      const s = ((idx >>> (2 * i)) & 3) * 4, d = (y * w + x) * 4;
+      out[d] = c[s]; out[d + 1] = c[s + 1]; out[d + 2] = c[s + 2];
+      out[d + 3] = fourcc === 'DXT1' ? c[s + 3] : a[i];
+    }
+  }
+  return out;
+}
+
+/** a DDS file's levels into texture t (compressed, or decoded where S3TC is missing) */
+function fillDds(t, buf) {
+  const d = parseDds(buf);
+  if (s3tc) { t.format = DXT_FORMATS[d.fourcc]; t.type = THREE.UnsignedByteType; t.mipmaps = d.levels; }
+  else {
+    t.format = THREE.RGBAFormat; t.type = THREE.UnsignedByteType;
+    t.mipmaps = d.levels.map(l => ({ width: l.width, height: l.height, data: decodeDxt(d.fourcc, l.width, l.height, l.data) }));
+  }
+  t.image = { width: d.width, height: d.height };
+  t.generateMipmaps = false;
+  t.minFilter = d.levels.length > 1 ? THREE.LinearMipmapLinearFilter : THREE.LinearFilter;
+  t.premultiplyAlpha = false; t.flipY = false;
+  t.needsUpdate = true;
+}
+
+/** a .dds texture (loadTexture): no image until its blocks are in (the materials' stand-ins: uniformMap / setMap) */
+function loadDds(url) {
+  const t = new THREE.CompressedTexture([], 1, 1);
+  t.image = null;
+  t.userData.inflight = true; t.userData.src = url; t.userData.dds = true; inflight++;
+  fetchBinary(url).then(buf => {
+    fillDds(t, buf);
+    // (the blocks let go once on the GPU; a lost context fetches them again: reloadTextures)
+    t.onUpdate = () => { t.onUpdate = null; t.userData.uploaded = true; t.mipmaps = []; dropped.add(new WeakRef(t)); };
+    if (textureArrivals.upload) textureArrivals.upload(t);
+    arrived(t);
+  }).catch(err => {
+    if (!cancelled(err)) console.warn('texture not loaded - drawn neutral grey:', url, err && err.message);
+    t.format = THREE.RGBAFormat; t.mipmaps = [{ width: 1, height: 1, data: new Uint8Array([128, 128, 128, 255]) }];
+    t.image = { width: 1, height: 1 }; t.minFilter = THREE.LinearFilter; t.generateMipmaps = false; t.needsUpdate = true;
+    arrived(t);
+  });
+  return t;
+}
+
 /** a texture's decoded image let go (an ImageBitmap closed, its size kept readable) once the GPU has it - now, or
  *  at its upload (loadTexture) */
 export function dropImage(t) {
@@ -115,22 +219,31 @@ const dropped = new Set();
 /** the released textures decoded and uploaded again (after webglcontextrestored) -> Promise */
 export function reloadTextures() {
   const list = [];
+  const dds = [];
   for (const ref of dropped) {
     const t = ref.deref();
     dropped.delete(ref);
-    if (t && t.image && typeof t.image.close !== 'function' && !(t.image instanceof Element)) list.push(t);
+    if (t && t.userData.dds) dds.push(t);
+    else if (t && t.image && typeof t.image.close !== 'function' && !(t.image instanceof Element)) list.push(t);
   }
-  return Promise.all(list.map(t => fetch(dataUrl(t.userData.src), { priority: 'low' }).then(r => r.blob())
+  // (the game's DXT data: fetched and filled in again - loadDds)
+  const again = dds.map(t => fetchBinary(t.userData.src).then(buf => {
+    fillDds(t, buf);
+    t.userData.uploaded = false;
+    t.onUpdate = () => { t.onUpdate = null; t.userData.uploaded = true; t.mipmaps = []; dropped.add(new WeakRef(t)); };
+  }).catch(err => console.warn('texture not reloaded after the WebGL context came back:', t.userData.src, err)));
+  return Promise.all(again.concat(list.map(t => fetch(dataUrl(t.userData.src), { priority: 'low' }).then(r => r.blob())
     .then(blob => createImageBitmap(blob, t.userData.decode)).then(img => {
       t.image = img; t.userData.uploaded = false; t.needsUpdate = true;
       t.onUpdate = () => { t.onUpdate = null; t.userData.uploaded = true; dropImage(t); };
-    }).catch(err => console.warn('texture not reloaded after the WebGL context came back:', t.userData.src, err))));
+    }).catch(err => console.warn('texture not reloaded after the WebGL context came back:', t.userData.src, err)))));
 }
 
 /* Until a texture has arrived three.js samples it black (whole lightmapped areas, every vehicle). The
  * materials therefore start on a shared 1 x 1 stand-in and switch to the texture when it is there (a
  * stand-in cannot simply grow into the real image: the GPU storage keeps its first size). */
-const STANDINS = { grey: [128, 128, 124, 255], clear: [0, 0, 0, 0], light: [150, 150, 150, 255], flat: [128, 128, 128, 255], black: [0, 0, 0, 255], white: [255, 255, 255, 255] };
+// (normal: a flat normal map in the game's layout - x in alpha, y in green, step 96)
+const STANDINS = { grey: [128, 128, 124, 255], clear: [0, 0, 0, 0], light: [150, 150, 150, 255], flat: [128, 128, 128, 255], normal: [128, 128, 128, 128], black: [0, 0, 0, 255], white: [255, 255, 255, 255] };
 const standins = {};
 function standin(kind) {
   if (!standins[kind]) {
@@ -196,7 +309,8 @@ export function uniformMap(tex, kind) {
  * (N + (2x - 1) T + (2y - 1) B, the BSP's tangent frame). The sun mask (sun<N>.webp) shows where the sun
  * reaches; the sun from the map's keys (lightGrid.js applySun). With a specular map (phong.hlsl) the sun's
  * highlight is added: the sun's colour (r_specularColorScale 1) x the map's colour x $specularity(the
- * power, N.H) x mix(0.3, 1, the sun's visibility); the power rides in the normal map's blue channel. */
+ * power, N.H) x mix(0.3, 1, the sun's visibility). The maps as the game has them (step 96): the normal's x in the
+ * normal map's alpha, y in its green (.wy); the power in the specular map's alpha. */
 const LM_WEIGHTS_GLSL = `
 vec4 lmWeights( vec2 s ) {
   vec2 n = s * 2.0 - 1.0;
@@ -218,7 +332,7 @@ function gameLightmap(mat, sunMask, coefs, normalMap, specMap) {
   const specular = bumped && !!specMap;
   const uniforms = { uSunMask: { value: sunMask } };
   if (bumped) {
-    uniforms.uNormalMap = uniformMap(normalMap, 'flat');
+    uniforms.uNormalMap = uniformMap(normalMap, 'normal');
     coefs.forEach((t, k) => { uniforms['uLmc' + k] = { value: t }; });
   }
   if (specular) uniforms.uSpecMap = uniformMap(specMap, 'black');
@@ -237,7 +351,8 @@ function gameLightmap(mat, sunMask, coefs, normalMap, specMap) {
       (bumped ? '\nvarying vec3 vLmT;\nvarying vec3 vLmB;\nuniform sampler2D uNormalMap;\nuniform sampler2D uLmc0;\nuniform sampler2D uLmc1;\nuniform sampler2D uLmc2;\nuniform sampler2D uLmc3;' + LM_WEIGHTS_GLSL : '') +
       (specular ? '\nvarying vec3 vLmW;\nuniform sampler2D uSpecMap;' + SPECULARITY_GLSL : '');
     const light = bumped
-      ? `vec3 nsp = texture2D( uNormalMap, vMapUv ).xyz;
+      ? `vec4 nTex = texture2D( uNormalMap, vMapUv );
+${specular ? 'vec4 sTex = texture2D( uSpecMap, vMapUv );\nvec3 nsp = vec3( nTex.a, nTex.g, sTex.a );' : 'vec3 nsp = vec3( nTex.a, nTex.g, 0.5 );'}
 vec2 ns = nsp.xy;
 vec4 lw = lmWeights( ns );
 vec3 lmLight = lw.x * texture2D( uLmc0, vLightMapUv ).rgb + lw.y * texture2D( uLmc1, vLightMapUv ).rgb
@@ -247,7 +362,7 @@ vec3 lmN = normalize( vLmN + ( ns.x * 2.0 - 1.0 ) * vLmT + ( ns.y * 2.0 - 1.0 ) 
       : 'vec3 lmLight = texture2D( lightMap, vLightMapUv ).rgb;\nvec3 lmN = normalize( vLmN );\n';
     const spec = specular
       ? `vec3 lmH = normalize( normalize( cameraPosition - vLmW ) + uSunDir );
-vec3 lmSpec = uSunColor * texture2D( uSpecMap, vMapUv ).rgb * specularity( nsp.z, dot( lmH, lmN ) ) * mix( 0.3, 1.0, lmSun );
+vec3 lmSpec = uSunColor * sTex.rgb * specularity( nsp.z, dot( lmH, lmN ) ) * mix( 0.3, 1.0, lmSun );
 `
       : 'vec3 lmSpec = vec3( 0.0 );\n';
     shader.fragmentShader = shader.fragmentShader

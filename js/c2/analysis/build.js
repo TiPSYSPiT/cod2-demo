@@ -12,6 +12,55 @@ C2.define('build', function (C2) {
   const N = C2.names;
   const PF = C2.collect.PF;
 
+  /* The other players' samples as drawn (Match.drawn; PLAN.md steps 95 / 96): their positions and view angles arrive
+   * rounded to whole units and degrees 30 times a second - a slow turn moves 1 degree, stops for two samples, moves
+   * again. Each run of such samples (<= DRAWN_GAP_MS apart, no jump, alive, not the recorder's own PF.FROM_PS ones) is
+   * smoothed by a centred triangular average over +-DRAWN_K samples (~100 ms), every value kept within half a unit /
+   * degree of the recorded one (fast motion stays as it is). Built here, in the analysis (the worker), once per client:
+   * on the page it was a second of the 3D view's first frame. -> {x, y, z, yaw, pitch} (Float32Array) or null when
+   * nothing is smoothed. The raw arrays stay as they are (kills, statistics, heatmaps). */
+  const DRAWN_K = 3, DRAWN_GAP_MS = 100, DRAWN_JUMP2 = 64 * 64;
+  const dAngle = (a, b) => ((b - a + 540) % 360) - 180;
+  function drawnTrack(P) {
+    const n = P.t.length, F = P.flags, T = P.t, X = P.x, Y = P.y, Z = P.z, BAD = PF.FROM_PS | PF.DEAD;
+    const link = new Uint8Array(n);            // (link[i]: samples i and i + 1 in one run)
+    let any = false;
+    for (let i = 0; i + 1 < n; i++) {
+      const dx = X[i + 1] - X[i], dy = Y[i + 1] - Y[i], dz = Z[i + 1] - Z[i];
+      if (!(F[i] & BAD) && !(F[i + 1] & BAD) && T[i + 1] - T[i] <= DRAWN_GAP_MS && dx * dx + dy * dy + dz * dz <= DRAWN_JUMP2) { link[i] = 1; any = true; }
+    }
+    if (!any) return null;
+    // each sample's window [lo, hi]: +-K within its run (lo = hi: a sample on its own, not smoothed)
+    const K = DRAWN_K, lo = new Int32Array(n), hi = new Int32Array(n);
+    for (let i = 0, s = 0; i < n; i++) { if (i > 0 && !link[i - 1]) s = i; lo[i] = Math.max(s, i - K); }
+    for (let i = n - 1, e = n - 1; i >= 0; i--) { if (!link[i]) e = i; hi[i] = Math.min(e, i + K); }
+    const lin = (S, ang) => {
+      const A = Float32Array.from(S);
+      // (angles: the step to each next sample once, the window sums them - the turn's own path)
+      let E = null;
+      if (ang) { E = new Float64Array(n); for (let i = 1; i < n; i++) if (link[i - 1]) E[i] = dAngle(S[i - 1], S[i]); }
+      for (let i = 0; i < n; i++) {
+        const a = lo[i], b = hi[i];
+        if (a === b || (F[i] & BAD)) continue;
+        const v = S[i];
+        let s = (K + 1) * v, w = K + 1;
+        if (ang) {
+          let o = 0;
+          for (let j = i - 1; j >= a; j--) { o -= E[j + 1]; const wt = K + 1 - (i - j); s += (v + o) * wt; w += wt; }
+          o = 0;
+          for (let j = i + 1; j <= b; j++) { o += E[j]; const wt = K + 1 - (j - i); s += (v + o) * wt; w += wt; }
+        } else {
+          for (let j = a; j < i; j++) { const wt = K + 1 - (i - j); s += S[j] * wt; w += wt; }
+          for (let j = i + 1; j <= b; j++) { const wt = K + 1 - (j - i); s += S[j] * wt; w += wt; }
+        }
+        const m = s / w;
+        A[i] = m < v - 0.5 ? v - 0.5 : m > v + 0.5 ? v + 0.5 : m;
+      }
+      return A;
+    };
+    return { x: lin(X, false), y: lin(Y, false), z: lin(Z, false), yaw: lin(P.yaw, true), pitch: lin(P.pitch, true) };
+  }
+
   function csCategory(i) {
     const C = K.CS;
     const single = { 0: 'serverinfo', 1: 'systeminfo', 2: 'game version', 3: 'music', 5: 'team score',
@@ -267,6 +316,8 @@ C2.define('build', function (C2) {
         icon: pick(tr.icon, Uint8Array)
       };
       holdTeleports(positions[cl]);
+      const dr = drawnTrack(positions[cl]);
+      if (dr) positions[cl].drawn = dr;
     }
     const posAt = (cl, t, maxAge = 150) => {
       const P = positions[cl]; if (!P) return null;
@@ -322,7 +373,7 @@ C2.define('build', function (C2) {
       // the bomb model itself, when the POV saw it appear: its own position
       if (b.action === 'planted') {
         const m = col.bombModels.find(x => rel(x.t) >= b.t - 500 && rel(x.t) <= b.t + 3000);
-        if (m) { b.bombPos = [m.x, m.y, m.z]; b.bombSource = 'model'; }
+        if (m) { b.bombPos = [m.x, m.y, m.z]; b.bombAngles = [m.pitch, m.yaw, m.roll]; b.bombSource = 'model'; }
         else if (!b.bombPos && b.pos) { b.bombPos = b.pos; b.bombSource = 'last known'; }
       }
       // the bomb site (assets/maps/backgrounds.js: the map's bomb zones) closest to the planter / defuser
@@ -563,18 +614,18 @@ C2.define('build', function (C2) {
     }
 
     // bomb track (S&D): planted (the bomb model, else in front of the planter, else at the guessed
-    // planter's position ≈) until defused / exploded / round end
+    // planter's position ≈) until defused / exploded / round end; angles: the bomb model's (null when it was not seen)
     const bombTrack = [];
     if (isSD) {
       for (const r of rounds) {
         const p = (r.bomb || []).find(b => b.action === 'planted');
         if (!p || !p.bombPos) continue;
         const d = (r.bomb || []).find(b => b.action === 'defused');
-        const site = p.site || null, [x, y, z] = p.bombPos, source = p.bombSource;
-        bombTrack.push({ t: p.t, state: 'planted', x, y, z, carrier: null, site, source });
-        if (d) bombTrack.push({ t: d.t, state: 'defused', x, y, z, carrier: null, site, source });
-        else if (r.reason === 'Bomb exploded' && r.end != null) bombTrack.push({ t: r.end, state: 'exploded', x, y, z, carrier: null, site, source });
-        bombTrack.push({ t: r.segEnd, state: 'none', x: null, y: null, z: null, carrier: null, site: null, source: null });
+        const site = p.site || null, [x, y, z] = p.bombPos, source = p.bombSource, angles = p.bombAngles || null;
+        bombTrack.push({ t: p.t, state: 'planted', x, y, z, angles, carrier: null, site, source });
+        if (d) bombTrack.push({ t: d.t, state: 'defused', x, y, z, angles, carrier: null, site, source });
+        else if (r.reason === 'Bomb exploded' && r.end != null) bombTrack.push({ t: r.end, state: 'exploded', x, y, z, angles, carrier: null, site, source });
+        bombTrack.push({ t: r.segEnd, state: 'none', x: null, y: null, z: null, angles: null, carrier: null, site: null, source: null });
       }
       bombTrack.sort((a, b) => a.t - b.t);
       // the bomb timer: the server's countdown clock that appears with the plant (zPAM / stock: setClock, 60 s

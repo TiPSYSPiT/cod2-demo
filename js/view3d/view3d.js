@@ -4,7 +4,7 @@
  * lighting, characters, effects and sound - see PLAN.md). */
 import * as THREE from 'three';
 import '../c2/ui/killfeed.js';
-import { loadWorld, groundPlane, resolveMap, textureArrivals, texturesIn, cullWorldGroups, reloadTextures, releaseStandins, gameFog, setMaxAnisotropy } from './mapLoader.js';
+import { loadWorld, groundPlane, resolveMap, textureArrivals, texturesIn, cullWorldGroups, reloadTextures, releaseStandins, gameFog, setMaxAnisotropy, setCompressedSupport } from './mapLoader.js';
 import { LightProbe } from './lightProbe.js';
 import { Actors, EYE, stanceOf } from './actors.js';
 import { Effects } from './effects.js';
@@ -53,6 +53,7 @@ const VIEWMODEL_KEY = 'cod2demo3d.viewmodel';    // 'on' / 'off' (default on): t
 // sprint), TURRET_BLEND_MS .. TURRET_BLEND_MAX_MS long (the game snaps; the server moves the player onto the spot - and
 // off it - in one snapshot, up to 60 units)
 const TURRET_BLEND_MS = 150, TURRET_BLEND_MAX_MS = 400, TURRET_BLEND_SPEED = 0.25;
+const GUN_SHAKE_FADE = 60;          // ms: a mounted MG's fire shake fades in / out (gunShakeAt)
 const MODE_HELP = { orbit: 'Left drag: rotate · right drag: pan · wheel: zoom · click a player: select',
   free: 'Drag: look · W A S D: move · R / F: up / down · Shift: fast · wheel: speed',
   follow: 'Follows the selected player · drag: turn around them · wheel: distance',
@@ -111,6 +112,13 @@ export class View3D {
     this.stage.hidden = true;
     container.append(this.stage);
     this.renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance', stencil: true });   // (stencil: X-Ray)
+    // (three.js reads every new shader program's info logs to report errors; the read waits for the program's link
+    // - 1.2 s (Chrome) / 1.5 s (Firefox) of a map's load on the main thread, PLAN.md step 96. Only with ?debug or
+    // ?shadercheck - the browser suites run with it)
+    const q = new URLSearchParams(location.search);
+    this.renderer.debug.checkShaderErrors = q.has('debug') || q.has('shadercheck');
+    // (the game's DXT textures go to the GPU as they are where it takes them - mapLoader.js loadDds)
+    setCompressedSupport(!!this.renderer.extensions.get('WEBGL_compressed_texture_s3tc'));
     this.renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
     this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace;    // gamma-space colours, as the game
     this.stage.append(this.renderer.domElement);
@@ -141,6 +149,8 @@ export class View3D {
     this.characters = new CharacterLibrary();
     this.actors = new Actors(scene, this.labels, this.M, this.characters);
     this.actors.turretMuzzle = cl => { const tu = this.turretOf(cl, this.t || 0, this.M.sampleAt(cl, this.t || 0)); return tu && tu.on ? this.turretMuzzle(tu) : null; };
+    // (the gunner's pose: the gun's aim relative to its stand)
+    this.actors.turretAim = (cl, t, s) => { const tu = this.turretOf(cl, t, s); return tu && tu.on ? tu : null; };
     this.actors.onLoaded = () => { this.R.invalidate(); this.needsRender = true; this.compileAhead(); if (this.actors.failed) this.playersSel.parentNode.title = 'The player models are not exported (tools/export/characters_export.py)'; };
     this.effects = new Effects(scene, this.labels, this.M);
     // the game's particle effects (fx.js): explosions, smoke, impacts, muzzle flashes
@@ -677,6 +687,7 @@ export class View3D {
     this.actors.update(t, { shown: R.shownPlayers(), focus: R.focus, hover: R.hover, labels: R.opts.labels || this.xrayMode === 'names', lastKnown: R.opts.lastKnown,
       enemyOf: this.enemyNames || this.xrayMode === 'names' ? null : ref });
     this.effects.modelGrenades = this.items.update(t);
+    this.effects.modelBomb = this.items.bombDrawn;
     this.effects.update(t, R);
     // the destroyed bomb-site target after its bomb exploded, until the next round
     // the map script's parts by the phase (ready-up or not: gameObjects.js)
@@ -705,8 +716,43 @@ export class View3D {
         pitch += (T.pitch[i + 1] - pitch) * f;
         yaw += ((((T.aimYaw[i + 1] - yaw) % 360) + 540) % 360 - 180) * f;
       }
-      if (pitch !== a.pitch || yaw !== a.yaw) { a.pitch = pitch; a.yaw = yaw; a.prop.aim(pitch, yaw); }
+      const shake = this.gunShakeAt(a, t);
+      if (pitch !== a.pitch || yaw !== a.yaw || shake || a.shake) { a.pitch = pitch; a.yaw = yaw; a.shake = shake; a.prop.aim(pitch, yaw, shake); }
     }
+  }
+
+  /** a mounted MG's shake while its user fires (the turret weapon's own fire animation: CharacterLibrary.gunShake), faded
+   *  in and out over GUN_SHAKE_FADE ms by the user's firing flag -> [roll, pitch, yaw] degrees or null */
+  gunShakeAt(a, t) {
+    const L = this.characters;
+    if (!L || !L.animsInfo || !L.animsInfo.turretGuns) return null;
+    for (const p of this.M.d.players) {
+      const use = this.M.turretUse(p.client, t);
+      if (!use || !use.on || use.turret !== a.track) continue;
+      const w = this.fireWeight(p.client, t);
+      const k = w > 0 ? L.gunShake(this.M.weaponName(a.track.weapon, t), t) : null;
+      return k ? [k[0] * w, k[1] * w, k[2] * w] : null;
+    }
+    return null;
+  }
+
+  /** 0 .. 1: how far a client's firing (the samples' PF.FIRING) has faded in at t - in over GUN_SHAKE_FADE ms from the
+   *  first firing sample of the run, out over as long from the first one after it */
+  fireWeight(cl, t) {
+    const P = this.M.d.positions[cl], F = C2.collect.PF.FIRING;
+    if (!P) return 0;
+    let lo = 0, hi = P.t.length;
+    while (lo < hi) { const m = (lo + hi) >> 1; if (P.t[m] <= t) lo = m + 1; else hi = m; }
+    const i = lo - 1;
+    if (i < 0) return 0;
+    const k = x => (x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x));
+    let j = i;
+    if (P.flags[i] & F) {
+      while (j > 0 && (P.flags[j - 1] & F) && P.t[j] - P.t[j - 1] < 200 && t - P.t[j] < GUN_SHAKE_FADE) j--;
+      return k((t - P.t[j]) / GUN_SHAKE_FADE);
+    }
+    while (j > 0 && !(P.flags[j - 1] & F)) { if (t - P.t[j - 1] > GUN_SHAKE_FADE + 200) return 0; j--; }
+    return j > 0 ? 1 - k((t - P.t[j]) / GUN_SHAKE_FADE) : 0;
   }
 
   /** client cl on a mounted MG at t (Match.turretUse), with the placement it uses -> {a: the turretAims entry, use, on,
@@ -768,7 +814,7 @@ export class View3D {
       // no bob, eye height, lean, landing, sway or kick - the view angles as they are, the camera shake on top.
       // Mounting and leaving: the eye moves between the two over TURRET_BLEND_MS
       const tu = this.fpTurret = this.turretOf(cl, t, s);
-      if (tu && tu.on) { tu.a.pitch = tu.pitch; tu.a.yaw = tu.yaw; tu.a.prop.aim(tu.pitch, tu.yaw); }
+      if (tu && tu.on) { tu.a.pitch = tu.pitch; tu.a.yaw = tu.yaw; tu.a.prop.aim(tu.pitch, tu.yaw, tu.a.shake); }
       const te = tu && tu.a.prop.tag ? tu.a.prop.tag('tag_player', tu.pitch, tu.yaw, new THREE.Vector3()) : null;
       // (mounting: from the eye before it - the server moves the player onto the turret's spot in one snapshot; leaving:
       // to the eye where the blend ends - on the way off the server can put the player back where he came from for a
@@ -831,7 +877,21 @@ export class View3D {
   compileAhead() {
     // (without the extension - Firefox here - checking would block like a first draw: the programs are built at their first draw then)
     if (!this.renderer.extensions.has('KHR_parallel_shader_compile')) return;
-    const run = () => Promise.all([this.renderer.compileAsync(this.scene, this.camera), this.viewmodel.compileAhead(this.renderer)]);
+    // (the shadow passes' depth programs too: CookieShadows.compileAhead)
+    const occluders = () => [this.world && this.world.group, this.props && this.props.mode !== 'off' && this.props.group].filter(Boolean);
+    // (and then every program the renderer has: three.js's compileAsync waits only for each material's last program -
+    // a material drawn on skinned and plain, instanced and single meshes has more; their links blocked the first frames,
+    // ~0.7 s, PLAN.md step 96)
+    const allReady = () => new Promise(resolve => {
+      const t0 = performance.now();
+      const tick = () => {
+        const ps = this.renderer.info.programs || [];
+        if (ps.every(p => p.isReady()) || performance.now() - t0 > 10000) resolve(); else setTimeout(tick, 10);
+      };
+      tick();
+    });
+    const run = () => Promise.all([this.renderer.compileAsync(this.scene, this.camera), this.viewmodel.compileAhead(this.renderer),
+      this.shadows.compileAhead(this.renderer, this.scene, [this.actors.root], occluders())]).then(allReady);
     const p = (this.compileHold || Promise.resolve()).then(run).catch(err => console.warn('shader compile:', err));
     const hold = this.compileHold = p.finally(() => { if (this.compileHold === hold) { this.compileHold = null; this.needsRender = true; } });
     return p;
