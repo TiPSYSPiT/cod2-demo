@@ -445,7 +445,7 @@ export class Hud {
   // ---- the frame ----
   /** draws the HUD of client cl at replay time t into g (device size w x h); view: {x, y, yaw} of the first-person
    *  camera; insets: the viewer's controls over the canvas (device pixels) */
-  draw(g, w, h, t, cl, view, insets) {
+  draw(g, w, h, t, cl, view, insets, messagesOnly = false) {
     if (!this.data || !this.M || cl == null) return;
     this.screen(g, w, h, insets);
     const ri = this.row(cl, t);
@@ -453,6 +453,9 @@ export class Hud {
     const P = this.parts;
     g.save();
     g.imageSmoothingEnabled = true;
+    // messagesOnly: the player is not visible (dead, not sent) - the game still draws its message windows then
+    // (CG_Draw2D -> Con_DrawNotify in every player state), the rest needs the player
+    if (messagesOnly) { this.messages(st); g.restore(); return; }
     // the HUD menus in the menu file's order
     for (const menu of this.layout) {
       for (const it of menu.items) {
@@ -467,12 +470,16 @@ export class Hud {
     if (P.damage && st.recorder && view) this.damage(st, view);
     // the server's HUD elements (the team score, the hit marker, the rest)
     if ((P.score || (st.recorder && (P.server || P.hitmarker))) && this.H) this.hudElems(st, P.score, P.server && st.recorder, P.hitmarker && st.recorder);
-    // the message windows
+    this.messages(st);
+    // (the scoreboard: only while the viewer holds Tab - drawScores, scoresOverlay.js; not the demo's own)
+    g.restore();
+  }
+  /** the message windows: the kill feed and the server's messages, the bold window, the centre print */
+  messages(st) {
+    const P = this.parts;
     if (P.killfeed || P.server) this.notifyWindow(st, P.killfeed, P.server);
     if (P.server) this.boldWindow(st);
     if (P.killfeed) this.centerPrint(st);
-    // (the scoreboard: only while the viewer holds Tab - drawScores, scoresOverlay.js; not the demo's own)
-    g.restore();
   }
 
   dvarTest(it, t) {

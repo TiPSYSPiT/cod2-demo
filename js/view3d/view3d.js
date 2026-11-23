@@ -39,7 +39,7 @@ const { el, icon, switchRow, selectRow } = C2.ui;
 const CFG = C2.mapConfig;
 const CAM_KEY = 'cod2demo3d.camera2';           // the camera (default fp: the demo's own view): written only by the user's choice
 const PROPS_KEY = 'cod2demo3d.props';
-const KILLFEED_KEY = 'cod2demo3d.killfeed';      // 'on' / 'off' (default off - settings version 6)
+const KILLFEED_KEY = 'cod2demo3d.killfeed';      // 'on' / 'off' (default off; never on with the HUD's kill feed - settings version 7)
 const HEAD_ICONS_KEY = 'cod2demo3d.headIcons';    // 'on' / 'off' (default on): the game's head icons and talk balloons (session)
 const TRACERS_KEY = 'cod2demo3d.tracers';         // 'on' / 'off' (default off): the bullet tracers (session)
 const ENEMY_NAMES_KEY = 'cod2demo3d.enemyNames';  // 'on' / 'off' (default off): the names over enemies (session)
@@ -72,7 +72,7 @@ const HUD_KEY = 'cod2demo3d.hud.';
 const HUD_TITLES = {
   compass: "The game's compass: turning with the view, the teammates, the objectives (bomb sites), enemies only while they fire",
   score: 'The team score as the server shows it (stock game or zPAM), updated live',
-  killfeed: "The game's kill messages above the compass (killer, weapon icon, victim in the team colours) and \"You killed\" / \"Killed by\"",
+  killfeed: "The game's kill messages above the compass (killer, weapon icon, victim in the team colours) and \"You killed\" / \"Killed by\" - also while the player is dead, as in the game. On, it switches the viewer's kill feed (Display) off",
   ammo: 'Clip and reserve ammo, red when low, and the weapon name after a switch (recording player only)',
   grenades: 'Frag and smoke grenades with their icons and counts (recording player only)',
   server: "The rest the server shows: zPAM's players left and info texts, timers, the game messages (recording player)",
@@ -228,7 +228,7 @@ export class View3D {
     cv.addEventListener('webglcontextrestored', this.onContextRestored);
     this.cams = new Cameras(this.camera, this.renderer.domElement, () => { this.needsRender = true; });
     this.buildToolbar();
-    this.setKillfeed(stored(KILLFEED_KEY) === 'on');
+    this.setKillfeed(false);                      // (decided with the HUD parts below: the two kill feeds are exclusive)
     this.setHeadIcons(sessionGet(HEAD_ICONS_KEY) !== 'off');
     this.setTracers(sessionGet(TRACERS_KEY) === 'on');
     this.setEnemyNames(sessionGet(ENEMY_NAMES_KEY) === 'on');
@@ -246,7 +246,12 @@ export class View3D {
     this.setFxMode(stored(FX_KEY) === 'simple' ? 'simple' : 'game');
     this.setShadows(new URLSearchParams(location.search).get('shadows') !== 'off' && stored(SHADOWS_KEY) !== 'off');
     this.setViewModel(stored(VIEWMODEL_KEY) !== 'off');
-    for (const [k, , def] of HUD_PARTS) { const v = sessionGet(HUD_KEY + k); this.setHudPart(k, v == null ? def : v === 'on'); }
+    // the kill feed: the game's (the HUD part, default on, remembered for the session) or the viewer's overlay
+    // (Display, default off, remembered) - never both. The overlay remembered on: the game's defaults to off (it was
+    // switched off with it, in an earlier session); both remembered on: the game's wins (the overlay stored off)
+    const overlay = stored(KILLFEED_KEY) === 'on';
+    for (const [k, , def] of HUD_PARTS) { const v = sessionGet(HUD_KEY + k); this.setHudPart(k, v == null ? (k === 'killfeed' ? def && !overlay : def) : v === 'on'); }
+    if (overlay) { if (this.hud.parts.killfeed) store(KILLFEED_KEY, 'off'); else this.setKillfeed(true); }
     this.xray = new XRay(this.renderer);
     this.setXray(sessionGet(XRAY_KEY));
 
@@ -468,7 +473,7 @@ export class View3D {
           selectRow('X-Ray', this.xraySel, 'Living players behind walls and props as a silhouette in the team colour (key X); "Player + name" also shows every name, with a badge when the player is out of sight'),
           this.propsRow,
           selectRow('Effects', this.fxSel, 'Explosions, smoke grenades, bullet impacts and muzzle flashes: the game\'s own particle effects, or simple markers'),
-          switchRow('Kill feed', this.killfeedBox, { title: 'The kills and bomb plants / defuses of the last ' + CFG.EXPORT.KILLFEED_MS / 1000 + ' s over the view, with the weapon icons' }),
+          switchRow('Kill feed', this.killfeedBox, { title: 'The kills and bomb plants / defuses of the last ' + CFG.EXPORT.KILLFEED_MS / 1000 + ' s over the view, with the weapon icons, in every camera. On, it switches the game\'s kill feed (Camera, First person HUD) off' }),
           switchRow('Bullet tracers', this.tracersBox, { title: "The game's bullet tracers as the server set them (cg_tracer*: zPAM gives every bullet one, 1000 units long at 20000 units/s; else 40 %, 160 units at 4500 units/s): a short streak flying from the muzzle, gone at the impact" }),
           switchRow('Enemy names', this.enemyNamesBox, { title: "The names over the enemies of the player you watch (first person) or select - the game never shows them (only a teammate's name under the crosshair); teammates' names follow Layers, Names. X-Ray Player + name shows every name" }),
           switchRow('View lines', this.viewLinesBox, { title: "A thin line in the team colour from each player's eyes along their view direction (with the real pitch)" }),
@@ -506,10 +511,12 @@ export class View3D {
     fadeHint(this.camHint);
     this.needsRender = true;
   }
+  /** the viewer's kill feed overlay (Display, Kill feed) - on, it switches the game's (HUD part) off: never both */
   setKillfeed(on, user = false) {
     this.killfeed.visible = on;
     this.killfeedBox.checked = on;
     if (user) store(KILLFEED_KEY, on ? 'on' : 'off');
+    if (on && this.hud.parts.killfeed) this.setHudPart('killfeed', false, user);
     this.killfeed.update(this.t || 0);
   }
   setViewModel(on, user = false) {
@@ -522,6 +529,8 @@ export class View3D {
     this.hud.parts[k] = on;
     this.hudBoxes[k].checked = on;
     if (user) sessionSet(HUD_KEY + k, on ? 'on' : 'off');
+    // the game's kill feed on: the viewer's overlay off (setKillfeed: the other way round)
+    if (k === 'killfeed' && on && this.killfeed.visible) this.setKillfeed(false, user);
     this.needsRender = true;
   }
   setShadows(on, user = false) {
@@ -979,7 +988,8 @@ export class View3D {
       }
       if (mode === 'fp' && target) { hideClient = cl; this.actors.hide(cl); }
       this.fpClient = mode === 'fp' && target ? cl : null;
-    } else { this.fpClient = null; if (this.cams.tick(dt, null)) this.needsRender = true; }
+      this.hudClient = mode === 'fp' ? cl : null;     // (also while not visible: the HUD's messages stay - hudTarget)
+    } else { this.fpClient = this.hudClient = null; if (this.cams.tick(dt, null)) this.needsRender = true; }
     if (!this.needsRender && !force) return false;
     this.needsRender = false;
     // the first-person weapon at this time (before the effects: its muzzle flash) and the sights' zoom
@@ -1119,11 +1129,19 @@ export class View3D {
 
   /** whether the game's HUD is drawn: first person, a part switched on */
   hudShown() { return this.fpClient != null && HUD_PARTS.some(([k]) => this.hud.parts[k]); }
-  /** the game's HUD over the first-person view (hud.js), clear of the viewer's own controls; the viewer's kill feed
-   *  gives way to the game's */
+  /** what of the game's HUD is drawn in this frame: {cl, messagesOnly} or null - first person with a part switched on;
+   *  while the player is not visible (dead, not sent) only the message windows (kill feed, server messages), as the
+   *  game draws them in every player state (also the video export: exportVideo3d.js) */
+  hudTarget(fpSample) {
+    if (this.hudShown() && fpSample) return { cl: this.fpClient, messagesOnly: false };
+    const P = this.hud.parts;
+    if (this.fpClient == null && this.hudClient != null && (P.killfeed || P.server)) return { cl: this.hudClient, messagesOnly: true };
+    return null;
+  }
+  /** the game's HUD over the first-person view (hud.js), clear of the viewer's own controls (the viewer's kill feed
+   *  overlay is never on with the game's: setKillfeed / setHudPart) */
   drawHud(fpSample) {
-    const cv = this.hudCanvas, on = this.hudShown() && !!fpSample;
-    this.killfeed.box.style.visibility = on && this.hud.parts.killfeed ? 'hidden' : '';
+    const cv = this.hudCanvas, on = this.hudTarget(fpSample);
     if (on && !this.hud.data) this.hud.load().then(ok => { if (ok) this.needsRender = true; });
     if (!on || !this.hud.data) { if (cv.width) { cv.width = 0; cv.height = 0; } return; }
     const dpr = this.renderer.getPixelRatio(), w = Math.round(this.w * dpr), h = Math.round(this.h * dpr);
@@ -1133,8 +1151,8 @@ export class View3D {
     const g = cv.getContext('2d');
     g.setTransform(1, 0, 0, 1, 0, 0);
     g.clearRect(0, 0, w, h);
-    this.hud.draw(g, w, h, this.t || 0, this.fpClient, { x: fpSample.x, y: fpSample.y, yaw: fpSample.yaw, pitch: fpSample.pitch,
-      ads: this.viewmodel.zoomFrac() > 0.01 || this.viewmodel.overlayFrac() > 0 }, this.hudInsets);
+    this.hud.draw(g, w, h, this.t || 0, on.cl, on.messagesOnly ? null : { x: fpSample.x, y: fpSample.y, yaw: fpSample.yaw, pitch: fpSample.pitch,
+      ads: this.viewmodel.zoomFrac() > 0.01 || this.viewmodel.overlayFrac() > 0 }, this.hudInsets, on.messagesOnly);
   }
   /** the viewer's controls over the 3D canvas (rail, score, drawer, the playback bar) as the HUD's safe area: per
    *  control the canvas edge it hugs, inset past it (device pixels) */

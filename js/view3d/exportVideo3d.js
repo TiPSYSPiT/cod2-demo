@@ -97,7 +97,8 @@ export function openExport(view) {
     size: el('select'), fps: el('select'), quality: el('select'),
     speed: sel([[0.5, '0.5×'], [1, '1×'], [2, '2×']], 1),
     labels: check(true, 'player names (as the Names option) and bomb site letters'),
-    killfeed: check(true, 'the kills of the last seconds, top right'),
+    // (the viewer's kill feed: checked as Display, Kill feed is; the game's HUD kill feed follows the first-person HUD)
+    killfeed: check(view.killfeed.visible, 'the kills of the last seconds, top right (the viewer\'s kill feed; the game\'s kill messages come with the first-person HUD)'),
     sound: check(!!view.sound, 'the game\'s sounds at the camera (MP4; the WebM fallback records them in real time): shots, impacts, footsteps, explosions, the announcer'),
     markers: check(true, 'kill lines, death crosses and the bomb in the scene'),
     hud: check(true, 'round, round time and score, top left'),
@@ -468,12 +469,14 @@ function drawFrame(ctx, i) {
   ctx.fp[i] = r && r.hideClient != null ? r.hideClient : null;
   g.drawImage(view.renderer.domElement, 0, 0, C.width, C.height);
   // the game's HUD in first person (hud.js), clear of this video's own score box (top left) and title (bottom left)
+  // (the player not visible - dead, not sent: only the message windows, as in the view: view3d.js hudTarget)
   ctx.hudDrawn = false;
-  if (view.fpClient != null && r && r.fpSample && view.hud.data && HUD_PARTS_ON(view)) {
-    const s = p.H / 720, o = ctx.opts;
-    view.hud.draw(g, C.width, C.height, t, view.fpClient, { x: r.fpSample.x, y: r.fpSample.y, yaw: r.fpSample.yaw, pitch: r.fpSample.pitch,
+  const on = r && view.hud.data ? view.hudTarget(r.fpSample) : null;
+  if (on) {
+    const s = p.H / 720, o = ctx.opts, fs = r.fpSample;
+    view.hud.draw(g, C.width, C.height, t, on.cl, on.messagesOnly ? null : { x: fs.x, y: fs.y, yaw: fs.yaw, pitch: fs.pitch,
       ads: view.viewmodel.zoomFrac() > 0.01 || view.viewmodel.overlayFrac() > 0 },
-      { l: 0, t: o.hud ? Math.round(58 * s) : 0, r: 0, b: o.title ? Math.round(38 * s) : 0 });
+      { l: 0, t: o.hud ? Math.round(58 * s) : 0, r: 0, b: o.title ? Math.round(38 * s) : 0 }, on.messagesOnly);
     ctx.hudDrawn = true;
   }
   drawOverlays(ctx, t, r ? r.hideClient : null);
