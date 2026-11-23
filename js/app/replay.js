@@ -11,8 +11,8 @@ const PF = C2.collect.PF;
 const setText = (node, text) => { if (node.textContent !== text) node.textContent = text; };
 
 /** the layers remembered for the session (cod2demo.layer.<key>) and their defaults: zPAM's damage log and the map's
- *  intermission camera / hurt triggers are analysis layers (off), the dropped weapons too (off) */
-const SESSION_LAYERS = { hits: false, items: false, mapCams: false, hurt: false };
+ *  intermission camera / hurt triggers are analysis layers (off) */
+const SESSION_LAYERS = { hits: false, mapCams: false, hurt: false };
 
 export class Replay {
   /** dom: {viewport, controls, teams, feed, head (the drawer's header: round and status)} */
@@ -30,7 +30,7 @@ export class Replay {
     this.focus = null;               // the selected player: highlighted in both views, followed by the 3D camera
     this.selection = { a: null, b: null };   // the export range markers on the timeline (I / O)
     this.hover = null;               // player under the mouse in the team panel
-    this.opts = { labels: true, lastKnown: false, trails: false, killLines: true, grenadeKinds: new Set(['smoke', 'frag', 'other']) };
+    this.opts = { labels: true, lastKnown: false, trails: false, killLines: false, grenadeKinds: new Set(['smoke', 'frag', 'other']) };
     for (const [k, def] of Object.entries(SESSION_LAYERS)) {
       let on = def;
       try { const s = sessionStorage.getItem('cod2demo.layer.' + k); if (s) on = s === 'on'; } catch (err) { /* default */ }
@@ -156,8 +156,7 @@ export class Replay {
           sw('Names', 'labels'), sw('Trails', 'trails', 'Last ' + CFG.TRAIL_MS / 1000 + ' s of movement', 'last ' + CFG.TRAIL_MS / 1000 + ' s'),
           sw('Kill lines', 'killLines', 'Line from killer to victim for 5 s after a kill'),
           this.d.zpamHits && this.d.zpamHits.length ? sw('Hits (zPAM log)', 'hits', "The recording player's hits from zPAM's damage log (rifle, scoped, shotgun and grenade hits): a line to the hit point and the damage, 2D, 2.5 s", '2D') : null,
-          sw('Last known position', 'lastKnown', 'Players the server stopped sending are drawn hollow at their last known position (same life only)'),
-          this.d.items && this.d.items.length ? sw('Dropped weapons', 'items', "The weapons on the ground (a dying player drops his gun and a grenade) as the game's weapon icon, lying the way the demo has them, while the server sends them. In 3D: Display, Grenades and dropped weapons", '2D') : null),
+          sw('Last known position', 'lastKnown', 'Players the server stopped sending are drawn hollow at their last known position (same life only)')),
         nades,
         el('div', { class: 'grp' }, el('h4', null, 'Map'),
           sw('Intermission camera', 'mapCams', "The map's intermission camera (mp_global_intermission): where the game puts the view of a spectator before he joins and at the end of the map, and where it looks"),
@@ -302,7 +301,7 @@ export class Replay {
       const card = el('div', { class: 'rp-card', style: { '--tc': color } },
         el('div', { class: 'th' },
           flag,
-          el('span', { class: 'rp-team-name', title: name + ' - click: show / hide the whole team',
+          el('span', { class: 'rp-team-name', 'data-team-name': key || null, title: 'Click: show / hide the whole team',
             onclick: () => setAll(ps.map(p => p.client), !ps.every(p => this.selected.has(p.client))) }, name),
           side, key ? score : null, alive),
         el('div', { class: 'rp-row rp-cols', 'aria-hidden': 'true' }, el('span'), el('span'), el('span', null, 'In hand'), el('span', { class: 'num' }, 'K'), el('span', { class: 'num' }, 'D'), el('span')),

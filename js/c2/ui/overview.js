@@ -60,9 +60,33 @@
     const played = d.rounds.filter(r => r.kind === 'round');
     let scoreCard;
     if (played.length) {
-      const teamLabel = (t, cls) => el('span', { class: 'score-team ' + cls, title: t.name + (t.nameHeuristic ? '' : ' (no common clan tag found)') },
-        live.flags[t.key] = el('span', { class: 'faction-slot' }),
-        t.name, t.nameHeuristic ? approx('team name from the common name prefix of the players') : null);
+      // the team's name - click to rename it for this demo (app.renameTeam: stored; empty = the detected name)
+      const teamLabel = (t, cls) => {
+        const note = app.teamNameNote(t.key);
+        const name = el('span', { class: 'score-team-name', role: 'button', tabindex: '0',
+          title: t.name + ' - ' + note + '. Click to rename (empty: the detected name)' }, t.name);
+        const edit = () => {
+          const inp = el('input', { class: 'score-team-input', type: 'text', value: t.name, maxlength: '40', 'aria-label': 'Team name', placeholder: t.detectedName || t.name });
+          let done = false;
+          const finish = save => {
+            if (done) return;
+            done = true;
+            if (save) app.renameTeam(t.key, inp.value); else inp.replaceWith(name);
+          };
+          inp.addEventListener('keydown', e => {
+            e.stopPropagation();
+            if (e.key === 'Enter') { e.preventDefault(); finish(true); } else if (e.key === 'Escape') { e.preventDefault(); finish(false); }
+          });
+          inp.addEventListener('blur', () => finish(true));
+          name.replaceWith(inp);
+          inp.focus(); inp.select();
+        };
+        name.addEventListener('click', edit);
+        name.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); edit(); } });
+        return el('span', { class: 'score-team ' + cls },
+          live.flags[t.key] = el('span', { class: 'faction-slot' }),
+          name, t.nameHeuristic && !t.renamed ? approx(note) : null);
+      };
       const halves = [];
       const hi = d.halfInfo;
       const n = Math.max(A.halves.length, B.halves.length);

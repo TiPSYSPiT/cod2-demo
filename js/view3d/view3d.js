@@ -268,7 +268,7 @@ export class View3D {
     });
     // ?debug: the surface picker (debugPick.js, loaded only then)
     if (new URLSearchParams(location.search).has('debug')) import('./debugPick.js').then(m => m.attachDebugPick(this));
-    this.offFocus = replay.on(what => { if (what === 'focus') this.syncPlayerSelect(); });
+    this.offFocus = replay.on(what => { if (what === 'focus') this.syncPlayerSelect(); else if (what === 'teams') this.fillPlayerSelect(); });
     this.resizeObs = new ResizeObserver(() => this.resize());      // (disconnected by destroy)
     this.resizeObs.observe(this.stage);
     this.loop = this.loop.bind(this);

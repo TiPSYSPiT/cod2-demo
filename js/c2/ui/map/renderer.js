@@ -312,19 +312,6 @@
       g.globalAlpha = 1;
     }
 
-    /** an icon image (its visible box) at a world point, turned to the screen angle a (radians; mirrored instead
-     *  of upside down), h px high */
-    drawIcon(x, y, img, box, a, h, alpha) {
-      const g = this.ctx, [X, Y] = this.pt(x, y), w = h * box[2] / box[3];
-      g.save();
-      g.globalAlpha = alpha;
-      g.translate(X, Y); g.rotate(a);
-      if (Math.cos(a) < 0) g.scale(1, -1);
-      g.shadowColor = 'rgba(0,0,0,0.9)'; g.shadowBlur = 3;
-      g.drawImage(img, box[0], box[1], box[2], box[3], -w / 2, -h / 2, w, h);
-      g.restore();
-    }
-
     /** a world box (x / y of mins, maxs) outlined, dashed, with a label at its top-left corner */
     drawBox(mins, maxs, color, label) {
       const g = this.ctx, c = [[mins[0], mins[1]], [maxs[0], mins[1]], [maxs[0], maxs[1]], [mins[0], maxs[1]]].map(p => this.pt(p[0], p[1]));

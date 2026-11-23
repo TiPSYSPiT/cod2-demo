@@ -86,7 +86,7 @@
       all.addEventListener('change', () => { o.players = null; fillList(); changed('filter'); });
       ddList.append(el('label', { class: 'hp-dd-item all' }, all, 'All players'));
       for (const { t, ps } of teamPlayers) {
-        ddList.append(el('div', { class: 'hp-dd-team', style: { color: app.teamColor(t.key) } }, app.teamName(t.key)));
+        ddList.append(el('div', { class: 'hp-dd-team', 'data-team-name': t.key, style: { color: app.teamColor(t.key) } }, app.teamName(t.key)));
         for (const p of ps) {
           const cb = el('input', { type: 'checkbox' }); cb.checked = !!(o.players && o.players.has(p.client));
           cb.addEventListener('change', () => {
@@ -131,7 +131,7 @@
       el('div', { class: 'hp-head' }, el('h4', null, 'Heatmap', el('span', null, '2D map')),
         el('button', { class: 'ib x-btn', title: 'close (Esc)', 'aria-label': 'Close', onclick: () => setOpen(false) }, C2.ui.icon('x', 's'))),
       section('Data', radios('cat', CATS.map(([v, l]) => [v, l, CAT_HELP[v] || 'no heatmap']), () => o.cat, v => { o.cat = v; changed('filter'); })),
-      section('Team', radios('team', [['both', 'Both teams'], ...d.teams.map(t => [t.key, app.teamName(t.key)])], () => o.team, v => { o.team = v; changed('filter'); })),
+      section('Team', radios('team', [['both', 'Both teams'], ...d.teams.map(t => [t.key, el('span', { 'data-team-name': t.key }, app.teamName(t.key))])], () => o.team, v => { o.team = v; changed('filter'); })),
       section('Side', radios('side', SIDES, () => o.side, v => { o.side = v; changed('filter'); })),
       section('Player', el('div', { class: 'hp-dd' }, ddBtn, ddList)),
       section('Look',

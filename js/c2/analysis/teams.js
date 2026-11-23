@@ -106,40 +106,49 @@ C2.define('teams', function (C2) {
     return { swaps, swapClusters, teamOf, membership, sideOf, teamOnSide, rawSideAt, teamAt, byClient };
   }
 
-  /* ---- clan tags and team names (heuristic) ---- */
+  /* ---- team names: the server's (zPAM / CoD2x) and the players' clan tags ---- */
 
-  // characters that can end a clan tag: "ALPHA Shooter", "W@rZ/Sky", "inf.eS NATHZN", "=TAG= x", "RL|x"
-  const SEP = /[\s|/\\:.\-_~*#=+,;>»«•·]/;
-  const TRAIL = /[\s|/\\:.\-_~,;<([{]+$/;   // connectors / opening brackets dropped from the end of a shown tag
   // comparison key, case- and leetspeak-insensitive: "W@rZ" = "WarZ" = "warz"
   const LEET = { '@': 'a', '4': 'a', '3': 'e', '1': 'i', '!': 'i', '0': 'o', '5': 's', '$': 's', '7': 't' };
   const tagKey = tag => tag.toLowerCase().replace(/[@43!105$7]/g, c => LEET[c]).replace(/[^a-z0-9]/g, '');
+  const plainKey = s => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  // a tag ends at any other character ("ALPHA Shooter", "W@rZ/Sky", "inf.eS NATHZN", "=TAG= x", "RL|x") or where
+  // the colour changes ("^4ATMOS^7JAMES"); the apostrophe and ! @ $ belong to it ("elvta'rs", "C!TRON$", "W@rZ")
+  const CUT = /[^A-Za-z0-9'!@$]/;
+  // shown tag: separators dropped from both ends, brackets kept ("__flamingos_" -> "flamingos", "[ < T N F > ]")
+  const TRIM = /^[^A-Za-z0-9'!@$([{<]+|[^A-Za-z0-9'!@$)\]}>]+$/g;
+  const MAX_TAG = 16;
+  // the server's stand-ins, not a name: zPAM's "-" / "?", CoD2x's pickup teams ("<captain>'s team"), the factions
+  const GENERIC = /^(?:-|\?|team ?[12ab]|.+'s team|mpui_\w+|allies|axis|americans?|british|russians?|germans?)$/i;
+  const STRONG = 0.8, MIN_SHARE = 0.6;
 
-  /** possible clan tags of one name: every prefix up to a separator (at most 12 characters,
-   * the player's own name must follow) and an explicit [TAG] - as Map key -> spelling */
-  function tagCandidates(name) {
+  /** possible clan tags of one name (with colour codes): its beginnings and ends up to a cut, at most MAX_TAG
+   *  characters, the player's own name left over - as Map key -> {spelling} */
+  function tagCandidates(raw) {
+    const runs = C2.text.colorRuns(raw);
+    const text = runs.map(r => r.text).join('');
+    const cuts = new Set();
+    let pos = 0;
+    for (const r of runs) { if (pos) cuts.add(pos); pos += r.text.length; }
+    for (let i = 0; i < text.length; i++) if (CUT.test(text[i])) { cuts.add(i); cuts.add(i + 1); }
     const out = new Map();
-    const add = spelling => {
-      const s = spelling.replace(TRAIL, '').trim();
-      const k = tagKey(s);
-      if (k.length < 2) return;
-      if (!out.has(k) || s.length > out.get(k).length) out.set(k, s);
+    const add = (part, rest) => {
+      const s = part.replace(TRIM, '').trim();
+      if (!s || s.length > MAX_TAG || !/[A-Za-z0-9]/.test(rest)) return;
+      let k = tagKey(s);
+      // a tag of symbols and single letters ("(.Y.)") is compared as written
+      if (k.length < 2) { const w = s.replace(/\s+/g, ''); if (w.length < 3 || /^[A-Za-z0-9]+$/.test(w)) return; k = 'sym:' + w; }
+      if (!out.has(k)) out.set(k, { spelling: s });
     };
-    const e = explicitTag(name);
-    if (e) add(e);
-    for (let i = 1; i < name.length && i <= 12; i++) {
-      if (!SEP.test(name[i]) || !/[A-Za-z0-9]/.test(name.slice(i + 1))) continue;
-      const head = name.slice(0, i);
-      // a tag of symbols only ("// COOKIE") needs a space after it and is compared as written
-      if (/\s/.test(name[i]) && !/[A-Za-z0-9]/.test(head) && head.trim().length >= 2 && !/\s/.test(head.trim())) {
-        const s = head.trim();
-        if (!out.has('sym:' + s)) out.set('sym:' + s, s);
-      } else add(head);
+    for (const c of cuts) {
+      if (c <= 0 || c >= text.length) continue;
+      add(text.slice(0, c), text.slice(c));
+      add(text.slice(c), text.slice(0, c));
     }
     return out;
   }
 
-  /** explicit tag patterns: [TAG]name, (TAG)name, TAG|name, TAG.name ... */
+  /** explicit tag patterns of one player (clean name): [TAG]name, (TAG)name, TAG|name */
   function explicitTag(name) {
     let m = name.match(/^\s*[[({<]([^\])}>]{1,12})[\])}>]/);
     if (m) return m[0].trim();
@@ -148,48 +157,120 @@ C2.define('teams', function (C2) {
     return '';
   }
 
-  /**
-   * players: [{client, cleanName}], grouped by team key.
-   * Returns {tags: Map client -> {tag, heuristic}, teamNames: {A, B}}.
-   */
-  function clanTags(playersByTeam) {
-    const tags = new Map();
-    const teamNames = {};
-    for (const key of Object.keys(playersByTeam)) {
-      const members = playersByTeam[key];
-      const cands = new Map(members.map(p => [p.client, tagCandidates(p.cleanName)]));
-      // the tag shared by most members (at least 2 and half the team); tie -> the longer tag
-      // ("inf" and "inf.eS" are shared by all -> "inf.eS")
-      const count = new Map(), spellings = new Map();
-      for (const c of cands.values()) {
-        for (const [k, s] of c) {
-          count.set(k, (count.get(k) || 0) + 1);
-          if (!spellings.has(k)) spellings.set(k, new Map());
-          spellings.get(k).set(s, (spellings.get(k).get(s) || 0) + 1);
+  /** the clan tag of each team: shared by at least 2 and MIN_SHARE of its players (each client once, with every
+   *  name it had) and more common there than in the other team; ties -> the longer tag ("inf" / "inf.eS") */
+  function teamTags(members) {
+    const votes = {};
+    for (const key of ['A', 'B']) {
+      const v = new Map();
+      for (const m of members[key]) {
+        const own = new Map();
+        for (const n of m.names) for (const [k, c] of tagCandidates(n)) if (!own.has(k)) own.set(k, c.spelling);
+        m.cands = own;
+        for (const [k, s] of own) {
+          const e = v.get(k) || { n: 0, spellings: new Map() };
+          e.n++; e.spellings.set(s, (e.spellings.get(s) || 0) + 1);
+          v.set(k, e);
         }
       }
-      let best = null;
-      for (const [k, n] of count) {
-        if (!best || n > count.get(best) || (n === count.get(best) && k.length > best.length)) best = k;
-      }
-      if (best && count.get(best) < Math.max(2, Math.ceil(members.length / 2))) best = null;
-      // team name: the most frequent spelling ("W@rZ" x4 beats "WarZ" x1)
-      let teamTag = '';
-      if (best) {
-        let bn = 0;
-        for (const [s, n] of spellings.get(best)) if (n > bn) { teamTag = s; bn = n; }
-      }
-      for (const p of members) {
-        const c = cands.get(p.client);
-        // the player's own spelling of the team tag ("WarZ superb" -> "WarZ")
-        if (best && c.has(best)) { tags.set(p.client, { tag: c.get(best), heuristic: true }); continue; }
-        const e = explicitTag(p.cleanName);
-        tags.set(p.client, e ? { tag: e, heuristic: true } : { tag: '', heuristic: false });
-      }
-      teamNames[key] = teamTag ? { name: teamTag, heuristic: true } : null;
+      votes[key] = v;
     }
-    return { tags, teamNames };
+    const out = {};
+    for (const key of ['A', 'B']) {
+      const other = key === 'A' ? 'B' : 'A', size = members[key].length, osize = members[other].length;
+      let best = null;
+      for (const [k, e] of votes[key]) {
+        const share = e.n / size, o = votes[other].get(k), oshare = o && osize ? o.n / osize : 0;
+        if (e.n < 2 || share < MIN_SHARE || oshare >= share) continue;
+        const score = share - oshare;
+        if (!best || score > best.score + 1e-9 || (Math.abs(score - best.score) <= 1e-9 && k.length > best.key.length)) best = { key: k, score, share, e };
+      }
+      if (!best) { out[key] = null; continue; }
+      // shown: the most frequent spelling ("W@rZ" x4 beats "WarZ" x1)
+      let name = '', bn = 0;
+      for (const [s, n] of best.e.spellings) if (n > bn) { name = s; bn = n; }
+      out[key] = { key: best.key, name, share: best.share, players: best.e.n, size };
+    }
+    return out;
   }
 
-  C2.teams = { analyzeTeams, clanTags, tagKey };
+  /**
+   * Team names and the players' clan tags.
+   *   members: {A, B: [{client, name (clean), names (every name the client had, with colour codes)}]}
+   *   server: [team1, team2] - zPAM's _match_team1 / 2 (clean; '' or '-' when none)
+   *   evidence: {1: {A, B}, 2: {A, B}} - votes for the server's team 1 / 2 being A or B (build.js: the side
+   *     of g_TeamName_Allies / _Axis when sent, zPAM's match info scores against the rounds won)
+   *   fileName: the demo's file name (zPAM names its recordings <player>_<team 1>_<team 2>_<map>) - a hint only
+   * Order: a clan tag of at least STRONG of the team, the server's name, a weaker tag, the server's stand-in
+   * ("<captain>'s team"), the file name, "Team A" / "Team B".
+   * Returns {teams: {A, B: {name, source ('tag' | 'server' | 'file' | 'none'), tag, server, share, players, size}},
+   *   tags: Map client -> {tag, heuristic}}.
+   */
+  function teamNames({ members, server = [], evidence = null, fileName = '' }) {
+    const tags = teamTags(members);
+    const inNames = (k, needle) => members[k].some(m => m.names.some(x => plainKey(C2.text.stripColors(x)).includes(needle)));
+    // the server's names to A / B: the evidence, and the players' names (the captain of "X's team", a name in
+    // the players' names, a tag in the name: "ELVTARSAK" ~ "elvta'rs")
+    const names = server.map(s => String(s || '').trim()).map(s => (s === '-' ? '' : s));
+    const vote = { 1: { A: 0, B: 0 }, 2: { A: 0, B: 0 } };
+    if (evidence) for (const i of [1, 2]) for (const k of ['A', 'B']) vote[i][k] += (evidence[i] && evidence[i][k]) || 0;
+    names.forEach((n, i) => {
+      if (!n) return;
+      const cap = n.match(/^(.+)'s team$/i);
+      const needle = plainKey(cap ? cap[1] : n);
+      if (needle.length < 2) return;
+      for (const k of ['A', 'B']) {
+        for (const m of members[k]) if (m.names.some(x => plainKey(C2.text.stripColors(x)).includes(needle))) vote[i + 1][k] += 2;
+        const t = tags[k];
+        if (t && !cap && t.key.length >= 3 && (needle.startsWith(t.key) || t.key.startsWith(needle))) vote[i + 1][k] += 2;
+      }
+    });
+    const serverOf = { A: '', B: '' };
+    if (names[0] || names[1]) {
+      const a = (vote[1].A - vote[1].B) + (vote[2].B - vote[2].A);
+      if (Math.abs(a) >= 1) {
+        serverOf[a > 0 ? 'A' : 'B'] = names[0];
+        serverOf[a > 0 ? 'B' : 'A'] = names[1];
+      }
+    }
+    // the file name: zPAM's <player>_<team 1>_<team 2>_<map>[_n], the teams cut to 7 / 11 characters; a part
+    // counts for the team whose players' names hold it ("2crazYsteam": "2crazY's team" of 2crazY's team)
+    const fileOf = { A: '', B: '' };
+    const parts = String(fileName || '').replace(/\.dm_1$/i, '').split('_');
+    if (parts.length >= 4) {
+      for (const part of parts.slice(1, 3)) {
+        const cap = part.match(/^(.+)steam$/i), needle = plainKey(cap ? cap[1] : part);
+        if (needle.length < 3) continue;
+        const hit = ['A', 'B'].filter(k => inNames(k, needle));
+        if (hit.length === 1 && !fileOf[hit[0]]) fileOf[hit[0]] = cap ? cap[1] + '\'s team' : part;
+      }
+    }
+    const teams = {};
+    for (const k of ['A', 'B']) {
+      const t = tags[k], sv = serverOf[k], real = sv && !GENERIC.test(sv);
+      const base = { tag: t ? t.name : '', server: sv, share: t ? t.share : 0, players: t ? t.players : 0, size: members[k].length };
+      let name, source;
+      if (t && t.share >= STRONG) { name = t.name; source = 'tag'; }
+      else if (real) { name = sv; source = 'server'; }
+      else if (t) { name = t.name; source = 'tag'; }
+      else if (sv) { name = sv; source = 'server'; }
+      else if (fileOf[k]) { name = fileOf[k]; source = 'file'; }
+      else { name = 'Team ' + k; source = 'none'; }
+      teams[k] = Object.assign(base, { name, source });
+    }
+    if (teams.A.name.toLowerCase() === teams.B.name.toLowerCase()) teams.B.name += ' (2)';
+    // each player's clan tag: his spelling of his team's tag, else his own explicit one
+    const clan = new Map();
+    for (const k of ['A', 'B']) {
+      for (const m of members[k]) {
+        const t = tags[k];
+        if (t && m.cands && m.cands.has(t.key)) { clan.set(m.client, { tag: m.cands.get(t.key), heuristic: true }); continue; }
+        const e = explicitTag(m.name || '');
+        clan.set(m.client, e ? { tag: e, heuristic: true } : { tag: '', heuristic: false });
+      }
+    }
+    return { teams, tags: clan };
+  }
+
+  C2.teams = { analyzeTeams, teamNames, tagKey, tagCandidates };
 });

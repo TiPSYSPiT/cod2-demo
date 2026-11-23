@@ -557,33 +557,61 @@ C2.define('build', function (C2) {
         p.zpam.approx = at < lastLiveKill;
       }
     }
-    const tagInfo = C2.teams.clanTags(byTeam);
+    // team names (teams.js teamNames): the players' clan tags (every name each client had), zPAM's _match_team1 /
+    // _match_team2 (CoD2x's match names or zPAM's own) placed on A / B by what zPAM sends its players and the
+    // recording's file name, which it makes itself (_matchinfo.gsc, _record.gsc):
+    //  - g_TeamName_Allies / _Axis: the team on that side (at a half time: the new sides - read after the swap);
+    //  - ui_matchinfo_team1_name / team2_name: the recording player's own team on the left ("team1") - zPAM 3 with
+    //    the score in front ("3    UNDISPUTED");
+    //  - the file name <player>_<his team>_<the other team>_<map>, the names cut short.
+    const serverTeams = [serverinfo._match_team1, serverinfo._match_team2].map(v => stripColors(v || '').trim());
+    const evidence = { 1: { A: 0, B: 0 }, 2: { A: 0, B: 0 } };
+    const pov = players.find(p => p.isPov), povTeam = pov && (pov.team === 'A' || pov.team === 'B') ? pov.team : null;
+    {
+      const other = k => (k === 'A' ? 'B' : 'A');
+      const idx = n => { const s = stripColors(n || '').trim().replace(/^\d+\s+/, ''); return s && s !== '-' ? serverTeams.indexOf(s) : -1; };
+      const afterSwap = t => { for (const s of teams.swapClusters) if (t >= s.t - 10000 && t <= s.end + 10000) return Math.max(t, s.end + 1); return t; };
+      const last = new Map();
+      for (const c of commands) {
+        if (c.d.verb !== 'v' || !c.d.dvars) continue;
+        for (const [name, v] of c.d.dvars) {
+          const k = name.toLowerCase();
+          if (!/^(g_teamname_(allies|axis)|ui_matchinfo_team[12]_name)$/.test(k) || last.get(k) === v) continue;
+          last.set(k, v);
+          const i = idx(v);
+          if (i < 0) continue;
+          let m = k.match(/^g_teamname_(allies|axis)$/);
+          if (m) { evidence[i + 1][teams.teamOnSide(m[1], afterSwap(c.t))] += 3; continue; }
+          m = k.match(/^ui_matchinfo_team([12])_name$/);
+          const own = povClient != null ? teams.teamAt(povClient, c.t) : null;
+          if (own === 'A' || own === 'B') evidence[i + 1][m[1] === '1' ? own : other(own)] += 1;
+        }
+      }
+      const parts = String(fileInfo.name || '').replace(/\.dm_1$/i, '').split('_');
+      const near = (a, b) => { a = a.toLowerCase().replace(/[^a-z0-9]/g, ''); b = b.toLowerCase().replace(/[^a-z0-9]/g, ''); return a.length >= 3 && b.length >= 3 && (a.startsWith(b) || b.startsWith(a)); };
+      if (povTeam && parts.length >= 4) serverTeams.forEach((n, i) => {
+        if (n && n !== '-' && near(n, parts[1])) evidence[i + 1][povTeam] += 1;
+        if (n && n !== '-' && near(n, parts[2])) evidence[i + 1][other(povTeam)] += 1;
+      });
+    }
+    const namesOf = new Map();
+    for (const h of col.nameHistory) { if (!namesOf.has(h.client)) namesOf.set(h.client, new Set()); namesOf.get(h.client).add(h.name); }
+    const members = {};
+    for (const key of ['A', 'B']) members[key] = byTeam[key].map(p => ({ client: p.client, name: p.cleanName, names: [...(namesOf.get(p.client) || []), p.name] }));
+    const named = C2.teams.teamNames({ members, server: serverTeams, evidence, fileName: fileInfo.name || '' });
     for (const p of players) {
-      const t = tagInfo.tags.get(p.client);
+      const t = named.tags.get(p.client);
       if (t) { p.clan = t.tag; p.clanHeuristic = t.heuristic; }
     }
-    // team names: zPAM's _match_team1 / _match_team2 (matched to A / B by the players' names), else
-    // the clan tag shared by the team, else "Team A" / "Team B"
-    const zpamTeams = [serverinfo._match_team1, serverinfo._match_team2].map(v => stripColors(v || '').trim()).filter(v => v && v !== '-');
-    const teamNameOf = key => {
-      const members = byTeam[key];
-      let best = null, bestN = 0;
-      const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
-      for (const tn of zpamTeams) {
-        const k = norm(tn);
-        if (k.length < 2) continue;
-        const hitsN = members.filter(p => { const pn = norm(p.cleanName); return pn.includes(k) || (pn.length >= 4 && k.includes(pn)); }).length;
-        if (hitsN > bestN) { bestN = hitsN; best = tn; }
-      }
-      if (best) return { name: best, heuristic: false };
-      return tagInfo.teamNames[key] ? { name: tagInfo.teamNames[key].name, heuristic: true } : null;
-    };
+    // name: shown; nameSource: 'tag' (the players' clan tag), 'server', 'file', 'none'; nameInfo: the candidates
     const teamList = ['A', 'B'].map(key => {
-      const tn = teamNameOf(key);
-      return { key, name: tn ? tn.name : 'Team ' + key, nameHeuristic: tn ? tn.heuristic : false,
+      const tn = named.teams[key];
+      // (approximate: a tag or the file name - not a tag the server's name confirms)
+      const confirmed = tn.source === 'tag' && C2.teams.tagKey(tn.server || '') === C2.teams.tagKey(tn.name);
+      return { key, name: tn.name, nameHeuristic: (tn.source === 'tag' && !confirmed) || tn.source === 'file', nameSource: tn.source,
+        nameInfo: { tag: tn.tag, tagPlayers: tn.players, players: tn.size, server: tn.server },
         clients: byTeam[key].map(p => p.client), wins: R.finalScore[key], halves: [], startSide: key === 'A' ? 'axis' : 'allies' };
     });
-    if (teamList[0].name === teamList[1].name) teamList[1].name += ' (2)';
     for (const t of teamList) {
       const halves = [];
       for (const r of rounds) {

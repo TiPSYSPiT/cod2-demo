@@ -53,6 +53,33 @@ const app = {
     const t = app.team(key);
     return t ? t.name : key;
   },
+  /** where a team's name comes from (build.js nameSource / nameInfo, a rename): one line for a tooltip */
+  teamNameNote(key) {
+    const t = app.team(key);
+    if (!t) return '';
+    const i = t.nameInfo || {}, auto = t.detectedName || t.name, parts = [];
+    if (t.renamed) parts.push('renamed by you (detected: ' + auto + ')');
+    else if (t.nameSource === 'tag') parts.push('the clan tag of ' + i.tagPlayers + ' of ' + i.players + ' players' + (t.nameHeuristic ? '' : ', as the server names the team'));
+    else if (t.nameSource === 'server') parts.push('the server\'s team name (zPAM match info)');
+    else if (t.nameSource === 'file') parts.push('from the demo\'s file name');
+    else parts.push('no team name in the demo or the players\' names');
+    if (i.server && i.server !== t.name && (t.renamed || t.nameSource !== 'server')) parts.push('server: ' + i.server);
+    if (i.tag && i.tag !== t.name && (t.renamed || t.nameSource !== 'tag')) parts.push('clan tag: ' + i.tag + ' (' + i.tagPlayers + ' of ' + i.players + ')');
+    return parts.join(' · ');
+  },
+  /** a team's own name for this demo (the score pill): stored per demo; empty -> the detected name again */
+  renameTeam(key, name) {
+    const d = state.data, t = app.team(key);
+    if (!d || !t) return;
+    name = String(name || '').replace(/\s+/g, ' ').trim().slice(0, TEAM_NAME_MAX);
+    if (!t.detectedName) t.detectedName = t.name;
+    const own = name && name !== t.detectedName ? name : '';
+    if ((t.renamed ? t.name : '') === own) { C2.tabs.overview.render($('overview'), app, state.info); return; }
+    t.name = own || t.detectedName;
+    t.renamed = !!own;
+    storeTeamNames(d);
+    refreshTeamNames();
+  },
   get fileBase() { return ((state.fileInfo && state.fileInfo.name) || 'demo').replace(/\.dm_1$/i, ''); },
   download(fileName, text, type = 'application/json') {
     const a = el('a', { href: URL.createObjectURL(new Blob([text], { type })), download: fileName });
@@ -72,6 +99,45 @@ const app = {
   }
 };
 C2.app = app;
+
+/* ---- the user's team names, per demo (localStorage: {"<file name>|<size>": {A, B, at}}, the newest TEAM_NAMES_KEEP) ---- */
+const TEAM_NAMES_KEY = 'cod2demo.teamNames', TEAM_NAMES_KEEP = 200, TEAM_NAME_MAX = 40;
+const demoId = d => (d.meta.fileName || '') + '|' + (d.meta.fileSize || 0);
+function readTeamNames() {
+  try { const o = JSON.parse(localStorage.getItem(TEAM_NAMES_KEY) || '{}'); return o && typeof o === 'object' && !Array.isArray(o) ? o : {}; }
+  catch (err) { return {}; }
+}
+/** the stored names onto the demo's teams (show: before anything draws them) */
+function applyTeamNames(d) {
+  const own = readTeamNames()[demoId(d)] || {};
+  for (const t of d.teams) {
+    t.detectedName = t.name;
+    const n = typeof own[t.key] === 'string' ? own[t.key].replace(/\s+/g, ' ').trim().slice(0, TEAM_NAME_MAX) : '';
+    t.renamed = !!n && n !== t.name;
+    if (t.renamed) t.name = n;
+  }
+}
+function storeTeamNames(d) {
+  const all = readTeamNames(), id = demoId(d), own = {};
+  for (const t of d.teams) if (t.renamed) own[t.key] = t.name;
+  if (Object.keys(own).length) all[id] = Object.assign(own, { at: Date.now() }); else delete all[id];
+  const ids = Object.keys(all).sort((a, b) => (all[b].at || 0) - (all[a].at || 0));
+  for (const k of ids.slice(TEAM_NAMES_KEEP)) delete all[k];
+  try { localStorage.setItem(TEAM_NAMES_KEY, JSON.stringify(all)); } catch (err) { /* not stored: this visit only */ }
+}
+/** a rename: everything that shows the team names - the score pill, the team panel and the heatmap's team lists
+ *  ([data-team-name]), the 3D player list (replay 'teams'), the match details (drawn again when shown) */
+function refreshTeamNames() {
+  C2.tabs.overview.render($('overview'), app, state.info);
+  for (const n of document.querySelectorAll('[data-team-name]')) {
+    const name = app.teamName(n.dataset.teamName);
+    if (n.textContent !== name) n.textContent = name;
+  }
+  state.rendered.clear();
+  for (const id of ['tab-scoreboard', 'tab-rounds', 'tab-chat', 'tab-events']) clear($(id));
+  if (!$('details').hidden) showTab(state.detailsTab);
+  if (state.replay) { state.replay.emit('teams'); state.replay.invalidate(); }
+}
 
 /** the POV's team is blue, the other red (spectator POV: the team shown first) */
 function applyTeamColors(data) {
@@ -336,6 +402,7 @@ function setProgress(v) { $('progress-fill').style.width = Math.round(v * 100) +
 /* ---- showing a demo ---- */
 function show(data) {
   state.data = data;
+  applyTeamNames(data);
   applyTeamColors(data);
   $('progress').hidden = true;
   $('dropzone').hidden = false;

@@ -2,7 +2,6 @@
  * Match + Replay state (from cod4-demo3d). Renderer, heatmap, heat panel and video export are the
  * shared modules in js/c2/ui/map. */
 import { InfoHint, fadeHint } from '../app/infoHint.js';
-import { evalTrajectory, trajectoryAt } from '../app/match.js';
 
 const C2 = window.C2;
 const { el, icon } = C2.ui;
@@ -39,7 +38,6 @@ export class View2D {
     this.heatPts = {};
     this.heatLayer = new C2.HeatLayer(M.rect);
     this.heatUi = C2.mapHeat.create({ app, data: d, onChange: () => replay.invalidate() });
-    if (d.items && d.items.length) this.loadIcons();          // (the dropped weapons: ready for a video export too)
     // map tools (zoom, rotation) bottom right of the map; the heatmap is a popover of the rail (main.js: panels)
     const tool = (name, title, label, fn) => el('button', { class: 'ib', title, 'aria-label': label, onclick: fn }, icon(name));
     const tools = el('div', { class: 'map-tools glass' },
@@ -132,9 +130,8 @@ export class View2D {
       }
     }
 
-    // the map's intermission camera and hurt triggers (maps3d/<map>/entities.json), the weapons on the ground
+    // the map's intermission camera and hurt triggers (maps3d/<map>/entities.json)
     if (o.mapCams || o.hurt) this.drawMapMarks(o);
-    if (o.items && d.items && d.items.length) this.drawItems(t);
 
     const shown = RP.shownPlayers();
     const hover = this.exporting ? null : RP.hover;
@@ -182,25 +179,6 @@ export class View2D {
     }
     this.drawBomb(t);
     if (!this.exporting) this.updateBombTitle();
-  }
-
-  /** the weapon icons (the kill feed's images), once */
-  loadIcons() {
-    if (!this.iconsLoading) this.iconsLoading = C2.killfeed.images().then(m => { this.icons = m; this.R.invalidate(); });
-    return this.iconsLoading;
-  }
-
-  /** the weapons on the ground at t (DemoData.items: their trajectories) as their weapon icon, turned as they lie */
-  drawItems(t) {
-    if (!this.icons) { this.loadIcons(); return; }
-    const P = this.itemPos || (this.itemPos = new Array(6));
-    for (const it of this.M.d.items) {
-      if (t < it.t0 || t > it.t1 || !it.segments.length) continue;
-      const ic = C2.weapons.weaponIcon(it.weapon), img = ic && this.icons.get(ic.file);
-      if (!img) continue;
-      evalTrajectory(trajectoryAt(it.segments, t), t, P);
-      this.renderer.drawIcon(P[0], P[1], img, ic.box, this.renderer.dirAngle(P[4]), 9, 0.9);
-    }
   }
 
   /** the map's intermission camera (mp_global_intermission) and hurt triggers (trigger_hurt), loaded once */

@@ -856,7 +856,9 @@ export class Hud {
     const banner = team => {
       if (y + SB.banner > 432) return false;
       const n = count[team];
-      const name = team === 2 ? sv.g_TeamName_Allies : team === 1 ? sv.g_TeamName_Axis : team === 3 ? 'CGAME_SPECTATORS' : null;
+      // the team names as the player saw them: zPAM sends its match names to each player (setClientCvar), over
+      // the server's (the factions' MPUI_ references)
+      const name = team === 2 ? this.dvarAt('g_TeamName_Allies', t) || sv.g_TeamName_Allies : team === 1 ? this.dvarAt('g_TeamName_Axis', t) || sv.g_TeamName_Axis : team === 3 ? 'CGAME_SPECTATORS' : null;
       let text = this.localize((n === 1 ? 'CGAME_SB_PLAYER' : 'CGAME_SB_PLAYERS') + '\x15' + n);
       if (name) text = this.localize(name) + ' (' + text + ')';
       const flag = team === 2 ? sv.g_ScoresBanner_Allies : team === 1 ? sv.g_ScoresBanner_Axis : team === 3 ? sv.g_ScoresBanner_Spectators : sv.g_ScoresBanner_None;

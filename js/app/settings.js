@@ -7,7 +7,9 @@
  *   5: the server HUD and the kill feed HUD parts default to on
  *   6: the 3D view's kill feed overlay (Display, Kill feed) defaults to off
  *   7: the two kill feeds exclusive (view3d.js): the HUD's (Camera, First person HUD, Kill feed) on, the overlay
- *      (Display, Kill feed) off - both back to these defaults once */
+ *      (Display, Kill feed) off - both back to these defaults once
+ *   8: the 2D dropped weapons layer removed (cod2demo.layer.items); Layers, Kill lines defaults to off (it was never
+ *      remembered: the new default needs nothing) */
 const VERSION_KEY = 'cod2demo.settingsVersion';
 const STEPS = [
   { version: 2,
@@ -27,7 +29,10 @@ const STEPS = [
     session: [] },
   { version: 7,
     local: ['cod2demo3d.killfeed'],
-    session: ['cod2demo3d.hud.killfeed'] }
+    session: ['cod2demo3d.hud.killfeed'] },
+  { version: 8,
+    local: [],
+    session: ['cod2demo.layer.items'] }
 ];
 export const SETTINGS_VERSION = STEPS[STEPS.length - 1].version;
 
