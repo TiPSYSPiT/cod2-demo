@@ -1,6 +1,6 @@
 /* The game's HUD in first person, drawn on a 2D canvas (the overlay over the 3D view, and every frame of the
  * video export). Everything is the game's: the layout from the HUD menu files (ui_mp/hud.menu, the stock game's
- * or zPAM's: tools/export/hud_export.py -> maps3d/_hud/hud.json), the fonts, images and strings from the game
+ * or zPAM's: cod2-ff python/cod2ff/viewer/hud_export.py -> maps3d/_hud/hud.json), the fonts, images and strings from the game
  * files, and what the client code draws (the decompiled 1.3 client, cod2x/src/other):
  *   placement    CalcScreenPlacement: the 640 x 480 screen, one scale (height / 480) for both axes, anchored
  *                left / centre / right and top / centre / bottom - a wider screen keeps the HUD at its edges
@@ -327,6 +327,34 @@ export class Hud {
     const aw = Math.max(1, w - i.l - i.r), ah = Math.max(1, h - i.t - i.b);
     this.S = { g, w, h, l: i.l, t: i.t, aw, ah, s: ah / 480 };
   }
+  /** img resampled once to twice the w x h it is drawn at (halved step by step, then to that size) when the file is
+   *  much larger than drawn: the compass face, 512 px drawn at ~210 and rotated, was minified 2.5x by one bilinear
+   *  lookup, which skips texels (aliasing); from twice the size the draw's lookup averages them - against a 4x
+   *  supersampled draw the mean error went 2.2 - 2.4 -> 0.7 - 1.3 (PLAN.md step 104). Images drawn at more than
+   *  1 / 2.2 of their size stay as they are */
+  scaled(img, w, h) {
+    const W = Math.round(2 * w), H = Math.round(2 * h);
+    if (!img || W < 2 || H < 2 || img.width <= W * 1.1 || img.height <= H * 1.1) return img;
+    const C = this.scaledCache || (this.scaledCache = new WeakMap());
+    let byImg = C.get(img);
+    if (!byImg) C.set(img, byImg = new Map());
+    const key = W + 'x' + H;
+    let cv = byImg.get(key);
+    if (!cv) {
+      const make = (cw, ch) => (typeof OffscreenCanvas !== 'undefined' ? new OffscreenCanvas(cw, ch) : Object.assign(document.createElement('canvas'), { width: cw, height: ch }));
+      let src = img;
+      while (src.width / 2 >= W && src.height / 2 >= H) {
+        const half = make(Math.round(src.width / 2), Math.round(src.height / 2)), hg = half.getContext('2d');
+        hg.imageSmoothingEnabled = true; hg.drawImage(src, 0, 0, half.width, half.height); src = half;
+      }
+      cv = make(W, H);
+      const g = cv.getContext('2d');
+      g.imageSmoothingEnabled = true; g.drawImage(src, 0, 0, W, H);
+      if (byImg.size > 8) byImg.clear();           // (a window resized often: only the recent sizes)
+      byImg.set(key, cv);
+    }
+    return cv;
+  }
   /** CalcScreenPlacement: a virtual rectangle with its alignments -> device pixels [x, y, w, h]; the fullscreen
    *  alignment (4: the low-health overlay) stretches over the whole view, the others keep to the safe area */
   place(x, y, w, h, ha, va) {
@@ -380,7 +408,7 @@ export class Hud {
       g.fillRect(r[0], r[1], r[2], r[3]);
       return;
     }
-    const img = this.tinted(name.toLowerCase(), color);
+    const img = this.scaled(this.tinted(name.toLowerCase(), color), r[2], r[3]);
     if (!img) return;
     if (!angle && !flip) { g.drawImage(img, r[0], r[1], r[2], r[3]); return; }
     g.save();

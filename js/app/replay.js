@@ -84,7 +84,7 @@ export class Replay {
     return s;
   }
 
-  /** seek to t (ms); switches to the whole match if t is outside the current round */
+  /** seek to t (ms); clamped to the replay range (the current round or the whole match) */
   seek(t, dir) { this.pb.seek(t, dir); }
   /** the playback speed (one of CFG.SPEEDS), as the bar's dropdown sets it (a link's speed=) */
   setSpeed(s) { this.pb.speed = s; this.speedSel.value = String(s); }
@@ -109,6 +109,14 @@ export class Replay {
     const speedSel = el('select', { title: 'Playback speed', 'aria-label': 'Playback speed', onchange: e => { this.pb.speed = Number(e.target.value); } },
       CFG.SPEEDS.map(s => el('option', { value: String(s), selected: s === 1 ? 'selected' : null }, s + '×')));
     this.speedSel = speedSel;
+    // a pick from the list with the mouse hands the keys back to the replay (Space, arrows - main.js skips a
+    // focused select); a select stepped through with the keyboard keeps the focus
+    for (const sel of [scopeSel, speedSel]) {
+      let pointer = false;
+      sel.addEventListener('pointerdown', () => { pointer = true; });
+      sel.addEventListener('keydown', () => { pointer = false; });
+      sel.addEventListener('change', () => { if (pointer) { pointer = false; sel.blur(); } });
+    }
     this.timeNow = el('span', { class: 'clock-now' });
     this.timeTotal = el('small');
     this.clockSub = el('div', { class: 'clock-sub' });

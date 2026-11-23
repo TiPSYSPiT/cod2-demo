@@ -104,8 +104,9 @@
       this.pal = palette();
       let down = false, lastAt = null;
       const at = e => {
+        // (the inverse of xAt: the bar is drawn PAD px in from both ends)
         const r = this.canvas.getBoundingClientRect();
-        const f = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+        const f = Math.min(1, Math.max(0, (e.clientX - r.left - PAD) / Math.max(1, r.width - 2 * PAD)));
         return this.range[0] + f * (this.range[1] - this.range[0]);
       };
       this.canvas.addEventListener('pointerdown', e => { down = true; this.canvas.setPointerCapture(e.pointerId); lastAt = at(e); this.onSeek(lastAt, 0); });
@@ -121,7 +122,7 @@
       this.lane.addEventListener('pointerleave', () => { this.markTip.hidden = true; });
       this.lane.addEventListener('click', e => { const m = this.markAt(e); if (m) this.onSeek(m.jump, 1); });
       // (disconnected by dispose: a live observer keeps the timeline and its replay in memory)
-      this.resizeObs = new ResizeObserver(() => { this.layoutMarks(); this.draw(); });
+      this.resizeObs = new ResizeObserver(() => { this.boxSize = null; this.layoutMarks(); this.draw(); });
       this.resizeObs.observe(container);
     }
     /** the closed replay's timeline: its resize observer off */
@@ -229,7 +230,9 @@
     /** the user's export selection {a, b} (start / end markers, either may be null), or null */
     setSelection(sel) { this.selection = sel; this.draw(); }
     draw() {
-      const r = this.box.getBoundingClientRect();
+      // (the box's size as last laid out, until the resize observer sees a new one: read here every frame, right after
+      // the clock's text changed, it forced a layout per frame - PLAN.md step 104)
+      const r = this.boxSize || (this.boxSize = this.box.getBoundingClientRect());
       const dpr = Math.min(3, window.devicePixelRatio || 1);
       const W = Math.max(1, r.width), H = Math.max(1, r.height);
       if (this.canvas.width !== Math.round(W * dpr) || this.canvas.height !== Math.round(H * dpr)) { this.canvas.width = Math.round(W * dpr); this.canvas.height = Math.round(H * dpr); }

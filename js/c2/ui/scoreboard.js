@@ -88,10 +88,11 @@
     const incomplete = p => p.scoreIncomplete
       ? approx('the player reconnected and the game sent no scoreboard for one of his sessions - the score of that session is missing')
       : p.scoreboardSessions > 1 ? approx('the player reconnected: the scoreboard sessions are summed (the game restarts at 0)') : null;
-    const approxStats = p => p.statsSource === 'killfeed'
-      ? approx('no scoreboard entry for this player - counted from the kill feed')
-      : p.statsSource === 'scoreboard+killfeed'
-        ? approx('the last scoreboard is older than the last round - kills/deaths after it (' + p.killsAfterScoreboard + '/' + p.deathsAfterScoreboard + ') added from the kill feed')
+    // K and D come from the kill feed (match rounds); the game's scoreboard (deaths only) checks D (build.js)
+    const approxStats = (p, col) => p.statsSource === 'killfeed'
+      ? approx('no scoreboard entry for this player - counted from the kill feed, not checked against the game')
+      : p.statsSource === 'killfeed-differs' && col === 'deaths'
+        ? approx('the game’s scoreboard counts ' + p.scoreboardDeaths + ' deaths - ' + p.deaths + ' here from the kill feed of the match rounds')
         : null;
     // The columns in display order - the only place that defines them. Header (label, title),
     // cells (render / key), sorting (sort / key), team total (total(tot), tot = teamTotals()) and
@@ -113,7 +114,7 @@
         total: () => 'Team total'
       },
       { key: 'score', label: 'Score', render: p => p.score == null ? na(noMatch ? 'no match round in the demo (warm-up only)' : 'not in any scoreboard of the demo') : [String(p.score), incomplete(p)], total: t => t.score },
-      { key: 'kills', label: 'K', render: p => [String(p.kills), approxStats(p)], total: t => t.kills },
+      { key: 'kills', label: 'K', render: p => [String(p.kills), approxStats(p, 'kills')], total: t => t.kills },
       {
         // CoD2 itself counts no assists: zPAM's own count, from its scoreboard in the demo (build.js)
         key: 'assists', label: 'A', title: "Assists: zPAM's own count (the previous enemy attacker of the victim within 5 s before a kill), taken from zPAM's scoreboard in the demo - CoD2 itself has no assists",
@@ -122,7 +123,7 @@
         cellTitle: p => p.assists == null ? null : 'zPAM scoreboard at ' + fmtTime(p.assistsAt),
         total: t => t.assists == null ? '–' : t.assists
       },
-      { key: 'deaths', label: 'D', render: p => [String(p.deaths), approxStats(p)], total: t => t.deaths },
+      { key: 'deaths', label: 'D', render: p => [String(p.deaths), approxStats(p, 'deaths')], total: t => t.deaths },
       { key: 'kd', label: 'K/D', sort: kd, title: 'kills / deaths; with 0 deaths K/D = kills', render: p => kd(p) == null ? '' : kd(p).toFixed(2), total: t => t.kd.toFixed(2) },
       {
         key: 'headshotPct', label: 'HS %',
@@ -203,8 +204,8 @@
         }, C2.ui.icon('download', 's'), 'Download score (JSON)')),
       el('p', { class: 'note' }, 'Only the regular match time counts: no warm-up, halftime, timeouts or aftermatch' +
         (d.match && d.match.end != null ? ' (official match end ' + fmtTime(d.match.end) + ')' : '') + '. ',
-        'Values from the game’s scoreboard as it stood at the match end (reconnected players: sessions summed). ',
-        'Click a column header to sort. ', el('span', { class: 'approx' }, '≈'), ' marks values completed from the kill feed. ',
+        'Score: the game’s scoreboard as it stood at the match end (reconnected players: sessions summed). ',
+        'Click a column header to sort. K and D are counted from the kill feed (the game’s scoreboard has no kills; its deaths match D unless marked). ', el('span', { class: 'approx' }, '≈'), ' marks values completed from the kill feed or not confirmed by the game. ',
         'HS %, TK, Nade K / D, Open, Trades, 3K+, Clutch, Plants and Defuses are not in the game’s scoreboard - they are counted from the kill feed and the bomb messages of this demo (only the recorded rounds; ',
         'team kills only while a match round is live, not in warm-up or pauses).',
         columns.some(c => c.key === 'assists') ? ' A (assists) is zPAM’s own count from its scoreboard in the demo - CoD2 has no assists; ≈ there: an older zPAM scoreboard.' : '',

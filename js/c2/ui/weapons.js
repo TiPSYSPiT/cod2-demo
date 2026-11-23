@@ -27,7 +27,6 @@
     const k = LOC[loc];
     return Math.trunc(dmg * (k && st[k] != null ? st[k] : 1));
   }
-  C2.weaponDamageAt = damageAt;
 
   const m = u => (u * M_PER_UNIT).toFixed(0) + ' m';
   const sec = s => (s == null ? '' : s.toFixed(2).replace(/0$/, '') + ' s');

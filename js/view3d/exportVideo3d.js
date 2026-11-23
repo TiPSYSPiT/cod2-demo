@@ -6,9 +6,9 @@
  * renderer (no second copy of the map on the GPU). The frame is copied onto a 2D canvas, the
  * overlays are drawn there (the DOM labels and panels of the page are not part of the WebGL
  * picture) and the canvas goes to the encoder. A slow computer gives the same video, only later.
- *   MP4: WebCodecs VideoEncoder (H.264) + js/c4/ui/map/mp4mux.js. Without WebCodecs / H.264:
+ *   MP4: WebCodecs VideoEncoder (H.264) + js/c2/ui/map/mp4mux.js. Without WebCodecs / H.264:
  *        MediaRecorder (WebM), recorded in real time - said in the dialog.
- *   GIF: js/c4/ui/map/gifenc.js (own encoder in a worker built from a Blob; colours, dithering).
+ *   GIF: js/c2/ui/map/gifenc.js (own encoder in a worker built from a Blob; colours, dithering).
  *   Sound (MP4): the camera of every frame is kept; after the frames the sounds of the range are
  *        rendered offline for that camera path (sound.js render: OfflineAudioContext) and encoded with
  *        WebCodecs AudioEncoder (AAC, else Opus) into the MP4's audio track. The WebM fallback records
@@ -307,7 +307,7 @@ async function start() {
     const C = document.createElement('canvas');
     C.width = p.W; C.height = p.H;
     const g = C.getContext('2d', { willReadFrequently: p.gif });
-    // the kill feed's icons are drawn into the frame (js/c4/ui/killfeed.js): all loaded before the first
+    // the kill feed's icons are drawn into the frame (js/c2/ui/killfeed.js): all loaded before the first
     const kfImgs = opts.killfeed ? await C2.killfeed.images() : null;
     const ctx = { view, p, opts, C, g, kfImgs, t0: performance.now(), path: [], fp: [] };
     D.status.textContent = 'Rendering …';
@@ -728,6 +728,3 @@ function drawOverlays(ctx, t, hideClient) {
   }
   g.restore();
 }
-
-/** for tests (tools/validate/export3d.html): open, the dialog's state, the plan, start */
-C2.export3d = { open: openExport, get dialog() { return D; }, plan: () => plan(), update: () => update(), start: () => start() };

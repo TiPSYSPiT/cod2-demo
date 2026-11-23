@@ -3444,10 +3444,10 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_pipe_plate_n-gggr.dds",
+     "normalMap": "_textures/_pipe_plate2_n-gggr.dds",
      "sort": 3,
      "polygonOffset": 0,
-     "specularMap": "_textures/_pipe_plate_s-rgb_pipe_plate_cp-l-11.dds"
+     "specularMap": "_textures/_pipe_plate2_s-rgb_pipe_plate2_cp-l-11.dds"
     },
     {
      "material": "mtl_water_spout_dirt",

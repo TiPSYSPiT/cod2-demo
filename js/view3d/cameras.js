@@ -9,6 +9,7 @@ import { forward } from './actors.js';
 import { FP_FOV } from './viewmodel.js';
 
 export const MODES = [['orbit', 'Orbit'], ['free', 'Free fly'], ['follow', 'Follow player'], ['fp', 'First person']];
+const DAMPING = 0.12;                // the orbit / follow camera's damping per 60 Hz frame
 const MOVE_KEYS = new Set(['KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyQ', 'KeyE', 'KeyR', 'KeyF', 'ShiftLeft', 'ShiftRight']);
 
 export class Cameras {
@@ -20,7 +21,18 @@ export class Cameras {
     camera.up.set(0, 0, 1);
     this.orbit = new OrbitControls(camera, dom);
     this.orbit.enableDamping = true;
-    this.orbit.dampingFactor = 0.12;
+    this.orbit.dampingFactor = DAMPING;
+    // the damping by time, not by call: three.js steps it at every update - each frame and each pointer move -, so it
+    // settled 2.4x faster at 144 Hz than at 60 Hz and lagged behind after a long frame; DAMPING per 60 Hz frame as
+    // before (PLAN.md step 103)
+    const update = this.orbit.update.bind(this.orbit);
+    let lastUpdate = null;
+    this.orbit.update = dt => {
+      const now = performance.now(), ms = lastUpdate == null ? 1000 / 60 : Math.min(100, Math.max(0, now - lastUpdate));
+      lastUpdate = now;
+      this.orbit.dampingFactor = 1 - Math.pow(1 - DAMPING, ms * 60 / 1000);
+      return update(dt);
+    };
     this.orbit.screenSpacePanning = false;
     this.orbit.maxPolarAngle = Math.PI * 0.495;
     this.orbit.addEventListener('change', () => onChange());
@@ -52,6 +64,7 @@ export class Cameras {
       this.orbit.target.copy(this.camera.position).addScaledVector(d, 600);
     }
     if (mode === 'follow') this.followLast = null;
+    this.fpLast = null;
     this.camera.fov = mode === 'fp' ? FP_FOV : 60;
     this.camera.updateProjectionMatrix();
     this.onChange();
@@ -143,15 +156,22 @@ export class Cameras {
       } else {
         cam.position.add(look.clone().sub(this.followLast));        // travel with the player
       }
+      // (true only when the camera moved: a paused view was drawn again every frame - PLAN.md step 104)
+      const moved = !this.followLast || !look.equals(this.followLast);
       this.orbit.target.copy(look);
       this.followLast = look.clone();
-      this.orbit.update();
-      return true;
+      return this.orbit.update() || moved;
     }
     if (this.mode === 'fp') {
+      // (the same eye and angles as the last frame and the camera still where it was put - frame() moves it when the
+      // map arrives: nothing to move, nothing to draw - PLAN.md step 104)
+      const L = this.fpLast, roll = target.roll || 0, e = target.eye;
+      if (L && L.x === e.x && L.y === e.y && L.z === e.z && L.yaw === target.yaw && L.pitch === target.pitch && L.roll === roll
+        && cam.position.equals(L.pos) && cam.quaternion.equals(L.q)) return false;
       cam.position.copy(target.eye);
       cam.lookAt(target.eye.clone().add(forward(target.yaw, target.pitch)));
-      if (target.roll) cam.rotateZ(target.roll * Math.PI / 180);         // (the camera shake's roll)
+      if (roll) cam.rotateZ(roll * Math.PI / 180);         // (the camera shake's roll)
+      this.fpLast = { x: e.x, y: e.y, z: e.z, yaw: target.yaw, pitch: target.pitch, roll, pos: cam.position.clone(), q: cam.quaternion.clone() };
       return true;
     }
     return false;

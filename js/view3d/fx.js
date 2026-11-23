@@ -1,4 +1,4 @@
-/* The game's particle effects in 3D (maps3d/_fx/effects.json, tools/export/fx_export.py): grenade
+/* The game's particle effects in 3D (maps3d/_fx/effects.json, cod2-ff python/cod2ff/viewer/fx_export.py): grenade
  * explosions (the impact table's effect for the surface hit), smoke grenades (the weapon's
  * projExplosionEffect), bullet impacts (bullet_small / large / ap / shotgun by event and weapon,
  * the surface hit, facing the surface normal), scripted effects (EV_PLAY_FX: the bomb ...), the
@@ -15,8 +15,8 @@
  * state at a demo time is computed directly - seeking is free. Runners (FxRunner) start further
  * effects, deathfx / emitfx elements start them where a particle dies / along its path.
  * Drawn as sprites (billboards; oriented sprites and decals in the effect's frame; tails stretched
- * along the velocity), one batch per material; the blended ones tinted by the lightmap of the floor
- * under the effect (lightProbe.js); colliding elements (usePhysics) come down on the floor under them (the
+ * along the velocity), one batch per material; the blended decals tinted by the lightmap of the floor
+ * under the effect (lightProbe.js), the sprites in the effect file's own colour (unlit, as in the game); colliding elements (usePhysics) come down on the floor under them (the
  * same probe), then vanish (impactKills) or bounce (bounce) and rest. Model elements (useModel: shell casings,
  * the burnt smoke grenade, debris) draw their model (modelBatch.js) in the particle's frame, turned by angle +
  * angleDelta x age, still once at rest. The shell casings: the weapon's shellEjectEffect at its tag_brass on
@@ -186,6 +186,10 @@ export class FxPlayer {
     // the first-person weapon's muzzle flashes: drawn in the view model's pass, after the gun (viewmodel.js)
     this.viewRoot = new THREE.Group();
     this.viewRoot.name = 'fx view';
+    // (unlit stand-ins for the scene's hemisphere light and sun: the pass's batches are unlit, but a pass without lights
+    // has programs of its own - linked at the first first-person shot, 18 - 20 ms; with them it shares the world
+    // batches' programs. PLAN.md step 103)
+    this.viewRoot.add(new THREE.HemisphereLight(0x000000, 0x000000, 0), new THREE.DirectionalLight(0x000000, 0));
     this.batches = new Map();
     this.durations = new Map();
     this.events = [];
@@ -676,8 +680,10 @@ export class FxPlayer {
     let alpha = e.alpha ? pick(e.alpha, e.alphaRand, 50) : 1;
     if (alpha <= 0.004) return;
     const col = e.rgb ? set3(COL, pick(e.rgb, e.rgbRand, 51, 4, 1), pick(e.rgb, e.rgbRand, 51, 4, 2), pick(e.rgb, e.rgbRand, 51, 4, 3)) : set3(COL, 1, 1, 1);
-    // blended sprites and decals take the map's light (smoke at night is dark); additive ones glow
-    if (!b.add && inst.light) for (let c = 0; c < 3; c++) col[c] *= Math.min(1, Math.max(0.1, inst.light[c]));
+    // only the decals take the map's light (the lightmap of the floor they lie on). Sprites keep the effect file's
+    // colour, as in the game: CoD2's .efx elements have no lighting option, and the floor's light under a smoke grenade
+    // lying in shade turned its whole cloud black (82 of 512 smokes over the test demos at under half brightness)
+    if (e.type === 'decal' && !b.add && inst.light) for (let c = 0; c < 3; c++) col[c] *= Math.min(1, Math.max(0.1, inst.light[c]));
     const w = (e.size ? pick(e.size, e.sizeRand, 52) : 1) * lerp(e.sizeScale[0], e.sizeScale[1], rnd(ps, 53));
     const h = e.size2 ? pick(e.size2, e.size2Rand, 54) * lerp(e.size2Scale[0], e.size2Scale[1], rnd(ps, 55)) : w;
     if (w <= 0.05 && h <= 0.05) return;

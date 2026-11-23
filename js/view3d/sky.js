@@ -1,5 +1,5 @@
 /* The map's sky as the game draws it (its sky shader: colour = texCUBE(skyMap, world direction), unlit):
- * maps3d/<map>/sky.webp holds the six faces of the sky cube (tools/export/export_maps.py sky / cube_strip)
+ * maps3d/<map>/sky.webp holds the six faces of the sky cube (cod2-ff python/cod2ff/viewer/export_maps.py sky / cube_strip)
  * in the D3D order +X, -X, +Y, -Y, +Z, -Z - layout "3x2": face k at column k % 3, row k / 3 (the game's
  * face size, lossless); without a layout (an older export) side by side in one row. They are read with the
  * D3D cube conventions and the world direction. Drawn as a box around the camera at the far plane, behind

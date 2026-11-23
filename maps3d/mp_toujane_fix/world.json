@@ -427,7 +427,7 @@
    "start": 25665,
    "count": 759,
    "lightmap": -1,
-   "texture": "_textures/toujane_decal_stain_plasterwall_02.dds",
+   "texture": "_textures/caen_decal_stain_plasterwall_02.dds",
    "textureAlpha": false,
    "normalMap": null,
    "alphaTest": null,
@@ -1872,7 +1872,7 @@
   4819
  ],
  "sky": {
-  "file": "sky.webp",
+  "file": "../mp_toujane/sky.webp",
   "image": "toujane_ft",
   "faces": 6,
   "size": 512,

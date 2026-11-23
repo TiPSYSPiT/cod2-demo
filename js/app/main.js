@@ -138,7 +138,7 @@ async function load(file, source = null) {
     // (the buffer went to the worker with the message: the file is read again)
     file.arrayBuffer().then(b => parseMainThread(b, loadId), err => { if (loadId === state.loadId) fail('The file could not be read: ' + err.message); });
   };
-  worker.postMessage({ buffer, fileInfo: state.fileInfo }, [buffer]);
+  worker.postMessage({ buffer, fileInfo: state.fileInfo, animStarts: opens3d() }, [buffer]);
 }
 
 function parseMainThread(buffer, loadId) {
@@ -147,7 +147,7 @@ function parseMainThread(buffer, loadId) {
   setTimeout(() => {
     if (loadId !== state.loadId) return;
     let data;
-    try { data = C2.analyzeDemo(new Uint8Array(buffer), state.fileInfo, setProgress); }
+    try { data = C2.analyzeDemo(new Uint8Array(buffer), state.fileInfo, setProgress, null, { animStarts: opens3d() }); }
     catch (err) { return failDemo(err.message, err instanceof C2.demo.DemoError, err.stack); }
     finish(data, loadId);
   }, 30);
@@ -414,13 +414,17 @@ async function load3d(R) {
  *  first files on their way - only when the demo will open in 3D, and not when the browser asks to save data.
  *  A failure here says nothing: load3d() reports it when the view starts. */
 function warm3d(map, loadId) {
-  const q = deepParams().get('view');
-  if ((q === '2d' || q === '3d' ? q : state.view) !== '3d') return;
+  if (!opens3d()) return;
   try { if (navigator.connection && navigator.connection.saveData) return; } catch (err) { /* no hint */ }
   Promise.all([import('three'), import('three/addons/controls/OrbitControls.js')])
     .then(() => import('../view3d/view3d.js'))
     .then(m => { if (loadId === state.loadId) return m.prefetch3d(map); })
     .catch(() => null);
+}
+/** whether the demo being opened starts in the 3D view (a deep link's view=, else the viewer's last view) */
+function opens3d() {
+  const q = deepParams().get('view');
+  return (q === '2d' || q === '3d' ? q : state.view) === '3d';
 }
 let viewAsked = 0;            // counts the switches: one that waited for the 3D modules yields to a later one
 /** user: the viewer's own switch (remembered); the start, a deep link and the fallback to 2D are not */

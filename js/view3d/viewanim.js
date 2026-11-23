@@ -66,6 +66,8 @@ export class ViewAnimator {
     this.dist = new Map();               // client -> cumulative ground distance per position sample
     this.adsLegs = new Map();            // legs anim index -> aiming down the sights
     this.integrals = new WeakMap();      // weapon params -> key -> running integral (integral)
+    this.adsFlags = new Map();           // client -> per position sample: its legs animation aims (adsOther)
+    this.cursor = [];                    // client -> the position sample adsOther found last (indexAt)
     this.buildRecorder();
   }
 
@@ -73,17 +75,24 @@ export class ViewAnimator {
    *  (weapon params) and key: what the game accumulates frame by frame since the map started - the idle sway's phase
    *  advances by its speed, which follows the ADS fraction and the held breath. Continuous between frames, the same
    *  for the same t (also after a seek); between grid points f holds its value at the point before */
-  integral(owner, key, f, t) {
+  integral(owner, key, f, t, fill = null) {
     let byKey = this.integrals.get(owner);
     if (!byKey) this.integrals.set(owner, byKey = new Map());
     let T = byKey.get(key);
     if (!T) {
       const STEP = 50, n = Math.ceil(((this.M.d.meta.durationMs || 0) + 1000) / STEP) + 1;
-      const val = new Float32Array(n), cum = new Float64Array(n);
-      for (let i = 0; i < n; i++) { val[i] = f(i * STEP); if (i) cum[i] = cum[i - 1] + val[i - 1] * STEP; }
-      byKey.set(key, T = { STEP, val, cum, n });
+      byKey.set(key, T = { STEP, val: new Float32Array(n), cum: new Float64Array(n), n, f, fill, k: 0 });
     }
     const i = Math.max(0, Math.min(T.n - 1, Math.floor(t / T.STEP)));
+    // (the grid built from the start as far as t - the rest as the playback gets there: a player's first first-person
+    // frame built the whole demo's, 13 - 17 ms; the same values, PLAN.md step 103)
+    if (i >= T.k) {
+      const { val, cum, STEP } = T, g = T.f;
+      // (fill: f's values for a run of grid points in one pass)
+      if (T.fill) T.fill(val, T.k, i, STEP); else for (let j = T.k; j <= i; j++) val[j] = g(j * STEP);
+      for (let j = Math.max(1, T.k); j <= i; j++) cum[j] = cum[j - 1] + val[j - 1] * STEP;
+      T.k = i + 1;
+    }
     return T.cum[i] + T.val[i] * (t - i * T.STEP);
   }
 
@@ -104,7 +113,9 @@ export class ViewAnimator {
     if (P.aimDownSight) {
       const hip = v('hipIdleSpeed'), ads = v('adsIdleSpeed');
       const time = breath ? this.integral(P, 'b' + tag, br, t) : t;
-      return hip * time + (ads - hip) * this.integral(P, 'a' + tag, tm => this.adsAt(cl, tm, W, P) * br(tm), t);
+      // (the others' - no player state: adsOther, br 1 - filled in one pass)
+      const fill = W ? null : (val, a, b, STEP) => this.adsFill(cl, P, val, a, b, STEP);
+      return hip * time + (ads - hip) * this.integral(P, 'a' + tag, tm => this.adsAt(cl, tm, W, P) * br(tm), t, fill);
     }
     const sp = v('hipIdleAmount') ? v('hipIdleSpeed') : 1;
     return sp * (breath ? this.integral(P, 'b' + tag, br, t) : t);
@@ -307,18 +318,68 @@ export class ViewAnimator {
     return key;
   }
 
+  /** adsOther(cl, i x STEP, P)[0] for the grid points i = from .. to, into val (idlePhase's table): the same values in
+   *  one pass - the sample walked to, not searched for, the aim flags read from adsFlagsOf; the ramp's start from an
+   *  earlier run by adsOther itself */
+  adsFill(cl, P, val, from, to, STEP) {
+    const Ps = this.M.d.positions[cl], F = Ps && Ps.legs ? this.adsFlagsOf(cl, Ps) : null;
+    if (!F) { for (let g = from; g <= to; g++) val[g] = this.adsOther(cl, g * STEP, P)[0]; return; }
+    const T = Ps.t, N = T.length, tin = P.adsTransInTime || 0.25, tout = P.adsTransOutTime || 0.25;
+    let i = lower(T, from * STEP);
+    for (let g = from; g <= to; g++) {
+      const t = g * STEP;
+      while (i + 1 < N && T[i + 1] <= t) i++;
+      if (i < 0) { val[g] = 0; continue; }
+      const on = F[i] === 1, ramp = (on ? tin : tout) * 1000;
+      let j = i;
+      while (j > 0 && (F[j - 1] === 1) === on && t - T[j - 1] < ramp + 100) j--;
+      const start = j > 0 ? (T[j - 1] + T[j]) / 2 : T[j], since = (t - start) / 1000;
+      let v0 = on ? 0 : 1;
+      if (j > 0 && since * 1000 < ramp) v0 = this.adsOther(cl, start - 0.001, P, 1)[0];
+      val[g] = on ? Math.min(1, v0 + since / tin) : Math.max(0, v0 - since / tout);
+    }
+  }
+
+  /** the last position sample at or before t (lower) - from the one found last when t moved on by little, as it does
+   *  along the idle-sway grid and from frame to frame */
+  indexAt(cl, T, t) {
+    const c = this.cursor[cl], n = T.length;
+    if (c >= 0 && c < n && T[c] <= t) {
+      if (c + 1 >= n || T[c + 1] > t) return c;
+      if (c + 2 >= n || T[c + 2] > t) return (this.cursor[cl] = c + 1);
+    }
+    return (this.cursor[cl] = lower(T, t));
+  }
+
+  /** per position sample of a client: 1 where its legs animation aims down the sights (legsAds), or null while the
+   *  animation names are not loaded (legsAds asks again then) */
+  adsFlagsOf(cl, Ps) {
+    let F = this.adsFlags.get(cl);
+    if (F) return F;
+    const L = Ps.legs, n = L.length;
+    F = new Uint8Array(n);
+    for (let i = 0; i < n; i++) {
+      const k = L[i] & 0x1ff;
+      if (!this.adsLegs.has(k) && (!this.legsName || this.legsName(k) == null)) return null;
+      F[i] = this.legsAds(k) ? 1 : 0;
+    }
+    this.adsFlags.set(cl, F);
+    return F;
+  }
+
   /** the other player's ADS fraction: the legs animation's *_ads since its last change, at the weapon's
    *  transition times -> [fraction, aiming in] */
   adsOther(cl, t, P, depth = 0) {
     const Ps = this.M.d.positions[cl];
     if (!Ps || !Ps.legs) return [0, true];
-    const i = lower(Ps.t, t);
+    const i = this.indexAt(cl, Ps.t, t);
     if (i < 0) return [0, true];
-    const on = this.legsAds(Ps.legs[i]);
+    const F = this.adsFlagsOf(cl, Ps), ads = k => (F ? F[k] === 1 : this.legsAds(Ps.legs[k]));
+    const on = ads(i);
     const tin = P.adsTransInTime || 0.25, tout = P.adsTransOutTime || 0.25, ramp = (on ? tin : tout) * 1000;
     // the start of this run of aiming / not aiming (past the ramp's time it no longer matters)
     let j = i;
-    while (j > 0 && this.legsAds(Ps.legs[j - 1]) === on && t - Ps.t[j - 1] < ramp + 100) j--;
+    while (j > 0 && ads(j - 1) === on && t - Ps.t[j - 1] < ramp + 100) j--;
     const start = j > 0 ? (Ps.t[j - 1] + Ps.t[j]) / 2 : Ps.t[j], since = (t - start) / 1000;
     // the ramp starts where the previous run's had got to (aiming again before the sights were down: no jump to 0 / 1)
     let v0 = on ? 0 : 1;

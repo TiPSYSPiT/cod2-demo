@@ -1,5 +1,5 @@
 /* The first-person weapon: the gun the followed player holds, in the hands the game gives them
- * (maps3d/_characters/viewmodels.json + vanims.json, tools/export/viewmodels_export.py), animated with the
+ * (maps3d/_characters/viewmodels.json + vanims.json, cod2-ff python/cod2ff/viewer/viewmodels_export.py), animated with the
  * weapon's own view animations as the demo drives them (viewanim.js), the crosshair and the sniper scope.
  * Ported from cod4-demo3d (viewmodel.js); the crosshair and the scope as CoD2 draws them (CG_DrawCrosshair,
  * CG_DrawWeapReticle of the 1.3 client).
@@ -18,7 +18,7 @@
 import * as THREE from 'three';
 import { fetchJSON, fetchBinary } from './data.js';
 import { loadTexture, cloneMaterial } from './mapLoader.js';
-import { CharacterLibrary } from './characters.js';
+import { CharacterLibrary, animBone } from './characters.js';
 import { gridUniforms, setGridUniforms, gridMaterial } from './lightGrid.js';
 import { ViewAnimator } from './viewanim.js';
 
@@ -242,7 +242,7 @@ export class ViewModel {
     group.name = 'viewmodel ' + G.name;
     group.visible = false;
     const rig = { group, bones: [], rest: [], index: new Map(), maps: new Map(), meshes: [], lit: null };
-    const make = tpl => tpl.bones.map(b => { const o = new THREE.Bone(); o.name = b.name; o.position.fromArray(b.t); o.quaternion.set(b.q[0], b.q[1], b.q[2], b.q[3]); return o; });
+    const make = tpl => tpl.bones.map(b => animBone(b.name, b.t, b.q));
     const add = (tpl, bones, isRoot) => tpl.bones.forEach((b, i) => {
       if (rig.index.has(b.name)) return;
       rig.index.set(b.name, rig.bones.length);
@@ -408,7 +408,7 @@ export class ViewModel {
       renderer.clearDepth();
       renderer.render(this.scene, C);
       // the muzzle flash (fx.js: the view flash effect at the muzzle), over the gun with its depth
-      if (flashes && flashes.children.length) renderer.render(flashes, C);
+      if (flashes && flashes.children.some(o => o.isMesh)) renderer.render(flashes, C);
       renderer.autoClear = auto;
     }
     this.renderHud(renderer, camera);
@@ -431,6 +431,8 @@ export class ViewModel {
       rig.meshes.forEach((m, i) => { const c = m.clone(); c.material = lit[i]; tmp.add(c); });
       const swap = () => { if (rig.swap) rig.swap(); };
       renderer.compileAsync(tmp, this.camera, this.scene).then(swap, swap);
+      // (programs already there - every rig after the first of its kind: swapped now, the frame not held; PLAN.md step 103)
+      if (lit.flat().every(m => { const pr = renderer.properties.get(m).currentProgram; return !pr || pr.isReady(); })) { rig.swap(); return false; }
       return true;
     }
     rig.swap();
@@ -439,6 +441,7 @@ export class ViewModel {
 
   /** the view model's and its overlay's shader programs compiled in parallel (View3D.compileAhead) -> Promise */
   compileAhead(renderer) {
+    this.buildScope();                   // (its overlay and black bars: drawn first at the first scoped aim)
     return Promise.all([renderer.compileAsync(this.scene, this.camera), renderer.compileAsync(this.hud, this.hudCam)]);
   }
 

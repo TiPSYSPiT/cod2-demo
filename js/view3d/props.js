@@ -1,5 +1,5 @@
 /* The map's static models (misc_model entities of the BSP: crates, sandbags, trees, vehicles):
- * maps3d/<map>/props.json + props.bin, written by tools/export/export_maps.py. Each model's LOD 0
+ * maps3d/<map>/props.json + props.bin, written by cod2-ff python/cod2ff/viewer/export_maps.py. Each model's LOD 0
  * geometry once, drawn as one InstancedMesh per surface over all its placements (3 x 4 matrices from
  * the entity's origin, angles and modelscale).
  * Light, as the game (R_LoadWorld of the 1.3 client): the map's light grid at the centre of the

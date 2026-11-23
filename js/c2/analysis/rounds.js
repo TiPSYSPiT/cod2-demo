@@ -5,8 +5,11 @@
  *   level start time)
  * - the team scores: "G <axis>" / "H <allies>" - one side +1 = that side won the round; both sides
  *   exchanging their values = the halftime side swap
- * - zPAM's serverinfo (config string 0) names the segment: _match_round "Round 7 / 24",
- *   "Ready-up" (before the match, at halftime), "Timeout"; "Round N / M" gives the rule (MR = M / 2)
+ * - zPAM's serverinfo (config string 0) names the segment: zPAM 3 _match_round "Round 7 / 24",
+ *   "Ready-up" (before the match, at halftime), "Timeout"; "Round N / M" gives the rule (MR = M / 2).
+ *   zPAM 4 _match_info "Round 7 | MR12", "Round 12 | MR12 Ready-up" (halftime), "Round 2 | MR12 Timeout";
+ *   overtime "Round 0 | MR3 OT Ready-up" before each overtime, then "Round 1 | MR3 OT" .. "Round 6 | MR3 OT"
+ *   (an overtime is won with MR + 1 of its 2 * MR rounds; 3:3 starts the next one)
  * - game messages: MP_ALLIESHAVEBEENELIMINATED, MP_AXISHAVEBEENELIMINATED, MP_EXPLOSIVESPLANTED,
  *   MP_EXPLOSIVESDEFUSED; zPAM prints "Half-time Ready-Up Mode", "... called a time-out ..."
  * - the round clock: a HUD countdown (hud element "timer down") of the round length, created when the
@@ -19,16 +22,31 @@ C2.define('rounds', function (C2) {
   const { stripColors, parseInfostring } = C2.text;
   const K = C2.constants;
 
-  /** "Round 7 / 24" -> {mr: 12, total: 24}; overtime unknown in CoD2 zPAM 3 */
-  function winRule(label) {
-    const m = /(\d+)\s*\/\s*(\d+)/.exec(String(label || ''));
+  /** a zPAM segment label -> {round: true, number, total (zPAM 3), mr, ot (an overtime round)} for a match round,
+   *  {round: false, ot, rest} for the others ("Ready-up", "Timeout", "Bash"), null without a round number */
+  function parseLabel(label) {
+    const s = stripColors(String(label || '')).trim();
+    let m = /^Round\s+(\d+)\s*\/\s*(\d+)/i.exec(s);                        // zPAM 3
+    if (m) { const total = parseInt(m[2], 10); return { round: true, number: parseInt(m[1], 10), total, mr: Math.floor(total / 2), ot: false, rest: '' }; }
+    m = /^Round\s+(\d+)\s*\|\s*MR\s*(\d+)(\s+OT)?\s*(.*)$/i.exec(s);          // zPAM 4
     if (!m) return null;
-    const total = parseInt(m[2], 10);
-    return total >= 2 ? { mr: Math.floor(total / 2), total, ot: 3, otFromRuleset: false } : null;
+    const number = parseInt(m[1], 10), rest = m[4].trim();
+    return { round: number > 0 && !rest, number, total: null, mr: parseInt(m[2], 10), ot: !!m[3], rest };
   }
-  /** match decided: one team has more than half of the rounds */
-  function isDecided(rule, a, b) {
+  /** the rule from the labels: "Round 7 / 24" -> {mr: 12, total: 24} (zPAM 3: no overtime);
+   *  "Round 7 | MR12" -> {mr: 12, total: 24, ot: 3 (from an "MR3 OT" label, else 3)} */
+  function winRule(labels) {
+    const list = (Array.isArray(labels) ? labels : [labels]).map(l => parseLabel(l && l.value != null ? l.value : l)).filter(Boolean);
+    const main = list.find(l => !l.ot && l.mr >= 1 && (l.round || l.total == null));
+    if (!main) return null;
+    const ot = list.find(l => l.ot && l.mr >= 1);
+    return { mr: main.mr, total: main.total != null ? main.total : 2 * main.mr, ot: ot ? ot.mr : 3, otFromRuleset: !!ot, overtime: main.total == null };
+  }
+  /** match decided: one team has more than half of the rounds (a, b: the wins in the regulation rounds); in an
+   *  overtime (ot: the wins in the current overtime) more than half of its rounds */
+  function isDecided(rule, a, b, ot) {
     if (!rule) return false;
+    if (ot) return ot.a > rule.ot || ot.b > rule.ot;
     return a > rule.mr || b > rule.mr;
   }
 
@@ -39,13 +57,14 @@ C2.define('rounds', function (C2) {
   function analyzeRounds(ctx) {
     const { commands, csChanges, csInit, kills, teams, endTime, attackSide, isSD } = ctx;
     const defendSide = attackSide === 'allies' ? 'axis' : 'allies';
-    // zPAM's _match_round over time
+    // zPAM's segment label over time (zPAM 3 _match_round, zPAM 4 _match_info)
     const roundLabels = [];
+    const labelOf = info => (info._match_round != null ? info._match_round : info._match_info);
     let si = parseInfostring(csInit.get(K.CS.SERVERINFO) || '');
-    if (si._match_round != null) roundLabels.push({ t: 0, value: si._match_round });
+    if (labelOf(si) != null) roundLabels.push({ t: 0, value: labelOf(si) });
     for (const ch of csChanges) {
       if (ch.index !== K.CS.SERVERINFO) continue;
-      const v = parseInfostring(ch.value || '')._match_round;
+      const v = labelOf(parseInfostring(ch.value || ''));
       if (v != null && (!roundLabels.length || roundLabels[roundLabels.length - 1].value !== v)) roundLabels.push({ t: ch.t, value: v });
     }
     const zpam = roundLabels.length > 0;
@@ -115,13 +134,13 @@ C2.define('rounds', function (C2) {
       const inSeg = t => t >= seg.start && t < seg.end;
       // the label arrives ~0.3 s after the restart
       const label = zpam ? labelAt(Math.min(seg.end - 1, seg.start + 1500)) : null;
-      const m = label ? /^\s*Round\s+(\d+)\s*\/\s*(\d+)/i.exec(stripColors(label)) : null;
+      const pl = label ? parseLabel(label) : null, m = pl && pl.round ? pl : null;
       const win = wins.find(w => inSeg(w.t));
       if (zpam ? !m : !win) continue;
       const segMsgs = msgs.filter(x => inSeg(x.t));
       const segBomb = bomb.filter(b => inSeg(b.t));
       const r = {
-        kind: 'round', zpamNumber: m ? parseInt(m[1], 10) : null, zpamTotal: m ? parseInt(m[2], 10) : null,
+        kind: 'round', zpamNumber: m ? m.number : null, zpamTotal: m ? m.total : null, overtime: !!(m && m.ot),
         segStart: seg.start, segEnd: Math.min(seg.end, endTime),
         start: liveStart(seg), end: win ? win.t : null,
         winnerSide: win ? win.side : null, winnerTeam: null,
@@ -170,7 +189,19 @@ C2.define('rounds', function (C2) {
     }
     halftimes.sort((a, b) => a - b);
     // numbering, halves, sides, score
-    const rule = winRule((roundLabels.find(l => /round\s+\d+\s*\/\s*\d+/i.test(l.value)) || {}).value);
+    const rule = winRule(roundLabels);
+    // zPAM 4 numbers the rounds of each overtime 1 .. 2 * OT: on to the match's numbers (Round 1 of the first
+    // overtime of an MR12 match = 25); a new overtime starts where its number drops
+    if (rule) {
+      let period = 0, prevN = Infinity;
+      for (const r of rounds) {
+        if (!r.overtime || r.zpamNumber == null) { if (r.zpamNumber != null) prevN = Infinity; continue; }
+        if (r.zpamNumber < prevN) period++;           // (a timeout replays the same number)
+        prevN = r.zpamNumber;
+        r.overtimeNumber = period;
+        r.zpamNumber = 2 * rule.mr + (period - 1) * 2 * rule.ot + r.zpamNumber;
+      }
+    }
     const first = rounds.find(r => r.kind === 'round');
     // the score at the start: the team scores before the first round (a recording that starts mid-match)
     let initial = { A: 0, B: 0 };
@@ -184,16 +215,19 @@ C2.define('rounds', function (C2) {
       }
     }
     const score = { A: initial.A, B: initial.B };
-    let n = 0, decidedAt = null;
+    let n = 0, decidedAt = null, ot = null, otPeriod = null;
     for (const r of rounds) {
       r.half = 1 + halftimes.filter(h => h < r.segStart + 1).length;
       if (r.kind === 'round' && decidedAt != null) r.kind = 'aftermatch';
       if (r.kind === 'interrupted') { r.label = (r.zpamNumber != null ? r.zpamNumber : n + 1) + '*'; r.kind = 'aftermatch'; r.interrupted = true; }
       else if (r.kind === 'aftermatch') r.label = 'A';
       else { n++; r.number = r.zpamNumber != null ? r.zpamNumber : initial.A + initial.B + n; r.label = String(r.number); }
+      if (r.kind === 'round' && r.overtime && r.overtimeNumber !== otPeriod) { otPeriod = r.overtimeNumber; ot = { a: 0, b: 0 }; }
       if (r.kind === 'round' && r.winnerTeam) {
         score[r.winnerTeam]++;
-        if (rule && decidedAt == null && (isDecided(rule, score.A, score.B) || (r.zpamTotal && r.zpamNumber >= r.zpamTotal))) { decidedAt = r.end; r.decidesMatch = true; }
+        if (r.overtime && ot) ot[r.winnerTeam === 'A' ? 'a' : 'b']++;
+        const otNow = r.overtime ? ot : null;
+        if (rule && decidedAt == null && (isDecided(rule, score.A, score.B, otNow) || (r.zpamTotal && r.zpamNumber >= r.zpamTotal))) { decidedAt = r.end; r.decidesMatch = true; }
       }
       r.scoreAfter = { A: score.A, B: score.B };
       const sideA = teams.sideOf('A', r.start + 1);
@@ -229,11 +263,17 @@ C2.define('rounds', function (C2) {
         const r = rounds.find(x => x.segStart === a);
         if (r && r.kind === 'round') {
           push('live', a, 'R' + r.label);
-          if (matchEnd != null && matchEnd >= a && matchEnd < b) push('aftermatch', matchEnd + 1, 'win rule');
+          // (the deciding kill's obituary comes a snapshot after the score: it still belongs to the match)
+          if (matchEnd != null && matchEnd >= a && matchEnd < b) {
+            const lastKill = kills.reduce((x, k) => (k.t > x && k.t <= matchEnd + 1000 && k.t < b ? k.t : x), matchEnd);
+            push('aftermatch', lastKill + 1, 'win rule');
+          }
           prevMatch = r;
           continue;
         }
-        const label = zpam ? stripColors(labelAt(Math.min(b - 1, a + 1500)) || '') : '';
+        // (zPAM 4: "Round 12 | MR12 Ready-up" -> "Ready-up"; "Round 0 | MR3 OT Ready-up" -> "overtime")
+        const raw = zpam ? stripColors(labelAt(Math.min(b - 1, a + 1500)) || '') : '';
+        const pl = parseLabel(raw), label = pl && !pl.total ? (pl.ot && /ready-?up/i.test(pl.rest) ? 'overtime' : pl.rest) : raw;
         let phase, detail = label || null;
         if (matchEnd != null && a > matchEnd) phase = 'aftermatch';
         else if (r && r.kind === 'interrupted') { phase = 'timeout'; detail = 'round interrupted by a timeout'; }
@@ -241,6 +281,7 @@ C2.define('rounds', function (C2) {
         else if (!prevMatch) phase = 'warmup';
         else if (timeoutMsgs.some(t => t >= a - 2000 && t < b)) phase = 'timeout';
         else if (halftimes.some(h => h >= (prevMatch.end != null ? prevMatch.end : prevMatch.segStart) - 1000 && h < b)) phase = 'halftime';
+        else if (pl && !pl.total && /ready-?up/i.test(pl.rest)) phase = 'halftime';   // (zPAM 4's halftime / overtime ready-up)
         else phase = 'timeout';                  // (a pause without a message: most likely a timeout)
         if (phase === 'halftime' && !detail && halftimeMsgs.some(t => t >= a - 2000 && t < b)) {
           const m = msgs.find(x => x.t >= a - 2000 && x.t < b && /half-?time/i.test(x.text) && /ready-?up/i.test(x.text));
@@ -262,5 +303,5 @@ C2.define('rounds', function (C2) {
     return best ? best.phase : 'live';
   }
 
-  C2.rounds = { analyzeRounds, phaseAt, winRule, isDecided };
+  C2.rounds = { analyzeRounds, phaseAt, parseLabel, winRule, isDecided };
 });

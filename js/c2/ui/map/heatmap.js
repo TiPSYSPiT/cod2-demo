@@ -258,5 +258,4 @@
 
   C2.heatPoints = { build, mask, LUT };
   C2.HeatLayer = HeatLayer;
-  C2.lowerBound = lowerBound;
 })(window.C2);

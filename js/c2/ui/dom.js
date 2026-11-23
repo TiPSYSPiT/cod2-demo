@@ -147,7 +147,7 @@
 
   /**
    * Virtual list with fixed row height: renders only the visible rows.
-   * returns {node, setItems(items), scrollToIndex(i), refresh()}
+   * returns {node, setItems(items), refresh(), items}
    */
   function virtualList(renderRow, rowHeight = 28) {
     const outer = el('div', { class: 'vlist' });
@@ -185,7 +185,6 @@
         paint();
       },
       refresh() { for (const row of pool.values()) row.remove(); pool.clear(); paint(); },
-      scrollToIndex(i) { outer.scrollTop = Math.max(0, i * rowHeight - outer.clientHeight / 2); paint(); },
       get items() { return items; }
     };
     new ResizeObserver(() => paint()).observe(outer);

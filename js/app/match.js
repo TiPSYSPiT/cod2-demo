@@ -301,6 +301,39 @@ export function trajectoryAt(segs, t) {
   return segs[0] || null;
 }
 
+/** where a corpse is at t (PLAN.md step 100) - CG_Corpse draws it at its lerpOrigin / lerpAngles: the trajectory the
+ *  server gives it after the death (G_RunCorpseMove, collect.js doCorpse) evaluated - TR_GRAVITY falling (never below
+ *  where the next snapshot has it: the server stopped it at the floor; and held where it is when the fall starts again
+ *  from the same spot - a body the server cannot move restarts it every frame, and once the round is over the last of
+ *  those is never followed by another: it would sink through the floor), TR_INTERPOLATE (the death animation's
+ *  slide, at rest) its base, between two snapshots blended over the last snapshot interval before the change, as the
+ *  client interpolates. A corpse without trajectories (an older DemoData): where it appeared
+ *  -> out [x, y, z, pitch, yaw, roll] */
+const CORPSE_SNAP_MS = 60;
+export function corpseAt(c, t, out = new Array(6)) {
+  const S = c.segments;
+  if (!S || !S.length) { out[0] = c.x; out[1] = c.y; out[2] = c.z; out[3] = 0; out[4] = c.yaw; out[5] = 0; return out; }
+  let i = 0;
+  while (i + 1 < S.length && S[i + 1][18] <= t) i++;
+  const s = S[i], n = S[i + 1];
+  if (s[1] === 5 || s[1] === 2 || s[1] === 3) {
+    const p = S[i - 1];
+    evalTrajectory(s, p && p[1] === s[1] && p[2] === s[2] && p[3] === s[3] && p[4] === s[4] ? s[0] : Math.max(t, s[18]), out);
+    if (n && out[2] < n[4] && (n[1] !== 5 || n[4] <= s[4])) out[2] = n[4];
+    return out;
+  }
+  out[0] = s[2]; out[1] = s[3]; out[2] = s[4]; out[3] = s[10]; out[4] = s[11]; out[5] = s[12];
+  if (n && n[1] !== 5) {
+    const a = Math.max(s[18], n[18] - CORPSE_SNAP_MS);
+    if (t > a) {
+      const f = (t - a) / (n[18] - a);
+      out[0] += (n[2] - s[2]) * f; out[1] += (n[3] - s[3]) * f; out[2] += (n[4] - s[4]) * f;
+      out[3] += dAngle(s[10], n[10]) * f; out[4] += dAngle(s[11], n[11]) * f; out[5] += dAngle(s[12], n[12]) * f;
+    }
+  }
+  return out;
+}
+
 /** grenade flight path from the trajectory segments: points [t, x, y, z] every 40 ms */
 function prepareGrenade(g) {
   const pts = [];

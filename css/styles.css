@@ -111,6 +111,10 @@ a, .link { color: var(--accent); cursor: pointer; text-decoration: underline; te
 a.ib { text-decoration: none; }
 a.ib:focus-visible { background: var(--raise); color: var(--text); }
 .gh-link svg { display: block; }
+/* the version beside it (index.html #app-version, edited by hand): the icon's subtle colour, centred with it */
+.app-version { color: var(--muted); font-size: var(--fs-s); line-height: 32px; white-space: nowrap; font-variant-numeric: tabular-nums; cursor: default; }
+/* (phones: no room for it beside the buttons - the name "CoD2 Demo Viewer" would be cut) */
+@media (max-width: 479px) { .app-version { display: none; } }
 /* text button (secondary); .pri: white, the primary action */
 .tb { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 32px; padding: 0 12px; border-radius: var(--r-s);
   font-weight: 500; color: var(--text); background: var(--raise); border: 1px solid var(--line); white-space: nowrap; transition: background-color var(--ease), border-color var(--ease); }

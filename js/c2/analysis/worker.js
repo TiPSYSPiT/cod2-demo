@@ -7,8 +7,9 @@ C2.define('workerMain', function (C2) {
   function transferList(data) {
     const list = [];
     for (const p of Object.values(data.positions)) {
-      for (const [k, a] of Object.entries(p)) if (k !== 'drawn') list.push(a.buffer);
+      for (const [k, a] of Object.entries(p)) if (k !== 'drawn' && k !== 'starts') list.push(a.buffer);
       if (p.drawn) for (const a of Object.values(p.drawn)) list.push(a.buffer);      // (build.js drawnTrack)
+      if (p.starts) for (const a of Object.values(p.starts)) list.push(a.buffer);    // (build.js animStarts)
     }
     if (data.sightJob) for (const j of data.sightJob.kills) list.push(j.segs.buffer);
     if (data.psWeapon) for (const a of Object.values(data.psWeapon)) list.push(a.buffer);
@@ -18,12 +19,12 @@ C2.define('workerMain', function (C2) {
 
   C2.workerMain = function (scope) {
     scope.onmessage = ev => {
-      const { buffer, fileInfo } = ev.data;
+      const { buffer, fileInfo, animStarts } = ev.data;
       try {
         let last = 0;
         const data = C2.analyzeDemo(new Uint8Array(buffer), fileInfo, frac => {
           if (frac - last >= 0.01 || frac === 1) { last = frac; scope.postMessage({ type: 'progress', value: frac }); }
-        }, map => scope.postMessage({ type: 'map', map }));
+        }, map => scope.postMessage({ type: 'map', map }), { animStarts: !!animStarts });
         scope.postMessage({ type: 'done', data }, transferList(data));
       } catch (err) {
         scope.postMessage({ type: 'error', message: err && err.message ? err.message : String(err),
@@ -31,5 +32,4 @@ C2.define('workerMain', function (C2) {
       }
     };
   };
-  C2.transferList = transferList;
 });

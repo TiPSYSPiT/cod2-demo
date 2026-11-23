@@ -1,7 +1,7 @@
 /* Readable weapon names of CoD2. The weapon list itself comes from config string 7 of the demo
  * (weapon index i = entry i - 1); this table only turns the internal names into labels. The kill
  * icons are the game's own (weapon files: killIcon; the means of death: killiconmelee, ...), exported
- * by tools/export into assets/killfeed and registered by assets/killfeed/icons.js. */
+ * by cod2-ff's viewer exporters into assets/killfeed and registered by assets/killfeed/icons.js. */
 C2.define('weapons', function (C2) {
   'use strict';
   const BASE = {

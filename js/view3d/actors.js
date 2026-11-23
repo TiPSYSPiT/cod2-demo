@@ -8,8 +8,11 @@
  * The view lines and the team rings exist only while switched on (setViewLines / setRings). */
 import * as THREE from 'three';
 import { Character } from './characters.js';
-import { Controllers } from './controllers.js';
+import { Controllers, stanceBlendMs, legsStance } from './controllers.js';
 import { entityMatrix } from './modelBatch.js';
+import { corpseAt } from '../app/match.js';
+import { gridUniforms, gridMaterial } from './lightGrid.js';
+import { cloneMaterial } from './mapLoader.js';
 
 const C2 = window.C2;
 const CFG = C2.mapConfig;
@@ -26,14 +29,22 @@ export function forward(yaw, pitch, out = new THREE.Vector3()) {
   return out.set(cp * Math.cos(yaw * D2R), cp * Math.sin(yaw * D2R), -Math.sin(pitch * D2R));
 }
 export function stanceOf(s) { return s.prone ? 'prone' : s.crouch ? 'crouch' : 'stand'; }
-const LEGS_BLEND = 200, TORSO_BLEND = 120;     // ms: crossfade of the models' animations
-const CHAIN_MAX = 6;                           // crossfades still running at once, at most (33 ms samples: 200 ms)
+const LEGS_BLEND = 200;                        // ms: a crossfade with nothing known before it
+const STANCE_WINDOW = 400;                     // ms: BG_SetNewAnimation's stance window (ci + 1196 = time + 400)
+const CHAIN_MAX = 8;                           // crossfades still running at once, at most (50 ms samples: 400 ms)
 const CORPSE_POOL = 24;                        // corpses kept hidden for reuse
+const PHASE_WALK = 64;                         // loop -> loop changes followed back for a loop's phase, at most
 const smooth = x => (x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x));
-/** the index of the first sample at or after time t (times ascending) */
-function lowerIndex(T, t) { let lo = 0, hi = T.length; while (lo < hi) { const m = (lo + hi) >> 1; if (T[m] < t) lo = m + 1; else hi = m; } return Math.min(lo, T.length - 1); }
+/** a moving looping animation (run, walk, crawl, strafe): played by the ground covered, its phase carried on */
+const movingLoop = c => !!(c && c.loop && c.speed > 0);
+/** a loop's period in s (as Character.apply plays it: the last key frame is the first) */
+const period = c => Math.max(1, c.keyFrames - 1) / c.rate;
+/** BG_RunLerpFrameRate's limits on a moving animation's rate (the ground speed over the clip's moveSpeed): at least
+ *  0.1, at most 2 (moveSpeed > 150), 3 - (moveSpeed - 20) / 130 (20 - 150) or 3 (< 20) */
+const rateLimits = speed => [0.1, speed > 150 ? 2 : speed >= 20 ? 3 - (speed - 20) / 130 : 3];
+const frac = x => x - Math.floor(x);
 
-const _bm = new THREE.Matrix4(), _bo = new THREE.Matrix4(), _tw = new THREE.Vector3();
+const _bm = new THREE.Matrix4(), _bo = new THREE.Matrix4(), _tw = new THREE.Vector3(), _cs = new THREE.Vector3(), _cp = new Array(6);
 /** a world matrix -> {pos, axis: {f, l, u}} (its x / y / z axes, unit length) */
 export function frameOf(m) {
   const e = m.elements, n = (a, b, c) => { const l = Math.hypot(a, b, c) || 1; return [a / l, b / l, c / l]; };
@@ -118,36 +129,13 @@ export class Actors {
     return frameOf(_bm.multiply(_bo.makeTranslation(12, -5, -6)).multiply(tpl.bindWorld[k]));
   }
 
-  /** when each sample's legs / torso animation started (the value incl. the restart bit changed) */
+  /** when each sample's legs / torso animation started, and the distance walked (build.js animStarts: made by the
+   *  analysis; a demo analysed without it - a test's own data - gets it here) */
   startsOf(cl) {
     let s = this.starts.get(cl);
     if (s) return s;
     const P = this.M.d.positions[cl];
-    const n = P ? P.t.length : 0;
-    // per sample: when its animation started, and the one it replaced (value, start; -1: none) for the
-    // crossfade
-    // (+ <k>From: the sample the value started at - the chain of crossfades walks back from it; <k>Fresh: 1 when
-    // nothing came before it: the first sample, after a gap)
-    s = {};
-    for (const k of ['legs', 'torso']) {
-      const start = new Int32Array(n), prev = new Int32Array(n).fill(-1), prevStart = new Int32Array(n), V = P ? P[k] : null;
-      const from = new Int32Array(n), fresh = new Uint8Array(n);
-      for (let i = 0; i < n; i++) {
-        const gap = i === 0 || P.t[i] - P.t[i - 1] > 1000 || !V;        // (no animation field: nothing to fade)
-        if (gap) { start[i] = P.t[i]; from[i] = i; fresh[i] = 1; continue; }
-        if (V[i] !== V[i - 1]) { start[i] = P.t[i]; prev[i] = V[i - 1]; prevStart[i] = start[i - 1]; from[i] = i; }
-        else { start[i] = start[i - 1]; prev[i] = prev[i - 1]; prevStart[i] = prevStart[i - 1]; from[i] = from[i - 1]; fresh[i] = fresh[i - 1]; }
-      }
-      s[k] = start; s[k + 'Prev'] = prev; s[k + 'PrevStart'] = prevStart; s[k + 'From'] = from; s[k + 'Fresh'] = fresh;
-    }
-    // the distance walked up to each sample (horizontal; a gap in the samples adds nothing): moving
-    // animations advance by it (animSec) - along the positions as drawn (Match.drawn)
-    const dist = new Float64Array(n), Q = n ? this.M.drawn(cl) : null;
-    for (let i = 1; i < n; i++) {
-      const gap = P.t[i] - P.t[i - 1] > 1000;
-      dist[i] = dist[i - 1] + (gap ? 0 : Math.hypot(Q.x[i] - Q.x[i - 1], Q.y[i] - Q.y[i - 1]));
-    }
-    s.dist = dist;
+    s = (P && P.starts) || C2.animStarts(P, P ? this.M.drawn(cl) : null);
     this.starts.set(cl, s);
     return s;
   }
@@ -201,31 +189,34 @@ export class Actors {
     const L = this.library;
     const st = this.startsOf(cl), i = s.i;
     const stance = L.clip(L.indexOf(s.prone ? 'pb_prone_aim' : s.crouch ? 'pb_crouch_alert' : 'pb_stand_alert'));
-    // a looping moving animation (run, walk, crawl) advances by the distance covered since it started over
-    // its own speed - the feet keep step with the ground - within 0.4 - 2x the real time; others by time
+    // a looping moving animation (run, walk, crawl) advances by the distance covered over its own speed - the feet
+    // keep step with the ground - at a rate within the game's limits (rateLimits), from the phase it started at
+    // (phaseOf); others by time
     const P = this.M.d.positions[cl];
     const Q = this.M.drawn(cl), distNow = st.dist[i] + Math.hypot(s.x - Q.x[i], s.y - Q.y[i]);
-    const animSec = (clip, startT) => {
-      const real = (t - startT) / 1000;
-      if (!clip || !clip.loop || !clip.speed) return real;
-      const j = Math.max(0, lowerIndex(P.t, startT));
-      const d = (distNow - st.dist[j]) / clip.speed;
-      return Math.min(2 * real, Math.max(0.4 * real, d));
+    const animSec = x => {
+      const clip = x.clip;
+      if (!movingLoop(clip)) return (t - x.start) / 1000;
+      const [lo, hi] = rateLimits(clip.speed), dt = Math.max(0, t - P.t[i]) / 1000;
+      const sec = this.advance(P, st, x.from, clip, i) + Math.min(hi * dt, Math.max(lo * dt, (distNow - st.dist[i]) / clip.speed));
+      return (P.legs && clip === L.clip(P.legs[x.from]) ? this.phaseOf(cl, P, st, x.from) * period(clip) : 0) + sec;
     };
-    // a new legs animation fades in over LEGS_BLEND ms while the old one keeps playing; a torso animation (fire,
-    // reload, throw) fades in / out over TORSO_BLEND ms over the legs, or from the torso animation it replaces. A
+    // a new legs animation fades in over the game's crossfade time (blendMs) while the old one keeps playing; a torso
+    // animation (fire, reload, throw) fades in / out the same way over the legs, or from the torso animation it replaces. A
     // change while the one before is still fading fades from that mix (the chain, oldest first: chainOf)
     // On a mounted MG the demo sends the gunner's blend block (standMG42_aim / _fire, prone...): the gunner clips
     // nearest the gun's aim (CharacterLibrary.gunnerBlend); their root faces the gun's yaw turned by the clips' own
     // root turn (dyaw) and they aim the body themselves - no angle controllers (both by the gunner pose's share)
-    const tu = s.turret && this.turretAim ? this.turretAim(cl, t, s) : null;
+    const tu = (s.turret || (P.legs && L.blendDef(P.legs[i]))) && this.turretAim ? this.turretAim(cl, t, s) : null;
     const tw = tu && tu.a.prop.tag ? tu.a.prop.tag('tag_weapon', tu.pitch, tu.yaw, _tw) : null;
-    const legsChain = this.chainOf(P, st, 'legs', i, t, LEGS_BLEND, v => {
+    // the crossfade times: the game's (blendMs); CoD2x (g_cod2x >= 3) gives a stance change's legs its own time
+    const cx = !!(this.controllers && this.controllers.cx);
+    const legsChain = this.chainOf(P, st, 'legs', i, t, (a, b, j) => (cx && stanceBlendMs(L, a, b)) || this.blendMs(P, st, a, b, j, cx), v => {
       const def = L.blendDef(v), g = def && tw ? L.gunnerBlend(def, s.z - tw.z, tu.yaw) : null;
       return g ? { clip: g.clip, dyaw: g.dyaw } : { clip: L.clip(v) || stance };
     });
-    for (const x of legsChain) x.sec = animSec(x.clip, x.start);
-    const torsoChain = this.chainOf(P, st, 'torso', i, t, TORSO_BLEND, v => ({ clip: (v & 0x1ff) ? L.clip(v) : null }));
+    for (const x of legsChain) x.sec = animSec(x);
+    const torsoChain = this.chainOf(P, st, 'torso', i, t, (a, b, j) => this.blendMs(P, st, a, b, j, cx), v => ({ clip: (v & 0x1ff) ? L.clip(v) : null }));
     for (const x of torsoChain) x.sec = (t - x.start) / 1000;
     ch.poseLayers(legsChain, torsoChain);
     let gw = 0, dyaw = 0;
@@ -246,19 +237,85 @@ export class Actors {
 
   /** the crossfade chain of a legs / torso animation at sample i, time t, oldest first: [{...make(value), start, w}] -
    *  the current value, and while it is still fading in (t - its start < blend ms) the value before it, and so on
-   *  (at most CHAIN_MAX deep; a layer that has finished fading hides everything before it, so the walk stops there) */
+   *  (at most CHAIN_MAX deep; a layer that has finished fading hides everything before it, so the walk stops there);
+   *  blend: (value before, value, the sample it starts at) -> ms; from: that sample */
   chainOf(P, st, k, i, t, blend, make) {
     const V = P[k], from = st[k + 'From'], fresh = st[k + 'Fresh'], out = [];
     let j = i;
     for (let d = 0; d < CHAIN_MAX; d++) {
       const a = from[j], start = P.t[a];
       const x = make(V ? V[j] : 0);
-      x.start = start; x.w = smooth((t - start) / blend);
+      const ms = V && a > 0 && !fresh[a] ? blend(V[a - 1], V[j], a) : LEGS_BLEND;
+      x.start = start; x.from = a; x.w = smooth((t - start) / Math.max(1, ms));
       out.unshift(x);
       if (x.w >= 1 || fresh[a] || a === 0) break;
       j = a - 1;
     }
     return out;
+  }
+
+  /** BG_SetNewAnimation's crossfade (ms) from legs / torso value a to b, starting at sample j: the new animation's
+   *  blendtime (anims.json blendTimes, the game's initialLerp; 200 for no animation), without one at least 120 (the
+   *  new animation moves), 250 (the old one moves) or 170 ms; and (1.3 - CoD2x leaves it out) at least to the end of
+   *  the stance window, 400 ms after the legs last changed stance (crouch / prone movetype) */
+  blendMs(P, st, a, b, j, cx) {
+    const L = this.library, BT = L.animsInfo && L.animsInfo.blendTimes;
+    const ia = a & 0x1ff, ib = b & 0x1ff, ca = ia ? L.clip(ia) : null, cb = ib ? L.clip(ib) : null;
+    const oldMoves = !!(ca && ca.speed > 0);
+    let ms;
+    if (!ib) ms = Math.max(200, oldMoves ? 250 : 170);
+    else ms = (BT && BT[ib]) || (cb && cb.speed > 0 ? 120 : oldMoves ? 250 : 170);
+    const V = P.legs, T = P.t;
+    if (!cx && V) for (let k = j; k > 0 && T[j] - T[k] < STANCE_WINDOW; k--) {
+      if (T[k] - T[k - 1] > 1000) break;
+      if (V[k] !== V[k - 1] && legsStance(L, V[k]) !== legsStance(L, V[k - 1])) { ms = Math.max(ms, T[k] + STANCE_WINDOW - T[j]); break; }
+    }
+    return ms;
+  }
+
+  /** a moving loop's play time (s) from sample a to sample k: per sample step the ground covered over the clip's
+   *  speed, within the game's rate limits (BG_RunLerpFrameRate, per frame - not over the whole run, where a pause
+   *  would let it catch up). Cached per start sample and clip, grown on demand */
+  advance(P, st, a, clip, k) {
+    const C = st.adv || (st.adv = new Map()), key = a + ':' + clip.name;
+    let c = C.get(key);
+    if (!c) C.set(key, c = [0]);
+    if (a + c.length <= k) {
+      const [lo, hi] = rateLimits(clip.speed);
+      for (let m = a + c.length; m <= k && m < P.t.length; m++) {
+        const dt = (P.t[m] - P.t[m - 1]) / 1000, d = (st.dist[m] - st.dist[m - 1]) / clip.speed;
+        c.push(c[c.length - 1] + Math.min(hi * dt, Math.max(lo * dt, d)));
+      }
+    }
+    return c[Math.max(0, Math.min(k - a, c.length - 1))];
+  }
+
+  /** the phase (0 - 1) of the legs animation starting at sample a (BG_SetNewAnimation): a moving loop replacing
+   *  another moving loop goes on at the old one's phase (XAnimGetTime: no step hitch on run -> strafe); another moving
+   *  loop starts at frac(time mod (length + 200) / (length + 200) + clientNum x 0.36), so players who start running
+   *  together don't step in lockstep; anything else at 0. Followed back over at most PHASE_WALK changes, cached */
+  phaseOf(cl, P, st, a) {
+    const memo = st.phase || (st.phase = new Map());
+    if (memo.has(a)) return memo.get(a);
+    const L = this.library, V = P.legs, from = st.legsFrom, fresh = st.legsFresh;
+    const prevOf = r => (r > 0 && !fresh[r] ? from[r - 1] : -1);
+    const runs = [a];
+    for (let r = a, n = 0; n < PHASE_WALK; n++) {
+      const p = prevOf(r);
+      if (p < 0 || memo.has(p) || !movingLoop(L.clip(V[r])) || !movingLoop(L.clip(V[p]))) break;
+      runs.push(p); r = p;
+    }
+    for (let k = runs.length - 1; k >= 0; k--) {
+      const r = runs[k], c = L.clip(V[r]);
+      let ph = 0;
+      if (movingLoop(c)) {
+        const p = prevOf(r), pc = p >= 0 ? L.clip(V[p]) : null;
+        if (movingLoop(pc) && memo.has(p)) ph = frac((memo.get(p) * period(pc) + this.advance(P, st, p, pc, r)) / period(pc));
+        else { const len = c.frames / c.rate * 1000 + 200; ph = frac((P.t[r] % len) / len + cl * 0.36); }
+      }
+      memo.set(r, ph);
+    }
+    return memo.get(a);
   }
 
   /** is a client's gun in the left hand at t? CG_ProcessClientNoteTracks: an anim_gunhand = "left" / "right"
@@ -456,15 +513,18 @@ export class Actors {
           let ch = pool && pool.length ? pool.pop() : null;
           if (!ch && models) { ch = new Character(this.library, models.body, models.attach); if (ch.ok) this.root.add(ch.group); else ch = null; }
           h = { ch, mkey };
-          if (ch) { ch.group.position.set(c.x, c.y, c.z); ch.group.rotation.set(0, 0, c.yaw * D2R); }
           this.corpseItems.set(key, h);
         }
         if (!h.ch) continue;
         h.ch.group.visible = true;
+        // where the corpse is now: its trajectory (falling, sliding with the death animation, tilted to the slope it came
+        // to rest on - Match corpseAt, as the game's CG_Corpse), every frame (seeks and speeds give the same place)
+        const p = corpseAt(c, t, _cp);
+        entityMatrix(_bm, p[0], p[1], p[2], p[3], p[4], p[5]).decompose(h.ch.group.position, h.ch.group.quaternion, _cs);
         const clip = this.library.clip(c.legs) || this.library.clip(this.library.indexOf('pb_stand_death_chest_blowback'));
         h.ch.pose(clip, (t - c.t0) / 1000);
-        if (this.grid) h.ch.setGrid(this.gridAt(h, c.x, c.y, c.z));
-        if (this.probe) h.ch.setLight(this.lightAt(h, c.x, c.y, c.z));
+        if (this.grid) h.ch.setGrid(this.gridAt(h, p[0], p[1], p[2]));
+        if (this.probe) h.ch.setLight(this.lightAt(h, p[0], p[1], p[2]));
       }
     }
     for (const [key, h] of this.corpseItems) {
@@ -559,7 +619,40 @@ export class Actors {
     if (it.char) it.char.group.visible = false;
   }
 
+  /** stand-ins of every player model and held weapon model the demo shows, with their materials as drawn (the
+   *  template's, and the light grid's own copies: Character.setGrid / setWeapon) - compiled with the map's load
+   *  (View3D.compileAhead): their programs were otherwise linked at the first draw of a new lit variant in the middle
+   *  of the playback (17 - 43 ms). Kept while the grid stays (the programs live as long as a material uses them).
+   *  -> THREE.Group or null (no models) */
+  warmup() {
+    if (this.mode !== 'models' || !this.libReady) return null;
+    if (this.warm && this.warm.grid === this.grid) return this.warm.group;
+    const L = this.library, D = this.M.d, skinned = new Set(), rigid = new Set();
+    for (const list of Object.values(D.playerModels || {})) for (const e of list || []) if (e && e.body) { skinned.add(e.body); for (const a of e.attach || []) skinned.add(a); }
+    for (const w of D.weaponLists || []) for (const n of w.list || []) { const m = L.weaponModel(n); if (m) rigid.add(m); }
+    const group = new THREE.Group(), u = this.grid ? gridUniforms() : null, own = [];
+    const add = (t, isSkinned) => {
+      for (const lit of u ? [false, true] : [false]) {
+        let mats = [].concat(t.materials);
+        if (lit) { mats = mats.map(m => gridMaterial(cloneMaterial(m), u)); own.push(...mats); }
+        const mesh = isSkinned ? new THREE.SkinnedMesh(t.geometry, mats) : new THREE.Mesh(t.geometry, mats);
+        if (isSkinned) mesh.bind(new THREE.Skeleton(t.bones.map(() => new THREE.Bone())), new THREE.Matrix4());
+        mesh.frustumCulled = false;
+        group.add(mesh);
+      }
+    };
+    for (const name of skinned) {
+      const t0 = L.template(name);
+      if (t0) for (let lv = 0; lv < t0.lods; lv++) { const t = lv ? L.template(name, lv) : t0; if (t) add(t, true); }
+    }
+    for (const name of rigid) { const t = L.template(name); if (t) add(t, false); }
+    if (this.warm) for (const m of this.warm.own) m.dispose();
+    this.warm = { grid: this.grid, group, own };
+    return group;
+  }
+
   dispose() {
+    if (this.warm) for (const m of this.warm.own) m.dispose();
     for (const it of this.items.values()) it.label.remove();
     this.scene.remove(this.root);
   }

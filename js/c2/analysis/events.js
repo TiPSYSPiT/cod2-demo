@@ -43,7 +43,7 @@ C2.define('events', function (C2) {
     return out;
   }
   /**
-   * THE bomb position over time (Search & Destroy; docs/ANALYSIS.md 3.11) - DemoData.bombTrack.
+   * THE bomb position over time (Search & Destroy) - DemoData.bombTrack.
    * Sources, in this order:
    *   1. the accepted plant / defuse events of the round (bombEvents + the S&D rule of rounds.js)
    *      and the explosion (round won by "Bomb exploded", at the round end)

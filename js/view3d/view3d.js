@@ -31,6 +31,9 @@ import { Hud, HUD_PARTS } from './hud.js';
 import { uiInsets } from '../app/scoresOverlay.js';
 import { SOUND_KEY, soundWanted, soundVolume, audioAllowed } from '../app/audio.js';
 
+/** the 3D view's pixel density: the screen's, at most 2 (more costs fill rate without a visible gain) */
+const pixelRatio = () => Math.min(2, window.devicePixelRatio || 1);
+
 const C2 = window.C2;
 const { el, icon, switchRow, selectRow } = C2.ui;
 const CFG = C2.mapConfig;
@@ -119,7 +122,7 @@ export class View3D {
     this.renderer.debug.checkShaderErrors = q.has('debug') || q.has('shadercheck');
     // (the game's DXT textures go to the GPU as they are where it takes them - mapLoader.js loadDds)
     setCompressedSupport(!!this.renderer.extensions.get('WEBGL_compressed_texture_s3tc'));
-    this.renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+    this.renderer.setPixelRatio(pixelRatio());
     this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace;    // gamma-space colours, as the game
     this.stage.append(this.renderer.domElement);
     this.labels = el('div', { class: 'label-layer' });
@@ -149,9 +152,10 @@ export class View3D {
     this.characters = new CharacterLibrary();
     this.actors = new Actors(scene, this.labels, this.M, this.characters);
     this.actors.turretMuzzle = cl => { const tu = this.turretOf(cl, this.t || 0, this.M.sampleAt(cl, this.t || 0)); return tu && tu.on ? this.turretMuzzle(tu) : null; };
-    // (the gunner's pose: the gun's aim relative to its stand)
-    this.actors.turretAim = (cl, t, s) => { const tu = this.turretOf(cl, t, s); return tu && tu.on ? tu : null; };
-    this.actors.onLoaded = () => { this.R.invalidate(); this.needsRender = true; this.compileAhead(); if (this.actors.failed) this.playersSel.parentNode.title = 'The player models are not exported (tools/export/characters_export.py)'; };
+    // (the gunner's pose: the gun's aim relative to its stand - while the use fades out too: the demo's legs still
+    // hold the gunner blend for a sample or two after leaving, and without the gun's aim it fell to the stance pose)
+    this.actors.turretAim = (cl, t, s) => this.turretOf(cl, t, s);
+    this.actors.onLoaded = () => { this.R.invalidate(); this.needsRender = true; this.compileAhead(); if (this.actors.failed) this.playersSel.parentNode.title = 'The player models are not exported (cod2-ff python/cod2ff/viewer/characters_export.py)'; };
     this.effects = new Effects(scene, this.labels, this.M);
     // the game's particle effects (fx.js): explosions, smoke, impacts, muzzle flashes
     this.fx = new FxPlayer(scene, this.M);
@@ -380,7 +384,7 @@ export class View3D {
     } else {
       // (for visitors; the developer's hint goes to the console)
       this.fallback('This site has no 3D data for ' + (map || 'this map') + '.');
-      console.info('No maps3d/ data for "' + map + '": export it with tools/export/export_maps.py (README).');
+      console.info('No maps3d/ data for "' + map + '": export it with cod2-ff python/cod2ff/viewer/export_maps.py (README).');
     }
     // start the camera over the area the players used
     const b = M.bbox;
@@ -624,7 +628,7 @@ export class View3D {
       this.fx.setEnabled(on);
       this.effects.realFx = on;              // no marker spheres for explosions / smoke
       this.actors.realFlash = on;            // no muzzle flash sphere
-      if (!ok) this.fxSel.parentNode.title = 'The effects are not exported (tools/export/fx_export.py)';
+      if (!ok) this.fxSel.parentNode.title = 'The effects are not exported (cod2-ff python/cod2ff/viewer/fx_export.py)';
       this.R.invalidate(); this.needsRender = true;
     };
     if (mode === 'game') this.fx.load().then(apply); else apply(true);
@@ -671,6 +675,7 @@ export class View3D {
     const r = this.stage.getBoundingClientRect();
     if (!r.width || !r.height) return;
     this.w = r.width; this.h = r.height;
+    if (this.renderer.getPixelRatio() !== pixelRatio()) this.renderer.setPixelRatio(pixelRatio());   // (zoom, monitor)
     this.renderer.setSize(r.width, r.height, false);
     this.camera.aspect = r.width / r.height;
     this.camera.updateProjectionMatrix();
@@ -860,6 +865,8 @@ export class View3D {
     if (!this.visible) return;
     requestAnimationFrame(this.loop);
     if (this.exporting) { this.last = null; return; }
+    // (the pixel density changes without a new size on a monitor with another scaling; a browser zoom also resizes)
+    if (this.renderer.getPixelRatio() !== pixelRatio()) this.resize();
     const dt = this.last == null ? 0 : Math.min(0.1, (now - this.last) / 1000);
     this.last = now;
     if (this.xrayMode === 'names' && this.xray.poll()) this.needsRender = true;     // (a name badge changed)
@@ -875,8 +882,9 @@ export class View3D {
    *  (up to 125 ms a program, 2.5 s over a map's load). Meanwhile the view keeps its last frame (renderFrame); the
    *  video export, which forces its frames, does not wait (PLAN.md step 87) */
   compileAhead() {
-    // (without the extension - Firefox here - checking would block like a first draw: the programs are built at their first draw then)
-    if (!this.renderer.extensions.has('KHR_parallel_shader_compile')) return;
+    // (without the extension - Firefox here - checking would block like a first draw: the programs are built at their
+    // first draw then - except those drawn only later in the playback: linkLate)
+    if (!this.renderer.extensions.has('KHR_parallel_shader_compile')) { this.linkLate(); return; }
     // (the shadow passes' depth programs too: CookieShadows.compileAhead)
     const occluders = () => [this.world && this.world.group, this.props && this.props.mode !== 'off' && this.props.group].filter(Boolean);
     // (and then every program the renderer has: three.js's compileAsync waits only for each material's last program -
@@ -890,11 +898,55 @@ export class View3D {
       };
       tick();
     });
-    const run = () => Promise.all([this.renderer.compileAsync(this.scene, this.camera), this.viewmodel.compileAhead(this.renderer),
+    // (the players' lit variants and held weapons: Actors.warmup - drawn first in the middle of the playback)
+    const warm = () => { const g = this.actors.warmup(); return g ? this.renderer.compileAsync(g, this.camera, this.scene) : null; };
+    const run = () => Promise.all([this.renderer.compileAsync(this.scene, this.camera), this.viewmodel.compileAhead(this.renderer), warm(),
       this.shadows.compileAhead(this.renderer, this.scene, [this.actors.root], occluders())]).then(allReady);
-    const p = (this.compileHold || Promise.resolve()).then(run).catch(err => console.warn('shader compile:', err));
+    // (none running: the walk at once - when it left no program still linking, as a new view model of materials already
+    // compiled at a weapon switch, the frame is not held: it kept its last image for nothing, 2 frames a switch with
+    // prepareLit; PLAN.md step 103)
+    if (!this.compileHold) {
+      let first;
+      try { first = run(); } catch (err) { first = Promise.reject(err); }
+      const p = first.catch(err => console.warn('shader compile:', err));
+      if ((this.renderer.info.programs || []).every(pr => pr.isReady())) return p;
+      const hold = this.compileHold = p.finally(() => { if (this.compileHold === hold) { this.compileHold = null; this.needsRender = true; } });
+      return p;
+    }
+    const p = this.compileHold.then(run).catch(err => console.warn('shader compile:', err));
     const hold = this.compileHold = p.finally(() => { if (this.compileHold === hold) { this.compileHold = null; this.needsRender = true; } });
     return p;
+  }
+
+  /** without parallel compiling (Firefox): the programs of what is drawn only later in the playback - the players'
+   *  lit variants and held weapons (Actors.warmup), the first-person overlay (the scope's) - built now and linked one
+   *  by one in the browser's idle time, not at their first draw during the playback (19 - 43 ms each; all at once they
+   *  blocked ~0.2 s of the load; PLAN.md step 103) */
+  linkLate() {
+    const r = this.renderer, warm = this.actors.warmup();
+    let added = false;
+    try {
+      if (warm && !warm.userData.linked) { r.compile(warm, this.camera, this.scene); warm.userData.linked = added = true; }
+      if (!this.viewmodel.hudLinked) { this.viewmodel.buildScope(); r.compile(this.viewmodel.hud, this.viewmodel.hudCam); this.viewmodel.hudLinked = added = true; }
+    } catch (err) { console.warn('shader compile:', err); }
+    if (!added) return;
+    // (the link waits at the first uniforms' query: getUniforms - instant for a program already used)
+    this.linkQueue = (r.info.programs || []).slice();
+    if (this.linkIdle) return;
+    const idle = window.requestIdleCallback ? f => window.requestIdleCallback(f, { timeout: 2000 }) : f => setTimeout(() => f(null), 50);
+    const step = deadline => {
+      this.linkIdle = null;
+      if (this.destroyed || !this.linkQueue) return;
+      // (one program that had to link per idle period: ~10 ms each, between the frames)
+      while (this.linkQueue.length && (!deadline || deadline.timeRemaining() > 4)) {
+        const p = this.linkQueue.shift(), a = performance.now();
+        if (!(r.info.programs || []).includes(p)) continue;           // (released meanwhile: its GL program is gone)
+        p.getUniforms();
+        if (performance.now() - a > 2) break;
+      }
+      if (this.linkQueue.length) this.linkIdle = idle(step); else this.linkQueue = null;
+    };
+    this.linkIdle = idle(step);
   }
 
   /** whether the frame waits for compiles: once the map has a first image, while any runs; its first image only for the

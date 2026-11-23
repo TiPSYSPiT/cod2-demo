@@ -1,6 +1,6 @@
 /* The game's sounds in the 3D view, heard at the camera.
  *
- * maps3d/_sound/aliases.json (tools/export/sound_export.py) holds CoD2's sound aliases: per alias its
+ * maps3d/_sound/aliases.json (cod2-ff python/cod2ff/viewer/sound_export.py) holds CoD2's sound aliases: per alias its
  * variants {f: file, v: volume range, p: pitch range, d: [dist_min, dist_max], pr: probability,
  * ls: loadspec, sec: secondary alias, loop, ch: channel}; zPAM's redefinitions of stock aliases (mods.zpam,
  * used for zPAM demos: its silent weap_raise - zPAM plays the switch sound from the server); and per weapon
@@ -115,6 +115,17 @@ export class SoundSystem {
     this.seeks = null;
     this.events = []; this.local = []; this.loops = []; this.whiz = []; this.holds = [];
     this.duck = null;                  // the channel volumes while the watched player holds his breath (or null)
+    // a hidden tab: the frames (and update) stop, a looped sound (bomb tick, heartbeat, MG) would ring on - cut
+    // everything, suspend the context; back in view it resumes (the next update starts fresh, nothing caught up)
+    this.onVisibility = () => {
+      if (!this.ctx) return;
+      this.lastT = null;
+      if (document.hidden) {
+        this.stopAll();
+        setTimeout(() => { if (document.hidden && this.ctx && this.ctx.state === 'running') this.ctx.suspend().catch(() => {}); }, FADE * 1000 + 60);
+      } else if (this.enabled) this.ctx.resume().catch(() => {});
+    };
+    document.addEventListener('visibilitychange', this.onVisibility);
   }
 
   setDemo(match) {
@@ -367,6 +378,8 @@ export class SoundSystem {
    *  watched in first person (his own sounds) */
   update(t, camera, pb, fp = null) {
     if (!this.enabled || !this.ctx) { this.lastT = t; return; }
+    // (a frame that still comes while the tab is hidden starts nothing: onVisibility cut it all)
+    if (document.hidden) { this.lastT = null; if (this.sources.size || this.loopsOn.size) this.stopAll(); return; }
     // (until the full preload starts - after the map's textures: the sounds of the next seconds now, wherever playback is)
     if (!this.preloading && (this.near == null || t < this.near || t > this.near + NEAR_MS - 5000)) this.preloadNear(t);
     const last = this.lastT, seeks = pb.seeks || 0;
@@ -525,5 +538,8 @@ export class SoundSystem {
     return ctx.startRendering();
   }
 
-  dispose() { this.stopAll(); if (this.master) this.master.disconnect(); this.master = null; this.ctx = null; this.enabled = false; }
+  dispose() {
+    document.removeEventListener('visibilitychange', this.onVisibility);
+    this.stopAll(); if (this.master) this.master.disconnect(); this.master = null; this.ctx = null; this.enabled = false;
+  }
 }

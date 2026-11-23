@@ -9065,10 +9065,10 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_pipe_plate_n-gggr.dds",
+     "normalMap": "_textures/_pipe_plate2_n-gggr.dds",
      "sort": 3,
      "polygonOffset": 0,
-     "specularMap": "_textures/_pipe_plate_s-rgb_pipe_plate_cp-l-11.dds"
+     "specularMap": "_textures/_pipe_plate2_s-rgb_pipe_plate2_cp-l-11.dds"
     },
     {
      "material": "mtl_water_spout_dirt",
@@ -9143,10 +9143,10 @@
        "alphaTest": null,
        "blend": null,
        "doubleSided": false,
-       "normalMap": "_textures/_pipe_plate_n-gggr.dds",
+       "normalMap": "_textures/_pipe_plate2_n-gggr.dds",
        "sort": 3,
        "polygonOffset": 0,
-       "specularMap": "_textures/_pipe_plate_s-rgb_pipe_plate_cp-l-11.dds"
+       "specularMap": "_textures/_pipe_plate2_s-rgb_pipe_plate2_cp-l-11.dds"
       },
       {
        "material": "mtl_water_spout_dirt",
@@ -9216,10 +9216,10 @@
        "alphaTest": null,
        "blend": null,
        "doubleSided": false,
-       "normalMap": "_textures/_pipe_plate_n-gggr.dds",
+       "normalMap": "_textures/_pipe_plate2_n-gggr.dds",
        "sort": 3,
        "polygonOffset": 0,
-       "specularMap": "_textures/_pipe_plate_s-rgb_pipe_plate_cp-l-11.dds"
+       "specularMap": "_textures/_pipe_plate2_s-rgb_pipe_plate2_cp-l-11.dds"
       },
       {
        "material": "mtl_water_spout_dirt",
@@ -9303,10 +9303,10 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_pipe_plate_n-gggr.dds",
+     "normalMap": "_textures/_pipe_plate2_n-gggr.dds",
      "sort": 3,
      "polygonOffset": 0,
-     "specularMap": "_textures/_pipe_plate_s-rgb_pipe_plate_cp-l-11.dds"
+     "specularMap": "_textures/_pipe_plate2_s-rgb_pipe_plate2_cp-l-11.dds"
     },
     {
      "material": "mtl_water_spout_dirt",
@@ -9401,12 +9401,12 @@
      "technique": "phong_replace_spec_detail",
      "start": 390,
      "count": 501,
-     "texture": "_textures/silotown_stone.dds",
+     "texture": "_textures/caen_wall_ext_stone_04.dds",
      "textureAlpha": false,
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_silotown_stone_n-gggr.dds",
+     "normalMap": "_textures/_caen_wall_ext_stone_04_normal-gggr.dds",
      "sort": 3,
      "polygonOffset": 0,
      "specularMap": "_textures/_silotown_stone_s-r-25g-25b-25l-11.dds",
@@ -9525,12 +9525,12 @@
      "technique": "phong_replace_spec_detail",
      "start": 0,
      "count": 3234,
-     "texture": "_textures/silotown_stone.dds",
+     "texture": "_textures/caen_wall_ext_stone_04.dds",
      "textureAlpha": false,
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_silotown_stone_n-gggr.dds",
+     "normalMap": "_textures/_caen_wall_ext_stone_04_normal-gggr.dds",
      "sort": 3,
      "polygonOffset": 0,
      "specularMap": "_textures/_silotown_stone_s-r-25g-25b-25l-11.dds",
@@ -9683,10 +9683,10 @@
      "alphaTest": null,
      "blend": null,
      "doubleSided": false,
-     "normalMap": "_textures/_pipe_plate_n-gggr.dds",
+     "normalMap": "_textures/_pipe_plate2_n-gggr.dds",
      "sort": 3,
      "polygonOffset": 0,
-     "specularMap": "_textures/_pipe_plate_s-rgb_pipe_plate_cp-l-11.dds"
+     "specularMap": "_textures/_pipe_plate2_s-rgb_pipe_plate2_cp-l-11.dds"
     },
     {
      "material": "mtl_pipe_trim_sw",
@@ -9776,10 +9776,10 @@
        "alphaTest": null,
        "blend": null,
        "doubleSided": false,
-       "normalMap": "_textures/_pipe_plate_n-gggr.dds",
+       "normalMap": "_textures/_pipe_plate2_n-gggr.dds",
        "sort": 3,
        "polygonOffset": 0,
-       "specularMap": "_textures/_pipe_plate_s-rgb_pipe_plate_cp-l-11.dds"
+       "specularMap": "_textures/_pipe_plate2_s-rgb_pipe_plate2_cp-l-11.dds"
       },
       {
        "material": "mtl_pipe_trim_sw",
@@ -9850,10 +9850,10 @@
        "alphaTest": null,
        "blend": null,
        "doubleSided": false,
-       "normalMap": "_textures/_pipe_plate_n-gggr.dds",
+       "normalMap": "_textures/_pipe_plate2_n-gggr.dds",
        "sort": 3,
        "polygonOffset": 0,
-       "specularMap": "_textures/_pipe_plate_s-rgb_pipe_plate_cp-l-11.dds"
+       "specularMap": "_textures/_pipe_plate2_s-rgb_pipe_plate2_cp-l-11.dds"
       },
       {
        "material": "mtl_pipe_trim_sw",

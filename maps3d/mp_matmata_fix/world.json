@@ -2509,9 +2509,9 @@
    "start": 170922,
    "count": 12,
    "lightmap": 2,
-   "texture": "_textures/egypt_wood_door.dds",
+   "texture": "_textures/door_narrow01.dds",
    "textureAlpha": false,
-   "normalMap": "_textures/_egypt_wood_door_normal-gggr.dds",
+   "normalMap": "_textures/_door_narrow01_n-gggr.dds",
    "alphaTest": null,
    "blend": null,
    "vertexAlpha": false,
@@ -3855,7 +3855,7 @@
   9413
  ],
  "sky": {
-  "file": "sky.webp",
+  "file": "../mp_matmata/sky.webp",
   "image": "libyatown_ft",
   "faces": 6,
   "size": 1024,

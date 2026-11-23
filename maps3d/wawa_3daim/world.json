@@ -230,7 +230,7 @@
   0
  ],
  "sky": {
-  "file": "sky.webp",
+  "file": "../mp_trainstation/sky.webp",
   "image": "mpcarentan_ft",
   "faces": 6,
   "size": 512,

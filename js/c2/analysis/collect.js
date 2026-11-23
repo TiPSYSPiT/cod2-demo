@@ -30,14 +30,17 @@ C2.define('collect', function (C2) {
     legs: ES.legsAnim, torso: ES.torsoAnim, lean: ES.leanf, clientNum: ES.clientNum, time: ES.time, time2: ES.time2,
     scale: ES.scale, delay: ES['angles2[1]'], dir: [0, 1, 2].map(i => ES['origin2[' + i + ']']),
     torsoPitch: ES.fTorsoPitch, waistPitch: ES.fWaistPitch, ground: ES.groundEntityNum,
-    aim: [ES['angles2[0]'], ES['angles2[1]']], loopSound: ES.loopSound, headIcon: ES.iHeadIcon, headIconTeam: ES.iHeadIconTeam
+    aim: [ES['angles2[0]'], ES['angles2[1]']], loopSound: ES.loopSound, headIcon: ES.iHeadIcon, headIconTeam: ES.iHeadIconTeam,
+    // a player's movement direction against the view (ps.movementYaw - BG_PlayerStateToEntityState puts it in
+    // angles2[1]: +90 left, 45 forward-left, 0 forward / back, -90 right; the prone direction when prone)
+    moveYaw: ES['angles2[1]']
   };
   const P = {
     client: PS.clientNum, pmType: PS.pm_type, pmFlags: PS.pm_flags, eFlags: PS.eFlags, weapon: PS.weapon,
     ox: PS['origin[0]'], oy: PS['origin[1]'], oz: PS['origin[2]'], pitch: PS['viewangles[0]'], yaw: PS['viewangles[1]'],
     seq: PS.eventSequence, events: [0, 1, 2, 3].map(i => PS['events[' + i + ']']),
     parms: [0, 1, 2, 3].map(i => PS['eventParms[' + i + ']']), legs: PS.legsAnim, torso: PS.torsoAnim,
-    lean: PS.leanf, viewHeight: PS.viewHeightCurrent, damageEvent: PS.damageEvent, damageYaw: PS.damageYaw,
+    lean: PS.leanf, moveYaw: PS.movementDir, viewHeight: PS.viewHeightCurrent, damageEvent: PS.damageEvent, damageYaw: PS.damageYaw,
     damageCount: PS.damageCount, damagePitch: PS.damagePitch, hint: PS.cursorHint, hintString: PS.cursorHintString,
     mantleFlags: PS['mantleState.flags'],
     // the first-person weapon (viewanim.js): the view animation (index + 0x200 restart toggle), weapon state,
@@ -75,24 +78,26 @@ C2.define('collect', function (C2) {
   // LINKED: held by an entity (zPAM / stock S&D link a planting / defusing player to the bomb trigger):
   // the POV's pm_type NORMAL_LINKED; another player: no ground entity (also true in the air)
   // TURRET: on a mounted MG (EF_USETURRET) - the gun is the turret, the player's own weapon is not drawn
-  const PF = { TRANSMITTED: 1, CROUCH: 2, PRONE: 4, FIRING: 8, DEAD: 16, FROM_PS: 32, LINKED: 64, TURRET: 128 };
+  // ADS: aiming down the sights (EF_ADS; the player state's pm_flags 0x40), MANTLE: climbing over (EF_MANTLE) - both
+  // steer the body's angles (controllers.js)
+  const PF = { TRANSMITTED: 1, CROUCH: 2, PRONE: 4, FIRING: 8, DEAD: 16, FROM_PS: 32, LINKED: 64, TURRET: 128, ADS: 256, MANTLE: 512 };
   const ENTITYNUM_NONE = 1023;
 
   class PosTrack {
     constructor() {
       this.t = []; this.x = []; this.y = []; this.z = []; this.yaw = []; this.pitch = []; this.flags = []; this.weapon = [];
-      this.legs = []; this.torso = []; this.lean = []; this.torsoPitch = []; this.waistPitch = []; this.icon = [];
+      this.legs = []; this.torso = []; this.lean = []; this.torsoPitch = []; this.waistPitch = []; this.icon = []; this.moveYaw = [];
     }
     /** icon: the player's sprites (CG_PlayerSprites) - bits 0-3 the script's head icon (config string 30 + n), 4-5 the
      *  team that sees it (0 every team, 1 axis, 2 allies, 3 spectators), 6 talking (EF_TALK), 7 connection problem */
-    push(t, x, y, z, yaw, pitch, flags, weapon, legs, torso, lean, torsoPitch = 0, waistPitch = 0, icon = 0) {
+    push(t, x, y, z, yaw, pitch, flags, weapon, legs, torso, lean, torsoPitch = 0, waistPitch = 0, icon = 0, moveYaw = 0) {
       const n = this.t.length;
       if (n && this.t[n - 1] === t) return;               // one sample per snapshot time
       this.t.push(t); this.x.push(x); this.y.push(y); this.z.push(z);
       this.yaw.push(yaw); this.pitch.push(pitch); this.flags.push(flags); this.weapon.push(weapon);
       this.legs.push(legs | 0); this.torso.push(torso | 0); this.lean.push(lean || 0);
       this.torsoPitch.push(torsoPitch || 0); this.waistPitch.push(waistPitch || 0);    // (prone on a slope)
-      this.icon.push(icon | 0);
+      this.icon.push(icon | 0); this.moveYaw.push(Math.max(-90, Math.min(90, Math.round(moveYaw || 0))));
     }
   }
 
@@ -125,7 +130,7 @@ C2.define('collect', function (C2) {
       slotEvents: [],               // {t, client, kind: 'connected'|'disconnected'}
       kills: [],                    // {t, victim, attacker, parm, victimPos, attackerPos, attackerWeapon}
       tracks: new Map(),            // client -> PosTrack
-      corpses: [],                  // {client, t0, t1, x, y, z, yaw, legs, torso}
+      corpses: [],                  // {client, t0, t1, x, y, z, yaw, legs, torso, segments: trajectories as they change}
       grenades: new Map(),          // key -> grenade
       items: [],                    // {num, index, t0, t1, segments}: the items on the ground (eType 3; index = the weapon)
       earthquakes: [],              // [t, scale, duration ms, radius, x, y, z] (EV_EARTHQUAKE)
@@ -384,11 +389,13 @@ C2.define('collect', function (C2) {
       if (pmf & K.PMF.PRONE) flags |= PF.PRONE;
       if (ef & K.EF.FIRING) flags |= PF.FIRING;
       if (ef & K.EF.USETURRET) flags |= PF.TURRET;
+      if (pmf & 0x40) flags |= PF.ADS;
+      if (ef & K.EF.MANTLE) flags |= PF.MANTLE;
       if (pmType === K.PM.NORMAL_LINKED) flags |= PF.LINKED;
       const x = u2f(f[P.ox]), y = u2f(f[P.oy]), z = u2f(f[P.oz]);
       // (the player state has no head icon: only the talk flag)
       track(cl).push(t, x, y, z, u2f(f[P.yaw]), u2f(f[P.pitch]), flags, f[P.weapon], f[P.legs], f[P.torso], u2f(f[P.lean]), 0, 0,
-        ef & K.EF.TALK ? 64 : 0);
+        ef & K.EF.TALK ? 64 : 0, (f[P.moveYaw] << 24) >> 24);
       lastWeapon.set(cl, f[P.weapon]);
       lastPos.set(cl, [t, x, y, z]);
     }
@@ -487,25 +494,34 @@ C2.define('collect', function (C2) {
       if (ef & K.EF.FIRING) flags |= PF.FIRING;
       if (ef & K.EF.DEAD) flags |= PF.DEAD;
       if (ef & K.EF.USETURRET) flags |= PF.TURRET;
+      if (ef & K.EF.ADS) flags |= PF.ADS;
+      if (ef & K.EF.MANTLE) flags |= PF.MANTLE;
       if (e[E.ground] === ENTITYNUM_NONE) flags |= PF.LINKED;
       const x = u2f(e[E.px]), y = u2f(e[E.py]), z = u2f(e[E.pz]);
       const icon = (e[E.headIcon] & 15) | ((e[E.headIconTeam] & 3) << 4) | (ef & K.EF.TALK ? 64 : 0) | (ef & 0x80 ? 128 : 0);
       track(num).push(t, x, y, z, u2f(e[E.yaw]), u2f(e[E.pitch]), flags, e[E.weapon], e[E.legs], e[E.torso], u2f(e[E.lean]),
-        u2f(e[E.torsoPitch]), u2f(e[E.waistPitch]), icon);
+        u2f(e[E.torsoPitch]), u2f(e[E.waistPitch]), icon, u2f(e[E.moveYaw]));
       lastWeapon.set(num, e[E.weapon]);
       lastPos.set(num, [t, x, y, z]);
     }
 
+    /** a corpse (ET_PLAYER_CORPSE): the server moves it after the death (G_RunCorpseMove) - the death animation's root
+     *  motion as TR_INTERPOLATE (trBase updated frame by frame), a fall as TR_GRAVITY (from the spot it lost the
+     *  ground, with the motion's velocity), at rest on landing (TR_INTERPOLATE, the angles tilted to the slope); the
+     *  client draws it where the trajectory puts it (CG_Corpse: lerpOrigin / lerpAngles). Each change of its
+     *  trajectories is kept (segments, as the items'), with the time it was seen - x, y, z, yaw: where it appeared */
     function doCorpse(e, num, t) {
       let rec = corpseRec.get(num);
       const cl = e[E.clientNum];
       if (!rec || rec.client !== cl) {
         rec = { num, client: cl, t0: t, t1: t, x: u2f(e[E.px]), y: u2f(e[E.py]), z: u2f(e[E.pz]), yaw: u2f(e[E.yaw]),
-          legs: e[E.legs], torso: e[E.torso] };
+          legs: e[E.legs], torso: e[E.torso], segments: [] };
         corpseRec.set(num, rec);
         c.corpses.push(rec);
       }
       rec.t1 = t;
+      const seg = trajectory(e), ls = rec.segments[rec.segments.length - 1];
+      if (!ls || ls.some((v, i) => i < 18 && v !== seg[i])) { seg.push(t); rec.segments.push(seg); }
     }
 
     function doMissile(e, num, t, prev) {

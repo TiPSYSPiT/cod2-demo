@@ -1,5 +1,5 @@
 /* Player characters in 3D: the game's own body / head / helmet models, animated with the game's own
- * animations (maps3d/_characters, tools/export/characters_export.py).
+ * animations (maps3d/_characters, cod2-ff python/cod2ff/viewer/characters_export.py).
  *
  * - models.json / .bin: each model's LOD 0, skinned to its skeleton (bones: name, parent, local bind
  *   translation + rotation). The body's bones drive the attachments: a head or helmet binds its
@@ -206,6 +206,16 @@ function skinned(t, bones, group) {
   return mesh;
 }
 const EMISSIVE = 0x4a / 255;                             // the materials' emissive grey (template())
+const NOOP = () => {};
+/** a bone the animations turn by its quaternion: three.js keeps the Euler rotation in step on every change (a matrix and
+ *  its decomposition per bone and layer - ~2.6 % of the playback's main thread); nothing reads a bone's Euler angles
+ *  (PLAN.md step 104) */
+export function animBone(name, t, q) {
+  const o = new THREE.Bone();
+  o.quaternion._onChange(NOOP);
+  o.name = name; o.position.fromArray(t); o.quaternion.set(q[0], q[1], q[2], q[3]);
+  return o;
+}
 const clampLight = v => Math.round(Math.min(1, Math.max(0.2, v)) * 50) / 50;   // (steps of 0.02: fewer updates)
 /** key interval of frame f in a key frame list -> [i, j, fraction] */
 const KEY = { i: 0, j: 0, u: 0 };          // (keyAt's result, reused: read it before the next call)
@@ -228,7 +238,7 @@ export class Character {
     this.ok = !!tb;
     if (!tb) return;
     // the body's bones in their bind pose
-    this.bones = tb.bones.map(b => { const o = new THREE.Bone(); o.name = b.name; o.position.fromArray(b.t); o.quaternion.set(b.q[0], b.q[1], b.q[2], b.q[3]); return o; });
+    this.bones = tb.bones.map(b => animBone(b.name, b.t, b.q));
     this.bind = tb.bones;
     this.byName = new Map();
     this.indexOf = new Map(tb.bones.map((b, i) => [this.bones[i], i]));
@@ -281,9 +291,7 @@ export class Character {
     const bones = t.bones.map((b, i) => {
       const own = known(b.name);
       if (own) return own;
-      const o = new THREE.Bone();
-      o.name = b.name; o.position.fromArray(b.t); o.quaternion.set(b.q[0], b.q[1], b.q[2], b.q[3]);
-      return o;
+      return animBone(b.name, b.t, b.q);
     });
     const fresh = t.bones.map(b => !known(b.name));
     t.bones.forEach((b, i) => { if (!fresh[i]) return; const parent = b.parent >= 0 ? bones[b.parent] : this.group; parent.add(bones[i]); this.extraBones.set(b.name, bones[i]); });
@@ -421,7 +429,7 @@ export class Character {
     const angles = (a, k) => q.setFromEuler(e.set(a[k + 2] * D2R * f, a[k] * D2R * f, a[k + 1] * D2R * f, 'ZYX'));   // yaw · pitch · roll
     if (root) {
       root.quaternion.premultiply(angles(c.tag, 0));
-      root.position.x += c.offset[0] * f; root.position.y += c.offset[1] * f;
+      root.position.x += c.offset[0] * f; root.position.y += c.offset[1] * f; root.position.z += (c.offset[2] || 0) * f;
     }
     for (const { bone, k } of bones) {
       const a = c.angles;

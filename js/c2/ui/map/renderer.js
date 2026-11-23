@@ -501,5 +501,4 @@
   }
 
   C2.MapRenderer = MapRenderer;
-  C2.hexA = hexA;
 })(window.C2);

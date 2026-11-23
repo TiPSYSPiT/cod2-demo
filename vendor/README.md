@@ -22,7 +22,8 @@ the same import map entry: `'three'` and `'three/addons/'` always come from the 
 version. Since r171 `three.module.js` imports `./three.core.js` (the part shared with the WebGPU build): both
 files belong together. The only addon used
 is `OrbitControls` (`js/view3d/cameras.js`); the MP4 writer and the GIF encoder are this
-project's own code (`js/c4/ui/map/mp4mux.js`, `gifenc.js`), the fonts are the system's.
+project's own code (`js/c2/ui/map/mp4mux.js`, `gifenc.js`), the fonts (Inter, JetBrains Mono) are
+self-hosted in `assets/fonts/` with their licences.
 
 ## Why local, not the CDN
 

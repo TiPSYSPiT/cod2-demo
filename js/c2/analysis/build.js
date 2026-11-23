@@ -19,6 +19,34 @@ C2.define('build', function (C2) {
    * degree of the recorded one (fast motion stays as it is). Built here, in the analysis (the worker), once per client:
    * on the page it was a second of the 3D view's first frame. -> {x, y, z, yaw, pitch} (Float32Array) or null when
    * nothing is smoothed. The raw arrays stay as they are (kills, statistics, heatmaps). */
+  /* When each sample's legs / torso animation started (the value incl. the restart bit changed) - the 3D players'
+   * crossfades (actors.js startsOf). Per sample: its animation's start, the one it replaced (value, start; -1: none),
+   * <k>From: the sample the value started at (the chain of crossfades walks back from it), <k>Fresh: 1 when nothing
+   * came before it (the first sample, after a gap); dist: the distance walked up to each sample (horizontal, along the
+   * samples as drawn - Q; a gap adds nothing), which the moving animations advance by. Built here, in the analysis (the
+   * worker): on the page it was ~55 ms of the 3D view's first frame (PLAN.md step 104). */
+  function animStarts(P, Q) {
+    const n = P ? P.t.length : 0, s = {};
+    for (const k of ['legs', 'torso']) {
+      const start = new Int32Array(n), prev = new Int32Array(n).fill(-1), prevStart = new Int32Array(n), V = P ? P[k] : null;
+      const from = new Int32Array(n), fresh = new Uint8Array(n);
+      for (let i = 0; i < n; i++) {
+        const gap = i === 0 || P.t[i] - P.t[i - 1] > 1000 || !V;        // (no animation field: nothing to fade)
+        if (gap) { start[i] = P.t[i]; from[i] = i; fresh[i] = 1; continue; }
+        if (V[i] !== V[i - 1]) { start[i] = P.t[i]; prev[i] = V[i - 1]; prevStart[i] = start[i - 1]; from[i] = i; }
+        else { start[i] = start[i - 1]; prev[i] = prev[i - 1]; prevStart[i] = prevStart[i - 1]; from[i] = from[i - 1]; fresh[i] = fresh[i - 1]; }
+      }
+      s[k] = start; s[k + 'Prev'] = prev; s[k + 'PrevStart'] = prevStart; s[k + 'From'] = from; s[k + 'Fresh'] = fresh;
+    }
+    const dist = new Float64Array(n);
+    for (let i = 1; i < n; i++) {
+      const gap = P.t[i] - P.t[i - 1] > 1000;
+      dist[i] = dist[i - 1] + (gap ? 0 : Math.hypot(Q.x[i] - Q.x[i - 1], Q.y[i] - Q.y[i - 1]));
+    }
+    s.dist = dist;
+    return s;
+  }
+
   const DRAWN_K = 3, DRAWN_GAP_MS = 100, DRAWN_JUMP2 = 64 * 64;
   const dAngle = (a, b) => ((b - a + 540) % 360) - 180;
   function drawnTrack(P) {
@@ -93,7 +121,8 @@ C2.define('build', function (C2) {
   /** the side names of the localized team names (dvars g_TeamName_Allies / _Axis) */
   const SIDE_NAMES = { MPUI_AMERICAN: 'American', MPUI_BRITISH: 'British', MPUI_RUSSIAN: 'Russian', MPUI_GERMAN: 'German' };
 
-  function analyzeDemo(bytes, fileInfo, onProgress, onMap) {
+  /** opts: {animStarts: the 3D players' animation starts too (animStarts) - when the demo opens in 3D} */
+  function analyzeDemo(bytes, fileInfo, onProgress, onMap, opts = {}) {
     const { collector: col, visitor } = C2.collect.createCollector();
     // the map's name as soon as the first gamestate is read (the viewer fetches its 3D data meanwhile)
     if (onMap) {
@@ -115,10 +144,10 @@ C2.define('build', function (C2) {
       if (fatal) throw fatal;
       throw new C2.demo.DemoError('The demo contains no readable snapshot.');
     }
-    return build(col, summary, fatal, fileInfo || {});
+    return build(col, summary, fatal, fileInfo || {}, opts || {});
   }
 
-  function build(col, summary, fatal, fileInfo) {
+  function build(col, summary, fatal, fileInfo, opts) {
     const t0 = col.firstTime;
     const endTime = col.lastTime - t0;
     const rel = t => (t == null ? null : Math.max(0, Math.min(t - t0, endTime)));
@@ -310,14 +339,15 @@ C2.define('build', function (C2) {
         t: times,
         x: pick(tr.x, Float32Array), y: pick(tr.y, Float32Array), z: pick(tr.z, Float32Array),
         yaw: pick(tr.yaw, Float32Array), pitch: pick(tr.pitch, Float32Array),
-        flags: pick(tr.flags, Uint8Array), weapon: pick(tr.weapon, Uint8Array),
+        flags: pick(tr.flags, Uint16Array), weapon: pick(tr.weapon, Uint8Array),
         legs: pick(tr.legs, Uint16Array), torso: pick(tr.torso, Uint16Array), lean: pick(tr.lean, Float32Array),
         torsoPitch: pick(tr.torsoPitch, Float32Array), waistPitch: pick(tr.waistPitch, Float32Array),
-        icon: pick(tr.icon, Uint8Array)
+        icon: pick(tr.icon, Uint8Array), moveYaw: pick(tr.moveYaw, Int8Array)
       };
       holdTeleports(positions[cl]);
       const dr = drawnTrack(positions[cl]);
       if (dr) positions[cl].drawn = dr;
+      if (opts.animStarts) positions[cl].starts = animStarts(positions[cl], dr || positions[cl]);
     }
     const posAt = (cl, t, maxAge = 150) => {
       const P = positions[cl]; if (!P) return null;
@@ -417,10 +447,13 @@ C2.define('build', function (C2) {
       if (credit && k.nade) bump(k.attacker, 'nadeKills');
       if (death && k.nade) bump(k.victim, 'nadeDeaths');
     }
-    // the game's scoreboard ("b"): score, deaths and ping as the server counts them (last one of the match)
+    // the game's scoreboard ("b"): score, deaths and ping as the server counts them (the last one of the match:
+    // up to 15 s after its end, before the next restart - zPAM 4 restarts the map ~10 s after the match, which
+    // sets every score to 0 - and on the main map)
     const boards = col.scoreboards.map(sb => ({ t: rel(sb.t), entries: sb.entries }));
     const lastEntry = new Map();
-    const boardUntil = R.matchEnd != null ? R.matchEnd + 15000 : Infinity;
+    const nextRestart = R.matchEnd != null ? R.restarts.find(t => t > R.matchEnd) : undefined;
+    const boardUntil = Math.min(R.matchEnd != null ? R.matchEnd + 15000 : Infinity, nextRestart != null ? nextRestart - 1 : Infinity, mapWindow.end - 1);
     for (const sb of boards) {
       if (sb.t > boardUntil || (R.matchStart != null && sb.t < R.matchStart)) continue;
       for (const e of sb.entries) if (e.client != null) lastEntry.set(e.client, Object.assign({ t: sb.t }, e));
@@ -438,7 +471,9 @@ C2.define('build', function (C2) {
         team, isPov: cl === povClient,
         score: e ? e.score : null, kills: o.kills, deaths: o.deaths, assists: null, ping: e ? e.ping : null,
         scoreboardDeaths: e ? e.deaths : null,
-        statsSource: 'killfeed', scoreboardTime: e ? e.t : null, killsAfterScoreboard: 0, deathsAfterScoreboard: 0,
+        // K and D: counted from the kill feed (the game's scoreboard has no kills); its deaths check D -
+        // 'killfeed' without a scoreboard entry, 'killfeed+scoreboard' when they agree, else 'killfeed-differs'
+        statsSource: !e ? 'killfeed' : e.deaths === o.deaths ? 'killfeed+scoreboard' : 'killfeed-differs', scoreboardTime: e ? e.t : null, killsAfterScoreboard: 0, deathsAfterScoreboard: 0,
         scoreboardSessions: 0, scoreIncomplete: false, ownKills: o.kills, ownDeaths: o.deaths,
         headshots: o.headshots || 0, headshotPct: o.kills ? (o.headshots || 0) / o.kills * 100 : null,
         plants: plants.get(cl) || 0, defuses: defuses.get(cl) || 0,
@@ -471,6 +506,7 @@ C2.define('build', function (C2) {
       const ups = [];
       for (const c of commands) {
         if (c.d.verb !== 'v' || !c.d.dvars || !c.d.dvars.some(([k]) => k.startsWith('ui_scoreboard_'))) continue;
+        if (c.t > boardUntil) break;                   // (the match's numbers: not the next map's, which start at 0)
         if (!cur || c.t - cur.t > 100) ups.push(cur = { t: c.t });
         for (const [k, v] of c.d.dvars) if (k.startsWith('ui_scoreboard_')) state[k] = v;
         cur.names = state.ui_scoreboard_names; cur.assists = state.ui_scoreboard_assists;
@@ -669,6 +705,8 @@ C2.define('build', function (C2) {
       fsGame, mod: fsGame.replace(/^mods\//, '') || (zpamVersion ? 'zPAM ' + zpamVersion : ''),
       ruleset, zpamVersion,
       hostname: serverinfo.sv_hostname || '', serverVersion: serverinfo.shortversion || '',
+      // the server's g_cod2x (system info; CoD2x 1.4: 3 and up turn on its own player animation rules - controllers.js)
+      cod2x: parseInt(systeminfo.g_cod2x != null ? systeminfo.g_cod2x : serverinfo.g_cod2x, 10) || 0,
       gameVersion: cs.get(K.CS.GAME_VERSION) || '',
       povClient, povName: povClient != null ? playerName(povClient) : null,
       durationMs: endTime, firstServerTime: t0, recordDate,
@@ -785,7 +823,7 @@ C2.define('build', function (C2) {
         for (const e of col.modelTimeline || []) (out[e.client] || (out[e.client] = [])).push({ t: rel(e.t), body: name(e.model), attach: e.attach.map(name).filter(Boolean) });
         return out;
       })(),
-      corpses: col.corpses.map(c => Object.assign({}, c, { t0: rel(c.t0), t1: rel(c.t1) })).filter(c => onMainMap(c.t0)),
+      corpses: col.corpses.map(c => Object.assign({}, c, { t0: rel(c.t0), t1: rel(c.t1), segments: c.segments.map(relTraj) })).filter(c => onMainMap(c.t0)),
       // the game's scoreboard as the server sent it ("b": CG_ParseScores - the teams' scores, per client score, ping,
       // deaths, status icon): [{t, axis, allies, e: [client, score, ping, deaths, status, ...]}], a new one when it changed
       scores: (() => {
@@ -978,5 +1016,6 @@ C2.define('build', function (C2) {
   }
 
   C2.analyzeDemo = analyzeDemo;
+  C2.animStarts = animStarts;
   C2.build = { csCategory, protocolLabel, kdRule };
 });
