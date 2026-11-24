@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_carentan_fix",
+ "file": "inspect.bin",
+ "byteLength": 825220,
+ "origin": [
+  483,
+  1294,
+  0
+ ],
+ "vertexCount": 50056,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 300336,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 300336,
+   "length": 95952,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 396288,
+   "length": 351486,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 747776,
+   "length": 77444,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 15992,
+ "volume": 58581,
+ "edges": 19361,
+ "zRange": [
+  -68,
+  416
+ ],
+ "zBounds": [
+  -152,
+  713
+ ],
+ "rect": [
+  -3067,
+  -2256,
+  4033,
+  4845
+ ]
+}

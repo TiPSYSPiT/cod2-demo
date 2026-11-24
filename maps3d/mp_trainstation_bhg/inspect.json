@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_trainstation_bhg",
+ "file": "inspect.bin",
+ "byteLength": 815056,
+ "origin": [
+  6299,
+  -3349,
+  0
+ ],
+ "vertexCount": 49585,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 297510,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 297512,
+   "length": 105750,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 403264,
+   "length": 338364,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 741628,
+   "length": 73428,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 17625,
+ "volume": 56394,
+ "edges": 18357,
+ "zRange": [
+  -40,
+  400
+ ],
+ "zBounds": [
+  -128,
+  1144
+ ],
+ "rect": [
+  3530,
+  -6118,
+  9068,
+  -580
+ ]
+}

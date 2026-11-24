@@ -335,6 +335,16 @@ kbd { font: 500 var(--fs-xs) var(--mono); padding: 1px 6px; border-radius: 5px; 
 .stage.fs .sound-hint { bottom: calc(var(--bar-h) + 2 * var(--gutter)); }
 
 /* 2D map tools (view2d.js), bottom right next to the drawer */
+/* the Inspect popover (view2d.js inspectPanel): label left, its controls right */
+.insp-row { min-height: 26px; }
+.insp-row .sw-l { white-space: nowrap; }
+.insp-ctl { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.insp-range { width: 92px; accent-color: var(--accent); }
+.insp-range:disabled { opacity: .4; }
+.insp-val { width: 42px; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+.insp-color { width: 34px; height: 22px; padding: 0; border: 1px solid var(--line-2); border-radius: 4px; background: none; cursor: pointer; }
+.insp-btns { display: flex; justify-content: flex-end; gap: 8px; }
+.map-tools .ib.active { color: var(--accent); }
 .map-tools { position: absolute; right: var(--drawer-space); bottom: calc(var(--bar-h) + 2 * var(--gutter)); z-index: 5; display: flex; flex-direction: column; gap: 2px; padding: 4px; }
 /* heatmap popover (heatPanel.js) and its legend on the map */
 .heat-panel { gap: 10px; font-size: var(--fs-s); }

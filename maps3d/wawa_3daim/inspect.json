@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "wawa_3daim",
+ "file": "inspect.bin",
+ "byteLength": 3580,
+ "origin": [
+  768,
+  -768,
+  0
+ ],
+ "vertexCount": 177,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 1062,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 1064,
+   "length": 918,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 1984,
+   "length": 990,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 2976,
+   "length": 604,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 153,
+ "volume": 165,
+ "edges": 151,
+ "zRange": [
+  8,
+  728
+ ],
+ "zBounds": [
+  0,
+  728
+ ],
+ "rect": [
+  0,
+  -1536,
+  1536,
+  0
+ ]
+}

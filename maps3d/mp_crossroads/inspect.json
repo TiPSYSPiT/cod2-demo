@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_crossroads",
+ "file": "inspect.bin",
+ "byteLength": 1989240,
+ "origin": [
+  727,
+  2468,
+  0
+ ],
+ "vertexCount": 76093,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 456558,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 456560,
+   "length": 293016,
+   "type": "uint32",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 749576,
+   "length": 1028064,
+   "type": "uint32",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 1777640,
+   "length": 211600,
+   "type": "uint32",
+   "itemSize": 2
+  }
+ },
+ "floors": 24418,
+ "volume": 85672,
+ "edges": 26450,
+ "zRange": [
+  -164,
+  266
+ ],
+ "zBounds": [
+  -261,
+  581
+ ],
+ "rect": [
+  -2798,
+  -1056,
+  4252,
+  5993
+ ]
+}

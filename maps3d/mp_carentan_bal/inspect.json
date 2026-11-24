@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_carentan_bal",
+ "file": "inspect.bin",
+ "byteLength": 828624,
+ "origin": [
+  343,
+  1304,
+  0
+ ],
+ "vertexCount": 50248,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 301488,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 301488,
+   "length": 95796,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 397284,
+   "length": 353640,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 750924,
+   "length": 77700,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 15966,
+ "volume": 58940,
+ "edges": 19425,
+ "zRange": [
+  -65,
+  416
+ ],
+ "zBounds": [
+  -152,
+  696
+ ],
+ "rect": [
+  -3048,
+  -2088,
+  3734,
+  4695
+ ]
+}

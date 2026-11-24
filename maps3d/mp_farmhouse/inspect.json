@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_farmhouse",
+ "file": "inspect.bin",
+ "byteLength": 439100,
+ "origin": [
+  -1296,
+  -296,
+  0
+ ],
+ "vertexCount": 26125,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 156750,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 156752,
+   "length": 73884,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 230636,
+   "length": 165696,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 396332,
+   "length": 42768,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 12314,
+ "volume": 27616,
+ "edges": 10692,
+ "zRange": [
+  -59,
+  391
+ ],
+ "zBounds": [
+  -101,
+  660
+ ],
+ "rect": [
+  -4775,
+  -3776,
+  2184,
+  3183
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_vallente_fix",
+ "file": "inspect.bin",
+ "byteLength": 720560,
+ "origin": [
+  -280,
+  322,
+  0
+ ],
+ "vertexCount": 43881,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 263286,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 263288,
+   "length": 76998,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 340288,
+   "length": 319368,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 659656,
+   "length": 60904,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 12833,
+ "volume": 53228,
+ "edges": 15226,
+ "zRange": [
+  -6,
+  408
+ ],
+ "zBounds": [
+  -72,
+  670
+ ],
+ "rect": [
+  -3580,
+  -2978,
+  3020,
+  3622
+ ]
+}

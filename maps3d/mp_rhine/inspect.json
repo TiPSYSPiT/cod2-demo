@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_rhine",
+ "file": "inspect.bin",
+ "byteLength": 1856516,
+ "origin": [
+  5277,
+  15893,
+  0
+ ],
+ "vertexCount": 74028,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 444168,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 444168,
+   "length": 232236,
+   "type": "uint32",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 676404,
+   "length": 1009536,
+   "type": "uint32",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 1685940,
+   "length": 170576,
+   "type": "uint32",
+   "itemSize": 2
+  }
+ },
+ "floors": 19353,
+ "volume": 84128,
+ "edges": 21322,
+ "zRange": [
+  325,
+  923
+ ],
+ "zBounds": [
+  272,
+  1562
+ ],
+ "rect": [
+  1640,
+  12256,
+  8914,
+  19530
+ ]
+}

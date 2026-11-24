@@ -176,6 +176,7 @@
     const R = new C2.MapRenderer(stage, view.world, { dpr: p.dpr, noInput: true, readback: p.gif });
     R.rot = view.rot; R.zoom = view.zoom; R.pan = { x: view.pan.x, y: view.pan.y };
     R.image = view.image; R.imageRect = view.imageRect;
+    R.cam = Object.assign({}, view.cam); R.layer = view.layer;     // (inspect: the tilted camera, the mesh layer)
     R.resize();
     R.canvas.width = p.W; R.canvas.height = p.H;
     const progress = (i, n) => { const v = Math.min(100, Math.floor(100 * i / n)); D.bar.style.width = v + '%'; D.pct.textContent = v + ' %'; };

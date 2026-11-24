@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_downtown",
+ "file": "inspect.bin",
+ "byteLength": 698788,
+ "origin": [
+  1846,
+  -1252,
+  0
+ ],
+ "vertexCount": 44313,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 265878,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 265880,
+   "length": 87060,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 352940,
+   "length": 289776,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 642716,
+   "length": 56072,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 14510,
+ "volume": 48296,
+ "edges": 14018,
+ "zRange": [
+  -8,
+  1072
+ ],
+ "zBounds": [
+  -128,
+  1204
+ ],
+ "rect": [
+  -1302,
+  -4400,
+  4994,
+  1896
+ ]
+}

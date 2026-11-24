@@ -16,6 +16,13 @@
    },
    "bytes": 11738712,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_breakout/inspect.json",
+    "zRange": [
+     -54,
+     378
+    ]
+   },
    "playRect": [
     2071,
     1790,
@@ -61,6 +68,13 @@
    },
    "bytes": 9521228,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_breakout_tls/inspect.json",
+    "zRange": [
+     -60,
+     385
+    ]
+   },
    "playRect": [
     1741,
     1878,
@@ -117,6 +131,13 @@
    },
    "bytes": 2788684,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_brecourt/inspect.json",
+    "zRange": [
+     -93,
+     218
+    ]
+   },
    "playRect": [
     -4601,
     -5234,
@@ -162,6 +183,13 @@
    },
    "bytes": 3930184,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_burgundy/inspect.json",
+    "zRange": [
+     0,
+     329
+    ]
+   },
    "playRect": [
     -1977,
     -1592,
@@ -218,6 +246,13 @@
    },
    "bytes": 3948188,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_burgundy_fix/inspect.json",
+    "zRange": [
+     0,
+     329
+    ]
+   },
    "playRect": [
     -1977,
     -1592,
@@ -274,6 +309,13 @@
    },
    "bytes": 8521944,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_carentan/inspect.json",
+    "zRange": [
+     -68,
+     412
+    ]
+   },
    "playRect": [
     -3067,
     -2256,
@@ -330,6 +372,13 @@
    },
    "bytes": 8598028,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_carentan_bal/inspect.json",
+    "zRange": [
+     -65,
+     416
+    ]
+   },
    "playRect": [
     -3048,
     -2088,
@@ -375,6 +424,13 @@
    },
    "bytes": 8525032,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_carentan_fix/inspect.json",
+    "zRange": [
+     -68,
+     416
+    ]
+   },
    "playRect": [
     -3067,
     -2256,
@@ -431,6 +487,13 @@
    },
    "bytes": 6993736,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_chelm_fix/inspect.json",
+    "zRange": [
+     -115,
+     280
+    ]
+   },
    "playRect": [
     -4612,
     -4163,
@@ -476,6 +539,13 @@
    },
    "bytes": 13346632,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_crossroads/inspect.json",
+    "zRange": [
+     -164,
+     266
+    ]
+   },
    "playRect": [
     -2798,
     -1056,
@@ -521,6 +591,13 @@
    },
    "bytes": 7097060,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_dawnville/inspect.json",
+    "zRange": [
+     -64,
+     457
+    ]
+   },
    "playRect": [
     -2678,
     -19419,
@@ -577,6 +654,13 @@
    },
    "bytes": 7223728,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_dawnville_fix/inspect.json",
+    "zRange": [
+     -64,
+     457
+    ]
+   },
    "playRect": [
     -2678,
     -19296,
@@ -633,6 +717,13 @@
    },
    "bytes": 7001932,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_dawnville_sun/inspect.json",
+    "zRange": [
+     -64,
+     458
+    ]
+   },
    "playRect": [
     -2460,
     -19510,
@@ -678,6 +769,13 @@
    },
    "bytes": 1624948,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_decoy/inspect.json",
+    "zRange": [
+     -694,
+     -105
+    ]
+   },
    "playRect": [
     4742,
     -16322,
@@ -723,6 +821,13 @@
    },
    "bytes": 10025616,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_downtown/inspect.json",
+    "zRange": [
+     -8,
+     1072
+    ]
+   },
    "playRect": [
     -1302,
     -4400,
@@ -768,6 +873,13 @@
    },
    "bytes": 4920596,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_farmhouse/inspect.json",
+    "zRange": [
+     -59,
+     391
+    ]
+   },
    "playRect": [
     -4775,
     -3776,
@@ -813,6 +925,13 @@
    },
    "bytes": 11228768,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_harbor/inspect.json",
+    "zRange": [
+     -10,
+     544
+    ]
+   },
    "playRect": [
     -12611,
     -11248,
@@ -858,6 +977,13 @@
    },
    "bytes": 9507668,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_leningrad/inspect.json",
+    "zRange": [
+     8,
+     759
+    ]
+   },
    "playRect": [
     -2494,
     -2186,
@@ -903,6 +1029,13 @@
    },
    "bytes": 11895640,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_leningrad_mjr/inspect.json",
+    "zRange": [
+     3,
+     771
+    ]
+   },
    "playRect": [
     -3008,
     -2952,
@@ -959,6 +1092,13 @@
    },
    "bytes": 10155176,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_leningrad_tls/inspect.json",
+    "zRange": [
+     8,
+     752
+    ]
+   },
    "playRect": [
     -2494,
     -2292,
@@ -1004,6 +1144,13 @@
    },
    "bytes": 8686880,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_matmata/inspect.json",
+    "zRange": [
+     -40,
+     338
+    ]
+   },
    "playRect": [
     980,
     3118,
@@ -1060,6 +1207,13 @@
    },
    "bytes": 8691568,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_matmata_fix/inspect.json",
+    "zRange": [
+     -40,
+     338
+    ]
+   },
    "playRect": [
     980,
     3118,
@@ -1116,6 +1270,13 @@
    },
    "bytes": 9903228,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_railyard/inspect.json",
+    "zRange": [
+     -60,
+     515
+    ]
+   },
    "playRect": [
     -4195,
     -2272,
@@ -1161,6 +1322,13 @@
    },
    "bytes": 10670504,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_railyard_mjr/inspect.json",
+    "zRange": [
+     -58,
+     547
+    ]
+   },
    "playRect": [
     -4367,
     -2586,
@@ -1217,6 +1385,13 @@
    },
    "bytes": 13887780,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_rhine/inspect.json",
+    "zRange": [
+     325,
+     923
+    ]
+   },
    "playRect": [
     1640,
     12256,
@@ -1262,6 +1437,13 @@
    },
    "bytes": 4150280,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_toujane/inspect.json",
+    "zRange": [
+     -18,
+     378
+    ]
+   },
    "playRect": [
     -1520,
     -1225,
@@ -1318,6 +1500,13 @@
    },
    "bytes": 4246084,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_toujane_fix/inspect.json",
+    "zRange": [
+     -18,
+     376
+    ]
+   },
    "playRect": [
     -1520,
     -1225,
@@ -1374,6 +1563,13 @@
    },
    "bytes": 8428552,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_trainstation/inspect.json",
+    "zRange": [
+     -40,
+     424
+    ]
+   },
    "playRect": [
     2255,
     -6976,
@@ -1430,6 +1626,13 @@
    },
    "bytes": 8119232,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_trainstation_bhg/inspect.json",
+    "zRange": [
+     -40,
+     400
+    ]
+   },
    "playRect": [
     3530,
     -6118,
@@ -1475,6 +1678,13 @@
    },
    "bytes": 8441656,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_trainstation_fix/inspect.json",
+    "zRange": [
+     -40,
+     424
+    ]
+   },
    "playRect": [
     2252,
     -6976,
@@ -1531,6 +1741,13 @@
    },
    "bytes": 7655080,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "mp_vallente_fix/inspect.json",
+    "zRange": [
+     -6,
+     408
+    ]
+   },
    "playRect": [
     -3580,
     -2978,
@@ -1587,6 +1804,13 @@
    },
    "bytes": 36112,
    "exported": "2026-11-19",
+   "inspect": {
+    "file": "wawa_3daim/inspect.json",
+    "zRange": [
+     8,
+     728
+    ]
+   },
    "playRect": [
     0,
     -1536,

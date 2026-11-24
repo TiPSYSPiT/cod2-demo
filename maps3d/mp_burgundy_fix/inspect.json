@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_burgundy_fix",
+ "file": "inspect.bin",
+ "byteLength": 372072,
+ "origin": [
+  844,
+  1229,
+  0
+ ],
+ "vertexCount": 22514,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 135084,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 135084,
+   "length": 55278,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 190364,
+   "length": 150564,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 340928,
+   "length": 31144,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 9213,
+ "volume": 25094,
+ "edges": 7786,
+ "zRange": [
+  0,
+  329
+ ],
+ "zBounds": [
+  -64,
+  624
+ ],
+ "rect": [
+  -1977,
+  -1592,
+  3665,
+  4050
+ ]
+}

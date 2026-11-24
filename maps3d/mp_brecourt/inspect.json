@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_brecourt",
+ "file": "inspect.bin",
+ "byteLength": 302576,
+ "origin": [
+  56,
+  -576,
+  0
+ ],
+ "vertexCount": 18358,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 110148,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 110148,
+   "length": 98388,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 208536,
+   "length": 68790,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 277328,
+   "length": 25248,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 16398,
+ "volume": 11465,
+ "edges": 6312,
+ "zRange": [
+  -93,
+  218
+ ],
+ "zBounds": [
+  -192,
+  910
+ ],
+ "rect": [
+  -4601,
+  -5234,
+  4714,
+  4082
+ ]
+}

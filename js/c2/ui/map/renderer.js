@@ -5,7 +5,13 @@
  * (scale, pan and the rotation in quarter turns counter-clockwise). Points, lines and circles go
  * through pt(); the background image and the heatmap raster are drawn with the same matrix as
  * canvas transform; view directions use dirAngle(). Texts are drawn at the transformed point,
- * so they always stay upright. */
+ * so they always stay upright.
+ *
+ * Inspect (js/view2d/inspect.js): cam = {yaw (radians, on top of the quarter turns), tilt (radians, 0 = from
+ * above), zRef (world z of the plane the matrix maps)} - an orthographic camera tilted about the screen's x axis.
+ * The matrix then maps the plane z = zRef; pt(x, y, z) adds the height (a point higher up is drawn higher on the
+ * screen) and depth() its distance. Flat (tilt 0, yaw 0): the matrix of the quarter turns as before, z ignored.
+ * layer: a background drawn instead of the image (the inspect mesh) - layer.render(renderer) -> a canvas. */
 (function (C2) {
   'use strict';
   const CFG = C2.mapConfig;
@@ -30,6 +36,9 @@
       this.rot = 0;                   // quarter turns counter-clockwise (0..3)
       this.image = null;
       this.imageRect = null;          // world rect the image covers
+      this.cam = { yaw: 0, tilt: 0, zRef: 0 };
+      this.layer = null;
+      this.orbit = null;              // inspect: {minTilt, maxTilt} - the right button / Shift + drag orbits
       this.dpr = 1;
       this.resize();
       if (!opts.noInput) {
@@ -69,21 +78,34 @@
 
     /** world -> css px: X = a*x + c*y + e, Y = b*x + d*y + f (canvas setTransform order) */
     matrix() {
-      const key = this.scale + '|' + this.pan.x + '|' + this.pan.y + '|' + this.rot + '|' + this.w + '|' + this.h;
+      const C = this.cam;
+      const key = this.scale + '|' + this.pan.x + '|' + this.pan.y + '|' + this.rot + '|' + this.w + '|' + this.h + '|' + C.yaw + '|' + C.tilt + '|' + C.zRef;
       if (this.mKey === key) return this.m;
       this.mKey = key;
       return (this.m = this.computeMatrix());
     }
+    /** inspecting: tilted or turned off the quarter turns */
+    get tilted() { return this.cam.tilt !== 0 || this.cam.yaw !== 0; }
     computeMatrix() {
-      const s = this.scale, W = this.world;
+      const s = this.scale, W = this.world, C = this.cam;
       const cx = (W.minX + W.maxX) / 2, cy = (W.minY + W.maxY) / 2;
-      // screen y points down; each quarter turn ccw maps the screen vector (u, v) to (v, -u)
-      const M = [[s, 0, 0, -s], [0, -s, -s, 0], [-s, 0, 0, s], [0, s, s, 0]][this.rot];
-      const [a, b, c, d] = M;
-      return { a, b, c, d, e: this.w / 2 + this.pan.x - (a * cx + c * cy), f: this.h / 2 + this.pan.y - (b * cx + d * cy) };
+      let a, b, c, d, kz = 0;
+      if (!this.tilted) {
+        // screen y points down; each quarter turn ccw maps the screen vector (u, v) to (v, -u)
+        [a, b, c, d] = [[s, 0, 0, -s], [0, -s, -s, 0], [-s, 0, 0, s], [0, s, s, 0]][this.rot];
+      } else {
+        // turned by th (the quarter turns + yaw), then tilted by ph about the screen's x axis (orthographic)
+        const th = this.rot * Math.PI / 2 + C.yaw, ct = Math.cos(th), st = Math.sin(th), cp = Math.cos(C.tilt);
+        a = s * ct; c = -s * st; b = -s * cp * st; d = -s * cp * ct;
+        kz = s * Math.sin(C.tilt);
+      }
+      return { a, b, c, d, kz, cx, cy, e: this.w / 2 + this.pan.x - (a * cx + c * cy), f: this.h / 2 + this.pan.y - (b * cx + d * cy) };
     }
-    /** world -> css px */
-    pt(x, y) { const m = this.matrix(); return [m.a * x + m.c * y + m.e, m.b * x + m.d * y + m.f]; }
+    /** world -> css px; z: the height (inspect - ignored from above) */
+    pt(x, y, z) {
+      const m = this.matrix(), Y = m.b * x + m.d * y + m.f;
+      return [m.a * x + m.c * y + m.e, m.kz && z != null ? Y - m.kz * (z - this.cam.zRef) : Y];
+    }
     /** css px -> world */
     inv(px, py) {
       const m = this.matrix(), det = m.a * m.d - m.b * m.c;
@@ -129,19 +151,37 @@
         if (this.onChange) this.onChange();
       }, { passive: false });
       let drag = null;
-      c.addEventListener('mousedown', e => { drag = { x: e.clientX, y: e.clientY, px: this.pan.x, py: this.pan.y }; c.style.cursor = 'grabbing'; });
+      // (inspect: the right button or Shift + drag orbits - this.orbit {minTilt, maxTilt} while it may)
+      c.addEventListener('contextmenu', e => { if (this.orbit) e.preventDefault(); });
+      c.addEventListener('mousedown', e => {
+        const orbit = !!this.orbit && (e.button === 2 || e.shiftKey);
+        if (e.button === 2 && !orbit) return;
+        drag = { x: e.clientX, y: e.clientY, px: this.pan.x, py: this.pan.y, orbit, yaw: this.cam.yaw, tilt: this.cam.tilt };
+        c.style.cursor = orbit ? 'move' : 'grabbing';
+      });
       // (on window, so a drag may leave the canvas; removed by dispose - they would keep the renderer and its
       // demo alive after another demo is opened)
       const move = e => {
         if (!drag) return;
-        this.pan.x = drag.px + e.clientX - drag.x;
-        this.pan.y = drag.py + e.clientY - drag.y;
+        if (drag.orbit && this.orbit) {
+          const O = this.orbit;
+          this.cam.yaw = drag.yaw + (e.clientX - drag.x) * 0.006;
+          this.cam.tilt = Math.min(O.maxTilt, Math.max(O.minTilt, drag.tilt - (e.clientY - drag.y) * 0.005));
+          if (this.onOrbit) this.onOrbit();
+        } else {
+          this.pan.x = drag.px + e.clientX - drag.x;
+          this.pan.y = drag.py + e.clientY - drag.y;
+        }
         if (this.onChange) this.onChange();
       };
-      const up = () => { drag = null; c.style.cursor = ''; };
+      // (an orbit with the right button that ends off the map: no context menu where it ends)
+      let noMenu = 0;
+      const up = () => { if (drag && drag.orbit) noMenu = performance.now() + 400; drag = null; c.style.cursor = ''; };
+      const menu = e => { if (performance.now() < noMenu) { e.preventDefault(); noMenu = 0; } };
       window.addEventListener('mousemove', move);
       window.addEventListener('mouseup', up);
-      this.unbindWindow = () => { window.removeEventListener('mousemove', move); window.removeEventListener('mouseup', up); };
+      window.addEventListener('contextmenu', menu, true);
+      this.unbindWindow = () => { window.removeEventListener('mousemove', move); window.removeEventListener('mouseup', up); window.removeEventListener('contextmenu', menu, true); };
       c.addEventListener('dblclick', () => { this.zoom = 1; this.pan = { x: 0, y: 0 }; if (this.onChange) this.onChange(); });
       // touch: one finger pans, two fingers pinch-zoom around their midpoint (the mouse keeps the handlers above)
       const touches = new Map();
@@ -185,6 +225,18 @@
       return g;
     }
 
+    /** a background layer instead of the image (the inspect mesh): its canvas, the size of this one */
+    drawLayer() {
+      const src = this.layer && this.layer.render(this);
+      if (!src) return false;
+      const g = this.ctx;
+      g.save();
+      g.setTransform(1, 0, 0, 1, 0, 0);
+      g.drawImage(src, 0, 0, this.canvas.width, this.canvas.height);
+      g.restore();
+      return true;
+    }
+
     /** a raster (image / heatmap) covering world rect R: top-left pixel at (minX, maxY) */
     drawRaster(src, R, alpha) {
       this.inWorld(g => {
@@ -198,6 +250,7 @@
 
     drawBackground() {
       const g = this.ctx;
+      if (this.layer && this.drawLayer()) return;
       if (this.image && this.imageRect) { this.drawRaster(this.image, this.imageRect, 0.9); return; }
       // neutral grid over the world rectangle
       const W = this.world;
@@ -218,7 +271,7 @@
     }
 
 
-    /** trail: array of [x, y] segments (each segment an array of points) with per-point age 0..1 */
+    /** trail: array of segments (each an array of points [x, y, age 0..1, z]) */
     drawTrail(segments, color, alphaScale = 1) {
       const g = this.ctx;
       g.lineCap = 'round';
@@ -227,7 +280,7 @@
       g.strokeStyle = color;
       for (const seg of segments) {
         for (let i = 1; i < seg.length; i++) {
-          const a = this.pt(seg[i - 1][0], seg[i - 1][1]), b = this.pt(seg[i][0], seg[i][1]);
+          const a = this.pt(seg[i - 1][0], seg[i - 1][1], seg[i - 1][3]), b = this.pt(seg[i][0], seg[i][1], seg[i][3]);
           g.globalAlpha = Math.max(0.05, 1 - seg[i][2]) * 0.9 * alphaScale;     // fade out towards the old end
           g.beginPath();
           g.moveTo(a[0], a[1]);
@@ -238,10 +291,11 @@
       g.globalAlpha = 1;
     }
 
-    /** opts: {hollow, alpha, firing, highlight (POV follow: white ring), hover (from the player table), label} */
+    /** p: {x, y, z, yaw, crouch, prone}; opts: {hollow, alpha, firing, highlight (POV follow: white ring), hover (from
+     *  the player table), label} */
     drawPlayer(p, color, opts) {
       const g = this.ctx;
-      const [x, y] = this.pt(p.x, p.y);
+      const [x, y] = this.pt(p.x, p.y, p.z);
       const alpha = opts.alpha == null ? 1 : opts.alpha;
       g.globalAlpha = alpha;
       if (!opts.hollow) {
@@ -299,9 +353,9 @@
       g.globalAlpha = 1;
     }
 
-    drawDeath(x, y, color, alpha) {
+    drawDeath(x, y, color, alpha, z) {
       const g = this.ctx;
-      const [X, Y] = this.pt(x, y), s = 6;
+      const [X, Y] = this.pt(x, y, z), s = 6;
       g.globalAlpha = alpha;
       g.lineWidth = 2.6;
       g.strokeStyle = 'rgba(0,0,0,0.9)';
@@ -312,9 +366,9 @@
       g.globalAlpha = 1;
     }
 
-    /** a world box (x / y of mins, maxs) outlined, dashed, with a label at its top-left corner */
+    /** a world box (x / y of mins, maxs) outlined, dashed, with a label at its top-left corner (inspect: at its bottom) */
     drawBox(mins, maxs, color, label) {
-      const g = this.ctx, c = [[mins[0], mins[1]], [maxs[0], mins[1]], [maxs[0], maxs[1]], [mins[0], maxs[1]]].map(p => this.pt(p[0], p[1]));
+      const g = this.ctx, c = [[mins[0], mins[1]], [maxs[0], mins[1]], [maxs[0], maxs[1]], [mins[0], maxs[1]]].map(p => this.pt(p[0], p[1], mins[2]));
       g.save();
       g.globalAlpha = 0.9; g.strokeStyle = color; g.lineWidth = 1.6; g.setLineDash([7, 4]);
       g.fillStyle = color + '1a';
@@ -330,8 +384,8 @@
     }
 
     /** a camera at a world point looking along yaw (degrees): a small body with its view cone, and a label */
-    drawCamera(x, y, yaw, label) {
-      const g = this.ctx, [X, Y] = this.pt(x, y), a = this.dirAngle(yaw);
+    drawCamera(x, y, yaw, label, z) {
+      const g = this.ctx, [X, Y] = this.pt(x, y, z), a = this.dirAngle(yaw);
       g.save();
       g.translate(X, Y); g.rotate(a);
       g.globalAlpha = 0.95; g.lineWidth = 1.6;
@@ -348,9 +402,9 @@
     }
 
     /** a hit (zPAM's damage log): a ring at the point and its damage beside it */
-    drawHit(x, y, color, alpha, text) {
+    drawHit(x, y, color, alpha, text, z) {
       const g = this.ctx;
-      const [X, Y] = this.pt(x, y);
+      const [X, Y] = this.pt(x, y, z);
       g.globalAlpha = alpha;
       g.lineWidth = 3; g.strokeStyle = 'rgba(0,0,0,0.85)';
       g.beginPath(); g.arc(X, Y, 4.5, 0, Math.PI * 2); g.stroke();
@@ -374,7 +428,7 @@
       if (dash) g.setLineDash(dash);
       g.beginPath();
       for (let i = 0; i < points.length; i++) {
-        const [X, Y] = this.pt(points[i][0], points[i][1]);
+        const [X, Y] = this.pt(points[i][0], points[i][1], points[i][2]);
         if (i) g.lineTo(X, Y); else g.moveTo(X, Y);
       }
       g.stroke();
@@ -382,13 +436,15 @@
       g.globalAlpha = 1;
     }
 
-    drawCircle(x, y, radiusWorld, color, alpha, fill) {
+    drawCircle(x, y, radiusWorld, color, alpha, fill, z) {
       const g = this.ctx;
       const r = Math.max(3, radiusWorld * this.scale);
-      const [X, Y] = this.pt(x, y);
+      const [X, Y] = this.pt(x, y, z);
       g.globalAlpha = alpha;
       g.beginPath();
-      g.arc(X, Y, r, 0, Math.PI * 2);
+      // (inspect: a circle on the ground, seen tilted)
+      if (this.cam.tilt) g.ellipse(X, Y, r, Math.max(1.5, r * Math.cos(this.cam.tilt)), 0, 0, Math.PI * 2);
+      else g.arc(X, Y, r, 0, Math.PI * 2);
       if (fill) { g.fillStyle = hexA(color, fill); g.fill(); }
       g.strokeStyle = color;
       g.lineWidth = 1.6;
@@ -398,10 +454,10 @@
 
     /** the bomb: small diamond with a light border (carried: a small round dot); opts {color, alpha,
      *  hollow, round, pulse 0..1 (planted ring), burst 0..1 (explosion), dx, dy (screen offset, e.g.
-     *  next to the carrier), label (text right of it: the bomb timer)} -> screen position */
+     *  next to the carrier), label (text right of it: the bomb timer), z (inspect: its height)} -> screen position */
     drawBomb(x, y, opts) {
       const g = this.ctx, B = CFG.BOMB;
-      const p = this.pt(x, y);
+      const p = this.pt(x, y, opts.z);
       const X = p[0] + (opts.dx || 0), Y = p[1] + (opts.dy || 0), s = B.size;
       const color = opts.color || B.color;
       g.globalAlpha = opts.alpha == null ? 1 : opts.alpha;
@@ -447,9 +503,9 @@
     }
 
     /** ring around a player dot (the bomb carrier) */
-    drawRing(x, y, color, radiusPx, alpha) {
+    drawRing(x, y, color, radiusPx, alpha, z) {
       const g = this.ctx;
-      const [X, Y] = this.pt(x, y);
+      const [X, Y] = this.pt(x, y, z);
       g.globalAlpha = alpha == null ? 1 : alpha;
       g.beginPath(); g.arc(X, Y, radiusPx, 0, Math.PI * 2);
       g.strokeStyle = color; g.lineWidth = 1.8; g.stroke();
@@ -457,9 +513,9 @@
     }
 
     /** an S&D bomb site: a ring with its letter (screen-size, does not scale with the zoom) */
-    drawSite(x, y, label) {
+    drawSite(x, y, label, z) {
       const g = this.ctx;
-      const [X, Y] = this.pt(x, y);
+      const [X, Y] = this.pt(x, y, z);
       g.beginPath(); g.arc(X, Y, 11, 0, Math.PI * 2);
       g.fillStyle = 'rgba(11,11,12,0.62)'; g.fill();
       g.strokeStyle = '#ffc27a'; g.lineWidth = 2; g.stroke();
@@ -468,9 +524,9 @@
       g.textAlign = 'start'; g.textBaseline = 'alphabetic';
     }
 
-    drawDot(x, y, color, alpha, r = 2.5) {
+    drawDot(x, y, color, alpha, r = 2.5, z) {
       const g = this.ctx;
-      const [X, Y] = this.pt(x, y);
+      const [X, Y] = this.pt(x, y, z);
       g.globalAlpha = alpha;
       g.fillStyle = color;
       g.beginPath();

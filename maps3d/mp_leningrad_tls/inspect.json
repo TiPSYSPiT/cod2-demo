@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_leningrad_tls",
+ "file": "inspect.bin",
+ "byteLength": 957568,
+ "origin": [
+  -52,
+  149,
+  0
+ ],
+ "vertexCount": 53122,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 318732,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 318732,
+   "length": 137388,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 456120,
+   "length": 400602,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 856724,
+   "length": 100844,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 22898,
+ "volume": 66767,
+ "edges": 25211,
+ "zRange": [
+  8,
+  752
+ ],
+ "zBounds": [
+  -239,
+  953
+ ],
+ "rect": [
+  -2494,
+  -2292,
+  2389,
+  2590
+ ]
+}

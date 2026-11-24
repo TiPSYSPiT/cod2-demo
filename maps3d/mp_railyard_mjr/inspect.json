@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_railyard_mjr",
+ "file": "inspect.bin",
+ "byteLength": 1878268,
+ "origin": [
+  -1054,
+  726,
+  0
+ ],
+ "vertexCount": 66496,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 398976,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 398976,
+   "length": 296460,
+   "type": "uint32",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 695436,
+   "length": 959568,
+   "type": "uint32",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 1655004,
+   "length": 223264,
+   "type": "uint32",
+   "itemSize": 2
+  }
+ },
+ "floors": 24705,
+ "volume": 79964,
+ "edges": 27908,
+ "zRange": [
+  -58,
+  547
+ ],
+ "zBounds": [
+  -99,
+  976
+ ],
+ "rect": [
+  -4367,
+  -2586,
+  2258,
+  4039
+ ]
+}

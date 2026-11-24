@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_dawnville_sun",
+ "file": "inspect.bin",
+ "byteLength": 658656,
+ "origin": [
+  612,
+  -16438,
+  0
+ ],
+ "vertexCount": 40752,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 244512,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 244512,
+   "length": 83610,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 328124,
+   "length": 273618,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 601744,
+   "length": 56912,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 13935,
+ "volume": 45603,
+ "edges": 14228,
+ "zRange": [
+  -64,
+  458
+ ],
+ "zBounds": [
+  -128,
+  1127
+ ],
+ "rect": [
+  -2460,
+  -19510,
+  3684,
+  -13366
+ ]
+}

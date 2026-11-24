@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_toujane_fix",
+ "file": "inspect.bin",
+ "byteLength": 450708,
+ "origin": [
+  1502,
+  1797,
+  0
+ ],
+ "vertexCount": 26883,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 161298,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 161300,
+   "length": 53730,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 215032,
+   "length": 203016,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 418048,
+   "length": 32660,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 8955,
+ "volume": 33836,
+ "edges": 8165,
+ "zRange": [
+  -18,
+  376
+ ],
+ "zBounds": [
+  -64,
+  1106
+ ],
+ "rect": [
+  -1520,
+  -1225,
+  4524,
+  4819
+ ]
+}

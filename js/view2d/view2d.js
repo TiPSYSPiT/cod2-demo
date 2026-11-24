@@ -2,6 +2,7 @@
  * Match + Replay state (from cod4-demo3d). Renderer, heatmap, heat panel and video export are the
  * shared modules in js/c2/ui/map. */
 import { InfoHint, fadeHint } from '../app/infoHint.js';
+import { InspectLayer, LOOK_PRESETS, DEFAULT_LOOK } from './inspect.js';
 
 const C2 = window.C2;
 const { el, icon } = C2.ui;
@@ -11,6 +12,12 @@ const BOMB_TEXT = { base: 'Bomb at its start position', dropped: 'Dropped', plan
 const BOMB_SOURCE = { objective: 'compass objective', model: 'bomb model', planter: 'in front of the planter, as the game places it',
   'last known': 'position of the planter (≈)', message: 'server message' };
 const BG_KEY = 'cod2demo3d.background';
+// Inspect (inspect.js): on / off and the look, remembered (localStorage); the camera it tilts to
+const INSPECT_KEY = 'cod2demo.inspect', LOOK_KEY = 'cod2demo.inspect.look';
+const INSPECT_TILT = 55 * Math.PI / 180, INSPECT_YAW = -35 * Math.PI / 180;
+const ORBIT = { minTilt: 5 * Math.PI / 180, maxTilt: 80 * Math.PI / 180 };
+const HINT_FLAT = 'Wheel: zoom · drag: pan · double-click: reset · Q / E: rotate';
+const HINT_INSPECT = HINT_FLAT + ' · right-drag / Shift + drag: orbit';
 
 export class View2D {
   constructor(replay, container) {
@@ -24,7 +31,7 @@ export class View2D {
     // controls hint fades after a few seconds (infoHint.js)
     this.info = new InfoHint(this.stage, 'Map image details');
     this.hint = this.info.box;
-    this.ctrlHint = el('div', { class: 'cam-hint' }, 'Wheel: zoom · drag: pan · double-click: reset · Q / E: rotate');
+    this.ctrlHint = el('div', { class: 'cam-hint' }, HINT_FLAT);
     this.renderer = new C2.MapRenderer(this.stage, M.rect);
     this.renderer.setRotation(this.loadRotation());
     this.renderer.onChange = () => replay.invalidate();
@@ -47,6 +54,7 @@ export class View2D {
       tool('rotr', 'Rotate 90° right (E)', 'Rotate right', () => this.rotate(-1)));
     this.stage.append(tools, this.ctrlHint, this.heatUi.panel, this.heatUi.chip);
     this.panels = [{ key: 'heat', title: 'Heatmap', icon: 'flame', custom: this.heatUi }];
+    this.setupInspect(tools);
     // backgrounds: the top-down render of the BSP and zPAM's radar image (assets/maps/backgrounds.js),
     // or the neutral grid; the choice is remembered (a group of the Layers popover)
     const bgs = M.backgrounds || {};
@@ -64,6 +72,7 @@ export class View2D {
       if (tag === 'INPUT' && document.activeElement.type !== 'checkbox' || tag === 'SELECT' || tag === 'TEXTAREA') return;
       if (e.code === 'KeyQ') { e.preventDefault(); this.rotate(1); }
       else if (e.code === 'KeyE') { e.preventDefault(); this.rotate(-1); }
+      else if (e.code === 'KeyT' && this.inspect) { e.preventDefault(); this.setInspect(!this.inspectOn, true); }
     };
     window.addEventListener('keydown', this.onKey);
     this.stage.hidden = true;
@@ -97,7 +106,170 @@ export class View2D {
 
   show() { this.visible = true; this.stage.hidden = false; this.renderer.resize(); fadeHint(this.ctrlHint); }
   hide() { this.visible = false; this.stage.hidden = true; if (this.heatUi.close) this.heatUi.close(); }
-  destroy() { window.removeEventListener('keydown', this.onKey); this.renderer.dispose(); if (this.heatUi.close) this.heatUi.close(); this.stage.remove(); }
+  destroy() {
+    window.removeEventListener('keydown', this.onKey); this.renderer.dispose(); if (this.heatUi.close) this.heatUi.close();
+    this.stopCamAnim();
+    if (this.inspect) this.inspect.dispose();
+    this.stage.remove();
+  }
+
+  /* ---------- Inspect: the map tilted, as a see-through model (inspect.js) ---------- */
+  setupInspect(tools) {
+    const M = this.M, entry = M.backgrounds && M.backgrounds.inspect;
+    this.inspect = null;
+    if (!entry) return;
+    const layer = this.inspect = new InspectLayer(entry, M.rect);
+    let look = null;
+    try { look = JSON.parse(localStorage.getItem(LOOK_KEY) || 'null'); } catch (err) { /* the default look */ }
+    layer.look = Object.assign({}, DEFAULT_LOOK, look && typeof look === 'object' ? look : {}, { roof: null });
+    layer.onReady = () => {
+      if (layer.state === 'failed') {
+        this.info.set('Inspect: the map model could not be loaded (' + layer.error + ') - flat map.', { warn: true });
+        this.setInspect(false);
+      }
+      this.R.invalidate();
+    };
+    this.inspectBtn = el('button', { class: 'ib', title: 'Inspect: the map tilted, as a see-through model (T)', 'aria-label': 'Inspect', 'aria-pressed': 'false',
+      onclick: () => this.setInspect(!this.inspectOn, true) }, icon('cube'));
+    tools.prepend(this.inspectBtn);
+    this.renderer.onOrbit = () => this.syncInspectUi();
+    this.panels.push({ key: 'inspect', title: 'Inspect', hint: 'the tilted map', icon: 'cube', node: this.inspectPanel() });
+    let on = false;
+    try { on = localStorage.getItem(INSPECT_KEY) === 'on'; } catch (err) { /* flat */ }
+    if (on) this.setInspect(true, false, false);
+  }
+
+  /** Inspect on / off: the camera tilts (animated) and the mesh layer is drawn instead of the background */
+  setInspect(on, remember = false, animate = true) {
+    const layer = this.inspect, R = this.renderer;
+    if (!layer || (on && layer.state === 'failed')) on = false;
+    this.inspectOn = on;
+    if (remember) try { localStorage.setItem(INSPECT_KEY, on ? 'on' : 'off'); } catch (err) { /* not stored */ }
+    if (layer) {
+      if (on) { layer.load(); R.layer = layer; R.cam.zRef = layer.zRange[0]; R.orbit = ORBIT; }
+      else R.orbit = null;
+      this.inspectBtn.classList.toggle('active', on);
+      this.inspectBtn.setAttribute('aria-pressed', String(on));
+    }
+    this.ctrlHint.textContent = on ? HINT_INSPECT : HINT_FLAT;
+    const to = on ? { yaw: INSPECT_YAW, tilt: INSPECT_TILT } : { yaw: 0, tilt: 0 };
+    this.animateCam(to, animate, () => { if (!this.inspectOn) R.layer = null; });
+    this.syncInspectUi();
+  }
+
+  /** the camera to {yaw, tilt}, eased over 450 ms (or at once) -> done() */
+  animateCam(to, animate, done) {
+    const R = this.renderer, from = { yaw: R.cam.yaw, tilt: R.cam.tilt };
+    this.stopCamAnim();
+    const set = k => { R.cam.yaw = from.yaw + (to.yaw - from.yaw) * k; R.cam.tilt = from.tilt + (to.tilt - from.tilt) * k; this.R.invalidate(); };
+    if (!animate || (from.yaw === to.yaw && from.tilt === to.tilt)) { set(1); if (done) done(); return; }
+    const t0 = performance.now(), ms = 450;
+    const finish = () => { this.stopCamAnim(); set(1); if (done) done(); this.syncInspectUi(); };
+    const step = now => {
+      const k = Math.min(1, (now - t0) / ms);
+      if (k >= 1) { finish(); return; }
+      set(k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2);
+      this.camAnim = requestAnimationFrame(step);
+    };
+    this.camAnim = requestAnimationFrame(step);
+    // (a page in the background gets no animation frames: the end comes anyway)
+    this.camTimer = setTimeout(finish, ms + 60);
+  }
+  stopCamAnim() {
+    if (this.camAnim) cancelAnimationFrame(this.camAnim);
+    if (this.camTimer) clearTimeout(this.camTimer);
+    this.camAnim = this.camTimer = null;
+  }
+
+  /** the Inspect popover: on / off, the camera, the roof cut, the look (styles, colours, opacities) */
+  inspectPanel() {
+    const layer = this.inspect, L = () => layer.look, ui = {};
+    const changed = (store = true) => {
+      if (store) try { const keep = Object.assign({}, layer.look); delete keep.roof; localStorage.setItem(LOOK_KEY, JSON.stringify(keep)); } catch (err) { /* not stored */ }
+      this.R.invalidate();
+    };
+    const custom = () => { L().preset = 'custom'; ui.preset.value = 'custom'; };
+    const row = (label, ctl, title) => el('label', { class: 'sw insp-row', title: title || null }, el('span', { class: 'sw-l' }, label), el('span', { class: 'insp-ctl' }, ...ctl));
+    const pct = v => Math.round(v * 100) + ' %';
+    const range = (key, label, min, max, step, title) => {
+      const val = el('small', { class: 'insp-val' });
+      const inp = el('input', { type: 'range', class: 'insp-range', min, max, step, 'aria-label': label });
+      inp.addEventListener('input', () => { L()[key] = Number(inp.value); val.textContent = pct(L()[key]); custom(); changed(); });
+      ui[key] = () => { inp.value = String(L()[key]); val.textContent = pct(L()[key]); };
+      return row(label, [inp, val], title);
+    };
+    const colour = (key, label, title) => {
+      const inp = el('input', { type: 'color', class: 'insp-color', 'aria-label': label });
+      inp.addEventListener('input', () => { L()[key] = inp.value; custom(); changed(); });
+      ui[key] = () => { inp.value = L()[key]; };
+      return row(label, [inp], title);
+    };
+    const box = (key, label, title) => {
+      const inp = el('input', { type: 'checkbox', onchange: e => { L()[key] = e.target.checked; custom(); changed(); } });
+      ui[key] = () => { inp.checked = !!L()[key]; };
+      return C2.ui.switchRow(label, inp, { title });
+    };
+    const onBox = el('input', { type: 'checkbox', onchange: e => this.setInspect(e.target.checked, true) });
+    ui.on = () => { onBox.checked = !!this.inspectOn; };
+    // the camera: the tilt (5..80 degrees)
+    const tilt = el('input', { type: 'range', class: 'insp-range', min: 5, max: 80, step: 1, 'aria-label': 'Tilt' });
+    const tiltVal = el('small', { class: 'insp-val' });
+    tilt.addEventListener('input', () => {
+      if (!this.inspectOn) return;
+      this.stopCamAnim();
+      this.renderer.cam.tilt = Number(tilt.value) * Math.PI / 180; tiltVal.textContent = tilt.value + '°'; this.R.invalidate();
+    });
+    ui.tilt = () => { const d = Math.round(this.renderer.cam.tilt * 180 / Math.PI); tilt.value = String(Math.max(5, d)); tiltVal.textContent = d + '°'; tilt.disabled = !this.inspectOn; };
+    // the roof cut: everything above it left out (the top: off) - for this visit only
+    const zr = layer.zRange, top = Math.ceil((zr[1] + 128) / 16) * 16, bottom = Math.floor(zr[0] / 16) * 16;
+    const roof = el('input', { type: 'range', class: 'insp-range', min: bottom, max: top, step: 8, 'aria-label': 'Roof cut' });
+    const roofVal = el('small', { class: 'insp-val' });
+    const roofText = () => (L().roof == null ? 'off' : 'z ' + L().roof);
+    roof.addEventListener('input', () => { const v = Number(roof.value); L().roof = v >= top ? null : v; roofVal.textContent = roofText(); changed(false); });
+    ui.roof = () => { roof.value = String(L().roof == null ? top : L().roof); roofVal.textContent = roofText(); roof.disabled = !this.inspectOn; };
+    ui.preset = el('select', { 'aria-label': 'Style', onchange: e => {
+      const p = LOOK_PRESETS[e.target.value];
+      if (!p) return;
+      Object.assign(layer.look, p, { preset: e.target.value });
+      delete layer.look.label;
+      this.syncInspectUi(); changed();
+    } }, Object.entries(LOOK_PRESETS).map(([k, p]) => el('option', { value: k }, p.label)), el('option', { value: 'custom', hidden: true }, 'Custom'));
+    const syncPreset = () => { ui.preset.value = L().preset in LOOK_PRESETS ? L().preset : 'custom'; };
+    const resetView = el('button', { class: 'tb small', type: 'button', onclick: () => {
+      if (!this.inspectOn) return;
+      this.renderer.zoom = 1; this.renderer.pan = { x: 0, y: 0 };
+      this.animateCam({ yaw: INSPECT_YAW, tilt: INSPECT_TILT }, true);
+    } }, 'Reset view');
+    const resetLook = el('button', { class: 'tb small', type: 'button', onclick: () => {
+      layer.look = Object.assign({}, DEFAULT_LOOK, { roof: layer.look.roof });
+      try { localStorage.removeItem(LOOK_KEY); } catch (err) { /* not stored */ }
+      this.syncInspectUi(); this.R.invalidate();
+    } }, 'Reset look');
+    const node = el('div', { class: 'pop-body insp' },
+      el('div', { class: 'grp' },
+        C2.ui.switchRow('Inspect', onBox, { title: 'The map tilted, as a see-through model: the walkable floors with their outlines, the walls as a faint volume (T)' }),
+        row('Tilt', [tilt, tiltVal], 'How far the map is tilted (right-drag or Shift + drag on the map turns and tilts it)'),
+        row('Roof cut', [roof, roofVal], 'Leave out everything above this height - to look into the buildings (for this visit)'),
+        el('div', { class: 'insp-btns' }, resetView)),
+      el('div', { class: 'grp' }, el('h4', null, 'Look'),
+        C2.ui.selectRow('Style', ui.preset),
+        colour('floor', 'Floors', 'The walkable floors'),
+        range('floorOpacity', 'Floor opacity', 0, 1, 0.02),
+        range('heightShade', 'Height shading', 0, 1, 0.05, 'The floors brighter the higher they are'),
+        box('byHeight', 'Colour by height', 'The floors coloured by their height (low teal, high amber) instead of their colour'),
+        colour('wall', 'Walls', 'The walls and steep faces, as a faint volume'),
+        range('wallOpacity', 'Wall opacity', 0, 0.6, 0.01),
+        colour('outline', 'Outlines', 'The edges of the floors'),
+        range('outlineOpacity', 'Outline opacity', 0, 1, 0.02),
+        colour('background', 'Background'),
+        range('brightness', 'Brightness', 0.5, 1.6, 0.05, 'The brightness of the map'),
+        box('grid', 'Ground grid', 'A grid of 256 units under the map'),
+        el('div', { class: 'insp-btns' }, resetLook)));
+    this.syncInspectUi = () => { for (const f of Object.values(ui)) if (typeof f === 'function') f(); syncPreset(); };
+    this.syncInspectUi();
+    return node;
+  }
+  syncInspectUi() { /* (replaced by inspectPanel) */ }
 
   /* ---------- one frame ---------- */
   draw(t) {
@@ -110,7 +282,7 @@ export class View2D {
     if (heatInfo && !this.heatUi.opts.keep) { this.bombHit = null; return; }
 
     // the bomb sites (S&D; assets/maps/backgrounds.js)
-    if (d.meta.isSearchAndDestroy && M.backgrounds && M.backgrounds.sites) for (const s of M.backgrounds.sites) R.drawSite(s.origin[0], s.origin[1], s.label);
+    if (d.meta.isSearchAndDestroy && M.backgrounds && M.backgrounds.sites) for (const s of M.backgrounds.sites) R.drawSite(s.origin[0], s.origin[1], s.label, s.origin[2]);
 
     // grenades of the current round
     for (const gr of M.grenades) {
@@ -118,15 +290,15 @@ export class View2D {
       const det = gr.g.detonation;
       if (!det || t < det.t) {
         const shown = gr.pts.filter(p => p[0] <= t);
-        R.drawPath(shown.map(p => [p[1], p[2]]), gr.cfg.color, 0.85, [4, 3]);
+        R.drawPath(shown.map(p => [p[1], p[2], p[3]]), gr.cfg.color, 0.85, [4, 3]);
         const cur = shown[shown.length - 1];
-        if (cur) R.drawDot(cur[1], cur[2], gr.cfg.color, 1, 3);
+        if (cur) R.drawDot(cur[1], cur[2], gr.cfg.color, 1, 3, cur[3]);
       } else {
         const age = t - det.t;
         const fadeStart = gr.cfg.duration - gr.cfg.fade;
         const alpha = age < fadeStart ? 1 : Math.max(0, 1 - (age - fadeStart) / gr.cfg.fade);
-        R.drawPath(gr.pts.map(p => [p[1], p[2]]), gr.cfg.color, 0.35 * alpha, [4, 3]);
-        R.drawCircle(det.x, det.y, gr.cfg.radius, gr.cfg.color, 0.95 * alpha, gr.g.kind === 'smoke' ? 0.35 : 0.22);
+        R.drawPath(gr.pts.map(p => [p[1], p[2], p[3]]), gr.cfg.color, 0.35 * alpha, [4, 3]);
+        R.drawCircle(det.x, det.y, gr.cfg.radius, gr.cfg.color, 0.95 * alpha, gr.g.kind === 'smoke' ? 0.35 : 0.22, det.z);
       }
     }
 
@@ -136,7 +308,7 @@ export class View2D {
     const shown = RP.shownPlayers();
     const hover = this.exporting ? null : RP.hover;
     const dim = cl => (hover != null && cl !== hover) || (RP.focus != null && cl !== RP.focus && hover == null);
-    if (o.trails) for (const cl of shown) R.drawTrail(M.trailOf(cl, t).map(s => s.map(p => [p[0], p[1], p[3]])), M.color(cl), dim(cl) ? 0.45 : 1);
+    if (o.trails) for (const cl of shown) R.drawTrail(M.trailOf(cl, t).map(s => s.map(p => [p[0], p[1], p[3], p[2]])), M.color(cl), dim(cl) ? 0.45 : 1);
 
     // kill lines (killer -> victim) and death markers
     for (const k of RP.recentKills(t, CFG.DEATH_MARKER_MS)) {
@@ -145,9 +317,9 @@ export class View2D {
       const vp = M.deathPos(k);
       if (o.killLines && vp && !k.suicide && !k.world && k.attacker < 64) {
         const ap = M.attackerPos(k);
-        if (ap) R.drawPath([[ap[0], ap[1]], [vp[0], vp[1]]], M.color(k.attacker), 0.75 * fade, k.headshot ? null : [6, 4]);
+        if (ap) R.drawPath([[ap[0], ap[1], ap[2]], [vp[0], vp[1], vp[2]]], M.color(k.attacker), 0.75 * fade, k.headshot ? null : [6, 4]);
       }
-      if (vp && shown.has(k.victim)) R.drawDeath(vp[0], vp[1], M.color(k.victim), 1 - (age / CFG.DEATH_MARKER_MS) * 0.7);
+      if (vp && shown.has(k.victim)) R.drawDeath(vp[0], vp[1], M.color(k.victim), 1 - (age / CFG.DEATH_MARKER_MS) * 0.7, vp[2]);
     }
 
     // the recording player's hits from zPAM's damage log: a dotted line to the hit point and the damage, 2.5 s
@@ -157,8 +329,8 @@ export class View2D {
         const age = t - h.t;
         if (age > CFG.HIT_MS || !h.my) continue;
         const p = h.hit || h.enemy, fade = 1 - age / CFG.HIT_MS, col = M.color(M.d.meta.povClient);
-        R.drawPath([[h.my[0], h.my[1]], [p[0], p[1]]], col, 0.6 * fade, [2, 3]);
-        R.drawHit(p[0], p[1], col, fade, '-' + h.damage + (h.damage >= h.health ? ' ✝' : ''));
+        R.drawPath([[h.my[0], h.my[1], h.my[2]], [p[0], p[1], p[2]]], col, 0.6 * fade, [2, 3]);
+        R.drawHit(p[0], p[1], col, fade, '-' + h.damage + (h.damage >= h.health ? ' ✝' : ''), p[2]);
       }
     }
 
@@ -193,7 +365,7 @@ export class View2D {
     const E = this.mapEnts;
     if (!E) return;
     if (o.hurt) for (const h of E.hurt || []) this.renderer.drawBox(h.mins, h.maxs, '#ff5a3c', 'hurt ' + h.dmg + (h.dmg >= 100 ? ' (kill)' : '') + ' · z ' + Math.round(h.mins[2]) + '…' + Math.round(h.maxs[2]));
-    if (o.mapCams) for (const s of E.spawns || []) if (s.classname === 'mp_global_intermission' && s.origin) this.renderer.drawCamera(s.origin[0], s.origin[1], (s.angles || [0, 0, 0])[1], 'intermission');
+    if (o.mapCams) for (const s of E.spawns || []) if (s.classname === 'mp_global_intermission' && s.origin) this.renderer.drawCamera(s.origin[0], s.origin[1], (s.angles || [0, 0, 0])[1], 'intermission', s.origin[2]);
   }
 
   drawHeat(t) {
@@ -221,24 +393,24 @@ export class View2D {
     if (e.state === 'carried') {
       const s = M.sampleAt(e.carrier, t);
       if (!s || s.age > CFG.STALE_MS) return;
-      R.drawRing(s.x, s.y, B.color, CFG.PLAYER_RADIUS_PX + 3.5, 0.9);
-      pos = [s.x, s.y];
+      R.drawRing(s.x, s.y, B.color, CFG.PLAYER_RADIUS_PX + 3.5, 0.9, s.z);
+      pos = [s.x, s.y, s.z];
       opts = { dx: 8, dy: -8, round: true };
       text = 'Carried by ' + M.name(e.carrier);
     } else if (e.state === 'unknown') {
       if (e.x == null) return;
-      pos = [e.x, e.y];
+      pos = [e.x, e.y, e.z];
       opts = { alpha: B.unknownAlpha, hollow: true };
       text = 'Bomb position unknown (not visible to POV) - last known position';
     } else if (e.state === 'exploded') {
       const age = t - e.t;
       if (age > B.explodedMs || e.x == null) return;
-      pos = [e.x, e.y];
+      pos = [e.x, e.y, e.z];
       opts = { burst: age / B.explodedMs, alpha: 1 - 0.6 * age / B.explodedMs };
       text = 'Exploded' + (e.site ? ' - site ' + e.site : '');
     } else {
       if (e.x == null) return;
-      pos = [e.x, e.y];
+      pos = [e.x, e.y, e.z];
       if (e.state === 'planted') {
         const bt = M.bombTimer(t);
         opts = { pulse: ((t - e.t) % B.pulseMs) / B.pulseMs, label: bt ? (bt.heuristic ? '≈' : '') + Math.ceil(bt.left / 1000) + 's' : null };
@@ -246,7 +418,7 @@ export class View2D {
       if (e.state === 'defused') opts = { color: B.defusedColor };
       text = BOMB_TEXT[e.state] + (e.site ? ' - site ' + e.site : '');
     }
-    const sp = R.drawBomb(pos[0], pos[1], opts);
+    const sp = R.drawBomb(pos[0], pos[1], Object.assign(opts, { z: pos[2] }));
     if (e.source && BOMB_SOURCE[e.source]) text += ' (position: ' + BOMB_SOURCE[e.source] + ')';
     this.bombHit = { x: sp.x, y: sp.y, text };
   }

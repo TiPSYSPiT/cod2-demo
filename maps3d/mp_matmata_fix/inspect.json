@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_matmata_fix",
+ "file": "inspect.bin",
+ "byteLength": 845580,
+ "origin": [
+  4128,
+  6266,
+  0
+ ],
+ "vertexCount": 51701,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 310206,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 310208,
+   "length": 107856,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 418064,
+   "length": 342318,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 760384,
+   "length": 85196,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 17976,
+ "volume": 57053,
+ "edges": 21299,
+ "zRange": [
+  -40,
+  338
+ ],
+ "zBounds": [
+  -128,
+  884
+ ],
+ "rect": [
+  980,
+  3118,
+  7275,
+  9413
+ ]
+}

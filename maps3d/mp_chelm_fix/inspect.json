@@ -1,0 +1,55 @@
+{
+ "format": "cod2-demo-inspect/1",
+ "map": "mp_chelm_fix",
+ "file": "inspect.bin",
+ "byteLength": 727988,
+ "origin": [
+  -1740,
+  -1291,
+  0
+ ],
+ "vertexCount": 42631,
+ "layout": {
+  "position": {
+   "offset": 0,
+   "length": 255786,
+   "type": "int16",
+   "itemSize": 3
+  },
+  "floor": {
+   "offset": 255788,
+   "length": 109854,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "volume": {
+   "offset": 365644,
+   "length": 291966,
+   "type": "uint16",
+   "itemSize": 1
+  },
+  "edges": {
+   "offset": 657612,
+   "length": 70376,
+   "type": "uint16",
+   "itemSize": 2
+  }
+ },
+ "floors": 18309,
+ "volume": 48661,
+ "edges": 17594,
+ "zRange": [
+  -115,
+  280
+ ],
+ "zBounds": [
+  -152,
+  920
+ ],
+ "rect": [
+  -4612,
+  -4163,
+  1132,
+  1581
+ ]
+}
