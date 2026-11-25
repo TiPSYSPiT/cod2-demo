@@ -1,4 +1,4 @@
-/* Loads the exported map (maps3d/<map>/, written by cod2-ff python/cod2ff/viewer/export_maps.py) into three.js
+/* Loads the exported map (maps3d/<map>/, written by cod2-assets src/cod2ff/viewer/export_maps.py) into three.js
  * objects: the textured, lightmapped world and the objectives. CoD world coordinates stay as they are
  * (+Z up); the camera's up vector is Z. Without exported data the 2D background becomes a ground
  * plane (or a grid). */
@@ -67,7 +67,7 @@ const cancelled = err => !!err && err.name === 'AbortError';
 export function loadTexture(url) {
   if (/\.dds$/i.test(url)) return loadDds(url);
   const t = new THREE.Texture();
-  t.userData.inflight = true; inflight++;
+  t.userData.inflight = true; inflight++; textureCount.asked++;
   const failed = err => {
     if (!cancelled(err)) console.warn('texture not loaded - drawn neutral grey:', url);
     if (!grey) { grey = document.createElement('canvas'); grey.width = grey.height = 1; const g = grey.getContext('2d'); g.fillStyle = '#808080'; g.fillRect(0, 0, 1, 1); }
@@ -102,7 +102,7 @@ export function loadTexture(url) {
 }
 
 /* The game's own texture data (PLAN.md step 96): the colour, normal, specular and detail maps as the game stores them -
- * DXT1 / DXT3 / DXT5 blocks with their mipmaps (_textures/<name>.dds, stored gzipped: cod2-ff python/cod2ff/viewer/texfile.py), uploaded
+ * DXT1 / DXT3 / DXT5 blocks with their mipmaps (_textures/<name>.dds, stored gzipped: cod2-assets src/cod2ff/viewer/texfile.py), uploaded
  * as they are (WEBGL_compressed_texture_s3tc: 4 - 8x less GPU memory than a decoded image, no decode, no mipmaps made);
  * a browser without S3TC gets the blocks decoded here - the same pixels. DXT1 as RGBA: the game's cut-outs (its
  * 1-bit alpha). The blocks are let go once uploaded (fetched again after a lost WebGL context: reloadTextures). */
@@ -185,7 +185,7 @@ function fillDds(t, buf) {
 function loadDds(url) {
   const t = new THREE.CompressedTexture([], 1, 1);
   t.image = null;
-  t.userData.inflight = true; t.userData.src = url; t.userData.dds = true; inflight++;
+  t.userData.inflight = true; t.userData.src = url; t.userData.dds = true; inflight++; textureCount.asked++;
   fetchBinary(url).then(buf => {
     fillDds(t, buf);
     // (the blocks let go once on the GPU; a lost context fetches them again: reloadTextures)
@@ -265,6 +265,8 @@ export const textureArrivals = { onArrive: null, upload: null };
 /* The textures still on their way: what waits for them (texturesIn) - the sounds' preload and the HUD's images,
  * which would otherwise share the line with the map's textures (sound.js, hud.js; PLAN.md step 87) */
 let inflight = 0, whenIn = [];
+/** the textures asked for and arrived so far (the load's Textures step: view3d.js) */
+export const textureCount = { asked: 0, arrived: 0 };
 /** -> Promise, resolved once no texture is on its way any more (at the latest after maxMs) */
 export function texturesIn(maxMs = 15000) {
   return new Promise(resolve => {
@@ -276,6 +278,7 @@ export function texturesIn(maxMs = 15000) {
 function arrived(t) {
   if (t.userData.inflight) {
     t.userData.inflight = false;
+    textureCount.arrived++;
     if (--inflight === 0 && whenIn.length) { const list = whenIn; whenIn = []; for (const f of list) f(); }
   }
   const list = t.userData.waiting;
@@ -397,7 +400,7 @@ diffuseColor *= sampledDiffuseColor;
   return mat;
 }
 
-/** the material's polygon offset (its polygon offset level, cod2-ff python/cod2ff/material.py), as the game sets it: depth bias
+/** the material's polygon offset (its polygon offset level, cod2-assets src/cod2ff/formats/material.py), as the game sets it: depth bias
  *  level x r_polygonOffsetBias (-1) / 65536, slope bias level x r_polygonOffsetScale (-1) - on a 24-bit depth
  *  buffer glPolygonOffset(-level, -256 x level), as the Mac client converts it. Level 0 on a blended layer: the
  *  small offset of before (it lies exactly on the surface below; two shader programs may round its depth
@@ -409,7 +412,7 @@ export function polygonOffset(opts, level, blended = false) {
 }
 /** a group's polygon offset level (data exported before the level was: the decals by name) */
 const offsetLevel = g => (g.polygonOffset != null ? g.polygonOffset : g.decal ? 1 : 0);
-/** a group's sort key, the game's draw order (cod2-ff python/cod2ff/material.py; older data: opaque 3, decals 9, blended 27) */
+/** a group's sort key, the game's draw order (cod2-assets src/cod2ff/formats/material.py; older data: opaque 3, decals 9, blended 27) */
 const sortKey = g => (g.sort != null ? g.sort : g.blend || g.vertexAlpha ? 27 : g.decal ? 9 : 3);
 
 /** a multiply decal (techniques effect_multiply*, blend Zero x SrcColor: mul.hlsl): the framebuffer x

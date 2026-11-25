@@ -1,6 +1,6 @@
 /* What blocks the light grid's visibility traces (RB_GetLightingAtPoint of the 1.3 client: CM_BoxSightTrace
  * from the model's lighting origin to a grid point, contents 0x2001): the world's solid brushes and its
- * terrain / patch triangles, exported as collision.bin (cod2-ff python/cod2ff/viewer/export_maps.py export_collision):
+ * terrain / patch triangles, exported as collision.bin (cod2-assets src/cod2ff/viewer/export_maps.py export_collision):
  * float32 brush bounds (6 per brush), uint32 first plane per brush (+ the end), float32 planes (nx ny nz
  * dist, outward), float32 triangle vertices, uint32 triangles. A 2D grid of 256-unit cells lists the
  * brushes and triangles over each cell; a trace tests those under its own bounds. */

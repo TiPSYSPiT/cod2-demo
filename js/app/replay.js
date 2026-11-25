@@ -20,6 +20,7 @@ export class Replay {
     this.match = match;
     this.d = match.d;
     this.app = app;
+    this.frames = 0;              // the frames the active view drew (the FPS counter, main.js / fps.js)
     this.dom = dom;
     this.views = {};
     this.view = null;
@@ -160,7 +161,11 @@ export class Replay {
         nades,
         el('div', { class: 'grp' }, el('h4', null, 'Map'),
           sw('Intermission camera', 'mapCams', "The map's intermission camera (mp_global_intermission): where the game puts the view of a spectator before he joins and at the end of the map, and where it looks"),
-          sw('Hurt triggers', 'hurt', "The map's hurt triggers (trigger_hurt: the kill planes under the map, water, edges): their boxes and the damage per touch (1000: a kill)"))) };
+          sw('Hurt triggers', 'hurt', "The map's hurt triggers (trigger_hurt: the kill planes under the map, water, edges): their boxes and the damage per touch (1000: a kill)")),
+        // the viewer's own (main.js, fps.js): not a layer of the map, but the one popover of both views
+        this.app.fps ? el('div', { class: 'grp' }, el('h4', null, 'Viewer'),
+          C2.ui.switchRow('FPS counter', el('input', { type: 'checkbox', checked: this.app.fps.on || null, onchange: e => this.app.fps.set(e.target.checked, true) }),
+            { title: 'The frames per second the view draws and the time between them, top right (a paused view draws none: idle). Remembered for this browser session' })) : null) };
   }
 
   setScope(i) {

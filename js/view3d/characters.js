@@ -1,5 +1,5 @@
 /* Player characters in 3D: the game's own body / head / helmet models, animated with the game's own
- * animations (maps3d/_characters, cod2-ff python/cod2ff/viewer/characters_export.py).
+ * animations (maps3d/_characters, cod2-assets src/cod2ff/viewer/characters_export.py).
  *
  * - models.json / .bin: each model's LOD 0, skinned to its skeleton (bones: name, parent, local bind
  *   translation + rotation). The body's bones drive the attachments: a head or helmet binds its

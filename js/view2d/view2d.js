@@ -86,7 +86,10 @@ export class View2D {
     this.bgSel.value = kind;
     this.bgKind = kind;
     if (remember) try { localStorage.setItem(BG_KEY, kind); } catch (err) { /* not stored */ }
+    // (the load's Map image step - main.js, loadSteps.js - when the demo opens in 2D)
+    const T = this.R.loadTrack && this.R.loadTrack.has('image') ? this.R.loadTrack : null;
     if (!entry) {
+      if (T) T.end('image', 'none');
       this.renderer.setImage(null, null);
       this.info.set(M.backgrounds ? 'Neutral grid (' + M.rectSource + ').' : 'No exported map data for ' + (M.d.meta.map || 'this map') +
         ' - neutral grid (' + M.rectSource + '). See README: map export.', { warn: !M.backgrounds });
@@ -96,8 +99,9 @@ export class View2D {
     const r = entry.rect, rect = { minX: Math.min(r[0], r[2]), maxX: Math.max(r[0], r[2]), minY: Math.min(r[1], r[3]), maxY: Math.max(r[1], r[3]) };
     const im = new Image();
     const src = C2.maps.IMAGE_DIR + entry.image;
-    im.onload = () => { if (this.bgKind !== kind) return; this.renderer.setImage(im, rect); this.R.invalidate(); };
-    im.onerror = () => { this.info.set('Background image ' + src + ' could not be loaded - neutral grid.', { warn: true }); };
+    if (T) T.start('image');
+    im.onload = () => { if (T) T.end('image'); if (this.bgKind !== kind) return; this.renderer.setImage(im, rect); this.R.invalidate(); };
+    im.onerror = () => { if (T) T.end('image', 'not loaded'); this.info.set('Background image ' + src + ' could not be loaded - neutral grid.', { warn: true }); };
     im.src = src;
     this.info.set(kind === 'radar'
       ? 'Background: zPAM 4.09 radar image of ' + bgs.key + ', placed with its .radar calibration (cg_hudRadar*).'
@@ -274,6 +278,7 @@ export class View2D {
   /* ---------- one frame ---------- */
   draw(t) {
     const R = this.renderer, M = this.M, d = M.d, RP = this.R, o = RP.opts;
+    if (!this.exporting) RP.frames++;                        // (the FPS counter: a frame drawn)
     const ep = M.epochStart(t);
     R.begin();
     R.drawBackground();

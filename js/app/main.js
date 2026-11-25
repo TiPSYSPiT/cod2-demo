@@ -9,6 +9,7 @@ import { primeAudio, soundWanted } from './audio.js';
 import { linkParams, checkUrl, download, parseTime, shareUrl, cleanName, nameFromUrl, LinkError } from './urlDemo.js';
 import { migrateSettings } from './settings.js';
 import { ScoresOverlay } from './scoresOverlay.js';
+import { LoadTrack } from './loadSteps.js';
 import '../c2/ui/killfeed.js';           // C2.killfeed: the kill feed of the 3D view and of both video exports
 
 migrateSettings();                    // (before the first read of a remembered setting)
@@ -25,6 +26,30 @@ const state = { data: null, fileInfo: null, worker: null, loadId: 0, replay: nul
 try { const v = localStorage.getItem(VIEW_KEY); if (v === '2d' || v === '3d') state.view = v; } catch (err) { /* storage blocked */ }
 
 const scores = new ScoresOverlay($('viewport'));   // the scoreboard while Tab is held
+/* the FPS counter (Layers, Viewer, FPS counter: replay.js): off by default, remembered for the session; its module
+ * (fps.js) is loaded only once it shows - not part of the page's start (PLAN.md step 112) */
+const FPS_KEY = 'cod2demo.fps';
+const fps = {
+  on: (() => { try { return sessionStorage.getItem(FPS_KEY) === 'on'; } catch (err) { return false; } })(),
+  shown: false, meter: null, loading: null,
+  /** user: the user's switch (remembered for the session) */
+  set(on, user = false) {
+    this.on = !!on;
+    if (user) try { sessionStorage.setItem(FPS_KEY, this.on ? 'on' : 'off'); } catch (err) { /* this visit only */ }
+    this.sync();
+  },
+  /** a demo shown (or gone) */
+  show(shown) { this.shown = !!shown; this.sync(); },
+  sync() {
+    if (this.meter) { this.meter.set(this.on && this.shown); return; }
+    if (this.on && this.shown && !this.loading) {
+      this.loading = import('./fps.js').then(m => {
+        this.meter = new m.FpsMeter($('viewport'), () => (state.replay ? state.replay.frames : 0));
+        this.sync();
+      }, err => console.warn('The FPS counter could not be loaded:', err.message));
+    }
+  }
+};
 
 const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
@@ -92,6 +117,7 @@ const app = {
     return cssVar(key === state.blueTeam ? '--team-blue' : '--team-red');
   },
   get blueTeam() { return state.blueTeam; },
+  fps,
   /** from the details tabs: close the overlay and jump to 2 s before t */
   gotoMap(t, roundIndex) {
     showDetails(false);
@@ -164,16 +190,39 @@ function reset() {
   for (const n of document.querySelectorAll('.link-start')) n.remove();
   document.body.classList.remove('loaded');
   if (state.replay) { scores.setReplay(null); state.replay.destroy(); state.replay = null; }
+  fps.show(false);
   $('dropzone').hidden = true;
   $('progress').hidden = false;
 }
 
-/** source: the link the file came from (openLink), else null (dropped, picked) */
-async function load(file, source = null) {
+/* ---- a demo's load, step by step (loadSteps.js; PLAN.md step 112): the steps the demo's start will take - a link's
+ * download, the file, the parse, the analysis, then the view it opens in (3D: its code, the map's geometry, shaders,
+ * textures, props, lighting, the first frame; 2D: the map image). In the progress area until the viewer is up, then
+ * over the view (show); the views report through replay.loadTrack ---- */
+const STEPS_3D = [['code3d', '3D code', 'Loading the 3D code (three.js)', 8], ['world', 'Map geometry', 'Loading the map geometry', 20],
+  ['shaders', 'Shaders', 'Compiling the shaders', 8], ['textures', 'Textures', 'Loading the textures', 20],
+  ['props', 'Map models', 'Loading the map models', 8], ['light', 'Lighting', 'Loading the lighting', 3], ['frame', 'First frame', 'Drawing the first frame', 2]];
+/** a new load's steps (the previous load's display goes); download: the link's download line, else none */
+function newTrack(download = null) {
+  if (state.track) state.track.dispose();
+  const T = state.track = new LoadTrack();
+  if (download) T.add('download', 'Download', download, 20);
+  T.add('read', 'Reading the file', 'Reading the file', 2).add('parse', 'Parsing', 'Parsing the messages', 25).add('analyse', 'Match analysis', 'Analysing the match', 10);
+  if (opens3d()) for (const [k, label, doing, w] of STEPS_3D) T.add(k, label, doing, w);
+  else T.add('image', 'Map image', 'Loading the map image', 3);
+  T.attach({ now: $('progress-label'), total: $('progress-total'), fill: $('progress-fill'), steps: $('progress-steps') });
+  T.onFinish = () => { if (rail.open && rail.open.p.key === 'info') fillInfo(rail.open.p.node); };
+  return T;
+}
+/** the current load's steps, when they still run (the views report through replay.loadTrack) */
+const track = () => (state.track && !state.track.finished ? state.track : null);
+
+/** source: the link the file came from (openLink), else null; T: the steps its download began (a link, ?demo=) */
+async function load(file, source = null, T = null) {
   reset();
   state.source = source;
-  $('progress-label').textContent = 'Reading ' + file.name + ' …';
-  setProgress(0);
+  if (!T || T.finished) T = newTrack();
+  T.start('read');
   $('file-name').textContent = file.name;
   if (!/\.dm_1$/i.test(file.name)) console.warn('File does not end in .dm_1 - trying anyway.');
   state.fileInfo = { name: file.name, size: file.size, lastModified: file.lastModified };
@@ -183,14 +232,15 @@ async function load(file, source = null) {
   catch (err) { return loadId === state.loadId ? fail('The file could not be read: ' + err.message) : undefined; }
   // (another file was opened while this one was read: that load goes on - this one must not take its worker)
   if (loadId !== state.loadId) return;
-  $('progress-label').textContent = 'Parsing ' + file.name + ' (' + (file.size / 1e6).toFixed(1) + ' MB) …';
+  T.end('read');
+  T.progress('parse', 0, (file.size / 1e6).toFixed(1) + ' MB');
   if (state.worker) { state.worker.terminate(); state.worker = null; }
   const worker = C2.createParserWorker();
   if (!worker) return parseMainThread(buffer, loadId);
   state.worker = worker;
   worker.onmessage = ev => {
     const m = ev.data;
-    if (m.type === 'progress') setProgress(m.value);
+    if (m.type === 'progress') parsed(T, m.value);
     else if (m.type === 'map') warm3d(m.map, loadId);
     else if (m.type === 'done') { worker.terminate(); state.worker = null; finish(m.data, loadId); }
     else if (m.type === 'error') { worker.terminate(); state.worker = null; failDemo(m.message, m.invalid, m.stack); }
@@ -207,13 +257,21 @@ async function load(file, source = null) {
   worker.postMessage({ buffer, fileInfo: state.fileInfo, animStarts: opens3d() }, [buffer]);
 }
 
+/** the parse's progress (the messages read: 0..1); at 1 the analysis begins */
+function parsed(T, f) {
+  if (!T) return;
+  if (f < 1) T.progress('parse', f, Math.round(f * 100) + ' %');
+  else { T.end('parse'); T.start('analyse'); }
+}
+
 function parseMainThread(buffer, loadId) {
   if (loadId !== state.loadId) return;
-  $('progress-label').textContent += ' (main thread - the page may freeze briefly)';
+  const T = track();
+  if (T) T.progress('parse', 0, 'on the main thread - the page may freeze briefly');
   setTimeout(() => {
     if (loadId !== state.loadId) return;
     let data;
-    try { data = C2.analyzeDemo(new Uint8Array(buffer), state.fileInfo, setProgress, null, { animStarts: opens3d() }); }
+    try { data = C2.analyzeDemo(new Uint8Array(buffer), state.fileInfo, f => parsed(T, f), null, { animStarts: opens3d() }); }
     catch (err) { return failDemo(err.message, err instanceof C2.demo.DemoError, err.stack); }
     finish(data, loadId);
   }, 30);
@@ -221,6 +279,8 @@ function parseMainThread(buffer, loadId) {
 
 function finish(data, loadId) {
   if (loadId !== state.loadId) return;
+  const T = track();
+  if (T) { T.end('parse'); T.end('analyse'); }
   if (!data.positions || !Object.keys(data.positions).length) {
     return fail('The demo was read, but it contains no player positions - nothing to replay. ' +
       'The demo may be damaged or recorded with an unsupported protocol (' + (data.meta.protocolLabel || 'unknown') + ').');
@@ -238,6 +298,7 @@ function failDemo(message, invalid, stack) {
 /** a demo from a link gets "Try again" (retry: not for a link that can never work) and "Open demo manually" */
 function fail(message, stack, title = 'Error:', retry = true) {
   if (stack) console.error(stack);
+  if (state.track) { state.track.dispose(); state.track = null; }
   $('progress').hidden = true;
   $('progress-cancel').hidden = true;
   $('dropzone').hidden = false;
@@ -265,9 +326,8 @@ async function openLink(params) {
   source.href = url.href;
   const shown = source.name || nameFromUrl(url) || url.hostname;
   $('file-name').textContent = shown;
-  const label = $('progress-label');
-  label.textContent = 'Downloading ' + shown + ' from ' + url.hostname + ' …';
-  setProgress(0);
+  const T = newTrack('Downloading ' + shown + ' from ' + url.hostname);
+  T.start('download');
   const ctrl = new AbortController();
   state.download = ctrl;
   $('progress-cancel').hidden = false;
@@ -276,9 +336,8 @@ async function openLink(params) {
   try {
     got = await download(url, { signal: ctrl.signal, onProgress: (n, total) => {
       if (loadId !== state.loadId) return;
-      label.textContent = 'Downloading ' + shown + ' from ' + url.hostname + ' … ' + mb(n) + (total ? ' of ' + mb(total) : '');
       // (no length: a bar that slows down instead of none)
-      setProgress(total ? Math.min(1, n / total) : 1 - Math.exp(-n / 8e6));
+      T.progress('download', total ? Math.min(1, n / total) : 1 - Math.exp(-n / 8e6), mb(n) + (total ? ' of ' + mb(total) : ''));
     } });
   } catch (err) {
     if (loadId !== state.loadId) return;             // (another demo was opened: it cancelled this download)
@@ -288,7 +347,8 @@ async function openLink(params) {
   }
   if (loadId !== state.loadId) return;
   state.download = null;
-  load(new File([got.bytes], source.name || got.name || 'demo.dm_1', { type: 'application/octet-stream', lastModified: Date.now() }), source);
+  T.end('download');
+  load(new File([got.bytes], source.name || got.name || 'demo.dm_1', { type: 'application/octet-stream', lastModified: Date.now() }), source, T);
 }
 
 /** the deep link's parameters: a demo from a link takes its link's; else (no demoUrl on the page) the page's query,
@@ -397,7 +457,6 @@ async function copyLink() {
   }
 }
 
-function setProgress(v) { $('progress-fill').style.width = Math.round(v * 100) + '%'; }
 
 /* ---- showing a demo ---- */
 function show(data) {
@@ -407,6 +466,7 @@ function show(data) {
   $('progress').hidden = true;
   $('dropzone').hidden = false;
   document.body.classList.add('loaded');
+  fps.show(true);
   // the warnings as toasts under the score pill, each one dismissible; a map change in the recording (build.js: "Map
   // change at ...") is a note, not a problem: it fades out after MAP_CHANGE_MS (on the page's clock - not the replay's)
   const warn = $('warnings');
@@ -431,6 +491,8 @@ function show(data) {
   $('drawer-head').append(el('button', { class: 'ib', title: 'Hide the panel', 'aria-label': 'Hide panel', onclick: () => setDrawer(false) }, icon('panel')));
   state.replay = replay;
   scores.setReplay(replay);
+  const T = track();
+  if (T) { replay.loadTrack = T; T.detach(); T.panelIn($('viewport')); }
   window.cod2 = { replay, match, data, scores };    // debugging handle
   replay.addView(new View2D(replay, $('viewport')));
   // deep link: ?view=2d|3d&round=<label>&t=<seconds or mm:ss on the clock>&player=<name> (focus=: the same)&speed=
@@ -457,6 +519,7 @@ async function load3d(R) {
         (/^https?:/.test(threeSource()) ? 'Check the network connection to the CDN.' : 'Check that the vendor/ folder is served with the page.');
     }
     try {
+      if (track()) track().start('code3d');
       view3dModule = await import('../view3d/view3d.js');
     } catch (err) {
       console.error('3D view modules:', err);
@@ -483,9 +546,11 @@ async function load3d(R) {
 function warm3d(map, loadId) {
   if (!opens3d()) return;
   try { if (navigator.connection && navigator.connection.saveData) return; } catch (err) { /* no hint */ }
+  const T = track();
+  if (T) T.start('code3d');
   Promise.all([import('three'), import('three/addons/controls/OrbitControls.js')])
     .then(() => import('../view3d/view3d.js'))
-    .then(m => { if (loadId === state.loadId) return m.prefetch3d(map); })
+    .then(m => { if (loadId === state.loadId) { if (T) T.end('code3d'); return m.prefetch3d(map); } })
     .catch(() => null);
 }
 /** whether the demo being opened starts in the 3D view (a deep link's view=, else the viewer's last view) */
@@ -510,6 +575,9 @@ async function setView(key, user = false) {
     }
   }
   state.view = key;
+  // (the load expected 3D and the demo shows 2D - the viewer's choice, or 3D failed: its steps will not come)
+  const T = track();
+  if (T && key === '2d' && !R.views['3d']) T.skip(STEPS_3D.map(s => s[0]), 'not shown');
   if (user) try { localStorage.setItem(VIEW_KEY, key); } catch (err) { /* not stored */ }
   for (const b of $('view-toggle').querySelectorAll('button')) b.classList.toggle('active', b.dataset.view === key);
   document.body.dataset.view = key;
@@ -590,7 +658,9 @@ function fillInfo(node) {
   if (v && v.key === '2d') keys.push(['Q / E', 'Rotate the map'], ['Wheel / drag', 'Zoom / pan, double-click: reset']);
   if (v && v.key === '3d') keys.push(['C', 'Cycle the camera'], ['X', 'X-Ray: off / player / player + name'], ['W A S D, R / F', 'Free camera: move, up / down']);
   const text = v && v.info ? v.info.text : '';
+  const L = state.track && state.track.finished && state.track.total != null ? state.track : null;
   node.replaceChildren(state.info,
+    L ? el('div', { class: 'grp' }, el('h4', null, 'Loaded in ' + (L.total < 1000 ? Math.round(L.total) + ' ms' : (L.total / 1000).toFixed(1) + ' s')), el('p', { class: 'info-text' }, L.summary())) : '',
     text ? el('div', { class: 'grp' }, el('h4', null, v.key === '2d' ? 'Map image' : 'Map data'), el('p', { class: 'info-text' + (v.info.warn ? ' warn' : '') }, text)) : '',
     el('div', { class: 'grp' }, el('h4', null, 'Shortcuts'),
       el('dl', { class: 'keys' }, keys.map(([k, what]) => [el('dt', null, el('kbd', null, k)), el('dd', null, what)]))));
@@ -719,17 +789,27 @@ function init() {
   // optional: index.html?demo=<path of a .dm_1 file on this site> (served over http): only the site's own files
   // (another site's: demoUrl, above)
   const demoUrl = new URLSearchParams(location.search).get('demo');
-  if (state.pageLink) openLink(linkParams());
+  // a demo picked or dropped while the page was still loading (index.html: the boot script kept it) - the user's
+  // newest wish: it goes before a link in the address
+  const boot = window.C2boot, pending = boot && boot.pending;
+  if (pending) onFiles([pending]);
+  else if (state.pageLink) openLink(linkParams());
   else if (demoUrl) {
     let url = null;
     try { url = new URL(demoUrl, location.href); } catch (err) { /* not a URL */ }
     if (!url || url.origin !== location.origin) fail('?demo= opens only a demo file on this site (a path such as demos/my.dm_1).');
     else {
+      const fileName = decodeURIComponent(url.pathname.split('/').pop()) || 'demo.dm_1';
+      reset();
+      const T = newTrack('Loading ' + fileName);
+      T.start('download');
       fetch(url).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.blob(); })
-        .then(b => load(new File([b], decodeURIComponent(url.pathname.split('/').pop()) || 'demo.dm_1', { lastModified: Date.now() })))
+        .then(b => { T.end('download'); load(new File([b], fileName, { lastModified: Date.now() }), null, T); })
         .catch(err => fail('Could not load ' + demoUrl + ': ' + err.message));
     }
   }
+  // the app is up: the loading indicator records the time and fades out (index.html)
+  if (boot) boot.done();
 }
 /* Fullscreen: the stage (the view with its HUD) as the browser's fullscreen element - the top bar, score pill, rail,
  * panel and map tools hidden (css .stage.fs). The player bar is hidden too, over the view when it shows (the view and

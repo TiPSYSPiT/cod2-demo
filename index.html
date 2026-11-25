@@ -3,16 +3,180 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Content-Security-Policy: only the site's own files. The sha256 is the hash of the import map below - it
-       must be recomputed when the import map changes (AUDIT.md "Final full review", R3); blob: = the parser and
+  <!-- Content-Security-Policy: only the site's own files. The sha256 values are the hashes of the inline scripts
+       below - the loading indicator's boot script and the import map: each must be recomputed when its script changes.
+       (This meta tag stops Chrome's look-ahead fetching: the plain scripts at the end are deferred, so the parser
+       asks for all of them at once - PLAN.md step 112) (AUDIT.md "Final full review", R3; tools/audit/site_audit.py checks
+       them, PLAN.md step 112); blob: = the parser and
        GIF workers. The CDN alternative of the import map would also need that host in script-src. connect-src
        https: = a demo from another site by link (?demoUrl=, js/app/urlDemo.js; with LINK.ALLOWED_HOSTS set there,
        name the same hosts here instead). -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Mne3CI18ZSns61UE2acmcxBJb8wPiixDKJMLGynStww='; worker-src 'self' blob:; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-CORf5Bmgaeo0Jj7On3XLVV+45DJeSLAGdkmCzoUdKNA=' 'sha256-Mne3CI18ZSns61UE2acmcxBJb8wPiixDKJMLGynStww='; worker-src 'self' blob:; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
   <title>CoD2 Demo Viewer</title>
   <meta name="description" content="Call of Duty 2 demo (.dm_1) replay in 2D and 3D - parsed locally in the browser.">
   <link rel="icon" href="favicon.ico" sizes="any">
   <!-- (Inter and JetBrains Mono come from the site itself: assets/fonts, css/styles.css @font-face) -->
+  <!-- (before the stylesheet: a script after it would hold the parser until the stylesheet is in) -->
+  <script>
+  /* The page's loading indicator (PLAN.md step 112), inline - it must run before any file arrives, without a request
+     of its own. The scripts below are deferred (the parser asks for all of them at once - the CSP meta tag stops
+     Chrome's look-ahead fetching, PLAN.md step 112); a step ends at the load event of its group's last script
+     (data-boot="..."; a deferred script's load event follows its run), the app at main.js' C2boot.done(), the page
+     when it is parsed and the stylesheet is in; the fonts load in parallel. A step's weight is its size (kB, step 112)
+     for the bar. A file that does not load, an exception: shown in the indicator, not a dead page. A file picked or
+     dropped before the app is ready is kept (pending) and opened when it is. */
+  (function () {
+    'use strict';
+    var STEPS = [['page', 'Page and styles', 20], ['fonts', 'Fonts', 80], ['parser', 'Demo parser', 33], ['index', 'Map index and names', 55],
+      ['analysis', 'Match analysis', 167], ['ui', 'Interface and 2D map', 210], ['app', 'App modules', 166]];
+    var SEQ = ['page', 'parser', 'index', 'analysis', 'ui', 'app'];
+    var B = window.C2boot = { start: { page: 0 }, end: {}, pending: null, ready: false, failed: null, files: 0, kB: 0 };
+    // (shown after 150 ms: a fast load never flashes it - by a class, not a delayed CSS animation, which held back
+    // Chrome's first paint)
+    function show() { var b = $('boot'); if (b && !B.ready && (B.late || B.failed)) b.classList.add('show'); }
+    setTimeout(function () { B.late = true; show(); }, 150);
+    var now = function () { return performance.now(); }, $ = function (id) { return document.getElementById(id); };
+    var fmt = function (ms) { return ms < 1000 ? Math.round(ms) + ' ms' : (ms / 1000).toFixed(1) + ' s'; };
+    var total = 0, changed = 0, timer = 0, po = null, i;
+    for (i = 0; i < STEPS.length; i++) total += STEPS[i][2];
+    function label(k) { for (var j = 0; j < STEPS.length; j++) if (STEPS[j][0] === k) return STEPS[j][1]; return k; }
+    function lc(x) { return x.charAt(0).toLowerCase() + x.slice(1); }
+    function current() { for (var j = 0; j < SEQ.length; j++) if (B.end[SEQ[j]] == null) return SEQ[j]; return null; }
+    // (only what changed is written: the page lays out and paints as little as possible while it loads)
+    function put(e, prop, v) { if (e && e[prop] !== v) e[prop] = v; }
+    function render() {
+      var box = $('boot');
+      if (!box) return;
+      var done = 0, cur = current();
+      for (var j = 0; j < STEPS.length; j++) {
+        var k = STEPS[j][0], li = box.querySelector('[data-step="' + k + '"]'), d = B.end[k] != null;
+        if (d) done += STEPS[j][2];
+        if (!li) continue;
+        put(li, 'className', B.failed && B.failed.step === k ? 'err' : d ? 'done' : B.start[k] != null ? 'now' : '');
+        put(li.lastChild, 'textContent', d ? fmt(B.end[k] - B.start[k]) : '');
+      }
+      var fill = $('boot-fill'), sx = 'scaleX(' + (B.ready ? 1 : done / total).toFixed(3) + ')';
+      if (fill && fill.style.transform !== sx) fill.style.transform = sx;
+      put($('boot-now'), 'textContent', B.failed ? 'Loading failed' : B.ready ? 'Ready' :
+        'Loading ' + lc(label(cur || 'fonts')) + ' … ' + B.files + (B.files === 1 ? ' file, ' : ' files, ') + Math.round(B.kB) + ' kB');
+      put($('boot-total'), 'textContent', fmt(B.ready ? B.total : now()));
+      if (document.fonts && document.fonts.check) fontsCheck();
+      put($('boot-note'), 'textContent', B.failed ? '' : B.pending ? 'Opens ' + B.pending.name + ' when ready' :
+        now() - changed > 15000 ? 'Still loading - a slow connection?' : '');
+    }
+    function end(k) {
+      if (B.end[k] != null) return;
+      B.end[k] = changed = now();
+      var n = SEQ.indexOf(k);
+      if (n >= 0 && n + 1 < SEQ.length) B.start[SEQ[n + 1]] = B.end[k];
+      render();
+    }
+    function fail(msg) {
+      if (B.ready || B.failed) return;
+      B.failed = { step: current() || 'fonts', msg: msg };
+      var box = $('boot');
+      if (!box) return;
+      box.classList.add('failed');
+      show();
+      var e = $('boot-err'), btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'tb small'; btn.textContent = 'Reload';
+      btn.addEventListener('click', function () { location.reload(); });
+      e.textContent = msg + ' ';
+      e.append(btn);
+      e.hidden = false;
+      render();
+    }
+    // a file (script, stylesheet) that did not load, an exception while the page starts
+    function onError(e) {
+      var t = e.target;
+      if (t && t !== window && (t.tagName === 'SCRIPT' || t.tagName === 'LINK')) {
+        var u = String(t.src || t.href || '');
+        u = u.indexOf(location.origin) === 0 ? u.slice(location.origin.length).replace(/^.*?\/(js|css|assets|vendor)\//, '$1/') : u;
+        // (a module: the browser names the entry point, also when one of its imports failed)
+        fail('Could not load ' + u + (t.type === 'module' ? ' or a module it imports.' : '.'));
+      } else if (e.message) fail(e.message + (e.filename ? ' (' + e.filename.split('/').pop() + (e.lineno ? ':' + e.lineno : '') + ')' : '') + '.');
+    }
+    // a demo picked or dropped before the app is ready: kept for main.js
+    function onChange(e) { var t = e.target; if (!B.ready && t && t.type === 'file' && t.files && t.files[0]) { B.pending = t.files[0]; render(); } }
+    function onDrag(e) {
+      var dt = e.dataTransfer;
+      if (B.ready || !dt || Array.prototype.indexOf.call(dt.types || [], 'Files') < 0) return;
+      e.preventDefault();
+      if (e.type === 'drop' && dt.files && dt.files[0]) { B.pending = dt.files[0]; render(); }
+    }
+    window.addEventListener('error', onError, true);
+    document.addEventListener('change', onChange, true);
+    window.addEventListener('dragover', onDrag);
+    window.addEventListener('drop', onDrag);
+    try {
+      po = new PerformanceObserver(function (l) { var a = l.getEntries(); for (var j = 0; j < a.length; j++) { B.files++; B.kB += (a[j].encodedBodySize || 0) / 1024; } });
+      po.observe({ type: 'resource', buffered: true });
+    } catch (err) { /* no counts */ }
+    function fontsCheck() {
+      if (B.end.fonts == null && document.fonts.check('16px Inter') && document.fonts.check('16px "JetBrains Mono"')) { end('fonts'); finish(); }
+    }
+    function finish() {
+      if (B.ready || B.failed || B.end.app == null || B.end.fonts == null) return;
+      B.ready = true;
+      B.total = now();
+      clearInterval(timer);
+      if (po) po.disconnect();
+      window.removeEventListener('error', onError, true);
+      document.removeEventListener('change', onChange, true);
+      window.removeEventListener('dragover', onDrag);
+      window.removeEventListener('drop', onDrag);
+      document.removeEventListener('load', onLoad, true);
+      var parts = [];
+      for (var j = 0; j < STEPS.length; j++) parts.push(lc(STEPS[j][1]) + ' ' + fmt(B.end[STEPS[j][0]] - B.start[STEPS[j][0]]));
+      var v = $('app-version');
+      if (v) v.title = 'Version ' + v.textContent + ' · page loaded in ' + fmt(B.total) + ' (' + parts.join(', ') + ')';
+      render();
+      var box = $('boot');
+      if (!box) return;
+      // (not shown yet - its fade-in waits 150 ms: gone at once; else it fades out)
+      if (!box.classList.contains('show')) box.hidden = true;
+      else { box.classList.add('out'); setTimeout(function () { box.hidden = true; }, 320); }
+    }
+    // the page: parsed (the indicator's markup is there) and the stylesheet in - the page step ends, the fonts' starts
+    var cssIn = false;
+    function page() {
+      if (B.end.page != null || document.readyState === 'loading' || !cssIn) return;
+      end('page');
+      B.start.fonts = B.end.page;
+      if (B.failed) { var f = B.failed; B.failed = null; fail(f.msg); }
+      show();
+      render();
+      timer = setInterval(render, 250);
+    }
+    // a script group's last script ran (data-boot: the step it closes), the stylesheet arrived (load events: captured)
+    function onLoad(e) {
+      var t = e.target;
+      if (!t || !t.tagName) return;
+      if (t.tagName === 'LINK' && t.rel === 'stylesheet') { cssIn = true; page(); }
+      else if (t.tagName === 'SCRIPT' && t.getAttribute('data-boot')) { page(); end(t.getAttribute('data-boot')); }
+    }
+    document.addEventListener('load', onLoad, true);
+    // (the stylesheet's load event may come before this listener could hear it: its sheet then is there already)
+    document.addEventListener('readystatechange', function () {
+      var l = document.querySelector('link[rel=stylesheet]');
+      if (l && l.sheet) { cssIn = true; page(); }
+    });
+    document.addEventListener('readystatechange', page);
+    /** main.js: the app is up */
+    B.done = function () {
+      end('app');
+      finish();
+      // (the fonts not there 3 s later: the app does not wait for them, nor does the indicator)
+      if (!B.ready) setTimeout(function () { if (B.end.fonts == null) { B.end.fonts = now(); B.fontsLate = true; } finish(); }, 3000);
+    };
+    // the two fonts the page uses (their Latin files), loaded by its text as before - not asked for from here: Chrome
+    // would hold the first paint for them (PLAN.md step 112). Done when both are there (or one failed)
+    if (document.fonts && document.fonts.check) {
+      document.fonts.addEventListener('loadingdone', fontsCheck);
+      document.fonts.addEventListener('loadingerror', function () { B.fontsFailed = true; end('fonts'); finish(); });
+    } else end('fonts');
+  })();
+  </script>
   <link rel="stylesheet" href="css/styles.css">
   <!-- three.js r187 from the project's own copy (vendor/three, see vendor/README.md): works offline
        and on GitHub Pages, and 'three' and its addons always come from the same place. The CDN
@@ -46,7 +210,7 @@
         <svg viewBox="0 0 16 16" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
       </a>
       <!-- Version: edit manually (YYYY-MM-DD) -->
-      <span id="app-version" class="app-version" title="Version">2026-11-23</span>
+      <span id="app-version" class="app-version" title="Version">2026-11-25</span>
       <label class="tb pri" title="Open a .dm_1 demo">
         <input type="file" id="file-input" accept=".dm_1,.DM_1" hidden><span id="open-icon"></span>Open demo
       </label>
@@ -60,12 +224,30 @@
         <h1>Drop a CoD2 demo here</h1>
         <p>or <label class="link">choose a file<input type="file" id="file-input-2" accept=".dm_1,.DM_1" hidden></label> (<code>.dm_1</code>, CoD2 1.0 – 1.3 and CoD2x 1.4, stock or zPAM)</p>
         <p class="muted">The file is read locally in your browser. Nothing is uploaded.</p>
+        <!-- the loading indicator (the boot script above; css .boot) -->
+        <div class="boot" id="boot" aria-label="Loading the viewer">
+          <div class="boot-head"><span class="boot-now" id="boot-now">Loading the viewer …</span><span class="boot-total" id="boot-total"></span></div>
+          <div class="progress-bar"><div class="progress-fill" id="boot-fill"></div></div>
+          <ol class="boot-steps">
+            <li data-step="page"><span>Page and styles</span><time></time></li>
+            <li data-step="fonts"><span>Fonts</span><time></time></li>
+            <li data-step="parser"><span>Demo parser</span><time></time></li>
+            <li data-step="index"><span>Map index and names</span><time></time></li>
+            <li data-step="analysis"><span>Match analysis</span><time></time></li>
+            <li data-step="ui"><span>Interface and 2D map</span><time></time></li>
+            <li data-step="app"><span>App modules</span><time></time></li>
+          </ol>
+          <div class="boot-note" id="boot-note"></div>
+          <div class="boot-err" id="boot-err" role="alert" hidden></div>
+        </div>
       </div>
     </section>
 
+    <!-- a demo's load: its steps and times (js/app/loadSteps.js) until the viewer is up, then over the view -->
     <section id="progress" class="progress" hidden>
-      <div class="progress-label" id="progress-label">Parsing…</div>
+      <div class="boot-head"><span class="progress-label boot-now" id="progress-label">Parsing…</span><span class="boot-total" id="progress-total"></span></div>
       <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <ol class="boot-steps" id="progress-steps"></ol>
       <button class="tb small progress-cancel" id="progress-cancel" type="button" hidden>Cancel</button>
     </section>
 
@@ -117,45 +299,45 @@
   </main>
 
   <!-- demo parser + analysis (classic scripts, DOM-free, also run inside the worker) -->
-  <script src="js/c2/core/c2.js"></script>
-  <script src="js/c2/parser/tables.js"></script>
-  <script src="js/c2/parser/huffman.js"></script>
-  <script src="js/c2/parser/msg.js"></script>
-  <script src="js/c2/parser/delta.js"></script>
-  <script src="js/c2/parser/demo.js"></script>
-  <script src="js/c2/common/text.js"></script>
-  <script src="js/c2/common/constants.js"></script>
-  <script src="js/c2/common/servercmd.js"></script>
-  <script src="assets/maps/maps.js"></script>
-  <script src="assets/maps/backgrounds.js"></script>
-  <script src="js/c2/common/names.js"></script>
-  <script src="js/c2/common/exportName.js"></script>
-  <script src="js/c2/analysis/weapons.js"></script>
-  <script src="assets/killfeed/icons.js"></script>
-  <script src="js/c2/analysis/collect.js"></script>
-  <script src="js/c2/analysis/teams.js"></script>
-  <script src="js/c2/analysis/rounds.js"></script>
-  <script src="js/c2/analysis/events.js"></script>
-  <script src="js/c2/analysis/combat.js"></script>
-  <script src="js/c2/analysis/build.js"></script>
-  <script src="js/c2/analysis/worker.js"></script>
+  <script defer src="js/c2/core/c2.js"></script>
+  <script defer src="js/c2/parser/tables.js"></script>
+  <script defer src="js/c2/parser/huffman.js"></script>
+  <script defer src="js/c2/parser/msg.js"></script>
+  <script defer src="js/c2/parser/delta.js"></script>
+  <script defer src="js/c2/parser/demo.js" data-boot="parser"></script>
+  <script defer src="js/c2/common/text.js"></script>
+  <script defer src="js/c2/common/constants.js"></script>
+  <script defer src="js/c2/common/servercmd.js"></script>
+  <script defer src="assets/maps/maps.js"></script>
+  <script defer src="assets/maps/backgrounds.js"></script>
+  <script defer src="js/c2/common/names.js"></script>
+  <script defer src="js/c2/common/exportName.js"></script>
+  <script defer src="js/c2/analysis/weapons.js"></script>
+  <script defer src="assets/killfeed/icons.js" data-boot="index"></script>
+  <script defer src="js/c2/analysis/collect.js"></script>
+  <script defer src="js/c2/analysis/teams.js"></script>
+  <script defer src="js/c2/analysis/rounds.js"></script>
+  <script defer src="js/c2/analysis/events.js"></script>
+  <script defer src="js/c2/analysis/combat.js"></script>
+  <script defer src="js/c2/analysis/build.js"></script>
+  <script defer src="js/c2/analysis/worker.js" data-boot="analysis"></script>
   <!-- UI building blocks (tables, 2D renderer, heatmap, video export) -->
-  <script src="js/c2/ui/dom.js"></script>
-  <script src="js/c2/ui/overview.js"></script>
-  <script src="js/c2/ui/scoreboard.js"></script>
-  <script src="js/c2/ui/rounds.js"></script>
-  <script src="js/c2/ui/weapons.js"></script>
-  <script src="js/c2/ui/chat.js"></script>
-  <script src="js/c2/ui/events.js"></script>
-  <script src="js/c2/ui/map/config.js"></script>
-  <script src="js/c2/ui/map/renderer.js"></script>
-  <script src="js/c2/ui/map/heatmap.js"></script>
-  <script src="js/c2/ui/map/heatPanel.js"></script>
-  <script src="js/c2/ui/map/playback.js"></script>
-  <script src="js/c2/ui/map/statsPopup.js"></script>
-  <script src="js/c2/ui/map/mp4mux.js"></script>
-  <script src="js/c2/ui/map/gifenc.js"></script>
-  <script src="js/c2/ui/map/exportVideo.js"></script>
+  <script defer src="js/c2/ui/dom.js"></script>
+  <script defer src="js/c2/ui/overview.js"></script>
+  <script defer src="js/c2/ui/scoreboard.js"></script>
+  <script defer src="js/c2/ui/rounds.js"></script>
+  <script defer src="js/c2/ui/weapons.js"></script>
+  <script defer src="js/c2/ui/chat.js"></script>
+  <script defer src="js/c2/ui/events.js"></script>
+  <script defer src="js/c2/ui/map/config.js"></script>
+  <script defer src="js/c2/ui/map/renderer.js"></script>
+  <script defer src="js/c2/ui/map/heatmap.js"></script>
+  <script defer src="js/c2/ui/map/heatPanel.js"></script>
+  <script defer src="js/c2/ui/map/playback.js"></script>
+  <script defer src="js/c2/ui/map/statsPopup.js"></script>
+  <script defer src="js/c2/ui/map/mp4mux.js"></script>
+  <script defer src="js/c2/ui/map/gifenc.js"></script>
+  <script defer src="js/c2/ui/map/exportVideo.js" data-boot="ui"></script>
   <!-- the app: ES modules (shared match model + replay state, 2D and 3D views) -->
   <script type="module" src="js/app/main.js"></script>
 </body>

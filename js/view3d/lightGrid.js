@@ -1,7 +1,7 @@
 /* The map's light grid: how CoD2 lights its models (players, their weapons, corpses), from the 1.3
  * client (RB_GetLightingAtPoint, Image_GetLightGridWeightsForVector, lightprobe.hlsl):
  *
- * - points every 32 x 32 x 64 units (x / y / z), world + 131072; stored (lightgrid.bin, cod2-ff export_maps.py) in
+ * - points every 32 x 32 x 64 units (x / y / z), world + 131072; stored (lightgrid.bin, cod2-assets src/cod2ff/viewer/export_maps.py) in
  *   4 x 4 x 4 blocks: uint32 key = (x >> 2) << 21 | (y >> 2) << 10 | (z >> 2), sorted; uint8 sub = the
  *   point in its block ((x & 3) << 6 | (y & 3) << 4 | (z & 3) << 2) | bit 0 "in sunlight"; uint8 the
  *   corners (bit i = corner i of the cell below) that need a visibility trace; uint16 colour index;

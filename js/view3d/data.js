@@ -42,7 +42,7 @@ export function dataUrl(url) {
 
 const name = url => url.split('?')[0];
 /** '..' and '.' segments resolved (a map version's props.json names another version's props.bin: "../<map>/props.bin",
- *  cod2-ff python/cod2ff/viewer/datafile.py share_tree) - the manifest's keys are plain paths */
+ *  cod2-assets src/cod2ff/viewer/datafile.py share_tree) - the manifest's keys are plain paths */
 const norm = url => {
   const i = url.indexOf('?'), path = i < 0 ? url : url.slice(0, i), out = [];
   for (const s of path.split('/')) { if (s === '..' && out.length && out[out.length - 1] !== '..') out.pop(); else if (s !== '.') out.push(s); }
@@ -116,9 +116,9 @@ export async function fetchJSON(url, opts) {
   catch (err) { return fail(url, r, bytes, name(url) + ': not valid JSON (' + bytes.byteLength + ' bytes: ' + err.message + ')'); }
 }
 
-/* The binaries are stored gzipped (<file>.gz, cod2-ff python/cod2ff/viewer/datafile.py: 38 % of the space and the download - GitHub
+/* The binaries are stored gzipped (<file>.gz, cod2-assets src/cod2ff/viewer/datafile.py: 38 % of the space and the download - GitHub
  * Pages does not compress binaries on the way; PLAN.md step 96, as cod4-demo) - also the textures as the game's DXT data
- * (<name>.dds.gz: cod2-ff python/cod2ff/viewer/texfile.py). Their JSON headers name the plain file;
+ * (<name>.dds.gz: cod2-assets src/cod2ff/viewer/texfile.py). Their JSON headers name the plain file;
  * the manifest lists the .gz. */
 const PACKED = '.gz';
 /** the URL a binary is fetched from: its .gz when the manifest lists that and not the plain file; without a manifest

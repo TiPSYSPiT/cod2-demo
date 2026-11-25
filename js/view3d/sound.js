@@ -1,6 +1,6 @@
 /* The game's sounds in the 3D view, heard at the camera.
  *
- * maps3d/_sound/aliases.json (cod2-ff python/cod2ff/viewer/sound_export.py) holds CoD2's sound aliases: per alias its
+ * maps3d/_sound/aliases.json (cod2-assets src/cod2ff/viewer/sound_export.py) holds CoD2's sound aliases: per alias its
  * variants {f: file, v: volume range, p: pitch range, d: [dist_min, dist_max], pr: probability,
  * ls: loadspec, sec: secondary alias, loop, ch: channel}; zPAM's redefinitions of stock aliases (mods.zpam,
  * used for zPAM demos: its silent weap_raise - zPAM plays the switch sound from the server); and per weapon

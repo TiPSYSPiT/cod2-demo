@@ -4,7 +4,7 @@
  * lighting, characters, effects and sound - see PLAN.md). */
 import * as THREE from 'three';
 import '../c2/ui/killfeed.js';
-import { loadWorld, groundPlane, resolveMap, textureArrivals, texturesIn, cullWorldGroups, reloadTextures, releaseStandins, gameFog, setMaxAnisotropy, setCompressedSupport } from './mapLoader.js';
+import { loadWorld, groundPlane, resolveMap, textureArrivals, textureCount, texturesIn, cullWorldGroups, reloadTextures, releaseStandins, gameFog, setMaxAnisotropy, setCompressedSupport } from './mapLoader.js';
 import { LightProbe } from './lightProbe.js';
 import { Actors, EYE, stanceOf } from './actors.js';
 import { Effects } from './effects.js';
@@ -26,7 +26,7 @@ import { CookieShadows, COOKIE_LAYER, WORLD_LAYER } from './shadows.js';
 import { LightGrid } from './lightGrid.js';
 import { gameObjectFilter, precachedRule, Exploders, ScriptedParts } from './gameObjects.js';
 import { XRay, XRAY_MODES } from './xray.js';
-import { ViewModel, FP_FOV } from './viewmodel.js';
+import { ViewModel, FP_FOV, fovSettings } from './viewmodel.js';
 import { Hud, HUD_PARTS } from './hud.js';
 import { uiInsets } from '../app/scoresOverlay.js';
 import { SOUND_KEY, soundWanted, soundVolume, audioAllowed } from '../app/audio.js';
@@ -129,7 +129,10 @@ export class View3D {
     this.stage.append(this.labels);
     this.info = new InfoHint(this.stage, 'Map and data details');
     this.hint = this.info.box;
-    this.info.set('Loading the 3D map …', { open: true });
+    // the load's steps (main.js, loadSteps.js): this view reports its own - the hint on the view only without them
+    this.step = k => { const T = this.R.loadTrack; return T && T.has(k) ? T : null; };
+    if (this.step('code3d')) this.step('code3d').end('code3d');
+    this.info.set('Loading the 3D map …', { open: !this.step('world') });
     this.camHint = el('div', { class: 'cam-hint', hidden: true });
     this.stage.append(this.camHint);
     // sound wanted but the browser holds it back (no interaction yet, e.g. ?demo=): a click anywhere starts it
@@ -155,7 +158,7 @@ export class View3D {
     // (the gunner's pose: the gun's aim relative to its stand - while the use fades out too: the demo's legs still
     // hold the gunner blend for a sample or two after leaving, and without the gun's aim it fell to the stance pose)
     this.actors.turretAim = (cl, t, s) => this.turretOf(cl, t, s);
-    this.actors.onLoaded = () => { this.R.invalidate(); this.needsRender = true; this.compileAhead(); if (this.actors.failed) this.playersSel.parentNode.title = 'The player models are not exported (cod2-ff python/cod2ff/viewer/characters_export.py)'; };
+    this.actors.onLoaded = () => { this.R.invalidate(); this.needsRender = true; this.compileAhead(); if (this.actors.failed) this.playersSel.parentNode.title = 'The player models are not exported (cod2-assets: scripts/export_viewer.py --only characters)'; };
     this.effects = new Effects(scene, this.labels, this.M);
     // the game's particle effects (fx.js): explosions, smoke, impacts, muzzle flashes
     this.fx = new FxPlayer(scene, this.M);
@@ -214,6 +217,7 @@ export class View3D {
     // to the grid lighting once all their textures are there)
     this.onArrive = textureArrivals.onArrive = () => {
       this.needsRender = true;
+      if (this.texBase) this.texProgress();
       if (!this.redrawTimer) this.redrawTimer = setTimeout(() => { this.redrawTimer = null; if (this.visible) this.R.invalidate(); }, 100);
     };
     // (a decoded texture on the GPU as it arrives - its ImageBitmap closed then: mapLoader.js loadTexture)
@@ -279,6 +283,8 @@ export class View3D {
   /* ---------- map ---------- */
   async load() {
     const M = this.M, map = M.d.meta.map;
+    if (this.step('world')) this.step('world').start('world');
+    this.texBase = { ...textureCount };                      // (the Textures step: the map's own, asked from here on)
     let name = null;
     try { name = await resolveMap(map); } catch (err) { name = null; }
     // (closed meanwhile - another demo was opened while this one's map loaded: nothing more is fetched or built for it)
@@ -286,9 +292,17 @@ export class View3D {
     setMaxAnisotropy(this.renderer.capabilities.getMaxAnisotropy());
     if (name) {
       try {
-        const w = await loadWorld(name, { onProgress: f => { this.info.set('Loading the 3D map ' + name + ' … ' + Math.round(f * 100) + ' %', { open: true }); } });
+        const w = await loadWorld(name, { onProgress: f => {
+          const T = this.step('world');
+          this.info.set('Loading the 3D map ' + name + ' … ' + Math.round(f * 100) + ' %', { open: !T });
+          if (T) T.progress('world', f, Math.round(f * 100) + ' %');
+        } });
         if (this.destroyed) return;
         this.world = w;
+        if (this.step('world')) this.step('world').end('world');
+        // (the steps after the geometry run side by side: each from here)
+        for (const k of ['textures', 'props', 'light', 'frame']) if (this.step(k)) this.step(k).start(k);
+        this.texProgress();
         this.drawnWorld = null;                               // (its first frame waits only for the world's own compile: renderFrame)
         // the entities the game type deletes, the bomb sites' exploders (gameObjects.js)
         const keep = gameObjectFilter(M.d.meta.gametype), ran = precachedRule(M.d.meta);
@@ -328,13 +342,17 @@ export class View3D {
         this.effects.setSites(w.sites || []);
         const first = this.compileAhead();
         this.worldCompile = first ? { world: w, done: false } : null;
-        if (first) { const wc = this.worldCompile; first.finally(() => { wc.done = true; this.needsRender = true; }); }
+        if (this.step('shaders')) this.step('shaders').start('shaders');
+        if (first) { const wc = this.worldCompile; first.finally(() => { wc.done = true; this.needsRender = true; if (this.step('shaders')) this.step('shaders').end('shaders'); }); }
+        // (without parallel compiling - Firefox here - the programs are built at their first draw: the First frame step)
+        else if (this.step('shaders')) this.step('shaders').end('shaders', 'at first draw');
         // the intermission camera and hurt triggers (Layers panel)
         if (this.mapMarks) this.mapMarks.dispose();
         this.mapMarks = new MapMarks(this.scene, w.entities);
         try { this.fx.probe = this.actors.probe = new LightProbe(w, w.lightScale); } catch (err) { console.warn('light probe:', err); }
         // the models' light: the map's light grid (lightGrid.js), when exported
         LightGrid.load('maps3d/' + name + '/', w.info).then(g => {
+          if (this.step('light')) this.step('light').end('light', g ? '' : 'none');
           if (!g || this.world !== w || this.destroyed) return;
           g.apply();
           this.actors.grid = g;
@@ -344,7 +362,7 @@ export class View3D {
           if (this.props) this.props.applyGrid(g);
           this.compileAhead();
           this.R.invalidate(); this.needsRender = true;
-        }).catch(err => console.warn('light grid not loaded:', err));
+        }).catch(err => { console.warn('light grid not loaded:', err); if (this.step('light')) this.step('light').end('light', 'not loaded'); });
         // the map's static models (misc_model): props.js, when exported
         try {
           this.props = await Props.load('maps3d/' + name + '/', { gametype: M.d.meta.gametype, meta: M.d.meta });
@@ -366,7 +384,10 @@ export class View3D {
             this.propsRow.hidden = false;
             this.compileAhead();
           }
-        } catch (err) { console.warn('props not loaded:', err); }
+          if (this.step('props')) this.step('props').end('props', this.props ? '' : 'none');
+        } catch (err) { console.warn('props not loaded:', err); if (this.step('props')) this.step('props').end('props', 'not loaded'); }
+        // (the map's and the props' textures asked for: the step ends when none is on its way any more)
+        texturesIn(60000).then(() => { if (this.step('textures')) { this.texProgress(); this.step('textures').end('textures'); } });
         this.mapName = name;
         this.updateHint();
         // the game's sounds (sound.js; ?sound=off: none) - the property is `sounds`; the 3D video export
@@ -389,7 +410,7 @@ export class View3D {
     } else {
       // (for visitors; the developer's hint goes to the console)
       this.fallback('This site has no 3D data for ' + (map || 'this map') + '.');
-      console.info('No maps3d/ data for "' + map + '": export it with cod2-ff python/cod2ff/viewer/export_maps.py (README).');
+      console.info('No maps3d/ data for "' + map + '": export it with cod2-assets: scripts/export_viewer.py --only maps (README).');
     }
     // start the camera over the area the players used
     const b = M.bbox;
@@ -406,7 +427,18 @@ export class View3D {
     this.R.invalidate();
   }
 
+  /** the Textures step: arrived of asked since the world came */
+  texProgress() {
+    const T = this.step('textures'), b = this.texBase;
+    if (!T || !b || !this.world) return;
+    const asked = textureCount.asked - b.asked, got = textureCount.arrived - b.arrived;
+    T.progress('textures', asked ? got / asked : 0, asked ? got + ' of ' + asked : '');
+  }
+
   fallback(text) {
+    this.fellBack = true;
+    const T = this.R.loadTrack;
+    if (T) T.skip(['world', 'shaders', 'textures', 'props', 'light'], 'no 3D data');
     const g = groundPlane(this.M);
     this.scene.add(g.group);
     this.scene.background = new THREE.Color(0x4a4d55);       // (a dull sky: the players and the grid stand out)
@@ -637,7 +669,7 @@ export class View3D {
       this.fx.setEnabled(on);
       this.effects.realFx = on;              // no marker spheres for explosions / smoke
       this.actors.realFlash = on;            // no muzzle flash sphere
-      if (!ok) this.fxSel.parentNode.title = 'The effects are not exported (cod2-ff python/cod2ff/viewer/fx_export.py)';
+      if (!ok) this.fxSel.parentNode.title = 'The effects are not exported (cod2-assets: scripts/export_viewer.py --only fx)';
       this.R.invalidate(); this.needsRender = true;
     };
     if (mode === 'game') this.fx.load().then(apply); else apply(true);
@@ -879,7 +911,10 @@ export class View3D {
     const dt = this.last == null ? 0 : Math.min(0.1, (now - this.last) / 1000);
     this.last = now;
     if (this.xrayMode === 'names' && this.xray.poll()) this.needsRender = true;     // (a name badge changed)
-    this.renderFrame(dt, dt);
+    if (this.renderFrame(dt, dt)) {
+      this.R.frames++;                                       // (the FPS counter: a frame drawn)
+      if ((this.world || this.fellBack) && this.step('frame')) this.step('frame').end('frame');   // (the load's last step)
+    }
     if (this.sounds && this.sounds.enabled) this.sounds.update(this.t || 0, this.camera, this.R.pb, this.fpClient);
   }
 
@@ -1001,7 +1036,8 @@ export class View3D {
     if (this.compileWait(hold)) { this.needsRender = true; return false; }
     if (this.fpClient != null && this.viewmodel.prepareLit(this.renderer, !hold || this.drawnWorld !== this.world)) { this.needsRender = true; return false; }
     if (mode === 'fp') {
-      const fov = fpSample ? this.viewmodel.fov(FP_FOV) : FP_FOV;
+      if (!this.fovAt) this.fovAt = fovSettings(this.M.d);        // (the FOV dvars the server set, else the defaults)
+      const fov = fpSample ? this.viewmodel.fov(this.fovAt(this.t || 0)) : FP_FOV;
       if (Math.abs(this.camera.fov - fov) > 1e-4) { this.camera.fov = fov; this.camera.updateProjectionMatrix(); }
       // a player without a player state: is a teammate under the crosshair (the recorder's comes from the demo)
       const st = this.viewmodel.state;
@@ -1026,7 +1062,7 @@ export class View3D {
     } finally { this.scene.matrixWorldAutoUpdate = true; }
     if (this.xrayMode !== 'off') this.xray.render(this.scene, this.camera, this.actors.xrayTargets(hideClient));
     this.actors.setXrayHidden(this.xrayMode === 'names' ? this.xray.hidden() : null);
-    if (this.fpClient != null) this.viewmodel.render(this.renderer, this.camera, FP_FOV, [this.hemi, this.sun], this.fx.viewRoot);
+    if (this.fpClient != null) this.viewmodel.render(this.renderer, this.camera, [this.hemi, this.sun], this.fx.viewRoot);
     this.opaqueCanvas();
     if (!this.exporting) {
       this.actors.projectLabels(this.camera, this.w, this.h, hideClient);

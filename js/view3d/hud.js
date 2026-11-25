@@ -1,6 +1,6 @@
 /* The game's HUD in first person, drawn on a 2D canvas (the overlay over the 3D view, and every frame of the
  * video export). Everything is the game's: the layout from the HUD menu files (ui_mp/hud.menu, the stock game's
- * or zPAM's: cod2-ff python/cod2ff/viewer/hud_export.py -> maps3d/_hud/hud.json), the fonts, images and strings from the game
+ * or zPAM's: cod2-assets src/cod2ff/viewer/hud_export.py -> maps3d/_hud/hud.json), the fonts, images and strings from the game
  * files, and what the client code draws (the decompiled 1.3 client, cod2x/src/other):
  *   placement    CalcScreenPlacement: the 640 x 480 screen, one scale (height / 480) for both axes, anchored
  *                left / centre / right and top / centre / bottom - a wider screen keeps the HUD at its edges

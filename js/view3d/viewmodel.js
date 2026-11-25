@@ -1,5 +1,5 @@
 /* The first-person weapon: the gun the followed player holds, in the hands the game gives them
- * (maps3d/_characters/viewmodels.json + vanims.json, cod2-ff python/cod2ff/viewer/viewmodels_export.py), animated with the
+ * (maps3d/_characters/viewmodels.json + vanims.json, cod2-assets src/cod2ff/viewer/viewmodels_export.py), animated with the
  * weapon's own view animations as the demo drives them (viewanim.js), the crosshair and the sniper scope.
  * Ported from cod4-demo3d (viewmodel.js); the crosshair and the scope as CoD2 draws them (CG_DrawCrosshair,
  * CG_DrawWeapReticle of the 1.3 client).
@@ -33,9 +33,28 @@ const MODEL_TO_CAMERA = new THREE.Quaternion().setFromRotationMatrix(new THREE.M
 // the game's cg_fov (default 80): a horizontal fov of the 4:3 screen
 export const CG_FOV = 80;
 const vFov43 = h => 2 * Math.atan(Math.tan(h * D2R / 2) * 0.75) / D2R;
-const hFov43 = v => 2 * Math.atan(Math.tan(v * D2R / 2) / 0.75) / D2R;
-/** the first-person camera's vertical fov: cg_fov 80 on the game's 4:3 screen (wider screens see more aside) */
+/** the first-person camera's vertical fov: cg_fov 80 on the game's 4:3 screen, 64.37 degrees (CG_CalcFov: fov_y =
+ *  2 atan(0.75 tan(fov / 2)), the same at every screen shape - a wider screen sees more aside: Hor+) */
 export const FP_FOV = vFov43(CG_FOV);
+/** the FOV dvars of the 1.3 client (cheat-protected: 80 / 1 / 10 on every normal server) and their limits */
+export const FOV_DEFAULTS = Object.freeze({ fov: CG_FOV, scale: 1, min: 10 });
+const FOV_DVARS = { cg_fov: ['fov', 1, 160], cg_fovscale: ['scale', 0.2, 2], cg_fovmin: ['min', 1, 160] };
+/** the FOV dvars over the demo -> (t) => {fov, scale, min}: the defaults, or what the server set for the recording
+ *  player (setClientCvar, the "v" command - it passes the cheat protection; psHud.dvars, build.js). None of the test
+ *  demos has one: then the defaults, at no cost */
+export function fovSettings(d) {
+  const sets = [];
+  for (const [t, n, v] of (d.psHud && d.psHud.dvars) || []) {
+    const def = FOV_DVARS[n], x = Number(v);
+    if (def && String(v).trim() !== '' && Number.isFinite(x)) sets.push([t, def[0], Math.min(def[2], Math.max(def[1], x))]);
+  }
+  if (!sets.length) return () => FOV_DEFAULTS;
+  return t => {
+    const o = { ...FOV_DEFAULTS };
+    for (const [ts, k, x] of sets) { if (ts > t) break; o[k] = x; }
+    return o;
+  };
+}
 
 /** the view models and their animations (the player models' library, on other files) */
 class ViewModelLibrary extends CharacterLibrary {
@@ -202,24 +221,22 @@ export class ViewModel {
     return Math.min(1, Math.max(0, (st.ads - (1 - f)) / f));
   }
 
-  /** the vertical field of view of the first-person camera at the base fov (CG_GetViewFov): the horizontal fov of
-   *  the 4:3 screen goes linearly from cg_fov to the weapon's adsZoomFov over the zoom fraction; 55 on a mounted MG
-   *  (the fovs relative to cg_fov 80, so another base scales them) */
-  fov(base) {
-    const hb = hFov43(base), scale = hb / CG_FOV;
-    if (this.onTurret) return vFov43(55 * scale);
-    const z = this.zoomFrac();
-    if (!z) return base;
-    const P = this.state.entry.params;
-    return vFov43(hb - (hb - Math.min(170, P.adsZoomFov * scale)) * z);
-  }
-
-  /** the view model's own fov: the scene's, or the weapon's adsZoomGunFov while aiming (bazooka, panzerschreck) */
-  gunFov(base, sceneFov) {
-    const z = this.zoomFrac(), P = this.state && this.state.entry && this.state.entry.params;
-    if (!z || !P || !P.adsZoomGunFov) return sceneFov;
-    const hb = hFov43(base), scale = hb / CG_FOV;
-    return vFov43(hb - (hb - Math.min(170, P.adsZoomGunFov * scale)) * z);
+  /** the vertical field of view of the first-person camera (CG_GetViewFov, CG_CalcFov): the horizontal fov of the 4:3
+   *  screen - cg_fov; at the intermission 90; aiming, linearly from cg_fov to the weapon's adsZoomFov over the zoom
+   *  fraction (adsZoomFov as it is: not relative to cg_fov); on a mounted MG 55 - then x cg_fovScale, at least
+   *  cg_fovMin; as the vertical fov, the same at every screen shape (Hor+). dv: the FOV dvars (fovSettings) */
+  fov(dv = FOV_DEFAULTS) {
+    let f = dv.fov;
+    const st = this.state;
+    if (st && st.intermission) f = 90;
+    else {
+      const z = this.zoomFrac();
+      if (z) f -= (f - st.entry.params.adsZoomFov) * z;
+    }
+    if (this.onTurret) f = 55;
+    f *= dv.scale;
+    if (f < dv.min) f = dv.min;
+    return vFov43(Math.min(170, f));
   }
 
   /** the rig of gun + hands (built when the library is loaded) */
@@ -387,14 +404,15 @@ export class ViewModel {
     }
   }
 
-  /** draw over the finished frame of `camera` (the first-person camera at the eye): the gun, then the
-   *  crosshair or the scope; base = the camera's fov without the zoom */
-  render(renderer, camera, base, sceneLights, flashes) {
+  /** draw over the finished frame of `camera` (the first-person camera at the eye): the gun, then the crosshair or
+   *  the scope. The gun with the scene's projection, zoomed with it (CG_AddViewWeapon has no fov of its own - the 1.3
+   *  client reads no adsZoomGunFov: the panzerschreck file's 40 is not used) */
+  render(renderer, camera, sceneLights, flashes) {
     if (this.shown && this.current) {
       const C = this.camera;
       C.position.copy(camera.position);
       C.quaternion.copy(camera.quaternion);
-      C.fov = this.gunFov(base, camera.fov); C.aspect = camera.aspect;
+      C.fov = camera.fov; C.aspect = camera.aspect;
       C.updateProjectionMatrix();
       this.place(camera);
       this.light(camera, renderer);

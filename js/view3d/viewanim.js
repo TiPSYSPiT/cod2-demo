@@ -201,7 +201,8 @@ export class ViewAnimator {
     if (W && W.state[ri] >= OFFHAND_STATES[0] && W.state[ri] <= OFFHAND_STATES[1] && W.offhand[ri] && animIdx !== 17 && animIdx !== 18) wIdx = W.offhand[ri];
     const weapon = M.weaponName(wIdx, t);
     const entry = weapon ? entryOf(weapon) : null;
-    const out = { weapon, entry, layers: [], ads: 0, adsIn: true, spread: 0, spread255: 0, fuse: 0, recorder: !!W,
+    // (intermission: the recorder at pm_type 5, PM_INTERMISSION - the view's fov 90, viewmodel.js fov)
+    const out = { weapon, entry, layers: [], ads: 0, adsIn: true, spread: 0, spread255: 0, fuse: 0, recorder: !!W, intermission: !!(W && W.pmType[ri] === 5),
       offset: { pos: [0, 0, 0], rot: [0, 0, 0] }, action: null };
     if (!entry) return out;
     const A = entry.anims || {}, P = entry.params || {};
@@ -247,10 +248,14 @@ export class ViewAnimator {
     let ads = 0, adsIn = true;
     if (W) {
       ads = W.ads[ri];
-      if (ri + 1 < W.t.length && W.client[ri + 1] === cl && W.t[ri + 1] > W.t[ri]) {
-        adsIn = W.ads[ri + 1] >= W.ads[ri];
-        ads += (W.ads[ri + 1] - ads) * clamp01((t - W.t[ri]) / (W.t[ri + 1] - W.t[ri]));
-      } else if (ri > 0) adsIn = W.ads[ri] >= W.ads[ri - 1];
+      if (ri + 1 < W.t.length && W.client[ri + 1] === cl && W.t[ri + 1] > W.t[ri]) ads += (W.ads[ri + 1] - ads) * clamp01((t - W.t[ri]) / (W.t[ri + 1] - W.t[ri]));
+      // in or out - which of the weapon's zoom / overlay / crosshair fractions applies: the game's latch
+      // (cg.bPositionToADS), "in" from the moment the sights were fully down (0), "out" from fully up (1) - not the
+      // direction of the movement (aiming in half-way and back out: still the "in" fractions)
+      for (let k = ri, n = 0; k >= 0 && W.client[k] === cl && n < 4096; k--, n++) {
+        if (W.ads[k] <= 0) { adsIn = true; break; }
+        if (W.ads[k] >= 1) { adsIn = false; break; }
+      }
     } else [ads, adsIn] = this.adsOther(cl, t, P);
     // the ADS variant of a shot / rechamber (the recorder's number already says it)
     if (!W && key && ADS_VARIANT[key] && ads > 0.5 && has(ADS_VARIANT[key])) key = ADS_VARIANT[key];

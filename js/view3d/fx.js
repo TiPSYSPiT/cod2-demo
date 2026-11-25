@@ -1,4 +1,4 @@
-/* The game's particle effects in 3D (maps3d/_fx/effects.json, cod2-ff python/cod2ff/viewer/fx_export.py): grenade
+/* The game's particle effects in 3D (maps3d/_fx/effects.json, cod2-assets src/cod2ff/viewer/fx_export.py): grenade
  * explosions (the impact table's effect for the surface hit), smoke grenades (the weapon's
  * projExplosionEffect), bullet impacts (bullet_small / large / ap / shotgun by event and weapon,
  * the surface hit, facing the surface normal), scripted effects (EV_PLAY_FX: the bomb ...), the

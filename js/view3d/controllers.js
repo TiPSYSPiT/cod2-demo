@@ -24,7 +24,7 @@
  * whenever the movement type changes (moving forward / back / sideways, stance, lean ...).
  *
  * The movement types and strafing of the legs animations come from playeranim.script (anims.json moveTypes,
- * cod2-ff's animtree.script_movetypes); an older export without them: from the animations' names.
+ * cod2-assets' animtree.script_movetypes); an older export without them: from the animations' names.
  *
  * The state depends on its history, so it is simulated along the demo's samples in steps of at most 16 ms (with
  * checkpoints every CHECK samples): the same demo time always gives the same angles, also when seeking. */

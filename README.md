@@ -19,10 +19,13 @@ with the site (the whole site without the sample demos: ~750 MB in ~4,200 files,
 | Part | What it does |
 |---|---|
 | Top bar | **2D / 3D** toggle (key `V`; a demo opens in 3D, in the first person of the player who recorded it, with the game's sounds on at 20 % - view, camera, sound and volume the viewer changed are remembered instead), **Match details** (chart icon: scoreboard, round by round, chat, events), **Export JSON** (file icon), **GitHub** (the source), **Open demo** |
+| Start screen | The page's scripts are deferred (fetched in parallel - the page's Content-Security-Policy meta tag stops Chrome's look-ahead fetching). While the page loads, an indicator under the drop text: what is loading (the steps of the page - page and styles, fonts, demo parser, map index and names, match analysis, interface and 2D map, app modules - with the files and kB received), a bar, the time per step and in all (ms under 1 s, then s). It shows only after 150 ms (a fast load never flashes it) and fades out when the viewer is ready; the times stay in the version label's tooltip. A file that does not load or an error is shown there with a Reload button. A demo picked or dropped before the viewer is ready is kept and opened when it is |
 | Score pill | Over the view: the score at the playback time, the round and its time, map and mode; after a plant the **bomb timer** (the server's own countdown clock; also next to the bomb in 2D) |
 | Rail (left) | Icon buttons with popovers: **Layers** (names, trails 5 s (off by default), kill lines, the recording player's hits from zPAM's damage log, last known position, dropped weapons (2D, off by default), grenade types, the map's intermission camera and hurt triggers; in 2D the map background), **Heatmap** (2D), **Camera** and **Display** (3D: players, X-Ray, props, effects, kill feed, bullet tracers, enemy names, head icons, grenades and dropped weapons, shell casings, shadows, sound and volume), **Match info** (final score on request, map, mode, ruleset, server, POV, length, record date, protocol, the map data details; the **rules** - friendly fire, kill cam, limits, the bomb timer, antilag, zPAM's weapon limits -; zPAM's **match info** - teams, round, half, match time, timeouts; keyboard shortcuts) |
 | Drawer (right) | Round and status; per team the faction's icon, the side, score and alive bars, per player the weapon in hand (kill icon) and K / D up to now. Click a player to select them (highlighted in 2D and 3D, followed by the 3D cameras); the eye shows / hides a player, the chart icon opens the player's stats. Below it the kill feed & bomb: the game's own kill icons and bomb plants / defuses, the entry at the playback time highlighted, click one to jump to 2 s before it (that entry stays the highlighted one); separators mark each round ("R11" - from the same round detection as the timeline and the score pill; the current round's in the accent, click one for the round's start), the warmup and each halftime / side switch (also every overtime swap). Sections fold, the drawer hides (both remembered) |
 | Scoreboard | Hold `Tab`: the game's scoreboard (the last scores the server sent) over the view - 2D, 3D, first person and fullscreen -, gone when `Tab` is released or the window loses the focus. Only the viewer's own `Tab` shows it, not the demo's (the recording player's scoreboard, the intermission); in a form field, a dropdown, a popover or a dialog `Tab` moves the focus as usual. Not part of the video export |
+| Loading a demo | The steps of its start with their times, from the moment the file was picked: download (a link), reading, parsing (real progress), the match analysis, then the view's own - 3D: its code, the map geometry (%), shaders, textures (n of m), map models, lighting, the first frame; 2D: the map image. Shown in place of the drop area, then as a small panel over the view that fades out when everything is in; the times stay in the Match info popover |
+| FPS counter | Layers, *Viewer*, *FPS counter* (off by default, remembered for the browser session): the frames per second the view draws and the mean time between them ("144 FPS · 6.9 ms"), top right under the fullscreen button, in 2D, 3D, first person and fullscreen; updated twice a second, "idle" while a paused view draws nothing. Not part of the video export |
 | Fullscreen | The button at the top right (or `F`; in the free-fly camera `F` stays "down"): only the view (2D or 3D) with its HUD fills the screen - top bar, score pill, rail, panel and player bar hidden. The player bar slides in over the view when the mouse comes to the bottom of the screen (or on a touch, or briefly on a `←` / `→` seek) and out 2 s after the mouse left, not while the mouse is on it, the playhead is dragged or a dropdown is open; the view and the HUD do not move. The cursor and the exit button go when the mouse rests over the view. `Esc` or the button returns |
 | Player bar (bottom) | ⏪ / ⏩ 5 s (`←` / `→`), play / pause (`Space`), the time, the timeline (rounds as segments underlined in the winner's colour, kills as ticks - one team above, the other below -, bomb plants / defuses, halftimes; under it the **round labels** - "R11", "HT", "Warmup" and the like, from the same list as the kill feed's separators, thinned out to "11" or every 2nd, 5th... number when the bar is short; hovering the lane shows "Round 11 – 10:44, score 5:5" also for a round without a label, a click jumps to the round's start), range (whole match or one round), 0.5–4× speed, export range `[ ]` (`I` / `O`), **Export video** |
 | Match details | **Weapons** (every weapon of the demo with the weapon file's numbers - damage and falloff in metres, hit-location multipliers, hits to kill, RPM, clip, reload, ADS, speed - and how it was used: kills, HS %, average kill distance, users; in zPAM demos the damage model checked against zPAM's damage log), Scoreboard (score, K / A / D, K/D, HS %, TK, nade kills / deaths, opening duels won–lost, trade kills, rounds with 3+ kills, clutches won / played, in zPAM 3 demos zPAM's own score and damage count, plants / defuses per player, halves; names in their colour codes), round-by-round table with win reasons and round times from the round clock (after zPAM's strat time), per round the first blood, 3K+ rounds, the clutches (1vX) and the trades, and in zPAM demos zPAM's **round report** of the recording player (his hits with damage and hit location, how he was killed) and zPAM's **damage log** (every rifle / scoped / shotgun / grenade hit he made: victim, damage, the victim's health before it, hit location, weapon, distance; also in his stats and as hit markers on the 2D map), chat, events (joins, team changes, ready-up, halftime, timeouts, bomb; optional: weapon and ammo pickups, out of grenades); the player stats show the ping over time |
@@ -118,7 +121,11 @@ the game's own formulas with the weapon file's numbers (the kick's random part i
 the same); the idle sway and the stance and movement offsets follow the weapon file's numbers; the recording player's
 scope sways as the game sways the view while aiming (calm while he holds his breath, faster after a long hold).
 In third person a player's gun goes to the left hand during grenade throws and rifle reloads, as the animations'
-notetracks tell the game. Aiming down the sights zooms as the game does (the weapon's ADS fov), the sniper rifles show
+notetracks tell the game. **Field of view**: the game's `cg_fov 80`, a horizontal fov of the 4:3 screen - 64.37°
+vertical at every screen shape, a wider window sees more at the sides (Hor+, as CoD2); aiming down the sights zooms as
+the game does (from 80 to the weapon's `adsZoomFov` over the last part of the movement, the in / out fractions as the
+game picks them), 55 on a mounted MG, 90 at the intermission, the gun drawn with the scene's fov (as CoD2: no gun fov
+of its own); a server that sets `cg_fov` / `cg_fovScale` / `cg_fovMin` for the player is followed. The sniper rifles show
 their scope overlay; the view flash at the muzzle on every shot. The crosshair is the game's: the weapon's
 reticle images at the spread of the moment (stance, movement, shots), shrinking and fading while the sights come
 up, hidden during reloads, switches and on a mounted MG, green while it is on a teammate (as in CoD2, which has no
@@ -300,11 +307,13 @@ does (under `/cod2-demo/`, `Cache-Control: max-age=600`, ETag / 304, gzip for te
 
 ## Regenerate the map data (Python)
 
-The exporters live in **cod2-ff** (`C:/Claude/cod2-ff`, the CoD2 asset extractor: `python/cod2ff/viewer/`, moved there
-from this project's `tools/export` - PLAN.md step 101). They write into this folder: cod2-ff finds it beside itself
-(`../cod2-demo`) or in the environment variable `COD2_DEMO`; the audits here find cod2-ff the same way (`../cod2-ff`
-or `COD2FF`). The commands below run in the cod2-ff folder. Needs **Python 3.10+** and **Pillow with WebP**
-(`pip install pillow`), nothing else. The game folder is
+The exporters live in **cod2-assets** (`C:/Claude/cod2-assets`, the CoD2 asset extractor - formerly cod2-ff, renamed
+2026-11-24, PLAN.md step 111; its viewer exporters are `src/cod2ff/viewer/`, its readers `src/cod2ff/formats/` - the
+Python package keeps the name `cod2ff`; moved there from this project's `tools/export` - PLAN.md step 101). They
+write into this folder: cod2-assets finds it beside itself (`../cod2-demo`), in the environment variable
+`COD2_DEMO` or by `--site`; the audits here find cod2-assets through `tools/cod2assets.py` (the environment variable
+`COD2_ASSETS`, else `COD2FF`, else `../cod2-assets`). The commands below run in the cod2-assets folder. Needs
+**Python 3.10+** and **Pillow 10.3+ with WebP** (`pip install pillow`), nothing else. The game folder is
 the CoD2 install with `main/` (stock `iw_*.iwd`, localized `localized_*_iw*.iwd`, and for the zPAM map
 pack and radar images `zpam_maps_v7.iwd` / `zpam409.iwd`).
 
@@ -315,9 +324,9 @@ other archive and only those of one language - whatever the install's `localizat
 is the **censored textures**: the German release's versions of the 58 localized materials that draw insignia (flags,
 banners, crates, posters, uniforms, the scoreboard's German flag) and their `*_local` images, so the site shows no
 swastikas; for these the German archives (`localized_german_iw*.iwd`) must be in `main/` too, else the export stops.
-Both are set at the top of cod2-ff's `python/cod2ff/iwd.py` (`LANGUAGE`, `CENSORED_FROM`). After a change of the
-localized archives, run `sound_export.py` (the voices) and `hud_export.py` (the strings); the maps, characters and
-effects only use the censored materials, which do not depend on the language.
+Both are set at the top of cod2-assets' `src/cod2ff/formats/iwd.py` (`LANGUAGE`, `CENSORED_FROM`). After a change of
+the localized archives, export the sounds (the voices) and the HUD (the strings): `--only sound,hud`; the maps,
+characters and effects only use the censored materials, which do not depend on the language.
 
 25 of the game's images are wavelet compressed
 (mp_matmata's well, mp_toujane's vase, a few HUD and effect images): their decode tables are read from the game
@@ -326,51 +335,45 @@ folder's own `gfx_d3d_mp_x86_s.dll` (or `gfx_d3d_x86_s.dll`) - not shipped here.
 Everything in order (sounds, characters, view models, effects, HUD, maps):
 
 ```bash
-py python/export_viewer.py --game "C:/Games/Call of Duty 2"
+py scripts/export_viewer.py --game "C:/Games/Call of Duty 2"
 ```
 
-One exporter at a time:
+Some steps (`--only`: sound, characters, viewmodels, fx, hud, maps), a step's own options after `--`:
 
 ```bash
-py python/cod2ff/viewer/export_maps.py --game "C:/Games/Call of Duty 2"
-```
-
-```bash
-py python/cod2ff/viewer/export_maps.py --game "C:/Games/Call of Duty 2" --map mp_toujane --map mp_carentan
+py scripts/export_viewer.py --game "C:/Games/Call of Duty 2" --only maps -- --map mp_toujane --map mp_carentan
 ```
 
 ```bash
-py python/cod2ff/viewer/sound_export.py --game "C:/Games/Call of Duty 2"
+py scripts/export_viewer.py --game "C:/Games/Call of Duty 2" --only sound,hud
 ```
+
+One exporter on its own, as a module (`src` on `PYTHONPATH`):
 
 ```bash
-py python/cod2ff/viewer/characters_export.py --game "C:/Games/Call of Duty 2"
+PYTHONPATH=src py -m cod2ff.viewer.export_maps --game "C:/Games/Call of Duty 2" --map mp_toujane
 ```
 
-```bash
-py python/cod2ff/viewer/fx_export.py --game "C:/Games/Call of Duty 2"
-```
-
-```bash
-py python/cod2ff/viewer/viewmodels_export.py --game "C:/Games/Call of Duty 2"
-```
-
-```bash
-py python/cod2ff/viewer/hud_export.py --game "C:/Games/Call of Duty 2"
-```
-
-| Option (export_maps.py) | Meaning |
+| Option (export_viewer.py) | Meaning |
 |---|---|
 | `--game DIR` | the install folder (with `main/`) |
+| `--site DIR` | the viewer's folder (default: `COD2_DEMO`, else `cod2-demo` beside cod2-assets) - the data goes to `<site>/maps3d`, the kill icons to `<site>/assets/killfeed`, the 2D map list to `<site>/assets/maps/backgrounds.js` |
+| `--only STEPS` | some of `sound,characters,viewmodels,fx,hud,maps` (the order stays) |
+| `--jobs N` | maps exported at the same time (default: by cores and free memory) |
+| `--no-cache` | no disk cache (cod2-assets' `.cache/`: FLAC sounds, wavelet images, sky strips) and no up-to-date check |
+| `--always` | export even when the game files, the code and the site's data are as after the last export |
+
+| Option (export_maps, after `--`) | Meaning |
+|---|---|
 | `--map NAME` | only this map (repeatable); default: every `maps/mp/*.d3dbsp` in the archives |
-| `--out DIR` | output folder (default `maps3d/`) |
+| `--out DIR` / `--assets DIR` | output folder (default `maps3d/`) / the kill icons' and `backgrounds.js`' folder (default `assets/` beside it) |
 | `--tex-size N` | largest colour / detail map edge (default 1024; normal and specular maps: 512) |
 | `--topdown-size N` | edge of the top-down image (default 2048) |
 | `--force` | re-encode textures already in `maps3d/_textures` |
-| `--no-icons` | skip the kill icons |
-| `--icons-only` | only the kill icons (`assets/killfeed/`: each weapon's `killIcon`, mirrored where the weapon file sets `flipKillIcon` - as the game's kill feed shows it) |
-| `--grid-only` | only add the light grid (`lightgrid.bin`), its collision (`collision.bin`), the sun keys and the props' lighting keys to maps already exported |
-| `--entities-only` | only add the hurt triggers (`trigger_hurt`: boxes and damage) to the `entities.json` of maps already exported |
+| `--no-icons` / `--icons-only` | skip the kill icons / only the kill icons (`assets/killfeed/`: each weapon's `killIcon`, mirrored where the weapon file sets `flipKillIcon` - as the game's kill feed shows it) |
+
+(cod2-ff's partial modes `--grid-only`, `--entities-only`, `--turret-tags-only` and `--inspect-only` are gone in
+cod2-assets: a map is always exported whole.)
 
 Per map it writes into `maps3d/<map>/`: `world.bin/json` (BSP triangle soups: positions, normals, vertex
 colours, UVs, lightmap UVs, indices; one draw group per material + lightmap with its blend / alpha test),
@@ -389,11 +392,11 @@ and specular ones lossless), the index
 `maps3d/index.json`, the 2D registry `assets/maps/backgrounds.js` and the kill icons in `assets/killfeed/`.
 The lightmaps, their coefficient images and the sun masks are lossless WebP. The binaries (`world.bin`,
 `props.bin`, `lightgrid.bin`, `collision.bin`, the characters' and view models' `.bin`) are stored gzipped,
-`<name>.bin.gz` (cod2-ff `datafile.py`; the JSON headers keep the plain names, the 3D view unpacks them with the
+`<name>.bin.gz` (cod2-assets `datafile.py`; the JSON headers keep the plain names, the 3D view unpacks them with the
 browser's `DecompressionStream`); identical files are stored once (`datafile.py share`, run after every export into
 this folder): map versions with the same props or sky share one `props.bin` / `sky.webp` (the others' headers name it:
-`"../<map>/sky.webp"`), textures with the same bytes under two names are named by one of them. `py python/cod2ff/viewer/datafile.py check` verifies every packed file, `pack` / `unpack` convert a
-tree. All 32 maps (15 stock + 17 zPAM map pack) take about 18 minutes; the site's data is ~690 MB;
+`"../<map>/sky.webp"`), textures with the same bytes under two names are named by one of them. `PYTHONPATH=src py -m cod2ff.viewer.datafile check ../cod2-demo/maps3d`
+(in cod2-assets) verifies every packed file, `share` stores the identical files once. All 32 maps (15 stock + 17 zPAM map pack) take about 18 minutes; the site's data is ~690 MB;
 `world.json` also holds the map's fog (`setExpFog` / `setCullFog` of its level script) and each group's sort key and
 polygon offset level.
 `sound_export.py` writes
@@ -481,7 +484,7 @@ git-ignored):
 | `node tools/audit/turret_scan.mjs [demo ...]` | every use of a mounted MG: per demo the turrets (entity, model, weapon) and the ranges each player is on one - the recording player's with its turret entity and arc - (`--dump a b`: the player state's raw turret fields between a and b s); `out/turrets.json` |
 | `node tools/audit/demo_detail.mjs <demo> [client]` | the details behind a demo-audit finding: kill records, deaths against the scoreboard by phase, the positions around a jump |
 | `ui_audit.js`, `xray_audit.js` | pasted into the DevTools console on a loaded demo (the console is not bound by the page's CSP - `eval` from the page is): every control of both views, the X-Ray rules |
-| `node tools/audit/browser/run.mjs [suite ...] [--browsers chrome,firefox]` | the browser checks, headless, against the dev server (`py tools/serve.py 8776`): `ui` (the UI audit, a 3D MP4, a 2D GIF), `xray`, `start` (the start state, remembered settings), `features` (tracers, enemy names, camera shake, low-health overlay, Tab, a first-person MP4), `scores` (the defaults fresh and after the settings migration, Kill icons gone, the scoreboard only while Tab is held - all views, form fields, the export), `hit` (the hit marker on every demo), `sweep` (every demo in a row: 2D, 3D, follow, first person, seek, X-Ray), `badfiles` (broken / non-demo files), `layout` (five window sizes), `bump` (the players' normal maps), `alpha` (the 3D canvas opaque in every frame: images and videos as the page shows them), `baseline` (load and playback per mode and speed, seeks - the performance figures), `profile` (time and allocations per frame step, the sampling heap profiler, shader programs derived again, seeks), `fxhash` (the effects' output hashed), `closeup` (a player close-up PNG, `--pick x,y` the surface at a pixel), `spot` (camera shots of a map spot as PNGs, `--spot '{"shots":[...]}'`, with the map script's parts shown or hidden), `info` (the demos' zPAM version, server variables, phases), `feed` (the kill feed's clicks and round separators), `vmscan` (the first-person weapon's motion on every demo and player: zig-zags of its offsets), `timebar` (the round labels at three window sizes, matching the feed and the score banner, no overlaps, tooltips, clicks, the ranges, none in the export; the fullscreen player bar by real mouse and key input - real fullscreen in Chrome and Edge, emulated in headless Firefox, `--headed` for a real window), `looks` (the 3D view as PNGs per map from fixed views - overview, eye, first person, X-Ray, a player close up, an effect, ADS -; `--tag x`, `--base` another server: a before / after, compared by `looks_compare.mjs`), `turretscan` (every turret use of every demo in first person: the eye on tag_player, the gun aimed by the view, the MG crosshair, no view model, smooth mounting / leaving, a video), `turret` (one demo frame by frame on a turret, `--probe '{"demo":...,"times":[...]}'`), `hudon` (the Server HUD and Kill feed HUD parts on by default, fresh and migrated; on every demo and the stock clips inside the safe area, the kill feed's pixels clear of the other parts, in the export), `vmprobe` / `samples` (a client's first-person weapon frame by frame, the raw samples), `decals` (decal flicker), `perf` (load and frame time per map, `--maps`), `players` (Chrome: the players' frame time with all of them in view and in first person, the character data's size and load time), `idle` (paused, per camera mode: no frame drawn while nothing moves), `drawn` (follow and first person playing: every frame whose demo time moved is drawn), `leak` (memory on demo changes), `assets`
+| `node tools/audit/browser/run.mjs [suite ...] [--browsers chrome,firefox]` | the browser checks, headless, against the dev server (`py tools/serve.py 8776`): `ui` (the UI audit, a 3D MP4, a 2D GIF), `xray`, `start` (the start state, remembered settings), `features` (tracers, enemy names, camera shake, low-health overlay, Tab, a first-person MP4), `scores` (the defaults fresh and after the settings migration, Kill icons gone, the scoreboard only while Tab is held - all views, form fields, the export), `hit` (the hit marker on every demo), `sweep` (every demo in a row: 2D, 3D, follow, first person, seek, X-Ray), `badfiles` (broken / non-demo files), `layout` (five window sizes), `bump` (the players' normal maps), `alpha` (the 3D canvas opaque in every frame: images and videos as the page shows them), `baseline` (load and playback per mode and speed, seeks - the performance figures), `profile` (time and allocations per frame step, the sampling heap profiler, shader programs derived again, seeks), `fxhash` (the effects' output hashed), `closeup` (a player close-up PNG, `--pick x,y` the surface at a pixel), `spot` (camera shots of a map spot as PNGs, `--spot '{"shots":[...]}'`, with the map script's parts shown or hidden), `info` (the demos' zPAM version, server variables, phases), `feed` (the kill feed's clicks and round separators), `vmscan` (the first-person weapon's motion on every demo and player: zig-zags of its offsets), `timebar` (the round labels at three window sizes, matching the feed and the score banner, no overlaps, tooltips, clicks, the ranges, none in the export; the fullscreen player bar by real mouse and key input - real fullscreen in Chrome and Edge, emulated in headless Firefox, `--headed` for a real window), `looks` (the 3D view as PNGs per map from fixed views - overview, eye, first person, X-Ray, a player close up, an effect, ADS -; `--tag x`, `--base` another server: a before / after, compared by `looks_compare.mjs`), `turretscan` (every turret use of every demo in first person: the eye on tag_player, the gun aimed by the view, the MG crosshair, no view model, smooth mounting / leaving, a video), `turret` (one demo frame by frame on a turret, `--probe '{"demo":...,"times":[...]}'`), `hudon` (the Server HUD and Kill feed HUD parts on by default, fresh and migrated; on every demo and the stock clips inside the safe area, the kill feed's pixels clear of the other parts, in the export), `vmprobe` / `samples` (a client's first-person weapon frame by frame, the raw samples), `decals` (decal flicker), `perf` (load and frame time per map, `--maps`), `players` (Chrome: the players' frame time with all of them in view and in first person, the character data's size and load time), `idle` (paused, per camera mode: no frame drawn while nothing moves), `drawn` (follow and first person playing: every frame whose demo time moved is drawn), `fpsfov` (the FPS counter - off in a fresh session, 2D / 3D / first person / fullscreen, idle while paused, remembered for the session - and the first-person fov at 16:9, 4:3 and 3:4, aiming, the FOV dvars), `turretfov` (the fov on a mounted MG), `leak` (memory on demo changes), `assets`
 (Chrome and Firefox: every sound file decodes - FLAC at its own rate -, the 3 × 2 sky at the game's size, the planted
 bomb as the game's model with its glow; `--shots` adds a bomb close-up and a sky view as PNGs); a line per run, details in `tools/audit/out/browser/`, exit code 1 on a failure or any console error / warning / failed request |
 
@@ -497,7 +500,7 @@ bomb as the game's model with its glow; `--shots` adds a bomb close-up and a sky
 ## Deploy to GitHub Pages
 
 1. Run `py tools/audit/site_audit.py` (0 problems expected but the `?debug` picker's `console.log`) and
-   `py python/cod2ff/viewer/datafile.py check`. The site leaves three.js's shader error checks off (they block the main
+   in cod2-assets `PYTHONPATH=src py -m cod2ff.viewer.datafile check ../cod2-demo/maps3d`. The site leaves three.js's shader error checks off (they block the main
    thread while the programs link); `?debug` or `?shadercheck` in the URL turns them on (the browser suites do).
    Create a repository and push the project (`maps3d/` included - it is the site's data; the `demos/`
    folder is git-ignored). Binary files are marked in `.gitattributes`; no Git LFS (Pages would serve
@@ -534,7 +537,8 @@ assets/maps/                      map registry and 2D backgrounds (generated), a
                                   assets/fonts: the self-hosted fonts with their licences
 vendor/three/                     three.js r187 (build: three.module.js + three.core.js, OrbitControls; MIT licence)
 maps3d/                           exported map data (generated)
-(cod2-ff)                         the Python export: C:/Claude/cod2-ff python/cod2ff/viewer (readers in python/cod2ff)
+(cod2-assets)                     the Python export: C:/Claude/cod2-assets src/cod2ff/viewer (readers in src/cod2ff/formats;
+                                  formerly cod2-ff); tools/cod2assets.py: where the audits find it
 tools/validate/                   alignment check;   tools/serve.py: local server
 tools/audit/                      release audits (site, maps, demos, UI, X-Ray)
 tools/perf/                       load / frame-time bench and CPU profiles (results in tools/perf/results, not committed)

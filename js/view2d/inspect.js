@@ -1,6 +1,6 @@
 /* The 2D view's Inspect layer: the map as a see-through model under the 2D markers, in the look of a tactical radar
  * (the walkable floors as layers with their outlines, the walls as a faint volume, a ground grid). The mesh is
- * maps3d/<map>/inspect.json + inspect.bin (cod2-ff export_maps.py export_inspect); it is drawn with WebGL 2 into a
+ * maps3d/<map>/inspect.json + inspect.bin (cod2-assets src/cod2ff/viewer/export_maps.py export_inspect); it is drawn with WebGL 2 into a
  * canvas of its own, which the 2D renderer draws as its background (renderer.js drawLayer) - the live view and
  * the video export the same way. The camera is the 2D renderer's (its matrix for the plane z = zRef, the height
  * term kz, the yaw and tilt): the markers drawn on top line up with the mesh. The map does not move: the image is
